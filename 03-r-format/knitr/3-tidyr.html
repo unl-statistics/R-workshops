@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>tidyr</title>
+    <meta charset="utf-8">
+    <meta name="author" content="Haley Jeppson, Sam Tyner" />
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/default-fonts.css" rel="stylesheet" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# tidyr
+### Haley Jeppson, Sam Tyner
+
+---
+
+
+
+
+
+## What is tidy data?
+
+&gt; Happy families are all alike; every unhappy family is unhappy in its own way.&lt;br&gt;
+Leo Tolstoy
+
+- Resource: follow along `tidyr` vignette 
+
+- available as `vignette("tidy-data", package="tidyr")`
+
+- vignette is version of the [tidy data paper](https://www.jstatsoft.org/article/view/v059i10) with updated code
+
+---
+
+## Outline
+
+- Different sources of messiness
+
+- Key-Value pairs
+
+- `tidyr`: `spread` and `gather`, `separate`
+
+---
+
+## Data is usually in a spreadsheet format, but...
+
+There are different ways of encoding the same information:
+
+.pull-left[
+**Option 1:**
+&lt;style type="text/css"&gt;
+.tg  {border-collapse:collapse;border-spacing:0;border-color:#aaa;}
+.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-color:#aaa;color:#333;background-color:#fff;}
+.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-color:#aaa;color:#fff;background-color:#f38630;}
+.tg .tg-s6z2{text-align:center}
+.tg .tg-gmsq{background-color:#FCFBE3;font-style:italic;text-align:center}
+.tg .tg-lyaj{background-color:#FCFBE3;text-align:center}
+.tg .tg-hgcj{font-weight:bold;text-align:center}
+&lt;/style&gt;
+&lt;table class="tg"&gt;
+  &lt;tr&gt;
+    &lt;th class="tg-hgcj"&gt;Name&lt;/th&gt;
+    &lt;th class="tg-hgcj"&gt;Treatment A&lt;/th&gt;
+    &lt;th class="tg-hgcj"&gt;Treatment B&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-s6z2"&gt;John Smith&lt;/td&gt;
+    &lt;td class="tg-gmsq"&gt;NA&lt;/td&gt;
+    &lt;td class="tg-s6z2"&gt;18&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-s6z2"&gt;Jane Doe&lt;/td&gt;
+    &lt;td class="tg-lyaj"&gt;4&lt;/td&gt;
+    &lt;td class="tg-s6z2"&gt;1&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-s6z2"&gt;Mary Johnson&lt;/td&gt;
+    &lt;td class="tg-lyaj"&gt;6&lt;/td&gt;
+    &lt;td class="tg-s6z2"&gt;7&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;
+
+
+**Option 2:**
+
+&lt;style type="text/css"&gt;
+.tg  {border-collapse:collapse;border-spacing:0;border-color:#aaa;}
+.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-color:#aaa;color:#333;background-color:#fff;}
+.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-color:#aaa;color:#fff;background-color:#f38630;}
+.tg .tg-baqh{text-align:center;vertical-align:top}
+.tg .tg-amwm{font-weight:bold;text-align:center;vertical-align:top}
+.tg .tg-yq6s{background-color:#FCFBE3;text-align:center;vertical-align:top}
+&lt;/style&gt;
+&lt;table class="tg"&gt;
+  &lt;tr&gt;
+    &lt;th class="tg-amwm"&gt;Treatment&lt;/th&gt;
+    &lt;th class="tg-amwm"&gt;John Smith&lt;/th&gt;
+    &lt;th class="tg-amwm"&gt;Jane Doe&lt;/th&gt;
+    &lt;th class="tg-amwm"&gt;Mary Johnson&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-yq6s"&gt;A&lt;/td&gt;
+    &lt;td class="tg-yq6s"&gt;NA&lt;/td&gt;
+    &lt;td class="tg-yq6s"&gt;4&lt;/td&gt;
+    &lt;td class="tg-yq6s"&gt;6&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-baqh"&gt;B&lt;/td&gt;
+    &lt;td class="tg-baqh"&gt;18&lt;/td&gt;
+    &lt;td class="tg-baqh"&gt;1&lt;/td&gt;
+    &lt;td class="tg-baqh"&gt;7&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;
+]
+.pull-right[
+**Option 3:**
+
+&lt;style type="text/css"&gt;
+.tg  {border-collapse:collapse;border-spacing:0;border-color:#aaa;}
+.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#aaa;color:#333;background-color:#fff;}
+.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#aaa;color:#fff;background-color:#f38630;}
+.tg .tg-s6z2{text-align:center}
+.tg .tg-baqh{text-align:center;vertical-align:top}
+.tg .tg-hgcj{font-weight:bold;text-align:center}
+&lt;/style&gt;
+&lt;table class="tg"&gt;
+  &lt;tr&gt;
+    &lt;th class="tg-hgcj"&gt;Name&lt;/th&gt;
+    &lt;th class="tg-hgcj"&gt;Treatment&lt;/th&gt;
+    &lt;th class="tg-hgcj"&gt;Measurement&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-s6z2"&gt;John Smith&lt;/td&gt;
+    &lt;td class="tg-s6z2"&gt;A&lt;/td&gt;
+    &lt;td class="tg-s6z2"&gt;NA&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-s6z2"&gt;Jane Doe&lt;/td&gt;
+    &lt;td class="tg-s6z2"&gt;A&lt;/td&gt;
+    &lt;td class="tg-s6z2"&gt;4&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-baqh"&gt;Mary Johnson&lt;/td&gt;
+    &lt;td class="tg-baqh"&gt;A&lt;/td&gt;
+    &lt;td class="tg-baqh"&gt;6&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-baqh"&gt;John Smith&lt;/td&gt;
+    &lt;td class="tg-baqh"&gt;B&lt;/td&gt;
+    &lt;td class="tg-baqh"&gt;18&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-baqh"&gt;Jane Doe&lt;/td&gt;
+    &lt;td class="tg-baqh"&gt;B&lt;/td&gt;
+    &lt;td class="tg-baqh"&gt;1&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-baqh"&gt;Mary Johnson&lt;/td&gt;
+    &lt;td class="tg-baqh"&gt;B&lt;/td&gt;
+    &lt;td class="tg-baqh"&gt;7&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;
+]
+
+&lt;!--
+Option #1
+
+```
+##           name treatmenta treatmentb
+## 1   John Smith         NA         18
+## 2     Jane Doe          4          1
+## 3 Mary Johnson          6          7
+```
+
+Option #2
+
+```
+##   treatment John.Smith Jane.Doe Mary.Johnson
+## 1         a         NA        4            6
+## 2         b         18        1            7
+```
+--&gt;
+
+Neither #1 nor #2 are "clean" versions of the data: observed information is part of the data structure; some implicit information is assumed
+
+---
+## What we have and what we want
+
+
+.pull-left[
+**Wide format**
+
+- some variables are spread out across columns.
+
+- typically uses less space to display
+
+- how you would typically choose to present your data
+
+- far less repetition of labels and row elements
+
+
+![](images/tablewide2.png)
+
+]
+.pull-right[
+
+**Long format**
+
+- each variable is a column
+
+- each observation is a row
+
+- is likely not the data's most compact form
+
+
+&lt;img src="3-tidyr_files/figure-html/unnamed-chunk-3-1.png" style="display: block; margin: auto;" /&gt;
+
+]
+
+---
+
+## Tidy Data
+
+- Each variable is a column
+
+- Each observation is a row
+
+- Each type of observational unit forms a table
+
+&lt;br/&gt;
+
+&lt;style type="text/css"&gt;
+.tg  {border-collapse:collapse;border-spacing:0;border-color:#aaa;}
+.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-color:#aaa;color:#333;background-color:#fff;}
+.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-color:#aaa;color:#fff;background-color:#f38630;}
+.tg .tg-baqh{text-align:center;vertical-align:top}
+.tg .tg-amwm{font-weight:bold;text-align:center;vertical-align:top}
+&lt;/style&gt;
+&lt;table class="tg"&gt;
+  &lt;tr&gt;
+    &lt;th class="tg-amwm"&gt;Name&lt;/th&gt;
+    &lt;th class="tg-amwm"&gt;Treatment&lt;/th&gt;
+    &lt;th class="tg-amwm"&gt;Measurement&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-baqh"&gt;John Smith&lt;/td&gt;
+    &lt;td class="tg-baqh"&gt;A&lt;/td&gt;
+    &lt;td class="tg-baqh"&gt;NA&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-baqh"&gt;John Smith&lt;/td&gt;
+    &lt;td class="tg-baqh"&gt;B&lt;/td&gt;
+    &lt;td class="tg-baqh"&gt;18&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-baqh"&gt;Jane Doe&lt;/td&gt;
+    &lt;td class="tg-baqh"&gt;A&lt;/td&gt;
+    &lt;td class="tg-baqh"&gt;4&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-baqh"&gt;Jane Doe&lt;/td&gt;
+    &lt;td class="tg-baqh"&gt;B&lt;/td&gt;
+    &lt;td class="tg-baqh"&gt;1&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-baqh"&gt;Mary Johnson&lt;/td&gt;
+    &lt;td class="tg-baqh"&gt;A&lt;/td&gt;
+    &lt;td class="tg-baqh"&gt;6&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-baqh"&gt;Mary Johnson&lt;/td&gt;
+    &lt;td class="tg-baqh"&gt;B&lt;/td&gt;
+    &lt;td class="tg-baqh"&gt;7&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;
+
+
+
+---
+
+## Sources of Messiness
+
+
+**Five main ways tables of data tend not to be tidy:**
+
+1. Column headers are values, not variable names.
+
+2. Multiple variables are stored in one column.
+
+3. Variables are stored in both rows and columns.
+
+4. Multiple types of observational units are stored in the same table.
+
+5. A single observational unit is stored in multiple tables.
+
+
+---
+
+## What makes data tidy?
+
+.pull-left[
+&lt;style type="text/css"&gt;
+.tg  {border-collapse:collapse;border-spacing:0;border-color:#aaa;}
+.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-color:#aaa;color:#333;background-color:#fff;}
+.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-color:#aaa;color:#fff;background-color:#f38630;}
+.tg .tg-baqh{text-align:center;vertical-align:top}
+.tg .tg-amwm{font-weight:bold;text-align:center;vertical-align:top}
+&lt;/style&gt;
+&lt;table class="tg"&gt;
+  &lt;tr&gt;
+    &lt;th class="tg-amwm"&gt;Name&lt;/th&gt;
+    &lt;th class="tg-amwm"&gt;Treatment&lt;/th&gt;
+    &lt;th class="tg-amwm"&gt;Measurement&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-baqh"&gt;John Smith&lt;/td&gt;
+    &lt;td class="tg-baqh"&gt;A&lt;/td&gt;
+    &lt;td class="tg-baqh"&gt;NA&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-baqh"&gt;John Smith&lt;/td&gt;
+    &lt;td class="tg-baqh"&gt;B&lt;/td&gt;
+    &lt;td class="tg-baqh"&gt;18&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-baqh"&gt;Jane Doe&lt;/td&gt;
+    &lt;td class="tg-baqh"&gt;A&lt;/td&gt;
+    &lt;td class="tg-baqh"&gt;4&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-baqh"&gt;Jane Doe&lt;/td&gt;
+    &lt;td class="tg-baqh"&gt;B&lt;/td&gt;
+    &lt;td class="tg-baqh"&gt;1&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-baqh"&gt;Mary Johnson&lt;/td&gt;
+    &lt;td class="tg-baqh"&gt;A&lt;/td&gt;
+    &lt;td class="tg-baqh"&gt;6&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-baqh"&gt;Mary Johnson&lt;/td&gt;
+    &lt;td class="tg-baqh"&gt;B&lt;/td&gt;
+    &lt;td class="tg-baqh"&gt;7&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;
+
+]
+
+.pull-right[
+
+- `treatment` and `patient` uniquely describe a single row in the dataset.
+
+- `treatment` and `patient` are **key variables**,
+
+- `score` is a **measurement variable**
+
+- this makes `treatment-patient` and `score` a **key-value pair**
+
+
+]
+
+
+
+---
+
+## Key-value pairs (KVP)
+ 
+**Key-Value pairs** (KVP) - also *attribute-value*, *field-value*, *name-value*:
+abstract data representation that allows a lot of flexibility  
+
+One way of telling whether a data set is tidy is to check that all keys for a value are aligned in one row:
+
+| | |
+|:------------- |:------------- | 
+| | |
+| &lt;img src="images/kvp-unhappy.png" width=150&gt; | &lt;img src="images/kvp-happy.png" width=150&gt;     | 
+|Untidy data | Tidy data |
+
+---
+
+## Key-value pairs (KVP)
+
+**Keys/Identifiers**:
+
+- Identify a record (must be unique)
+
+- Example: Indices on an random variable
+
+- Fixed by design of experiment (known in advance)
+
+- May be single or composite (may have one or more variables)
+
+**Values/Measures**:
+
+- Collected during the experiment (not known in advance)
+
+- Usually numeric quantities
+
+---
+
+## Tidying data - Plan of attack
+
+Very few functions are needed to tidy data:
+
+**Messy (1)**: `tidyr` functions `gather` and `spread`.  
+
+- `gather (data, key, value, ...)`: take multiple columns and collapse into key-value pairs
+
+- `spread (data, key, value, fill = NA)`: spread a key-value pair across multiple columns.
+
+**Messy (2)**: `tidyr` function `separate (data, col, into, sep = " ")`:
+
+- separate one column into multiple columns
+
+**Messy (3)**: `dplyr` - some combination of the functions discussed previously
+
+**Messy (4)**: `dplyr` functionality `join` (and friends) to combine multiple data sets 
+
+---
+
+## Untidy data
+
+
+```r
+french_fries &lt;- read_csv("frenchfries.csv")
+head(french_fries)
+```
+
+
+```r
+french_fries &lt;- read_csv("../data/frenchfries.csv")
+```
+
+```
+## Parsed with column specification:
+## cols(
+##   time = col_integer(),
+##   treatment = col_integer(),
+##   subject = col_integer(),
+##   rep = col_integer(),
+##   potato = col_double(),
+##   buttery = col_double(),
+##   grassy = col_double(),
+##   rancid = col_double(),
+##   painty = col_double()
+## )
+```
+
+```r
+head(french_fries)
+```
+
+```
+## # A tibble: 6 x 9
+##    time treatment subject   rep potato buttery grassy rancid painty
+##   &lt;int&gt;     &lt;int&gt;   &lt;int&gt; &lt;int&gt;  &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+## 1     1         1       3     1   2.90   0.      0.     0.     5.50
+## 2     1         1       3     2  14.0    0.      0.     1.10   0.  
+## 3     1         1      10     1  11.0    6.40    0.     0.     0.  
+## 4     1         1      10     2   9.90   5.90    2.90   2.20   0.  
+## 5     1         1      15     1   1.20   0.100   0.     1.10   5.10
+## 6     1         1      15     2   8.80   3.00    3.60   1.50   2.30
+```
+
+---
+
+## This format is not ideal for data analysis
+
+
+```r
+library(ggplot2)
+
+ggplot(french_fries) + 
+  geom_boxplot(aes(x="1_buttery", y=buttery), fill = "cyan4") +
+  geom_boxplot(aes(x = "2_grassy", y = grassy), fill = "darkorange2") +
+  geom_boxplot(aes(x = "3_painty", y = painty), fill = "darkorchid1") +
+  geom_boxplot(aes(x = "4_potato", y = potato), fill = "chartreuse3") +
+  geom_boxplot(aes(x = "5_rancid", y = rancid), fill = "deeppink") +
+  xlab("variable") + ylab("rating")
+```
+
+![](3-tidyr_files/figure-html/unnamed-chunk-6-1.png)&lt;!-- --&gt;
+
+---
+
+## Tidy your data using `gather`
+
+When gathering, you need to specify: 
+- the **keys** (identifiers) 
+- the **values** (measures)
+
+
+```r
+french_fries_long &lt;- french_fries %&gt;% 
+  gather(key = variable, value = rating, potato:painty)
+head(french_fries_long)
+```
+
+```
+## # A tibble: 6 x 6
+##    time treatment subject   rep variable rating
+##   &lt;int&gt;     &lt;int&gt;   &lt;int&gt; &lt;int&gt; &lt;chr&gt;     &lt;dbl&gt;
+## 1     1         1       3     1 potato     2.90
+## 2     1         1       3     2 potato    14.0 
+## 3     1         1      10     1 potato    11.0 
+## 4     1         1      10     2 potato     9.90
+## 5     1         1      15     1 potato     1.20
+## 6     1         1      15     2 potato     8.80
+```
+
+---
+
+## This format is better suited for data analysis
+
+
+```r
+ggplot(french_fries_long) + 
+  geom_boxplot(aes(x = variable, y = rating, fill = variable))
+```
+
+![](3-tidyr_files/figure-html/unnamed-chunk-8-1.png)&lt;!-- --&gt;
+
+
+---
+## Long to Wide
+
+In certain applications, we may wish to take a long dataset and convert it to a wide dataset (Perhaps displaying in a table).
+
+
+```r
+head(french_fries_long)
+```
+
+```
+## # A tibble: 6 x 6
+##    time treatment subject   rep variable rating
+##   &lt;int&gt;     &lt;int&gt;   &lt;int&gt; &lt;int&gt; &lt;chr&gt;     &lt;dbl&gt;
+## 1     1         1       3     1 potato     2.90
+## 2     1         1       3     2 potato    14.0 
+## 3     1         1      10     1 potato    11.0 
+## 4     1         1      10     2 potato     9.90
+## 5     1         1      15     1 potato     1.20
+## 6     1         1      15     2 potato     8.80
+```
+
+---
+## Spread
+
+We use the `spread` function from `tidyr` to do this:
+
+
+```r
+french_fries_wide &lt;- french_fries_long %&gt;% 
+  spread(key = variable, value = rating)
+
+head(french_fries_wide)
+```
+
+```
+## # A tibble: 6 x 9
+##    time treatment subject   rep buttery grassy painty potato rancid
+##   &lt;int&gt;     &lt;int&gt;   &lt;int&gt; &lt;int&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+## 1     1         1       3     1   0.      0.     5.50   2.90   0.  
+## 2     1         1       3     2   0.      0.     0.    14.0    1.10
+## 3     1         1      10     1   6.40    0.     0.    11.0    0.  
+## 4     1         1      10     2   5.90    2.90   0.     9.90   2.20
+## 5     1         1      15     1   0.100   0.     5.10   1.20   1.10
+## 6     1         1      15     2   3.00    3.60   2.30   8.80   1.50
+```
+
+We are now back to our original format
+
+---
+## Spread
+
+We can also use the `spread` function to compare reps
+
+
+```r
+french_fries_wide &lt;- french_fries_long %&gt;% 
+  spread(key = rep, value = rating)
+
+head(french_fries_wide)
+```
+
+```
+## # A tibble: 6 x 6
+##    time treatment subject variable   `1`   `2`
+##   &lt;int&gt;     &lt;int&gt;   &lt;int&gt; &lt;chr&gt;    &lt;dbl&gt; &lt;dbl&gt;
+## 1     1         1       3 buttery   0.    0.  
+## 2     1         1       3 grassy    0.    0.  
+## 3     1         1       3 painty    5.50  0.  
+## 4     1         1       3 potato    2.90 14.0 
+## 5     1         1       3 rancid    0.    1.10
+## 6     1         1      10 buttery   6.40  5.90
+```
+
+---
+## Compare replicates
+
+
+```r
+french_fries_wide %&gt;%
+  ggplot(aes(x = `1`, y = `2`)) + 
+  geom_point() +
+  facet_wrap(~variable) + 
+  geom_abline(colour = "grey50")
+```
+
+![](3-tidyr_files/figure-html/unnamed-chunk-12-1.png)&lt;!-- --&gt;
+
+---
+## separate
+
+
+```r
+df &lt;- data.frame(x = c(NA, "a.b", "a.d", "b.c"))
+df
+```
+
+```
+##      x
+## 1 &lt;NA&gt;
+## 2  a.b
+## 3  a.d
+## 4  b.c
+```
+
+```r
+df %&gt;% separate(x, into = c("A", "B"))
+```
+
+```
+##      A    B
+## 1 &lt;NA&gt; &lt;NA&gt;
+## 2    a    b
+## 3    a    d
+## 4    b    c
+```
+
+---
+class: inverse
+## Your Turn (5 min)
+
+The Iowa Data Portal is a wealth of information on and about the State of Iowa. 
+
+The website 
+[Campaign Expenditures](https://data.iowa.gov/Government/Campaign-Expenditures/3adi-mht4/data) provides data on campaign expenditures. The code below reads the data into an R session.
+
+```
+url &lt;- "https://data.iowa.gov/api/views/3adi-mht4/rows.csv"
+campaign &lt;- readr::read_csv(url)
+```
+
+Assess the 'messiness' of the data. List issues that prevent us from working with the data directly. Which of these issues are of type (1) or (2) of messiness?
+
+---
+
+## Problems with the data
+
+- `Date` is text, in the format of Month/Day/Year (Messy 2)
+
+- city coordinates are a combination of City name, state, zip code and geographic latitude and longitude. (Messy 2)
+
+- expenditure amount is a textual expression, not a number (Messy different)
+
+no Messy 1? - problems of type Messy 1 are typically hard to detect and often up to interpretation/dependent on the analysis to be done.
+
+---
+class: inverse
+
+## Your Turn (10 mins)
+
+During the 1870 census data on people's occupation was collected. The data [occupation-1870](../data/occupation-1870.csv) contains state-level aggregates of occupation by gender.
+
+- Use `tidyr` to get the data into a long format. 
+
+- Separate the `occupation.gender` type variable into two variables.
+
+- Spread the data such that you can draw scatterplots of values for men against women facetted by occupation.
+
+
+
+---
+## Dates and Times
+
+Dates are deceptively hard to work with in R.
+
+**Example**: 02/05/2012. Is it February 5th, or May 2nd?
+
+Other things are difficult too:
+
+- Time zones
+- POSIXct format in base R is challenging
+
+The **lubridate** package helps tackle some of these issues.
+
+---
+
+## Basic Lubridate Use
+
+
+```r
+library(lubridate)
+
+now()
+today()
+now() + hours(4)
+today() - days(2)
+```
+
+```
+## [1] "2018-05-28 17:59:45 CDT"
+## [1] "2018-05-28"
+## [1] "2018-05-28 21:59:45 CDT"
+## [1] "2018-05-26"
+```
+
+---
+## Parsing Dates
+
+
+```r
+ymd("2013-05-14")
+mdy("05/14/2013")
+dmy("14052013")
+ymd_hms("2013:05:14 14:50:30", tz = "America/Chicago")
+```
+
+```
+## [1] "2013-05-14"
+## [1] "2013-05-14"
+## [1] "2013-05-14"
+## [1] "2013-05-14 14:50:30 CDT"
+```
+
+---
+class: inverse
+
+## Your Turn 
+
+
+The flights dataset contains information on over 300,000 flights that departed from New York City in the year 2013.
+
+
+```r
+flights &lt;- read.csv("http://heike.github.io/rwrks/03-r-format/data/flights.csv")
+```
+
+
+---
+class: inverse
+
+## Your Turn
+
+1. Using the `flights` data, create a new column Date using lubridate. You will need to paste together the columns year, month, and day in order to do this. See the `paste` function.
+
+2. Use `dplyr` to calculate the average departure delay for each date.
+
+3. Plot the date versus the average departure delay
+
+![](3-tidyr_files/figure-html/unnamed-chunk-17-1.png)&lt;!-- --&gt;
+
+---
+class: inverse
+
+## Your Turn
+
+- Read in the billboard top 100 music data:
+
+
+```r
+billboard &lt;- read.csv("http://heike.github.io/rwrks/03-r-format/data/billboard.csv")
+```
+    
+- Use `tidyr` to convert this data into a long format.
+
+- Use ``ggplot2`` to create something like this:
+
+![](3-tidyr_files/figure-html/unnamed-chunk-19-1.png)&lt;!-- --&gt;
+    </textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function() {
+  var d = document, s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})();</script>
+
+<script>
+(function() {
+  var i, text, code, codes = document.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+})();
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

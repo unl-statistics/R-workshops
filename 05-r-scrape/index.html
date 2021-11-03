@@ -1,7 +1,7 @@
 <html>
 
 <head>
-	<title>Web Scraping in R. Statistical Computing. Iowa State.</title>
+	<title>Creating your own R package. Statistical Computing. Iowa State.</title>
 	<link rel="stylesheet" type="text/css" href="../css/style.css">
 </head>
 
@@ -13,20 +13,20 @@
 </div>
 <div id="wrap">
 
-<h1>Web Scraping in R.</h1>
+<h1>Creating your own R package.</h1>
 
-<p><strong>May 19 2016, 3121 Snedecor, 1:30pm to 5:00pm</strong><br />
+<p><strong>Jan 10, 2020, Location TBD, 2:00pm to 5:00pm</strong><br />
 
 
 <p>
-Eric Hare, <a href="mailto:erichare@iastate.edu">erichare@iastate.edu</a>.<br />
-Andee Kaplan, <a href="mailto:ajkaplan@iastate.edu">ajkaplan@iastate.edu</a>.<br />
-Samantha Tyner, <a href="mailto:sctyner@iastate.edu">sctyner@iastate.edu</a>.<br />
+Haley Jeppson, <a href="mailto:hjeppson@iastate.edu">hjeppson@iastate.edu</a>.<br />
+Joe Papio, <a href="mailto:joepapio@iastate.edu">joepapio@iastate.edu</a>.<br />
+Sam Tyner, <a href="mailto:sctyner@iastate.edu">sctyner@iastate.edu</a>.<br />
 <!--Heike Hofmann, <a href="mailto:hofmann@iastate.edu">hofmann@iastate.edu</a>.<br /> -->
 </p>
 
 
-	<p>The <em>Web Scraping in R</em> workshop will teach you how to acquire data that lives on the Web and work it into a form suitable for data analysis.
+	<p>Packages are the fundamental units of reproducible R code. Learn how to turn your code into packages that others can easily download and use. We will cover the cover basic components of an R package and how you can use other R packages to automate most of the package development of your own package.
 	  </p>
 	  The course will be a mix of instruction and interactive activities. It will be held in a computer lab but you are encouraged to bring your own laptops, with software already loaded. A list of software will be available at this site several days prior to the workshop.
 
@@ -52,7 +52,7 @@ Samantha Tyner, <a href="mailto:sctyner@iastate.edu">sctyner@iastate.edu</a>.<br
 
 	<tr class="topic first"><td colspan="3"></td></tr>
 	<tr class="">
-		<td > 1:30 &#8211; 2:00</td>
+		<td > 1:45 &#8211; 2:00</td>
 		<td>Install stuff</td>
 		<td>This will make sure that everybody's system is up and running. <br><b>You should try to install stuff ahead of time, so that this time can be used to address potential problems.</b> <br>
 		Install <a href="https://www.google.com/chrome/browser/desktop/index.html">Chrome</a>, <a href="https://chrome.google.com/webstore/detail/selectorgadget/mhjhnkcfbdhnjickkkdbjoemdmbfginb?hl=en">SelectorGadget</a>, and <a href="code/0-Setup.R">R packages</a>
@@ -63,12 +63,18 @@ Samantha Tyner, <a href="mailto:sctyner@iastate.edu">sctyner@iastate.edu</a>.<br
 		<td  valign="top"><a href="knitr/1-WebScraping.html">Motivation and examples</a> </td>
 		<td  valign="top"> Easily extract data from HTML pages using rvest and SelectorGadget <br/>
 		<a href="knitr/1-WebScraping.Rmd">1-WebScraping.Rmd</a><br/>
-		<a href="code/1-WebScraping.R">1-WebScraping.R</a></td>
+		<a href="code/1-WebScraping.R">1-WebScraping.R</a><br/>
+		<a href="knitr/speeches/vanburen1837.txt">vanburen1837.txt</a><br/>
+		<a href="knitr/speeches/buchanan1857.txt">buchanan1857.txt</a><br/>
+		<a href="knitr/speeches/garfield1881.txt">garfield1881.txt</a><br/>
+		<a href="knitr/speeches/coolidge1925.txt">coolidge1925.txt</a><br/>
+		<a href="knitr/speeches/obama2013.txt">obama2013.txt</a><br/>
+		<a href="knitr/speeches/trumpinaug.txt">trumpinaug.txt</a></td>
 	</tr>
 	<tr class="">
 		<td> 3:00 &#8211; 3:30 </td>
 		<td><a href="knitr/1-WebScraping.html">Web APIs and Dynamic Sites</a></td>
-		<td>Talk to APIs with httr and scrape dynamic sites with rdom. <br/>
+		<td>Talk to APIs with httr. <br/>
 		<a href="knitr/1-WebScraping.Rmd">1-WebScraping.Rmd</a><br/>
 		<a href="code/1-WebScraping.R">1-WebScraping.R</a></td>
 	</tr>
@@ -81,7 +87,7 @@ Samantha Tyner, <a href="mailto:sctyner@iastate.edu">sctyner@iastate.edu</a>.<br
 		<tr class="">
 		<td> 3:30 &#8211; 4:45</td>
 		<td><a href="knitr/1-WebScraping.html">Working with non-HTML formats</a></td>
-    <td>Easily transform XML with XML2R and JSON with jsonlite/tidyjson<<br/>
+    <td>Easily transform XML with XML2R and JSON with jsonlite<br/>
 		<a href="knitr/1-WebScraping.Rmd">1-WebScraping.Rmd</a><br/>
 		<a href="code/1-WebScraping.R">1-WebScraping.R</a></td>
 	</tr>
@@ -89,7 +95,7 @@ Samantha Tyner, <a href="mailto:sctyner@iastate.edu">sctyner@iastate.edu</a>.<br
 	<tr class="">
 		<td> 4:45 &#8211; 5:00</td>
 		<td>Questions and Survey</td>
-		<td>We very much appreciate any feedback you can give us. You can find a form here: <a href="http://heike.wufoo.com/forms/r-workshop-your-opinion-matters/">survey</a>.</td>
+		<td>We very much appreciate any feedback you can give us. You can find a form here: <a href="https://docs.google.com/a/iastate.edu/forms/d/e/1FAIpQLSe2qZZF1jwAM4FT3TedafdjKsJMj0z2-naFiTVPAQWkCA1Z7Q/viewform?usp=sf_link">survey</a>.</td>
 	</tr>
 
 </table>
@@ -106,9 +112,9 @@ We very much appreciate any feedback you can give us. You can find a form here: 
 
 <ul>
   <li>Read Web content (such as HTML/XML/JSON) into R and transform it into a workable form.</li>
-
+<!--
   <li>Understand the difference between static and dynamic sites.</li>
-
+-->
   <li>Understand basics of HTTP (for working with Web APIs).</li>
 
 </ul>

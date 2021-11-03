@@ -1,4 +1,5 @@
 ### Graphics Intro
+library(ggplot2)
 #---------------------------------------------
 ## Your Turn 1 - qplot
 	tips <- read.csv("http://heike.github.io/rwrks/02-r-graphics/data/tips.csv")
@@ -63,28 +64,35 @@
 #---------------------------------------------
 
 ## Your turn 1 - health stats
-	states.health.stats <- read.csv("https://heike.github.io/rwrks/02-r-graphics/data/states.health.stats.csv")
+	states.health.stats <- read.csv("https://heike.github.io/rwrks/02-r-graphics/data/states.health.stats.csv", stringsAsFactors = FALSE)
 	
 	# Use left_join to combine child healthcare data with maps information. 
 	
 	library(maps)
 	library(dplyr)
-	states <- map_data("state")
+	#states <- map_data("state")
+	#states.health.map <- left_join(states, states.health.stats, 
+	#						by = c("region" = "state.name"))
+	states <- usa_sf("laea")
+  states$name <- tolower(states$name)
 	states.health.map <- left_join(states, states.health.stats, 
-							by = c("region" = "state.name"))
+                               by = c("name" = "state.name"))
 	
+  # Use geom_sf to create a map of child healthcare undercoverage rate by state
+  ggplot(data = states.health.map) + geom_sf(aes(fill = no.coverage))
 	
-	# Use qplot to create a map of child healthcare undercoverage rate by state
+  # Use qplot to create a map of child healthcare undercoverage rate by state
 	
-	qplot(data = states.health.map, x = long, y = lat, geom = 'polygon',
-			group = group, fill = no.coverage) + coord_map()
+	# qplot(data = states.health.map, x = long, y = lat, geom = 'polygon',
+	#		group = group, fill = no.coverage) + coord_map()
 
 ## Your turn 2 - cleaned up map
 
-	qplot(data = states.health.map, x = long, y = lat, geom = 'polygon',
-			group = group, fill = no.coverage) + coord_map() + 
-	scale_fill_gradient2(limits = c(0, .2), low = 'white', high = 'red') + 
-	ggtitle("Health Insurance in the U.S.\nWhich states have the highest rates of undercovered children?")	+ theme_minimal() + 
+	#qplot(data = states.health.map, x = long, y = lat, geom = 'polygon',
+	#		group = group, fill = no.coverage) + coord_map() + 
+  ggplot(data = states.health.map) + geom_sf(aes(fill = no.coverage)) + 
+  scale_fill_gradient2(limits = c(0, .2), low = 'white', high = 'red') + 
+	ggtitle("Health Insurance in the U.S.", subtitle = "Which states have the highest rates of undercovered children?")	+ theme_minimal() + 
 	theme(panel.grid = element_blank(), axis.text = element_blank(),
 	axis.title = element_blank())	
 	
@@ -94,8 +102,7 @@
 ## Your turn 1 - Deepwater horizon 
 
 	# recreate the map shown
-	load("../../02-r-graphics/data/noaa.rdata")
-	ls()
+	load("02-r-graphics/data/noaa.rdata")
 	head(floats)
 	ggplot(data = floats, aes(x = Depth, y = Temperature)) + 
 		geom_point(aes(color = callSign))
@@ -104,41 +111,61 @@
 
 	# 1. Read in the animal.csv data
 	
-	animal <- read.csv("https://heike.github.io/rwrks/02-r-graphics/data/animal.csv")
+	animal <- read.csv("https://heike.github.io/rwrks/02-r-graphics/data/animal.csv", stringsAsFactors = FALSE)
 	
 	# 2. Plot the location of animal sightings on a map of the region
 	
 	ggplot() + 
-		geom_path(data = states, aes(x = long, y = lat, group = group)) + 
+		geom_sf(data = states) + 
 		geom_point(data = animal, aes(x = Longitude, y = Latitude)) + 
-		xlim(c(-91, -80)) + ylim(c(24,32)) + coord_map()
+		xlim(c(-91, -80)) + ylim(c(24,32))
 	
 	# 3. On this plot, try to color points by class of animal and/or 
 		# status of animal
 		
 	ggplot() + 
-		geom_path(data = states, aes(x = long, y = lat, group = group)) + 
-		geom_point(data = animal, aes(x = Longitude, y = Latitude, 	
+		geom_sf(data = states) + 
+		geom_point(data = animal, 
+		           aes(x = Longitude, y = Latitude, 	
 					color = class)) + 
-		xlim(c(-91, -80)) + ylim(c(24,32)) + coord_map()		
+		xlim(c(-91, -80)) + ylim(c(24,32))  	
 		
 	ggplot() + 
-		geom_path(data = states, aes(x = long, y = lat, group = group)) + 
+		geom_sf(data = states) + 
 		geom_point(data = animal, aes(x = Longitude, y = Latitude, 	
-					color = Condition)) + 
-		xlim(c(-91, -80)) + ylim(c(24,32)) + coord_map()			
-		
+					color = Condition))  + 
+		xlim(c(-91, -80)) + ylim(c(24,32))
+	
+# Super fun bonus example: 
+	devtools::install_github("dill/emoGG")
+	library(emoGG)
+#	  library(remoji)
+	x <- rnorm(10)
+	y <- rnorm(10)
+	plot(x,y, cex = 0)
+	text(x,y, labels = emoji("cow"))
+	birdse <- emoji_search("bird")
+	reptilee <- emoji_search("reptile")
+	mammale <- emoji_search("animal")
+	
+	ggplot() +
+	  geom_sf(data = states) + 
+	  xlim(c(-91, -80)) + ylim(c(24,32)) + 
+	  geom_emoji(data = subset(animal, class == "Aves"), aes(x=Longitude, y = Latitude), emoji = "1f426") + 
+	  geom_emoji(data = subset(animal, class == "Mammalia"), aes(x=Longitude, y = Latitude), emoji = "1f430") + 
+	  geom_emoji(data = subset(animal, class == "Reptilla"), aes(x=Longitude, y = Latitude), emoji = "1f40a")
+
 	# 4. Advanced: Could we indicate time somehow?
 		
 	library(lubridate)
 	animal$month <- month(as.Date(animal$Date_))
 		
 	ggplot() + 
-		geom_path(data = states, aes(x = long, y = lat, group = group)) + 
+		geom_sf(data = states) + 
 		geom_point(data = animal, aes(x = Longitude, y = Latitude, 	
 					color = Condition), alpha = .5) +
 		xlim(c(-91, -80)) + ylim(c(24,32)) +
-		facet_wrap(~month) + coord_map() 		
+		facet_wrap(~month) 		
 			
 ### Perception
 #-------------------------------------------------

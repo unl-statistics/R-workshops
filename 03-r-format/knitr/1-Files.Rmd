@@ -1,89 +1,102 @@
 ---
 title: "Reading Files"
-author: "Eric Hare, Andee Kaplan, Sam Tyner"
-date: "May 18, 2016"
+author: "Haley Jeppson, Sam Tyner"
 output: 
-    revealjs::revealjs_presentation:
-        transition: fade
-        theme: white
-        highlight: zenburn
+  xaringan::moon_reader:
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
 ---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(message= FALSE, warning = FALSE)
+```
 
 ## Data in Excel
 
 - Formats xls and csv - what's the difference?
+
 - File extensions xls and xlsx are proprietary Excel formats, binary files
+
 - csv is an extension for Comma Separated Value files. They are text files - directly readable.
+
 - Example: Gas prices in midwest since 1994
+
+---
 
 ## Gas Prices in the Midwest
 
-```{r}
-midwest <- read.csv("http://heike.github.io/rwrks/03-r-format/data/midwest.csv")
+```{r message=FALSE, warning=FALSE}
+library(readr)
+midwest <- read_csv("http://heike.github.io/rwrks/03-r-format/data/midwest.csv")
 head(midwest)
 ```
 
-## Gas Prices
 
-```{r}
-str(midwest)
-```
+---
+## `read_csv` vs. `read_*`
 
-There is clearly some work to be done...
+`read_csv` is just one way to read a file using the `readr` package: 
 
-## `read.csv` vs. `read.table`
+- `read_delim`: the most generic function. Use the `delim` argument to read a file with any type of delimiter 
+- `read_tsv`: read tab separated files 
+- `read_lines`: read a file into a vector that has one element per line of the file
+- `read_file`: read a file into a single character element
+- `read_table`: read a file separated by space
 
-`read.csv` is really just a wrapper for `read.table` with certain parameters set:
+---
+class: inverse
+## Your Turn 
 
-```{r}
-read.csv
-```
-
-So to properly read in this data, it's probably best to use `read.table` directly
-
-```{r, eval=FALSE}
-?read.table
-```
-
-## Your Turn {data-background=#527a7a}
-
-Have a look at the parameters of read.table (?read.table) to solve the following problems:
+Have a look at the parameters of `read_csv` to solve the following problems:
 
 1. Read the first two lines of the file into an object called `midwest_names`
+
 2. Read everything EXCEPT the first two lines into an object called `midwest_data`
 
+Hint: Visit http://heike.github.io/rwrks/03-r-format/data/midwest.csv to download the data and look at it in Excel to help figure out what the issue is. 
+
 ```{r, echo=FALSE}
-midwest_names <- read.table("http://heike.github.io/rwrks/03-r-format/data/midwest.csv", nrows = 2, sep = ",", stringsAsFactors = FALSE)
-midwest_data <- read.table("http://heike.github.io/rwrks/03-r-format/data/midwest.csv", skip = 2, sep = ",", stringsAsFactors = FALSE)
+midwest_names <- read_csv("http://heike.github.io/rwrks/03-r-format/data/midwest.csv", n_max= 2, col_names = FALSE)
+midwest_data <- read_csv("http://heike.github.io/rwrks/03-r-format/data/midwest.csv", skip = 2, col_names = FALSE)
 ```
+
+---
 
 ## Quick Lesson in Data Cleaning
 
 ```{r, warning=FALSE, message=FALSE}
-values <- c(midwest_data$V3, midwest_data$V5, midwest_data$V7, 
-            midwest_data$V9, midwest_data$V11)
-dates <- c(paste(midwest_data$V1, midwest_data$V2, sep = "-"), 
-           paste(midwest_data$V1, midwest_data$V4, sep = "-"),
-           paste(midwest_data$V1, midwest_data$V6, sep = "-"),
-           paste(midwest_data$V1, midwest_data$V8, sep = "-"),
-           paste(midwest_data$V1, midwest_data$V10, sep = "-"))
+library(lubridate)
+library(tidyverse)
+values <- c(midwest_data$X3, midwest_data$X5, midwest_data$X7, 
+            midwest_data$X9, midwest_data$X11)
+dates <- c(paste(midwest_data$X1, midwest_data$X2, sep = "-"), 
+           paste(midwest_data$X1, midwest_data$X4, sep = "-"),
+           paste(midwest_data$X1, midwest_data$X6, sep = "-"),
+           paste(midwest_data$X1, midwest_data$X8, sep = "-"),
+           paste(midwest_data$X1, midwest_data$X10, sep = "-"))
 
 dates <- dates[!is.na(values)]
 values <- values[!is.na(values)]
 
-library(lubridate)
 dates <- ymd(dates)
 
-midwest_gas <- data.frame(date = dates, price = values)
-midwest_gas <- midwest_gas[with(midwest_gas, order(date)), ]
+midwest_gas <- data_frame(date = dates, price = values)
+midwest_gas <- arrange(midwest_gas, dates)
 ```
+
+---
 
 ## Now we can make a plot!
 
 ```{r, warning=FALSE, message=FALSE, fig.width=7, fig.height=4}
 library(ggplot2)
-qplot(date, price, data = midwest_gas, geom = "line")
+ggplot(midwest_gas, aes(x = date, y = price)) + geom_line()
 ```
+
+---
 
 ## Reading Excel Data
 
@@ -97,7 +110,9 @@ midwest2 <- read_excel("midwest.xls")
 head(midwest2)
 ```
 
-```{r, echo=FALSE}
+Something isn't quite right here...
+
+```{r midwest, echo=FALSE}
 library(readxl)
 
 midwest2 <- read_excel("../data/midwest.xls")
@@ -105,19 +120,62 @@ midwest2 <- read_excel("../data/midwest.xls")
 head(midwest2)
 ```
 
+---
+
+## Reading Excel Data: Attempt #2
+
+The 2nd row of the excel file also contains variable names.
+
+Let's skip the first this time. We can then rename the first column.
+
+```{r, eval=FALSE}
+library(readxl)
+
+midwest2 <- read_excel("midwest.xls", skip = 1)
+names(midwest2)[1] <- "Year-Month"
+head(midwest2)
+```
+
+```{r midwest2, echo=FALSE}
+library(readxl)
+
+midwest2 <- read_excel("../data/midwest.xls", skip = 1)
+names(midwest2)[1] <- "Year-Month"
+head(midwest2)
+
+```
+
+Better, but not yet perfect...
+
+---
+
 ## `foreign` Package
 
-- Other file formats can be read using the functions from package \texttt{foreign}
+- Other file formats can be read using the functions from package `foreign`
+
 - SPSS: `read.spss`
+
 - SAS: `read.xport`
+
 - Minitab: `read.mtp`
+
 - Systat: `read.systat`
- 
-## Your Turn {data-background=#527a7a}
+
+---
+class: inverse
+## Your Turn (~2 minutes) 
 
 The NHANES (National Health and Nutrition Survey) publishes data in the SAS xport format:
 
-http://wwwn.cdc.gov/Nchs/Nhanes/Search/nhanes13_14.aspx
+https://wwwn.cdc.gov/Nchs/Nhanes/continuousnhanes/default.aspx?BeginYear=2013
 
 1. Scroll to the bottom, choose one of the datasets (Demographics, Examination, etc.). Download the Data file (XPT)
+
 2. Use `read.xport()` to load the file into R
+
+3. Briefly examine the dataset you've imported (use `head` or `tail`, etc)
+
+
+```{r purl, eval=FALSE, include=FALSE, purl=FALSE}
+#knitr::purl("03-r-format/knitr/1-Files.Rmd", output="03-r-format/code/1-Files.R", documentation = 0)
+```

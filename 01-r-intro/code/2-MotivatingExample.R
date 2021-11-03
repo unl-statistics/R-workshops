@@ -1,26 +1,34 @@
-tips <- read.csv("http://heike.github.io/rwrks/01-r-intro/data/tips.csv")
+## install.packages("tidyverse")
+## library(tidyverse)
+library(tidyverse)
+shed <- read_csv("http://heike.github.io/rwrks/01-r-intro/data/daily_shedding.csv")
+head(shed)
+str(shed)
+summary(shed)
+ggplot(shed, aes(x=time_point, y=total_shedding)) + geom_point()
+ggplot(shed, aes(x=time_point, y=total_shedding, colour = treatment)) + geom_point()
+ggplot(shed, aes(x=time_point, y=total_shedding, colour = treatment)) + geom_line(aes(group=pignum))
+ggplot(shed, aes(x=time_point, y=total_shedding, color=treatment)) + 
+  geom_line(aes(group=pignum)) + 
+  facet_wrap(~treatment)
+final_shed <- shed %>% 
+  group_by(pignum) %>% 
+  mutate(gain = pig_weight[time_point == 21] - pig_weight[time_point == 0]) %>% filter(time_point == 21) %>% ungroup() %>% select(-c(4:9))
 
-head(tips)
-str(tips)
-summary(tips)
+summary(final_shed$gain)
+ggplot(final_shed) + geom_histogram(aes(x = total_shedding))
+final_shed[which.min(final_shed$total_shedding),]
+# Using base `R`:
+median(final_shed$total_shedding[final_shed$treatment == "control"])
+# then repeat for each treatment. Or ...
 
-install.packages("ggplot2")
-library(ggplot2)
-
-qplot(tip, total_bill, geom = "point", data = tips)
-qplot(tip, total_bill, geom = "point", data = tips, colour = time)
-qplot(tip, total_bill, geom = "point", data = tips) + geom_smooth(method = "lm")
-
-tips$rate <- tips$tip / tips$total_bill
-summary(tips$rate)
-
-qplot(rate, data = tips, binwidth = .01)
-
-tips[which.max(tips$rate),]
-
-mean(tips$rate[tips$sex == "Male"])
-mean(tips$rate[tips$sex == "Female"])
-
-t.test(rate ~ sex, data = tips)
-
-qplot(smoker, rate, geom = "boxplot", data = tips)
+# Using `tidyverse`:
+final_shed %>%  group_by(treatment) %>% 
+  summarise(med_shed = median(total_shedding))
+wilcox.test(total_shedding ~ treatment, data = final_shed,
+            subset = treatment %in% c("control", "RPS"))
+ggplot(final_shed) + 
+  geom_boxplot( aes(treatment, total_shedding, fill = treatment))
+shed %>% filter(time_point != 0) %>% ggplot() + 
+  geom_boxplot( aes(treatment, daily_shedding, fill = treatment), position = "dodge")  + 
+  facet_wrap(~time_point)

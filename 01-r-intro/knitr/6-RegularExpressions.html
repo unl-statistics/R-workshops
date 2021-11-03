@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Regular Expressions</title>
+    <meta charset="utf-8">
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/default-fonts.css" rel="stylesheet" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Regular Expressions
+## (Slides by Heike Hofmann)
+
+---
+
+
+
+
+## Regular Expressions 
+
+&lt;img src="images/email.png" class="cover" width=1600&gt;
+
+---
+
+## [xkcd #208](https://xkcd.com/208/)
+
+
+&lt;img src="https://imgs.xkcd.com/comics/regular_expressions.png" height=500&gt;
+
+
+---
+
+## Regular Expressions
+
+- Regular expressions (regex, regexp) is a sequence of characters that form a search pattern
+
+- Originated in 1950s. American mathematician Stephen Kleene formalized the description of a regular language.
+
+-  Common usage with Unix text processing utilities ed, an editor, and grep (global regular expression print), a filter.
+
+- R language provides this capability through `grep`, `gsub`, ...
+
+---
+## Example: State names
+
+`state.name` is a built in dataset within R that contains all the U.S. state names.
+
+
+```r
+data(state)
+```
+
+How many state names contain the pattern "ne"?
+
+
+```r
+grep(pattern = "ne", state.name)
+```
+
+```
+## [1]  7 19 23 42
+```
+
+```r
+state.name[7]
+```
+
+```
+## [1] "Connecticut"
+```
+
+```r
+grep(pattern = "ne", state.name, value = TRUE)
+```
+
+```
+## [1] "Connecticut" "Maine"       "Minnesota"   "Tennessee"
+```
+
+---
+
+## Example
+
+We don’t care about the casing so we will make our pattern more promiscuous.
+
+
+```r
+grep(pattern = "[nN]e", state.name, value = TRUE)
+```
+
+```
+##  [1] "Connecticut"   "Maine"         "Minnesota"     "Nebraska"     
+##  [5] "Nevada"        "New Hampshire" "New Jersey"    "New Mexico"   
+##  [9] "New York"      "Tennessee"
+```
+
+---
+
+## Basics of regular expressions
+
+| expression          | meaning          |
+----------------------------|:---------------------------- |
+| ordinary characters | match themselves |
+|  `$ ^ { [ ( ) ] } * + ? \`      |   special characters    |
+| `[abc]` | matches single letter from "a", "b", or "c" |
+| `[^abc]` | matches any single letter other than "a", "b", and "c" |
+| `[a-gm]` | matches any single letter out of "a", "b", ... "g" or "m" |
+| `[a-z][0-9]`   | matches one lower case letter followed by a digit|
+
+---
+
+## Basics of regular expressions (cont'd)
+
+| expression          | meaning          |
+----------------------------|:---------------------------- |
+| `\x` | match a hexadecimal number |
+| `\s` | whitespace |
+| ^ | starting position within the string |
+| $ | ending position with in the string |
+| `&lt; &gt;` | start, end of a word |
+| `\t \r \v \n` | tab, carriage return, vertical tab, new line |
+
+---
+## Multipliers
+
+- `?` indicates there is **zero or one** of the preceding element, eg `colou?r` matches "color" or "colour"
+
+- `*` indicates there is **zero or more** of the preceding element, eg `ab*c` matches "ac", "abc", "abbc", "abbbc", ...
+
+- `+` indicates there is **one or more** of the preceding element, eg `ab+c` matches "abc", "abbc", "abbbc", ...
+
+- `.` matches any **single** character, eg `a.c` matches "abc" or "atc"
+
+- `{n}` indicates the preceding element is matched exactly *n* times
+
+- `{n,}` indicates the preceding element is matched *n* or more times
+
+- `{n,m}` indicates the preceding element is matched at least *n* times, but not more than *m* times
+
+
+
+---
+## Advanced Patterns
+
+see `?regex`
+
+* `[:alpha:]` Any alphabetic character
+
+* `[:lower:]` Any lowercase character
+
+* `[:upper:]` Any uppercase character
+
+* `[:digit:]` Any digit
+
+* `[:alnum:]` Any alphanumeric character (alphabetic or digit)
+
+* `[:blank:]` Any white space character (space, tab, vertical tab)
+
+* `[:graph:]` Any printable character, except space
+
+* `[:print:]` Any printable character, including the space
+
+* `[:punct:]` Any punctuation (i.e., a printable character that is not white space or alphanumeric)
+
+* `[:cntrl:]` Any nonprintable character
+
+---
+
+## Examples
+
+What do these regular expressions do?
+
+`.at`
+
+`[hc]at`
+
+`[^t]at`
+
+`[^hc]at`
+
+`^[S]tat`
+
+`[S]tat$`
+
+
+---
+
+## Trickier Examples
+
+What do these regular expressions do?
+
+`^s.*`
+
+`[A-Z]\{3,\}`
+
+`\[.\]`
+
+`[bB]ar ?[cC]hart`
+
+`^[0-9]{5}$`
+
+`^(\d{3}-\d{3}-\d{4})*$`
+
+`(\w[-._\w]*\w@\w[-._\w]*\w\.\w{2,3})`
+
+---
+
+## Regular expressions in R
+
+Patterns &amp; Matches
+
+* Find pattern: &lt;code&gt;grep, regexpr, gregexpr&lt;/code&gt;
+
+* Pattern replacement: &lt;code&gt;gsub (pattern, replacement, x)&lt;/code&gt;
+
+```
+grep(pattern, x, ignore.case = FALSE, perl = FALSE, value = FALSE,
+     fixed = FALSE, useBytes = FALSE, invert = FALSE)
+
+gsub(pattern, replacement, x, ignore.case = FALSE, perl = FALSE,
+     fixed = FALSE, useBytes = FALSE)
+```
+
+---
+class: inverse
+
+## Your Turn
+
+1. How many state names contain one or two S's?
+
+2. For any state that has a name in the form `New ----`, replace `New` with `Old`.
+
+---
+class: inverse
+
+## Your Turn - Solution
+
+
+```r
+grep(pattern = "s{1,2}", state.name, value = TRUE)
+```
+
+```
+##  [1] "Alaska"        "Arkansas"      "Illinois"      "Kansas"       
+##  [5] "Louisiana"     "Massachusetts" "Minnesota"     "Mississippi"  
+##  [9] "Missouri"      "Nebraska"      "New Hampshire" "New Jersey"   
+## [13] "Pennsylvania"  "Rhode Island"  "Tennessee"     "Texas"        
+## [17] "Washington"    "West Virginia" "Wisconsin"
+```
+
+```r
+gsub("New", "Old", state.name)
+```
+
+```
+##  [1] "Alabama"        "Alaska"         "Arizona"        "Arkansas"      
+##  [5] "California"     "Colorado"       "Connecticut"    "Delaware"      
+##  [9] "Florida"        "Georgia"        "Hawaii"         "Idaho"         
+## [13] "Illinois"       "Indiana"        "Iowa"           "Kansas"        
+## [17] "Kentucky"       "Louisiana"      "Maine"          "Maryland"      
+## [21] "Massachusetts"  "Michigan"       "Minnesota"      "Mississippi"   
+## [25] "Missouri"       "Montana"        "Nebraska"       "Nevada"        
+## [29] "Old Hampshire"  "Old Jersey"     "Old Mexico"     "Old York"      
+## [33] "North Carolina" "North Dakota"   "Ohio"           "Oklahoma"      
+## [37] "Oregon"         "Pennsylvania"   "Rhode Island"   "South Carolina"
+## [41] "South Dakota"   "Tennessee"      "Texas"          "Utah"          
+## [45] "Vermont"        "Virginia"       "Washington"     "West Virginia" 
+## [49] "Wisconsin"      "Wyoming"
+```
+
+---
+
+## Extracting pieces from a regular expression
+
+- parentheses `( )` group a pattern of interest together
+
+- using `\\1`, `\\2`, `\\3`, ... we can extract the first, second, third ... pattern
+
+Imagine want to extract some sample data that has been coded into our sample names.
+
+For example, X1P10N2AFD0 encodes the experiment, pig number, pen, tissue, and day.
+
+
+```r
+meta &lt;- read.table("http://heike.github.io/rwrks/01-r-intro/data/meta.txt")
+head(meta)
+```
+
+```
+##    label       Group numOtus
+## 27  0.03 X1P10N2ACD4    5802
+## 28  0.03 X1P10N2AFD0    5802
+## 29  0.03 X1P10N2AFD4    5802
+## 30  0.03 X1P10N2AID4    5802
+## 31  0.03 X1P11N2ACD4    5802
+## 32  0.03 X1P11N2AFD0    5802
+```
+
+---
+
+## Example
+
+Imagine, we want to extract the day number for each row.
+
+We use the expression `D` as cue; the number after that is the day:
+
+
+```r
+meta$day &lt;- gsub('.*D([:digit:]*)','\\1', meta$Group)
+head(meta)
+```
+
+```
+##    label       Group numOtus day
+## 27  0.03 X1P10N2ACD4    5802   4
+## 28  0.03 X1P10N2AFD0    5802   0
+## 29  0.03 X1P10N2AFD4    5802   4
+## 30  0.03 X1P10N2AID4    5802   4
+## 31  0.03 X1P11N2ACD4    5802   4
+## 32  0.03 X1P11N2AFD0    5802   0
+```
+
+
+---
+class: inverse
+
+## Your Turn
+
+Extract the pen number, experiment, and tissue for each row.
+
+
+
+---
+class: inverse
+
+## Your Turn - Solution
+
+
+```r
+meta$pen &lt;- sub('X.P.*N(..).*D.*', '\\1', meta$Group)
+meta$experiment &lt;- sub('(X.)P[:digit:]*.*', '\\1', meta$Group)
+meta$tissue &lt;- sub('X.P.*N..(.*)D.*', '\\1', meta$Group)
+head(meta)
+```
+
+```
+##    label       Group numOtus day pen experiment tissue
+## 27  0.03 X1P10N2ACD4    5802   4  2A         X1      C
+## 28  0.03 X1P10N2AFD0    5802   0  2A         X1      F
+## 29  0.03 X1P10N2AFD4    5802   4  2A         X1      F
+## 30  0.03 X1P10N2AID4    5802   4  2A         X1      I
+## 31  0.03 X1P11N2ACD4    5802   4  2A         X1      C
+## 32  0.03 X1P11N2AFD0    5802   0  2A         X1      F
+```
+    </textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function() {
+  var d = document, s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})();</script>
+
+<script>
+(function() {
+  var i, text, code, codes = document.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+})();
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

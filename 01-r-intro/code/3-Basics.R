@@ -1,6 +1,9 @@
-tips <- read.csv("http://heike.github.io/rwrks/01-r-intro/data/tips.csv")
-tips$rate <- tips$tip / tips$total_bill
+library(tidyverse)
+shed <- read_csv("http://heike.github.io/rwrks/01-r-intro/data/daily_shedding.csv")
 
+final_shed <- shed %>% 
+  group_by(pignum) %>% 
+  mutate(gain = pig_weight[time_point == 21] - pig_weight[time_point == 0]) %>% filter(time_point == 21) %>% ungroup() %>% select(-c(4:9))
 # Addition and Subtraction
 2 + 5 - 1
 
@@ -9,7 +12,6 @@ tips$rate <- tips$tip / tips$total_bill
 
 # Division
 3/7
-
 # Integer division
 7 %/% 2
 
@@ -18,74 +20,55 @@ tips$rate <- tips$tip / tips$total_bill
 
 # Powers
 1.5^3
-
 x <- 5
 MyAge <- 26
-
 log(x)
 MyAge^2
-
 y <- c(1, 5, 3, 2)
-
 y / 2
-
-
-tip <- tips$tip
-bill <- tips$total_bill
-
+## help(head)
+## ?head
+shedding <- final_shed$total_shedding
+treatment <- final_shed$treatment
 a <- 10:15
 a
+shedding[3]
+head(shedding)
 
-bill[3]
-
-head(tip)
-
-tip[c(1, 3, 5)]
-tip[1:5]
-
+shedding[c(1, 3, 5)]
+shedding[1:5]
 x <- c(2, 3, 5, 7)
 x[c(TRUE, FALSE, FALSE, TRUE)]
 x > 3.5
 x[x > 3.5]
-
-rate <- tips$rate
-head(rate)
-sad_tip <- rate < 0.10
-rate[sad_tip]
-
+bad_shedder <- shedding > 50
+shedding[bad_shedder]
 sum(c(TRUE, TRUE, FALSE, TRUE, FALSE))
-
-x <- bill[1:5]
+c(T, T, F, F) & c(T, F, T, F)
+c(T, T, F, F) | c(T, F, T, F)
+# Which are high shedders in the control group?
+id <- (shedding > 50 & treatment == "control")
+final_shed[id,]
+x <- shedding[1:5]
 x
 x[1] <- 20
 x
-
-head(rate)
-rate[sad_tip] <- ":-("
-head(rate)
-
-str(tips)
-
-size <- head(tips$size)
-size
-as.character(size)
-as.numeric("2")
-
-x <- tip[1:5]
+head(shedding)
+shedding[bad_shedder] <- ":-("
+head(shedding)
+str(final_shed)
+pignum <- head(final_shed$pignum)
+pignum
+as.character(pignum)
+as.numeric("77")
+pig_weight <- final_shed$pig_weight
+x <- pig_weight[1:5]
 length(x)
 sum(x)
-
-(n <- length(tip))
-(meantip <- sum(tip) / n)
-(standdev <- sqrt(sum((tip - meantip)^2) / (n - 1)))
-
-mean(tip)
-sd(tip)
-summary(tip)
-quantile(tip, c(.025, .975))
-
-c(T, T, F, F) & c(T, F, T, F)
-c(T, T, F, F) | c(T, F, T, F)
-# Which are big bills with a poor tip rate?
-id <- (bill > 40 & rate < .10)
-tips[id,]
+(n <- length(pig_weight))
+(meanweight <- sum(pig_weight) / n)
+(standdev <- sqrt(sum((pig_weight - meanweight)^2) / (n - 1)))
+mean(pig_weight)
+sd(pig_weight)
+summary(pig_weight)
+quantile(pig_weight, c(.025, .975))

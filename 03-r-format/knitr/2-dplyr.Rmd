@@ -1,0 +1,508 @@
+---
+title: "dplyr"
+author: "Haley Jeppson and Sam Tyner"
+ratio: 16x10
+output: 
+  xaringan::moon_reader:
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+data(baseball, package = "plyr")
+```
+
+
+## The pipe operator `%>%`
+
+`f(x) %>% g(y)` is equivalent to `g(f(x), y)`
+
+i.e. the output of one function is used as input to the next function. This function can be the identity
+
+Consequences:
+
+- `x %>% f(y)` is the same as `f(x, y)`
+
+- statements of the form `k(h(g(f(x, y), z), u), v, w)` become
+`x %>% f(y) %>% g(z) %>% h(u) %>% k(v, w)`
+
+- read `%>%` as "then do"
+
+
+---
+## dplyr verbs
+
+There are five primary `dplyr` *verbs*, representing distinct data analysis tasks:
+
+- **Filter**: Select specified rows of a data frame, produce subsets
+
+- **Arrange**: Reorder the rows of a data frame
+
+- **Select**: Select particular columns of a data frame
+
+- **Mutate**: Add new or change existing columns of the data frame (as functions of existing columns)
+
+- **Summarise**: Create collapsed summaries of a data frame
+
+- **Group By**: Introduce structure to a data frame
+ 
+ 
+---
+
+## Filter
+
+Read in the french fries data (in the folder 03-r-format/data). The data are from an experiment on the effect of using three different fryer oils had on the taste of the fries.
+
+```{r message = FALSE, warning=FALSE, eval = FALSE}
+library(tidyverse)
+french_fries <- read_csv("frenchfries.csv")
+french_fries %>% 
+  filter(subject == 3, time == 1) %>% 
+  head(3)
+```
+```{r message = FALSE, warning=FALSE, echo = FALSE}
+library(tidyverse)
+french_fries <- read_csv("../data/frenchfries.csv")
+french_fries %>% 
+  filter(subject == 3, time == 1) %>% 
+  head(3)
+```
+
+`filter` is similar to the base function `subset`
+
+---
+## Filter (cont.)
+
+Multiple conditions in `filter` are combined with a logical AND (i.e. all conditions must be fulfilled) 
+
+e.g. `filter(subject ==3, time ==1)`
+
+Logical expressions can also be used 
+
+e.g. `filter(subject == 3 & time == 1)` or `filter(subject == 3 | subject == 4)`
+
+---
+class: inverse
+## Your Turn (~3 minutes) 
+
+1. Use `filter` to get a subset of the `french_fries` data
+
+2. `%>%` the subset into `ggplot` and create a plot
+
+hint: what is the default first argument of the `ggplot` function?
+
+---
+
+## One Solution 
+
+```{r, purl=FALSE, message=FALSE, warning= FALSE, fig.height=3}
+french_fries %>% 
+  filter(as.numeric(time)>5) %>%
+  ggplot(aes(x=painty, y=rancid)) +
+  geom_point(aes(color=subject)) +
+  geom_smooth() + 
+  theme(legend.position = "none")
+```
+
+---
+
+## Arrange
+
+```{r arr.desc}
+french_fries %>% 
+  arrange(desc(rancid), potato) %>% 
+  head(3)
+```
+
+Successive variables are used for breaking ties from previous variables.
+
+```{r arr.asce}
+french_fries %>% 
+  arrange(rancid, potato) %>% 
+  head(3)
+```
+
+---
+class: inverse
+
+## Your Turn (~2 min)
+
+1. Look up the help file for the function `slice`.
+
+2. Use `slice` on the arranged `french_fries` data to select a single row
+
+3. use `slice` to select multiple rows
+
+---
+
+## Solution
+
+```{r purl=FALSE}
+french_fries %>% 
+  arrange(desc(rancid), potato) %>% 
+  slice(10)
+```
+
+```{r purl=FALSE}
+french_fries %>% 
+  arrange(desc(rancid), potato) %>% 
+  slice(1:5)
+```
+
+---
+
+## Select
+
+```{r}
+french_fries %>% 
+  select(time, treatment, subject, rep, potato) %>%
+  head()
+```
+
+---
+
+## Summarise
+
+```{r}
+french_fries %>%
+    summarise(mean_rancid = mean(rancid, na.rm=TRUE), 
+              sd_rancid = sd(rancid, na.rm = TRUE))
+```
+
+---
+
+## Summarise and Group_by
+
+```{r}
+french_fries %>%
+    group_by(time, treatment) %>%
+    summarise(mean_rancid = mean(rancid), 
+              sd_rancid = sd(rancid))
+```
+
+---
+class: inverse
+
+## Quick Your Turn (~2 minutes)
+
+1. `%>%` the summaries into `ggplot`
+
+---
+
+## A Solution
+
+```{r fig.height=4, message=FALSE, warning=FALSE, purl=FALSE}
+french_fries %>%
+    group_by(time, treatment) %>%
+    summarise(mean_rancid = mean(rancid), sd_rancid = sd(rancid)) %>%
+  ggplot(aes(x = mean_rancid)) + geom_histogram()
+```
+
+---
+
+## Mutate
+
+Change an existing or create a new variable into the data
+
+```{r}
+french_fries %>%
+    mutate(awful = (buttery+potato)/2 - (grassy+painty+rancid)/3,
+           time = as.numeric(time)) %>% 
+  glimpse()
+```
+
+---
+
+## Caution: Trap!
+
+Why does 
+
+```{r}
+french_fries$awful
+```
+
+not return a real-valued summary?
+
+--
+
+- Because we never saved it back into the `french_fries` data
+
+- Go back and have a look
+
+---
+
+## `mutate` OR `summarize`?
+
+Both commands introduce new variables - so which one should we use?
+
+.pull-left[
+`mutate` 
+
+- **adds variables** to the existing data set
+
+- The resulting variables must have the **same length** as the original data
+
+- e.g. use for transformations, combinations of multiple variables
+
+]
+
+.pull-right[
+`summarize` 
+
+- **creates aggregates** of the original data
+
+- The number of rows of the new dataset is determined by the number of combinations of the grouping structure. 
+
+- The number of columns is determined by the number of grouping variables and the summary statistics.
+]
+
+---
+
+## Shortcuts
+
+
+`summarize(n = n())` is equivalent to `tally()` 
+
+```{r, eval = FALSE}
+
+french_fries %>% tally()
+french_fries %>% summarize(n=n())
+
+```
+
+
+`group_by(time, subject) %>% summarize(n = n())` is equivalent to `count(time, subject)`
+
+```{r, eval=FALSE}
+french_fries %>% count(time, subject)
+french_fries %>% group_by(time, subject) %>% summarize(n=n())
+  
+```
+
+
+
+---
+
+## Are replicates similar?
+
+```{r fig.width = 4.5, fig.height=4.5}
+reps <- french_fries %>% 
+  group_by(time, subject, treatment) %>%
+  summarise(potato_diff = diff(potato),
+            potato = mean(potato))
+
+reps
+```
+
+---
+
+## Are replicates similar? (contd.)
+
+```{r fig.height=4, warning=FALSE}
+reps %>% 
+  ggplot(aes(x = potato, y = potato_diff, colour = as.numeric(time))) + 
+  facet_wrap(~subject) +
+  geom_hline(aes(yintercept=0)) +
+  geom_point() 
+```
+
+---
+class: inverse
+## Your Turn (10 min) 
+
+
+Try to answer (a part of) the question: **are different ratings similar**?
+
+Note: there are many different ways of answering this question. Consider ways to plot or summarize the data.
+
+---
+
+## One Solution
+
+```{r fig.height=4, warning=FALSE, purl=FALSE}
+french_fries %>% 
+  ggplot(aes(x = potato, y = buttery)) + 
+  geom_point() +
+  theme(aspect.ratio=1) + xlim(c(0,15)) + 
+  ylim(c(0,15)) +
+  geom_abline(colour = "grey50")
+```
+
+---
+
+## Another Solution 
+For a numeric approach, we could compute means across subjects for each week and compare those values:
+
+```{r purl=FALSE}
+ffm <- french_fries %>% 
+  group_by(time) %>% 
+  summarise(potato = mean(potato,  na.rm=TRUE),
+            buttery = mean(buttery,  na.rm=TRUE),
+            painty = mean(painty,  na.rm=TRUE))
+
+ffm
+```
+
+---
+
+## Another Solution (cont)
+
+```{r fig.height=3,  purl=FALSE}
+
+ffm %>%
+  ggplot(aes(x = time, y = potato)) + 
+  geom_point(colour = "blue", size=3) +
+  geom_point(aes(y = buttery), colour = "forestgreen", size=3) +
+  geom_point(aes(y = painty), colour = "red", size=3) +
+  ylab("Score")
+```
+
+This doesn't seem like an elegant or efficient way of answering the question: the data is in an awkward form!
+
+---
+## Another option
+
+The package `GGally` has an implementation of a scatterplot matrix using ggplot2:
+
+```{r fig.height=4, warning=FALSE}
+GGally::ggpairs(data = french_fries[ ,5:9])
+```
+
+---
+class: inverse
+
+##  Your Turn (10 min)
+
+The dataset `ChickWeight` is part of the core packages that come with R 
+
+**Hint**: `data(ChickWeight)` gets the data into your active session.
+
+From the help file:
+
+> four groups of chicks on different protein diets. The body weights of the chicks were measured at birth and every second day thereafter until day 20. They were also measured on day 21.
+
+![](http://www.kenaifeed.com/wp-content/uploads/2015/03/chicks.jpg)
+
+---
+class: inverse
+
+## Your Turn (10 min)
+
+1. Create a line plot with each line representing the weight of each Chick 
+
+2. Focus on weight on day 21. Draw side-by-side dotplots of weight by diet. 
+
+3. **Bonus**: Use `summarize` the average weight on day 21 under each diet. Overlay the dotplots by error bars around the average weight under each diet (see `?geom_errorbar`)
+
+**Hint** for 1: check out `?group` and consider what varible or variables you might map to this option
+
+---
+
+##  Solution - Q1
+
+```{r fig.height=4, purl=FALSE}
+ChickWeight %>% 
+  ggplot(aes(x=Time, y=weight, group=Chick, color=Diet)) +
+  geom_line() + 
+  facet_wrap(~Diet)
+
+```
+
+---
+
+##  Solution - Q2
+
+```{r fig.height=4, purl=FALSE}
+ChickWeight %>%   
+  filter(Time==21) %>% 
+  ggplot(aes(x=Diet)) +
+  geom_point(aes(y=weight, color=Diet), size=3)
+
+```
+
+---
+
+##  Solution - Q3 
+
+First, we need a separate dataset for the summary statistics:
+
+```{r, purl=FALSE}
+ChickW1 <- ChickWeight %>% 
+  filter(Time==21) %>% 
+  group_by(Diet) %>% 
+  summarize(mean_weight = mean(weight, na.rm=TRUE),
+            sd_weight = sd(weight, na.rm=TRUE)/n())
+
+```
+
+---
+
+##  Solution - Q3 (cont)
+
+```{r, purl=FALSE, fig.height=3}
+ChickWeight %>% 
+  filter(Time==21) %>% 
+  ggplot(aes(x=Diet)) +
+  geom_point(aes(y=weight), size=2) +
+  geom_errorbar(data= ChickW1, aes(ymin = mean_weight-1.96*sd_weight, ymax = mean_weight+1.96*sd_weight, colour = Diet), width=.3) +
+  geom_point(data=ChickW1, aes(y=mean_weight, color=Diet), size=3)
+```
+
+---
+
+## `Mutate` is incredibly flexible
+
+Consider a new variable `gain`, which gives the increase in weight of a chick since birth
+
+```{r warning=FALSE }
+ChickPlus <- ChickWeight %>% 
+  group_by(Chick) %>% 
+  mutate(gain = weight - weight[Time == 0])
+```
+
+
+```{r echo=FALSE, eval=FALSE}
+ChickPlus %>% 
+  filter(Chick == 1) %>% 
+  select(-Diet) %>% 
+  glimpse()
+```
+
+```{r echo=FALSE, purl=FALSE}
+ChickPlus %>% filter(Chick == 1) %>% ungroup() %>% select(-Diet, -Chick) %>%  glimpse
+```
+
+---
+
+## Plotting weight gain
+
+```{r fig.height=4}
+ChickPlus %>% 
+  ggplot(aes(x = Time, y = gain, group = Chick)) + 
+  geom_line(aes(color=Diet)) +
+  facet_wrap(~Diet)
+
+```
+
+---
+
+## Re-cap
+
+- getting used to `dplyr` actions can take a bit of time and practice
+
+- recognize keywords and match them to `dplyr` functions
+
+- incorporate `dplyr` functions in your regular workflow - the long-term benefits are there, promise!
+
+```{r purl, eval=FALSE, include=FALSE, purl=FALSE}
+#copy paste this and run in console
+#knitr::purl("03-r-format/knitr/2-dplyr.Rmd", output="03-r-format/code/2-dplyr.R", documentation = 0)
+```
+
+
+
+

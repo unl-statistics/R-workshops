@@ -1,0 +1,670 @@
+---
+title: "tidyr"
+author: "Haley Jeppson, Sam Tyner"
+output: 
+  xaringan::moon_reader:
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+data(french_fries, package="reshape2")
+```
+
+## What is tidy data?
+
+> Happy families are all alike; every unhappy family is unhappy in its own way.<br>
+Leo Tolstoy
+
+- Resource: follow along `tidyr` vignette 
+
+- available as `vignette("tidy-data", package="tidyr")`
+
+- vignette is version of the [tidy data paper](https://www.jstatsoft.org/article/view/v059i10) with updated code
+
+---
+
+## Outline
+
+- Different sources of messiness
+
+- Key-Value pairs
+
+- `tidyr`: `spread` and `gather`, `separate`
+
+---
+
+## Data is usually in a spreadsheet format, but...
+
+There are different ways of encoding the same information:
+
+.pull-left[
+**Option 1:**
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;border-color:#aaa;}
+.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-color:#aaa;color:#333;background-color:#fff;}
+.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-color:#aaa;color:#fff;background-color:#f38630;}
+.tg .tg-s6z2{text-align:center}
+.tg .tg-gmsq{background-color:#FCFBE3;font-style:italic;text-align:center}
+.tg .tg-lyaj{background-color:#FCFBE3;text-align:center}
+.tg .tg-hgcj{font-weight:bold;text-align:center}
+</style>
+<table class="tg">
+  <tr>
+    <th class="tg-hgcj">Name</th>
+    <th class="tg-hgcj">Treatment A</th>
+    <th class="tg-hgcj">Treatment B</th>
+  </tr>
+  <tr>
+    <td class="tg-s6z2">John Smith</td>
+    <td class="tg-gmsq">NA</td>
+    <td class="tg-s6z2">18</td>
+  </tr>
+  <tr>
+    <td class="tg-s6z2">Jane Doe</td>
+    <td class="tg-lyaj">4</td>
+    <td class="tg-s6z2">1</td>
+  </tr>
+  <tr>
+    <td class="tg-s6z2">Mary Johnson</td>
+    <td class="tg-lyaj">6</td>
+    <td class="tg-s6z2">7</td>
+  </tr>
+</table>
+
+
+**Option 2:**
+
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;border-color:#aaa;}
+.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-color:#aaa;color:#333;background-color:#fff;}
+.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-color:#aaa;color:#fff;background-color:#f38630;}
+.tg .tg-baqh{text-align:center;vertical-align:top}
+.tg .tg-amwm{font-weight:bold;text-align:center;vertical-align:top}
+.tg .tg-yq6s{background-color:#FCFBE3;text-align:center;vertical-align:top}
+</style>
+<table class="tg">
+  <tr>
+    <th class="tg-amwm">Treatment</th>
+    <th class="tg-amwm">John Smith</th>
+    <th class="tg-amwm">Jane Doe</th>
+    <th class="tg-amwm">Mary Johnson</th>
+  </tr>
+  <tr>
+    <td class="tg-yq6s">A</td>
+    <td class="tg-yq6s">NA</td>
+    <td class="tg-yq6s">4</td>
+    <td class="tg-yq6s">6</td>
+  </tr>
+  <tr>
+    <td class="tg-baqh">B</td>
+    <td class="tg-baqh">18</td>
+    <td class="tg-baqh">1</td>
+    <td class="tg-baqh">7</td>
+  </tr>
+</table>
+]
+.pull-right[
+**Option 3:**
+
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;border-color:#aaa;}
+.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#aaa;color:#333;background-color:#fff;}
+.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#aaa;color:#fff;background-color:#f38630;}
+.tg .tg-s6z2{text-align:center}
+.tg .tg-baqh{text-align:center;vertical-align:top}
+.tg .tg-hgcj{font-weight:bold;text-align:center}
+</style>
+<table class="tg">
+  <tr>
+    <th class="tg-hgcj">Name</th>
+    <th class="tg-hgcj">Treatment</th>
+    <th class="tg-hgcj">Measurement</th>
+  </tr>
+  <tr>
+    <td class="tg-s6z2">John Smith</td>
+    <td class="tg-s6z2">A</td>
+    <td class="tg-s6z2">NA</td>
+  </tr>
+  <tr>
+    <td class="tg-s6z2">Jane Doe</td>
+    <td class="tg-s6z2">A</td>
+    <td class="tg-s6z2">4</td>
+  </tr>
+  <tr>
+    <td class="tg-baqh">Mary Johnson</td>
+    <td class="tg-baqh">A</td>
+    <td class="tg-baqh">6</td>
+  </tr>
+  <tr>
+    <td class="tg-baqh">John Smith</td>
+    <td class="tg-baqh">B</td>
+    <td class="tg-baqh">18</td>
+  </tr>
+  <tr>
+    <td class="tg-baqh">Jane Doe</td>
+    <td class="tg-baqh">B</td>
+    <td class="tg-baqh">1</td>
+  </tr>
+  <tr>
+    <td class="tg-baqh">Mary Johnson</td>
+    <td class="tg-baqh">B</td>
+    <td class="tg-baqh">7</td>
+  </tr>
+</table>
+]
+
+<!--
+Option #1
+```{r echo = FALSE}
+read.csv("../data/preg.csv")
+```
+
+Option #2
+```{r echo = FALSE}
+read.csv("../data/preg2.csv")
+```
+-->
+
+Neither #1 nor #2 are "clean" versions of the data: observed information is part of the data structure; some implicit information is assumed
+
+---
+## What we have and what we want
+
+
+.pull-left[
+**Wide format**
+
+- some variables are spread out across columns.
+
+- typically uses less space to display
+
+- how you would typically choose to present your data
+
+- far less repetition of labels and row elements
+
+
+![](images/tablewide2.png)
+
+]
+.pull-right[
+
+**Long format**
+
+- each variable is a column
+
+- each observation is a row
+
+- is likely not the data's most compact form
+
+
+```{r fig.width=3, fig.height=3.7,echo=FALSE, fig.align="center"}
+library(png)
+library(grid)
+img <- readPNG("images/tablelong2.png")
+ grid.raster(img)
+```
+
+]
+
+---
+
+## Tidy Data
+
+- Each variable is a column
+
+- Each observation is a row
+
+- Each type of observational unit forms a table
+
+<br/>
+
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;border-color:#aaa;}
+.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-color:#aaa;color:#333;background-color:#fff;}
+.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-color:#aaa;color:#fff;background-color:#f38630;}
+.tg .tg-baqh{text-align:center;vertical-align:top}
+.tg .tg-amwm{font-weight:bold;text-align:center;vertical-align:top}
+</style>
+<table class="tg">
+  <tr>
+    <th class="tg-amwm">Name</th>
+    <th class="tg-amwm">Treatment</th>
+    <th class="tg-amwm">Measurement</th>
+  </tr>
+  <tr>
+    <td class="tg-baqh">John Smith</td>
+    <td class="tg-baqh">A</td>
+    <td class="tg-baqh">NA</td>
+  </tr>
+  <tr>
+    <td class="tg-baqh">John Smith</td>
+    <td class="tg-baqh">B</td>
+    <td class="tg-baqh">18</td>
+  </tr>
+  <tr>
+    <td class="tg-baqh">Jane Doe</td>
+    <td class="tg-baqh">A</td>
+    <td class="tg-baqh">4</td>
+  </tr>
+  <tr>
+    <td class="tg-baqh">Jane Doe</td>
+    <td class="tg-baqh">B</td>
+    <td class="tg-baqh">1</td>
+  </tr>
+  <tr>
+    <td class="tg-baqh">Mary Johnson</td>
+    <td class="tg-baqh">A</td>
+    <td class="tg-baqh">6</td>
+  </tr>
+  <tr>
+    <td class="tg-baqh">Mary Johnson</td>
+    <td class="tg-baqh">B</td>
+    <td class="tg-baqh">7</td>
+  </tr>
+</table>
+
+
+
+---
+
+## Sources of Messiness
+
+
+**Five main ways tables of data tend not to be tidy:**
+
+1. Column headers are values, not variable names.
+
+2. Multiple variables are stored in one column.
+
+3. Variables are stored in both rows and columns.
+
+4. Multiple types of observational units are stored in the same table.
+
+5. A single observational unit is stored in multiple tables.
+
+
+---
+
+## What makes data tidy?
+
+.pull-left[
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;border-color:#aaa;}
+.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-color:#aaa;color:#333;background-color:#fff;}
+.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-color:#aaa;color:#fff;background-color:#f38630;}
+.tg .tg-baqh{text-align:center;vertical-align:top}
+.tg .tg-amwm{font-weight:bold;text-align:center;vertical-align:top}
+</style>
+<table class="tg">
+  <tr>
+    <th class="tg-amwm">Name</th>
+    <th class="tg-amwm">Treatment</th>
+    <th class="tg-amwm">Measurement</th>
+  </tr>
+  <tr>
+    <td class="tg-baqh">John Smith</td>
+    <td class="tg-baqh">A</td>
+    <td class="tg-baqh">NA</td>
+  </tr>
+  <tr>
+    <td class="tg-baqh">John Smith</td>
+    <td class="tg-baqh">B</td>
+    <td class="tg-baqh">18</td>
+  </tr>
+  <tr>
+    <td class="tg-baqh">Jane Doe</td>
+    <td class="tg-baqh">A</td>
+    <td class="tg-baqh">4</td>
+  </tr>
+  <tr>
+    <td class="tg-baqh">Jane Doe</td>
+    <td class="tg-baqh">B</td>
+    <td class="tg-baqh">1</td>
+  </tr>
+  <tr>
+    <td class="tg-baqh">Mary Johnson</td>
+    <td class="tg-baqh">A</td>
+    <td class="tg-baqh">6</td>
+  </tr>
+  <tr>
+    <td class="tg-baqh">Mary Johnson</td>
+    <td class="tg-baqh">B</td>
+    <td class="tg-baqh">7</td>
+  </tr>
+</table>
+
+]
+
+.pull-right[
+
+- `treatment` and `patient` uniquely describe a single row in the dataset.
+
+- `treatment` and `patient` are **key variables**,
+
+- `score` is a **measurement variable**
+
+- this makes `treatment-patient` and `score` a **key-value pair**
+
+
+]
+
+
+
+---
+
+## Key-value pairs (KVP)
+ 
+**Key-Value pairs** (KVP) - also *attribute-value*, *field-value*, *name-value*:
+abstract data representation that allows a lot of flexibility  
+
+One way of telling whether a data set is tidy is to check that all keys for a value are aligned in one row:
+
+| | |
+|:------------- |:------------- | 
+| | |
+| <img src="images/kvp-unhappy.png" width=150> | <img src="images/kvp-happy.png" width=150>     | 
+|Untidy data | Tidy data |
+
+---
+
+## Key-value pairs (KVP)
+
+**Keys/Identifiers**:
+
+- Identify a record (must be unique)
+
+- Example: Indices on an random variable
+
+- Fixed by design of experiment (known in advance)
+
+- May be single or composite (may have one or more variables)
+
+**Values/Measures**:
+
+- Collected during the experiment (not known in advance)
+
+- Usually numeric quantities
+
+---
+
+## Tidying data - Plan of attack
+
+Very few functions are needed to tidy data:
+
+**Messy (1)**: `tidyr` functions `gather` and `spread`.  
+
+- `gather (data, key, value, ...)`: take multiple columns and collapse into key-value pairs
+
+- `spread (data, key, value, fill = NA)`: spread a key-value pair across multiple columns.
+
+**Messy (2)**: `tidyr` function `separate (data, col, into, sep = " ")`:
+
+- separate one column into multiple columns
+
+**Messy (3)**: `dplyr` - some combination of the functions discussed previously
+
+**Messy (4)**: `dplyr` functionality `join` (and friends) to combine multiple data sets 
+
+---
+
+## Untidy data
+
+```{r, echo=TRUE, eval=FALSE}
+french_fries <- read_csv("frenchfries.csv")
+head(french_fries)
+```
+
+```{r, echo=TRUE}
+french_fries <- read_csv("../data/frenchfries.csv")
+head(french_fries)
+```
+
+---
+
+## This format is not ideal for data analysis
+
+```{r, fig.width=7, fig.height=3, warning=FALSE}
+library(ggplot2)
+
+ggplot(french_fries) + 
+  geom_boxplot(aes(x="1_buttery", y=buttery), fill = "cyan4") +
+  geom_boxplot(aes(x = "2_grassy", y = grassy), fill = "darkorange2") +
+  geom_boxplot(aes(x = "3_painty", y = painty), fill = "darkorchid1") +
+  geom_boxplot(aes(x = "4_potato", y = potato), fill = "chartreuse3") +
+  geom_boxplot(aes(x = "5_rancid", y = rancid), fill = "deeppink") +
+  xlab("variable") + ylab("rating")
+```
+
+---
+
+## Tidy your data using `gather`
+
+When gathering, you need to specify: 
+- the **keys** (identifiers) 
+- the **values** (measures)
+
+```{r, echo=TRUE}
+
+french_fries_long <- french_fries %>% 
+  gather(key = variable, value = rating, potato:painty)
+head(french_fries_long)
+
+```
+
+---
+
+## This format is better suited for data analysis
+
+```{r, fig.width=7, fig.height=4, warning=FALSE}
+ggplot(french_fries_long) + 
+  geom_boxplot(aes(x = variable, y = rating, fill = variable))
+
+```
+
+
+---
+## Long to Wide
+
+In certain applications, we may wish to take a long dataset and convert it to a wide dataset (Perhaps displaying in a table).
+
+```{r}
+head(french_fries_long)
+```
+
+---
+## Spread
+
+We use the `spread` function from `tidyr` to do this:
+
+```{r, warning = FALSE}
+french_fries_wide <- french_fries_long %>% 
+  spread(key = variable, value = rating)
+
+head(french_fries_wide)
+```
+
+We are now back to our original format
+
+---
+## Spread
+
+We can also use the `spread` function to compare reps
+
+```{r}
+french_fries_wide <- french_fries_long %>% 
+  spread(key = rep, value = rating)
+
+head(french_fries_wide)
+```
+
+---
+## Compare replicates
+
+```{r fig.height=4, warning=FALSE}
+french_fries_wide %>%
+  ggplot(aes(x = `1`, y = `2`)) + 
+  geom_point() +
+  facet_wrap(~variable) + 
+  geom_abline(colour = "grey50")
+```
+
+---
+## separate
+
+```{r}
+df <- data.frame(x = c(NA, "a.b", "a.d", "b.c"))
+df
+df %>% separate(x, into = c("A", "B"))
+```
+
+---
+class: inverse
+## Your Turn (5 min)
+
+The Iowa Data Portal is a wealth of information on and about the State of Iowa. 
+
+The website 
+[Campaign Expenditures](https://data.iowa.gov/Government/Campaign-Expenditures/3adi-mht4/data) provides data on campaign expenditures. The code below reads the data into an R session.
+
+```
+url <- "https://data.iowa.gov/api/views/3adi-mht4/rows.csv"
+campaign <- readr::read_csv(url)
+```
+
+Assess the 'messiness' of the data. List issues that prevent us from working with the data directly. Which of these issues are of type (1) or (2) of messiness?
+
+---
+
+## Problems with the data
+
+- `Date` is text, in the format of Month/Day/Year (Messy 2)
+
+- city coordinates are a combination of City name, state, zip code and geographic latitude and longitude. (Messy 2)
+
+- expenditure amount is a textual expression, not a number (Messy different)
+
+no Messy 1? - problems of type Messy 1 are typically hard to detect and often up to interpretation/dependent on the analysis to be done.
+
+---
+class: inverse
+
+## Your Turn (10 mins)
+
+During the 1870 census data on people's occupation was collected. The data [occupation-1870](../data/occupation-1870.csv) contains state-level aggregates of occupation by gender.
+
+- Use `tidyr` to get the data into a long format. 
+
+- Separate the `occupation.gender` type variable into two variables.
+
+- Spread the data such that you can draw scatterplots of values for men against women facetted by occupation.
+
+
+
+---
+## Dates and Times
+
+Dates are deceptively hard to work with in R.
+
+**Example**: 02/05/2012. Is it February 5th, or May 2nd?
+
+Other things are difficult too:
+
+- Time zones
+- POSIXct format in base R is challenging
+
+The **lubridate** package helps tackle some of these issues.
+
+---
+
+## Basic Lubridate Use
+
+```{r, results='hold', message=FALSE}
+library(lubridate)
+
+now()
+today()
+now() + hours(4)
+today() - days(2)
+```
+
+---
+## Parsing Dates
+
+```{r, results='hold'}
+ymd("2013-05-14")
+mdy("05/14/2013")
+dmy("14052013")
+ymd_hms("2013:05:14 14:50:30", tz = "America/Chicago")
+```
+
+---
+class: inverse
+
+## Your Turn 
+
+
+The flights dataset contains information on over 300,000 flights that departed from New York City in the year 2013.
+
+```{r}
+flights <- read.csv("http://heike.github.io/rwrks/03-r-format/data/flights.csv")
+```
+
+
+---
+class: inverse
+
+## Your Turn
+
+1. Using the `flights` data, create a new column Date using lubridate. You will need to paste together the columns year, month, and day in order to do this. See the `paste` function.
+
+2. Use `dplyr` to calculate the average departure delay for each date.
+
+3. Plot the date versus the average departure delay
+
+```{r, echo=FALSE, fig.width=7, fig.height=3, purl = FALSE}
+flights$date <- ymd(paste(flights$year, flights$month, flights$day, sep = "-"))
+delay.dat <- flights %>% 
+    group_by(date) %>% 
+    summarise(dep_delay = mean(dep_delay, na.rm = TRUE))
+
+
+ggplot(delay.dat) + geom_line(aes(date, dep_delay))
+
+```
+
+---
+class: inverse
+
+## Your Turn
+
+- Read in the billboard top 100 music data:
+
+```{r}
+billboard <- read.csv("http://heike.github.io/rwrks/03-r-format/data/billboard.csv")
+```
+    
+- Use `tidyr` to convert this data into a long format.
+
+- Use ``ggplot2`` to create something like this:
+
+```{r, echo=FALSE, fig.width=6.5, fig.height=3.5, warning=FALSE, purl=FALSE}
+long_billboard <- gather(billboard, key = week, value = rank, X1:X76) %>%
+  mutate(week = parse_number(week))
+
+ggplot(long_billboard) + geom_line(aes(week, rank, colour = artist, group = track))+
+  xlim(c(0, 30))
+```
+
+
+
+```{r purl, eval=FALSE, include=FALSE, purl=FALSE}
+#copy paste this and run in console
+#knitr::purl("03-r-format/knitr/3-tidyr.Rmd", output="03-r-format/code/3-tidyr.R", documentation = 0)
+```
