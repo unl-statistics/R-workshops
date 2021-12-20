@@ -25,4 +25,4 @@ Date | Notes | Lectures and Resources
 Recommended Reading:
 
 - [R for Data Science](https://r4ds.had.co.nz/) 
-- [R for ecologists](https://datacarpentry.org/R-ecology-lesson/) Data Carpentry workshop
+- [R for ecologists](https://datacarpentry.org/R-ecology-lesson/) Data Carpentry workshop 
