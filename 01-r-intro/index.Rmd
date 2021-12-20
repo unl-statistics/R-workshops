@@ -1,0 +1,14 @@
+---
+title: "Programming with Data"
+output: html_document
+---
+
+
+In Programming with data you get a head start with the statistical software R. R has gained a huge number of users in the last years and the number of methods from add-on packages is growing rapidly. The course will be data centric, with lots of different data sets that illustrate examples of the different techniques used for different problems.
+The course will be a mix of instruction and follow-up exercises. It will be held in a computer lab but you are encouraged to bring your own laptops, with software already loaded. A list of software is available to help you prepare your machine for the workshop. 
+
+Timetable
+
+Date | Notes | Lectures and Resources
+---- | ---- | ----
+9-9:15 | Setting Up | This will make sure that everybody's system is up and running. You should try to install R ahead of time, so that this time can be used to address potential problems. <br/> [Setup.R](code/1-Setup.R)<br/>[Slides](knitr/1-Setup.html)
