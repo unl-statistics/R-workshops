@@ -9,7 +9,9 @@ output: github_document
 
 ## January 2022 - A Week of R
 
-** Schedule is tentative and subject to change due to enrollment and lab availability **
+<!-- ** Schedule is tentative and subject to change due to enrollment and lab availability ** -->
+
+Workshops will be held in Keim 214.
 
 | Date       | Time       | Course | Description |
 |------------|:------------:|--------|-------------|

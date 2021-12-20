@@ -8,8 +8,9 @@ announcements](mailto:R-at-UNL+subscribe@googlegroups.com?Subject=subscribe-gith
 
 ## January 2022 - A Week of R
 
-\*\* Schedule is tentative and subject to change due to enrollment and
-lab availability \*\*
+<!-- ** Schedule is tentative and subject to change due to enrollment and lab availability ** -->
+
+Workshops will be held in Keim 214.
 
 | Date       |    Time    | Course                                         | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
 |------------|:----------:|------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -122,8 +123,8 @@ graduate student activities.
 | Half Day      | $15     | $25           | $100      |
 | Full Week     | $100    | $200          | $1000     |
 
-If you are anticipating registering several people as a group, please
-feel free to contact [Susan
+If you are anticipating registering several people who are not UNL
+Affiliates as a group, please feel free to contact [Susan
 Vanderplas](mailto:svanderplas2@unl.edu?subject=R%20Workshops%20Pricing)
 for a group rate.
 
