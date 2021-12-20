@@ -106,7 +106,7 @@ Shiny
 
 # Sign Up
 
-~~[Register](https://forms.gle/KXeetJvppY9uFuJv9)~~ Coming soon!
+[Register](https://forms.gle/KXeetJvppY9uFuJv9)
 
 ## Pricing
 
