@@ -1,6 +1,5 @@
 ---
 title: "Packages and Basic Programming"
-author: "Haley Jeppson, Sam Tyner"
 output: 
   xaringan::moon_reader:
     lib_dir: libs

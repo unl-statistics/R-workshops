@@ -1,8 +1,5 @@
 ---
 title: "Regular Expressions"
-subtitle: "(Slides by Heike Hofmann)"
-authors: "Haley Jeppson and Sam Tyner"
-ratio: 16x10
 output: 
   xaringan::moon_reader:
     lib_dir: libs

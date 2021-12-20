@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-<html>
+<html lang="" xml:lang="">
   <head>
     <title>Motivating Example</title>
-    <meta charset="utf-8">
-    <meta name="author" content="Haley Jeppson and Sam Tyner" />
-    <link href="libs/remark-css-0.0.1/example.css" rel="stylesheet" />
+    <meta charset="utf-8" />
+    <script src="libs/header-attrs-2.11/header-attrs.js"></script>
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/default-fonts.css" rel="stylesheet" />
   </head>
   <body>
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
 # Motivating Example
-### Haley Jeppson and Sam Tyner
 
 ---
 
@@ -89,17 +89,17 @@ head(shed)
 ```
 
 ```
-## # A tibble: 6 x 12
+## # A tibble: 6 × 12
 ##   pignum time_point pig_weight  temp pan_wt wet_wt Dry_wt_pan Dry_weight
-##    &lt;int&gt;      &lt;int&gt;      &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;
-## 1     77          2         NA   103   1.02  1.09        1.31     0.290 
-## 2     87          2         NA   104   1.04  1.02        1.33     0.290 
-## 3    122          2         NA   104   1.02  0.990       1.11     0.0900
-## 4    160          2         NA   104   1.09  1.00        1.36     0.270 
-## 5    191          2         NA   104   1.03  1.02        1.27     0.240 
-## 6    224          2         NA   103   1.08  1.00        1.39     0.310 
-## # ... with 4 more variables: percent_drymatter &lt;dbl&gt;,
-## #   daily_shedding &lt;dbl&gt;, treatment &lt;chr&gt;, total_shedding &lt;dbl&gt;
+##    &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;
+## 1     77          2         NA  103.   1.02   1.09       1.31       0.29
+## 2     87          2         NA  104.   1.04   1.02       1.33       0.29
+## 3    122          2         NA  104.   1.02   0.99       1.11       0.09
+## 4    160          2         NA  104.   1.09   1          1.36       0.27
+## 5    191          2         NA  104.   1.03   1.02       1.27       0.24
+## 6    224          2         NA  103    1.08   1          1.39       0.31
+## # … with 4 more variables: percent_drymatter &lt;dbl&gt;, daily_shedding &lt;dbl&gt;,
+## #   treatment &lt;chr&gt;, total_shedding &lt;dbl&gt;
 ```
 
 ---
@@ -113,48 +113,35 @@ str(shed)
 ```
 
 ```
-## Classes 'tbl_df', 'tbl' and 'data.frame':	295 obs. of  12 variables:
-##  $ pignum           : int  77 87 122 160 191 224 337 345 419 458 ...
-##  $ time_point       : int  2 2 2 2 2 2 2 2 2 2 ...
-##  $ pig_weight       : num  NA NA NA NA NA NA NA NA NA NA ...
-##  $ temp             : num  103 104 104 104 104 ...
-##  $ pan_wt           : num  1.02 1.04 1.02 1.09 1.03 1.08 1.03 1.09 1.07 1.04 ...
-##  $ wet_wt           : num  1.09 1.02 0.99 1 1.02 1 1.02 0.99 1.07 1.06 ...
-##  $ Dry_wt_pan       : num  1.31 1.33 1.11 1.36 1.27 1.39 1.3 1.24 1.38 1.26 ...
-##  $ Dry_weight       : num  0.29 0.29 0.09 0.27 0.24 0.31 0.27 0.15 0.31 0.22 ...
-##  $ percent_drymatter: num  26.61 28.43 9.09 27 23.53 ...
-##  $ daily_shedding   : num  5.3 5.7 13.22 6.75 5.86 ...
-##  $ treatment        : chr  "control" "control" "control" "control" ...
-##  $ total_shedding   : num  2.3 2.48 5.74 2.93 2.54 ...
-##  - attr(*, "spec")=List of 2
-##   ..$ cols   :List of 12
-##   .. ..$ pignum           : list()
-##   .. .. ..- attr(*, "class")= chr  "collector_integer" "collector"
-##   .. ..$ time_point       : list()
-##   .. .. ..- attr(*, "class")= chr  "collector_integer" "collector"
-##   .. ..$ pig_weight       : list()
-##   .. .. ..- attr(*, "class")= chr  "collector_double" "collector"
-##   .. ..$ temp             : list()
-##   .. .. ..- attr(*, "class")= chr  "collector_double" "collector"
-##   .. ..$ pan_wt           : list()
-##   .. .. ..- attr(*, "class")= chr  "collector_double" "collector"
-##   .. ..$ wet_wt           : list()
-##   .. .. ..- attr(*, "class")= chr  "collector_double" "collector"
-##   .. ..$ Dry_wt_pan       : list()
-##   .. .. ..- attr(*, "class")= chr  "collector_double" "collector"
-##   .. ..$ Dry_weight       : list()
-##   .. .. ..- attr(*, "class")= chr  "collector_double" "collector"
-##   .. ..$ percent_drymatter: list()
-##   .. .. ..- attr(*, "class")= chr  "collector_double" "collector"
-##   .. ..$ daily_shedding   : list()
-##   .. .. ..- attr(*, "class")= chr  "collector_double" "collector"
-##   .. ..$ treatment        : list()
-##   .. .. ..- attr(*, "class")= chr  "collector_character" "collector"
-##   .. ..$ total_shedding   : list()
-##   .. .. ..- attr(*, "class")= chr  "collector_double" "collector"
-##   ..$ default: list()
-##   .. ..- attr(*, "class")= chr  "collector_guess" "collector"
-##   ..- attr(*, "class")= chr "col_spec"
+## spec_tbl_df [295 × 12] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
+##  $ pignum           : num [1:295] 77 87 122 160 191 224 337 345 419 458 ...
+##  $ time_point       : num [1:295] 2 2 2 2 2 2 2 2 2 2 ...
+##  $ pig_weight       : num [1:295] NA NA NA NA NA NA NA NA NA NA ...
+##  $ temp             : num [1:295] 103 104 104 104 104 ...
+##  $ pan_wt           : num [1:295] 1.02 1.04 1.02 1.09 1.03 1.08 1.03 1.09 1.07 1.04 ...
+##  $ wet_wt           : num [1:295] 1.09 1.02 0.99 1 1.02 1 1.02 0.99 1.07 1.06 ...
+##  $ Dry_wt_pan       : num [1:295] 1.31 1.33 1.11 1.36 1.27 1.39 1.3 1.24 1.38 1.26 ...
+##  $ Dry_weight       : num [1:295] 0.29 0.29 0.09 0.27 0.24 0.31 0.27 0.15 0.31 0.22 ...
+##  $ percent_drymatter: num [1:295] 26.61 28.43 9.09 27 23.53 ...
+##  $ daily_shedding   : num [1:295] 5.3 5.7 13.22 6.75 5.86 ...
+##  $ treatment        : chr [1:295] "control" "control" "control" "control" ...
+##  $ total_shedding   : num [1:295] 2.3 2.48 5.74 2.93 2.54 ...
+##  - attr(*, "spec")=
+##   .. cols(
+##   ..   pignum = col_double(),
+##   ..   time_point = col_double(),
+##   ..   pig_weight = col_double(),
+##   ..   temp = col_double(),
+##   ..   pan_wt = col_double(),
+##   ..   wet_wt = col_double(),
+##   ..   Dry_wt_pan = col_double(),
+##   ..   Dry_weight = col_double(),
+##   ..   percent_drymatter = col_double(),
+##   ..   daily_shedding = col_double(),
+##   ..   treatment = col_character(),
+##   ..   total_shedding = col_double()
+##   .. )
+##  - attr(*, "problems")=&lt;externalptr&gt;
 ```
 
 ---
@@ -168,30 +155,30 @@ summary(shed)
 ```
 
 ```
-##      pignum        time_point     pig_weight         temp      
-##  Min.   :  6.0   Min.   : 0.0   Min.   : 9.48   Min.   :101.2  
-##  1st Qu.:119.0   1st Qu.: 2.0   1st Qu.:16.02   1st Qu.:102.4  
-##  Median :224.0   Median : 7.0   Median :19.78   Median :102.9  
-##  Mean   :234.7   Mean   : 8.8   Mean   :21.01   Mean   :102.9  
-##  3rd Qu.:361.0   3rd Qu.:14.0   3rd Qu.:25.29   3rd Qu.:103.4  
-##  Max.   :472.0   Max.   :21.0   Max.   :36.30   Max.   :105.2  
-##                                 NA's   :59      NA's   :118    
-##      pan_wt          wet_wt        Dry_wt_pan      Dry_weight   
-##  Min.   :1.000   Min.   :0.700   Min.   :1.110   Min.   :0.090  
-##  1st Qu.:1.030   1st Qu.:1.000   1st Qu.:1.300   1st Qu.:0.250  
-##  Median :1.050   Median :1.020   Median :1.320   Median :0.280  
-##  Mean   :1.054   Mean   :1.026   Mean   :1.322   Mean   :0.268  
-##  3rd Qu.:1.070   3rd Qu.:1.050   3rd Qu.:1.353   3rd Qu.:0.290  
-##  Max.   :1.120   Max.   :1.110   Max.   :1.460   Max.   :0.380  
-##  NA's   :122     NA's   :123     NA's   :123     NA's   :123    
-##  percent_drymatter daily_shedding    treatment         total_shedding  
-##  Min.   : 9.091    Min.   : 0.000   Length:295         Min.   : 0.000  
-##  1st Qu.:24.292    1st Qu.: 0.000   Class :character   1st Qu.: 1.699  
-##  Median :26.923    Median : 3.912   Mode  :character   Median :13.904  
-##  Mean   :26.109    Mean   : 3.765                      Mean   :17.423  
-##  3rd Qu.:28.431    3rd Qu.: 5.521                      3rd Qu.:30.893  
-##  Max.   :36.893    Max.   :13.218                      Max.   :66.207  
-##  NA's   :123
+##      pignum        time_point     pig_weight         temp           pan_wt     
+##  Min.   :  6.0   Min.   : 0.0   Min.   : 9.48   Min.   :101.2   Min.   :1.000  
+##  1st Qu.:119.0   1st Qu.: 2.0   1st Qu.:16.02   1st Qu.:102.4   1st Qu.:1.030  
+##  Median :224.0   Median : 7.0   Median :19.78   Median :102.9   Median :1.050  
+##  Mean   :234.7   Mean   : 8.8   Mean   :21.01   Mean   :102.9   Mean   :1.054  
+##  3rd Qu.:361.0   3rd Qu.:14.0   3rd Qu.:25.29   3rd Qu.:103.4   3rd Qu.:1.070  
+##  Max.   :472.0   Max.   :21.0   Max.   :36.30   Max.   :105.2   Max.   :1.120  
+##                                 NA's   :59      NA's   :118     NA's   :122    
+##      wet_wt        Dry_wt_pan      Dry_weight    percent_drymatter
+##  Min.   :0.700   Min.   :1.110   Min.   :0.090   Min.   : 9.091   
+##  1st Qu.:1.000   1st Qu.:1.300   1st Qu.:0.250   1st Qu.:24.292   
+##  Median :1.020   Median :1.320   Median :0.280   Median :26.923   
+##  Mean   :1.026   Mean   :1.322   Mean   :0.268   Mean   :26.109   
+##  3rd Qu.:1.050   3rd Qu.:1.353   3rd Qu.:0.290   3rd Qu.:28.431   
+##  Max.   :1.110   Max.   :1.460   Max.   :0.380   Max.   :36.893   
+##  NA's   :123     NA's   :123     NA's   :123     NA's   :123      
+##  daily_shedding    treatment         total_shedding  
+##  Min.   : 0.000   Length:295         Min.   : 0.000  
+##  1st Qu.: 0.000   Class :character   1st Qu.: 1.699  
+##  Median : 3.912   Mode  :character   Median :13.904  
+##  Mean   : 3.765                      Mean   :17.423  
+##  3rd Qu.: 5.521                      3rd Qu.:30.893  
+##  Max.   :13.218                      Max.   :66.207  
+## 
 ```
 
 ---
@@ -293,11 +280,10 @@ final_shed[which.min(final_shed$total_shedding),]
 ```
 
 ```
-## # A tibble: 1 x 7
-##   pignum time_point pig_weight daily_shedding treatment total_shedding
-##    &lt;int&gt;      &lt;int&gt;      &lt;dbl&gt;          &lt;dbl&gt; &lt;chr&gt;              &lt;dbl&gt;
-## 1     97         21       24.9              0 RPS                    0
-## # ... with 1 more variable: gain &lt;dbl&gt;
+## # A tibble: 1 × 7
+##   pignum time_point pig_weight daily_shedding treatment total_shedding  gain
+##    &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;          &lt;dbl&gt; &lt;chr&gt;              &lt;dbl&gt; &lt;dbl&gt;
+## 1     97         21       24.9              0 RPS                    0  12.9
 ```
 
 ---
@@ -329,7 +315,7 @@ final_shed %&gt;%  group_by(treatment) %&gt;%
 ```
 
 ```
-## # A tibble: 6 x 2
+## # A tibble: 6 × 2
 ##   treatment med_shed
 ##   &lt;chr&gt;        &lt;dbl&gt;
 ## 1 Acid          35.4
@@ -353,7 +339,7 @@ wilcox.test(total_shedding ~ treatment, data = final_shed,
 
 ```
 ## 
-## 	Wilcoxon rank sum test
+## 	Wilcoxon rank sum exact test
 ## 
 ## data:  total_shedding by treatment
 ## W = 75, p-value = 0.01327
@@ -399,30 +385,123 @@ Try playing with chunks of code from this session to further investigate the *Sa
 
 2. Make side by side boxplots of final weight gain by treatment group (use the `final_shed` data set)
 
-3. Compute a wilcox test for control vs. the "Bglu" treatment group
+3. Compute a wilcox test for control vs. the "Bglu" treatment group 
     </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({
 "highlightStyle": "github",
 "highlightLines": true,
 "countIncrementalSlides": false
 });
-if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {window.dispatchEvent(new Event('resize'));});
-(function() {var d = document, s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler"); if (!r) return; s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }"; d.head.appendChild(s);})();</script>
-
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-  tex2jax: {
-    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
-  }
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
 });
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
 </script>
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
 (function () {
   var script = document.createElement('script');
   script.type = 'text/javascript';
-  script.src  = 'https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
   if (location.protocol !== 'file:' && /^https?:/.test(script.src))
     script.src  = script.src.replace(/^https?:/, '');
   document.getElementsByTagName('head')[0].appendChild(script);

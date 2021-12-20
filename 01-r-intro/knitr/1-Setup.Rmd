@@ -1,6 +1,5 @@
 ---
 title: "Setup"
-author: "Haley Jeppson and Sam Tyner"
 output: 
   xaringan::moon_reader:
     lib_dir: libs
