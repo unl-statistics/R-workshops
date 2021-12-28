@@ -1,7 +1,6 @@
 ---
 title: "Data Visualization"
 subtitle: "Using ggplot2"
-author: "Haley Jeppson and Sam Tyner"
 output:
   xaringan::moon_reader:
     lib_dir: libs
@@ -215,7 +214,7 @@ grid.arrange(p1, p2, p3, p4, p5, ncol = 5, nrow = 1)
 library(ggplot2)
 library(dplyr)
 library(tidyr)
-library(ggradar)
+# library(ggradar)
 library(ggmosaic)
 
 iris2 <- iris %>% mutate(obs = 1:150) %>% gather(variable, value, -c(obs, Species)) 
@@ -242,8 +241,8 @@ mtcars %>%
      mutate_at(-1, funs(scales::rescale)) %>%
      tail(4) %>% select(1:10) -> mtcars_radar
 
- i4 <- ggradar(mtcars_radar, group.line.width = .7,
-   group.point.size = 2, axis.label.size = 3.5, grid.label.size = 2.5, background.circle.transparency = 0.1, plot.legend =FALSE)+scale_colour_grey(start=0.4, end= 0.9)+ theme(legend.position = "none") + labs(x="", y="", title="Radar Charts")
+ # i4 <- ggradar(mtcars_radar, group.line.width = .7,
+ #   group.point.size = 2, axis.label.size = 3.5, grid.label.size = 2.5, background.circle.transparency = 0.1, plot.legend =FALSE)+scale_colour_grey(start=0.4, end= 0.9)+ theme(legend.position = "none") + labs(x="", y="", title="Radar Charts")
 # i4 <- ggplot()+ labs(x="", y="", title="Radar Charts")
 
 df.team_data <- expand.grid(teams = c("Team A", "Team B", "Team C", "Team D") ,metrics = c("Metric 1", "Metric 2", "Metric 3", "Metric 4", "Metric 5"))
@@ -256,7 +255,8 @@ i5 <-ggplot(data = df.team_data, aes(x = metrics, y = teams)) +
   geom_tile(aes(fill = performance)) + scale_fill_distiller(palette = "Greys")+ theme(legend.position = "none") + labs(x="", y="", title="Heat Map")
 
 
-grid.arrange(i2, i3, i4, i5, ncol = 4, nrow = 1)
+# grid.arrange(i2, i3, i4, i5, ncol = 4, nrow = 1)
+grid.arrange(i2, i3, i5, ncol = 4, nrow = 1)
 
 ```
 
@@ -284,15 +284,16 @@ a1 <- ggplot(diamonds, aes(depth)) +
 a2 <- ggplot(diamonds, aes(cut, price)) + geom_violin(aes(fill = cut), alpha = .8) + labs(x="", y="", title="Violin Plot")+scale_fill_grey(start=0.6, end= 0.9) + theme(legend.position = "none")
 
 
-library(geomnet)
-data(blood)
+# library(geomnet)
+# data(blood)
 
-a3 <- ggplot(data = blood$edges, aes(from_id = from, to_id = to)) +
-  geom_net(vertices=blood$vertices, aes(colour=..type..)) + 
-  theme_net() +scale_colour_grey(start=0.4, end= 0.9)+ theme(legend.position = "none") + labs(x="", y="", title="Network Plot")
+# a3 <- ggplot(data = blood$edges, aes(from_id = from, to_id = to)) +
+#   geom_net(vertices=blood$vertices, aes(colour=..type..)) + 
+#   theme_net() +scale_colour_grey(start=0.4, end= 0.9)+ theme(legend.position = "none") + labs(x="", y="", title="Network Plot")
 
 
-grid.arrange(a1, a2, a3, ncol = 3, nrow = 1)
+# grid.arrange(a1, a2, a3, ncol = 3, nrow = 1)
+grid.arrange(a1, a2, ncol = 3, nrow = 1)
 
 ```
 

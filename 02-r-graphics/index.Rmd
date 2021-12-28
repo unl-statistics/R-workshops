@@ -3,13 +3,13 @@ title: "Graphics with ggplot2"
 output: html_document
 ---
 
+The course will be a mix of instruction and follow-up exercises. It will be held in a computer lab but you are encouraged to bring your own laptops, with software already loaded. A list of software is available to help you prepare your machine for the workshop.
+
 After the end of Graphics with ggplot, we expect you to be able to do the following:
 
 + Visualize data in the ggplot2 package: do basic plots, as well as know about the layer system, and be able to structure complex graphics
 + Take a data set and use static graphics to look for interesting features.
 + Know about some aspects of human perception and what to avoid when plotting data.
-
-The course will be a mix of instruction and follow-up exercises. It will be held in a computer lab but you are encouraged to bring your own laptops, with software already loaded. A list of software is available to help you prepare your machine for the workshop. 
 
 ## Timetable
 
@@ -26,4 +26,5 @@ Date | Notes | Lectures and Resources
 Recommended Reading:
 
 - [R for Data Science](https://r4ds.had.co.nz/) 
-- [R for ecologists](https://datacarpentry.org/R-ecology-lesson/) Data Carpentry workshop 
+- [R for ecologists](https://datacarpentry.org/R-ecology-lesson/) 
++ Data Carpentry workshop 
