@@ -1,0 +1,85 @@
+---
+title: "Dynamic Documents with knitr"
+output: 
+  xaringan::moon_reader:
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+## Knit what?
+
+- Adds (knits) R code into your document so that all of the files for a particular experiment are in one place
+
+- Compiling the document also runs the R code, so one button press runs your statistical analysis and places it into your document
+
+- Integrates R output with the document text so that pictures, tables, and numeric data are all dependent on the R code
+
+- Produces beautiful, seamless  integration of statistical analysis with scientific writing
+
+---
+
+## Reproduceable Research
+
+- Journals often require code and data to be included in a paper submission so the analysis can be reproduced
+
+- Statistical analyses are often re-used for multiple similar experiments
+
+- We don't always comment code when we write it - knitr provides context for the code by including the writeup with the code
+
+---
+
+## Setup
+
+- LaTeX: If you don't have this installed, you will need to use our computers.
+
+- knitr: use install.packages("knitr") to install the knitr package in R
+
+- RStudio: File -> New File -> R Markdown (This tells RStudio to use knitr to compile the document)
+
+--- 
+
+## Example
+
+
+---
+
+## R Code "Chunks"
+
+knitr knows that text is R code if it is included in a chunk.
+
+
+--- 
+
+## Your Turn!
+
+
+---
+
+## Adding Graphs to Documents with Knitr
+
+---
+
+## Your Turn!
+
+---
+
+## knitr Code Chunk Options
+
+---
+
+## knitr Code Chunk Options
+
+--- 
+
+## Your Turn!
+
+---
+
+## Common Options for Pictures
+
+---
+
+## Your Turn!

@@ -94,7 +94,7 @@ str(shed)
 
 Let's get a summary of the values for each variable:
 
-```{r}
+```{r, height = 3000}
 summary(shed)
 ```
 
@@ -189,7 +189,7 @@ median(final_shed$total_shedding[final_shed$treatment == "control"])
 final_shed %>%  group_by(treatment) %>% 
   summarise(med_shed = median(total_shedding))
 ```
-]
+
 ---
 ## Statistical Significance
 
