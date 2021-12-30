@@ -43,7 +43,7 @@ Examples:
 
 # Anscombe's Quartet
 
--  4 datasets that have nearly identical simple statistical properties that appear very different when graphed
+-  4 data sets that have nearly identical simple statistical properties that appear very different when graphed
 
 - demonstrate both the importance of graphing data before analyzing it and the effect of outliers on statistical properties
 
@@ -197,74 +197,26 @@ Examples:
 
 # Anscombe's Quartet: summary statistics
 
-&lt;style type="text/css"&gt;
-.tg  {border-collapse:collapse;border-spacing:0;border-color:#aaa;border:none;}
-.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-color:#aaa;color:#333;background-color:#fff;}
-.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-color:#aaa;color:#fff;background-color:#f38630;}
-.tg .tg-s6z2{text-align:center}
-.tg .tg-2od3{background-color:#FCFBE3;font-weight:bold;text-align:right}
-.tg .tg-axdc{background-color:#FCFBE3;font-weight:bold;text-align:right;vertical-align:top}
-.tg .tg-lyaj{background-color:#FCFBE3;text-align:center}
-.tg .tg-hgcj{font-weight:bold;text-align:center}
-.tg .tg-34fq{font-weight:bold;text-align:right}
-.tg .tg-yq6s{background-color:#FCFBE3;text-align:center;vertical-align:top}
-&lt;/style&gt;
-&lt;table class="tg"&gt;
-  &lt;tr&gt;
-    &lt;th class="tg-031e"&gt;&lt;/th&gt;
-    &lt;th class="tg-hgcj"&gt;I&lt;/th&gt;
-    &lt;th class="tg-hgcj"&gt;II&lt;/th&gt;
-    &lt;th class="tg-hgcj"&gt;III&lt;/th&gt;
-    &lt;th class="tg-hgcj"&gt;IV&lt;/th&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-    &lt;td class="tg-2od3"&gt;mean(x)&lt;/td&gt;
-    &lt;td class="tg-lyaj"&gt;9&lt;/td&gt;
-    &lt;td class="tg-lyaj"&gt;9&lt;/td&gt;
-    &lt;td class="tg-lyaj"&gt;9&lt;/td&gt;
-    &lt;td class="tg-lyaj"&gt;9&lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-    &lt;td class="tg-34fq"&gt;sd(x)&lt;/td&gt;
-    &lt;td class="tg-s6z2"&gt;3.32&lt;/td&gt;
-    &lt;td class="tg-s6z2"&gt;3.32&lt;/td&gt;
-    &lt;td class="tg-s6z2"&gt;3.32&lt;/td&gt;
-    &lt;td class="tg-s6z2"&gt;3.32&lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-    &lt;td class="tg-2od3"&gt;mean(y)&lt;/td&gt;
-    &lt;td class="tg-lyaj"&gt;7.5&lt;/td&gt;
-    &lt;td class="tg-lyaj"&gt;7.5&lt;/td&gt;
-    &lt;td class="tg-lyaj"&gt;7.5&lt;/td&gt;
-    &lt;td class="tg-lyaj"&gt;7.5&lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-    &lt;td class="tg-34fq"&gt;sd(y)&lt;/td&gt;
-    &lt;td class="tg-s6z2"&gt;2.03&lt;/td&gt;
-    &lt;td class="tg-s6z2"&gt;2.03&lt;/td&gt;
-    &lt;td class="tg-s6z2"&gt;2.03&lt;/td&gt;
-    &lt;td class="tg-s6z2"&gt;2.03&lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-    &lt;td class="tg-axdc"&gt;corr(x,y)&lt;/td&gt;
-    &lt;td class="tg-yq6s"&gt;0.816&lt;/td&gt;
-    &lt;td class="tg-yq6s"&gt;0.816&lt;/td&gt;
-    &lt;td class="tg-yq6s"&gt;0.816&lt;/td&gt;
-    &lt;td class="tg-yq6s"&gt;0.816&lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/table&gt;
+&lt;br&gt;
+&lt;br&gt;
 
 
+|         |I    |II   |III  |IV   |
+|:--------|:----|:----|:----|:----|
+|mean(x)  |9    |9    |9    |9    |
+|sd(x)    |3.32 |3.32 |3.32 |3.32 |
+|mean(y)  |7.5  |7.5  |7.5  |7.5  |
+|sd(y)    |2.03 |2.03 |2.03 |2.03 |
+|cor(x,y) |0.82 |0.82 |0.82 |0.82 |
 ???
 
-each dataset has the same mean, median, standard deviation, and correlation coefficient between x and y.
- 
+each data set has the same mean, standard deviation, and correlation coefficient between x and y.
  
 ---
 
 # Anscombe's Quartet: plots
 
-&lt;img src="2-Basics_files/figure-html/unnamed-chunk-3-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="2-Basics_files/figure-html/quartet-plots-1.png" style="display: block; margin: auto;" /&gt;
 
 
 ???
@@ -381,6 +333,12 @@ Why?
   - mosaicplots, side-by-side barplots
   
 - Multidimensional
+
+&lt;br&gt;
+
+**Resources**
++ [The Data Vis Project](https://datavizproject.com/)
++ [Data Visualization Catalogue](https://datavizcatalogue.com/)
 
 
 
@@ -563,7 +521,7 @@ The data is the same, but the layout is different. Our vocabulary of rows and co
 - is likely not the data's most compact form
 
 
-&lt;img src="2-Basics_files/figure-html/unnamed-chunk-5-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="2-Basics_files/figure-html/unnamed-chunk-3-1.png" style="display: block; margin: auto;" /&gt;
 
 ]
 
@@ -659,93 +617,16 @@ head(french_fries)
 ```
 
 **Wide Format:**
-&lt;style type="text/css"&gt;
-.tg  {border-collapse:collapse;border-spacing:0;border-color:#aaa;}
-.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-color:#aaa;color:#333;background-color:#fff;}
-.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-color:#aaa;color:#fff;background-color:#f38630;}
-.tg .tg-baqh{text-align:center;vertical-align:top}
-.tg .tg-amwm{font-weight:bold;text-align:center;vertical-align:top}
-.tg .tg-yq6s{background-color:#FCFBE3;text-align:center;vertical-align:top}
-&lt;/style&gt;
-&lt;table class="tg"&gt;
-  &lt;tr&gt;
-    &lt;th class="tg-amwm"&gt;time&lt;/th&gt;
-    &lt;th class="tg-amwm"&gt;treatment&lt;/th&gt;
-    &lt;th class="tg-amwm"&gt;subject&lt;/th&gt;
-    &lt;th class="tg-amwm"&gt;rep&lt;/th&gt;
-    &lt;th class="tg-amwm"&gt;potato&lt;/th&gt;
-    &lt;th class="tg-amwm"&gt;buttery&lt;/th&gt;
-    &lt;th class="tg-amwm"&gt;grassy&lt;/th&gt;
-    &lt;th class="tg-amwm"&gt;rancid&lt;/th&gt;
-    &lt;th class="tg-amwm"&gt;painty&lt;/th&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-    &lt;td class="tg-baqh"&gt;1&lt;/td&gt;
-    &lt;td class="tg-yq6s"&gt;1&lt;/td&gt;
-    &lt;td class="tg-baqh"&gt;3&lt;/td&gt;
-    &lt;td class="tg-yq6s"&gt;1&lt;/td&gt;
-    &lt;td class="tg-baqh"&gt;2.9&lt;/td&gt;
-    &lt;td class="tg-yq6s"&gt;0.0&lt;/td&gt;
-    &lt;td class="tg-baqh"&gt;0.0&lt;/td&gt;
-    &lt;td class="tg-yq6s"&gt;0.0&lt;/td&gt;
-    &lt;td class="tg-baqh"&gt;5.5&lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-    &lt;td class="tg-baqh"&gt;1&lt;/td&gt;
-    &lt;td class="tg-yq6s"&gt;1&lt;/td&gt;
-    &lt;td class="tg-baqh"&gt;3&lt;/td&gt;
-    &lt;td class="tg-yq6s"&gt;2&lt;/td&gt;
-    &lt;td class="tg-baqh"&gt;14.0&lt;/td&gt;
-    &lt;td class="tg-yq6s"&gt;0.0&lt;/td&gt;
-    &lt;td class="tg-baqh"&gt;0.0&lt;/td&gt;
-    &lt;td class="tg-yq6s"&gt;1.1&lt;/td&gt;
-    &lt;td class="tg-baqh"&gt;0.0&lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-    &lt;td class="tg-baqh"&gt;1&lt;/td&gt;
-    &lt;td class="tg-yq6s"&gt;1&lt;/td&gt;
-    &lt;td class="tg-baqh"&gt;10&lt;/td&gt;
-    &lt;td class="tg-yq6s"&gt;1&lt;/td&gt;
-    &lt;td class="tg-baqh"&gt;11.0&lt;/td&gt;
-    &lt;td class="tg-yq6s"&gt;6.4&lt;/td&gt;
-    &lt;td class="tg-baqh"&gt;0.0&lt;/td&gt;
-    &lt;td class="tg-yq6s"&gt;0.0&lt;/td&gt;
-    &lt;td class="tg-baqh"&gt;0.0&lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-    &lt;td class="tg-baqh"&gt;1&lt;/td&gt;
-    &lt;td class="tg-yq6s"&gt;1&lt;/td&gt;
-    &lt;td class="tg-baqh"&gt;10&lt;/td&gt;
-    &lt;td class="tg-yq6s"&gt;2&lt;/td&gt;
-    &lt;td class="tg-baqh"&gt;9.9&lt;/td&gt;
-    &lt;td class="tg-yq6s"&gt;5.9&lt;/td&gt;
-    &lt;td class="tg-baqh"&gt;2.9&lt;/td&gt;
-    &lt;td class="tg-yq6s"&gt;2.2&lt;/td&gt;
-    &lt;td class="tg-baqh"&gt;0.0&lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-    &lt;td class="tg-baqh"&gt;1&lt;/td&gt;
-    &lt;td class="tg-yq6s"&gt;1&lt;/td&gt;
-    &lt;td class="tg-baqh"&gt;15&lt;/td&gt;
-    &lt;td class="tg-yq6s"&gt;1&lt;/td&gt;
-    &lt;td class="tg-baqh"&gt;1.2&lt;/td&gt;
-    &lt;td class="tg-yq6s"&gt;0.1&lt;/td&gt;
-    &lt;td class="tg-baqh"&gt;0.0&lt;/td&gt;
-    &lt;td class="tg-yq6s"&gt;1.1&lt;/td&gt;
-    &lt;td class="tg-baqh"&gt;5.1&lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-    &lt;td class="tg-baqh"&gt;1&lt;/td&gt;
-    &lt;td class="tg-yq6s"&gt;1&lt;/td&gt;
-    &lt;td class="tg-baqh"&gt;15&lt;/td&gt;
-    &lt;td class="tg-yq6s"&gt;2&lt;/td&gt;
-    &lt;td class="tg-baqh"&gt;8.8&lt;/td&gt;
-    &lt;td class="tg-yq6s"&gt;3.0&lt;/td&gt;
-    &lt;td class="tg-baqh"&gt;3.6&lt;/td&gt;
-    &lt;td class="tg-yq6s"&gt;1.5&lt;/td&gt;
-    &lt;td class="tg-baqh"&gt;2.3&lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/table&gt;
+
+
+|time |treatment |subject | rep| potato| buttery| grassy| rancid| painty|
+|:----|:---------|:-------|---:|------:|-------:|------:|------:|------:|
+|1    |1         |3       |   1|    2.9|     0.0|    0.0|    0.0|    5.5|
+|1    |1         |3       |   2|   14.0|     0.0|    0.0|    1.1|    0.0|
+|1    |1         |10      |   1|   11.0|     6.4|    0.0|    0.0|    0.0|
+|1    |1         |10      |   2|    9.9|     5.9|    2.9|    2.2|    0.0|
+|1    |1         |15      |   1|    1.2|     0.1|    0.0|    1.1|    5.1|
+|1    |1         |15      |   2|    8.8|     3.0|    3.6|    1.5|    2.3|
 
 ---
 
@@ -754,80 +635,25 @@ head(french_fries)
 
 ```r
 french_fries_long &lt;- french_fries %&gt;% 
-  gather(key = variable, value = rating, potato:painty)
+  pivot_longer(cols = c("potato":"painty"),
+               names_to = "variable",
+               values_to = "value")
 head(french_fries_long)
 ```
 
+**Long Format:**
 
 
-** Tidy (long) format:**
+|time |treatment |subject | rep|variable | value|
+|:----|:---------|:-------|---:|:--------|-----:|
+|1    |1         |3       |   1|potato   |   2.9|
+|1    |1         |3       |   1|buttery  |   0.0|
+|1    |1         |3       |   1|grassy   |   0.0|
+|1    |1         |3       |   1|rancid   |   0.0|
+|1    |1         |3       |   1|painty   |   5.5|
+|1    |1         |3       |   2|potato   |  14.0|
 
-&lt;style type="text/css"&gt;
-.tg  {border-collapse:collapse;border-spacing:0;border-color:#aaa;}
-.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#aaa;color:#333;background-color:#fff;}
-.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#aaa;color:#fff;background-color:#f38630;}
-.tg .tg-baqh{text-align:center;vertical-align:top}
-.tg .tg-amwm{font-weight:bold;text-align:center;vertical-align:top}
-&lt;/style&gt;
-&lt;table class="tg"&gt;
-  &lt;tr&gt;
-    &lt;th class="tg-amwm"&gt;time&lt;/th&gt;
-    &lt;th class="tg-amwm"&gt;treatment&lt;/th&gt;
-    &lt;th class="tg-amwm"&gt;subject&lt;/th&gt;
-    &lt;th class="tg-amwm"&gt;rep&lt;/th&gt;
-    &lt;th class="tg-amwm"&gt;variable&lt;/th&gt;
-    &lt;th class="tg-amwm"&gt;rating&lt;/th&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-    &lt;td class="tg-baqh"&gt;1&lt;/td&gt;
-    &lt;td class="tg-baqh"&gt;1&lt;/td&gt;
-    &lt;td class="tg-baqh"&gt;3&lt;/td&gt;
-    &lt;td class="tg-baqh"&gt;1&lt;/td&gt;
-    &lt;td class="tg-baqh"&gt;potato&lt;/td&gt;
-    &lt;td class="tg-baqh"&gt;2.9&lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-    &lt;td class="tg-baqh"&gt;1&lt;/td&gt;
-    &lt;td class="tg-baqh"&gt;1&lt;/td&gt;
-    &lt;td class="tg-baqh"&gt;3&lt;/td&gt;
-    &lt;td class="tg-baqh"&gt;2&lt;/td&gt;
-    &lt;td class="tg-baqh"&gt;potato&lt;/td&gt;
-    &lt;td class="tg-baqh"&gt;14.0&lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-    &lt;td class="tg-baqh"&gt;1&lt;/td&gt;
-    &lt;td class="tg-baqh"&gt;1&lt;/td&gt;
-    &lt;td class="tg-baqh"&gt;10&lt;/td&gt;
-    &lt;td class="tg-baqh"&gt;1&lt;/td&gt;
-    &lt;td class="tg-baqh"&gt;potato&lt;/td&gt;
-    &lt;td class="tg-baqh"&gt;11.0&lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-    &lt;td class="tg-baqh"&gt;1&lt;/td&gt;
-    &lt;td class="tg-baqh"&gt;1&lt;/td&gt;
-    &lt;td class="tg-baqh"&gt;10&lt;/td&gt;
-    &lt;td class="tg-baqh"&gt;2&lt;/td&gt;
-    &lt;td class="tg-baqh"&gt;potato&lt;/td&gt;
-    &lt;td class="tg-baqh"&gt;9.9&lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-    &lt;td class="tg-baqh"&gt;1&lt;/td&gt;
-    &lt;td class="tg-baqh"&gt;1&lt;/td&gt;
-    &lt;td class="tg-baqh"&gt;15&lt;/td&gt;
-    &lt;td class="tg-baqh"&gt;1&lt;/td&gt;
-    &lt;td class="tg-baqh"&gt;potato&lt;/td&gt;
-    &lt;td class="tg-baqh"&gt;1.2&lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-    &lt;td class="tg-baqh"&gt;1&lt;/td&gt;
-    &lt;td class="tg-baqh"&gt;1&lt;/td&gt;
-    &lt;td class="tg-baqh"&gt;15&lt;/td&gt;
-    &lt;td class="tg-baqh"&gt;2&lt;/td&gt;
-    &lt;td class="tg-baqh"&gt;potato&lt;/td&gt;
-    &lt;td class="tg-baqh"&gt;8.8&lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/table&gt;
-
+&lt;br&gt;
 More on tidy data later! 
 
     </textarea>
