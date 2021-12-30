@@ -6,6 +6,8 @@
     <script src="libs/header-attrs-2.11/header-attrs.js"></script>
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="libs/remark-css-0.0.1/default-fonts.css" rel="stylesheet" />
+    <script src="libs/kePrint-0.0.1/kePrint.js"></script>
+    <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
   </head>
   <body>
     <textarea id="source">
@@ -15,6 +17,18 @@ class: center, middle, inverse, title-slide
 
 ---
 
+
+## What do you use to write? 
+
+- Microsoft Word 
+- LaTeX / Overleaf
+- Pages 
+- Google Docs 
+- Others? 
+
+How do you get your results from `R` into those documents? 
+
+---
 
 ## Knit what?
 
@@ -37,6 +51,16 @@ class: center, middle, inverse, title-slide
 - We don't always comment code when we write it - knitr provides context for the code by including the writeup with the code
 
 ---
+
+## What is *R* Markdown?
+
+* Straight from the [R Markdown home page](http://rmarkdown.rstudio.com/):
+
+* R Markdown documents are fully reproducible. Use a productive *notebook interface* to weave together narrative text and code to produce elegantly formatted output. Use multiple languages including `R`, Python, and SQL.
+
+A lot of what is presented here can be found on the [R Markdown Cheatsheet](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf). 
+
+---
 ## Setup
 
 - LaTeX: If you don't have this installed, you will need to use our computers.
@@ -44,6 +68,66 @@ class: center, middle, inverse, title-slide
 - knitr: use install.packages("knitr") to install the knitr package in R
 
 - RStudio: File -&gt; New File -&gt; R Markdown (This tells RStudio to use knitr to compile the document)
+
+&lt;img src="markdown.png" width="60%" height="50%" /&gt;
+
+
+
+---
+
+## Contents of a .Rmd
+
+1. The YAML front matter
+2. The markdown
+3. Code chunks
+
+---
+## YAML Front Matter
+
+The stuff at the top of the .Rmd file (called YAML front matter) tells **rmarkdown** what output format you want. 
+
+```
+---
+title: "How to Not Age"
+author: "Paul Rudd"
+date: "December 30, 2021"
+output: html_document or pdf_document
+---
+```
+
+In this case, when you click "Knit", RStudio calls `rmarkdown::render("file.Rmd", html_document())`. You can certainly change these default values. 
+
+---
+## What is a code chunk?
+
+A code chunk is a concept borrowed from the [knitr](http://yihui.name/knitr/) package (which, in turn, was inspired by [literate programming](http://en.wikipedia.org/wiki/Literate_programming)). In .Rmd files, you can start/end a code chunk with three back-ticks. knitr knows that text is R code if it is included in a chunk.
+
+
+````
+```{r, eval=TRUE}`
+1 + 1
+```
+2
+````
+![](KnitNotebook.png)
+
+
+---
+## Markdown
+
+Any writing, written using the Markup syntax 
+
+```
+This is a really smart sentence you wrote. 
+
+### You can Bold your headers
+
+You also emphasize *important* words. 
+```
+This is a really smart sentence you wrote. 
+### You can Bold your headers
+You also emphasize *important* words.
+
 
 ---
 ## Example 
@@ -56,11 +140,6 @@ Hint: Use the "Knit" button at the top of the text window in R studio
 
 
 ---
-## R Code "Chunks"
-
-knitr knows that text is R code if it is included in a chunk.
-
----
 ## Your Turn!
 
 Change minimal-knitr.rmd so that the second code chunk (named 'boring-random') generates 30 random numbers and computes their sum. 
@@ -70,6 +149,20 @@ Make sure the code chunk compiles!
 ---
 ## Adding Graphs to Documents with Knitr
 
+```{r chunk-label}` `\(\\\)`
+make a plot here
+```
+Plot Output
+````
+
+```r
+set.seed(1121)
+x=rnorm(20)
+
+boxplot(x)
+```
+
+![](1-Intro_files/figure-html/plot_example-1.png)&lt;!-- --&gt;
 
 
 ---
@@ -123,7 +216,7 @@ Explore some of the options in knitr code chunks:
 - Can you make knitr show onlly the plot, without code, messages, errors, etc.?
 
 ---
-## Common Options for Pictures
+## Common Options for Figures
 
 - fig.width = 7, fig.height=7: dimensions of the saved image
 
@@ -134,11 +227,17 @@ Note: `\(\backslash\backslash\)` must be used to generate a single slash in LaTe
 
 - dpi=72: resolution of the saved image
 
-- fig.keep="all": Which figures to keep$\\$
+- fig.keep="all": Which figures to keep `\(\\\)`
 Options: 'high', 'none', 'all', 'first', 'last'
 
 - fig.show="asis": how to arrange plots `\(\\\)`
 Options: 'asis', 'hold', 'animate', 'hide'
+
+- fig.cap="caption text": Text for figure caption
+
+- fig.align="center": Alignment of the figure on the document page. `\(\\\)`
+Options: 'left', 'right', 'center'
+
 
 ---
 ## Your Turn!
@@ -147,24 +246,153 @@ Options: 'asis', 'hold', 'animate', 'hide'
   + Try different fig.keep and fig.show options
   
 - Change the size of both plots so they will fit on the same page. `\(\\\)`
-Hing: use out.width=".48\\\text.width"
+Hint: use out.width=".48\\\text.width"
 
----
-## More Common Options for Pictures
+- Give your figure a caption
 
-- fig.cap="caption text": Text for figure caption
-- fig.align="center": Alignment of the figure on the document page. `\(\\\)`
-Options: 'left', 'right', 'center'
 
 ---
 ## Setting Commonly used Options for all chunks
 
+It is common to create a setup chunk at the beginning of a markdown document (usually the first code chunk) to load packages and set default options (if want to apply code chunk options to the whole document).
 
+````
+{r, include=FALSE}
+knitr::opts_chunk$set(
+  Globally applied chunk options
+)
+
+````
 ---
 ## Mathmode
 
+`$x + 2$` for inline math: `\(x + 2\)`
+
+`$$` `x+2` `$$`  for centered paragraph math 
+`$$x + 2$$`
+`$\frac{1}{2}$` to create a fraction `\(\frac{1}{2}\)`
+
+`\begin` `{align} x &amp;= a + b\\ y &amp;= c + d` `\end{align}`    
+for systems of equations
+
+`\(\begin{align} x &amp;= a + b\\ y &amp;= c + d\end{align}\)`
+
+`\alpha, \beta, \gamma, \infty, \rightarrow, \int,\frac{a}{b}` 
+`$$\alpha,\beta,\gamma,\infty,\rightarrow,\int,\frac{a}{b}$$`
+
+[Cheatsheet for math mode](http://tug.ctan.org/info/undergradmath/undergradmath.pdf)
+
+[Detextify](https://detexify.kirelabs.org/classify.html) - Fast way to figure out LaTex code for symbols. 
+
 ---
-## Tables
+## Your Turn!
+
+See if you can this out in R markdown using Mathmode:
+
+`\(x = \frac{-b\pm\sqrt{b^{2} - 4ac}}{2a}\)` 
+
+Make sure it compiles in your document!
+
+---
+## Tables with kableextra
+
+
+
+```r
+library(kableExtra)
+kable(head(iris), caption = "Demo Table") %&gt;%
+  kable_styling(latex_options = "striped")
+```
+
+&lt;table class="table" style="margin-left: auto; margin-right: auto;"&gt;
+&lt;caption&gt;Demo Table&lt;/caption&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:right;"&gt; Sepal.Length &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Sepal.Width &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Petal.Length &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Petal.Width &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Species &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 5.1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3.5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.2 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; setosa &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 4.9 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3.0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.2 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; setosa &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 4.7 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3.2 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.3 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.2 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; setosa &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 4.6 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3.1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.2 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; setosa &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 5.0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3.6 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.2 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; setosa &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 5.4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3.9 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.7 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.4 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; setosa &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+[More Styling Options](https://bookdown.org/yihui/rmarkdown-cookbook/kableextra.html)
+
+---
+
+## Including Pictures Way 1
+
+`knitr::include_graphics("File path to Picture")`
+
+
+```r
+knitr::include_graphics("IncludeGraphic.png")
+```
+
+&lt;img src="IncludeGraphic.png" width="1529" /&gt;
+
+
+---
+
+## Including Pictures Way 2
+
+``![alt text here](path-to-image-here)`` `\(\\\)`
+``![Bulldog](IncludeGraphic.png)``
+
+![Bulldog](IncludeGraphic.png)
+---
+
+## Your Turn!
+
+- Include a Picture in your R markdown file
+
+- Create a table of a dataframe in your R markdown file. Play with the different styling options of the table. (For example change the background color of a row to highlight that row in your table)
+
 
 
     </textarea>

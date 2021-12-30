@@ -1,0 +1,21 @@
+---
+title: "Dynamic Documents with `knitr` and `R Markdown`"
+output: html_document
+---
+
+Create reports and write papers using R! Let R do the heavy lifting so that you can focus on the content - use R to assemble your data and `knitr` or `rmarkdown` to produce reports which integrate graphs and conclusions from your data automatically. Whether you are writing business reports or journal articles, `knitr` and `rmarkdown` are extremely valuable tools to use to make your life easier!  
+
+## Timetable
+
+Date | Description
+---- | ----
+9:00-9:30 | Introduction to R Markdown (What is it and why we would want to use it)
+9:30-10:45| Introduction to Code Chunks (Different options for R Output)
+10:45-11:00| **Break**
+11:00-12:00| Other options in Markdown (Mathmode, tables, pictures)
+
+## Notes and Resources
+
+[Notes](knitr/1-Intro.html)
+
+[Minimal knitr Example](code/minimal-knitr.Rmd)
