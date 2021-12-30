@@ -10,7 +10,9 @@ announcements](mailto:R-at-UNL+subscribe@googlegroups.com?Subject=subscribe-gith
 
 <!-- ** Schedule is tentative and subject to change due to enrollment and lab availability ** -->
 
-Workshops will be held in Keim 214.
+Workshops will be held in **Keim 214**.
+
+**Mask policy:** We ask that you wear masks during the workshops. Some of our instructors and participants are immunocompromised or have immunocompromised family or children under 5 years old at home. Our instructors will be wearing masks unless they are presenting at the front of the room. 
 
 | Date       |    Time    | Course                                                                          | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
 |------------|:----------:|---------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -127,6 +129,8 @@ If you are anticipating registering several people who are not UNL
 Affiliates as a group, please feel free to contact [Susan
 Vanderplas](mailto:svanderplas2@unl.edu?subject=R%20Workshops%20Pricing)
 for a group rate.
+
+We accept exact cash, checks, or a University cost object. We cannot accept N-cards.
 
 # First Day Setup!
 
