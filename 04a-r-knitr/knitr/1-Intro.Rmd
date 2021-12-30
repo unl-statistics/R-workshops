@@ -323,7 +323,7 @@ knitr::include_graphics("IncludeGraphic.png")
 
 - Create a table of a dataframe in your R markdown file. Play with the different styling options of the table. (For example change the background color of a row to highlight that row in your table)
 
-
+---
 
 ## Your Turn!
 
