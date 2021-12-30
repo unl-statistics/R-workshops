@@ -325,3 +325,12 @@ knitr::include_graphics("IncludeGraphic.png")
 
 
 
+## Your Turn!
+
+
+<!-- Other possible topics for later in the workshop:  
+  - rmarkdown vs. knitr (one uses pandoc, the other uses latex directly) 
+  - rticles for journal formats 
+  - creating slide shows and word documents with rmarkdown 
+  - mention bookdown and blogdown for creating books and webpages, respectively. Also mention Emily's thesisdown mod for UNL :)
+-->

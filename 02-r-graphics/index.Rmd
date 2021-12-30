@@ -15,7 +15,7 @@ After the end of Graphics with ggplot, we expect you to be able to do the follow
 
 Date | Notes | Lectures and Resources
 ---- | ---- | ----
-9 - 10:30 | [Look at that!](knitr/1-GraphicsIntro.html) | basic plots: scatterplots, boxplots, histograms, barcharts and more, some aesthetics: color, shape, ... <br/> [1-GraphicsIntro.R](code/1-GraphicsIntro.R)<br/> [ggplot2 cheat sheet](https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-visualization.pdf)
+9 - 10:30 | [Look at that!](knitr/1-GraphicsIntro.html) | basic plots: scatterplots, boxplots, histograms, barcharts and more, some aesthetics: color, shape, ... <br/> [1-GraphicsIntro.R](code/1-GraphicsIntro.R)
 10:30 - 11:30 | [Basics](knitr/2-Basics.html) | Making maps using ggplot2. <br/> [2-Basics.R](code/2-Basics.R)
 11:30 - 12:30 | **Lunch Break** | 
 12:30 - 2:00 | [Layers of Graphics](knitr/3-Layers.html) |  	More detailed look at the ggplot2 package: layers, geoms. <br/>[3-Layers.R](code/3-Layers.R) <br/>[noaa.rdata](data/noaa.rdata) <br/>[animal.csv](data/animal.csv)
@@ -23,8 +23,18 @@ Date | Notes | Lectures and Resources
 2:30 - 3:00 | [Polishing your plots](knitr/5-PolishingPlots.html) |  	Finishing touches: options, themes. <br/>[5-PolishingPlots.R](code/5-PolishingPlots.R)
 
 ## Useful Links
-Recommended Reading:
 
-- [R for Data Science](https://r4ds.had.co.nz/) 
-- [R for ecologists](https://datacarpentry.org/R-ecology-lesson/) 
-+ Data Carpentry workshop 
+### R graphics with ggplot2
+
++ [ggplot2 cheat sheet](https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-visualization.pdf)
++ [ggplot2 aesthetics cheat sheet](knitr/ggplot_aesthetics_cheatsheet.png)
++ [ggplot2 reference guide](https://ggplot2.tidyverse.org/reference/)
++ Combine multiple plots with the `patchwork`, `cowplot`, and `gridExtra` packages
++ [ggplot2 Elegant Graphics for Data Analysis](https://ggplot2-book.org/index.html) by [Hadley Wickham](http://hadley.nz/), [Danielle Navarro](https://djnavarro.net/), and [Thomas Lin Pedersen](https://www.data-imaginist.com/)
+
+### Types of Charts and Chart Styling
+
++ [The Data Vis Project](https://datavizproject.com/)
++ [Data Visualization Catalogue](https://datavizcatalogue.com/)
++ [The pros and cons of chart taxonomies](https://medium.com/nightingale/the-pros-and-cons-of-chart-taxonomies-5c8e094578c4)
++ [Data Visualization Style Guidelines](https://medium.com/nightingale/style-guidelines-92ebe166addc)
