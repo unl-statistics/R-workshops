@@ -53,6 +53,11 @@ This should also be done already, but if not...
 
 - Choose the installer appropriate for your platform
 
+- If you are using a Mac, you may need to download XQuartz from https://www.xquartz.org/
+  + If you run into issues, try downloading this to see if it helps.
+
 ---
 
 # Let's take a look at RStudio together...
+
+![](images/rstudioExp.png)

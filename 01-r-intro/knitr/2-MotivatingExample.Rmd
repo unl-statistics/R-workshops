@@ -12,12 +12,8 @@ output:
 ## Motivating Example
 
 - Kick off the workshop by exploring a real data set using R!
---
-
 
 - Goal: get the flavor of using R for data management and exploration
---
-
 
 - Don't worry about understanding all the coding right away
 
@@ -71,7 +67,7 @@ This workshop will focus largely on a group of packages that live together under
 Lets use R to look at the top few rows of the *Salmonella* shedding data set. First, we load tip using `read_csv`:
 
 ```{r message=FALSE, warning=FALSE}
-shed <- read_csv("http://heike.github.io/rwrks/01-r-intro/data/daily_shedding.csv")
+shed <- read_csv("https://srvanderplas.github.io/rwrks/01-r-intro/data/daily_shedding.csv")
 ```
 
 Now, we use the `head` function to look at the first 6 rows of the data:

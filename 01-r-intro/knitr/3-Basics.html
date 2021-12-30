@@ -183,7 +183,7 @@ Stackoverflow is VERY helpful
 
 **R Reference Card **
 
-We will pass you out a copy, but you can download the reference card from:
+You can download the reference card from:
 
 http://cran.r-project.org/doc/contrib/Short-refcard.pdf
 
@@ -205,7 +205,7 @@ class: inverse
 
 Using the R Reference Card (and the Help pages, if needed), do the following:
 
-Find out how many rows and columns the `iris` data set has. Figure out at least 2 ways to do this.
+Find out how many rows and columns the `iris` data set has (use `data(iris)` to load in the dataset). Figure out at least 2 ways to do this.
 
 **Hint**: "Variable Information" section on the first page of the reference card!
 
@@ -214,6 +214,58 @@ Use the `rep` function to construct the following vector: `1 1 2 2 3 3 4 4 5 5`
 **Hint**: "Data Creation" section of the reference card
 
 Use `rep` to construct this vector: `1 2 3 4 5 1 2 3 4 5 1 2 3 4 5`
+
+---
+## Project Management: Working Directories
+
+- The working directory in R is the folder where you are working
+  + Place where you have to store your files of your project in order to load them into R or where would save outputs
+  
+- Check your working directory using `getwd()` function
+
+- Change your working directory using `setwd()` function
+  + `setwd("My\\Path")` or `setwd("My/Path")` 
+  + Or Session -&gt; Set Working Directory -&gt; Choose Directory. This allows you to browse your computer and choose your desired folder without having to know the file path. 
+  
+---
+## Project Management: R Projects
+
+- What is R Projects?
+  + When working on your research it is beneficial to keep all associated files with a project together. 
+  + Sets your working directory for you
+- How to Create One?
+  + File -&gt; New Project -&gt; New Directory -&gt; New Project
+  + If already have a folder created: File -&gt; New Project -&gt; Existing Directory 
+  + This will take you to a page where you create a folder and then the file path to that folder (subdirectory)
+
+[Reference for creating RStudio Projects](https://r4ds.had.co.nz/workflow-projects.html#rstudio-projects) `\(\\\)`
+[RStudio Projects Website](https://support.rstudio.com/hc/en-us/articles/200526207-Using-RStudio-Projects)
+
+---
+## Your Turn: Create a Project Together for this Workshop
+
+- Create a RStudio Project for the workshop that you can use throughout the week. 
+  + You can save R files along with the datasets, so you won't have to set your working directory each day. 
+
+---
+## Reading in Data
+
+Often have data stored in a file outside of R and want to read in the file in order to use that information in R. Below are some popular file types and how to read them into R. 
+- csv file
+  + name &lt;- `read.csv("data set name", header = TRUE)`
+- txt file
+  + name &lt;- `read.table(file name)`
+- xlsx file
+  + Use of name &lt;-`read_excel("file name")` function in `readxl` package
+
+[Other File Types](https://www.datafiles.samhsa.gov/get-help/format-specific-issues/how-do-i-read-data-r)
+---
+## Your Turn!
+
+- Download the daily_shedding.csv file [here](../data/daily_shedding.csv) (or via the website) and save it into your Project directory
+- Read in the csv file using `read.csv()`
+- Generally after reading in a file, I like to use `head(name)` to make sure the data read in correctly. 
+
 
 ---
 ## Data Frames: Introduction
@@ -349,8 +401,8 @@ shedding[bad_shedder]
 ```
 
 ```
-## [1] 59.04973 56.12656 66.20657 51.98984 58.53921 64.74017 64.27066 56.06566
-## [9] 53.76049
+## [1] 59.04973 56.12656 66.20657 51.98984 58.53921 64.74017 64.27066
+## [8] 56.06566 53.76049
 ```
 
 ---
@@ -403,13 +455,14 @@ final_shed[id,]
 ```
 
 ```
-## # A tibble: 4 × 7
-##   pignum time_point pig_weight daily_shedding treatment total_shedding  gain
-##    &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;          &lt;dbl&gt; &lt;chr&gt;              &lt;dbl&gt; &lt;dbl&gt;
-## 1    122         21       33.9           5.01 control             59.0  16.8
-## 2    224         21       22.9           3.91 control             56.1  11.4
-## 3    337         21       29.5           5.52 control             66.2  16.2
-## 4    419         21       31             6.21 control             52.0  16.8
+## # A tibble: 4 x 7
+##   pignum time_point pig_weight daily_shedding treatment total_shedding
+##    &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;          &lt;dbl&gt; &lt;chr&gt;              &lt;dbl&gt;
+## 1    122         21       33.9           5.01 control             59.0
+## 2    224         21       22.9           3.91 control             56.1
+## 3    337         21       29.5           5.52 control             66.2
+## 4    419         21       31             6.21 control             52.0
+## # ... with 1 more variable: gain &lt;dbl&gt;
 ```
 
 ---
@@ -457,8 +510,8 @@ head(shedding)
 ```
 
 ```
-## [1] "37.1402150411922" "43.8807276727966" ":-("              "44.9696314253854"
-## [5] "38.7434232007542" ":-("
+## [1] "37.1402150411922" "43.8807276727966" ":-("             
+## [4] "44.9696314253854" "38.7434232007542" ":-("
 ```
 
 By changing a value to a string, all the other values were also changed.
@@ -478,7 +531,7 @@ str(final_shed)
 ```
 
 ```
-## tibble [59 × 7] (S3: tbl_df/tbl/data.frame)
+## tibble [59 x 7] (S3: tbl_df/tbl/data.frame)
 ##  $ pignum        : num [1:59] 77 87 122 160 191 224 337 345 419 458 ...
 ##  $ time_point    : num [1:59] 21 21 21 21 21 21 21 21 21 21 ...
 ##  $ pig_weight    : num [1:59] 25.4 23.9 33.9 28.4 28.9 ...

@@ -19,12 +19,8 @@ class: center, middle, inverse, title-slide
 ## Motivating Example
 
 - Kick off the workshop by exploring a real data set using R!
---
-
 
 - Goal: get the flavor of using R for data management and exploration
---
-
 
 - Don't worry about understanding all the coding right away
 
@@ -78,7 +74,7 @@ Lets use R to look at the top few rows of the *Salmonella* shedding data set. Fi
 
 
 ```r
-shed &lt;- read_csv("http://heike.github.io/rwrks/01-r-intro/data/daily_shedding.csv")
+shed &lt;- read_csv("https://srvanderplas.github.io/rwrks/01-r-intro/data/daily_shedding.csv")
 ```
 
 Now, we use the `head` function to look at the first 6 rows of the data:
@@ -99,8 +95,8 @@ head(shed)
 ## 5    191          2         NA  104.   1.03   1.02       1.27
 ## 6    224          2         NA  103    1.08   1          1.39
 ## # ... with 5 more variables: Dry_weight &lt;dbl&gt;,
-## #   percent_drymatter &lt;dbl&gt;, daily_shedding &lt;dbl&gt;,
-## #   treatment &lt;chr&gt;, total_shedding &lt;dbl&gt;
+## #   percent_drymatter &lt;dbl&gt;, daily_shedding &lt;dbl&gt;, treatment &lt;chr&gt;,
+## #   total_shedding &lt;dbl&gt;
 ```
 
 ---
@@ -200,7 +196,7 @@ Lets look at the relationship between time point and *Salmonella* shedding.
 ggplot(shed, aes(x=time_point, y=total_shedding)) + geom_point()
 ```
 
-![](2-MotivatingExample_files/figure-html/unnamed-chunk-7-1.png)&lt;!-- --&gt;
+![](2-MotivatingExample_files/figure-html/unnamed-chunk-8-1.png)&lt;!-- --&gt;
 
 ---
 ## More Scatterplots
@@ -212,7 +208,7 @@ Color the points by treatment groups
 ggplot(shed, aes(x=time_point, y=total_shedding, colour = treatment)) + geom_point()
 ```
 
-![](2-MotivatingExample_files/figure-html/unnamed-chunk-8-1.png)&lt;!-- --&gt;
+![](2-MotivatingExample_files/figure-html/unnamed-chunk-9-1.png)&lt;!-- --&gt;
 
 ---
 
@@ -225,7 +221,7 @@ Switch to lines for easier reading
 ggplot(shed, aes(x=time_point, y=total_shedding, colour = treatment)) + geom_line(aes(group=pignum))
 ```
 
-![](2-MotivatingExample_files/figure-html/unnamed-chunk-9-1.png)&lt;!-- --&gt;
+![](2-MotivatingExample_files/figure-html/unnamed-chunk-10-1.png)&lt;!-- --&gt;
 
 ---
 ## Even More Plots
@@ -239,7 +235,7 @@ ggplot(shed, aes(x=time_point, y=total_shedding, color=treatment)) +
   facet_wrap(~treatment)
 ```
 
-![](2-MotivatingExample_files/figure-html/unnamed-chunk-10-1.png)&lt;!-- --&gt;
+![](2-MotivatingExample_files/figure-html/unnamed-chunk-11-1.png)&lt;!-- --&gt;
 
 ---
 ## Variable Creation and Data Filtering
@@ -273,11 +269,10 @@ ggplot(final_shed) + geom_histogram(aes(x = total_shedding))
 ```
 
 ```
-## `stat_bin()` using `bins = 30`. Pick better value with
-## `binwidth`.
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 ```
 
-![](2-MotivatingExample_files/figure-html/unnamed-chunk-12-1.png)&lt;!-- --&gt;
+![](2-MotivatingExample_files/figure-html/unnamed-chunk-13-1.png)&lt;!-- --&gt;
 
 ---
 ## One pig did not shed at all...
@@ -291,10 +286,10 @@ final_shed[which.min(final_shed$total_shedding),]
 
 ```
 ## # A tibble: 1 x 7
-##   pignum time_point pig_weight daily_shedding treatment
-##    &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;          &lt;dbl&gt; &lt;chr&gt;    
-## 1     97         21       24.9              0 RPS      
-## # ... with 2 more variables: total_shedding &lt;dbl&gt;, gain &lt;dbl&gt;
+##   pignum time_point pig_weight daily_shedding treatment total_shedding
+##    &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;          &lt;dbl&gt; &lt;chr&gt;              &lt;dbl&gt;
+## 1     97         21       24.9              0 RPS                    0
+## # ... with 1 more variable: gain &lt;dbl&gt;
 ```
 
 ---
@@ -368,7 +363,7 @@ ggplot(final_shed) +
   geom_boxplot( aes(treatment, total_shedding, fill = treatment))
 ```
 
-![](2-MotivatingExample_files/figure-html/unnamed-chunk-17-1.png)&lt;!-- --&gt;
+![](2-MotivatingExample_files/figure-html/unnamed-chunk-18-1.png)&lt;!-- --&gt;
 
 ---
 ## Boxplots Again
@@ -382,7 +377,7 @@ shed %&gt;% filter(time_point != 0) %&gt;% ggplot() +
   facet_wrap(~time_point)
 ```
 
-![](2-MotivatingExample_files/figure-html/unnamed-chunk-18-1.png)&lt;!-- --&gt;
+![](2-MotivatingExample_files/figure-html/unnamed-chunk-19-1.png)&lt;!-- --&gt;
 
 
 ---

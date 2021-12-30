@@ -1,7 +1,7 @@
 ## install.packages("tidyverse")
 ## library(tidyverse)
 library(tidyverse)
-shed <- read_csv("http://heike.github.io/rwrks/01-r-intro/data/daily_shedding.csv")
+shed <- read_csv("https://srvanderplas.github.io/rwrks/01-r-intro/data/daily_shedding.csv")
 head(shed)
 str(shed)
 summary(shed)
