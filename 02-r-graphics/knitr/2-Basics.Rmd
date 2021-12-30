@@ -78,7 +78,7 @@ Examples:
 
 # Anscombe's Quartet
 
--  4 datasets that have nearly identical simple statistical properties that appear very different when graphed
+-  4 data sets that have nearly identical simple statistical properties that appear very different when graphed
 
 - demonstrate both the importance of graphing data before analyzing it and the effect of outliers on statistical properties
 
@@ -232,85 +232,45 @@ Examples:
 
 # Anscombe's Quartet: summary statistics
 
-<style type="text/css">
-.tg  {border-collapse:collapse;border-spacing:0;border-color:#aaa;border:none;}
-.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-color:#aaa;color:#333;background-color:#fff;}
-.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-color:#aaa;color:#fff;background-color:#f38630;}
-.tg .tg-s6z2{text-align:center}
-.tg .tg-2od3{background-color:#FCFBE3;font-weight:bold;text-align:right}
-.tg .tg-axdc{background-color:#FCFBE3;font-weight:bold;text-align:right;vertical-align:top}
-.tg .tg-lyaj{background-color:#FCFBE3;text-align:center}
-.tg .tg-hgcj{font-weight:bold;text-align:center}
-.tg .tg-34fq{font-weight:bold;text-align:right}
-.tg .tg-yq6s{background-color:#FCFBE3;text-align:center;vertical-align:top}
-</style>
-<table class="tg">
-  <tr>
-    <th class="tg-031e"></th>
-    <th class="tg-hgcj">I</th>
-    <th class="tg-hgcj">II</th>
-    <th class="tg-hgcj">III</th>
-    <th class="tg-hgcj">IV</th>
-  </tr>
-  <tr>
-    <td class="tg-2od3">mean(x)</td>
-    <td class="tg-lyaj">9</td>
-    <td class="tg-lyaj">9</td>
-    <td class="tg-lyaj">9</td>
-    <td class="tg-lyaj">9</td>
-  </tr>
-  <tr>
-    <td class="tg-34fq">sd(x)</td>
-    <td class="tg-s6z2">3.32</td>
-    <td class="tg-s6z2">3.32</td>
-    <td class="tg-s6z2">3.32</td>
-    <td class="tg-s6z2">3.32</td>
-  </tr>
-  <tr>
-    <td class="tg-2od3">mean(y)</td>
-    <td class="tg-lyaj">7.5</td>
-    <td class="tg-lyaj">7.5</td>
-    <td class="tg-lyaj">7.5</td>
-    <td class="tg-lyaj">7.5</td>
-  </tr>
-  <tr>
-    <td class="tg-34fq">sd(y)</td>
-    <td class="tg-s6z2">2.03</td>
-    <td class="tg-s6z2">2.03</td>
-    <td class="tg-s6z2">2.03</td>
-    <td class="tg-s6z2">2.03</td>
-  </tr>
-  <tr>
-    <td class="tg-axdc">corr(x,y)</td>
-    <td class="tg-yq6s">0.816</td>
-    <td class="tg-yq6s">0.816</td>
-    <td class="tg-yq6s">0.816</td>
-    <td class="tg-yq6s">0.816</td>
-  </tr>
-</table>
+<br>
+<br>
 
-```{r}
-library(Tmisc)
-library(tidyverse)
+```{r, quartet-summary}
 data(quartet)
-# quartet %>%
-#   group_by(set) %>%
-#   summarize(mean(x), sd(x), mean(y), sd(y), cor(x,y))
+quartet_summary <- quartet %>%
+  group_by(set) %>%
+  summarize("mean(x)"  = round(mean(x),2), 
+            "sd(x)"    = round(sd(x),2), 
+            "mean(y)"  = round(mean(y),2), 
+            "sd(y)"    = round(sd(y),2), 
+            "cor(x,y)" = round(cor(x,y),2)) %>% 
+  t()
+
+colnames(quartet_summary) <- quartet_summary[1,]
+quartet_summary <- quartet_summary[-1,] %>%
+  as.data.frame()
+
+quartet_summary %>%
+  knitr::kable(digits = 2)
 ```
 ???
 
-each dataset has the same mean, median, standard deviation, and correlation coefficient between x and y.
- 
+each data set has the same mean, standard deviation, and correlation coefficient between x and y.
  
 ---
 
 # Anscombe's Quartet: plots
 
-```{r, fig.align = "center"}
-
-ggplot(quartet, aes(x, y)) + geom_point(colour = "darkorange1", size = 2) + geom_smooth(method = lm, se = FALSE, colour = "grey19", alpha = .5) + facet_wrap(~set)
-
-
+```{r, , quartet-plots, fig.height = 7, fig.width = 7, fig.align = "center"}
+ggplot(quartet, aes(x, y)) + 
+  geom_point(colour = "green4", size = 2.5) + 
+  geom_smooth(method = lm, se = FALSE, colour = "gray", alpha = .5) +
+  facet_wrap(~ set) +
+  theme_bw() +
+  theme(aspect.ratio = 1,
+        axis.text = element_text(size = 14),
+        axis.title = element_text(size = 16),
+        strip.text = element_text(size = 16))
 ```
 
 
@@ -428,6 +388,12 @@ Why?
   - mosaicplots, side-by-side barplots
   
 - Multidimensional
+
+<br>
+
+**Resources**
++ [The Data Vis Project](https://datavizproject.com/)
++ [Data Visualization Catalogue](https://datavizcatalogue.com/)
 
 
 
@@ -718,179 +684,36 @@ img <- readPNG("images/tablelong2.png")
 ```{r, eval=FALSE, echo=TRUE}
 data(french_fries, package="reshape2")
 head(french_fries)
-
 ```
 
 **Wide Format:**
-<style type="text/css">
-.tg  {border-collapse:collapse;border-spacing:0;border-color:#aaa;}
-.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-color:#aaa;color:#333;background-color:#fff;}
-.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-color:#aaa;color:#fff;background-color:#f38630;}
-.tg .tg-baqh{text-align:center;vertical-align:top}
-.tg .tg-amwm{font-weight:bold;text-align:center;vertical-align:top}
-.tg .tg-yq6s{background-color:#FCFBE3;text-align:center;vertical-align:top}
-</style>
-<table class="tg">
-  <tr>
-    <th class="tg-amwm">time</th>
-    <th class="tg-amwm">treatment</th>
-    <th class="tg-amwm">subject</th>
-    <th class="tg-amwm">rep</th>
-    <th class="tg-amwm">potato</th>
-    <th class="tg-amwm">buttery</th>
-    <th class="tg-amwm">grassy</th>
-    <th class="tg-amwm">rancid</th>
-    <th class="tg-amwm">painty</th>
-  </tr>
-  <tr>
-    <td class="tg-baqh">1</td>
-    <td class="tg-yq6s">1</td>
-    <td class="tg-baqh">3</td>
-    <td class="tg-yq6s">1</td>
-    <td class="tg-baqh">2.9</td>
-    <td class="tg-yq6s">0.0</td>
-    <td class="tg-baqh">0.0</td>
-    <td class="tg-yq6s">0.0</td>
-    <td class="tg-baqh">5.5</td>
-  </tr>
-  <tr>
-    <td class="tg-baqh">1</td>
-    <td class="tg-yq6s">1</td>
-    <td class="tg-baqh">3</td>
-    <td class="tg-yq6s">2</td>
-    <td class="tg-baqh">14.0</td>
-    <td class="tg-yq6s">0.0</td>
-    <td class="tg-baqh">0.0</td>
-    <td class="tg-yq6s">1.1</td>
-    <td class="tg-baqh">0.0</td>
-  </tr>
-  <tr>
-    <td class="tg-baqh">1</td>
-    <td class="tg-yq6s">1</td>
-    <td class="tg-baqh">10</td>
-    <td class="tg-yq6s">1</td>
-    <td class="tg-baqh">11.0</td>
-    <td class="tg-yq6s">6.4</td>
-    <td class="tg-baqh">0.0</td>
-    <td class="tg-yq6s">0.0</td>
-    <td class="tg-baqh">0.0</td>
-  </tr>
-  <tr>
-    <td class="tg-baqh">1</td>
-    <td class="tg-yq6s">1</td>
-    <td class="tg-baqh">10</td>
-    <td class="tg-yq6s">2</td>
-    <td class="tg-baqh">9.9</td>
-    <td class="tg-yq6s">5.9</td>
-    <td class="tg-baqh">2.9</td>
-    <td class="tg-yq6s">2.2</td>
-    <td class="tg-baqh">0.0</td>
-  </tr>
-  <tr>
-    <td class="tg-baqh">1</td>
-    <td class="tg-yq6s">1</td>
-    <td class="tg-baqh">15</td>
-    <td class="tg-yq6s">1</td>
-    <td class="tg-baqh">1.2</td>
-    <td class="tg-yq6s">0.1</td>
-    <td class="tg-baqh">0.0</td>
-    <td class="tg-yq6s">1.1</td>
-    <td class="tg-baqh">5.1</td>
-  </tr>
-  <tr>
-    <td class="tg-baqh">1</td>
-    <td class="tg-yq6s">1</td>
-    <td class="tg-baqh">15</td>
-    <td class="tg-yq6s">2</td>
-    <td class="tg-baqh">8.8</td>
-    <td class="tg-yq6s">3.0</td>
-    <td class="tg-baqh">3.6</td>
-    <td class="tg-yq6s">1.5</td>
-    <td class="tg-baqh">2.3</td>
-  </tr>
-</table>
+
+```{r, eval=T, echo=F}
+head(french_fries)%>% knitr::kable(row.names = F)
+```
 
 ---
 
 # Tidy your data
 
 ```{r, eval=FALSE, echo=TRUE}
-
 french_fries_long <- french_fries %>% 
-  gather(key = variable, value = rating, potato:painty)
+  pivot_longer(cols = c("potato":"painty"),
+               names_to = "variable",
+               values_to = "value")
 head(french_fries_long)
-
 ```
 
+**Long Format:**
 
+```{r, eval=T, echo=F}
+french_fries_long <- french_fries %>% 
+  pivot_longer(cols = c("potato":"painty"),
+               names_to = "variable",
+               values_to = "value")
+head(french_fries_long) %>% knitr::kable(row.names = F)
+```
 
-** Tidy (long) format:**
-
-<style type="text/css">
-.tg  {border-collapse:collapse;border-spacing:0;border-color:#aaa;}
-.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#aaa;color:#333;background-color:#fff;}
-.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#aaa;color:#fff;background-color:#f38630;}
-.tg .tg-baqh{text-align:center;vertical-align:top}
-.tg .tg-amwm{font-weight:bold;text-align:center;vertical-align:top}
-</style>
-<table class="tg">
-  <tr>
-    <th class="tg-amwm">time</th>
-    <th class="tg-amwm">treatment</th>
-    <th class="tg-amwm">subject</th>
-    <th class="tg-amwm">rep</th>
-    <th class="tg-amwm">variable</th>
-    <th class="tg-amwm">rating</th>
-  </tr>
-  <tr>
-    <td class="tg-baqh">1</td>
-    <td class="tg-baqh">1</td>
-    <td class="tg-baqh">3</td>
-    <td class="tg-baqh">1</td>
-    <td class="tg-baqh">potato</td>
-    <td class="tg-baqh">2.9</td>
-  </tr>
-  <tr>
-    <td class="tg-baqh">1</td>
-    <td class="tg-baqh">1</td>
-    <td class="tg-baqh">3</td>
-    <td class="tg-baqh">2</td>
-    <td class="tg-baqh">potato</td>
-    <td class="tg-baqh">14.0</td>
-  </tr>
-  <tr>
-    <td class="tg-baqh">1</td>
-    <td class="tg-baqh">1</td>
-    <td class="tg-baqh">10</td>
-    <td class="tg-baqh">1</td>
-    <td class="tg-baqh">potato</td>
-    <td class="tg-baqh">11.0</td>
-  </tr>
-  <tr>
-    <td class="tg-baqh">1</td>
-    <td class="tg-baqh">1</td>
-    <td class="tg-baqh">10</td>
-    <td class="tg-baqh">2</td>
-    <td class="tg-baqh">potato</td>
-    <td class="tg-baqh">9.9</td>
-  </tr>
-  <tr>
-    <td class="tg-baqh">1</td>
-    <td class="tg-baqh">1</td>
-    <td class="tg-baqh">15</td>
-    <td class="tg-baqh">1</td>
-    <td class="tg-baqh">potato</td>
-    <td class="tg-baqh">1.2</td>
-  </tr>
-  <tr>
-    <td class="tg-baqh">1</td>
-    <td class="tg-baqh">1</td>
-    <td class="tg-baqh">15</td>
-    <td class="tg-baqh">2</td>
-    <td class="tg-baqh">potato</td>
-    <td class="tg-baqh">8.8</td>
-  </tr>
-</table>
-
+<br>
 More on tidy data later! 
 
