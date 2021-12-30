@@ -61,6 +61,23 @@ How do you get your results from `R` into those documents?
 A lot of what is presented here can be found on the [R Markdown Cheatsheet](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf). 
 
 ---
+
+## Markdown doesn't natively support...
+
+- Some appearance related things e.g. image/figure alignment and text coloring require HTML or LaTeX. 
+
+## There is hope...
+
+- You don't *have to* restrict yourself to markdown. You can always include HTML/`LaTeX` markup, but don't expect it to convert between output formats.
+
+- There are many efforts to extend Markdown (often requires a little css or html knowledge)
+
+- More features are added and more templates created all the time! 
+
+- Example: see the `rticles` package for PLOS, PNAS, Elselvier, and many, many other journal templates.  
+
+
+---
 ## Setup
 
 - LaTeX: If you don't have this installed, you will need to use our computers.
@@ -395,11 +412,20 @@ knitr::include_graphics("IncludeGraphic.png")
 
 ---
 
-## Your Turn!
+## Other things that you can do!
+
+- Create slide shows with R markdown
+  + [Website for more Info](https://rmarkdown.rstudio.com/lesson-11.html)
+- Bookdown and Blogdown for creating books and webpages, respectively.
+  + [Bookdown Website](https://bookdown.org/)
+  + [Blogdown Website](https://bookdown.org/yihui/blogdown/)
+- Emily's thesisdown template (get link later)
+
+
 
 
 &lt;!-- Other possible topics for later in the workshop:  
-  - rmarkdown vs. knitr (one uses pandoc, the other uses latex directly) 
+  - rmarkdown vs. knitr (one uses pandoc, the other uses latex directly) **Emily and I don't actually understand these things and are confused. I know how to create a document not necessarily why one creates**
   - rticles for journal formats 
   - creating slide shows and word documents with rmarkdown 
   - mention bookdown and blogdown for creating books and webpages, respectively. Also mention Emily's thesisdown mod for UNL :)
