@@ -1,7 +1,7 @@
 ---
 title: "Web Scraping in R"
-author: "Haley Jeppson, Sam Tyner"
-date: "June 15, 2017"
+author: "Denise Bradford"
+date: "January 13, 2022"
 output: 
     revealjs::revealjs_presentation:
         transition: fade
@@ -12,7 +12,7 @@ output:
 
 ## A web of data
 
-- In 2008, [an estimated](http://yz.mit.edu/papers/webtables-vldb08.pdf) **154 million HTML tables** (out of the 14.1 billion) contain 'high quality relational data'!!!
+- In 2008, [an estimated](https://sirrice.github.io/files/papers/webtables-vldb08.pdf) **154 million HTML tables** (out of the 14.1 billion) contain 'high quality relational data'!!!
 - Hard to quantify how much more exists outside of HTML Tables, but there is [an estimate](https://cs.uwaterloo.ca/~x4chu/SIGMOD2015_1.pdf) of **at least 30 million lists** with 'high quality relational data'.
 - A growing number of websites/companies [provide programmatic access](http://www.programmableweb.com/category/all/apis?order=field_popularity) to their data/services via web APIs (that data typically comes in XML/JSON format).
 
