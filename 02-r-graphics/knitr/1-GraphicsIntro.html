@@ -29,12 +29,21 @@ class: center, middle
 
 # Why visualize?
 
-- The sole purpose of visualization is communication
+What are graphics useful for?
++ Data cleaning
++ Exploring data structure
++ Communicating Information
 
+Visualization offers an alternative way of communicating numbers
 
-- Visualization offers an alternative way of communicating numbers
+.center[
+&lt;img src="images/Minard.png" alt="Napoleon March Map" style="width:600px;"/&gt;
 
-![](images/Minard.png)
+[Napoleon March Map](https://en.wikipedia.org/wiki/Charles_Joseph_Minard) by Charles Joseph Minard
+]
+
+???
+In 1812, Napoleon marched to Moscow in order to conquer the city. It was a disaster: having started with around 470,000 soldiers, he returned with just 10,000. This chart tells the story of that campaign and has become one of the most famous visualizations of all time. The map details the out-and-back journey of Napoleon’s troops. The width of the line represents the total number of soldiers and the color represents the direction (yellow for towards Moscow, black for the return trip). Below the central visualization is also a simple temperature line graph illustrating the rapidly dropping winter cold. It is effective, detailed, and paints a staggering picture of the journey’s devastation. 
 
 ---
 
@@ -97,6 +106,17 @@ class: center, middle
 &lt;/tbody&gt;
 &lt;/table&gt;
 
+???
+
+**Consider this thought experiment:** You have a simple data set - 2 variables, 500 observations. You want to get a sense of how the variables relate to each other. You can do one of the following options:
+
++ Print out the data set
++ Create some summary statistics of each variable and perhaps the covariance between the two variables
++ Draw a scatter plot of the two variables
+
+Which one would you rather use? Why?
+
+
 ---
 
 # Tables and lists vs. Charts and graphs
@@ -110,7 +130,7 @@ class: center, middle
 
 
 
-&lt;img src="1-GraphicsIntro_files/figure-html/unnamed-chunk-3-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="1-GraphicsIntro_files/figure-html/motivating-example-1.png" style="display: block; margin: auto;" /&gt;
 
 Visualizations can aid communication and make the data easier to perceive
 
@@ -120,6 +140,8 @@ class: center, middle, inverse
 
 # Survey of types of graphs
 
+## [The Data Vis Project](https://datavizproject.com/)
+## [Data Visualization Catalogue](https://datavizcatalogue.com/)
 ---
 
 # Beginner
@@ -148,7 +170,7 @@ class: center, middle, inverse
 &lt;br/&gt;
 
 
-![](1-GraphicsIntro_files/figure-html/beg-1.png)&lt;!-- --&gt;
+![](1-GraphicsIntro_files/figure-html/beginner-plots-1.png)&lt;!-- --&gt;
 
 
 ---
@@ -165,9 +187,7 @@ class: center, middle, inverse
 &lt;br/&gt;
 &lt;br/&gt;
 
-
-![](1-GraphicsIntro_files/figure-html/int-1.png)&lt;!-- --&gt;
-
+![](1-GraphicsIntro_files/figure-html/intermediate-plots-1.png)&lt;!-- --&gt;
 
 
 ---
@@ -183,7 +203,7 @@ class: center, middle, inverse
 &lt;br/&gt;
 &lt;br/&gt;
 
-![](1-GraphicsIntro_files/figure-html/adv-1.png)&lt;!-- --&gt;
+![](1-GraphicsIntro_files/figure-html/advanced-plots-1.png)&lt;!-- --&gt;
 
   
 ---
@@ -197,7 +217,7 @@ class: center, middle, inverse
 
 
 
-What is the grammar of graphics?
+What is the [grammar of graphics](https://link.springer.com/book/10.1007/0-387-28695-0)?
 
 - Developed by Leland Wilkinson, is a set of grammatical rules for creating perceivable graphs
 
@@ -220,6 +240,9 @@ Much like the grammar of a language allows you to combine words into meaningful 
 The grammar of graphics was developed in order to produce a flexible system that can create a rich variety of charts as simply as possible, without duplication of methods.
 
 A grammar provides a strong foundation for understanding a diverse range of graphics. A grammar may also help guide us on what a well-formed or correct graphic looks like, but there will still be many grammatically correct but nonsensical graphics
+
+Graphics are viewed as a mapping **from variables** in the data set **to visual attributes** on the chart.
+
 ---
 
 # Grammar of Graphics
@@ -248,17 +271,17 @@ By making different visual choices (Cartesian or polar coordinates, points or li
 
 Statistical graphic specifications are expressed in six statements:
 
-1) **DATA**: a set of data operations that create variables from datasets  
+1) **DATA**: a set of data operations that create variables from datasets
 
-2) **TRANS**: variable transformations  
+2) **TRANS**: variable transformations
 
-3) **SCALE**: scale transformations  
+3) **SCALE**: scale transformations
 
-4) **COORD**: a coordinate system  
+4) **COORD**: a coordinate system
 
-5) **ELEMENT**: graphs (points) and their aesthetic attributes (color)  
+5) **ELEMENT**: graphs (points) and their aesthetic attributes (color)
 
-6) **GUIDE**: one or more guides (axes, legends, etc.)  
+6) **GUIDE**: one or more guides (axes, legends, etc.)
 
 
 
@@ -276,8 +299,8 @@ provides us the ingredients and the dependencies among them, but it does not tel
 
 The Recipe:
 
-1. Create variables – extract data into variables  
-2. apply algebra – 
+1. Create variables – extract data into variables
+2. apply algebra –
 3. apply scales – ex. categorical
 4. compute statistics
 5. construct geometry
@@ -311,14 +334,20 @@ class: center, middle, inverse
 ## A layered grammar of graphics
 
 ---
+.center[
+![](images/ggplot2.jpg)
+
+Building a masterpiece, by [Allison Horst](https://www.allisonhorst.com/)
+]
+---
 
 ## A layered grammar vs The Grammar of Graphics
 
 ggplot2 is based on The Grammar of Graphics
 
-
+.center[
 ![](images/layered-grammar.png)
-
+]
 In both grammars, the components are independent, meaning that we can generally change a single component in isolation
 
 ---
@@ -327,7 +356,7 @@ In both grammars, the components are independent, meaning that we can generally 
 
 ggplot2 uses the idea that you can build every graph with graphical components from three sources
 
-  1. the **data** , represented by **geoms** 
+  1. the **data**, represented by **geoms** 
   
   2. the **scales** and **coordinate system**
   
@@ -343,9 +372,9 @@ ggplot2 uses the idea that you can build every graph with graphical components f
 
 The layered grammar defines the components of a plot as:
 
-1. a default dataset and set of mappings from variables to aesthetics 
+1. a default data set and set of mappings from variables to aesthetics 
 
-2. one or more layers, each layer having one geometric object, one statistical transformation, one position adjustment, and optionally, one dataset and set of aesthetic mappings  
+2. one or more layers, each layer having one geometric object, one statistical transformation, one position adjustment, and optionally, one data set and set of aesthetic mappings  
 
 3. one scale for each aesthetic mapping used  
 
@@ -375,16 +404,25 @@ The layered grammar defines the components of a plot as:
     3. a geometric object (geom)
     4. a position adjustment
 
+---
 
-???
+# ggplot2: Specifications
 
+A plot consists of several mostly independent specifications:
+
+1. **aesthetics** - links between data variables and graphical features (position, color, shape, size)
+2. **layers** - geometric elements (points, lines, rectangles, text, …)
+3. **transformations** - transformations specify a functional link between the data and the displayed information (identity, count, bins, density, regression). Transformations act on the variables.
+4. **scales** - scales map values in data space to values in the aesthetic space. Scales change the coordinate space of an aesthetic, but don’t change the underlying value (so the change is at the visual level, not the mathematical level).
+5. **coordinate system** - e.g. polar or Cartesian
+6. **faceting** - facets allow you to split plots by other variables to produce many sub-plots.
+7. **theme** - formatting items, such as background color, fonts, margins…
 
 ---
 
 # ggplot2: A layered grammar
 
-&lt;img src="1-GraphicsIntro_files/figure-html/plots-4-1.png"  /&gt;
-
+&lt;img src="1-GraphicsIntro_files/figure-html/gg-layers-1.png"  /&gt;
 
 &lt;style&gt;
 .column-left{
@@ -406,31 +444,36 @@ The layered grammar defines the components of a plot as:
 
 &lt;div class="column-left"&gt;
 
+&lt;p style="font-size:14px"&gt;
 data: diamonds  &lt;/br&gt;
 layer:  &lt;/br&gt;
-  mapping: x = cut, y = count, fill = cut  &lt;/br&gt;  
-  geom: bar    &lt;/br&gt;
+  - aes: x = cut, y = count, fill = cut  &lt;/br&gt;  
+  - geom: bar    &lt;/br&gt;
 coordinates: Cartesian
+&lt;/p&gt;
 
 &lt;/div&gt;
 &lt;div class="column-center"&gt;
 
+&lt;p style="font-size:14px"&gt;
 data: diamonds  &lt;/br&gt;
 layer:  &lt;/br&gt;
-  - mapping: x = 1, y = count, fill = cut  &lt;/br&gt;
+  - aes: x = 1, y = count, fill = cut  &lt;/br&gt;
   - geom: fill-bar  &lt;/br&gt;
 coordinates: Cartesian  &lt;/br&gt;
+&lt;/p&gt;
 
 &lt;/div&gt;
 &lt;div class="column-right"&gt;
 
+&lt;p style="font-size:14px"&gt;
 data: diamonds  &lt;/br&gt;
 layer:  &lt;/br&gt;
-  - mapping: x = 1, y = count, fill = cut  &lt;/br&gt;
+  - aes: x = 1, y = count, fill = cut  &lt;/br&gt;
   - geom: fill-bar  &lt;/br&gt;
 coordinates: Polar  &lt;/br&gt;
+&lt;/p&gt;
 &lt;/div&gt;
-
 
 ---
 
@@ -439,11 +482,25 @@ class: center, middle, inverse
 # Make your first figure
 
 ---
+# R package and data set
 
 
+```r
+library(ggplot2)
+head(diamonds)
+```
 
 
+| carat|cut       |color |clarity | depth| table| price|    x|    y|    z|
+|-----:|:---------|:-----|:-------|-----:|-----:|-----:|----:|----:|----:|
+|  0.23|Ideal     |E     |SI2     |  61.5|    55|   326| 3.95| 3.98| 2.43|
+|  0.21|Premium   |E     |SI1     |  59.8|    61|   326| 3.89| 3.84| 2.31|
+|  0.23|Good      |E     |VS1     |  56.9|    65|   327| 4.05| 4.07| 2.31|
+|  0.29|Premium   |I     |VS2     |  62.4|    58|   334| 4.20| 4.23| 2.63|
+|  0.31|Good      |J     |SI2     |  63.3|    58|   335| 4.34| 4.35| 2.75|
+|  0.24|Very Good |J     |VVS2    |  62.8|    57|   336| 3.94| 3.96| 2.48|
 
+---
 
 # We begin with the data
 
@@ -452,7 +509,7 @@ class: center, middle, inverse
 ggplot(data = diamonds)
 ```
 
-![](1-GraphicsIntro_files/figure-html/unnamed-chunk-7-1.png)&lt;!-- --&gt;
+![](1-GraphicsIntro_files/figure-html/unnamed-chunk-4-1.png)&lt;!-- --&gt;
 
 ---
 
@@ -463,7 +520,7 @@ ggplot(data = diamonds)
 ggplot(data = diamonds, aes(x = carat, y = price))
 ```
 
-![](1-GraphicsIntro_files/figure-html/unnamed-chunk-9-1.png)&lt;!-- --&gt;
+![](1-GraphicsIntro_files/figure-html/unnamed-chunk-6-1.png)&lt;!-- --&gt;
 ???
 or what relationships we want to see
 ---
@@ -476,7 +533,7 @@ ggplot(data = diamonds, aes(x = carat, y = price)) +
     geom_point()
 ```
 
-![](1-GraphicsIntro_files/figure-html/unnamed-chunk-11-1.png)&lt;!-- --&gt;
+![](1-GraphicsIntro_files/figure-html/unnamed-chunk-8-1.png)&lt;!-- --&gt;
 
 ---
 
@@ -488,7 +545,7 @@ ggplot(data = diamonds, aes(x = carat, y = price)) +
     geom_point(aes(colour = cut))
 ```
 
-![](1-GraphicsIntro_files/figure-html/unnamed-chunk-13-1.png)&lt;!-- --&gt;
+![](1-GraphicsIntro_files/figure-html/unnamed-chunk-10-1.png)&lt;!-- --&gt;
 
 ---
 # And add another layer...
@@ -497,10 +554,10 @@ ggplot(data = diamonds, aes(x = carat, y = price)) +
 ```r
 ggplot(data = diamonds, aes(x = carat, y = price)) +
     geom_point(aes(colour = cut)) +
-   geom_smooth()
+    geom_smooth()
 ```
 
-![](1-GraphicsIntro_files/figure-html/unnamed-chunk-15-1.png)&lt;!-- --&gt;
+![](1-GraphicsIntro_files/figure-html/unnamed-chunk-12-1.png)&lt;!-- --&gt;
 
 ---
 
@@ -510,10 +567,10 @@ ggplot(data = diamonds, aes(x = carat, y = price)) +
 ```r
 ggplot(data = diamonds, aes(x = carat, y = price) +
     geom_point(aes(colour = cut), size = 2, alpha = .5) +
-    geom_smooth((aes(fill = cut), colour = "lightgrey")) 
+    geom_smooth(aes(fill = cut), colour = "lightgrey")
 ```
 
-![](1-GraphicsIntro_files/figure-html/unnamed-chunk-17-1.png)&lt;!-- --&gt;
+![](1-GraphicsIntro_files/figure-html/unnamed-chunk-14-1.png)&lt;!-- --&gt;
 
 ---
 
@@ -523,11 +580,11 @@ ggplot(data = diamonds, aes(x = carat, y = price) +
 ```r
 ggplot(data = diamonds, aes(x = carat, y = price)) +
     geom_point(aes(colour = cut), size = 2, alpha = .5) +
-    geom_smooth(aes(fill = cut)) +
+    geom_smooth(aes(fill = cut), colour = "lightgrey") +
     scale_y_log10()
 ```
 
-![](1-GraphicsIntro_files/figure-html/unnamed-chunk-19-1.png)&lt;!-- --&gt;
+![](1-GraphicsIntro_files/figure-html/unnamed-chunk-16-1.png)&lt;!-- --&gt;
 
 
 ---
@@ -538,12 +595,12 @@ ggplot(data = diamonds, aes(x = carat, y = price)) +
 ```r
 ggplot(data = diamonds, aes(x = carat, y = price)) +
     geom_point(aes(colour = cut), size = 2, alpha = .5) +
-    geom_smooth() +
+    geom_smooth(aes(fill = cut), colour = "lightgrey") +
     scale_y_log10() +
     facet_wrap(~cut)
 ```
 
-![](1-GraphicsIntro_files/figure-html/unnamed-chunk-21-1.png)&lt;!-- --&gt;
+![](1-GraphicsIntro_files/figure-html/unnamed-chunk-18-1.png)&lt;!-- --&gt;
 
 
 ---
@@ -555,7 +612,7 @@ class: inverse
 BASICS
 1. Why is data visualization important?
 2. Data Types, Formats, and Structures
-3. Formating your data: A tidy data discussion
+3. Formatting your data: A tidy data discussion
 
 BUILDING PLOTS
 1. Geoms, Stats, Coordinates, and Faceting

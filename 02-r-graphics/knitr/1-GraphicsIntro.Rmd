@@ -19,12 +19,14 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r}
-library(tidyverse)
-library(ggsci)
-library(ggthemes)
-library(gridExtra)
-library(grid)
+```{r setup2}
+library(dplyr)     # data wrangling
+library(tidyr)     # data wrangling
+library(ggplot2)   # creates plots
+library(ggsci)     # color palette
+library(gridExtra) # display multiple ggplots together
+library(patchwork) # display multiple ggplots together
+library(grid)      # create data sets
 
 grid_arrange_shared_legend <- function(..., ncol = length(list(...)), nrow = 1, position = c("bottom", "right")) {
 
@@ -65,12 +67,21 @@ class: center, middle
 
 # Why visualize?
 
-- The sole purpose of visualization is communication
+What are graphics useful for?
++ Data cleaning
++ Exploring data structure
++ Communicating Information
 
+Visualization offers an alternative way of communicating numbers
 
-- Visualization offers an alternative way of communicating numbers
+.center[
+<img src="images/Minard.png" alt="Napoleon March Map" style="width:600px;"/>
 
-![](images/Minard.png)
+[Napoleon March Map](https://en.wikipedia.org/wiki/Charles_Joseph_Minard) by Charles Joseph Minard
+]
+
+???
+In 1812, Napoleon marched to Moscow in order to conquer the city. It was a disaster: having started with around 470,000 soldiers, he returned with just 10,000. This chart tells the story of that campaign and has become one of the most famous visualizations of all time. The map details the out-and-back journey of Napoleon’s troops. The width of the line represents the total number of soldiers and the color represents the direction (yellow for towards Moscow, black for the return trip). Below the central visualization is also a simple temperature line graph illustrating the rapidly dropping winter cold. It is effective, detailed, and paints a staggering picture of the journey’s devastation. 
 
 ---
 
@@ -81,6 +92,17 @@ class: center, middle
 data(iris)
 knitr::kable(head(iris), format = 'html')
 ```
+
+???
+
+**Consider this thought experiment:** You have a simple data set - 2 variables, 500 observations. You want to get a sense of how the variables relate to each other. You can do one of the following options:
+
++ Print out the data set
++ Create some summary statistics of each variable and perhaps the covariance between the two variables
++ Draw a scatter plot of the two variables
+
+Which one would you rather use? Why?
+
 
 ---
 
@@ -95,9 +117,10 @@ knitr::kable(head(iris), format = 'html')
 
 
 
-```{r, fig.height=4, fig.width=7, fig.align = "center"}
+```{r motivating-example, fig.height=5, fig.width=8, fig.align = "center"}
 data(iris)
-ggplot(iris) + geom_point(aes(x= Sepal.Length, y=Sepal.Width, colour = Species), size = 2.5)+ scale_color_locuszoom()
+ggplot(data = iris) + 
+  geom_point(aes(x = Sepal.Length, y = Sepal.Width, colour = Species), size = 2.5) +   scale_color_locuszoom()
 ```
 
 Visualizations can aid communication and make the data easier to perceive
@@ -108,6 +131,8 @@ class: center, middle, inverse
 
 # Survey of types of graphs
 
+## [The Data Vis Project](https://datavizproject.com/)
+## [Data Visualization Catalogue](https://datavizcatalogue.com/)
 ---
 
 # Beginner
@@ -136,25 +161,49 @@ class: center, middle, inverse
 <br/>
 
 
-```{r beg, fig.height=4, fig.width=20, fig.pos="center"}
+```{r beginner-plots, fig.height=4, fig.width=20, fig.pos="center"}
+# bar chart
 data(mtcars)
+p1 <- ggplot(mtcars, aes(x = factor(cyl), fill = factor(cyl))) + 
+  geom_bar() + 
+  scale_x_discrete("Cylinder") +
+  ggtitle(label = "Bar Chart") +
+  scale_fill_grey(name = "Cylinder", start = 0.2, end = 0.8) +
+  theme(legend.position = "none")
 
+# pie chart
+p2 <- ggplot(mtcars, aes(x = factor(1), fill = factor(cyl))) + 
+  geom_bar(width = 1) + 
+  coord_polar(theta ="y") + 
+  scale_x_discrete(name = "") +
+  ggtitle(label = "Pie Chart") +
+  scale_fill_grey(name = "Cylinder", start = 0.2, end = 0.8) +
+  theme(legend.position = "none")
 
-p1 <- ggplot(mtcars, aes(factor(cyl), fill = factor(cyl))) + geom_bar() + labs(x="Cyl", title = "Bar Chart")+scale_fill_grey(start=0.2, end= 0.8, name = "cyl")+theme(legend.position = "none")
+# histogram
+p3 <- ggplot(iris, aes(x = Sepal.Length)) + 
+  geom_histogram(bins = 20, color = "black", fill = "gray") + 
+  scale_x_continuous(name = "") +
+  ggtitle(label = "Histogram")
 
-p2 <- ggplot(mtcars, aes(factor(1), fill = factor(cyl))) + geom_bar(width=1) + coord_polar(theta="y") + labs(x="", title = "Pie Chart")+scale_fill_grey(start=0.2, end= 0.8, name = "cyl")+theme(legend.position = "none")
+# scatterplot
+p4 <- ggplot(iris, aes(x = Sepal.Length, y = Sepal.Width)) + 
+  geom_point() + 
+  scale_x_continuous(name = "") +
+  scale_y_continuous(name = "") +
+  ggtitle(label = "Scatterplot")
 
-p3 <- ggplot(iris, aes(Sepal.Length)) + geom_histogram(bins=20)+ labs(x="", title = "Histogram")
-
-#p3 <- png("images/stem-and-leaf.png")
-#p3
-
-p4 <- ggplot(iris, aes(Sepal.Length, Sepal.Width)) + geom_point()+ labs(x="", y="", title = "Scatterplot")
-
+# map
 data <- data.frame(murder=USArrests$Murder, state=tolower(rownames(USArrests)))
 map <- map_data("state")
-map2 <- map %>% filter(region == "iowa")
-p5 <- data %>% filter(state == "iowa") %>% ggplot() + geom_map(aes(map_id=state), map=map2, fill = "grey33") + expand_limits(x = map2$long, y = map2$lat)+ labs(title = "Map")
+map2 <- map %>% filter(region == "nebraska")
+p5 <- data %>% 
+  filter(state == "nebraska") %>% 
+  ggplot() + 
+  geom_map(aes(map_id = state), map = map2, fill = "grey33") + 
+  expand_limits(x = map2$long, y = map2$lat) +
+  ggtitle(label = "Map")
+
 grid.arrange(p1, p2, p3, p4, p5, ncol = 5, nrow = 1)
 
 ```
@@ -173,93 +222,59 @@ grid.arrange(p1, p2, p3, p4, p5, ncol = 5, nrow = 1)
 <br/>
 <br/>
 <br/>
-```{r}
-# library(devtools)
-# devtools::install_github("mangothecat/fftw3")
-# install_github('omegahat/Rcartogram')
-# ## Wait for installation, then:
-# install_github('chrisbrunsdon/getcartr', subdir='getcartr')
-# 
-# library(Rcartogram)
-# library(getcartr)
-# library(ggplot2)
-# world <- readShapePoly('TM_WORLD_BORDERS-0.3.shp')
-# ## We are using the world's population data from World Bank
-# world.pop <- read.csv(file = 'sp.pop.totl_Indicator_en_csv_v2.csv', stringsAsFactors = FALSE)
-# ## Create a smaller dataset by retaining the world's population in 2013 and the ISO3
-# ## country code, which will be used for matching and merging with the input shapefile
-# smaller.data <- data.frame(Country.Code = world.pop$Country.Code, Population = world.pop$X2013)
-# smaller.data <- na.omit(smaller.data)
-# 
-# ## Join the two datasets using their common field
-# matched.indices <- match(world@data[, "ISO3"], smaller.data[, "Country.Code"])
-# world@data <- data.frame(world@data, smaller.data[matched.indices, ])
-# ## Compute the cartogram transformation of each country using its population
-# ## with the degree of Gaussian blur = 0.5 (otherwise, it may not work)
-# world.carto <- quick.carto(world, world@data$Population, blur = 0.5)
-# 
-# ## Convert the object into data frame
-# world.f <- fortify(world.carto, region = "Country.Code")
-# ## Merge the cartogram transformation with the world map shapefile
-# world.f <- merge(world.f, world@data, by.x = "id", by.y = "Country.Code")
-# ## Make a plot of the transformed polygons, where each country is
-# ## further shaded by their population size (lighter means bigger)
-# my_map <- ggplot(world.f, aes(long, lat, group = group, fill = world.f$Population)) + geom_polygon()
-# ## Display the plot and give it a title
-# (my_map <- my_map + ggtitle("Cartogram of the World Population (2013)"))
 
-```
-
-```{r int, fig.height=4, fig.width=20, fig.pos="center", message = FALSE, warning = FALSE}
-library(ggplot2)
-library(dplyr)
-library(tidyr)
-# library(ggradar)
-library(ggmosaic)
-
-iris2 <- iris %>% mutate(obs = 1:150) %>% gather(variable, value, -c(obs, Species)) 
-
-#i1 <- ggplot()+ labs(x="", y="", title="Cartogram")
-
-
+```{r intermediate-plots, fig.height=4, fig.width=20, fig.pos="center", message = FALSE, warning = FALSE}
+# parallel coordinate plot
+iris2 <- iris %>% 
+  mutate(obs = 1:nrow(iris)) %>%
+  pivot_longer(cols = c("Sepal.Length", "Sepal.Width", "Petal.Length", "Petal.Width"),
+               names_to = "variable",
+               values_to = "value")
 
 i2 <- ggplot(data = iris2) + 
  geom_line(aes(x = variable, y = value, group = interaction(Species, obs), color = Species)) + 
-  #ggparcoord(data = iris, columns = 1:4, groupColumn = 5) +
   scale_colour_grey(start=0.2, end= 0.7) + 
   theme(legend.position = "none") + 
   labs(x="", y="", title="Parallel Coordinates")
 
+# mosaic plot
+library(ggmosaic)
 i3 <- ggplot(diamonds) + 
   ggmosaic::geom_mosaic(aes(x=ggmosaic::product(color), fill = cut)) +
   scale_fill_grey(start=0.2, end= 0.7) + 
-  theme(legend.position = "none") + labs(x="", y="", title="Mosaic Plot")
+  theme(legend.position = "none") + 
+  labs(x="", y="", title="Mosaic Plot")
 
-
+# radar chart
+# devtools::install_github("ricardo-bion/ggradar")
+library(ggradar)
 mtcars %>%
     tibble::rownames_to_column(var = "group") %>% 
      mutate_at(-1, funs(scales::rescale)) %>%
      tail(4) %>% select(1:10) -> mtcars_radar
 
- # i4 <- ggradar(mtcars_radar, group.line.width = .7,
- #   group.point.size = 2, axis.label.size = 3.5, grid.label.size = 2.5, background.circle.transparency = 0.1, plot.legend =FALSE)+scale_colour_grey(start=0.4, end= 0.9)+ theme(legend.position = "none") + labs(x="", y="", title="Radar Charts")
-# i4 <- ggplot()+ labs(x="", y="", title="Radar Charts")
+i4 <- ggradar(mtcars_radar, group.line.width = .7,
+   group.point.size = 2, axis.label.size = 3.5, grid.label.size = 2.5, background.circle.transparency = 0.1, plot.legend = FALSE)+
+   scale_colour_grey(start=0.4, end= 0.9)+ theme(legend.position = "none") + 
+   labs(x="", y="", title="Radar Charts")
 
-df.team_data <- expand.grid(teams = c("Team A", "Team B", "Team C", "Team D") ,metrics = c("Metric 1", "Metric 2", "Metric 3", "Metric 4", "Metric 5"))
+# heat map
+df.team_data <- expand.grid(teams = c("Team A", "Team B", "Team C", "Team D"), 
+                            metrics = c("Metric 1", "Metric 2", "Metric 3", "Metric 4", "Metric 5")
+                            )
 
 # add variable: performance
 set.seed(41)
 df.team_data$performance <- rnorm(nrow(df.team_data))
 
-i5 <-ggplot(data = df.team_data, aes(x = metrics, y = teams)) +
-  geom_tile(aes(fill = performance)) + scale_fill_distiller(palette = "Greys")+ theme(legend.position = "none") + labs(x="", y="", title="Heat Map")
+i5 <- ggplot(data = df.team_data, aes(x = metrics, y = teams)) +
+  geom_tile(aes(fill = performance)) + 
+  scale_fill_distiller(palette = "Greys") + 
+  theme(legend.position = "none") + 
+  labs(x="", y="", title="Heat Map")
 
-
-# grid.arrange(i2, i3, i4, i5, ncol = 4, nrow = 1)
-grid.arrange(i2, i3, i5, ncol = 4, nrow = 1)
-
+grid.arrange(i2, i3, i4, i5, ncol = 4, nrow = 1)
 ```
-
 
 
 ---
@@ -275,26 +290,39 @@ grid.arrange(i2, i3, i5, ncol = 4, nrow = 1)
 <br/>
 <br/>
 
-```{r adv, fig.height=4, fig.width=18, fig.pos="center"}
-
-a1 <- ggplot(diamonds, aes(depth)) +
+```{r advanced-plots, fig.height=4, fig.width=18, fig.pos="center"}
+# density plot
+a1 <- ggplot(diamonds, aes(x = depth)) +
     geom_density(aes(fill = cut), alpha = .8) +
-    xlim(55, 70) + labs(x="", y="", title="Density Plot")+scale_colour_grey(start=0.6, end= 0.9)+scale_fill_grey(start=0.6, end= 0.9) + theme(legend.position = "none")
+    scale_x_continuous("", limits = c(55,70)) +
+    scale_y_continuous("") +
+    ggtitle("Density Plot") +
+    scale_colour_grey(start=0.6, end= 0.9) + 
+    scale_fill_grey(start=0.6, end= 0.9) + 
+    theme(legend.position = "none")
 
-a2 <- ggplot(diamonds, aes(cut, price)) + geom_violin(aes(fill = cut), alpha = .8) + labs(x="", y="", title="Violin Plot")+scale_fill_grey(start=0.6, end= 0.9) + theme(legend.position = "none")
+# violin plot
+a2 <- ggplot(diamonds, aes(x = cut, y = price)) + 
+  geom_violin(aes(fill = cut), alpha = .8) + 
+  scale_x_discrete("") +
+  scale_y_continuous("") +
+  ggtitle("Violin Plot") +
+  scale_fill_grey(start=0.6, end= 0.9) + 
+  theme(legend.position = "none")
 
+# network plot
+library(geomnet)
+data(blood)
+a3 <- ggplot(data = blood$edges, aes(from_id = from, to_id = to)) +
+  geom_net(vertices=blood$vertices, aes(colour=..type..)) + 
+  theme_net() +
+  scale_colour_grey(start=0.4, end= 0.9) + 
+  theme(legend.position = "none") + 
+  scale_x_continuous(name = "") +
+  scale_y_continuous(name = "") +
+  ggtitle(label = "Network Plot")
 
-# library(geomnet)
-# data(blood)
-
-# a3 <- ggplot(data = blood$edges, aes(from_id = from, to_id = to)) +
-#   geom_net(vertices=blood$vertices, aes(colour=..type..)) + 
-#   theme_net() +scale_colour_grey(start=0.4, end= 0.9)+ theme(legend.position = "none") + labs(x="", y="", title="Network Plot")
-
-
-# grid.arrange(a1, a2, a3, ncol = 3, nrow = 1)
-grid.arrange(a1, a2, ncol = 3, nrow = 1)
-
+grid.arrange(a1, a2, a3, ncol = 3, nrow = 1)
 ```
 
   
@@ -309,7 +337,7 @@ class: center, middle, inverse
 
 
 
-What is the grammar of graphics?
+What is the [grammar of graphics](https://link.springer.com/book/10.1007/0-387-28695-0)?
 
 - Developed by Leland Wilkinson, is a set of grammatical rules for creating perceivable graphs
 
@@ -332,6 +360,9 @@ Much like the grammar of a language allows you to combine words into meaningful 
 The grammar of graphics was developed in order to produce a flexible system that can create a rich variety of charts as simply as possible, without duplication of methods.
 
 A grammar provides a strong foundation for understanding a diverse range of graphics. A grammar may also help guide us on what a well-formed or correct graphic looks like, but there will still be many grammatically correct but nonsensical graphics
+
+Graphics are viewed as a mapping **from variables** in the data set **to visual attributes** on the chart.
+
 ---
 
 # Grammar of Graphics
@@ -344,13 +375,34 @@ For example, here are three ways of displaying the same data:
 
 
 ```{r plots-3, fig.align='bottom', fig.height=5, fig.width=15}
-library(ggsci)
 data(diamonds)
-p1 <- ggplot(diamonds, aes(cut, fill=cut)) + geom_bar() + labs(title = "Bar Chart", subtitle = "Cartesian coordinates")+ scale_fill_locuszoom()
-p2 <- ggplot(diamonds, aes(factor(1), fill=cut)) + geom_bar(width=1) + labs(x="", title = "Fill-Bar", subtitle = "Cartesian coordinates") + scale_fill_locuszoom()
-p3 <- ggplot(diamonds, aes(factor(1), fill=cut)) + geom_bar(width=1) + coord_polar(theta= "y") + labs(x="", title = "Fill-Bar", subtitle = "Polar coordinates")+ scale_fill_locuszoom()
 
-grid.arrange(p1, p2, p3, ncol = 3, nrow = 1)
+# bar chart
+gg1 <- ggplot(diamonds, aes(cut, fill=cut)) + 
+  geom_bar() + 
+  scale_x_discrete("") +
+  ggtitle(label = "Bar Chart", subtitle = "Cartesian coordinates") +
+  scale_fill_locuszoom() +
+  theme(aspect.ratio = 1)
+
+# stacked bar chart
+gg2 <- ggplot(diamonds, aes(x = factor(1), fill=cut)) + 
+  geom_bar(width = 1) + 
+  scale_x_discrete("") +
+  ggtitle(label = "Fill-Bar", subtitle = "Cartesian coordinates") +
+  scale_fill_locuszoom() +
+  theme(aspect.ratio = 1)
+
+# pie chart
+gg3 <- ggplot(diamonds, aes(x = factor(1), fill=cut)) + 
+  geom_bar(width=1) + 
+  coord_polar(theta = "y") + 
+  scale_x_discrete("") +
+  ggtitle(label = "Fill-Bar", subtitle = "Polar coordinates") +
+  scale_fill_locuszoom() +
+  theme(aspect.ratio = 1)
+
+grid.arrange(gg1, gg2, gg3, ncol = 3, nrow = 1)
 ```
 
 
@@ -368,17 +420,17 @@ By making different visual choices (Cartesian or polar coordinates, points or li
 
 Statistical graphic specifications are expressed in six statements:
 
-1) **DATA**: a set of data operations that create variables from datasets  
+1) **DATA**: a set of data operations that create variables from datasets
 
-2) **TRANS**: variable transformations  
+2) **TRANS**: variable transformations
 
-3) **SCALE**: scale transformations  
+3) **SCALE**: scale transformations
 
-4) **COORD**: a coordinate system  
+4) **COORD**: a coordinate system
 
-5) **ELEMENT**: graphs (points) and their aesthetic attributes (color)  
+5) **ELEMENT**: graphs (points) and their aesthetic attributes (color)
 
-6) **GUIDE**: one or more guides (axes, legends, etc.)  
+6) **GUIDE**: one or more guides (axes, legends, etc.)
 
 
 
@@ -396,8 +448,8 @@ provides us the ingredients and the dependencies among them, but it does not tel
 
 The Recipe:
 
-1. Create variables – extract data into variables  
-2. apply algebra – 
+1. Create variables – extract data into variables
+2. apply algebra –
 3. apply scales – ex. categorical
 4. compute statistics
 5. construct geometry
@@ -431,14 +483,20 @@ class: center, middle, inverse
 ## A layered grammar of graphics
 
 ---
+.center[
+![](images/ggplot2.jpg)
+
+Building a masterpiece, by [Allison Horst](https://www.allisonhorst.com/)
+]
+---
 
 ## A layered grammar vs The Grammar of Graphics
 
 ggplot2 is based on The Grammar of Graphics
 
-
+.center[
 ![](images/layered-grammar.png)
-
+]
 In both grammars, the components are independent, meaning that we can generally change a single component in isolation
 
 ---
@@ -447,7 +505,7 @@ In both grammars, the components are independent, meaning that we can generally 
 
 ggplot2 uses the idea that you can build every graph with graphical components from three sources
 
-  1. the **data** , represented by **geoms** 
+  1. the **data**, represented by **geoms** 
   
   2. the **scales** and **coordinate system**
   
@@ -463,9 +521,9 @@ ggplot2 uses the idea that you can build every graph with graphical components f
 
 The layered grammar defines the components of a plot as:
 
-1. a default dataset and set of mappings from variables to aesthetics 
+1. a default data set and set of mappings from variables to aesthetics 
 
-2. one or more layers, each layer having one geometric object, one statistical transformation, one position adjustment, and optionally, one dataset and set of aesthetic mappings  
+2. one or more layers, each layer having one geometric object, one statistical transformation, one position adjustment, and optionally, one data set and set of aesthetic mappings  
 
 3. one scale for each aesthetic mapping used  
 
@@ -495,21 +553,27 @@ The layered grammar defines the components of a plot as:
     3. a geometric object (geom)
     4. a position adjustment
 
+---
 
-???
+# ggplot2: Specifications
 
+A plot consists of several mostly independent specifications:
+
+1. **aesthetics** - links between data variables and graphical features (position, color, shape, size)
+2. **layers** - geometric elements (points, lines, rectangles, text, …)
+3. **transformations** - transformations specify a functional link between the data and the displayed information (identity, count, bins, density, regression). Transformations act on the variables.
+4. **scales** - scales map values in data space to values in the aesthetic space. Scales change the coordinate space of an aesthetic, but don’t change the underlying value (so the change is at the visual level, not the mathematical level).
+5. **coordinate system** - e.g. polar or Cartesian
+6. **faceting** - facets allow you to split plots by other variables to produce many sub-plots.
+7. **theme** - formatting items, such as background color, fonts, margins…
 
 ---
 
 # ggplot2: A layered grammar
 
-```{r plots-4, fig.align='top', fig.height=5, fig.width=15}
-p1 <- ggplot(diamonds, aes(cut, fill=cut)) + geom_bar() + labs(title = "Bar Chart", subtitle = "Cartesian coordinates")+ scale_fill_locuszoom()
-p2 <- ggplot(diamonds, aes(factor(1), fill=cut)) + geom_bar(width=1) + labs(x="", title = "Fill-Bar", subtitle = "Cartesian coordinates") + scale_fill_locuszoom()
-p3 <- ggplot(diamonds, aes(factor(1), fill=cut)) + geom_bar(width=1) + coord_polar(theta= "y") + labs(x="", title = "Fill-Bar", subtitle = "Polar coordinates")+ scale_fill_locuszoom()
-grid.arrange(p1, p2, p3, ncol = 3, nrow = 1)
+```{r gg-layers, fig.align='top', fig.height=5, fig.width=15}
+grid.arrange(gg1, gg2, gg3, ncol = 3, nrow = 1)
 ```
-
 
 <style>
 .column-left{
@@ -531,31 +595,36 @@ grid.arrange(p1, p2, p3, ncol = 3, nrow = 1)
 
 <div class="column-left">
 
+<p style="font-size:14px">
 data: diamonds  </br>
 layer:  </br>
-  mapping: x = cut, y = count, fill = cut  </br>  
-  geom: bar    </br>
+  - aes: x = cut, y = count, fill = cut  </br>  
+  - geom: bar    </br>
 coordinates: Cartesian
+</p>
 
 </div>
 <div class="column-center">
 
+<p style="font-size:14px">
 data: diamonds  </br>
 layer:  </br>
-  - mapping: x = 1, y = count, fill = cut  </br>
+  - aes: x = 1, y = count, fill = cut  </br>
   - geom: fill-bar  </br>
 coordinates: Cartesian  </br>
+</p>
 
 </div>
 <div class="column-right">
 
+<p style="font-size:14px">
 data: diamonds  </br>
 layer:  </br>
-  - mapping: x = 1, y = count, fill = cut  </br>
+  - aes: x = 1, y = count, fill = cut  </br>
   - geom: fill-bar  </br>
 coordinates: Polar  </br>
+</p>
 </div>
-
 
 ---
 
@@ -564,30 +633,23 @@ class: center, middle, inverse
 # Make your first figure
 
 ---
+# R package and data set
 
-
-```{r, eval=FALSE, fig.align='center', include=FALSE}
+```{r echo = TRUE, eval = F}
 library(ggplot2)
-data(iris)
-p <- ggplot(data = iris, mapping = aes(x = Petal.Length, y = Petal.Width)) 
-p
-p + geom_point()
+head(diamonds)
 ```
 
-```{r, eval=FALSE, fig.align='center', fig.height=4, fig.width=8, include=FALSE}
-
-p1 <- ggplot(data = iris, mapping = aes(x = Petal.Length, y = Petal.Width)) 
-
-p2 <- p1 + geom_point()
-p3 <- p1 + geom_point(aes(color = Species)) + theme(legend.position = "none")
-
-grid.arrange(p1, p2, ncol = 2, nrow = 1)
-
+```{r echo = F, eval = T}
+library(ggplot2)
+head(diamonds) %>% knitr::kable()
 ```
+
+---
 
 # We begin with the data
 
-```{r, fig.width=10, fig.height=6, echo = TRUE}
+```{r, fig.width=10, fig.height=5, echo = TRUE}
 ggplot(data = diamonds)
 ```
 
@@ -595,12 +657,12 @@ ggplot(data = diamonds)
 
 # Then we specify the aesthetic mappings
 
-```{r, eval=FALSE, fig.height=6, fig.width=10, echo = TRUE}
+```{r, eval=FALSE, fig.height=5, fig.width=10, echo = TRUE}
 ggplot(data = diamonds, aes(x = carat, y = price))
 
 ```
 
-```{r, echo=FALSE, fig.height=6, fig.width=10}
+```{r, echo=FALSE, fig.height=5, fig.width=10}
 ggplot(data = diamonds, aes(x = carat, y = price))+ scale_fill_locuszoom()
 ```
 ???
@@ -616,7 +678,8 @@ ggplot(data = diamonds, aes(x = carat, y = price)) +
 
 ```{r, echo=FALSE, fig.width=10, fig.height=5}
 ggplot(data = diamonds, aes(x = carat, y = price)) +
-    geom_point()+ scale_color_locuszoom()
+    geom_point() + 
+    scale_color_locuszoom()
 ```
 
 ---
@@ -630,7 +693,8 @@ ggplot(data = diamonds, aes(x = carat, y = price)) +
 
 ```{r, echo=FALSE, fig.width=10, fig.height=5}
 ggplot(data = diamonds, aes(x = carat, y = price)) +
-    geom_point(aes(colour = cut)) + scale_color_locuszoom()
+    geom_point(aes(colour = cut)) + 
+    scale_color_locuszoom()
 ```
 
 ---
@@ -639,13 +703,14 @@ ggplot(data = diamonds, aes(x = carat, y = price)) +
 ```{r, eval = FALSE, fig.width=10, fig.height=5, echo = TRUE}
 ggplot(data = diamonds, aes(x = carat, y = price)) +
     geom_point(aes(colour = cut)) +
-   geom_smooth()
+    geom_smooth()
 ```
 
 ```{r, echo = FALSE, fig.width=10, fig.height=5}
 ggplot(data = diamonds, aes(x = carat, y = price)) +
     geom_point(aes(colour = cut)) +
-    geom_smooth() + scale_color_locuszoom()
+    geom_smooth() + 
+    scale_color_locuszoom()
 ```
 
 ---
@@ -655,12 +720,14 @@ ggplot(data = diamonds, aes(x = carat, y = price)) +
 ```{r, fig.width=10, fig.height=5, eval = FALSE, echo = TRUE}
 ggplot(data = diamonds, aes(x = carat, y = price) +
     geom_point(aes(colour = cut), size = 2, alpha = .5) +
-    geom_smooth((aes(fill = cut), colour = "lightgrey")) 
+    geom_smooth(aes(fill = cut), colour = "lightgrey")
 ```
 
 ```{r, fig.width=10, fig.height=5, echo = FALSE}
 ggplot(data = diamonds, aes(x = carat, y = price)) +
-    geom_point(aes(colour = cut), size = 2, alpha = .5) + scale_color_locuszoom()+ scale_fill_locuszoom()+
+    geom_point(aes(colour = cut), size = 2, alpha = .5) + 
+    scale_color_locuszoom() + 
+    scale_fill_locuszoom() +
     geom_smooth(aes(fill = cut), colour = "lightgrey")
 ```
 
@@ -671,14 +738,17 @@ ggplot(data = diamonds, aes(x = carat, y = price)) +
 ```{r, fig.width=10, fig.height=5, eval = FALSE, echo = TRUE}
 ggplot(data = diamonds, aes(x = carat, y = price)) +
     geom_point(aes(colour = cut), size = 2, alpha = .5) +
-    geom_smooth(aes(fill = cut)) +
+    geom_smooth(aes(fill = cut), colour = "lightgrey") +
     scale_y_log10()
 ```
 
 ```{r, fig.width=10, fig.height=5, echo = FALSE}
 ggplot(data = diamonds, aes(x = carat, y = price)) +
     geom_point(aes(colour = cut), size = 2, alpha = .5) +
-    geom_smooth(aes(fill = cut)) + scale_color_locuszoom()+ scale_fill_locuszoom()+ scale_y_log10()
+    geom_smooth(aes(fill = cut), colour = "lightgrey") +
+    scale_color_locuszoom() + 
+    scale_fill_locuszoom() + 
+    scale_y_log10()
 ```
 
 
@@ -689,7 +759,7 @@ ggplot(data = diamonds, aes(x = carat, y = price)) +
 ```{r, fig.width=10, fig.height=5, eval = FALSE, echo = TRUE}
 ggplot(data = diamonds, aes(x = carat, y = price)) +
     geom_point(aes(colour = cut), size = 2, alpha = .5) +
-    geom_smooth() +
+    geom_smooth(aes(fill = cut), colour = "lightgrey") +
     scale_y_log10() +
     facet_wrap(~cut)
 ```
@@ -697,8 +767,10 @@ ggplot(data = diamonds, aes(x = carat, y = price)) +
 ```{r, fig.width=10, fig.height=5, echo = FALSE}
 ggplot(data = diamonds, aes(x = carat, y = price)) +
     geom_point(aes(colour = cut), size = 2, alpha = .5) +
-    geom_smooth(aes(fill = cut)) + scale_color_locuszoom()+ scale_fill_locuszoom()+
-    scale_y_log10()+
+    geom_smooth(aes(fill = cut), colour = "lightgrey") +
+    scale_color_locuszoom() + 
+    scale_fill_locuszoom() +
+    scale_y_log10() +
     facet_wrap(~cut)
 ```
 
@@ -712,7 +784,7 @@ class: inverse
 BASICS
 1. Why is data visualization important?
 2. Data Types, Formats, and Structures
-3. Formating your data: A tidy data discussion
+3. Formatting your data: A tidy data discussion
 
 BUILDING PLOTS
 1. Geoms, Stats, Coordinates, and Faceting

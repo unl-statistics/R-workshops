@@ -15,7 +15,7 @@ After the end of Graphics with ggplot, we expect you to be able to do the follow
 
 Date | Notes | Lectures and Resources
 ---- | ---- | ----
-9 - 10:30 | [Look at that!](knitr/1-GraphicsIntro.html) | basic plots: scatterplots, boxplots, histograms, barcharts and more, some aesthetics: color, shape, ... <br/> [1-GraphicsIntro.R](code/1-GraphicsIntro.R)
+9 - 10:30 | [Look at that!](knitr/1-GraphicsIntro.html) | basic plots: scatterplots, boxplots, histograms, barcharts and more <br/> some aesthetics: color, shape, ... <br/> [1-GraphicsIntro.R](code/1-GraphicsIntro.R)
 10:30 - 11:30 | [Basics](knitr/2-Basics.html) | Making maps using ggplot2. <br/> [2-Basics.R](code/2-Basics.R)
 11:30 - 12:30 | **Lunch Break** | 
 12:30 - 2:00 | [Layers of Graphics](knitr/3-Layers.html) |  	More detailed look at the ggplot2 package: layers, geoms. <br/>[3-Layers.R](code/3-Layers.R) <br/>[noaa.rdata](data/noaa.rdata) <br/>[animal.csv](data/animal.csv)
