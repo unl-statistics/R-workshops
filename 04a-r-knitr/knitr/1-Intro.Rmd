@@ -30,7 +30,6 @@ output:
 - We don't always comment code when we write it - knitr provides context for the code by including the writeup with the code
 
 ---
-
 ## Setup
 
 - LaTeX: If you don't have this installed, you will need to use our computers.
@@ -39,48 +38,126 @@ output:
 
 - RStudio: File -> New File -> R Markdown (This tells RStudio to use knitr to compile the document)
 
---- 
+---
+## Example 
 
-## Example
+Open minimal-knitr.Rmd in R Studio and compile it. 
+
+Hint: Use the "Knit" button at the top of the text window in R studio
+
+![](KnitNotebook.png)
 
 
 ---
-
 ## R Code "Chunks"
 
 knitr knows that text is R code if it is included in a chunk.
 
-
---- 
-
+---
 ## Your Turn!
 
+Change minimal-knitr.rmd so that the second code chunk (named 'boring-random') generates 30 random numbers and computes their sum. 
+
+Make sure the code chunk compiles!
 
 ---
-
 ## Adding Graphs to Documents with Knitr
 
----
 
+
+---
 ## Your Turn!
 
----
+Add a new code chunk to minimal-knitr.Rmd that generates a sample of 50 observations from a normal distribution and plot a histogram. 
 
+```{r, eval=FALSE}
+x <- rnorm(50)
+
+library(ggplot2)
+qplot(x, geom = "histogram")
+```
+
+
+---
 ## knitr Code Chunk Options
 
----
+We may want to remove the messages (the italic text) from our R output in the pdf. Or, we might not want to show the code at all. $\\$
 
+knitr has options to give you greater control over what is shown in the compiled document. 
+
+Let's look at these options in [the documentation](https://yihui.org/knitr/options/) 
+
+---
 ## knitr Code Chunk Options
 
---- 
+- eval=FALSE: dont run the code
 
+- echo=FALSE: don't show the code
+
+- warning=FALSE: don't add R's warninigs to the pdf
+
+- message=FALSE: don't show messages from R in the pdf
+
+- include=FALSE: don't include any R output in the document. 
+
+- tidy=FALSE: don't tidy code of change spacing
+
+- cache=FALSE: re-run all of the code every time.
+
+---
 ## Your Turn!
 
----
+Explore some of the options in knitr code chunks:
+- Turn off messages and warnings for the histogram we generated last time
 
+- Experiment with tidy=TRUE. What changes occur?
+
+- Can you make knitr show onlly the plot, without code, messages, errors, etc.?
+
+---
 ## Common Options for Pictures
 
+- fig.width = 7, fig.height=7: dimensions of the saved image
+
+- out.width = '\\\textwidth', out.height = '300px': dimensions of the image in the LaTex document. $\\$
+Note: $\backslash\backslash$ must be used to generate a single slash in LaTex
+
+- fig.path = "path/to/save/figures": Change where figures are stored
+
+- dpi=72: resolution of the saved image
+
+- fig.keep="all": Which figures to keep$\\$
+Options: 'high', 'none', 'all', 'first', 'last'
+
+- fig.show="asis": how to arrange plots $\\$
+Options: 'asis', 'hold', 'animate', 'hide'
+
 ---
+## Your Turn!
+
+- Generate both a histogram and a density plot in the same code chunk.
+  + Try different fig.keep and fig.show options
+  
+- Change the size of both plots so they will fit on the same page. $\\$
+Hing: use out.width=".48\\\text.width"
+
+---
+## More Common Options for Pictures
+
+- fig.cap="caption text": Text for figure caption
+- fig.align="center": Alignment of the figure on the document page. $\\$
+Options: 'left', 'right', 'center'
+
+---
+## Setting Commonly used Options for all chunks
+
+
+---
+## Mathmode
+
+---
+## Tables
+
 
 ## Your Turn!
 
