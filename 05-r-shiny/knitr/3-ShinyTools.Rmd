@@ -1,17 +1,13 @@
 ---
 title: "Tools for Shiny Apps"
-author: "Haley Jeppson, Joe Papio,<br>Sam Tyner"
-date: "June 15, 2017"
 output: 
-    revealjs::revealjs_presentation:
-        transition: fade
-        theme: white
-        highlight: zenburn
-        css: custom.css
+  xaringan::moon_reader:
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
 ---
-
-
-
 
 ## Other User Interface Options
 
@@ -22,6 +18,7 @@ output:
 
 <small>[resource](http://shiny.rstudio.com/gallery/widget-gallery.html)</small>
 
+---
 ## Getting the shiny app to react: server
 
 - the server function connects inputs to outputs
@@ -38,7 +35,7 @@ server  <-  function(input, output) {
 }
 ```
 
-
+---
 ## Render functions
 
 - `renderDataTable()` - outputs an interactive, sortable data table
@@ -50,6 +47,7 @@ server  <-  function(input, output) {
 - `renderImage()` - print an image to the page
 - `htmlOutput()` - output html elements
 
+---
 ## Example `server` function
 
 ```{r, eval = FALSE}
@@ -68,23 +66,24 @@ Note the use of curly brackets `{` `}` in `renderPlot`.
 
 The last statement in the code block must be the plot. 
 
-
-## Your Turn  {data-background=#527a7a}
+---
+class: inverse
+## Your Turn
 
 For the 01_Hello app: 
 
 - expand on the server functionality to make the plot react to the input
 
-
-
+---
 ## An example
 
 ```{r, eval=FALSE}
 runApp("02_Reactivity", display.mode = "showcase")
 ```
 
-
-## Your Turn {data-background=#527a7a}
+---
+class: inverse
+## Your Turn
 
 Using your own data or the NYC crime data provided, create a simple Shiny app. 
 Use the NYC_Emergency app as a starting point.
@@ -95,6 +94,9 @@ runApp("03_NYC_Emergency")
 
 - Ideas: 
     - Plot some aspect of the data with color based on another aspect of the data
+    
     - Use `filter()` and `checkboxInput()` to plot user-selected subsets
+    
     - Use `tabsetPanel()` to display different tables/plots
+    
     - **Extra Challenging:** Can you make a map of NYC crime by location?

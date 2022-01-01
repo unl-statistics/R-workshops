@@ -1,20 +1,18 @@
 ---
 title: "Setting up Shiny"
-author: "Haley Jeppson, Joe Papio,<br>Sam Tyner"
-date: "June 15, 2017"
 output: 
-    revealjs::revealjs_presentation:
-        transition: fade
-        theme: white
-        highlight: zenburn
-        css: custom.css
+  xaringan::moon_reader:
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
 ---
 
 ## It's So Shiny!
 
 ![Picture of Sample Applet](images/shiny_ex.png)
-
-
+---
 ## What is `shiny`?
 
 **Shiny** is an R package that allows you to easily create interactive web applets using R. 
@@ -23,6 +21,7 @@ output:
 - Code can be entirely within R (or customize with HTML/JavaScript)
 - Take a look at RStudio's [showcase](http://shiny.rstudio.com/gallery/) of Shiny applets
 
+---
 ## Shiny Documentation and Help
 
 - [RStudio Tutorial](http://shiny.rstudio.com/tutorial/)  
@@ -34,12 +33,14 @@ See the latest updates
 - [Shiny Mailing List](https://groups.google.com/forum/#!forum/shiny-discuss)  
 Check the tutorial first, then search the mailing list.
 
+---
 ## Installing Shiny
 
 ```{r, eval=FALSE}
 install.packages("shiny")
 ```
 
+---
 ## A Simple Example
 
 <small>If your working directory is set appropriately, run the following code: </small>
@@ -49,5 +50,5 @@ library(shiny)
 runApp("../code/01_Hello")
 ```
 <center>
-<img src="images/HelloShinyScreenshot.png" alt="Picture of Hello Shiny! Applet">
+<img src="images/HelloShinyScreenshot.png" alt="Picture of Hello Shiny! Applet" style="width:650px;">
 </center>
