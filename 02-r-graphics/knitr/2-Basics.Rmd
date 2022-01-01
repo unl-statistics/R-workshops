@@ -14,7 +14,8 @@ output:
 options(htmltools.dir.version = FALSE)
 knitr::opts_chunk$set(	echo = FALSE,
 	message = FALSE,
-	warning = FALSE
+	warning = FALSE,
+	cache = TRUE
 )
 ```
 
@@ -88,6 +89,35 @@ Examples:
 ---
 
 # Anscombe's Quartet: data
+
+```{r, anscombe-data}
+data(anscombe)
+
+quartet_setI <- anscombe %>%
+  select(x1, y1) %>%
+  mutate(set = "I") %>%
+  rename(x = x1, 
+         y = y1)
+
+quartet_setII <- anscombe %>%
+  select(x2, y2) %>%
+  mutate(set = "II") %>%
+  rename(x = x2, 
+         y = y2)
+
+quartet_setIII <- anscombe %>%
+  select(x3, y3) %>%
+  mutate(set = "III") %>%
+  rename(x = x3, 
+         y = y3)
+
+quartet_setIV <- anscombe %>%
+  select(x4, y4) %>%
+  mutate(set = "IV") %>%
+  rename(x = x4, 
+         y = y4)
+```
+
 <style type="text/css">
 .tg  {border-collapse:collapse;border-spacing:0;border-color:#aaa;}
 .tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-color:#aaa;color:#333;background-color:#fff;}
@@ -236,7 +266,12 @@ Examples:
 <br>
 
 ```{r, quartet-summary}
-data(quartet)
+quartet <- rbind(quartet_setI,
+                 quartet_setII,
+                 quartet_setIII,
+                 quartet_setIV) %>%
+  select(set, x, y)
+
 quartet_summary <- quartet %>%
   group_by(set) %>%
   summarize("mean(x)"  = round(mean(x),2), 

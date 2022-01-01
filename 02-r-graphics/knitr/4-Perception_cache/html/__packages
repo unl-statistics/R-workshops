@@ -1,4 +1,3 @@
-base
 ggplot2
 ggsci
 ggthemes
@@ -21,3 +20,11 @@ EBImage
 viridisLite
 viridis
 wesanderson
+patchwork
+ggmosaic
+ggradar
+geomnet
+maps
+spatstat.geom
+spatstat.core
+spatstat.linnet

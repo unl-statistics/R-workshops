@@ -1,7 +1,6 @@
 ---
 title: "Data Visualization"
 subtitle: "Using ggplot2"
-author: "Haley Jeppson and Sam Tyner"
 output:
   xaringan::moon_reader:
     lib_dir: libs
@@ -21,7 +20,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r}
+```{r, setup2}
 library(ggplot2)
 library(ggsci)
 library(ggthemes)
@@ -146,29 +145,29 @@ class: center, middle, inverse
 
 # Gestalt Principles
 ### What sorts of relationships are inferred, and under what circumstances? 
+
 ---
 
 # Which has more structure?
-
-```{r rand, fig.height=4, fig.width=12, fig.pos="center"}
-
+.center[
+```{r rand, fig.height=7, fig.width=6, fig.position="center"}
 library(tidyverse)
 library(spatstat)
 
 #  matern model
 pp <- rMaternI(300, .02, stationary=FALSE)
-dat <- data_frame(x = pp$x, y = pp$y)
+dat <- tibble(x = pp$x, y = pp$y)
 a1 <- ggplot(dat) + geom_point(aes(x = x, y =y )) + theme_void() + labs(x="", y="", title="Matern Model")
 
 
 # uniform Poisson process with intensity 150 in the unit square
 pp2 <- rpoispp(200)
-dat2 <- data_frame(x = pp2$x, y = pp2$y)
+dat2 <- tibble(x = pp2$x, y = pp2$y)
 a2 <- ggplot(dat2) + geom_point(aes(x = x, y =y )) + theme_void() + labs(x="", y="", title="Poisson Process")
 
-grid.arrange(a2, a1, ncol = 2, nrow = 1)
-
+grid.arrange(a2, a1, ncol = 1, nrow = 2)
 ```
+]
 ???
 
 We look for structure all the time. We are so good at it that we will find it in random data, given time. (This is one of the reasons that data visualization can hardly be a replacement for statistical modeling.) The strong inferences we make about relationships between visual elements from relatively sparse visual information are called “gestalt rules”. They are not pure perceptual effects, like the checkerboard illusions. Rather, they describe our tendency to infer relationships between the objects we are looking at in a way that goes beyond what is strictly visible.
@@ -176,7 +175,9 @@ We look for structure all the time. We are so good at it that we will find it in
 ---
 # Gestalt principles
 
+.center[
 ![](images/gestalt3.jpg)
+]
 
 
 ???
@@ -230,7 +231,6 @@ ggplot(data, aes(x, y)) + geom_point(aes(shape = shape), size = 5, colour = "#1B
 
 ```{r, fig.align="center"}
 data$shape <- factor(c(rep(2, 25), 1, rep(2, 10)))
-
 
 ggplot(data, aes(x, y)) + geom_point(aes(colour = shape), size = 5, shape = I(19)) + theme_void() + theme(legend.position = "none") + scale_colour_brewer(palette="Dark2")
 ```
@@ -357,16 +357,10 @@ class: center, middle, inverse
 **Scales** map data values to the visual values of an aesthetic  
 
  - to change a mapping, add a new scale
-
-```{r fig.width=6, echo=FALSE, fig.align = "center"}
-library(png)
-library(grid)
-library(EBImage)
-img = readImage("images/scales1.png")
-display(img, method = "raster")
-#img2 <- readPNG("images/scales1.png")
-#grid.raster(img2)
-```
+ 
+ .center[
+ <img src="images/scales1.png" alt="ggplot2-hex" style="width:550px;"/>
+ ]
 
 ---
 ## Scales
@@ -542,7 +536,6 @@ The `movies` dataset contains information from IMDB.com including ratings, genre
 
 ```{r, echo = TRUE}
 movies <- read.csv("http://heike.github.io/rwrks/02-r-graphics/data/MovieSummary.csv")
-
 ```
                    
 

@@ -1,7 +1,6 @@
 ---
 title: "Data Visualization"
 subtitle: "Using ggplot2"
-author: "Haley Jeppson and Sam Tyner"
 output:
   xaringan::moon_reader:
     lib_dir: libs
@@ -126,7 +125,7 @@ class: inverse
 
 Change the code below to have the points **on top** of the boxplots.
 
-```{r echo=TRUE, fig.height=4, fig.width=8, purl=TRUE}
+```{r echo=TRUE, fig.height=4, fig.width=8, purl=T, fig.align = "center"}
 ggplot(data = mpg, aes(x = class, y = hwy)) + 
   geom_jitter() + 
   geom_boxplot()
@@ -325,10 +324,7 @@ r8 <- worldmap + coord_map("ortho", orientation = c(-90, 0, 0)) + ggtitle("coord
 grid.arrange(r1, r2, r3, r5, r4, r7, r8, nrow = 2)
 ```
 
-
-
 ---
 
-## ggplot2 extenstions
+## [ggplot2 extenstions](https://exts.ggplot2.tidyverse.org/ggiraph.html)
 
-[gallery](https://exts.ggplot2.tidyverse.org/)

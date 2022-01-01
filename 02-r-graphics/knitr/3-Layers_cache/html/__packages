@@ -1,7 +1,12 @@
-base
 ggplot2
 ggsci
 ggthemes
 gridExtra
 png
 maps
+dplyr
+tidyr
+patchwork
+ggmosaic
+ggradar
+geomnet

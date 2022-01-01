@@ -1,7 +1,6 @@
 ---
 title: "Data Visualization"
 subtitle: "Using ggplot2"
-author: "Haley Jeppson and Sam Tyner"
 output:
   xaringan::moon_reader:
     lib_dir: libs
@@ -271,12 +270,13 @@ class: inverse, center, middle
 ---
 ## Plotly
 
-```{r, fig.height=3.5, fig.width=10}
-p <- ggplot(mtcars, aes(x = wt, y = mpg, colour = gear)) + geom_point() + scale_color_locuszoom()
+```{r, fig.height=5, fig.width=8, fig.align = 'center'}
+p <- ggplot(mtcars, aes(x = wt, y = mpg, colour = gear)) + 
+  geom_point() +
+  scale_color_locuszoom()
 
 library(plotly)
 ggplotly(p)
-
 ```
 
 ---
@@ -302,17 +302,17 @@ ggsave("mpg_by_wt.pdf", plot = p1)
 
 ## Your Turn
 
-1. Create a scatterplot of y versus x from the `diamonds` data, colored by clarity
+1. Create a scatterplot of $y$ versus $x$ from the `diamonds` data, colored by `clarity`
 2. Use the black and white theme
 3. Include an informative title
 4. Move the legend to the bottom
 5. Save your plot to a pdf file and open it in a pdf viewer.
 
-```{r, fig.width=10, fig.height=4}
+```{r, fig.width=6, fig.height=4, fig.align = "center"}
 ggplot(data = diamonds, aes(x = x, y = y))
 ```
 
-```{r, echo=FALSE, fig.width=10, fig.height=4, eval = FALSE}
+```{r, echo=FALSE, fig.width=6, fig.height=4, eval = FALSE, fig.align = 'center'}
 p1 <- ggplot(data = diamonds, aes(x = x, y = y, colour = clarity)) +
     geom_point() +
     ggtitle("Diamond y by x") +

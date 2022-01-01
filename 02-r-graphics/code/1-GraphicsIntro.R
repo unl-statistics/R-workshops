@@ -146,11 +146,13 @@ a2 <- ggplot(diamonds, aes(x = cut, y = price)) +
   theme(legend.position = "none")
 
 # network plot
+# devtools::install_github("sctyner/geomnet")
 library(geomnet)
 data(blood)
-head(blood)
+summary(blood$edges)
+summary(blood$vertices)
 a3 <- ggplot(data = blood$edges, aes(from_id = from, to_id = to)) +
-  geom_net(vertices=blood$vertices, aes(colour=..type..)) + 
+  geom_net(vertices = blood$vertices, aes(colour=..type..)) +
   theme_net() +
   scale_colour_grey(start=0.4, end= 0.9) + 
   theme(legend.position = "none") + 

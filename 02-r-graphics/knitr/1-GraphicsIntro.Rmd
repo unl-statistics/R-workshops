@@ -15,7 +15,8 @@ options(htmltools.dir.version = FALSE)
 knitr::opts_chunk$set(
 	echo = FALSE,
 	message = FALSE,
-	warning = FALSE
+	warning = FALSE,
+	cache = TRUE
 )
 ```
 
@@ -322,7 +323,8 @@ a3 <- ggplot(data = blood$edges, aes(from_id = from, to_id = to)) +
   scale_y_continuous(name = "") +
   ggtitle(label = "Network Plot")
 
-grid.arrange(a1, a2, a3, ncol = 3, nrow = 1)
+# grid.arrange(a1, a2, a3, ncol = 3, nrow = 1)
+grid.arrange(a1, a2, ncol = 3, nrow = 1)
 ```
 
   
@@ -481,7 +483,9 @@ class: center, middle, inverse
 
 # ggplot2
 ## A layered grammar of graphics
-
+.center[
+<img src="images/ggplot2-hex.png" alt="ggplot2-hex" style="width:350px;"/>
+]
 ---
 .center[
 ![](images/ggplot2.jpg)
