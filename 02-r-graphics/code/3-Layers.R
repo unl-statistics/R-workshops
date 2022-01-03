@@ -1,139 +1,125 @@
-## ----setup, include=FALSE------------------------------------------------
-options(htmltools.dir.version = FALSE)
-knitr::opts_chunk$set(
-	echo = FALSE,
-	message = FALSE,
-	warning = FALSE,
-	cache = TRUE
-)
-
-## ---- echo=FALSE---------------------------------------------------------
+# --------------------------------------
+# R PACKAGE SETUP ----------------------
+# --------------------------------------
 library(ggplot2)
-library(ggsci)
-library(ggthemes)
-library(gridExtra)
-library(grid)
+library(patchwork)
 
-grid_arrange_shared_legend <- function(..., ncol = length(list(...)), nrow = 1, position = c("bottom", "right")) {
+# --------------------------------------
+# HOW TO BUILD A GRAPH -----------------
+# --------------------------------------
 
-  plots <- list(...)
-  position <- match.arg(position)
-  g <- ggplotGrob(plots[[1]] + theme(legend.position = position))$grobs
-  legend <- g[[which(sapply(g, function(x) x$name) == "guide-box")]]
-  lheight <- sum(legend$height)
-  lwidth <- sum(legend$width)
-  gl <- lapply(plots, function(x) x + theme(legend.position="none"))
-  gl <- c(gl, ncol = ncol, nrow = nrow)
+# You can add one geom per layer
 
-  combined <- switch(position,
-                     "bottom" = arrangeGrob(do.call(arrangeGrob, gl),
-                                            legend,
-                                            ncol = 1,
-                                            heights = unit.c(unit(1, "npc") - lheight, lheight)),
-                     "right" = arrangeGrob(do.call(arrangeGrob, gl),
-                                           legend,
-                                           ncol = 2,
-                                           widths = unit.c(unit(1, "npc") - lwidth, lwidth)))
-  
-  grid.newpage()
-  grid.draw(combined)
+p1 <- ggplot(data = mpg, aes(x = class, y = hwy)) + 
+  ggtitle(label = "")
 
-  # return gtable invisibly
-  invisible(combined)
+p2 <- ggplot(data = mpg, aes(x = class, y = hwy)) + 
+  geom_boxplot()
 
-}
+p3 <- ggplot(data = mpg, aes(x = class, y = hwy)) + 
+  geom_jitter() + 
+  geom_boxplot()
 
-
-## ----fig.width=8, echo=FALSE, fig.align = "top"--------------------------
-library(png)
-library(grid)
-img <- readPNG("images/ggplot2-notation.png")
- grid.raster(img)
-
-## ----plots-4, fig.align='bottom', fig.height=5, fig.width=15-------------
-p1 <- ggplot(data = mpg, aes(x = class, y = hwy))
-p2 <- ggplot(data = mpg, aes(x = class, y = hwy)) + geom_boxplot()
-p3 <- ggplot(data = mpg, aes(x = class, y = hwy)) + geom_jitter() + geom_boxplot() 
 grid.arrange(p1, p2, p3, ncol = 3, nrow = 1)
 
-## ---- fig.align='top', fig.height=4, fig.width=10------------------------
-p1 <- ggplot(data = mpg, aes(x = cty, y = hwy, colour = class)) + geom_text(aes(label = class))+ scale_color_locuszoom() +labs(x = "city mpg", y = "highway mpg", title = "Geom Text")
-p2 <- ggplot(data = mpg, aes(x = cty, y = hwy, colour = class)) + geom_point()+ scale_color_locuszoom() + labs(x = "city mpg", y = "highway mpg", title = "Geom Point")
-grid.arrange(p2, p1, ncol = 2, nrow = 1)
+# YOUR TURN
+# Change the code below to have the points **on top** of the boxplots.
 
-## ---- echo=FALSE, fig.align="center"-------------------------------------
-library(png)
-library(grid)
-img <- readPNG("images/geoms.png")
- grid.raster(img)
+ggplot(data = mpg, aes(x = class, y = hwy)) + 
+  geom_jitter() + 
+  geom_boxplot()
 
-## ---- fig.align='bottom', fig.height=5, fig.width=15---------------------
-p1 <- ggplot(data = mpg, aes(x = class, y = hwy, colour = class)) + geom_jitter(width = 0.1) + scale_fill_locuszoom() + scale_color_locuszoom()
-p2 <- ggplot(data = mpg, aes(x = class, y = hwy, colour = class)) + geom_violin(aes(fill = class), alpha = 0.4) + scale_fill_locuszoom() + scale_color_locuszoom()
-p3 <- ggplot(data = mpg, aes(x = class, y = hwy, colour = class)) + geom_jitter(width = 0.1) + geom_violin(aes(fill = class), alpha = 0.4) + scale_fill_locuszoom() + scale_color_locuszoom()
+# Geoms
+
+# geom_point()
+p1 <- ggplot(data = mpg, aes(x = cty, y = hwy, colour = class)) + 
+  geom_point() + 
+  scale_color_locuszoom() + 
+  scale_x_continuous(name = "city mpg") +
+  scale_y_continuous(name = "highway mpg") +
+  ggtitle("geom_point")
+
+# geom_text()
+p2 <- ggplot(data = mpg, aes(x = cty, y = hwy, colour = class)) + 
+  geom_text(aes(label = class)) + 
+  scale_color_locuszoom() +
+  scale_x_continuous(name = "city mpg") +
+  scale_y_continuous(name = "highway mpg") +
+  ggtitle("geom_text")
+
+grid.arrange(p1, p2, ncol = 2, nrow = 1)
+
+# A plot may have multiple layers
+
+p1 <- ggplot(data = mpg, aes(x = class, y = hwy, colour = class)) + 
+  geom_jitter(width = 0.1) + 
+  scale_fill_locuszoom() + 
+  scale_color_locuszoom()
+
+p2 <- ggplot(data = mpg, aes(x = class, y = hwy, colour = class)) + 
+  geom_violin(aes(fill = class), alpha = 0.4) + 
+  scale_fill_locuszoom() + 
+  scale_color_locuszoom()
+
+p3 <- ggplot(data = mpg, aes(x = class, y = hwy, colour = class)) + 
+  geom_jitter(width = 0.1) + 
+  geom_violin(aes(fill = class), alpha = 0.4) + 
+  scale_fill_locuszoom() + 
+  scale_color_locuszoom()
+
 grid.arrange(p1, p2, p3, ncol = 3, nrow = 1)
 
-## ----fig.width=4.5, echo=FALSE, fig.align = "top"------------------------
-img <- readPNG("images/stat1.png")
- grid.raster(img)
+# Faceting
+a <- ggplot(data = mpg, aes(x = cty, y = hwy, colour = class)) + 
+  geom_point() + 
+  scale_color_locuszoom() +
+  theme(aspect.ratio = 1)
 
-## ----fig.width=4.5, echo=FALSE, fig.align = "top"------------------------
-img2 <- readPNG("images/stat2.png")
- grid.raster(img2)
+b <- ggplot(data = mpg, aes(x = cty, y = hwy, colour = class)) + 
+  geom_point() +theme(legend.position = "none") +
+  facet_grid(~class) + 
+  scale_color_locuszoom() +
+  theme(aspect.ratio = 1)
 
-## ---- fig.width=10, fig.height=4, echo = TRUE, eval=FALSE----------------
-## ggplot(data = mpg, aes(x = cty, y = hwy, colour = class)) + geom_point()
-## 
-## ggplot(data = mpg, aes(x = cty, y = hwy, colour = class)) + geom_point() +facet_grid(.~class)
+a / b + plot_layout(widths = c(1, 7))
 
-## ---- fig.width=10, fig.height=4, fig.align = "center", echo=FALSE-------
-a <- ggplot(data = mpg, aes(x = cty, y = hwy, colour = class)) + geom_point()+ scale_color_locuszoom()
+# position adjustements
+s <- ggplot(mpg, aes(fl, fill = drv)) + 
+  ggtitle("") + 
+  scale_fill_locuszoom()
 
-b <- ggplot(data = mpg, aes(x = cty, y = hwy, colour = class)) + geom_point() +theme(legend.position = "none") +facet_grid(.~class)+ scale_color_locuszoom()
+s1 <- s + 
+  geom_bar(position = "dodge") + 
+  ggtitle("position = 'dodge'") + 
+  theme(plot.title = element_text(size = 18))
 
+s2 <- s + 
+  geom_bar(position = "fill") + 
+  ggtitle("position = 'fill'") + 
+  theme(plot.title = element_text(size = 18))
 
-grid.arrange(a, b, nrow = 1)
+s3 <- s + 
+  geom_bar(position = "stack") + 
+  ggtitle("position = 'stack'") + 
+  theme(plot.title = element_text(size = 18))
 
-## ---- fig.width=10, fig.height=4, fig.align = "center"-------------------
-s <- ggplot(mpg, aes(fl, fill = drv)) +ggtitle("") + scale_fill_locuszoom()
-s1 <- s + geom_bar(position = "dodge") +ggtitle("Dodge")
-s2 <- s + geom_bar(position = "fill") +ggtitle("Fill") + scale_fill_locuszoom()
-s3 <- s + geom_bar(position = "stack") +ggtitle("Stack")
+s1 + s2 + s3
 
-grid.arrange(s1, s2, s3, nrow = 1)
+# jitter
+p2 <- ggplot(mpg, aes(cyl, hwy, color = factor(cyl))) + 
+  geom_point() + ggtitle("geom_point()") + 
+  scale_color_locuszoom() + 
+  theme(plot.title = element_text(size = 18))
 
+p3 <- ggplot(mpg, aes(cyl, hwy, color = factor(cyl))) + 
+  geom_point(position = "jitter") + 
+  ggtitle('geom_point(position = "jitter")') + 
+  scale_color_locuszoom() + 
+  theme(plot.title = element_text(size = 18))
 
-## ---- fig.width=10, fig.height=4, fig.align = "center"-------------------
-p2 <- ggplot(mpg, aes(cyl, hwy, color = factor(cyl))) + geom_point() + ggtitle("geom_point()")+ scale_color_locuszoom()
-p3 <- ggplot(mpg, aes(cyl, hwy, color = factor(cyl))) + geom_point(position = "jitter") + ggtitle('geom_point(position = "jitter")')+ scale_color_locuszoom()
-p4 <- ggplot(mpg, aes(cyl, hwy, color = factor(cyl))) + geom_jitter() + ggtitle("geom_jitter()")+ scale_color_locuszoom()
-grid.arrange(p2, p3, p4, nrow = 1)
+p4 <- ggplot(mpg, aes(cyl, hwy, color = factor(cyl))) + 
+  geom_jitter() + ggtitle("geom_jitter()") + 
+  scale_color_locuszoom() + 
+  theme(plot.title = element_text(size = 18))
 
-## ---- fig.width=10, fig.height=4, fig.align = "center", eval = FALSE-----
-## r <- ggplot(mpg, aes(fl)) + geom_bar()
-## r + coord_cartesian(xlim = c(0, 5))
-## r + coord_fixed(ratio = 1/10)
-## r + coord_flip()
-## r + coord_trans(y = "sqrt")
-## r + coord_polar(theta = "x", direction=1 )
-## z + coord_map(projection = "ortho")
-## z + coord_map(projection = "ortho", orientation = c(-90, 0, 0))
-
-## ---- fig.width=10, fig.height=5, fig.align = "center"-------------------
-r <- ggplot(mpg, aes(fl)) + geom_bar()
-r1 <- r + coord_cartesian(xlim = c(0, 5)) + ggtitle("coord_cartesian")
-r2 <- r + coord_fixed(ratio = 1/10) + ggtitle("coord_fixed")
-r3 <- r + coord_flip() + ggtitle("coord_flip")
-r4 <- r + coord_polar(theta = "x", direction=1 ) + ggtitle("coord_polar")
-r5 <- r + coord_trans(y = "sqrt") + ggtitle("coord_trans")
-world <- map_data("world")
-library(maps)
-worldmap <- ggplot(world, aes(x = long, y = lat, group = group)) +
-  geom_path() +
-  scale_y_continuous(breaks = (-2:2) * 30) +
-  scale_x_continuous(breaks = (-4:4) * 45)
-r7 <- worldmap + coord_map("ortho") + ggtitle("coord_map")
-r8 <- worldmap + coord_map("ortho", orientation = c(-90, 0, 0)) + ggtitle("coord_map")
-
-grid.arrange(r1, r2, r3, r5, r4, r7, r8, nrow = 2)
-
+p2 + p3 + p4

@@ -16,12 +16,11 @@ class: center, middle, inverse, title-slide
 
 ---
 
-
-
-
-
-
 class: center, middle
+
+
+
+
 
 # BUILDING PLOTS
 
@@ -50,7 +49,20 @@ ggplot2 uses the idea that you can build every graph from the same components:
 # How to build a graph
 
 Complete the template below to build a graph
-&lt;img src="3-Layers_files/figure-html/unnamed-chunk-2-1.png"  /&gt;
+
+&lt;br&gt;
+.center[
+&lt;img src="images/ggplot2-notation.png" alt="" style="width:600px;"/&gt;
+]
+
+---
+# Common Aesthetics
+
+&lt;br&gt;
+.center[
+&lt;img src="images/aesthetics.png" alt="" style="width:500px;"/&gt;
+]
+
 
 ---
 # How to build a graph
@@ -61,13 +73,11 @@ Complete the template below to build a graph
 
 - You can add one geom per layer
 
-
 &lt;img src="3-Layers_files/figure-html/plots-4-1.png"  /&gt;
-
 
 ---
 class: inverse
-## Your Turn
+# Your Turn!
 
 Change the code below to have the points **on top** of the boxplots.
 
@@ -78,26 +88,23 @@ ggplot(data = mpg, aes(x = class, y = hwy)) +
   geom_boxplot()
 ```
 
-&lt;img src="3-Layers_files/figure-html/unnamed-chunk-4-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="3-Layers_files/figure-html/unnamed-chunk-2-1.png" style="display: block; margin: auto;" /&gt;
+
 ---
-
-
 # What is a geom?
 
 In ggplot2, we use a geom function to represent data points, and use the geom's aesthetic properties to represent variables.
 
-
-&lt;img src="3-Layers_files/figure-html/unnamed-chunk-5-1.png"  /&gt;
-
-
+&lt;img src="3-Layers_files/figure-html/unnamed-chunk-3-1.png"  /&gt;
 
 Once our data is formatted and we know what type of variables we are working with, we can select the correct geom for our visualization. 
 
 ---
-## Available geoms 
+## Available [Geoms](https://github.com/rstudio/cheatsheets/blob/main/data-visualization-2.1.pdf)
 
-&lt;img src="3-Layers_files/figure-html/unnamed-chunk-7-1.png" style="display: block; margin: auto;" /&gt;
-
+.center[
+&lt;img src="images/geoms.png" alt="" style="width:575px;"/&gt;
+]
 
 ---
 # What is a layer?
@@ -108,58 +115,60 @@ Once our data is formatted and we know what type of variables we are working wit
 
 - A plot may have multiple layers
  
-&lt;img src="3-Layers_files/figure-html/unnamed-chunk-8-1.png"  /&gt;
-
+&lt;img src="3-Layers_files/figure-html/unnamed-chunk-4-1.png"  /&gt;
 
 ---
 # Alternative method of building layers: Stats
 
 A stat builds a new variable to plot (e.g., count and proportion)
 .pull-left[
-&lt;img src="3-Layers_files/figure-html/unnamed-chunk-10-1.png"  /&gt;
-]
-.pull-right[
-&lt;img src="3-Layers_files/figure-html/unnamed-chunk-11-1.png"  /&gt;
-]
-
+.center[
+&lt;img src="images/stat1.png" alt="" style="width:575px;"/&gt;
+]].pull-right[
+.center[
+&lt;img src="images/stat2.png" alt="" style="width:240px;"/&gt;
+]]
 
 ---
-
 # Faceting
 
 A way to extract subsets of data and place them side-by-side in graphics
 
-
 ```r
-ggplot(data = mpg, aes(x = cty, y = hwy, colour = class)) + geom_point()
-
-ggplot(data = mpg, aes(x = cty, y = hwy, colour = class)) + geom_point() +facet_grid(.~class)
+ggplot(data = mpg, aes(x = cty, y = hwy, colour = class)) + 
+  geom_point()
 ```
 
-&lt;img src="3-Layers_files/figure-html/unnamed-chunk-13-1.png" style="display: block; margin: auto;" /&gt;
+
+```r
+ggplot(data = mpg, aes(x = cty, y = hwy, colour = class)) + 
+  geom_point() +
+* facet_grid(~class)
+```
+.center[
+&lt;img src="3-Layers_files/figure-html/unnamed-chunk-7-1.png" style="display: block; margin: auto;" /&gt;
+]
 
 ---
 # Faceting Options
 
-- `facet_grid(. ~ b)`:facet into columns based on b 
-- `facet_grid(a ~ .)`:facet into columns based on a 
-- `facet_grid(a ~ b)`:facet into both rows and columns
-- `facet_wrap( ~ fl)`:wrap facets into a rectangular layout
+- `facet_grid(. ~ b)`: facet into columns based on b 
+- `facet_grid(a ~ .)`: facet into columns based on a 
+- `facet_grid(a ~ b)`: facet into both rows and columns
+- `facet_wrap( ~ fl)`: wrap facets into a rectangular layout
 
 You can set scales to let axis limits vary across facets:
 
 - `facet_grid(y ~ x, scales = "free")`: x and y axis limits adjust to individual facets
-- "free_x" - x axis limits adjust
-- "free_y" - y axis limits adjust
+  - "free_x" - x axis limits adjust
+  - "free_y" - y axis limits adjust
 
 You can also set a labeller to adjust facet labels:
 - `facet_grid(. ~ fl, labeller = label_both)`
 - `facet_grid(. ~ fl, labeller = label_bquote(alpha ^ .(x)))`
 - `facet_grid(. ~ fl, labeller = label_parsed)`
 
-
 ---
-
 # Position Adjustments
 
 Position adjustments determine how to arrange geoms that would otherwise occupy the same space
@@ -167,9 +176,13 @@ Position adjustments determine how to arrange geoms that would otherwise occupy 
 - **Fill**: Stack elements on top of one another, normalize height
 - **Stack**: Stack elements on top of one another
 
-`ggplot(mpg, aes(fl, fill = drv)) + geom_bar(position = "")`
 
-&lt;img src="3-Layers_files/figure-html/unnamed-chunk-14-1.png" style="display: block; margin: auto;" /&gt;
+```r
+ggplot(mpg, aes(fl, fill = drv)) + 
+* geom_bar(position = "")`
+```
+
+&lt;img src="3-Layers_files/figure-html/unnamed-chunk-8-1.png" style="display: block; margin: auto;" /&gt;
 
 ---
 # Position Adjustments: Jitter
@@ -177,12 +190,9 @@ Position adjustments determine how to arrange geoms that would otherwise occupy 
 - **Jitter**: Add random noise to X &amp; Y position of each element to avoid overplotting
 - There is also a jitter geom 
 
-&lt;img src="3-Layers_files/figure-html/unnamed-chunk-15-1.png" style="display: block; margin: auto;" /&gt;
-
-
+&lt;img src="3-Layers_files/figure-html/unnamed-chunk-9-1.png" style="display: block; margin: auto;" /&gt;
 
 ---
-
 ## Coordinate Systems
 
 - `coord_cartesian()`: The default cartesian coordinate system
@@ -194,11 +204,61 @@ Position adjustments determine how to arrange geoms that would otherwise occupy 
 
 
 
-&lt;img src="3-Layers_files/figure-html/unnamed-chunk-17-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="3-Layers_files/figure-html/unnamed-chunk-11-1.png" style="display: block; margin: auto;" /&gt;
 
 ---
+class:inverse, center, middle
+# [ggplot2 extenstions](https://exts.ggplot2.tidyverse.org/ggiraph.html)
 
-## [ggplot2 extenstions](https://exts.ggplot2.tidyverse.org/ggiraph.html)
+---
+## library(ggforce)
+
+
+```r
+library(ggforce)
+ggplot(iris, aes(Petal.Length, Petal.Width, colour = Species)) +
+  geom_point() +
+* facet_zoom(x = Species == 'versicolor')
+```
+
+&lt;img src="3-Layers_files/figure-html/facet-zoom-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+## library(ggvoronoi)
+
+&lt;img src="3-Layers_files/figure-html/voronoi-plot-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+## library(ggridges)
+
+
+
+.center[
+&lt;img src="images/ggridges.png" alt="" style="width:650px;"/&gt;
+
+By [Claus O. Wilke](https://cran.r-project.org/web/packages/ggridges/vignettes/gallery.html)
+]
+
+---
+## library(ggrepel)
+
+.center[
+&lt;img src="images/ggrepel.jpg" alt="" style="width:650px;"/&gt;
+[Allison Horst](https://www.allisonhorst.com/)
+]
+
+---
+## library(patchwork)
+
+.center[
+&lt;img src="images/patchwork.jpg" alt="" style="width:650px;"/&gt;
+Patchwork, by [Allison Horst](https://www.allisonhorst.com/)
+]
+
+---
+## ggplot2 extensions
+
+Check out slides for some frequently used extensions by [Ashirwad Barnwal](https://github.com/ashirwad) [**HERE**](https://isugg21-ggext.netlify.app/#1).
 
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>

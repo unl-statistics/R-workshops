@@ -82,6 +82,8 @@ Visualization offers an alternative way of communicating numbers
 ]
 
 ???
+One of the main reasons for visualization is to communicate information.
+
 In 1812, Napoleon marched to Moscow in order to conquer the city. It was a disaster: having started with around 470,000 soldiers, he returned with just 10,000. This chart tells the story of that campaign and has become one of the most famous visualizations of all time. The map details the out-and-back journey of Napoleon’s troops. The width of the line represents the total number of soldiers and the color represents the direction (yellow for towards Moscow, black for the return trip). Below the central visualization is also a simple temperature line graph illustrating the rapidly dropping winter cold. It is effective, detailed, and paints a staggering picture of the journey’s devastation. 
 
 ---
@@ -91,41 +93,52 @@ In 1812, Napoleon marched to Moscow in order to conquer the city. It was a disas
 
 ```{r}
 data(iris)
-knitr::kable(head(iris), format = 'html')
+iris[c(1:3,50:53, 100:103),] %>% knitr::kable(row.names = F)
 ```
 
 ???
 
 **Consider this thought experiment:** You have a simple data set - 2 variables, 500 observations. You want to get a sense of how the variables relate to each other. You can do one of the following options:
 
-+ Print out the data set
-+ Create some summary statistics of each variable and perhaps the covariance between the two variables
-+ Draw a scatter plot of the two variables
+1. Print out the data set
+2. Create some summary statistics of each variable and perhaps the covariance between the two variables
+3. Draw a scatter plot of the two variables
 
 Which one would you rather use? Why?
 
+Here we see the iris data set in table format - contains measurements (sepal length, sepal width, petal length, and petal width) about 3 different iris species. Looking at the table, we can not easily process the relationship between the measurements and species.
 
 ---
 
 # Tables and lists vs. Charts and graphs
 
+.center[
+<img src="images/table-modified.png" alt="modified table" style="width:680px;"/>
+]
 
-![](images/table-modified.png)
+
+???
+One way to explore this relationship is to display the information in the data set in a graphical format. Here we assign different variables in the data set to certain attributes on the chart. For example, we might plot the sepal length and width on the x and y axes respectively and then color the points by the species.
 
 ---
 
 # Tables and lists vs. Charts and graphs
 
-
-
-```{r motivating-example, fig.height=5, fig.width=8, fig.align = "center"}
+```{r motivating-example, fig.height=6, fig.width=10, fig.align = "center"}
 data(iris)
 ggplot(data = iris) + 
-  geom_point(aes(x = Sepal.Length, y = Sepal.Width, colour = Species), size = 2.5) +   scale_color_locuszoom()
+  geom_point(aes(x = Sepal.Length, y = Sepal.Width, colour = Species), size = 2.5) +
+  theme(axis.text = element_text(size = 14),
+        axis.title = element_text(size = 14),
+        legend.text = element_text(size = 14),
+        legend.title = element_text(size = 14)) +
+  scale_color_locuszoom()
 ```
 
 Visualizations can aid communication and make the data easier to perceive
 
+???
+We can now process and understand the relationship between the sepal size and species through graphical format. We can now clearly see that the setosa species (red) has a short sepal length with a long sepal width while the versicolor and virginica generally have both short or both long sepal widths and lengths resepectively. 
 
 ---
 class: center, middle, inverse
@@ -134,10 +147,12 @@ class: center, middle, inverse
 
 ## [The Data Vis Project](https://datavizproject.com/)
 ## [Data Visualization Catalogue](https://datavizcatalogue.com/)
+
+???
+It is useful to know of the different types of graphs out there. These two links, also found on the workshop webpage provide a resource for selecting the appropriate chart for your data.
+
 ---
-
 # Beginner
-
 
 .pull-left[
 **One Variable**
@@ -147,6 +162,7 @@ class: center, middle, inverse
   
 - Continuous
   - Stem and Leaf Plots
+  - Box and Whisker Plots
   - Histograms
   
 ]
@@ -158,9 +174,6 @@ class: center, middle, inverse
   
 - Maps
 ]
-
-<br/>
-
 
 ```{r beginner-plots, fig.height=4, fig.width=20, fig.pos="center"}
 # bar chart
@@ -209,9 +222,10 @@ grid.arrange(p1, p2, p3, p4, p5, ncol = 5, nrow = 1)
 
 ```
 
+???
+Here are some common charts most often seen. A bar chart or pie cart are used for displaying information about one discrete variable (count, proporton, mean for that group, etc.). Stem and Leaf Plots, Box and Whisker Plots, and Histograms are all useful for understanding the distribution of a single continuous variable. Scatterplots are a simple and effective way of understanding the relationship between two continuous variables and Maps can help us understand the spatial relationship between spatial information.
 
 ---
-
 # Intermediate
 
 - Parallel Coordinate Plots
@@ -277,9 +291,10 @@ i5 <- ggplot(data = df.team_data, aes(x = metrics, y = teams)) +
 grid.arrange(i2, i3, i4, i5, ncol = 4, nrow = 1)
 ```
 
+???
+There are many other kinds of plots that can be useful for exploring relationships of variables. Parallel Coordinate plots (quantitative - discrete) each row in a data set as a line or profile across the columns/variables in the data set. Mosaic plots are useful for visualizing the relationship between two discrete variables. Radar Charts are equivalent to parallel coordinate plots with the axes arranged in polar coordinates. Heat maps are useful for communicating 3D information by showing the magnitude of a phenomenon as color in two dimensions.
 
 ---
-
 # Advanced
 
 - Density Plots
@@ -312,32 +327,47 @@ a2 <- ggplot(diamonds, aes(x = cut, y = price)) +
   theme(legend.position = "none")
 
 # network plot
-library(geomnet)
 data(blood)
-a3 <- ggplot(data = blood$edges, aes(from_id = from, to_id = to)) +
-  geom_net(vertices=blood$vertices, aes(colour=..type..)) + 
+library(GGally)
+
+edges <- cbind(as.character(blood$edges$from), as.character(blood$edges$to))
+codes <- unique(c(blood$edges$from, blood$edges$to))  # All available blood type codes
+A <- matrix(0, nrow=length(codes), ncol=length(codes), dimnames=list(codes, codes))
+A[edges] <- 1
+
+a3 <- ggnet2(A, 
+             node.size = 14, 
+             node.color = "gray",
+             node.label = codes,
+             edge.size = 0.5, 
+             edge.color = "gray") +
   theme_net() +
-  scale_colour_grey(start=0.4, end= 0.9) + 
-  theme(legend.position = "none") + 
-  scale_x_continuous(name = "") +
-  scale_y_continuous(name = "") +
+  theme(legend.position = "none") +
   ggtitle(label = "Network Plot")
 
-# grid.arrange(a1, a2, a3, ncol = 3, nrow = 1)
-grid.arrange(a1, a2, ncol = 3, nrow = 1)
+# devtools::install_github("sctyner/geomnet")
+# library(geomnet)
+# a3 <- ggplot(data = blood$edges, aes(from_id = from, to_id = to)) +
+#   geom_net(vertices = blood$vertices, aes(colour=..type..)) +
+#   theme_net() +
+#   scale_colour_grey(start=0.4, end= 0.9) + 
+#   theme(legend.position = "none") + 
+#   scale_x_continuous(name = "") +
+#   scale_y_continuous(name = "") +
+#   ggtitle(label = "Network Plot")
+
+grid.arrange(a1, a2, a3, ncol = 3, nrow = 1)
 ```
 
+???
+Density and Volin plots help us explore the distribution of different variables. Social Network Plots help you investigate social structures through the use of networks and graph theory.
   
 ---
 class: center, middle, inverse
-
 # Grammar of Graphics
 
 ---
-
 # Grammar of Graphics
-
-
 
 What is the [grammar of graphics](https://link.springer.com/book/10.1007/0-387-28695-0)?
 
@@ -351,8 +381,6 @@ What is the [grammar of graphics](https://link.springer.com/book/10.1007/0-387-2
 
 ![](images/grammar.png)
 ???
-
-
 We often talk about types of graphs – bar plots, pie charts, scatterplots – as though they are unrelated, but most graphs share many aspects of their structure. 
 
 We can think of graphs as visual representations of (possibly transformed) data, along with labels (like axes and legends) that make the meaning clear.
@@ -366,7 +394,6 @@ A grammar provides a strong foundation for understanding a diverse range of grap
 Graphics are viewed as a mapping **from variables** in the data set **to visual attributes** on the chart.
 
 ---
-
 # Grammar of Graphics
 
 Different types of graphs may appear completely distinct, but in actuality share many common elements.
@@ -374,7 +401,6 @@ Different types of graphs may appear completely distinct, but in actuality share
 By making different visual choices, you can use graphs to highlight different aspects of the same data. 
 
 For example, here are three ways of displaying the same data:
-
 
 ```{r plots-3, fig.align='bottom', fig.height=5, fig.width=15}
 data(diamonds)
@@ -409,12 +435,11 @@ grid.arrange(gg1, gg2, gg3, ncol = 3, nrow = 1)
 
 
 ???
-add in description of how they are different
-
-
 Different types of graphs may, at first glance, appear completely distinct. But in fact, graphs share many common elements, such as coordinate systems and using geometric shapes to represent data. 
 
 By making different visual choices (Cartesian or polar coordinates, points or lines or bars to represent data), you can use graphs to highlight different aspects of the same data. For example, here are three ways of displaying the same data:
+
+Each of these charts display the count of diamonds of each cut in the data set. The first chart (bar-chart) displays a bar for each cut where the length of the bar resembles the number of diamonds in that cut. The second chart (fill-bar, aka stacked bar-chart) displays one bar sectioned into the different cuts by color. The third chart (fill-bar, pie chart) displays the stacked bar-chart in polar coordinates where the sections again represent the different cuts. Later we will discuss benefits and pitfalls of the different types of charts.
 
 ---
 
@@ -444,7 +469,7 @@ The internal processes that constitute the syntax of the grammar of graphics
 ![](images/grammar.png)
 
 
-a data flow diagram that shoes what the stages are, how they must be ordered, and waht data are required along the way
+a data flow diagram that shoes what the stages are, how they must be ordered, and what data are required along the way
 
 provides us the ingredients and the dependencies among them, but it does not tell us how to assemble the ingredients
 
@@ -486,14 +511,8 @@ class: center, middle, inverse
 .center[
 <img src="images/ggplot2-hex.png" alt="ggplot2-hex" style="width:350px;"/>
 ]
----
-.center[
-![](images/ggplot2.jpg)
 
-Building a masterpiece, by [Allison Horst](https://www.allisonhorst.com/)
-]
 ---
-
 ## A layered grammar vs The Grammar of Graphics
 
 ggplot2 is based on The Grammar of Graphics
@@ -629,6 +648,13 @@ layer:  </br>
 coordinates: Polar  </br>
 </p>
 </div>
+
+---
+.center[
+![](images/ggplot2.jpg)
+
+Building a masterpiece, by [Allison Horst](https://www.allisonhorst.com/)
+]
 
 ---
 

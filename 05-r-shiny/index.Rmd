@@ -13,7 +13,7 @@ The course will be very hands-on: after we show you the basics of Shiny, we will
 
 ## Timetable
 
-Date | Notes | Lectures and Resources
+Time | Notes | Lectures and Resources
 ---- | ---- | ----
 9 - 9:45 | [Setup and Introduction to Shiny](knitr/1-Setup.html) | This will make sure that everybody's system is up and running, and introduce you to Shiny <br/> **You should try to install Rstudio and shiny ahead of time, so that this time can be used to address potential problems.** <br/> [apps.zip](code/apps.zip)
 9:45 - 10:30 | [Structure of a Shiny Applet](knitr/2-ShinyStructure.html) | Learn about reactive programming and how to create a bare-bones shiny applet

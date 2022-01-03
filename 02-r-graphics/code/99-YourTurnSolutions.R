@@ -1,5 +1,73 @@
-### Graphics Intro
+### Graphics with ggplot2: Your Turn Solutions
+
+# Load libraries
 library(ggplot2)
+
+# --------------------------------------------
+# 1-GraphicsIntro: MAKE YOUR FIRST FIGURE ----
+# --------------------------------------------
+
+# R package and data set
+head(diamonds)
+
+# Begin with the data
+ggplot(data = diamonds)
+
+# Specify the aesthetic mappings
+ggplot(data = diamonds, aes(x = carat, y = price))
+
+# Choose a geom
+ggplot(data = diamonds, aes(x = carat, y = price)) +
+  geom_point()
+
+# Add an aesthetic
+ggplot(data = diamonds, aes(x = carat, y = price)) +
+  geom_point(aes(colour = cut))
+
+# Add another layer
+ggplot(data = diamonds, aes(x = carat, y = price)) +
+  geom_point(aes(colour = cut), size = 2, alpha = .5) +
+  geom_smooth()
+
+# Mapping aesthetics vs setting aesthetics
+ggplot(data = diamonds, aes(x = carat, y = price)) +
+  geom_point(aes(colour = cut), size = 2, alpha = .5) +
+  geom_smooth(aes(fill = cut), colour = "lightgrey") 
+
+# Coordinate transformations can be specified
+ggplot(data = diamonds, aes(x = carat, y = price)) +
+  geom_point(aes(colour = cut), size = 2, alpha = .5) +
+  geom_smooth(aes(fill = cut), colour = "lightgrey") +
+  scale_y_log10()
+
+# Specify facet variables
+ggplot(data = diamonds, aes(x = carat, y = price)) +
+  geom_point(aes(colour = cut), size = 2, alpha = .5) +
+  geom_smooth(aes(fill = cut), colour = "lightgrey") +
+  scale_y_log10() +
+  facet_wrap(~ cut)
+
+# --------------------------------------------
+# 2-Basics: Tidy Your Data -------------------
+# --------------------------------------------
+# To tidy the `preg` table use `pivot_longer()` to create a long table.
+
+preg <- tibble(pregnant = c("yes", "no"),
+               male = c(NA, 10),
+               female = c(20, 12))
+preg
+
+preg_long <- preg %>%
+  pivot_longer(cols = c("male", "female"),
+               names_to = "sex",
+               values_to = "count")
+preg_long
+
+
+
+
+
+
 #---------------------------------------------
 ## Your Turn 1 - qplot
 	tips <- read.csv("http://heike.github.io/rwrks/02-r-graphics/data/tips.csv")

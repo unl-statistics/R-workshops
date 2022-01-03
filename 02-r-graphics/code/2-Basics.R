@@ -40,3 +40,15 @@ french_fries_long <- french_fries %>%
                names_to = "variable",
                values_to = "value")
 head(french_fries_long)
+
+# --------------------------------------
+# YOUR TURN ----------------------------
+# --------------------------------------
+# To tidy the `preg` table use `pivot_longer()` to create a long table.
+
+preg <- tibble(pregnant = c("yes", "no"),
+               male = c(NA, 10),
+               female = c(20, 12))
+preg
+
+# See Your Turn Solutions

@@ -17,7 +17,7 @@ After the end of Graphics with ggplot, we expect you to be able to do the follow
 
 ## Timetable
 
-Date | Notes | Lectures and Resources
+Time | Notes | Lectures and Resources
 ---- | ---- | ----
 9 - 10:30 | [Look at that!](knitr/1-GraphicsIntro.html) | basic plots: scatterplots, boxplots, histograms, barcharts and more <br/> some aesthetics: color, shape, ... <br/> [1-GraphicsIntro.R](code/1-GraphicsIntro.R)
 10:30 - 10:45 | **Break** |
@@ -36,6 +36,7 @@ Date | Notes | Lectures and Resources
 + [ggplot2 reference guide](https://ggplot2.tidyverse.org/reference/)
 + Combine multiple plots with the `patchwork`, `cowplot`, and `gridExtra` packages
 + [ggplot2 Elegant Graphics for Data Analysis](https://ggplot2-book.org/index.html) by [Hadley Wickham](http://hadley.nz/), [Danielle Navarro](https://djnavarro.net/), and [Thomas Lin Pedersen](https://www.data-imaginist.com/)
++ [ggplot2 Extensions](https://exts.ggplot2.tidyverse.org/ggiraph.html) see also [slides](https://isugg21-ggext.netlify.app/#1) by [Ashirwad Barnwal](https://github.com/ashirwad)
 
 ### Types of Charts and Chart Styling
 

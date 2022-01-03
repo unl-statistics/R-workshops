@@ -3,6 +3,7 @@ title: "Data Visualization"
 subtitle: "Using ggplot2"
 output:
   xaringan::moon_reader:
+    # css: [default, rladies]
     lib_dir: libs
     nature:
       highlightStyle: github
@@ -66,7 +67,7 @@ class: center, middle
 # Why is data visualization important?
 <br/>
 
-- Exploratory Data Analysis (EDA)
+Exploratory Data Analysis (EDA)
 
 <br/>
 
@@ -90,173 +91,45 @@ Examples:
 
 # Anscombe's Quartet: data
 
-```{r, anscombe-data}
-data(anscombe)
-
+.pull-left[
+.pull-left[
+```{r, anscombe-set1}
 quartet_setI <- anscombe %>%
   select(x1, y1) %>%
   mutate(set = "I") %>%
   rename(x = x1, 
          y = y1)
-
+quartet_setI %>% select(x, y) %>% knitr::kable(caption = "Set I")
+```
+].pull-right[
+```{r anscombe-set2}
 quartet_setII <- anscombe %>%
   select(x2, y2) %>%
   mutate(set = "II") %>%
   rename(x = x2, 
          y = y2)
-
+quartet_setII %>% select(x, y) %>% knitr::kable(caption = "Set II")
+```
+]].pull-right[
+.pull-left[
+```{r anscombe-set3}
 quartet_setIII <- anscombe %>%
   select(x3, y3) %>%
   mutate(set = "III") %>%
   rename(x = x3, 
          y = y3)
-
+quartet_setIII %>% select(x, y) %>% knitr::kable(caption = "Set III")
+```
+].pull-right[
+```{r anscombe-set4}
 quartet_setIV <- anscombe %>%
   select(x4, y4) %>%
   mutate(set = "IV") %>%
   rename(x = x4, 
          y = y4)
+quartet_setIV %>% select(x, y) %>% knitr::kable(caption = "Set IV")
 ```
-
-<style type="text/css">
-.tg  {border-collapse:collapse;border-spacing:0;border-color:#aaa;}
-.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-color:#aaa;color:#333;background-color:#fff;}
-.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-color:#aaa;color:#fff;background-color:#f38630;}
-.tg .tg-j2zy{background-color:#FCFBE3;vertical-align:top}
-.tg .tg-baqh{text-align:center;vertical-align:top}
-.tg .tg-amwm{font-weight:bold;text-align:center;vertical-align:top}
-.tg .tg-jyax{background-color:#FCFBE3;font-weight:bold;text-align:center;vertical-align:top}
-.tg .tg-yq6s{background-color:#FCFBE3;text-align:center;vertical-align:top}
-.tg .tg-yw4l{vertical-align:top}
-</style>
-<table class="tg">
-  <tr>
-    <th class="tg-amwm" colspan="2">I</th>
-    <th class="tg-amwm" colspan="2">II</th>
-    <th class="tg-amwm" colspan="2">III</th>
-    <th class="tg-amwm" colspan="2">IV</th>
-  </tr>
-  <tr>
-    <td class="tg-amwm">x</td>
-    <td class="tg-jyax">y</td>
-    <td class="tg-amwm">x</td>
-    <td class="tg-jyax">y</td>
-    <td class="tg-amwm">x</td>
-    <td class="tg-jyax">y</td>
-    <td class="tg-amwm">x</td>
-    <td class="tg-jyax">y</td>
-  </tr>
-  <tr>
-    <td class="tg-baqh">10.0</td>
-    <td class="tg-yq6s">8.04</td>
-    <td class="tg-baqh">10.0</td>
-    <td class="tg-yq6s">9.14</td>
-    <td class="tg-baqh">10.0</td>
-    <td class="tg-yq6s">7.46</td>
-    <td class="tg-baqh">8.0</td>
-    <td class="tg-yq6s">6.58</td>
-  </tr>
-  <tr>
-    <td class="tg-baqh">8.0</td>
-    <td class="tg-yq6s">6.95</td>
-    <td class="tg-baqh">8.0</td>
-    <td class="tg-yq6s">8.14</td>
-    <td class="tg-baqh">8.0</td>
-    <td class="tg-yq6s">6.77</td>
-    <td class="tg-baqh">8.0</td>
-    <td class="tg-yq6s">5.76</td>
-  </tr>
-  <tr>
-    <td class="tg-baqh">13.0</td>
-    <td class="tg-yq6s">7.58</td>
-    <td class="tg-baqh">13.0</td>
-    <td class="tg-yq6s">8.74</td>
-    <td class="tg-baqh">13.0</td>
-    <td class="tg-yq6s">12.74</td>
-    <td class="tg-baqh">8.0</td>
-    <td class="tg-yq6s">7.71</td>
-  </tr>
-  <tr>
-    <td class="tg-baqh">9.0</td>
-    <td class="tg-yq6s">8.81</td>
-    <td class="tg-baqh">9.0</td>
-    <td class="tg-yq6s">8.77</td>
-    <td class="tg-baqh">9.0</td>
-    <td class="tg-yq6s">7.11</td>
-    <td class="tg-baqh">8.0</td>
-    <td class="tg-yq6s">8.84</td>
-  </tr>
-  <tr>
-    <td class="tg-baqh">11.0</td>
-    <td class="tg-yq6s">8.33</td>
-    <td class="tg-baqh">11.0</td>
-    <td class="tg-yq6s">9.26</td>
-    <td class="tg-baqh">11.0</td>
-    <td class="tg-yq6s">7.81</td>
-    <td class="tg-baqh">8.0</td>
-    <td class="tg-yq6s">8.47</td>
-  </tr>
-  <tr>
-    <td class="tg-baqh">14.0</td>
-    <td class="tg-yq6s">9.96</td>
-    <td class="tg-baqh">14.0</td>
-    <td class="tg-yq6s">8.10</td>
-    <td class="tg-baqh">14.0</td>
-    <td class="tg-yq6s">8.84</td>
-    <td class="tg-baqh">8.0</td>
-    <td class="tg-yq6s">7.04</td>
-  </tr>
-  <tr>
-    <td class="tg-baqh">6.0</td>
-    <td class="tg-yq6s">7.24</td>
-    <td class="tg-baqh">6.0</td>
-    <td class="tg-yq6s">6.13</td>
-    <td class="tg-baqh">6.0</td>
-    <td class="tg-yq6s">6.08</td>
-    <td class="tg-baqh">8.0</td>
-    <td class="tg-yq6s">5.25</td>
-  </tr>
-  <tr>
-    <td class="tg-baqh">4.0</td>
-    <td class="tg-yq6s">4.26</td>
-    <td class="tg-baqh">4.0</td>
-    <td class="tg-yq6s">3.10</td>
-    <td class="tg-baqh">4.0</td>
-    <td class="tg-yq6s">5.39</td>
-    <td class="tg-baqh">19.0</td>
-    <td class="tg-yq6s">12.50</td>
-  </tr>
-  <tr>
-    <td class="tg-baqh">12.0</td>
-    <td class="tg-yq6s">10.84</td>
-    <td class="tg-baqh">12.0</td>
-    <td class="tg-yq6s">9.13</td>
-    <td class="tg-baqh">12.0</td>
-    <td class="tg-yq6s">8.15</td>
-    <td class="tg-baqh">8.0</td>
-    <td class="tg-yq6s">5.56</td>
-  </tr>
-  <tr>
-    <td class="tg-baqh">7.0</td>
-    <td class="tg-yq6s">4.82</td>
-    <td class="tg-baqh">7.0</td>
-    <td class="tg-yq6s">7.26</td>
-    <td class="tg-baqh">7.0</td>
-    <td class="tg-yq6s">6.42</td>
-    <td class="tg-baqh">8.0</td>
-    <td class="tg-yq6s">7.91</td>
-  </tr>
-  <tr>
-    <td class="tg-yw4l">5.0</td>
-    <td class="tg-j2zy">5.68</td>
-    <td class="tg-yw4l">5.0</td>
-    <td class="tg-j2zy">4.74</td>
-    <td class="tg-yw4l">5.0</td>
-    <td class="tg-j2zy">5.73</td>
-    <td class="tg-yw4l">8.0</td>
-    <td class="tg-j2zy">6.89</td>
-  </tr>
-</table>
+]]
 
 ---
 
@@ -717,13 +590,15 @@ img <- readPNG("images/tablelong2.png")
 
 
 ```{r, eval=FALSE, echo=TRUE}
-data(french_fries, package="reshape2")
+data(french_fries, package = "reshape2")
 head(french_fries)
 ```
 
 **Wide Format:**
 
 ```{r, eval=T, echo=F}
+library(reshape2)
+data(french_fries)
 head(french_fries)%>% knitr::kable(row.names = F)
 ```
 
@@ -751,4 +626,17 @@ head(french_fries_long) %>% knitr::kable(row.names = F)
 
 <br>
 More on tidy data later! 
+
+---
+class: inverse
+# Your turn!
+
+```{r preg, echo = T, eval = T}
+preg <- tibble(pregnant = c("yes", "no"),
+               male = c(NA, 10),
+               female = c(20, 12))
+preg
+```
+
+To tidy the `preg` table use `pivot_longer()` to create a long table.
 

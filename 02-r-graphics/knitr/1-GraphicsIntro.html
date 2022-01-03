@@ -43,6 +43,8 @@ Visualization offers an alternative way of communicating numbers
 ]
 
 ???
+One of the main reasons for visualization is to communicate information.
+
 In 1812, Napoleon marched to Moscow in order to conquer the city. It was a disaster: having started with around 470,000 soldiers, he returned with just 10,000. This chart tells the story of that campaign and has become one of the most famous visualizations of all time. The map details the out-and-back journey of Napoleon’s troops. The width of the line represents the total number of soldiers and the color represents the direction (yellow for towards Moscow, black for the return trip). Below the central visualization is also a simple temperature line graph illustrating the rapidly dropping winter cold. It is effective, detailed, and paints a staggering picture of the journey’s devastation. 
 
 ---
@@ -50,90 +52,55 @@ In 1812, Napoleon marched to Moscow in order to conquer the city. It was a disas
 # Tables and lists vs. Charts and graphs
 
 
-&lt;table&gt;
- &lt;thead&gt;
-  &lt;tr&gt;
-   &lt;th style="text-align:right;"&gt; Sepal.Length &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; Sepal.Width &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; Petal.Length &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; Petal.Width &lt;/th&gt;
-   &lt;th style="text-align:left;"&gt; Species &lt;/th&gt;
-  &lt;/tr&gt;
- &lt;/thead&gt;
-&lt;tbody&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 5.1 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 3.5 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1.4 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.2 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; setosa &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 4.9 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 3.0 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1.4 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.2 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; setosa &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 4.7 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 3.2 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1.3 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.2 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; setosa &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 4.6 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 3.1 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1.5 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.2 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; setosa &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 5.0 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 3.6 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1.4 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.2 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; setosa &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 5.4 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 3.9 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1.7 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.4 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; setosa &lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
+
+| Sepal.Length| Sepal.Width| Petal.Length| Petal.Width|Species    |
+|------------:|-----------:|------------:|-----------:|:----------|
+|          5.1|         3.5|          1.4|         0.2|setosa     |
+|          4.9|         3.0|          1.4|         0.2|setosa     |
+|          4.7|         3.2|          1.3|         0.2|setosa     |
+|          5.0|         3.3|          1.4|         0.2|setosa     |
+|          7.0|         3.2|          4.7|         1.4|versicolor |
+|          6.4|         3.2|          4.5|         1.5|versicolor |
+|          6.9|         3.1|          4.9|         1.5|versicolor |
+|          5.7|         2.8|          4.1|         1.3|versicolor |
+|          6.3|         3.3|          6.0|         2.5|virginica  |
+|          5.8|         2.7|          5.1|         1.9|virginica  |
+|          7.1|         3.0|          5.9|         2.1|virginica  |
 
 ???
 
 **Consider this thought experiment:** You have a simple data set - 2 variables, 500 observations. You want to get a sense of how the variables relate to each other. You can do one of the following options:
 
-+ Print out the data set
-+ Create some summary statistics of each variable and perhaps the covariance between the two variables
-+ Draw a scatter plot of the two variables
+1. Print out the data set
+2. Create some summary statistics of each variable and perhaps the covariance between the two variables
+3. Draw a scatter plot of the two variables
 
 Which one would you rather use? Why?
 
+Here we see the iris data set in table format - contains measurements (sepal length, sepal width, petal length, and petal width) about 3 different iris species. Looking at the table, we can not easily process the relationship between the measurements and species.
 
 ---
 
 # Tables and lists vs. Charts and graphs
 
+.center[
+&lt;img src="images/table-modified.png" alt="modified table" style="width:680px;"/&gt;
+]
 
-![](images/table-modified.png)
+
+???
+One way to explore this relationship is to display the information in the data set in a graphical format. Here we assign different variables in the data set to certain attributes on the chart. For example, we might plot the sepal length and width on the x and y axes respectively and then color the points by the species.
 
 ---
 
 # Tables and lists vs. Charts and graphs
-
-
 
 &lt;img src="1-GraphicsIntro_files/figure-html/motivating-example-1.png" style="display: block; margin: auto;" /&gt;
 
 Visualizations can aid communication and make the data easier to perceive
 
+???
+We can now process and understand the relationship between the sepal size and species through graphical format. We can now clearly see that the setosa species (red) has a short sepal length with a long sepal width while the versicolor and virginica generally have both short or both long sepal widths and lengths resepectively. 
 
 ---
 class: center, middle, inverse
@@ -142,10 +109,12 @@ class: center, middle, inverse
 
 ## [The Data Vis Project](https://datavizproject.com/)
 ## [Data Visualization Catalogue](https://datavizcatalogue.com/)
+
+???
+It is useful to know of the different types of graphs out there. These two links, also found on the workshop webpage provide a resource for selecting the appropriate chart for your data.
+
 ---
-
 # Beginner
-
 
 .pull-left[
 **One Variable**
@@ -155,6 +124,7 @@ class: center, middle, inverse
   
 - Continuous
   - Stem and Leaf Plots
+  - Box and Whisker Plots
   - Histograms
   
 ]
@@ -167,14 +137,12 @@ class: center, middle, inverse
 - Maps
 ]
 
-&lt;br/&gt;
-
-
 ![](1-GraphicsIntro_files/figure-html/beginner-plots-1.png)&lt;!-- --&gt;
 
+???
+Here are some common charts most often seen. A bar chart or pie cart are used for displaying information about one discrete variable (count, proporton, mean for that group, etc.). Stem and Leaf Plots, Box and Whisker Plots, and Histograms are all useful for understanding the distribution of a single continuous variable. Scatterplots are a simple and effective way of understanding the relationship between two continuous variables and Maps can help us understand the spatial relationship between spatial information.
 
 ---
-
 # Intermediate
 
 - Parallel Coordinate Plots
@@ -189,9 +157,10 @@ class: center, middle, inverse
 
 ![](1-GraphicsIntro_files/figure-html/intermediate-plots-1.png)&lt;!-- --&gt;
 
+???
+There are many other kinds of plots that can be useful for exploring relationships of variables. Parallel Coordinate plots (quantitative - discrete) each row in a data set as a line or profile across the columns/variables in the data set. Mosaic plots are useful for visualizing the relationship between two discrete variables. Radar Charts are equivalent to parallel coordinate plots with the axes arranged in polar coordinates. Heat maps are useful for communicating 3D information by showing the magnitude of a phenomenon as color in two dimensions.
 
 ---
-
 # Advanced
 
 - Density Plots
@@ -205,17 +174,15 @@ class: center, middle, inverse
 
 ![](1-GraphicsIntro_files/figure-html/advanced-plots-1.png)&lt;!-- --&gt;
 
+???
+Density and Volin plots help us explore the distribution of different variables. Social Network Plots help you investigate social structures through the use of networks and graph theory.
   
 ---
 class: center, middle, inverse
-
 # Grammar of Graphics
 
 ---
-
 # Grammar of Graphics
-
-
 
 What is the [grammar of graphics](https://link.springer.com/book/10.1007/0-387-28695-0)?
 
@@ -229,8 +196,6 @@ What is the [grammar of graphics](https://link.springer.com/book/10.1007/0-387-2
 
 ![](images/grammar.png)
 ???
-
-
 We often talk about types of graphs – bar plots, pie charts, scatterplots – as though they are unrelated, but most graphs share many aspects of their structure. 
 
 We can think of graphs as visual representations of (possibly transformed) data, along with labels (like axes and legends) that make the meaning clear.
@@ -244,7 +209,6 @@ A grammar provides a strong foundation for understanding a diverse range of grap
 Graphics are viewed as a mapping **from variables** in the data set **to visual attributes** on the chart.
 
 ---
-
 # Grammar of Graphics
 
 Different types of graphs may appear completely distinct, but in actuality share many common elements.
@@ -253,17 +217,15 @@ By making different visual choices, you can use graphs to highlight different as
 
 For example, here are three ways of displaying the same data:
 
-
 &lt;img src="1-GraphicsIntro_files/figure-html/plots-3-1.png"  /&gt;
 
 
 ???
-add in description of how they are different
-
-
 Different types of graphs may, at first glance, appear completely distinct. But in fact, graphs share many common elements, such as coordinate systems and using geometric shapes to represent data. 
 
 By making different visual choices (Cartesian or polar coordinates, points or lines or bars to represent data), you can use graphs to highlight different aspects of the same data. For example, here are three ways of displaying the same data:
+
+Each of these charts display the count of diamonds of each cut in the data set. The first chart (bar-chart) displays a bar for each cut where the length of the bar resembles the number of diamonds in that cut. The second chart (fill-bar, aka stacked bar-chart) displays one bar sectioned into the different cuts by color. The third chart (fill-bar, pie chart) displays the stacked bar-chart in polar coordinates where the sections again represent the different cuts. Later we will discuss benefits and pitfalls of the different types of charts.
 
 ---
 
@@ -293,7 +255,7 @@ The internal processes that constitute the syntax of the grammar of graphics
 ![](images/grammar.png)
 
 
-a data flow diagram that shoes what the stages are, how they must be ordered, and waht data are required along the way
+a data flow diagram that shoes what the stages are, how they must be ordered, and what data are required along the way
 
 provides us the ingredients and the dependencies among them, but it does not tell us how to assemble the ingredients
 
@@ -335,14 +297,8 @@ class: center, middle, inverse
 .center[
 &lt;img src="images/ggplot2-hex.png" alt="ggplot2-hex" style="width:350px;"/&gt;
 ]
----
-.center[
-![](images/ggplot2.jpg)
 
-Building a masterpiece, by [Allison Horst](https://www.allisonhorst.com/)
-]
 ---
-
 ## A layered grammar vs The Grammar of Graphics
 
 ggplot2 is based on The Grammar of Graphics
@@ -476,6 +432,13 @@ layer:  &lt;/br&gt;
 coordinates: Polar  &lt;/br&gt;
 &lt;/p&gt;
 &lt;/div&gt;
+
+---
+.center[
+![](images/ggplot2.jpg)
+
+Building a masterpiece, by [Allison Horst](https://www.allisonhorst.com/)
+]
 
 ---
 

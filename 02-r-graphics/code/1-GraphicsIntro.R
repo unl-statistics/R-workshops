@@ -146,19 +146,35 @@ a2 <- ggplot(diamonds, aes(x = cut, y = price)) +
   theme(legend.position = "none")
 
 # network plot
-# devtools::install_github("sctyner/geomnet")
-library(geomnet)
 data(blood)
-summary(blood$edges)
-summary(blood$vertices)
-a3 <- ggplot(data = blood$edges, aes(from_id = from, to_id = to)) +
-  geom_net(vertices = blood$vertices, aes(colour=..type..)) +
+library(GGally)
+
+edges <- cbind(as.character(blood$edges$from), as.character(blood$edges$to))
+codes <- unique(c(blood$edges$from, blood$edges$to))  # All available blood type codes
+A <- matrix(0, nrow=length(codes), ncol=length(codes), dimnames=list(codes, codes))
+A[edges] <- 1
+
+a3 <- ggnet2(A, 
+             node.size = 14, 
+             node.color = "gray",
+             node.label = codes,
+             edge.size = 0.5, 
+             edge.color = "gray") +
   theme_net() +
-  scale_colour_grey(start=0.4, end= 0.9) + 
-  theme(legend.position = "none") + 
-  scale_x_continuous(name = "") +
-  scale_y_continuous(name = "") +
+  theme(legend.position = "none") +
   ggtitle(label = "Network Plot")
+a3
+
+# devtools::install_github("sctyner/geomnet")
+# library(geomnet)
+# a3 <- ggplot(data = blood$edges, aes(from_id = from, to_id = to)) +
+#   geom_net(vertices = blood$vertices, aes(colour=..type..)) +
+#   theme_net() +
+#   scale_colour_grey(start=0.4, end= 0.9) + 
+#   theme(legend.position = "none") + 
+#   scale_x_continuous(name = "") +
+#   scale_y_continuous(name = "") +
+#   ggtitle(label = "Network Plot")
 
 grid.arrange(a1, a2, a3, ncol = 3, nrow = 1)
 
@@ -199,53 +215,5 @@ grid.arrange(gg1, gg2, gg3, ncol = 3, nrow = 1)
 # --------------------------------------
 # MAKE YOUR FIRST FIGURE ---------------
 # --------------------------------------
+# See Your Turn Solutions
 
-# Replace the '...' with the variable/layer
-
-# R package and data set
-library(ggplot2)
-head(diamonds)
-
-# Begin with the data
-ggplot(data = ...)
-
-# Specify the aesthetic mappings
-ggplot(data = diamonds, aes(x = ..., y = ...))
-
-# Choose a geom
-ggplot(data = diamonds, aes(x = carat, y = price)) +
-  ...
-
-# Add an aesthetic
-ggplot(data = diamonds, aes(x = carat, y = price)) +
-    geom_point(aes(colour = ...))
-
-# Add another layer
-ggplot(data = diamonds, aes(x = carat, y = price)) +
-    geom_point(aes(colour = cut)) +
-    ...
-
-# Mapping aesthetics vs setting aesthetics
-ggplot(data = diamonds, aes(x = carat, y = price)) +
-    geom_point(aes(colour = cut), size = 2, alpha = .5) +
-    geom_smooth(aes(fill = ...), colour = ...)
-
-# Coordinate transformations can be specified
-ggplot(data = diamonds, aes(x = carat, y = price)) +
-    geom_point(aes(colour = cut), size = 2, alpha = .5) +
-    geom_smooth(aes(fill = cut), colour = "lightgrey") +
-    ...
-
-# Specify facet variables
-ggplot(data = diamonds, aes(x = carat, y = price)) +
-    geom_point(aes(colour = cut), size = 2, alpha = .5) +
-    geom_smooth(aes(fill = cut), colour = "lightgrey") +
-    scale_y_log10() +
-    ...
-
-# Final Plot
-ggplot(data = diamonds, aes(x = carat, y = price)) +
-  geom_point(aes(colour = cut), size = 2, alpha = .5) +
-  geom_smooth(aes(fill = cut), colour = "lightgrey") +
-  scale_y_log10() +
-  facet_wrap(~ cut)

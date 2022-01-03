@@ -30,7 +30,7 @@ class: center, middle
 # Why is data visualization important?
 &lt;br/&gt;
 
-- Exploratory Data Analysis (EDA)
+Exploratory Data Analysis (EDA)
 
 &lt;br/&gt;
 
@@ -54,147 +54,77 @@ Examples:
 
 # Anscombe's Quartet: data
 
+.pull-left[
+.pull-left[
 
+Table: Set I
 
-&lt;style type="text/css"&gt;
-.tg  {border-collapse:collapse;border-spacing:0;border-color:#aaa;}
-.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-color:#aaa;color:#333;background-color:#fff;}
-.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-color:#aaa;color:#fff;background-color:#f38630;}
-.tg .tg-j2zy{background-color:#FCFBE3;vertical-align:top}
-.tg .tg-baqh{text-align:center;vertical-align:top}
-.tg .tg-amwm{font-weight:bold;text-align:center;vertical-align:top}
-.tg .tg-jyax{background-color:#FCFBE3;font-weight:bold;text-align:center;vertical-align:top}
-.tg .tg-yq6s{background-color:#FCFBE3;text-align:center;vertical-align:top}
-.tg .tg-yw4l{vertical-align:top}
-&lt;/style&gt;
-&lt;table class="tg"&gt;
-  &lt;tr&gt;
-    &lt;th class="tg-amwm" colspan="2"&gt;I&lt;/th&gt;
-    &lt;th class="tg-amwm" colspan="2"&gt;II&lt;/th&gt;
-    &lt;th class="tg-amwm" colspan="2"&gt;III&lt;/th&gt;
-    &lt;th class="tg-amwm" colspan="2"&gt;IV&lt;/th&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-    &lt;td class="tg-amwm"&gt;x&lt;/td&gt;
-    &lt;td class="tg-jyax"&gt;y&lt;/td&gt;
-    &lt;td class="tg-amwm"&gt;x&lt;/td&gt;
-    &lt;td class="tg-jyax"&gt;y&lt;/td&gt;
-    &lt;td class="tg-amwm"&gt;x&lt;/td&gt;
-    &lt;td class="tg-jyax"&gt;y&lt;/td&gt;
-    &lt;td class="tg-amwm"&gt;x&lt;/td&gt;
-    &lt;td class="tg-jyax"&gt;y&lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-    &lt;td class="tg-baqh"&gt;10.0&lt;/td&gt;
-    &lt;td class="tg-yq6s"&gt;8.04&lt;/td&gt;
-    &lt;td class="tg-baqh"&gt;10.0&lt;/td&gt;
-    &lt;td class="tg-yq6s"&gt;9.14&lt;/td&gt;
-    &lt;td class="tg-baqh"&gt;10.0&lt;/td&gt;
-    &lt;td class="tg-yq6s"&gt;7.46&lt;/td&gt;
-    &lt;td class="tg-baqh"&gt;8.0&lt;/td&gt;
-    &lt;td class="tg-yq6s"&gt;6.58&lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-    &lt;td class="tg-baqh"&gt;8.0&lt;/td&gt;
-    &lt;td class="tg-yq6s"&gt;6.95&lt;/td&gt;
-    &lt;td class="tg-baqh"&gt;8.0&lt;/td&gt;
-    &lt;td class="tg-yq6s"&gt;8.14&lt;/td&gt;
-    &lt;td class="tg-baqh"&gt;8.0&lt;/td&gt;
-    &lt;td class="tg-yq6s"&gt;6.77&lt;/td&gt;
-    &lt;td class="tg-baqh"&gt;8.0&lt;/td&gt;
-    &lt;td class="tg-yq6s"&gt;5.76&lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-    &lt;td class="tg-baqh"&gt;13.0&lt;/td&gt;
-    &lt;td class="tg-yq6s"&gt;7.58&lt;/td&gt;
-    &lt;td class="tg-baqh"&gt;13.0&lt;/td&gt;
-    &lt;td class="tg-yq6s"&gt;8.74&lt;/td&gt;
-    &lt;td class="tg-baqh"&gt;13.0&lt;/td&gt;
-    &lt;td class="tg-yq6s"&gt;12.74&lt;/td&gt;
-    &lt;td class="tg-baqh"&gt;8.0&lt;/td&gt;
-    &lt;td class="tg-yq6s"&gt;7.71&lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-    &lt;td class="tg-baqh"&gt;9.0&lt;/td&gt;
-    &lt;td class="tg-yq6s"&gt;8.81&lt;/td&gt;
-    &lt;td class="tg-baqh"&gt;9.0&lt;/td&gt;
-    &lt;td class="tg-yq6s"&gt;8.77&lt;/td&gt;
-    &lt;td class="tg-baqh"&gt;9.0&lt;/td&gt;
-    &lt;td class="tg-yq6s"&gt;7.11&lt;/td&gt;
-    &lt;td class="tg-baqh"&gt;8.0&lt;/td&gt;
-    &lt;td class="tg-yq6s"&gt;8.84&lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-    &lt;td class="tg-baqh"&gt;11.0&lt;/td&gt;
-    &lt;td class="tg-yq6s"&gt;8.33&lt;/td&gt;
-    &lt;td class="tg-baqh"&gt;11.0&lt;/td&gt;
-    &lt;td class="tg-yq6s"&gt;9.26&lt;/td&gt;
-    &lt;td class="tg-baqh"&gt;11.0&lt;/td&gt;
-    &lt;td class="tg-yq6s"&gt;7.81&lt;/td&gt;
-    &lt;td class="tg-baqh"&gt;8.0&lt;/td&gt;
-    &lt;td class="tg-yq6s"&gt;8.47&lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-    &lt;td class="tg-baqh"&gt;14.0&lt;/td&gt;
-    &lt;td class="tg-yq6s"&gt;9.96&lt;/td&gt;
-    &lt;td class="tg-baqh"&gt;14.0&lt;/td&gt;
-    &lt;td class="tg-yq6s"&gt;8.10&lt;/td&gt;
-    &lt;td class="tg-baqh"&gt;14.0&lt;/td&gt;
-    &lt;td class="tg-yq6s"&gt;8.84&lt;/td&gt;
-    &lt;td class="tg-baqh"&gt;8.0&lt;/td&gt;
-    &lt;td class="tg-yq6s"&gt;7.04&lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-    &lt;td class="tg-baqh"&gt;6.0&lt;/td&gt;
-    &lt;td class="tg-yq6s"&gt;7.24&lt;/td&gt;
-    &lt;td class="tg-baqh"&gt;6.0&lt;/td&gt;
-    &lt;td class="tg-yq6s"&gt;6.13&lt;/td&gt;
-    &lt;td class="tg-baqh"&gt;6.0&lt;/td&gt;
-    &lt;td class="tg-yq6s"&gt;6.08&lt;/td&gt;
-    &lt;td class="tg-baqh"&gt;8.0&lt;/td&gt;
-    &lt;td class="tg-yq6s"&gt;5.25&lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-    &lt;td class="tg-baqh"&gt;4.0&lt;/td&gt;
-    &lt;td class="tg-yq6s"&gt;4.26&lt;/td&gt;
-    &lt;td class="tg-baqh"&gt;4.0&lt;/td&gt;
-    &lt;td class="tg-yq6s"&gt;3.10&lt;/td&gt;
-    &lt;td class="tg-baqh"&gt;4.0&lt;/td&gt;
-    &lt;td class="tg-yq6s"&gt;5.39&lt;/td&gt;
-    &lt;td class="tg-baqh"&gt;19.0&lt;/td&gt;
-    &lt;td class="tg-yq6s"&gt;12.50&lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-    &lt;td class="tg-baqh"&gt;12.0&lt;/td&gt;
-    &lt;td class="tg-yq6s"&gt;10.84&lt;/td&gt;
-    &lt;td class="tg-baqh"&gt;12.0&lt;/td&gt;
-    &lt;td class="tg-yq6s"&gt;9.13&lt;/td&gt;
-    &lt;td class="tg-baqh"&gt;12.0&lt;/td&gt;
-    &lt;td class="tg-yq6s"&gt;8.15&lt;/td&gt;
-    &lt;td class="tg-baqh"&gt;8.0&lt;/td&gt;
-    &lt;td class="tg-yq6s"&gt;5.56&lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-    &lt;td class="tg-baqh"&gt;7.0&lt;/td&gt;
-    &lt;td class="tg-yq6s"&gt;4.82&lt;/td&gt;
-    &lt;td class="tg-baqh"&gt;7.0&lt;/td&gt;
-    &lt;td class="tg-yq6s"&gt;7.26&lt;/td&gt;
-    &lt;td class="tg-baqh"&gt;7.0&lt;/td&gt;
-    &lt;td class="tg-yq6s"&gt;6.42&lt;/td&gt;
-    &lt;td class="tg-baqh"&gt;8.0&lt;/td&gt;
-    &lt;td class="tg-yq6s"&gt;7.91&lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-    &lt;td class="tg-yw4l"&gt;5.0&lt;/td&gt;
-    &lt;td class="tg-j2zy"&gt;5.68&lt;/td&gt;
-    &lt;td class="tg-yw4l"&gt;5.0&lt;/td&gt;
-    &lt;td class="tg-j2zy"&gt;4.74&lt;/td&gt;
-    &lt;td class="tg-yw4l"&gt;5.0&lt;/td&gt;
-    &lt;td class="tg-j2zy"&gt;5.73&lt;/td&gt;
-    &lt;td class="tg-yw4l"&gt;8.0&lt;/td&gt;
-    &lt;td class="tg-j2zy"&gt;6.89&lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/table&gt;
+|  x|     y|
+|--:|-----:|
+| 10|  8.04|
+|  8|  6.95|
+| 13|  7.58|
+|  9|  8.81|
+| 11|  8.33|
+| 14|  9.96|
+|  6|  7.24|
+|  4|  4.26|
+| 12| 10.84|
+|  7|  4.82|
+|  5|  5.68|
+].pull-right[
+
+Table: Set II
+
+|  x|    y|
+|--:|----:|
+| 10| 9.14|
+|  8| 8.14|
+| 13| 8.74|
+|  9| 8.77|
+| 11| 9.26|
+| 14| 8.10|
+|  6| 6.13|
+|  4| 3.10|
+| 12| 9.13|
+|  7| 7.26|
+|  5| 4.74|
+]].pull-right[
+.pull-left[
+
+Table: Set III
+
+|  x|     y|
+|--:|-----:|
+| 10|  7.46|
+|  8|  6.77|
+| 13| 12.74|
+|  9|  7.11|
+| 11|  7.81|
+| 14|  8.84|
+|  6|  6.08|
+|  4|  5.39|
+| 12|  8.15|
+|  7|  6.42|
+|  5|  5.73|
+].pull-right[
+
+Table: Set IV
+
+|  x|     y|
+|--:|-----:|
+|  8|  6.58|
+|  8|  5.76|
+|  8|  7.71|
+|  8|  8.84|
+|  8|  8.47|
+|  8|  7.04|
+|  8|  5.25|
+| 19| 12.50|
+|  8|  5.56|
+|  8|  7.91|
+|  8|  6.89|
+]]
 
 ---
 
@@ -615,7 +545,7 @@ The data is the same, but the layout is different. Our vocabulary of rows and co
 
 
 ```r
-data(french_fries, package="reshape2")
+data(french_fries, package = "reshape2")
 head(french_fries)
 ```
 
@@ -658,6 +588,28 @@ head(french_fries_long)
 
 &lt;br&gt;
 More on tidy data later! 
+
+---
+class: inverse
+# Your turn!
+
+
+```r
+preg &lt;- tibble(pregnant = c("yes", "no"),
+               male = c(NA, 10),
+               female = c(20, 12))
+preg
+```
+
+```
+## # A tibble: 2 x 3
+##   pregnant  male female
+##   &lt;chr&gt;    &lt;dbl&gt;  &lt;dbl&gt;
+## 1 yes         NA     20
+## 2 no          10     12
+```
+
+To tidy the `preg` table use `pivot_longer()` to create a long table.
 
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
