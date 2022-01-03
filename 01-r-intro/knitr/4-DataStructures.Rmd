@@ -53,7 +53,12 @@ Use [Edgar Anderson's Iris Data](https://en.wikipedia.org/wiki/Iris_flower_data_
 
 ```{r}
 flower <- iris
+
+head(flower)
 ```
+
+---
+## Data Frame Demo
 
 Select Species column (5th column):
 
@@ -104,7 +109,7 @@ mydf
 We can use the `names` function to set that first column to lowercase:
 
 ```{r}
-names(mydf)[1] <- "nums"
+names(mydf)[1]<- ("nums")
 mydf
 ```
 
@@ -116,7 +121,9 @@ class: inverse
 
 2. Select only rows with value `"a"` in column 2 using logical vector
 
-3. `mtcars` is a built-in data set like `iris`: Extract the 4th row of the `mtcars` data.
+3. Rename both column 1 and column 2 to something of your choosing.
+
+4. `mtcars` is a built-in data set like `iris`: Extract the 4th row of the `mtcars` data.
 
 ---
 ## Lists
@@ -250,17 +257,53 @@ tout[[3]]
 ```
 
 ---
+
+## Project Management: Working Directories
+
+- The working directory in R is the folder where you are working
+  + Place where you have to store your files of your project in order to load them into R or where would save outputs
+  
+- Check your working directory using `getwd()` function
+
+- Change your working directory using `setwd()` function
+  + `setwd("My\\Path")` or `setwd("My/Path")` 
+  + Or Session -> Set Working Directory -> Choose Directory. This allows you to browse your computer and choose your desired folder without having to know the file path. 
+  
+---
+## Project Management: R Projects
+
+- What is R Projects?
+  + When working on your research it is beneficial to keep all associated files with a project together. 
+  + Sets your working directory for you
+- How to Create One?
+  + File -> New Project -> New Directory -> New Project
+  + If already have a folder created: File -> New Project -> Existing Directory 
+  + This will take you to a page where you create a folder and then the file path to that folder (subdirectory)
+
+[Reference for creating RStudio Projects](https://r4ds.had.co.nz/workflow-projects.html#rstudio-projects) $\\$
+[RStudio Projects Website](https://support.rstudio.com/hc/en-us/articles/200526207-Using-RStudio-Projects)
+
+---
+## Your Turn: Create a Project Together for this Workshop
+
+- Create a RStudio Project for the workshop that you can use throughout the week. 
+  + You can save R files along with the datasets, so you won't have to set your working directory each day. 
+
+---
 ## Importing Data
 
 We often need to import in our own data rather than just using built-in datasets.
 
-- First need to tell R where the data is saved using `setwd()`
+- First need to find where you have your file saved.
+  + Think back to our discussion about Working Directories and R Studio Projects in the Previous Slides
 
 - Data read in using R functions such as:
 
     - `read_table()` for reading in .txt files
 
     - `read_csv()` for reading in .csv files
+    
+    - `read_excel() from the readxl package for .xlsx files`
 
 - Assign the data to new R object when reading in the file
 
@@ -272,13 +315,20 @@ We first create a csv file (We can use a text editor or MS Excel)
 Then we load it in:
 
 ```{r, eval=FALSE}
-littledata <- read_csv("PretendData.csv")
+littledata <- read_csv("tips.csv", header = TRUE)
+
+head(littledata)
 ```
+
+I like to use `head()` to make sure my data read in how I thought it should .
+
 
 ---
 class: inverse
 ## Your Turn 
 
-- Make 5 rows of data in an excel spreadsheet and save it as a *tab-delimited txt file*.
+- Make 5 rows of data in an excel spreadsheet and save it as a *tab-delimited txt file*. (or use `yourturndata.txt` on the website)
 
 - Import this new .txt file into R with `read_table`. You may need to look at the help page for `read_table` in order to properly do this.
+
+- If want to try a csv file, try reading in the `tips.csv` file yourself. 

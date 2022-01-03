@@ -22,7 +22,7 @@ mymean <- function(data) {
 for (i in 1:3) {
     print(i)
 }
-final_shed <- read.csv("http://heike.github.io/rwrks/01-r-intro/data/final_shedding.csv")
+final_shed <- read.csv("https://srvanderplas.github.io/rwrks/01-r-intro/data/daily_shedding.csv")
 
 id <- c("pig_weight", "total_shedding", "daily_shedding")
 for (colname in id) {
