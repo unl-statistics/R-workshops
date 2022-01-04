@@ -16,7 +16,12 @@ library(tidyverse)
 
 ## Regular Expressions 
 
+
 <img src="images/email.png" class="cover" width=1600>
+$\\$ $\\$ $\\$ $\\$ $\\$ $\\$
+#### Regular Expressions are a sequence of characters that match a pattern in text.
+
+
 
 ---
 
@@ -89,11 +94,12 @@ grep(pattern = "[nN]e", state.name, value = TRUE)
 | expression          | meaning          |
 ----------------------------|:---------------------------- |
 | `\x` | match a hexadecimal number |
-| `\s` | whitespace |
+| `\s` | whitespace|
 | ^ | starting position within the string |
 | $ | ending position with in the string |
 | `< >` | start, end of a word |
 | `\t \r \v \n` | tab, carriage return, vertical tab, new line |
+| `\d` | represents a digit |
 
 ---
 ## Multipliers
@@ -168,15 +174,15 @@ What do these regular expressions do?
 
 `[A-Z]\{3,\}`
 
-`\[.\]`
-
 `[bB]ar ?[cC]hart`
 
 `^[0-9]{5}$`
 
 `^(\d{3}-\d{3}-\d{4})*$`
 
-`(\w[-._\w]*\w@\w[-._\w]*\w\.\w{2,3})`
+<!-- `(\w[-._\w]*\w@\w[-._\w]*\w\.\w{2,3})` - might be a little to difficult!! -->
+
+
 
 ---
 
@@ -230,7 +236,7 @@ Imagine want to extract some sample data that has been coded into our sample nam
 For example, X1P10N2AFD0 encodes the experiment, pig number, pen, tissue, and day.
 
 ```{r}
-meta <- read.table("http://heike.github.io/rwrks/01-r-intro/data/meta.txt")
+meta <- read.table("https://srvanderplas.github.io/rwrks/01-r-intro/data/meta.txt")
 head(meta)
 ```
 
@@ -244,7 +250,7 @@ We use the expression `D` as cue; the number after that is the day:
 
 ```{r}
 meta$day <- gsub('.*D([:digit:]*)','\\1', meta$Group)
-head(meta)
+head(meta$day)
 ```
 
 

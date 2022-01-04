@@ -322,8 +322,10 @@ pignum <- head(final_shed$pignum)
 pignum
 as.character(pignum)
 as.numeric("77")
+#as.factor()
 ```
 
+[More Abuot Data Types](https://www.geeksforgeeks.org/r-data-types/)
 ---
 ## Some useful functions
 

@@ -1,5 +1,4 @@
-## ----setup, include=FALSE, message=FALSE, warning = FALSE----------------
-knitr::opts_chunk$set(echo = TRUE)
+## ------------------------------------------------------------------------
 library(tidyverse)
 
 ## ------------------------------------------------------------------------
@@ -24,7 +23,7 @@ gsub("New", "Old", state.name)
 
 
 ## ------------------------------------------------------------------------
-meta <- read.table("http://heike.github.io/rwrks/01-r-intro/data/meta.txt")
+meta <- read.table("https://srvanderplas.github.io/rwrks/01-r-intro/data/meta.txt")
 head(meta)
 
 ## ------------------------------------------------------------------------

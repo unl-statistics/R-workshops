@@ -20,7 +20,12 @@ class: center, middle, inverse, title-slide
 
 ## Regular Expressions 
 
+
 &lt;img src="images/email.png" class="cover" width=1600&gt;
+`\(\\\)` `\(\\\)` `\(\\\)` `\(\\\)` `\(\\\)` `\(\\\)`
+#### Regular Expressions are a sequence of characters that match a pattern in text.
+
+
 
 ---
 
@@ -116,11 +121,12 @@ grep(pattern = "[nN]e", state.name, value = TRUE)
 | expression          | meaning          |
 ----------------------------|:---------------------------- |
 | `\x` | match a hexadecimal number |
-| `\s` | whitespace |
+| `\s` | whitespace|
 | ^ | starting position within the string |
 | $ | ending position with in the string |
 | `&lt; &gt;` | start, end of a word |
 | `\t \r \v \n` | tab, carriage return, vertical tab, new line |
+| `\d` | represents a digit |
 
 ---
 ## Multipliers
@@ -195,15 +201,15 @@ What do these regular expressions do?
 
 `[A-Z]\{3,\}`
 
-`\[.\]`
-
 `[bB]ar ?[cC]hart`
 
 `^[0-9]{5}$`
 
 `^(\d{3}-\d{3}-\d{4})*$`
 
-`(\w[-._\w]*\w@\w[-._\w]*\w\.\w{2,3})`
+&lt;!-- `(\w[-._\w]*\w@\w[-._\w]*\w\.\w{2,3})` - might be a little to difficult!! --&gt;
+
+
 
 ---
 
@@ -255,18 +261,22 @@ gsub("New", "Old", state.name)
 ```
 
 ```
-##  [1] "Alabama"        "Alaska"         "Arizona"        "Arkansas"      
-##  [5] "California"     "Colorado"       "Connecticut"    "Delaware"      
-##  [9] "Florida"        "Georgia"        "Hawaii"         "Idaho"         
-## [13] "Illinois"       "Indiana"        "Iowa"           "Kansas"        
-## [17] "Kentucky"       "Louisiana"      "Maine"          "Maryland"      
-## [21] "Massachusetts"  "Michigan"       "Minnesota"      "Mississippi"   
-## [25] "Missouri"       "Montana"        "Nebraska"       "Nevada"        
-## [29] "Old Hampshire"  "Old Jersey"     "Old Mexico"     "Old York"      
-## [33] "North Carolina" "North Dakota"   "Ohio"           "Oklahoma"      
-## [37] "Oregon"         "Pennsylvania"   "Rhode Island"   "South Carolina"
-## [41] "South Dakota"   "Tennessee"      "Texas"          "Utah"          
-## [45] "Vermont"        "Virginia"       "Washington"     "West Virginia" 
+##  [1] "Alabama"        "Alaska"         "Arizona"       
+##  [4] "Arkansas"       "California"     "Colorado"      
+##  [7] "Connecticut"    "Delaware"       "Florida"       
+## [10] "Georgia"        "Hawaii"         "Idaho"         
+## [13] "Illinois"       "Indiana"        "Iowa"          
+## [16] "Kansas"         "Kentucky"       "Louisiana"     
+## [19] "Maine"          "Maryland"       "Massachusetts" 
+## [22] "Michigan"       "Minnesota"      "Mississippi"   
+## [25] "Missouri"       "Montana"        "Nebraska"      
+## [28] "Nevada"         "Old Hampshire"  "Old Jersey"    
+## [31] "Old Mexico"     "Old York"       "North Carolina"
+## [34] "North Dakota"   "Ohio"           "Oklahoma"      
+## [37] "Oregon"         "Pennsylvania"   "Rhode Island"  
+## [40] "South Carolina" "South Dakota"   "Tennessee"     
+## [43] "Texas"          "Utah"           "Vermont"       
+## [46] "Virginia"       "Washington"     "West Virginia" 
 ## [49] "Wisconsin"      "Wyoming"
 ```
 
@@ -284,7 +294,7 @@ For example, X1P10N2AFD0 encodes the experiment, pig number, pen, tissue, and da
 
 
 ```r
-meta &lt;- read.table("http://heike.github.io/rwrks/01-r-intro/data/meta.txt")
+meta &lt;- read.table("https://srvanderplas.github.io/rwrks/01-r-intro/data/meta.txt")
 head(meta)
 ```
 
@@ -309,17 +319,11 @@ We use the expression `D` as cue; the number after that is the day:
 
 ```r
 meta$day &lt;- gsub('.*D([:digit:]*)','\\1', meta$Group)
-head(meta)
+head(meta$day)
 ```
 
 ```
-##    label       Group numOtus day
-## 27  0.03 X1P10N2ACD4    5802   4
-## 28  0.03 X1P10N2AFD0    5802   0
-## 29  0.03 X1P10N2AFD4    5802   4
-## 30  0.03 X1P10N2AID4    5802   4
-## 31  0.03 X1P11N2ACD4    5802   4
-## 32  0.03 X1P11N2AFD0    5802   0
+## [1] "4" "0" "4" "4" "4" "0"
 ```
 
 

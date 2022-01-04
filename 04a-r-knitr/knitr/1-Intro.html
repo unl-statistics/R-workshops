@@ -306,7 +306,7 @@ for systems of equations
 
 See if you can this out in R markdown using Mathmode:
 
-`\(x = \frac{-b\pm\sqrt{b^{2} - 4ac}}{2a}\)` 
+`$$x = \frac{-b\pm\sqrt{b^{2} - 4ac}}{2a}$$` 
 
 Make sure it compiles in your document!
 
@@ -316,6 +316,7 @@ Make sure it compiles in your document!
 
 
 ```r
+#install.packages(kableExtra)
 library(kableExtra)
 kable(head(iris), caption = "Demo Table") %&gt;%
   kable_styling(latex_options = "striped")
@@ -399,9 +400,9 @@ knitr::include_graphics("IncludeGraphic.png")
 ## Including Pictures Way 2
 
 ``![alt text here](path-to-image-here)`` `\(\\\)`
-``![Bulldog](IncludeGraphic.png)``
+``![](IncludeGraphic.png)``
 
-![Bulldog](IncludeGraphic.png)
+![](IncludeGraphic.png)
 ---
 
 ## Your Turn!
@@ -419,7 +420,7 @@ knitr::include_graphics("IncludeGraphic.png")
 - Bookdown and Blogdown for creating books and webpages, respectively.
   + [Bookdown Website](https://bookdown.org/)
   + [Blogdown Website](https://bookdown.org/yihui/blogdown/)
-- Emily's thesisdown template (get link later)
+
 
 
 
