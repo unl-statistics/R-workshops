@@ -70,6 +70,8 @@ What makes bad figures bad?
 
 - issues can be (1) aesthetic, (2) substantive, and/or (3) perceptual 
 
+???
+We have now learned about how to create a graphic, but how do we know if we are creating a "good" graphic? A chart is good if it allows the user to draw useful conclusions that are supported by data. Aesthetics choices, substantive content, or perceptual biases may affect the clarity of plots.
 
 ---
 
@@ -96,7 +98,7 @@ What makes bad figures bad?
 
 ???
 
-While chartjunk is not entirely devoid of merit, bear in mind that ease of recall is only one virtue amongst many for graphics.
+In learning how to create a graphic, we have seen there are many decisions we make when designing a graphic: the type of chart, colors, shapes, scales, etc. These aesthetic design choices we make can impact the way the chart is read. Edward Tufte has publically been a critic of chart design advocating for the most simplistic chart to minimize "chartjunk". While chartjunk is not entirely devoid of merit, bear in mind that ease of recall is only one virtue amongst many for graphics.
 
 ---
 
@@ -108,6 +110,11 @@ What makes bad figures bad?
 <br/><br/>
 
 - bad data
+
+???
+
+Bear in mind that a good graphic can't fix bad data. Recall that we create graphics by mapping the variables in the data set to attributes on the chart, what is in the data set shows up in the figure.
+
 ---
 
 # Why are some plots easier to read than others?
@@ -128,6 +135,8 @@ What makes bad figures bad?
 - color and contrast
 
 ???
+
+When interpreting a graphic, we are visually observing different features of the figure.  While our visual system is *amazing*, it is not always as accurate as the computers we use to render graphics. We have physical limits in the number of colors we can perceive, our short term memory, attention, and our ability to accurately read information off of charts in different forms. We will discuss how an understanding of preattentive features and the gestalt principles can help us make decisions about how to display our data in order to reduce the cognitive load necessary to interpret a plot.
 
 ---
 # Good Graphics
@@ -175,12 +184,18 @@ We look for structure all the time. We are so good at it that we will find it in
 ---
 # Gestalt principles
 
+
 .center[
-![](images/gestalt3.jpg)
+<img src="images/gestalt3.jpg" alt="" style="width:750px;"/>
 ]
 
 
 ???
+gestalt = form or pattern
+Gestalt philosophy: the whole is greater than the sum of the parts
+
+Gestalt principals: Predictable ways by which we organize sensory information.
+
 
 ---
 
@@ -205,6 +220,101 @@ What sorts of relationships are inferred, and under what circumstances?
 - **Figure/Ground**: Visual elements are either in the foreground or the background.
 
 ---
+
+# Gestalt principles
+
+```{r gestalt-hierarchy}
+tibble("Gestalt Hierarchy" = c("Enclosure", "Connection", "Proximitiy", "Similarity"),
+       "Graphs" = c("Facets", "Lines", "White Space", "Color/Shape")) %>% knitr::kable()
+```
+
+**Implications for practice**
++ Know how we perceive groups
++ Know that we perceive some groups before others
++ Design to facilitate and emphasize the most important comparisons
+
+---
+# Gestalt Principles: Case Study
+
+```{r gestalt-swimming-data, eval = T, echo = T}
+swimming <- read.csv("https://srvanderplas.github.io/rwrks/02-r-graphics/data/gestalt-swimming.csv")
+```
+
+.center[
+<img src="images/swimming.png" alt="" style="width:500px;"/>
+]
+
+```{r gestalt-swimming2, echo = F}
+factorCols <- c("Location", "WaterTemp", "Time")
+swimming[,factorCols] <- lapply(swimming[,factorCols], factor)
+summary(swimming)
+```
+
+---
+# Gestalt Principles: Case Study
+
+**Research question:** Does the average body temperature recovery as recorded at the four body points depend on water temperature?
+
+```{r swimming-plots1, fig.height = 3, fig.width = 12, fig.align = "center"}
+ggplot(data = swimming, aes(x = Time, y = AvgTemp)) +
+  geom_bar(stat = "identity", position = "dodge", aes(fill = WaterTemp), color = "black") +
+  facet_grid(~Location) +
+  theme(aspect.ratio = 0.75,
+        axis.text = element_text(size = 14),
+        axis.title = element_text(size = 14),
+        legend.text = element_text(size = 14),
+        legend.title = element_text(size = 14),
+        strip.text = element_text(size = 14))
+```
+
+--
+
+```{r swimming-plots2, fig.height = 3, fig.width = 12, fig.align = "center"}
+ggplot(data = swimming, aes(x = WaterTemp, y = AvgTemp)) +
+  geom_bar(stat = "identity", position = "dodge", aes(fill = Time), color = "black") +
+  facet_grid(~Location) +
+  theme(aspect.ratio = 0.75,
+        axis.text = element_text(size = 14),
+        axis.title = element_text(size = 14),
+        legend.text = element_text(size = 14),
+        legend.title = element_text(size = 14),
+        strip.text = element_text(size = 14)) +
+  scale_fill_brewer()
+```
+
+---
+# Gestalt Principles: Case Study
+
+**Research question:** Does the average body temperature recovery as recorded at the four body points depend on water temperature?
+
+```{r swimming-plots3, fig.height = 3, fig.width = 12, fig.align = "center"}
+ggplot(data = swimming, aes(x = Time, y = AvgTemp)) +
+  geom_point(aes(color = WaterTemp)) +
+  facet_grid(~Location) +
+  theme(aspect.ratio = 0.75,
+        axis.text = element_text(size = 14),
+        axis.title = element_text(size = 14),
+        legend.text = element_text(size = 14),
+        legend.title = element_text(size = 14),
+        strip.text = element_text(size = 14))
+```
+
+--
+
+```{r swimming-plots4, fig.height = 3, fig.width = 12, fig.align = "center"}
+ggplot(data = swimming, aes(x = Time, y = AvgTemp, color = WaterTemp)) +
+  geom_point() +
+  geom_line(aes(group = WaterTemp)) +
+  facet_grid(~Location) +
+  theme(aspect.ratio = 0.75,
+        axis.text = element_text(size = 14),
+        axis.title = element_text(size = 14),
+        legend.text = element_text(size = 14),
+        legend.title = element_text(size = 14),
+        strip.text = element_text(size = 14))
+```
+
+---
 class: center, middle, inverse
 
 # Pre-Attentive Features
@@ -225,6 +335,9 @@ data$shape <- factor(c(rep(2, 15), 1, rep(2,20)))
 ggplot(data, aes(x, y)) + geom_point(aes(shape = shape), size = 5, colour = "#1B9E77") + theme_void() + theme(legend.position = "none")
 ```
 
+???
+how quickly did you spot the circle?
+
 ---
 
 # Pre-Attentive Features
@@ -234,6 +347,9 @@ data$shape <- factor(c(rep(2, 25), 1, rep(2, 10)))
 
 ggplot(data, aes(x, y)) + geom_point(aes(colour = shape), size = 5, shape = I(19)) + theme_void() + theme(legend.position = "none") + scale_colour_brewer(palette="Dark2")
 ```
+
+???
+Did you spot the green point quicker than the circle in the previous image?
 
 ---
 # Pre-Attentive Features
@@ -285,15 +401,77 @@ ggplot(data, aes(x, y)) + geom_point(aes(colour = shape), shape = 19, size = 5) 
 
 - When choosing color schemes, we will want mappings from data to color that are not just numerically but also ***perceptually*** uniform
 
-- Distinguish bewteen sequential scales and categorical scales
+- Distinguish between sequential scales and categorical scales
 
 ---
+# Color
 
-## Color
+Our eyes are optimized for perceiving the yellow/green region of the color spectrum.
+
+.center[
+<img src="images/color.svg" alt="" style="width:400px;"/>
+
+Sensitivity of the human eye to different wavelengths of visual light 
+
+(Image from Wikimedia commons)
+]
+
+
+???
+Our eyes are optimized for perceiving the yellow/green region of the color spectrum. Why? Well, our sun produces yellow light, and plants tend to be green. It’s pretty important to be able to distinguish different shades of green (evolutionarily speaking) because it impacts your ability to feed yourself. There aren’t that many purple or blue predators, so there is less selection pressure to improve perception of that part of the visual spectrum.
+
+---
+# Color blindness
+
+Not everyone perceives color in the same way. Some individuals have [colorblindness or color deficiencies](https://en.wikipedia.org/wiki/Color_blindness).
+
+You can take a test designed to screen for colorblindness [here](https://www.eyeque.com/color-blind-test/test/).
+
+.center[
+<img src="images/color-blindness.png" alt="" style="width:700px;"/>
+]
+
+---
+# Context
 
 Color is context-sensitive: A and B are the same intensity and hue, but appear to be different.
 
 ![Edward Adelson’s checkershadow illusion](images/shadow-illusion3.jpg)
+
+???
+In addition to colorblindness, there are other factors than the actual color value which are important in how we experience color, such as context.
+
+Our brains are extremely dependent on context and make excellent use of the large amounts of experience we have with the real world. As a result, we implicitly “remove” the effect of things like shadows as we make sense of the input to the visual system. This can result in odd things, like the checkerboard and shadow shown above - because we’re correcting for the shadow, B looks lighter than A even though when the context is removed they are clearly the same shade.
+
+---
+# Color: Implications and Guidelines
+
++ Do not use rainbow color gradient schemes.
+
++ Avoid any scheme that uses green-yellow-red signaling if you have a target audience that may include colorblind people.
+
++ To “colorblind-proof” a graphic, you can use a couple of strategies:
+    + double encoding - where you use color, use another aesthetic (line type, shape)
+    + If you can print your chart out in black and white and still read it, it will be safe for colorblind users. This is the only foolproof way to do it!
+    + If you are using a color gradient, use a monochromatic color scheme where possible. 
+    + If you have a bidirectional scale (e.g. showing positive and negative values), the safest scheme to use is purple - white - orange. In any color scale that is multi-hue, it is important to transition through white, instead of from one color to another directly.
+    
++ Be conscious of what certain colors “mean”
+
+???
++ Do not use rainbow color gradient schemes - because of the unequal perception of different wavelengths, these schemes are misleading - the color distance does not match the perceptual distance.
+
++ Avoid any scheme that uses green-yellow-red signaling if you have a target audience that may include colorblind people.
++ To “colorblind-proof” a graphic, you can use a couple of strategies:
+    + double encoding - where you use color, use another aesthetic (line type, shape) as well to help your colorblind readers out
+    + If you can print your chart out in black and white and still read it, it will be safe for colorblind users. This is the only foolproof way to do it!
+    + If you are using a color gradient, use a monochromatic color scheme where possible. This is perceived as light -> dark by colorblind people, so it will be correctly perceived no matter what color you use.
+    + If you have a bidirectional scale (e.g. showing positive and negative values), the safest scheme to use is purple - white - orange. In any color scale that is multi-hue, it is important to transition through white, instead of from one color to another directly.
++ Be conscious of what certain colors “mean”
+    + Leveraging common associations can make it easier to read a color scale and remember what it stands for (e.g. blue for cold, orange/red for hot is a natural scale, red = Republican and blue = Democrat in the US, white -> blue gradients for showing rainfall totals)
+    + Some colors can can provoke emotional responses that may not be desirable.
+    + It is also important to be conscious of the social baggage that certain color schemes may have - the pink/blue color scheme often used to denote gender can be unnecessarily polarizing, and it may be easier to use a colder color (blue or purple) for men and a warmer color (yellow, orange, lighter green) for women.
++ There are packages such as `RColorBrewer` and `dichromat` that have color palettes which are aesthetically pleasing, and, in many cases, colorblind friendly (`dichromat` is better for that than `RColorBrewer`). You can also take a look at other [ways to find nice color palettes](https://lisacharlotterost.de/2016/04/22/Colors-for-DataVis/).
 
 ---
 
@@ -349,15 +527,23 @@ class: center, middle, inverse
 ## scales
 
 ---
-
 ## Aesthetics in `ggplot2`
 
 **Aesthetics**: features such as color, shape, and size that map other characteristics to structural features
+
+.center[
+<img src="images/aesthetics.png" alt="" style="width:500px;"/>
+]
+
+---
+
+## Aesthetics in `ggplot2`
 
 **Scales** map data values to the visual values of an aesthetic  
 
  - to change a mapping, add a new scale
  
+
  .center[
  <img src="images/scales1.png" alt="ggplot2-hex" style="width:550px;"/>
  ]
@@ -366,16 +552,14 @@ class: center, middle, inverse
 ## Scales
 
 .pull-left[
-```{r fig.width=4.5, echo=FALSE, fig.align = "top"}
-img <- readPNG("images/scales2.png")
- grid.raster(img)
-```
+.center[
+ <img src="images/scales2.png" alt="ggplot2-hex" style="width:550px;"/>
+ ]
 ]
 .pull-right[
-```{r fig.width=4.5, echo=FALSE, fig.align = "top"}
-img2 <- readPNG("images/scales3.png")
- grid.raster(img2)
-```
+.center[
+ <img src="images/scales3.png" alt="ggplot2-hex" style="width:550px;"/>
+ ]
 ]
 
 ---
@@ -485,6 +669,10 @@ Some Examples:
   - ggsci
   - viridis
   - wes anderson
+  
+There are packages such as `RColorBrewer` and `dichromat` that have color palettes which are aesthetically pleasing, and, in many cases, colorblind friendly. 
+
+You can also take a look at other [ways to find nice color palettes](https://lisacharlottemuth.com/2016/04/22/Colors-for-DataVis/).
 
 
 ---
@@ -493,7 +681,7 @@ Some Examples:
 - There are packages available for use that have color schemes options.
 
 
-```{r, echo=FALSE, fig.height=7, fig.width=10}
+```{r, echo=FALSE, fig.height=6, fig.width=12}
 library(ggsci)
 library(viridis)
 library(wesanderson)
@@ -517,29 +705,34 @@ grid.arrange(p11, p2, p3, p4, p5, p6, #p7, p8,
 
 ```
   
-  
-
 ---
 class: inverse
 ## Your Turn 
 
-- In the diamonds data, clarity and cut are ordinal, while price and carat are continuous
+```{r diamonds-data, echo = T, eval = F}
+data(diamonds)
+```
 
-- Find a graphic that gives an overview of these four variables while respecting their types
+- In the `diamonds` data, `clarity` and `cut` are ordinal, while `price` and `carat` are continuous.
 
+- Create a graphic that gives an overview of these four variables while respecting their types.
+
+- Discuss your graphic with a neighbor.
 
 ---
 class: inverse
 ## Your Turn
 
-The `movies` dataset contains information from IMDB.com including ratings, genre, length in minutes, and year of release.
+The `movies` data set contains information from IMDB.com including ratings, genre, length in minutes, and year of release.
 
 ```{r, echo = TRUE}
-movies <- read.csv("http://heike.github.io/rwrks/02-r-graphics/data/MovieSummary.csv")
+movies <- read.csv("https://srvanderplas.github.io/rwrks/02-r-graphics/data/MovieSummary.csv")
 ```
                    
+- Explore the differences in length, rating, etc. in movie genres over time.
 
-- Explore the differences in length, rating, etc. in movie genres over time
-- Hint: use facetting!
+- **Hint:** use faceting!
+
+- Discuss your graphic with a neighbor.
 
 

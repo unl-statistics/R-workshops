@@ -91,7 +91,7 @@ grid.arrange(p1, p2, p3, p4, p5, p6, nrow = 2)
 
 ---
 
-## Other Themes: ggthemes a ggplot2 extension
+## Other Themes: `ggthemes` a ggplot2 extension
 
 ```{r, echo=FALSE, fig.height=7, fig.width=10}
 library(ggthemes)
@@ -134,11 +134,9 @@ grid.arrange(p1, p0, p3, p4, p5, p6, p7, p8, p9, nrow = 3)
 
 You can globally set a theme with the `theme_set()` function:
 
-```{r, fig.width=10, fig.height=4}
-theme_set(theme_bw())
-
+```{r, fig.width=8, fig.height=5, fig.align = "center"}
+theme_set(theme_bw()) #<<
 ggplot(mtcars, aes(x = wt, y = mpg, colour = gear)) + geom_point()
-
 ```
 
 
@@ -170,14 +168,14 @@ There is a specific function to modify each of these three elements :
 p1 <- ggplot(mpg) + 
   geom_bar(aes(x = class, colour = manufacturer, fill = manufacturer) ) 
 
-p2 <- p1 + theme_classic() + theme(
+p2 <- p1 + #<<
+  theme_classic() + 
   ## modify plot background
-  plot.background = element_rect(fill = "lightskyblue1",colour = "pink",size = 0.5, linetype = "longdash")
-  )
+  theme(plot.background = element_rect(fill = "lightskyblue1",colour = "pink",size = 0.5, linetype = "longdash")) #<<
 ```
 
 
-```{r, fig.height=4, fig.width=10, echo = FALSE}
+```{r, fig.height=4, fig.width=12, echo = FALSE, fig.align = "center"}
 p1 <- ggplot(mpg) + 
   geom_bar(aes(x = class, colour = manufacturer, fill = manufacturer) ) 
 
@@ -192,13 +190,14 @@ grid.arrange(p1, p2, nrow = 1)
 
 ## Plot Legends
 
-```{r, fig.height=4, fig.width=10}
-p3 <- p2 + theme(
+```{r, fig.height=4, fig.width=12, fig.align = "center"}
+p3 <- p2 + 
+  theme(
   ### move and modify legend 
-  legend.title = element_blank(),
-  legend.position = "top", 
-  legend.key = element_rect(fill = "lightskyblue1", color = "lightskyblue1"),
-  legend.background = element_rect( fill = "lightskyblue1",color = "pink", size = 0.5,linetype = "longdash")
+  legend.title = element_blank(), #<<
+  legend.position = "top", #<<
+  legend.key = element_rect(fill = "lightskyblue1", color = "lightskyblue1"), #<<
+  legend.background = element_rect( fill = "lightskyblue1",color = "pink", size = 0.5,linetype = "longdash") #<<
   )
 ```
 
@@ -211,16 +210,17 @@ grid.arrange(p2, p3, nrow = 1)
 
 ## Modifying Axes
 
-```{r, echo=TRUE, fig.height=3.5, fig.width=10}
+```{r, echo=TRUE, fig.height=4, fig.width=12}
 p4 <- p3 + theme(
   ### remove axis ticks
-  axis.ticks=element_blank(),
+  axis.ticks=element_blank(), #<<
   ### modify axis lines
-  axis.line.y = element_line(colour = "pink", size = 1, linetype = "dashed"),
-  axis.line.x = element_line(colour = "pink", size = 1.2, linetype = "dashed"))
+  axis.line.y = element_line(colour = "pink", size = 1, linetype = "dashed"),#<<
+  axis.line.x = element_line(colour = "pink", size = 1.2, linetype = "dashed") #<<
+  )
 ```
 
-```{r, echo=FALSE, fig.height=3.5, fig.width=10}
+```{r, echo=FALSE, fig.height=4, fig.width=8}
 grid.arrange(p3, p4, nrow = 1)
 ```
 
@@ -231,13 +231,14 @@ grid.arrange(p3, p4, nrow = 1)
 
 Can be modified in several ways:
 - `labs()`, `xlab()`, `ylab()`, `ggtitle()`
-- You can also set axis and legend labels in the individual scales (using the first argument, the name)
+- You can also set axis and legend labels in the individual scales (using the first argument, the name) e.g. `scale_x_continuous()`
 .
 ```{r, echo=TRUE, fig.height=3.5, fig.width=10}
-p5 <- p4 + labs(x = "Class of car", 
-                y = "",
-                title = "Cars by class and manufacturer",
-                subtitle = "With a custom theme!!")
+p5 <- p4 + 
+  labs(x = "Class of car", #<<
+       y = "", #<<
+       title = "Cars by class and manufacturer", #<<
+       subtitle = "With a custom theme!!") #<<
 ```
 
 ```{r, echo=FALSE, fig.height=3.5, fig.width=10}
@@ -250,15 +251,41 @@ grid.arrange(p4, p5, nrow = 1)
 ## Zooming
 
 ```{r, echo=TRUE, fig.height=3.5, fig.width=10}
-p <- ggplot(mtcars, aes(x = wt, y = mpg, colour = gear)) + geom_point() 
-p_zoom_in <- p + xlim(2, 4) + ylim(10, 25)
-p_zoom_out <- p + xlim(0,7) + ylim(0, 45)
+p <- ggplot(mtcars, aes(x = wt, y = mpg, colour = gear)) + 
+  geom_point() 
+
+p_zoom_in <- p + 
+  xlim(2, 4) + #<<
+  ylim(10, 25) #<<
+
+p_zoom_out <- p + 
+  scale_x_continuous(limits = c(0,7)) + #<<
+  scale_y_continuous(limits = c(0, 45)) #<<
 ```
 
 ```{r, echo=FALSE, fig.height=3.5, fig.width=10}
-p <- ggplot(mtcars, aes(x = wt, y = mpg, colour = gear)) + geom_point() + theme(legend.position = "none") + ggtitle("Default")+ scale_color_locuszoom()
-p_zoom_in <- p + xlim(2, 4) + ylim(10, 25) + ggtitle("Zoomed in")
-p_zoom_out <- p + xlim(0,7) + ylim(0, 45) + ggtitle("Zoomed out")
+p <- ggplot(mtcars, aes(x = wt, y = mpg, colour = gear)) + 
+  geom_point() + 
+  theme(legend.position = "none") + 
+  ggtitle("Default") + 
+  scale_color_locuszoom() +
+  theme(aspect.ratio = 1,
+        axis.text = element_text(size = 14),
+        axis.title = element_text(size = 14),
+        legend.text = element_text(size = 14),
+        legend.title = element_text(size = 14),
+        strip.text = element_text(size = 14))
+
+p_zoom_in <- p + 
+  xlim(2, 4) + 
+  ylim(10, 25) + 
+  ggtitle("Zoomed in")
+
+p_zoom_out <- p + 
+  scale_x_continuous(limits = c(0,7)) +
+  scale_y_continuous(limits = c(0, 45)) + 
+  ggtitle("Zoomed out")
+
 grid.arrange(p, p_zoom_in, p_zoom_out, nrow = 1)
 ```
 
@@ -275,8 +302,8 @@ p <- ggplot(mtcars, aes(x = wt, y = mpg, colour = gear)) +
   geom_point() +
   scale_color_locuszoom()
 
-library(plotly)
-ggplotly(p)
+library(plotly) #<<
+ggplotly(p) #<<
 ```
 
 ---
@@ -295,11 +322,11 @@ We can save the results of a plot to a file (as an image) using the `ggsave()` f
 p1 <- ggplot(mtcars, aes(x = wt, y = mpg, colour = gear)) + 
   geom_point()
 
-ggsave("mpg_by_wt.pdf", plot = p1)
+ggsave("mpg_by_wt.pdf", plot = p1) #<<
 ```
 
 ---
-
+class: inverse
 ## Your Turn
 
 1. Create a scatterplot of $y$ versus $x$ from the `diamonds` data, colored by `clarity`

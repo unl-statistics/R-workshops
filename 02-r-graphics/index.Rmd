@@ -23,9 +23,10 @@ Time | Notes | Lectures and Resources
 10:30 - 10:45 | **Break** |
 10:45 - 11:30 | [Basics](knitr/2-Basics.html) | Why is data visualization important?. <br/> Data Types, Formats, and Structures <br/> Formatting your data: A tidy data discussion <br/> [2-Basics.R](code/2-Basics.R)
 11:30 - 12:30 | **Lunch Break** | 
-12:30 - 2:00 | [Layers of Graphics](knitr/3-Layers.html) |  	More detailed look at the ggplot2 package: layers, geoms. <br/>[3-Layers.R](code/3-Layers.R) <br/>[noaa.rdata](data/noaa.rdata) <br/>[animal.csv](data/animal.csv)
-2:00 - 2:30 | [What do we see?](knitr/4-Perception.html) |  	Discussion of faceting and cognitive aspects of human perception. <br/>[4-Perception.R](code/4-Perception.R) <br/>[frame.csv](data/frame.csv) <br/>[MovieSummary.csv](data/MovieSummary.csv)
-2:30 - 3:00 | [Polishing your plots](knitr/5-PolishingPlots.html) |  	Finishing touches: options, themes. <br/>[5-PolishingPlots.R](code/5-PolishingPlots.R)
+12:30 - 2:00 | [Layers of Graphics](knitr/3-Layers.html) |  	More detailed look at the ggplot2 package: layers, geoms. <br/>[3-Layers.R](code/3-Layers.R)
+2:00 - 2:15 | **Break** |
+2:15 - 3:15 | [What do we see?](knitr/4-Perception.html) |  	Discussion of faceting and cognitive aspects of human perception. <br/>[4-Perception.R](code/4-Perception.R)
+3:15 - 4:00 | [Polishing your plots](knitr/5-PolishingPlots.html) |  	Finishing touches: options, themes. <br/>[5-PolishingPlots.R](code/5-PolishingPlots.R)
 
 ## Useful Links
 

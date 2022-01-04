@@ -94,14 +94,6 @@ Complete the template below to build a graph
 <img src="images/ggplot2-notation.png" alt="" style="width:600px;"/>
 ]
 
----
-# Common Aesthetics
-
-<br>
-.center[
-<img src="images/aesthetics.png" alt="" style="width:500px;"/>
-]
-
 
 ---
 # How to build a graph
