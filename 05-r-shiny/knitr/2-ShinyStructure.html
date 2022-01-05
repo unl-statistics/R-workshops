@@ -3,9 +3,9 @@
   <head>
     <title>Structure of a Shiny Applet</title>
     <meta charset="utf-8" />
-    <script src="libs/header-attrs/header-attrs.js"></script>
-    <link href="libs/remark-css/default.css" rel="stylesheet" />
-    <link href="libs/remark-css/default-fonts.css" rel="stylesheet" />
+    <script src="libs/header-attrs-2.11/header-attrs.js"></script>
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/default-fonts.css" rel="stylesheet" />
   </head>
   <body>
     <textarea id="source">
@@ -33,6 +33,7 @@ input values =&gt; R code =&gt; output values
 Shiny applications have two components: 
 
 - **ui.R** defines the page layout and user interface
+
 - **server.R** contains the R code to create any output
 
 ---
@@ -85,18 +86,26 @@ server &lt;- function(input, output) {
 ---
 ## A minimal shiny app
 
-```
+
+```r
 library(shiny)
 
-ui &lt;- fluidPage()
-server &lt;- function(input, output) {
+ui &lt;- fluidPage(
+  "My simple shiny app!"
+)
+
+server &lt;- function(input, output, session) {
 }
 
-shinyServer(ui, server)
+shinyApp(ui, server)
 ```
 
 - save this code in a separate folder call the file `app.R`
-- run the code: either paste into the console or use `runApp` on folder name
+
+- run the code:
+  + highlight code or paste into the console
+  + use `runApp()` on folder name
+  + hit green `Run App` button in top right of your R script
 
 ---
 ## Shiny Inputs
@@ -156,7 +165,7 @@ runApp("01_Hello", display.mode = "showcase")
 
 - **Challenge 2:** add an input to simulate from a gamma as well as a normal (Hint: you can simulate from gamma distribution with `rgamma`).
 
-- **Challenge 3:** (Tricky) how do we get the shiny app to react to the input?
+- **Challenge 3:** (Tricky) how do we get the shiny app to react to the input? (Hint: see also [Conditional Panel](https://shiny.rstudio.com/reference/shiny/1.6.0/conditionalPanel.html))
 
 ---
 ## Shiny Outputs
@@ -175,6 +184,10 @@ where `outputId` is a (unique) object name (and `xxx` is one of the choices belo
 - `verbatimTextOutput`	text
 
 Outputs have width and height, might be clickable, hoverable, ...
+
+**Note:** Outputs on the ui side work with `render` functions on the server side.
+
+See [shiny cheatsheet](https://shiny.rstudio.com/images/shiny-cheatsheet.pdf) for output options.
 
 
     </textarea>

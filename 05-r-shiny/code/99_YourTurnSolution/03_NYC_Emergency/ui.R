@@ -6,7 +6,8 @@ new_nyc <- nyc %>% separate(Creation.Date, into = c("Creation.Date", "Creation.T
   separate(Creation.Date, into = c("Creation.Month", "Creation.Day", "Creation.Year")) %>% 
   mutate(Creation.Month = parse_number(Creation.Month),
          Creation.Day = parse_number(Creation.Day),
-         Creation.Year = parse_number(Creation.Year))
+         Creation.Year = parse_number(Creation.Year))  %>%
+  mutate(Borough = toupper(Borough))
 
 
 shinyUI(fluidPage(

@@ -25,7 +25,9 @@ class: center, middle, inverse, title-slide
 **Shiny** is an R package that allows you to easily create interactive web applets using R. 
 
 - Produced by [RStudio](http://shiny.rstudio.com)
+
 - Code can be entirely within R (or customize with HTML/JavaScript)
+
 - Take a look at RStudio's [showcase](http://shiny.rstudio.com/gallery/) of Shiny applets
 
 ---
@@ -33,11 +35,14 @@ class: center, middle, inverse, title-slide
 
 - [RStudio Tutorial](http://shiny.rstudio.com/tutorial/)  
 Much of today's material is motivated by this tutorial
+
 - [Shiny Setup, Showcase, and Server setup](http://shiny.rstudio.com)  
 Useful if you want to use shiny on your own webserver
+
 - [Shiny Github Page](https://github.com/rstudio/shiny)  
 See the latest updates
-- [Shiny Mailing List](https://groups.google.com/forum/#!forum/shiny-discuss)  
+
+- [Shiny Mailing List](https://groups.google.com/g/shiny-discuss)  
 Check the tutorial first, then search the mailing list.
 
 ---
@@ -45,18 +50,22 @@ Check the tutorial first, then search the mailing list.
 
 
 ```r
-install.packages("shiny")
+*install.packages("shiny")
 ```
+&lt;br&gt;
+&lt;br&gt;
+--
+Download extract `apps.zip` from the R workshop webpage. Make sure you know where you saved this!
 
 ---
 ## A Simple Example
 
-&lt;small&gt;If your working directory is set appropriately, run the following code: &lt;/small&gt;
+If your working directory is set appropriately, run the following code:
 
 
 ```r
 library(shiny)
-runApp("../code/01_Hello")
+runApp("05-r-shiny/code/01_Hello")
 ```
 &lt;center&gt;
 &lt;img src="images/HelloShinyScreenshot.png" alt="Picture of Hello Shiny! Applet" style="width:650px;"&gt;

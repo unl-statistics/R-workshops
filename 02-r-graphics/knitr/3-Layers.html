@@ -199,6 +199,65 @@ ggplot(mpg, aes(fl, fill = drv)) +
 &lt;img src="3-Layers_files/figure-html/unnamed-chunk-11-1.png" style="display: block; margin: auto;" /&gt;
 
 ---
+class: inverse, center, middle
+# Maps in ggplot2
+
+---
+## Maps
+Plotting geospatial data is a common visualization task, and one that requires specialized tools.
+
+Typically the problem can be decomposed into two problems:
+
+1. using one data source to draw a map
+
+2. adding metadata from another information source to the map 
+
+[resource](https://ggplot2-book.org/maps.html)
+
+---
+## Example: Nebraska Population
+
+**Map Source Data**
+
+```r
+ne_counties &lt;- map_data("county", "nebraska")
+```
+
+
+|      long|      lat| group| order|region   |subregion |
+|---------:|--------:|-----:|-----:|:--------|:---------|
+| -98.72636| 40.69719|     1|     1|nebraska |adams     |
+| -98.29664| 40.69719|     1|     2|nebraska |adams     |
+ 
+**Population Data**
+
+```r
+ne_population &lt;- read.csv("https://srvanderplas.github.io/rwrks/02-r-graphics/data/nebraska-population.csv")
+```
+
+
+|subregion | population|
+|:---------|----------:|
+|adams     |      31205|
+|antelope  |       6295|
+
+---
+## Example: Nebraska Population
+
+
+
+
+```r
+ggplot(ne_data) +
+  geom_polygon(aes(x = long, y = lat, group = group, fill = log(population)), color = "black") +
+  coord_map() +
+  theme_void() +
+  scale_fill_gradient(low = "white", high = "green4")
+```
+
+&lt;img src="3-Layers_files/figure-html/ne-map-1.png" style="display: block; margin: auto;" /&gt;
+
+---
 class:inverse, center, middle
 # [ggplot2 extenstions](https://exts.ggplot2.tidyverse.org/ggiraph.html)
 

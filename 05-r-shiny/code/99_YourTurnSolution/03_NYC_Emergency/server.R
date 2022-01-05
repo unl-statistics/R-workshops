@@ -1,16 +1,16 @@
 library(shiny)
 library(tidyverse)
+library(readr)
 
 nyc <- read.csv("nyc_emergency.csv")
 new_nyc <- nyc %>% separate(Creation.Date, into = c("Creation.Date", "Creation.Time"), sep="  ") %>% 
   separate(Creation.Date, into = c("Creation.Month", "Creation.Day", "Creation.Year")) %>% 
   mutate(Creation.Month = parse_number(Creation.Month),
          Creation.Day = parse_number(Creation.Day),
-         Creation.Year = parse_number(Creation.Year))
+         Creation.Year = parse_number(Creation.Year)) %>%
+  mutate(Borough = toupper(Borough))
 
-library(sf)
-library(albersusa)
-states <- usa_sf("longlat")
+nyc_state <- map_data("county","New York")
 
 shinyServer(function(input, output) {
 
@@ -29,10 +29,11 @@ shinyServer(function(input, output) {
     })
 
     output$location <- renderPlot({
-      ggplot() +
-        geom_sf(data = states) + 
+      ggplot(data = nyc_state) +
         geom_point(data = nyc_subset(), aes(x = Longitude, y = Latitude, colour = Borough)) +
-        theme_map() +
+        geom_polygon(aes(x = long, y = lat, group = group), fill = NA, color = "black") +
+        coord_map() +
+        theme_test() +
         ggtitle("Locations of incidents") + xlim(-74.2, -73.5) + ylim(40.5,41)
     })
 })

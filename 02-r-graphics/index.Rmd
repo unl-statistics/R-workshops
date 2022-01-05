@@ -28,6 +28,9 @@ Time | Notes | Lectures and Resources
 2:15 - 3:15 | [What do we see?](knitr/4-Perception.html) |  	Discussion of faceting and cognitive aspects of human perception. <br/>[4-Perception.R](code/4-Perception.R)
 3:15 - 4:00 | [Polishing your plots](knitr/5-PolishingPlots.html) |  	Finishing touches: options, themes. <br/>[5-PolishingPlots.R](code/5-PolishingPlots.R)
 
+## Solutions
++ [YourTurnSolutions.R](code/99-YourTurnSolutions.R)
+
 ## Useful Links
 
 ### R graphics with ggplot2
@@ -37,6 +40,7 @@ Time | Notes | Lectures and Resources
 + [ggplot2 reference guide](https://ggplot2.tidyverse.org/reference/)
 + Combine multiple plots with the `patchwork`, `cowplot`, and `gridExtra` packages
 + [ggplot2 Elegant Graphics for Data Analysis](https://ggplot2-book.org/index.html) by [Hadley Wickham](http://hadley.nz/), [Danielle Navarro](https://djnavarro.net/), and [Thomas Lin Pedersen](https://www.data-imaginist.com/)
++ [maps in ggplot2](https://ggplot2-book.org/maps.html)
 + [ggplot2 Extensions](https://exts.ggplot2.tidyverse.org/ggiraph.html) see also [slides](https://isugg21-ggext.netlify.app/#1) by [Ashirwad Barnwal](https://github.com/ashirwad)
 
 ### Types of Charts and Chart Styling

@@ -17,12 +17,21 @@ Time | Notes | Lectures and Resources
 ---- | ---- | ----
 9 - 9:45 | [Setup and Introduction to Shiny](knitr/1-Setup.html) | This will make sure that everybody's system is up and running, and introduce you to Shiny <br/> **You should try to install Rstudio and shiny ahead of time, so that this time can be used to address potential problems.** <br/> [apps.zip](code/apps.zip)
 9:45 - 10:30 | [Structure of a Shiny Applet](knitr/2-ShinyStructure.html) | Learn about reactive programming and how to create a bare-bones shiny applet
-10:30 - 12:15 | [Workshop: Create your own Shiny Applet](knitr/3-ShinyTools.html) | Learn about the input and output options Shiny provides, and then create your own Shiny applet! <br/> [yourturn.zip](code/yourturn.zip)
+10:30 - 12:15 | [Workshop: Create your own Shiny Applet](knitr/3-ShinyTools.html) | Learn about the input and output options Shiny provides, and then create your own Shiny applet!
 12:15 - 12:30 | Questions and Survey | We very much appreciate any feedback you can give us. You can find a form here: [survey]().
+
+## Solutions
+
++ [yourturn.zip](code/yourturn.zip)
 
 ## Useful Links
 
-**Recommended Reading**
+### Resources
+
++ [Shiny cheatsheet](https://shiny.rstudio.com/images/shiny-cheatsheet.pdf)
++ [Mastering Shiny](https://mastering-shiny.org/) by [Hadley Wickham](https://hadley.nz/)
+
+### Recommended Reading
 
 + [RStudio Tutorial for Shiny](https://shiny.rstudio.com/tutorial/) Much of today's material is borrowed from this tutorial
 + [Shiny Setup, Showcase, and Server setup](https://shiny.rstudio.com/) Useful if you want to use shiny on your own webserver

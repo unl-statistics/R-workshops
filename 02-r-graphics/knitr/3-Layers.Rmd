@@ -362,6 +362,61 @@ grid.arrange(r1, r2, r3, r5, r4, r7, r8, nrow = 2)
 ```
 
 ---
+class: inverse, center, middle
+# Maps in ggplot2
+
+---
+## Maps
+Plotting geospatial data is a common visualization task, and one that requires specialized tools.
+
+Typically the problem can be decomposed into two problems:
+
+1. using one data source to draw a map
+
+2. adding metadata from another information source to the map 
+
+[resource](https://ggplot2-book.org/maps.html)
+
+---
+## Example: Nebraska Population
+
+**Map Source Data**
+```{r ne-map-data1, echo = T, eval = F}
+ne_counties <- map_data("county", "nebraska")
+```
+
+```{r ne-map-data2, echo = F, eval = T}
+ne_counties <- map_data("county", "nebraska")
+ne_counties[1:2,] %>% knitr::kable()
+```
+ 
+**Population Data**
+```{r ne-pop1, echo = T, eval = F}
+ne_population <- read.csv("https://srvanderplas.github.io/rwrks/02-r-graphics/data/nebraska-population.csv")
+```
+
+```{r ne-pop2}
+# ne_population <- read.csv("https://srvanderplas.github.io/rwrks/02-r-graphics/data/nebraska-population.csv")
+ne_population <- read.csv("../data/nebraska-population.csv")
+ne_population[1:2,] %>% knitr::kable()  
+```
+
+---
+## Example: Nebraska Population
+
+```{r, combine-ne-data, echo = F}
+ne_data <- left_join(ne_counties, ne_population, by = "subregion") 
+```
+
+```{r ne-map, echo = T, eval = T, fig.align = 'center', fig.height = 4, fig.width = 10}
+ggplot(ne_data) +
+  geom_polygon(aes(x = long, y = lat, group = group, fill = log(population)), color = "black") +
+  coord_map() +
+  theme_void() +
+  scale_fill_gradient(low = "white", high = "green4")
+```
+
+---
 class:inverse, center, middle
 # [ggplot2 extenstions](https://exts.ggplot2.tidyverse.org/ggiraph.html)
 

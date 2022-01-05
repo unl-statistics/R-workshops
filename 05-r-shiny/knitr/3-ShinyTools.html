@@ -3,9 +3,9 @@
   <head>
     <title>Tools for Shiny Apps</title>
     <meta charset="utf-8" />
-    <script src="libs/header-attrs/header-attrs.js"></script>
-    <link href="libs/remark-css/default.css" rel="stylesheet" />
-    <link href="libs/remark-css/default-fonts.css" rel="stylesheet" />
+    <script src="libs/header-attrs-2.11/header-attrs.js"></script>
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/default-fonts.css" rel="stylesheet" />
   </head>
   <body>
     <textarea id="source">
@@ -19,11 +19,14 @@ class: center, middle, inverse, title-slide
 ## Other User Interface Options
 
 - [`tabsetPanel()`](http://shiny.rstudio.com/gallery/tabsets.html) - make multiple different output views (i.e. a plot in one tab, a data table in another)
+
 - [`helpText()`](http://shiny.rstudio.com/gallery/telephones-by-region.html) - create additional text to help users navigate your applet
+
 - [`submitButton()`](http://shiny.rstudio.com/gallery/widgets.html) - only update outputs when this button is clicked
+
 - [`conditionalPanel()`](http://shiny.rstudio.com/gallery/conditionalpanel-demo.html) - only show certain UI options when conditions are met (i.e. if a certain tab is open, or a certain input is selected)
 
-&lt;small&gt;[resource](http://shiny.rstudio.com/gallery/widget-gallery.html)&lt;/small&gt;
+[resource](http://shiny.rstudio.com/gallery/widget-gallery.html)
 
 ---
 ## Getting the shiny app to react: server
@@ -43,6 +46,8 @@ server  &lt;-  function(input, output) {
 }
 ```
 
+**Note:** `Outputs` on the ui.R side work with `render` functions on the server.R side.
+
 ---
 ## Render functions
 
@@ -54,6 +59,8 @@ server  &lt;-  function(input, output) {
 - `renderUI()` - output a custom part of the user interface
 - `renderImage()` - print an image to the page
 - `htmlOutput()` - output html elements
+
+See [shiny cheatsheet](https://shiny.rstudio.com/images/shiny-cheatsheet.pdf) for render and output options.
 
 ---
 ## Example `server` function
@@ -81,7 +88,8 @@ class: inverse
 
 For the 01_Hello app: 
 
-- expand on the server functionality to make the plot react to the input
+- Expand on the server functionality to make the plot react to the input
+(Hint: see [Conditional Panel](https://shiny.rstudio.com/reference/shiny/1.6.0/conditionalPanel.html))
 
 ---
 ## An example

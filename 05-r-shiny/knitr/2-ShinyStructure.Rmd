@@ -26,6 +26,7 @@ input values => R code => output values
 Shiny applications have two components: 
 
 - **ui.R** defines the page layout and user interface
+
 - **server.R** contains the R code to create any output
 
 ---
@@ -78,18 +79,25 @@ server <- function(input, output) {
 ---
 ## A minimal shiny app
 
-```
+```{r, minimal-shiny, echo = T, eval = F}
 library(shiny)
 
-ui <- fluidPage()
-server <- function(input, output) {
+ui <- fluidPage(
+  "My simple shiny app!"
+)
+
+server <- function(input, output, session) {
 }
 
-shinyServer(ui, server)
+shinyApp(ui, server)
 ```
 
 - save this code in a separate folder call the file `app.R`
-- run the code: either paste into the console or use `runApp` on folder name
+
+- run the code:
+  + highlight code or paste into the console
+  + use `runApp()` on folder name
+  + hit green `Run App` button in top right of your R script
 
 ---
 ## Shiny Inputs
@@ -164,5 +172,4 @@ where `outputId` is a (unique) object name (and `xxx` is one of the choices belo
 - `verbatimTextOutput`	text
 
 Outputs have width and height, might be clickable, hoverable, ...
-
 
