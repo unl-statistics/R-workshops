@@ -211,17 +211,6 @@ class: inverse
 
 2. For any state that has a name in the form `New ----`, replace `New` with `Old`.
 
----
-class: inverse
-
-## Your Turn - Solution
-
-```{r}
-grep(pattern = "s{1,2}", state.name, value = TRUE)
-
-gsub("New", "Old", state.name)
-
-```
 
 ---
 
@@ -263,14 +252,3 @@ Extract the pen number, experiment, and tissue for each row.
 
 
 
----
-class: inverse
-
-## Your Turn - Solution
-
-```{r}
-meta$pen <- sub('X.P.*N(..).*D.*', '\\1', meta$Group)
-meta$experiment <- sub('(X.)P[:digit:]*.*', '\\1', meta$Group)
-meta$tissue <- sub('X.P.*N..(.*)D.*', '\\1', meta$Group)
-head(meta)
-```

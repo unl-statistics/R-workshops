@@ -1,0 +1,60 @@
+---
+title: "Web Scraping in R"
+subtitle: "Using rvest"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+
+## A web of data
+
+- In 2008, [an estimated](https://sirrice.github.io/files/papers/webtables-vldb08.pdf) **154 million HTML tables** (out of the 14.1 billion) contain 'high quality relational data'!!!
+- Hard to quantify how much more exists outside of HTML Tables, but there is [an estimate](https://cs.uwaterloo.ca/~x4chu/SIGMOD2015_1.pdf) of **at least 30 million lists** with 'high quality relational data'.
+- A growing number of websites/companies [provide programmatic access](http://www.programmableweb.com/category/all/apis?order=field_popularity) to their data/services via web APIs (that data typically comes in XML/JSON format).
+
+## Before scraping, do some googling!
+
+- If resource is well-known (e.g. Twitter, Fitbit, etc.), there is *probably* an existing R package for it.
+- [ropensci](https://ropensci.org/) has a [ton of R packages](https://ropensci.org/packages/) providing easy-to-use interfaces to open data.
+- The [Web Technologies and Services CRAN Task View](http://cran.r-project.org/web/views/WebTechnologies.html) is a great overview of various tools for working with data that lives on the web in R.
+
+---
+
+## A web of *messy* data!
+
+- Recall the concept of [tidy data](http://vita.had.co.nz/papers/tidy-data.pdf).
+- Data is in a table where
+    * 1 row == 1 observation
+    * 1 column == 1 variable (observational attribute)
+- Parsing web data (HTML/XML/JSON) is easy (for computers)
+- Getting it in a tidy form is typically *not easy*.
+- Knowing a bit about modern tools & web technologies makes it *much* easier.
+
+---
+
+## What is webscraping? 
+
+- Extract data from websites 
+    + Tables
+    + Links to other websites
+    + Text
+    
+```{r echo=FALSE, out.width='33%', fig.show='hold', fig.align='default'}
+knitr::include_graphics(c('./images/gdpss.png','./images/cropsss.png','./images/gass.png'), auto_pdf = FALSE)
+```    
+
+---
+
+## Why webscrape? 
+
+>- Because copy-paste is awful 
+```{r echo=FALSE, out.width='50%'}
+knitr::include_graphics("./images/copypastesucks.png", auto_pdf = FALSE)
+```
+>- Because it's fast
+>- Because you can automate it

@@ -325,7 +325,7 @@ as.numeric("77")
 #as.factor()
 ```
 
-[More Abuot Data Types](https://www.geeksforgeeks.org/r-data-types/)
+[More About Data Types](https://www.geeksforgeeks.org/r-data-types/)
 ---
 ## Some useful functions
 
@@ -340,6 +340,7 @@ length(x)
 sum(x)
 ```
 
+Note: Be careful, if you `length` with a dataframe, will return number of variables not number of observations. 
 ---
 ## Statistical Functions
 
@@ -362,6 +363,15 @@ sd(pig_weight)
 summary(pig_weight)
 quantile(pig_weight, c(.025, .975))
 ```
+
+---
+
+## Your Turn
+
+- Which pigs have a shedding value less than or equal to 30 OR is in the Acid treatment group?
+
+- Explore any more calculations in the dataset you may find interesting.
+
 
 <!-- 
 

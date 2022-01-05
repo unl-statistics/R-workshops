@@ -5,17 +5,39 @@ output: html_document
 
 Read data in from the internet using packages like `rvest`. Learn to navigate HTML and XML structured data files, and convert data stored in these files into tabular data more commonly used in statistical analyses.
 
+<br>
+ <p style="text-align:center;"><img src="knitr/images/rvest-hex.png" alt="rvest-hex" style="width:200px;"></p>
+<br>
+
+At the end of Web Scraping in R using rvest, we expect our students to be able to understand the following:
+
++ Understand the general structure of HTML web pages
++ Use CSS and XPATH to navigate HTML pages and select HTML nodes & Extract data from HTML nodes
++ Calling APIs and other programmatic methods of accessing web-based data.
+
+
+<br>
+ <p style="text-align:center;"><img src="knitr/images/functions_and_classes.png" alt="functions_and_classes" style="width:750px;"></p>
+<br>
+
 ## Timetable
 
-Date | Description
----- | ----
-1:00-1:30 | Understand the structure of HTML web pages (DOM, tags, attributes)
-1:30-2:45| Use CSS and XPATH to navigate HTML pages and select HTML nodes & Extract data from HTML nodes
-2:45-3:00| **Break**
-3:00-4:00| Use APIs and other programmatic methods of accessing web-based data
+Time | Notes | Lectures and Resources
+---- | ---- | ----
+1:00-1:30 | [Intro & HTML Intro](knitr/1-GraphicsIntro.html)  | Understand the structure of HTML web pages (DOM, tags, attributes)
+1:30-2:45| [XPATH & Data Extraction](knitr/2-XPATH.html)  | Use CSS and XPATH to navigate HTML pages and select HTML nodes & Extract data from HTML nodes
+2:45-3:00| **Break** |
+3:00-4:00| [Web APIs and Accessing Web-based Data](knitr/3-WebAPIs.html) | Use APIs and other programmatic methods of accessing web-based data
 
-## Notes and Resources
+<!--## Notes and Resources
 
-[Notes](knitr/1-WebScraping.html)
+[Notes](knitr/1-WebScraping.html) -->
+
+### Useful Links
+
++ [rvest reference guide](https://rvest.tidyverse.org/)
++ [rvest tutorial by Hadley Wickham](https://www.rstudio.com/blog/rvest-easy-web-scraping-with-r/)
++ [JSON and jsonlite Quick Start](https://cran.r-project.org/web/packages/jsonlite/vignettes/json-aaquickstart.html)
+
 
 <!-- [Minimal knitr Example](code/minimal-knitr.Rmd) -->

@@ -13,7 +13,7 @@ The course will be a mix of instruction and follow-up exercises. It will be held
 Date | Notes | Lectures and Resources
 ---- | ---- | ----
 9 - 9:45 | [Reading Files](knitr/1-Files.html) | Excel files vs. text, data organization <br/> [1-Files.R](code/1-Files.R), [midwest.csv](data/midwest.csv), [midwest.xls](data/midwest.xls)
-9:45 - 12:15 | [Summarizing with dplyr](knitr/2-dplyr) | Pipe operator and dplyr verbs <br/> [2-dplyr.R](code/2-dplyr.R)<br/> [baseball.csv](data/baseball.csv)
+9:45 - 12:15 | [Summarizing with dplyr](knitr/2-dplyr.html) | Pipe operator and dplyr verbs <br/> [2-dplyr.R](code/2-dplyr.R)<br/> [baseball.csv](data/baseball.csv)
 12:15 - 1:15 | **Lunch Break** (on your own) | 
 1:15 - 2:45 | [Tidy Data](knitr/3-tidyr.html) | Restructuring data with pivot wider, pivot longer, and separate. <br/>[3-tidyr.R](code/5-tidyr.R), [frenchfries.csv](data/frenchfries.csv), [billboard.csv](data/billboard.csv), [flights.csv](data/flights.csv)
 2:45 - 3:00 | **Break** | 
