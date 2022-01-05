@@ -150,77 +150,85 @@ pitch %>%
 ---
 class: inverse
 
-## Your Turn (~2 min)
+## Your Turn (5 min)
 
 1. Look up the help file for the function `slice`.
 
-2. Use `slice` on the arranged `french_fries` data to select a single row
+2. Use `slice` on the arranged `pitchdata` dataset to select a single row
 
 3. use `slice` to select multiple rows
+
+Hint: Use the entire data set
 
 ---
 
 ## Solution
 
 ```{r purl=FALSE}
-french_fries %>% 
-  arrange(desc(rancid), potato) %>% 
-  slice(10)
+pitch %>% 
+  arrange(desc(playerid), spin_rate) %>% 
+  slice(11)
 ```
 
 ```{r purl=FALSE}
-french_fries %>% 
-  arrange(desc(rancid), potato) %>% 
+pitch %>% 
+  arrange(desc(playerid), spin_rate) %>% 
   slice(1:5)
 ```
 
 ---
 
 ## Select
-
+ - Using Select we are easily able to create a subset of our data. This is similar to
+ the subset function in base.
 ```{r}
-french_fries %>% 
-  select(time, treatment, subject, rep, potato) %>%
+pitch %>% 
+  select(playerid, pitcher_hand, action_result, ab_result, spin_dir, spin_rate) %>%
   head()
 ```
 
 ---
 
 ## Summarise
-
+ - Finding summary statistics of a metric
 ```{r}
-french_fries %>%
-    summarise(mean_rancid = mean(rancid, na.rm=TRUE), 
-              sd_rancid = sd(rancid, na.rm = TRUE))
+pitch %>%
+    summarise(mean_spinrate = mean(spin_rate, na.rm=TRUE), 
+              sd_spinrate = sd(spin_rate, na.rm = TRUE))
 ```
 
 ---
 
 ## Summarise and Group_by
-
+ - Finding summary statistics of a metric after accounting first for other variables
 ```{r}
-french_fries %>%
-    group_by(time, treatment) %>%
-    summarise(mean_rancid = mean(rancid), 
-              sd_rancid = sd(rancid))
+pitch %>%
+    group_by(playerid) %>%
+    summarise(mean_spinrate = mean(spin_rate, na.rm=TRUE), 
+              sd_spinrate = sd(spin_rate, na.rm = TRUE))
 ```
 
 ---
 class: inverse
 
-## Quick Your Turn (~2 minutes)
+## Your Turn (5 minutes)
 
-1. `%>%` the summaries into `ggplot`
+1. Select only playerid, spin_rate, and action result
+
+2. Group by both playerid and action result and find mean and sd of spin rates 
+
+3.`%>%` the summaries into a `ggplot` histogram
 
 ---
 
 ## A Solution
 
 ```{r fig.height=4, message=FALSE, warning=FALSE, purl=FALSE}
-french_fries %>%
-    group_by(time, treatment) %>%
-    summarise(mean_rancid = mean(rancid), sd_rancid = sd(rancid)) %>%
-  ggplot(aes(x = mean_rancid)) + geom_histogram()
+pitch %>%
+  select(playerid, spin_rate, action_result) %>%
+    group_by(playerid, action_result) %>%
+    summarise(mean_spin = mean(spin_rate), sd_spin = sd(spin_rate)) %>%
+  ggplot(aes(x = mean_spin)) + geom_histogram()
 ```
 
 ---
