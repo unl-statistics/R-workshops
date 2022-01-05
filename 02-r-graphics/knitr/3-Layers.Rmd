@@ -396,8 +396,7 @@ ne_population <- read.csv("https://srvanderplas.github.io/rwrks/02-r-graphics/da
 ```
 
 ```{r ne-pop2}
-# ne_population <- read.csv("https://srvanderplas.github.io/rwrks/02-r-graphics/data/nebraska-population.csv")
-ne_population <- read.csv("../data/nebraska-population.csv")
+ne_population <- read.csv("https://srvanderplas.github.io/rwrks/02-r-graphics/data/nebraska-population.csv")
 ne_population[1:2,] %>% knitr::kable()  
 ```
 
@@ -437,24 +436,24 @@ ggplot(iris, aes(Petal.Length, Petal.Width, colour = Species)) +
 library(dplyr)
 library(ggvoronoi)
 
-nebraska <- map_data("state") %>% filter(region == "nebraska")
-ncdc.neb <- ncdc_locations %>% filter(state=="NE")
+california <- map_data("state") %>% filter(region == "california")
+ncdc.cali <- ncdc_locations %>% filter(state=="CA")
 
-neb_map <-
-  ggplot(data=ncdc.neb,aes(x=long,y=lat)) +
+cali_map <-
+  ggplot(data=ncdc.cali,aes(x=long,y=lat)) +
       scale_fill_gradientn("Elevation", 
           colors=c("seagreen","darkgreen","green1","yellow","gold4", "sienna"),
           values=scales::rescale(c(-60,0,1000,2000,3000,4000))) + 
       scale_color_gradientn("Elevation", 
           colors=c("seagreen","darkgreen","green1","yellow","gold4", "sienna"),
           values=scales::rescale(c(-60,0,1000,2000,3000,4000))) + 
-      coord_quickmap() + 
+      coord_map() +
       theme_minimal() +
       theme(axis.text=element_blank(),
             axis.title=element_blank())
 
-neb_map +
-  geom_voronoi(aes(fill=elev),outline=nebraska)
+cali_map +
+  geom_voronoi(aes(fill=elev),outline=california)
 ```
 
 ---

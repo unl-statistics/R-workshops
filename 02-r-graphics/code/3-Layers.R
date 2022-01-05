@@ -167,6 +167,28 @@ r8 <- worldmap +
 gridExtra::grid.arrange(r1, r2, r3, r5, r4, r7, r8, nrow = 2)
 
 # --------------------------------------
+# Maps ---------------------------------
+# --------------------------------------
+
+# Map source data
+ne_counties <- map_data("county", "nebraska")
+head(ne_counties)
+
+# Population meta data
+ne_population <- read.csv("https://srvanderplas.github.io/rwrks/02-r-graphics/data/nebraska-population.csv")
+head(ne_population)
+
+# Combine map source and meta data
+ne_data <- left_join(ne_counties, ne_population, by = "subregion") 
+
+# Create map with ggplot
+ggplot(ne_data) +
+  geom_polygon(aes(x = long, y = lat, group = group, fill = log(population)), color = "black") +
+  coord_map() +
+  theme_void() +
+  scale_fill_gradient(low = "white", high = "green4")
+
+# --------------------------------------
 # ggplot2 Extensions -------------------
 # --------------------------------------
 
@@ -180,21 +202,21 @@ ggplot(iris, aes(Petal.Length, Petal.Width, colour = Species)) +
 library(dplyr)
 library(ggvoronoi)
 
-nebraska <- map_data("state") %>% filter(region == "nebraska")
-ncdc.neb <- ncdc_locations %>% filter(state=="NE")
+california <- map_data("state") %>% filter(region == "california")
+ncdc.cali <- ncdc_locations %>% filter(state=="CA")
 
-neb_map <-
-  ggplot(data=ncdc.neb,aes(x=long,y=lat)) +
+cali_map <-
+  ggplot(data=ncdc.cali, aes(x = long, y = lat)) +
   scale_fill_gradientn("Elevation", 
                        colors=c("seagreen","darkgreen","green1","yellow","gold4", "sienna"),
                        values=scales::rescale(c(-60,0,1000,2000,3000,4000))) + 
   scale_color_gradientn("Elevation", 
                         colors=c("seagreen","darkgreen","green1","yellow","gold4", "sienna"),
                         values=scales::rescale(c(-60,0,1000,2000,3000,4000))) + 
-  coord_quickmap() + 
+  coord_map() + 
   theme_minimal() +
   theme(axis.text=element_blank(),
         axis.title=element_blank())
 
-neb_map +
-  geom_voronoi(aes(fill=elev),outline=nebraska)
+cali_map +
+  geom_voronoi(aes(fill=elev), outline = california)

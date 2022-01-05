@@ -370,7 +370,7 @@ class: inverse
 8. Embed the png into MS word or another editor.	 
 
 ```{r, echo = T, eval = F, fig.width=6, fig.height=4, fig.align = "center"}
-  install.packages("palmerpenguins")
-	data(penguins, package = "palmerpenguins")
-	head(penguins)
+install.packages("palmerpenguins")
+data(penguins, package = "palmerpenguins")
+head(penguins)
 ```
