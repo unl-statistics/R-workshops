@@ -255,6 +255,12 @@ summary(swimming)
 
 **Research question:** Does the average body temperature recovery as recorded at the four body points depend on water temperature?
 
+```{r, echo = F, eval = F}
+ggplot(data = swimming, aes(x = Time, y = AvgTemp)) +
+  geom_bar(stat = "identity", position = "dodge", aes(fill = WaterTemp), color = "black") +
+  facet_grid(~Location)
+```
+
 ```{r swimming-plots1, fig.height = 3, fig.width = 12, fig.align = "center"}
 ggplot(data = swimming, aes(x = Time, y = AvgTemp)) +
   geom_bar(stat = "identity", position = "dodge", aes(fill = WaterTemp), color = "black") +
@@ -268,6 +274,13 @@ ggplot(data = swimming, aes(x = Time, y = AvgTemp)) +
 ```
 
 --
+
+```{r, echo = F, eval = F}
+ggplot(data = swimming, aes(x = WaterTemp, y = AvgTemp)) +
+  geom_bar(stat = "identity", position = "dodge", aes(fill = Time), color = "black") +
+  facet_grid(~Location) +
+  scale_fill_brewer()
+```
 
 ```{r swimming-plots2, fig.height = 3, fig.width = 12, fig.align = "center"}
 ggplot(data = swimming, aes(x = WaterTemp, y = AvgTemp)) +

@@ -28,3 +28,12 @@ maps
 spatstat.geom
 spatstat.core
 spatstat.linnet
+xaringanthemer
+ggraph
+GGally
+network
+statnet.common
+sna
+ggnetwork
+ggforce
+reshape2

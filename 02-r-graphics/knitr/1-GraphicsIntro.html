@@ -451,8 +451,8 @@ class: center, middle, inverse
 
 
 ```r
-library(ggplot2)
-head(diamonds)
+*library(ggplot2)
+*head(diamonds)
 ```
 
 
@@ -471,7 +471,7 @@ head(diamonds)
 
 
 ```r
-ggplot(data = diamonds)
+*ggplot(data = diamonds)
 ```
 
 ![](1-GraphicsIntro_files/figure-html/unnamed-chunk-4-1.png)&lt;!-- --&gt;
@@ -482,7 +482,7 @@ ggplot(data = diamonds)
 
 
 ```r
-ggplot(data = diamonds, aes(x = carat, y = price))
+*ggplot(data = diamonds, aes(x = carat, y = price))
 ```
 
 ![](1-GraphicsIntro_files/figure-html/unnamed-chunk-6-1.png)&lt;!-- --&gt;
@@ -495,7 +495,7 @@ or what relationships we want to see
 
 ```r
 ggplot(data = diamonds, aes(x = carat, y = price)) +
-    geom_point()
+*   geom_point()
 ```
 
 ![](1-GraphicsIntro_files/figure-html/unnamed-chunk-8-1.png)&lt;!-- --&gt;
@@ -507,7 +507,7 @@ ggplot(data = diamonds, aes(x = carat, y = price)) +
 
 ```r
 ggplot(data = diamonds, aes(x = carat, y = price)) +
-    geom_point(aes(colour = cut))
+*   geom_point(aes(colour = cut))
 ```
 
 ![](1-GraphicsIntro_files/figure-html/unnamed-chunk-10-1.png)&lt;!-- --&gt;
@@ -519,7 +519,7 @@ ggplot(data = diamonds, aes(x = carat, y = price)) +
 ```r
 ggplot(data = diamonds, aes(x = carat, y = price)) +
     geom_point(aes(colour = cut)) +
-    geom_smooth()
+*   geom_smooth()
 ```
 
 ![](1-GraphicsIntro_files/figure-html/unnamed-chunk-12-1.png)&lt;!-- --&gt;
@@ -531,8 +531,8 @@ ggplot(data = diamonds, aes(x = carat, y = price)) +
 
 ```r
 ggplot(data = diamonds, aes(x = carat, y = price) +
-    geom_point(aes(colour = cut), size = 2, alpha = .5) +
-    geom_smooth(aes(fill = cut), colour = "lightgrey")
+*   geom_point(aes(colour = cut), size = 2, alpha = .5) +
+*   geom_smooth(aes(fill = cut), colour = "lightgrey")
 ```
 
 ![](1-GraphicsIntro_files/figure-html/unnamed-chunk-14-1.png)&lt;!-- --&gt;
@@ -546,7 +546,7 @@ ggplot(data = diamonds, aes(x = carat, y = price) +
 ggplot(data = diamonds, aes(x = carat, y = price)) +
     geom_point(aes(colour = cut), size = 2, alpha = .5) +
     geom_smooth(aes(fill = cut), colour = "lightgrey") +
-    scale_y_log10()
+*   scale_y_log10()
 ```
 
 ![](1-GraphicsIntro_files/figure-html/unnamed-chunk-16-1.png)&lt;!-- --&gt;
@@ -562,7 +562,7 @@ ggplot(data = diamonds, aes(x = carat, y = price)) +
     geom_point(aes(colour = cut), size = 2, alpha = .5) +
     geom_smooth(aes(fill = cut), colour = "lightgrey") +
     scale_y_log10() +
-    facet_wrap(~cut)
+*   facet_wrap(~cut)
 ```
 
 ![](1-GraphicsIntro_files/figure-html/unnamed-chunk-18-1.png)&lt;!-- --&gt;

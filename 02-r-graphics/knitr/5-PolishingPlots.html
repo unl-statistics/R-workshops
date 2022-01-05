@@ -42,8 +42,6 @@ class: inverse, center, middle
 
 ## Built-In Themes
 
-
-
 ![](5-PolishingPlots_files/figure-html/unnamed-chunk-2-1.png)&lt;!-- --&gt;
 
 ---
@@ -63,7 +61,8 @@ You can globally set a theme with the `theme_set()` function:
 
 ```r
 *theme_set(theme_bw())
-ggplot(mtcars, aes(x = wt, y = mpg, colour = gear)) + geom_point()
+ggplot(mtcars, aes(x = wt, y = mpg, colour = gear)) + 
+  geom_point()
 ```
 
 &lt;img src="5-PolishingPlots_files/figure-html/unnamed-chunk-4-1.png" style="display: block; margin: auto;" /&gt;
@@ -229,20 +228,21 @@ p1 &lt;- ggplot(mtcars, aes(x = wt, y = mpg, colour = gear)) +
 class: inverse
 ## Your Turn
 
-1. Create a scatterplot of `\(y\)` versus `\(x\)` from the `diamonds` data, colored by `clarity`
+1. Create a scatterplot of `bill length` versus `bill width` from the `penguins` 
 2. Use the black and white theme
-3. Include an informative title
-4. Move the legend to the bottom
-5. Save your plot to a pdf file and open it in a pdf viewer.
+3. Clean up axis labels and include an informative title.
+4. Capitalize legend title and change the color palette from default.
+5. Move the legend to the bottom and set aspect ratio to 1.
+6. Save your plot to a pdf file and open it in a pdf viewer.
+7. Save a png of the same scatterplot. 
+8. Embed the png into MS word or another editor.	 
 
 
 ```r
-ggplot(data = diamonds, aes(x = x, y = y))
+  install.packages("palmerpenguins")
+	data(penguins, package = "palmerpenguins")
+	head(penguins)
 ```
-
-&lt;img src="5-PolishingPlots_files/figure-html/unnamed-chunk-17-1.png" style="display: block; margin: auto;" /&gt;
-
-
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

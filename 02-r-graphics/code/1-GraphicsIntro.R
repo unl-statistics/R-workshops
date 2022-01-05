@@ -15,8 +15,7 @@ library(grid)      # create data sets
 data(iris)
 head(iris)
 ggplot(data = iris) + 
-  geom_point(aes(x = Sepal.Length, y = Sepal.Width, colour = Species), size = 2.5) +
-  scale_color_locuszoom()
+  geom_point(aes(x = Sepal.Length, y = Sepal.Width, colour = Species))
 
 # --------------------------------------
 # BEGINNER PLOTS -----------------------

@@ -666,8 +666,8 @@ class: center, middle, inverse
 # R package and data set
 
 ```{r echo = TRUE, eval = F}
-library(ggplot2)
-head(diamonds)
+library(ggplot2) #<<
+head(diamonds) #<<
 ```
 
 ```{r echo = F, eval = T}
@@ -680,7 +680,7 @@ head(diamonds) %>% knitr::kable()
 # We begin with the data
 
 ```{r, fig.width=10, fig.height=5, echo = TRUE}
-ggplot(data = diamonds)
+ggplot(data = diamonds) #<<
 ```
 
 ---
@@ -688,7 +688,7 @@ ggplot(data = diamonds)
 # Then we specify the aesthetic mappings
 
 ```{r, eval=FALSE, fig.height=5, fig.width=10, echo = TRUE}
-ggplot(data = diamonds, aes(x = carat, y = price))
+ggplot(data = diamonds, aes(x = carat, y = price)) #<<
 
 ```
 
@@ -703,7 +703,7 @@ or what relationships we want to see
 
 ```{r, eval=FALSE, fig.width=10, fig.height=5, echo = TRUE}
 ggplot(data = diamonds, aes(x = carat, y = price)) +
-    geom_point()
+    geom_point() #<<
 ```
 
 ```{r, echo=FALSE, fig.width=10, fig.height=5}
@@ -718,7 +718,7 @@ ggplot(data = diamonds, aes(x = carat, y = price)) +
 
 ```{r, eval=FALSE, fig.width=10, fig.height=5, echo = TRUE}
 ggplot(data = diamonds, aes(x = carat, y = price)) +
-    geom_point(aes(colour = cut))
+    geom_point(aes(colour = cut)) #<<
 ```
 
 ```{r, echo=FALSE, fig.width=10, fig.height=5}
@@ -733,7 +733,7 @@ ggplot(data = diamonds, aes(x = carat, y = price)) +
 ```{r, eval = FALSE, fig.width=10, fig.height=5, echo = TRUE}
 ggplot(data = diamonds, aes(x = carat, y = price)) +
     geom_point(aes(colour = cut)) +
-    geom_smooth()
+    geom_smooth() #<<
 ```
 
 ```{r, echo = FALSE, fig.width=10, fig.height=5}
@@ -749,8 +749,8 @@ ggplot(data = diamonds, aes(x = carat, y = price)) +
 
 ```{r, fig.width=10, fig.height=5, eval = FALSE, echo = TRUE}
 ggplot(data = diamonds, aes(x = carat, y = price) +
-    geom_point(aes(colour = cut), size = 2, alpha = .5) +
-    geom_smooth(aes(fill = cut), colour = "lightgrey")
+    geom_point(aes(colour = cut), size = 2, alpha = .5) + #<<
+    geom_smooth(aes(fill = cut), colour = "lightgrey") #<<
 ```
 
 ```{r, fig.width=10, fig.height=5, echo = FALSE}
@@ -769,7 +769,7 @@ ggplot(data = diamonds, aes(x = carat, y = price)) +
 ggplot(data = diamonds, aes(x = carat, y = price)) +
     geom_point(aes(colour = cut), size = 2, alpha = .5) +
     geom_smooth(aes(fill = cut), colour = "lightgrey") +
-    scale_y_log10()
+    scale_y_log10() #<<
 ```
 
 ```{r, fig.width=10, fig.height=5, echo = FALSE}
@@ -791,7 +791,7 @@ ggplot(data = diamonds, aes(x = carat, y = price)) +
     geom_point(aes(colour = cut), size = 2, alpha = .5) +
     geom_smooth(aes(fill = cut), colour = "lightgrey") +
     scale_y_log10() +
-    facet_wrap(~cut)
+    facet_wrap(~cut) #<<
 ```
 
 ```{r, fig.width=10, fig.height=5, echo = FALSE}

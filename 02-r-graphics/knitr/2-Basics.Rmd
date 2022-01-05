@@ -608,9 +608,9 @@ head(french_fries)%>% knitr::kable(row.names = F)
 
 ```{r, eval=FALSE, echo=TRUE}
 french_fries_long <- french_fries %>% 
-  pivot_longer(cols = c("potato":"painty"),
-               names_to = "variable",
-               values_to = "value")
+  pivot_longer(cols = c("potato":"painty"), #<<
+               names_to = "variable", #<<
+               values_to = "value") #<<
 head(french_fries_long)
 ```
 
