@@ -1,6 +1,6 @@
 ---
 title: "dplyr"
-author: "Haley Jeppson and Sam Tyner"
+author:
 ratio: 16x10
 output: 
   xaringan::moon_reader:
@@ -32,11 +32,12 @@ Consequences:
 
 - read `%>%` as "then do"
 
+- in non-mathematical terms, the piping operator allows you to apply more than one different function at the same time to the same data frame.
 
 ---
-## dplyr verbs
+## dplyr terminology
 
-There are five primary `dplyr` *verbs*, representing distinct data analysis tasks:
+There are some of the primary `dplyr` *verbs*, representing distinct data analysis tasks:
 
 - **Filter**: Select specified rows of a data frame, produce subsets
 
@@ -55,20 +56,20 @@ There are five primary `dplyr` *verbs*, representing distinct data analysis task
 
 ## Filter
 
-Read in the french fries data (in the folder 03-r-format/data). The data are from an experiment on the effect of using three different fryer oils had on the taste of the fries.
+Read in the pitch data set (in the folder 03-r-format/data). The data are from an experiment on different advanced metrics of a MLB baseball pitchers different pitch types.
 
 ```{r message = FALSE, warning=FALSE, eval = FALSE}
 library(tidyverse)
-french_fries <- read_csv("frenchfries.csv")
-french_fries %>% 
-  filter(subject == 3, time == 1) %>% 
+curve <- read_csv("../data/pitchdata.csv")
+curve %>% 
+  filter(pitcher_hand == "R", pitch_type == "CU") %>% 
   head(3)
 ```
 ```{r message = FALSE, warning=FALSE, echo = FALSE}
 library(tidyverse)
-french_fries <- read_csv("../data/frenchfries.csv")
-french_fries %>% 
-  filter(subject == 3, time == 1) %>% 
+pitch <- read_csv("../data/pitchdata.csv")
+pitch %>% 
+  filter(pitcher_hand == "R", pitch_type == "CU") %>% 
   head(3)
 ```
 
@@ -79,19 +80,23 @@ french_fries %>%
 
 Multiple conditions in `filter` are combined with a logical AND (i.e. all conditions must be fulfilled) 
 
-e.g. `filter(subject ==3, time ==1)`
+e.g. `filter(pitcher_hand == "R", pitch_type == "CU")`
 
 Logical expressions can also be used 
 
-e.g. `filter(subject == 3 & time == 1)` or `filter(subject == 3 | subject == 4)`
+e.g. `filter(pitcher_hand == "R" &  pitch_type == "CU")` or 
+`filter(pitch_type == "CU" | subject == "KN")`
 
 ---
 class: inverse
 ## Your Turn (~3 minutes) 
 
-1. Use `filter` to get a subset of the `french_fries` data
+1. Use `filter` to get a subset of the `pitchdata` dataset
 
-2. `%>%` the subset into `ggplot` and create a plot
+2. Filter the data down to left handed pitchers, who throw a curve with at least
+3300 rpms (spin_rate), and the play results in a ball (action_result).
+
+3. `%>%` the subset and create a plot
 
 hint: what is the default first argument of the `ggplot` function?
 
@@ -100,30 +105,46 @@ hint: what is the default first argument of the `ggplot` function?
 ## One Solution 
 
 ```{r, purl=FALSE, message=FALSE, warning= FALSE, fig.height=3}
-french_fries %>% 
-  filter(as.numeric(time)>5) %>%
-  ggplot(aes(x=painty, y=rancid)) +
-  geom_point(aes(color=subject)) +
+  pitch %>%
+  filter(spin_rate >= 3200 & pitcher_hand == "L") %>%
+  ggplot(aes(x=action_result, y=spin_rate)) +
+  geom_point(aes(color=playerid)) +
   geom_smooth() + 
   theme(legend.position = "none")
 ```
 
 ---
 
+## Another Solution (interactive edition)
+
+```{r, purl=FALSE, message=FALSE, warning= FALSE, fig.height=3}
+library(rbokeh)
+ pitch %>%
+  filter(spin_rate >= 3200 & pitcher_hand == "L") %>%
+  figure() %>%
+  ly_points(x = action_result, y = spin_rate, color = playerid, hover = list(playerid, spin_rate, action_result), legend = FALSE)
+
+```
+
+---
+
+
 ## Arrange
 
 ```{r arr.desc}
-french_fries %>% 
-  arrange(desc(rancid), potato) %>% 
-  head(3)
+pitch %>% 
+  subset(select = c("playerid", "spin_rate")) %>%
+  arrange(desc(playerid), spin_rate) %>% 
+  head(5)
 ```
 
 Successive variables are used for breaking ties from previous variables.
 
 ```{r arr.asce}
-french_fries %>% 
-  arrange(rancid, potato) %>% 
-  head(3)
+pitch %>% 
+  subset(select = c("playerid", "spin_rate")) %>%
+  arrange(playerid, spin_rate) %>% 
+  head(5)
 ```
 
 ---
