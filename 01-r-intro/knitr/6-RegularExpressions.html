@@ -238,47 +238,6 @@ class: inverse
 
 2. For any state that has a name in the form `New ----`, replace `New` with `Old`.
 
----
-class: inverse
-
-## Your Turn - Solution
-
-
-```r
-grep(pattern = "s{1,2}", state.name, value = TRUE)
-```
-
-```
-##  [1] "Alaska"        "Arkansas"      "Illinois"      "Kansas"       
-##  [5] "Louisiana"     "Massachusetts" "Minnesota"     "Mississippi"  
-##  [9] "Missouri"      "Nebraska"      "New Hampshire" "New Jersey"   
-## [13] "Pennsylvania"  "Rhode Island"  "Tennessee"     "Texas"        
-## [17] "Washington"    "West Virginia" "Wisconsin"
-```
-
-```r
-gsub("New", "Old", state.name)
-```
-
-```
-##  [1] "Alabama"        "Alaska"         "Arizona"       
-##  [4] "Arkansas"       "California"     "Colorado"      
-##  [7] "Connecticut"    "Delaware"       "Florida"       
-## [10] "Georgia"        "Hawaii"         "Idaho"         
-## [13] "Illinois"       "Indiana"        "Iowa"          
-## [16] "Kansas"         "Kentucky"       "Louisiana"     
-## [19] "Maine"          "Maryland"       "Massachusetts" 
-## [22] "Michigan"       "Minnesota"      "Mississippi"   
-## [25] "Missouri"       "Montana"        "Nebraska"      
-## [28] "Nevada"         "Old Hampshire"  "Old Jersey"    
-## [31] "Old Mexico"     "Old York"       "North Carolina"
-## [34] "North Dakota"   "Ohio"           "Oklahoma"      
-## [37] "Oregon"         "Pennsylvania"   "Rhode Island"  
-## [40] "South Carolina" "South Dakota"   "Tennessee"     
-## [43] "Texas"          "Utah"           "Vermont"       
-## [46] "Virginia"       "Washington"     "West Virginia" 
-## [49] "Wisconsin"      "Wyoming"
-```
 
 ---
 
@@ -336,28 +295,6 @@ Extract the pen number, experiment, and tissue for each row.
 
 
 
----
-class: inverse
-
-## Your Turn - Solution
-
-
-```r
-meta$pen &lt;- sub('X.P.*N(..).*D.*', '\\1', meta$Group)
-meta$experiment &lt;- sub('(X.)P[:digit:]*.*', '\\1', meta$Group)
-meta$tissue &lt;- sub('X.P.*N..(.*)D.*', '\\1', meta$Group)
-head(meta)
-```
-
-```
-##    label       Group numOtus day pen experiment tissue
-## 27  0.03 X1P10N2ACD4    5802   4  2A         X1      C
-## 28  0.03 X1P10N2AFD0    5802   0  2A         X1      F
-## 29  0.03 X1P10N2AFD4    5802   4  2A         X1      F
-## 30  0.03 X1P10N2AID4    5802   4  2A         X1      I
-## 31  0.03 X1P11N2ACD4    5802   4  2A         X1      C
-## 32  0.03 X1P11N2AFD0    5802   0  2A         X1      F
-```
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

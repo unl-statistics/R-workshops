@@ -1,6 +1,5 @@
 ---
 title: "Your Turn Solutions"
-author: "Haley Jeppson, Sam Tyner"
 output: html_document
 ---
 
@@ -8,30 +7,36 @@ output: html_document
 
 Try playing with chunks of code from this session to further investigate the tips data:
 
-1. Get a summary of the total bill values
+1. Get a summary of the daily shedding values (use the shed data set)
 
 ```{r}
-#tips <- read.csv("http://heike.github.io/rwrks/01-r-intro/data/tips.csv")
-tips <- read.csv("../data/tips.csv")
+
+#shed <- read_csv("https://srvanderplas.github.io/rwrks/01-r-intro/data/daily_shedding.csv")
+
+shed <- read.csv("../data/daily_shedding.csv")
 
 
-summary(tips$total_bill)
+summary(shed$daily_shedding)
 ```
 
-2. Make side by side boxplots of tip rates for different days of the week
+2. Make side by side boxplots of final weight gain by treatment group (use the final_shed data set)
 
-```{r}
-library(ggplot2)
+```{r message=FALSE}
+library(tidyverse)
 
-tips$rate <- tips$tip / tips$total_bill
+final_shed <- shed %>% 
+  group_by(pignum) %>% 
+  mutate(gain = pig_weight[time_point == 21] - pig_weight[time_point == 0]) %>% filter(time_point == 21)  %>% ungroup() %>% select(-c(4:9))
 
-qplot(day, rate, geom = "boxplot", data = tips)
+ggplot(final_shed) + 
+  geom_boxplot( aes(treatment, gain, fill = treatment))
 ```
 
-3. Find the average tip value for smokers
+3. Compute a wilcox test for control vs. the "Bglu" treatment group
 
 ```{r}
-mean(tips$tip[tips$smoker == "Yes"])
+wilcox.test(total_shedding ~ treatment, data = final_shed,
+            subset = treatment %in% c("control", "Bglu"))
 ```
 
 ## Basics
@@ -60,42 +65,30 @@ rep(1:5, each = 2)
 rep(1:5, times = 3)
 ```
 
-1. Find out how many people tipped over 20%.
+1. Find out how many pigs had a total shedding value of less than 30 log10 CFUs.
 *Hint: if you use the `sum` function on a logical vector, it'll return how many TRUEs are in the vector:*
 ```{r}
 sum(c(TRUE, TRUE, FALSE, TRUE, FALSE))
 ```
 
 ```{r}
-sum(tips$rate > .2)
+sum(shed$total_shedding < .30)
 ```
 
-2. **More Challenging**: Calculate the sum of the total bills of anyone who tipped over 20%
+2. **More Challenging**: Calculate the sum of the total shedding log10 CFUs of all pigs with a total shedding value of less than 30 log10 CFUs
 
 ```{r}
-sum(tips$total_bill[tips$rate > .2])
+sum(shed$total_shedding[shed$total_shedding < 30])
 ```
 
-1. Read up on the dataset (`?diamonds`)
-2. Plot price by carat (use qplot - go back to the motivating example for help with the syntax)
+1. Which pigs have a shedding value less than or equal to 30 OR is in the Acid treatment group?
 
 ```{r}
-qplot(carat, price, data = diamonds)
+shedding <- final_shed$total_shedding
+treatment <- final_shed$treatment
+id <- (shedding <= 30 | treatment == "Acid")
+final_shed[id,]
 ```
-
-3. Create a variable `ppc` for price/carat. Store this variable as a column in the diamonds data
-
-```{r}
-diamonds$ppc <- diamonds$price / diamonds$carat
-```
-
-4. Make a histogram of all ppc values that exceed $10000 per carat.
-
-```{r}
-qplot(ppc, geom = "histogram", data = diamonds[diamonds$ppc > 10000,])
-```
-
-5. Explore any other interesting relationships you find
 
 ## Data Structures
 
@@ -111,7 +104,13 @@ mydf <- data.frame(col1 = 1:6, col2 = rep(c("a", "b"), times = 3))
 mydf[mydf$col2 == "a",]
 ```
 
-3. `mtcars` is a built in data set like `iris`: Extract the 4th row of the `mtcars` data.
+3.
+```{r}
+names(mydf) <- c("Bulldogs", "Tigers")
+```
+
+
+4. `mtcars` is a built in data set like `iris`: Extract the 4th row of the `mtcars` data.
 
 ```{r}
 mtcars[4,]
@@ -195,22 +194,36 @@ for (i in 1:ncol(diamonds)) {
 }
 ```
 
-## RMarkdown Basics
 
-Study the second page of the [R Markdown Reference Guide](rmarkdown-reference.pdf) and go back to the [Hello R Markdown example](hello_rmarkdown.Rmd)
+## Regular Expressions
 
-**Easy**: Modify the figure sizing and alignment.
+1. How many state names contain one or two S's?
 
-```{r, fig.width=5, fig.height=3, fig.align='center'}
-plot(cars)
+```{r}
+
+data(state)
+
+grep(pattern = "s{1,2}", state.name, value = TRUE)
 ```
 
-**Medium**: Add a figure caption.
+2. For any state that has a name in the form New ----, replace New with Old.
 
-```{r, fig.cap='This is a caption'}
-plot(cars)
+```{r}
+gsub("New", "Old", state.name)
 ```
 
-**Hard**: Can you create an animation? (Hint: look at the `fig.show` chunk option -- you might need to the **animation** package for this)
 
-See Haley, Joe, or Sam for an explanation of this.
+1. Extract the pen number, experiment, and tissue for each row. 
+
+```{r}
+meta <- read.table("https://srvanderplas.github.io/rwrks/01-r-intro/data/meta.txt")
+
+meta$pen <- sub('X.P.*N(..).*D.*', '\\1', meta$Group)
+meta$experiment <- sub('(X.)P[:digit:]*.*', '\\1', meta$Group)
+meta$tissue <- sub('X.P.*N..(.*)D.*', '\\1', meta$Group)
+head(meta$pen)
+head(meta$experiment)
+head(meta$tissue)
+```
+
+
