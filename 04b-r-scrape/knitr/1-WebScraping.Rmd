@@ -197,17 +197,17 @@ Use [Selector Gadget](http://selectorgadget.com/) to find the exact location. (D
 
 For more on HTML, I recommend [W3schools' tutorial](http://www.w3schools.com/html/html_intro.asp) 
 
->- You don't need to be an expert in HTML to webscrape with `rvest`!
+>- You don't need to be an expert in HTML to web scrape with `rvest`!
 
 ## Step 4: Tell `rvest` where to find your data
 
 Copy-paste from Selector Gadget or give HTML tags into `html_nodes()` to extract your data of interest
 ```{r getdesc}
-myhtml %>% html_nodes(".summary_text") %>% html_text()
+#myhtml %>% html_nodes("plotsummary") #%>% html_text() 
 ```
 
 ```{r gettable}
-myhtml %>% html_nodes("table") %>% html_table(header = TRUE)
+#myhtml %>% html_nodes("table") %>% html_table(header = TRUE)
 ```
 
 ## Step 5: Save & tidy data {.smaller}
@@ -215,16 +215,17 @@ myhtml %>% html_nodes("table") %>% html_table(header = TRUE)
 ```{r savetidy, message = FALSE, warning = FALSE}
 library(stringr)
 library(magrittr)
-mydat <- myhtml %>% 
-  html_nodes("table") %>%
-  extract2(1) %>% 
-  html_table(header = TRUE)
-mydat <- mydat[,c(2,4)]
-names(mydat) <- c("Actor", "Role")
-mydat <- mydat %>% 
-  mutate(Actor = Actor,
-         Role = str_replace_all(Role, "\n  ", ""))
-mydat
+# mydat <- myhtml %>% 
+#   html_nodes("table") %>%
+#   magrittr::extract2(1) %>% 
+#   html_table(header = TRUE)
+# 
+# mydat <- mydat[,c(2,4)]
+# names(mydat) <- c("Actor", "Role")
+# mydat <- mydat %>% 
+#   mutate(Actor = Actor,
+#          Role = str_replace_all(Role, "\n  ", ""))
+# mydat
 ```
 
 ## Your Turn #1
@@ -242,9 +243,9 @@ myurl <- "https://en.wikipedia.org/wiki/List_of_countries_by_GDP_(PPP)_per_capit
 myhtml <- read_html(myurl)
 myhtml %>% 
  html_nodes("table") %>%
- extract2(2) %>%
+ magrittr::extract2(2) %>%
  html_table(header = TRUE) %>% 
- mutate(`Int$` = parse_number(`Int$`)) %>% 
+ #dplyr::mutate(`Int$` = parse_number(`Int$`)) %>% 
  head
 ```
 
@@ -288,7 +289,7 @@ myhtml %>%
 ```{r tableex2}
 myhtml %>% 
   html_nodes("table") %>% # get the tables 
-  extract2(2) %>% # pick the second one to parse
+  magrittr::extract2(2) %>% # pick the second one to parse
   html_table(header = TRUE) # parse table 
 ```
 
@@ -301,13 +302,15 @@ myhtml %>%
 
 ```{r attrsex}
 myhtml %>% 
-  html_nodes("table") %>% extract2(2) %>%
+  html_nodes("table") %>% 
+  magrittr::extract2(2) %>%
   html_attrs()
 ```
 
 ```{r attrsex2}
 myhtml %>% 
-  html_nodes("p") %>% html_nodes("a") %>%
+  html_nodes("p") %>% 
+  html_nodes("a") %>%
   html_attr("href")
 ```
 

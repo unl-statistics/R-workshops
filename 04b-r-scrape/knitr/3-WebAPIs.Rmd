@@ -1,0 +1,193 @@
+---
+title: "Web APIs in R"
+subtitle: "Using jsonlite"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+# Web APIs
+
+## Web APIs {.build} 
+
+- [Server-side Web APIs](https://en.wikipedia.org/wiki/Web_API#Server-side) (Application Programming Interfaces) are a popular way to provide easy access to data and other services. 
+- If you (the client) want data from a server, you typically need one HTTP verb -- `GET`.
+
+```{r}
+library(httr)
+sam <- GET("https://api.github.com/users/sctyner")
+content(sam)[c("name", "company")]
+```
+
+- Other HTTP verbs -- `POST`, `PUT`, `DELETE`, etc...
+
+## Request/response model {.build}
+
+- When you (the client) _requests_ a resource from the server. The server _responds_ with a bunch of additional information.
+
+```{r}
+sam$header[1:3]
+```
+
+- Nowadays content-type is usually XML or JSON (HTML is great for _sharing content_ between _people_, but it isn't great for _exchanging data_ between _machines_.)
+
+# Non-HTML Data Formats
+
+## What is XML?
+
+XML is a markup language that looks very similar to HTML.
+
+```xml
+<mariokart>
+  <driver name="Bowser" occupation="Koopa">
+    <vehicle speed="55" weight="25"> Wario Bike </vehicle>
+    <vehicle speed="40" weight="67"> Piranha Prowler </vehicle>
+  </driver>
+  <driver name="Peach" occupation="Princess">
+    <vehicle speed="54" weight="29"> Royal Racer </vehicle>
+    <vehicle speed="50" weight="34"> Wild Wing </vehicle>
+  </driver>
+</mariokart>
+```
+
+- This example shows that XML can (and is) used to store inherently tabular data ([thanks Jeroen Ooms](http://arxiv.org/pdf/1403.2805v1.pdf))
+- What is are the observational units here? How many observations in total?
+- 2 units and 6 total observations (4 vehicles and 2 drivers).
+
+## XML2R {.build}
+
+[XML2R](https://github.com/cpsievert/XML2R) is a framework to simplify acquistion of tabular/relational XML.
+
+```{r, echo=FALSE, message = FALSE, warning=FALSE}
+# hopefully no one is watching
+# devtools::install_github("cpsievert/XML2R")
+library(XML2R)
+
+#obs <- read_xml("https://gist.githubusercontent.com/cpsievert/85e340814cb855a60dc4/raw/651b7626e34751c7485cff2d7ea3ea66413609b8/mariokart.xml")
+obs <- XML2Obs("https://gist.githubusercontent.com/cpsievert/85e340814cb855a60dc4/raw/651b7626e34751c7485cff2d7ea3ea66413609b8/mariokart.xml", quiet = TRUE)
+data.frame(obs)
+table(names(obs))
+```
+
+* **XML2R** coerces XML into a *flat* list of observations.
+* The list names track the "observational unit".
+* The list values track the "observational attributes".
+
+---
+
+```{r}
+obs # named list of observations
+```
+
+---
+
+```{r}
+collapse_obs(obs) # group into table(s) by observational name/unit
+```
+
+- What information have I lost?
+- I can't map vehicles to the drivers!
+
+---
+
+```{r}
+library(dplyr)
+obs <- add_key(obs, parent = "mariokart//driver", recycle = "name")
+collapse_obs(obs)
+```
+
+---
+
+Now (if I want) I can merge the tables into a single table...
+
+```{r}
+tabs <- collapse_obs(obs)
+left_join(as.data.frame(tabs[[1]]), as.data.frame(tabs[[2]])) 
+```
+
+## What about JSON? {.build}
+
+- JSON is _the_ format for data on the web.
+- JavaScript Object Notation (JSON) is comprised of two components:
+    * arrays => [value1, value2]
+    * objects => {"key1": value1, "key2": [value2, value3]} 
+- [jsonlite](http://cran.r-project.org/web/packages/jsonlite/index.html) is the preferred R package for parsing JSON (it's even used by Shiny!)
+
+## Back to Mariokart {.smaller}
+
+```json
+[
+    {
+        "driver": "Bowser",
+        "occupation": "Koopa",
+        "vehicles": [
+            {
+                "model": "Wario Bike",
+                "speed": 55,
+                "weight": 25
+            },
+            {
+                "model": "Piranha Prowler",
+                "speed": 40,
+                "weight": 67
+            }
+        ]
+    },
+    {
+        "driver": "Peach",
+        "occupation": "Princess",
+        "vehicles": [
+            {
+                "model": "Royal Racer",
+                "speed": 54,
+                "weight": 29
+            },
+            {
+                "model": "Wild Wing",
+                "speed": 50,
+                "weight": 34
+            }
+        ]
+    }
+]
+```
+
+
+---
+
+```{r}
+library(jsonlite)
+mario <- fromJSON("http://bit.ly/mario-json")
+str(mario) 
+```
+
+---
+
+```{r}
+mario$driver
+mario$vehicles
+```
+
+How do we get two tables (with a common id) like the XML example?
+
+```{r}
+vehicles <- rbind(mario$vehicles[[1]], mario$vehicles[[2]])
+vehicles <- cbind(driver = mario$driver, vehicles)
+```
+
+## Your Turn {data-background=#527a7a}
+
+1. Get the json data for our R workshop GitHub commit history:
+
+```{r}
+workshop_commits_raw <- fromJSON("https://api.github.com/repos/heike/rwrks/commits")
+```
+
+2. Find the table of commits contained in this list. Hint: It's all about the `$`
+
+3. Plot the total number of commits (number of rows) by user as a bar chart
+
