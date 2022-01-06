@@ -264,9 +264,10 @@ not return a real-valued summary?
 
 - We only ever look at this new variable in the previous chunk.
 - It has not been created globally into the dataset itself
-- To do this, you need to create your new column by declaring it as its own variable.
+
 
 ---
+- To do this, you need to create your new column by declaring it as its own variable.
 ```{r}
 pitch$mean_spin <- mean(pitch$spin_rate)
 ```
@@ -321,96 +322,62 @@ pitch %>% count(playerid, action_result)
 pitch %>% group_by(playerid, action_result) %>% summarize(n=n())
   
 ```
-
-
-
----
-
-<!-- ## Are replicates similar? -->
-
-<!-- ```{r fig.width = 4.5, fig.height=4.5} -->
-<!-- reps <- french_fries %>%  -->
-<!--   group_by(time, subject, treatment) %>% -->
-<!--   summarise(potato_diff = diff(potato), -->
-<!--             potato = mean(potato)) -->
-
-<!-- reps -->
-<!-- ``` -->
-
-<!-- --- -->
-
-<!-- ## Are replicates similar? (contd.) -->
-
-<!-- ```{r fig.height=4, warning=FALSE} -->
-<!-- reps %>%  -->
-<!--   ggplot(aes(x = potato, y = potato_diff, colour = as.numeric(time))) +  -->
-<!--   facet_wrap(~subject) + -->
-<!--   geom_hline(aes(yintercept=0)) + -->
-<!--   geom_point()  -->
-<!-- ``` -->
-
 ---
 class: inverse
 ## Your Turn (10 min) 
 
 
 Based on your (limited) knowledge of baseball, you determine what is a "successful" curveball.
-Then determine what pitchers pitched the most successful curveballs! If time allows create a visual that shows this.
+Then determine what pitchers pitched the most successful curveballs! If time allows create a visual that shows the top 5 pitchers who threw the most successful curveballs
 
 Note: There are many different ways of answering this question. None are wrong and you don't need to know anything about baseball to try. Consider criteria that it needs to meet. Ex. A successful curveball needs to be above 90 mph in velocity and have over 2800 rpms in spin rate.
-
 ---
 
 ## One Solution
 
-```{r fig.height=4, warning=FALSE, purl=FALSE}
-french_fries %>% 
-  ggplot(aes(x = potato, y = buttery)) + 
-  geom_point() +
-  theme(aspect.ratio=1) + xlim(c(0,15)) + 
-  ylim(c(0,15)) +
-  geom_abline(colour = "grey50")
+```{r fig.height=1,figure.width=1, warning=FALSE, purl=FALSE}
+SScurve <- pitch %>%
+  select("playerid", "action_result", "ab_result", "adj_h") %>%  
+  arrange(desc(playerid)) %>% mutate(successfulCU = ifelse(
+    (adj_h < .3 & ab_result != "\\N" ) | 
+      (action_result %in% c("C","S","F")), 1, 0)) %>%
+#Consider a success any strike and any batted ball resulting in a 
+#adj_h less than the league average of .300 BABIP (according to MLB.com).
+  group_by(playerid) %>% mutate(totalSSCU=sum(successfulCU)) %>% 
+  mutate(percentSSCU=totalSSCU / n())
+SScurve
+```
+
+---
+## Solution (Cont)
+```{r fig.height=3, warning=FALSE, purl=FALSE, message=FALSE}
+#Calculate successful curveball percentages
+percentages <- distinct(.data = SScurve, playerid, totalSSCU, percentSSCU)
+#Look at some graphs to see what the data actually looks like now. 
+library(rbokeh)
+library(quanteda)
+ggplot(data = percentages) + geom_point(aes(x = percentSSCU, y = totalSSCU, 
+                                            colour = playerid))
+
 ```
 
 ---
 
-## Another Solution 
-For a numeric approach, we could compute means across subjects for each week and compare those values:
+## Solution (Cont.)
+```{r fig.height=3, warning=FALSE, purl=FALSE}
 
-```{r purl=FALSE}
-ffm <- french_fries %>% 
-  group_by(time) %>% 
-  summarise(potato = mean(potato,  na.rm=TRUE),
-            buttery = mean(buttery,  na.rm=TRUE),
-            painty = mean(painty,  na.rm=TRUE))
-
-ffm
+#Filter down to get the best pitchers with a minimum of 127 curveballs thrown 
+#(our median)
+qualifiedPercentages <- percentages %>% filter(totalSSCU > 127) %>% 
+  arrange(desc(percentSSCU))
+figure() %>%
+  ly_points(x = percentSSCU, y = totalSSCU, color = playerid,
+            data = qualifiedPercentages, hover = list(playerid, totalSSCU, 
+                                                      percentSSCU), 
+            legend = FALSE)
 ```
 
----
 
-## Another Solution (cont)
-
-```{r fig.height=3,  purl=FALSE}
-
-ffm %>%
-  ggplot(aes(x = time, y = potato)) + 
-  geom_point(colour = "blue", size=3) +
-  geom_point(aes(y = buttery), colour = "forestgreen", size=3) +
-  geom_point(aes(y = painty), colour = "red", size=3) +
-  ylab("Score")
-```
-
-This doesn't seem like an elegant or efficient way of answering the question: the data is in an awkward form!
-
----
-## Another option
-
-The package `GGally` has an implementation of a scatterplot matrix using ggplot2:
-
-```{r fig.height=4, warning=FALSE}
-GGally::ggpairs(data = french_fries[ ,5:9])
-```
 
 ---
 class: inverse
@@ -544,5 +511,65 @@ ChickPlus %>%
 ```
 
 
+<!-- ## Are replicates similar? -->
 
+<!-- ```{r fig.width = 4.5, fig.height=4.5} -->
+<!-- reps <- french_fries %>%  -->
+<!--   group_by(time, subject, treatment) %>% -->
+<!--   summarise(potato_diff = diff(potato), -->
+<!--             potato = mean(potato)) -->
+
+<!-- reps -->
+<!-- ``` -->
+
+<!-- --- -->
+
+<!-- ## Are replicates similar? (contd.) -->
+
+<!-- ```{r fig.height=4, warning=FALSE} -->
+<!-- reps %>%  -->
+<!--   ggplot(aes(x = potato, y = potato_diff, colour = as.numeric(time))) +  -->
+<!--   facet_wrap(~subject) + -->
+<!--   geom_hline(aes(yintercept=0)) + -->
+<!--   geom_point()  -->
+<!-- ``` -->
+
+
+<!-- ## Another Solution  -->
+<!-- For a numeric approach, we could compute means across subjects for each week and compare those values: -->
+
+<!-- ```{r purl=FALSE} -->
+<!-- ffm <- french_fries %>%  -->
+<!--   group_by(time) %>%  -->
+<!--   summarise(potato = mean(potato,  na.rm=TRUE), -->
+<!--             buttery = mean(buttery,  na.rm=TRUE), -->
+<!--             painty = mean(painty,  na.rm=TRUE)) -->
+
+<!-- ffm -->
+<!-- ``` -->
+
+<!-- --- -->
+
+<!-- ## Another Solution (cont) -->
+
+<!-- ```{r fig.height=3,  purl=FALSE} -->
+
+<!-- ffm %>% -->
+<!--   ggplot(aes(x = time, y = potato)) +  -->
+<!--   geom_point(colour = "blue", size=3) + -->
+<!--   geom_point(aes(y = buttery), colour = "forestgreen", size=3) + -->
+<!--   geom_point(aes(y = painty), colour = "red", size=3) + -->
+<!--   ylab("Score") -->
+<!-- ``` -->
+
+<!-- This doesn't seem like an elegant or efficient way of answering the question: the data is in an awkward form! -->
+
+<!-- --- -->
+<!-- ## Another option -->
+
+<!-- The package `GGally` has an implementation of a scatterplot matrix using ggplot2: -->
+
+<!-- ```{r fig.height=4, warning=FALSE} -->
+<!-- GGally::ggpairs(data = french_fries[ ,5:9]) -->
+<!-- ``` -->
 
