@@ -33,7 +33,6 @@ myhtml %&gt;%
  html_nodes("table") %&gt;%
  magrittr::extract2(2) %&gt;%
  html_table(header = TRUE) %&gt;% 
- #dplyr::mutate(`Int$` = parse_number(`Int$`)) %&gt;% 
  head
 ```
 

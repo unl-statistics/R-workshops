@@ -18,6 +18,8 @@ class: center, middle, inverse, title-slide
 
 
 
+
+
 ## A web of data
 
 - In 2008, [an estimated](https://sirrice.github.io/files/papers/webtables-vldb08.pdf) **154 million HTML tables** (out of the 14.1 billion) contain 'high quality relational data'!!!
@@ -61,6 +63,50 @@ class: center, middle, inverse, title-slide
 &lt;img src="./images/copypastesucks.png" width="50%" /&gt;
 &gt;- Because it's fast
 &gt;- Because you can automate it
+
+---
+
+## SelectorGadget
+
++ SelectorGadget is a javascript bookmark let to determine the css selectors of pieces of a website we want to extract.
++ Bookmark the SelectorGadget link, https://rvest.tidyverse.org/articles/selectorgadget.html, then click on it to use it (or add the chrome extension)
++ When SelectorGadget is active, pieces of the website are highlighted in orange/green/red.
++ Use SelectorGadget on http://www.baseball-reference.com/players/.
++ Read more details on vignette("selectorgadget")
+
+If you prefer, you can also read the HTML code and create your own CSS or XPATH selectors.
+
+---
+
+## SelectorGadget Results 
+
+
+```r
+url &lt;- "http://www.baseball-reference.com/players/a/"
+html &lt;- read_html(url)
+html %&gt;% html_nodes("strong a") %&gt;% html_text()
+```
+
+```
+##  [1] "José Abreu"       "Ronald Acuna Jr." "Matt Adams"       "Jesus Aguilar"   
+##  [5] "Nick Ahmed"       "Ozzie Albies"     "Jose Altuve"      "Brett Anderson"  
+##  [9] "Chase Anderson"   "Tim Anderson"     "Tyler Anderson"   "Elvis Andrus"    
+## [13] "Chris Archer"     "Nolan Arenado"    "Jake Arrieta"     "Alex Avila"      
+## [17] "Luis Avilan"      "John Axford"      "José Abreu"       "Ronald Acuna Jr."
+## [21] "Matt Adams"       "Jesus Aguilar"    "Nick Ahmed"       "Ozzie Albies"    
+## [25] "Jose Altuve"      "Brett Anderson"   "Chase Anderson"   "Tim Anderson"    
+## [29] "Tyler Anderson"   "Elvis Andrus"     "Chris Archer"     "Nolan Arenado"   
+## [33] "Jake Arrieta"     "Alex Avila"       "Luis Avilan"      "John Axford"     
+## [37] "José Abreu"       "Ronald Acuna Jr." "Matt Adams"       "Jesus Aguilar"   
+## [41] "Nick Ahmed"       "Ozzie Albies"     "Jose Altuve"      "Brett Anderson"  
+## [45] "Chase Anderson"   "Tim Anderson"     "Tyler Anderson"   "Elvis Andrus"    
+## [49] "Chris Archer"     "Nolan Arenado"    "Jake Arrieta"     "Alex Avila"      
+## [53] "Luis Avilan"      "John Axford"
+```
+
+
+
+
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

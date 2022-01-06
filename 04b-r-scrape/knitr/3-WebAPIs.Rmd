@@ -25,6 +25,8 @@ content(sam)[c("name", "company")]
 
 - Other HTTP verbs -- `POST`, `PUT`, `DELETE`, etc...
 
+---
+
 ## Request/response model {.build}
 
 - When you (the client) _requests_ a resource from the server. The server _responds_ with a bunch of additional information.
@@ -35,7 +37,7 @@ sam$header[1:3]
 
 - Nowadays content-type is usually XML or JSON (HTML is great for _sharing content_ between _people_, but it isn't great for _exchanging data_ between _machines_.)
 
-# Non-HTML Data Formats
+---
 
 ## What is XML?
 
@@ -57,6 +59,8 @@ XML is a markup language that looks very similar to HTML.
 - This example shows that XML can (and is) used to store inherently tabular data ([thanks Jeroen Ooms](http://arxiv.org/pdf/1403.2805v1.pdf))
 - What is are the observational units here? How many observations in total?
 - 2 units and 6 total observations (4 vehicles and 2 drivers).
+
+---
 
 ## XML2R {.build}
 
@@ -109,6 +113,8 @@ tabs <- collapse_obs(obs)
 left_join(as.data.frame(tabs[[1]]), as.data.frame(tabs[[2]])) 
 ```
 
+---
+
 ## What about JSON? {.build}
 
 - JSON is _the_ format for data on the web.
@@ -116,6 +122,8 @@ left_join(as.data.frame(tabs[[1]]), as.data.frame(tabs[[2]]))
     * arrays => [value1, value2]
     * objects => {"key1": value1, "key2": [value2, value3]} 
 - [jsonlite](http://cran.r-project.org/web/packages/jsonlite/index.html) is the preferred R package for parsing JSON (it's even used by Shiny!)
+
+--- 
 
 ## Back to Mariokart {.smaller}
 
@@ -178,6 +186,8 @@ How do we get two tables (with a common id) like the XML example?
 vehicles <- rbind(mario$vehicles[[1]], mario$vehicles[[2]])
 vehicles <- cbind(driver = mario$driver, vehicles)
 ```
+
+---
 
 ## Your Turn {data-background=#527a7a}
 

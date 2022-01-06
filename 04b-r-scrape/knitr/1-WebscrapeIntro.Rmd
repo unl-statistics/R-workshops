@@ -10,6 +10,15 @@ output:
       countIncrementalSlides: false
 ---
 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(httr)
+library(rvest)
+library(rvest)
+library(magrittr)
+```
+
 
 ## A web of data
 
@@ -58,3 +67,29 @@ knitr::include_graphics("./images/copypastesucks.png", auto_pdf = FALSE)
 ```
 >- Because it's fast
 >- Because you can automate it
+
+---
+
+## SelectorGadget
+
++ SelectorGadget is a javascript bookmark let to determine the css selectors of pieces of a website we want to extract.
++ Bookmark the SelectorGadget link, https://rvest.tidyverse.org/articles/selectorgadget.html, then click on it to use it (or add the chrome extension)
++ When SelectorGadget is active, pieces of the website are highlighted in orange/green/red.
++ Use SelectorGadget on http://www.baseball-reference.com/players/.
++ Read more details on vignette("selectorgadget")
+
+If you prefer, you can also read the HTML code and create your own CSS or XPATH selectors.
+
+---
+
+## SelectorGadget Results 
+
+```{r}
+url <- "http://www.baseball-reference.com/players/a/"
+html <- read_html(url)
+html %>% html_nodes("strong a") %>% html_text()
+```
+
+
+
+
