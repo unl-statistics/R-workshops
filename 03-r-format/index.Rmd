@@ -23,3 +23,4 @@ Date | Notes | Lectures and Resources
 
 - [The Split-Apply-Combine Strategy for Data Analysis](http://www.jstatsoft.org/v40/i01), Journal of Statistical Software, 2011
 - [Overview of base apply functions](https://ademos.people.uic.edu/Chapter4.html)
+- [Dplyr and Tidyr Cheat Sheet](https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf)
