@@ -1,7 +1,7 @@
 ---
 title: "Tidying and Joining Data with `tidyr`"
-subtitle: "(Slides by Heike Hofmann)"
-authors: "Haley Jeppson, Sam Tyner"
+subtitle: 
+authors: 
 ratio: 16x10
 output: 
   xaringan::moon_reader:

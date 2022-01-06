@@ -1,6 +1,6 @@
 ---
 title: "tidyr"
-author: "Haley Jeppson, Sam Tyner"
+author: 
 output: 
   xaringan::moon_reader:
     lib_dir: libs

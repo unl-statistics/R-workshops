@@ -1,6 +1,6 @@
 ---
 title: "Reading Files"
-author: "Haley Jeppson, Sam Tyner"
+author: 
 output: 
   xaringan::moon_reader:
     lib_dir: libs
