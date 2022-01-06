@@ -93,7 +93,7 @@ class: inverse
 
 1. Use `filter` to get a subset of the `pitchdata` dataset
 
-2. Filter the data down to left handed pitchers, who throw a curve with at least
+2. Ex. Filter the data down to left handed pitchers, who throw a curve with at least
 3300 rpms (spin_rate), and the play results in a ball (action_result).
 
 3. `%>%` the subset and create a plot
@@ -122,7 +122,7 @@ library(rbokeh)
  pitch %>%
   filter(spin_rate >= 3200 & pitcher_hand == "L") %>%
   figure() %>%
-  ly_points(x = action_result, y = spin_rate, color = playerid, hover = list(playerid, spin_rate, action_result), legend = FALSE)
+  ly_points(x = action_result, y = spin_rate, color = playerid, hover = list(playerid, spin_rate, action_result), legend = FALSE) 
 
 ```
 
@@ -130,7 +130,7 @@ library(rbokeh)
 
 
 ## Arrange
-
+ -Easy way to arrange your data in ascending or descending order
 ```{r arr.desc}
 pitch %>% 
   subset(select = c("playerid", "spin_rate")) %>%
@@ -235,32 +235,42 @@ pitch %>%
 
 ## Mutate
 
-Change an existing or create a new variable into the data
-
+ -Change an existing or create a new variable into the data
+ -Creating a new column in your data set that represents something new
+ -Great for calculations 
+ -How would I create a calculation for how far above or below each players pitches are from their own average spin rates?
 ```{r}
-french_fries %>%
-    mutate(awful = (buttery+potato)/2 - (grassy+painty+rancid)/3,
-           time = as.numeric(time)) %>% 
-  glimpse()
+pitch %>%
+    select(playerid, spin_rate, action_result) %>%
+    group_by(playerid, action_result) %>%
+    summarise(mean_spin = mean(spin_rate), sd_spin = sd(spin_rate)) %>%
+    mutate(mean = sum(mean_spin) / n()) %>%
+    mutate(difference = mean - mean_spin)
 ```
 
 ---
 
-## Caution: Trap!
+## Caution: Be careful about using the newly created variable outside of a chunk
 
 Why does 
 
 ```{r}
-french_fries$awful
+pitch$mean_spin
 ```
 
 not return a real-valued summary?
 
 --
 
-- Because we never saved it back into the `french_fries` data
+- We only ever look at this new variable in the previous chunk.
+- It has not been created globally into the dataset itself
+- To do this, you need to create your new column by declaring it as its own variable.
 
-- Go back and have a look
+---
+```{r}
+pitch$mean_spin <- mean(pitch$spin_rate)
+```
+
 
 ---
 
@@ -298,8 +308,8 @@ Both commands introduce new variables - so which one should we use?
 
 ```{r, eval = FALSE}
 
-french_fries %>% tally()
-french_fries %>% summarize(n=n())
+pitch %>% tally()
+pitch %>% summarize(n=n())
 
 ```
 
@@ -307,8 +317,8 @@ french_fries %>% summarize(n=n())
 `group_by(time, subject) %>% summarize(n = n())` is equivalent to `count(time, subject)`
 
 ```{r, eval=FALSE}
-french_fries %>% count(time, subject)
-french_fries %>% group_by(time, subject) %>% summarize(n=n())
+pitch %>% count(playerid, action_result)
+pitch %>% group_by(playerid, action_result) %>% summarize(n=n())
   
 ```
 
@@ -316,37 +326,38 @@ french_fries %>% group_by(time, subject) %>% summarize(n=n())
 
 ---
 
-## Are replicates similar?
+<!-- ## Are replicates similar? -->
 
-```{r fig.width = 4.5, fig.height=4.5}
-reps <- french_fries %>% 
-  group_by(time, subject, treatment) %>%
-  summarise(potato_diff = diff(potato),
-            potato = mean(potato))
+<!-- ```{r fig.width = 4.5, fig.height=4.5} -->
+<!-- reps <- french_fries %>%  -->
+<!--   group_by(time, subject, treatment) %>% -->
+<!--   summarise(potato_diff = diff(potato), -->
+<!--             potato = mean(potato)) -->
 
-reps
-```
+<!-- reps -->
+<!-- ``` -->
 
----
+<!-- --- -->
 
-## Are replicates similar? (contd.)
+<!-- ## Are replicates similar? (contd.) -->
 
-```{r fig.height=4, warning=FALSE}
-reps %>% 
-  ggplot(aes(x = potato, y = potato_diff, colour = as.numeric(time))) + 
-  facet_wrap(~subject) +
-  geom_hline(aes(yintercept=0)) +
-  geom_point() 
-```
+<!-- ```{r fig.height=4, warning=FALSE} -->
+<!-- reps %>%  -->
+<!--   ggplot(aes(x = potato, y = potato_diff, colour = as.numeric(time))) +  -->
+<!--   facet_wrap(~subject) + -->
+<!--   geom_hline(aes(yintercept=0)) + -->
+<!--   geom_point()  -->
+<!-- ``` -->
 
 ---
 class: inverse
 ## Your Turn (10 min) 
 
 
-Try to answer (a part of) the question: **are different ratings similar**?
+Based on your (limited) knowledge of baseball, you determine what is a "successful" curveball.
+Then determine what pitchers pitched the most successful curveballs! If time allows create a visual that shows this.
 
-Note: there are many different ways of answering this question. Consider ways to plot or summarize the data.
+Note: There are many different ways of answering this question. None are wrong and you don't need to know anything about baseball to try. Consider criteria that it needs to meet. Ex. A successful curveball needs to be above 90 mph in velocity and have over 2800 rpms in spin rate.
 
 ---
 
