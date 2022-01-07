@@ -78,7 +78,10 @@ knitr::include_graphics("./images/copypastesucks.png", auto_pdf = FALSE)
 + Use SelectorGadget on http://www.baseball-reference.com/players/.
 + Read more details on vignette("selectorgadget")
 
-If you prefer, you can also read the HTML code and create your own CSS or XPATH selectors.
+If you prefer, you can also read the HTML code and create your own [CSS](https://www.w3schools.com/cssref/css_selectors.asp) or [XPATH](https://www.w3schools.com/xml/xpath_syntax.asp) selectors. (This is what I do usually -- it's a bit more precise)
+
+
+![](images/baseball_reference.png)
 
 ---
 
