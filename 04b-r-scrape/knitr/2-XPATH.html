@@ -17,6 +17,15 @@ class: center, middle, inverse, title-slide
 ---
 
 
+&lt;style&gt;
+pre code, pre, code {
+  white-space: pre !important;
+  overflow-x: scroll !important;
+  word-break: keep-all !important;
+  word-wrap: initial !important;
+}
+&lt;/style&gt;
+
 
 
 ## Key Functions: `html_nodes`
@@ -140,7 +149,7 @@ myhtml %&gt;%
 
 ---
 
-## Key Functions: `html_table` {.smaller}
+## Key Functions: `html_table` 
 
 - `html_table(x, header, fill)` - parse html table(s) from `x` into a data frame or list of data frames 
 - Structure of HTML makes finding and extracting tables easy!
@@ -281,6 +290,7 @@ myhtml %&gt;%
 
 - `html_form` - parses HTML forms (checkboxes, fill-in-the-blanks, etc.)
 - `html_session` - simulate a session in an html browser; use the functions `jump_to`, `back` to navigate through the page
+
 ---
 
 ## Your Turn #2
@@ -289,9 +299,8 @@ Find another website you want to scrape (ideas: [all bills in the house so far t
 
 ---
 
-# Advanced Example: Inaugural Addresses
-
-## The Data
+## Advanced Example: Inaugural Addresses
+**The Data**
 - [The Avalon Project](http://avalon.law.yale.edu/subject_menus/inaug.asp) has most of the U.S. Presidential inaugural addresses. 
 - Obama &amp; Trump's ('13, '17), VanBuren 1837, Buchanan 1857, Garfield 1881, and Coolidge 1925 are missing, but are easily found elsewhere. I have them saved as text files on the website. 
 - Let's scrape all of them from The Avalon Project! 
@@ -433,7 +442,7 @@ all_inaugs_text$address_text[c(56:58)] &lt;- list(obama09, obama13, trump17)
 
 ---
 
-## Check-in: What did we do? {.smaller}
+## Check-in: What did we do?
 
 1. We found some interesting data to scrape from the web using `rvest`.
 2. We used `tidyr` to create tidy data: A data frame of President and year. One observation per row!

@@ -3,6 +3,7 @@ title: "Web Scraping in R"
 subtitle: "Using rvest"
 output:
   xaringan::moon_reader:
+    self_contained: true
     lib_dir: libs
     nature:
       highlightStyle: github
@@ -10,11 +11,19 @@ output:
       countIncrementalSlides: false
 ---
 
+<style>
+pre code, pre, code {
+  white-space: pre !important;
+  overflow-x: scroll !important;
+  word-break: keep-all !important;
+  word-wrap: initial !important;
+}
+</style>
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 library(httr)
-library(rvest)
 library(rvest)
 library(magrittr)
 ```
@@ -23,7 +32,6 @@ library(magrittr)
 ## A web of data
 
 - In 2008, [an estimated](https://sirrice.github.io/files/papers/webtables-vldb08.pdf) **154 million HTML tables** (out of the 14.1 billion) contain 'high quality relational data'!!!
-- Hard to quantify how much more exists outside of HTML Tables, but there is [an estimate](https://cs.uwaterloo.ca/~x4chu/SIGMOD2015_1.pdf) of **at least 30 million lists** with 'high quality relational data'.
 - A growing number of websites/companies [provide programmatic access](http://www.programmableweb.com/category/all/apis?order=field_popularity) to their data/services via web APIs (that data typically comes in XML/JSON format).
 
 ## Before scraping, do some googling!
@@ -61,12 +69,13 @@ knitr::include_graphics(c('./images/gdpss.png','./images/cropsss.png','./images/
 
 ## Why webscrape? 
 
->- Because copy-paste is awful 
-```{r echo=FALSE, out.width='50%'}
+- Because copy-paste is awful 
+- Because it's fast
+- Because you can automate it
+```{r echo=FALSE, out.width='50%', fig.show='hold', fig.align='center'}
 knitr::include_graphics("./images/copypastesucks.png", auto_pdf = FALSE)
 ```
->- Because it's fast
->- Because you can automate it
+
 
 ---
 
@@ -79,14 +88,17 @@ knitr::include_graphics("./images/copypastesucks.png", auto_pdf = FALSE)
 + Read more details on vignette("selectorgadget")
 
 If you prefer, you can also read the HTML code and create your own [CSS](https://www.w3schools.com/cssref/css_selectors.asp) or [XPATH](https://www.w3schools.com/xml/xpath_syntax.asp) selectors. (This is what I do usually -- it's a bit more precise)
+    
+```{r echo=FALSE, out.width='45%', fig.show='hold', fig.align='center'}
+knitr::include_graphics(c('./images/baseball_reference.png'), auto_pdf = FALSE)
+```  
 
-
-![](images/baseball_reference.png)
 
 ---
 
 ## SelectorGadget Results 
 
+.scroll-box-8[]
 ```{r}
 url <- "http://www.baseball-reference.com/players/a/"
 html <- read_html(url)

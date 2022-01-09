@@ -9,8 +9,14 @@ output:
       highlightLines: true
       countIncrementalSlides: false
 ---
-
-# Web APIs
+<style>
+pre code, pre, code {
+  white-space: pre !important;
+  overflow-x: scroll !important;
+  word-break: keep-all !important;
+  word-wrap: initial !important;
+}
+</style>
 
 ## Web APIs {.build} 
 
@@ -62,9 +68,9 @@ XML is a markup language that looks very similar to HTML.
 
 ---
 
-## XML2R {.build}
+## XML2R
 
-[XML2R](https://github.com/cpsievert/XML2R) is a framework to simplify acquistion of tabular/relational XML.
+[XML2R](https://github.com/cpsievert/XML2R) is a framework to simplify acquisition of tabular/relational XML.
 
 ```{r, echo=FALSE, message = FALSE, warning=FALSE}
 # hopefully no one is watching
@@ -89,15 +95,16 @@ obs # named list of observations
 
 ---
 
+## Collapse the observations
+- What information have I lost?
+- I can't map vehicles to the drivers!
+
 ```{r}
 collapse_obs(obs) # group into table(s) by observational name/unit
 ```
 
-- What information have I lost?
-- I can't map vehicles to the drivers!
-
 ---
-
+## Code to use Collapse observations
 ```{r}
 library(dplyr)
 obs <- add_key(obs, parent = "mariokart//driver", recycle = "name")
@@ -106,7 +113,7 @@ collapse_obs(obs)
 
 ---
 
-Now (if I want) I can merge the tables into a single table...
+## Now (if I want) I can merge the tables into a single table...
 
 ```{r}
 tabs <- collapse_obs(obs)
@@ -115,17 +122,22 @@ left_join(as.data.frame(tabs[[1]]), as.data.frame(tabs[[2]]))
 
 ---
 
-## What about JSON? {.build}
+## What about JSON? 
 
 - JSON is _the_ format for data on the web.
 - JavaScript Object Notation (JSON) is comprised of two components:
     * arrays => [value1, value2]
     * objects => {"key1": value1, "key2": [value2, value3]} 
 - [jsonlite](http://cran.r-project.org/web/packages/jsonlite/index.html) is the preferred R package for parsing JSON (it's even used by Shiny!)
+- Understanding Third-party JSONs with extensive documentation or creating your own JSONs, using [Postman](https://www.postman.com/product/what-is-postman/) could be helpful. The tool is free to use and explore with fees for creating APIs.
+    
+```{r echo=FALSE, out.width='45%', fig.show='hold', fig.align='center'}
+knitr::include_graphics(c('./images/Postman.png'), auto_pdf = FALSE)
+```    
 
 --- 
 
-## Back to Mariokart {.smaller}
+## Back to Mariokart 
 
 ```json
 [
@@ -167,6 +179,8 @@ left_join(as.data.frame(tabs[[1]]), as.data.frame(tabs[[2]]))
 
 ---
 
+## JSON Code Example
+
 ```{r}
 library(jsonlite)
 mario <- fromJSON("http://bit.ly/mario-json")
@@ -175,12 +189,15 @@ str(mario)
 
 ---
 
+## List Items from Mario Kart Web Scrape
+- How do we get two tables (with a common id) like the XML example?
+
 ```{r}
 mario$driver
 mario$vehicles
 ```
 
-How do we get two tables (with a common id) like the XML example?
+
 
 ```{r}
 vehicles <- rbind(mario$vehicles[[1]], mario$vehicles[[2]])
@@ -189,7 +206,7 @@ vehicles <- cbind(driver = mario$driver, vehicles)
 
 ---
 
-## Your Turn {data-background=#527a7a}
+## Your Turn 
 
 1. Get the json data for our R workshop GitHub commit history:
 
