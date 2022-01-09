@@ -137,7 +137,7 @@ knitr::include_graphics(c('./images/Postman.png'), auto_pdf = FALSE)
 
 --- 
 
-## Back to Mariokart 
+## Back to Mariokart Example
 
 ```json
 [
