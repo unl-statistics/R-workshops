@@ -422,7 +422,6 @@ head(french_fries)
 ```
 
 ```{r, echo=TRUE}
-french_fries <- read_csv("../data/frenchfries.csv")
 head(french_fries)
 ```
 
@@ -525,6 +524,15 @@ df %>% separate(x, into = c("A", "B"))
 ```
 
 ---
+
+## separate ex. 2
+```{r}
+df2 <- data.frame(y = c("Lincoln, NE", "Chicago, IL", "Ames, IA", "Nasheville, TN"))
+df2
+df2 %>% separate(y, c("City", "State"), sep = ", ")
+```
+---
+
 class: inverse
 ## Your Turn (5 min)
 
