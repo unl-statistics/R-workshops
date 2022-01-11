@@ -47,7 +47,7 @@ Time | Notes | Lectures and Resources
 ### Types of Charts and Chart Styling
 
 + [The R Graph Gallery](https://www.r-graph-gallery.com/index.html)
-+ [R Graph Catelog](https://shiny.srvanderplas.com/r-graph-catalog/)
++ [R Graph Catalog](https://shiny.srvanderplas.com/r-graph-catalog/)
 + [The Data Vis Project](https://datavizproject.com/)
 + [Data Visualization Catalogue](https://datavizcatalogue.com/)
 + [The pros and cons of chart taxonomies](https://medium.com/nightingale/the-pros-and-cons-of-chart-taxonomies-5c8e094578c4)
