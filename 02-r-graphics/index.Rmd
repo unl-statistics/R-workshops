@@ -23,14 +23,14 @@ Time | Notes | Lectures and Resources
 9 - 10:30 | [Look at that!](knitr/1-GraphicsIntro.html) | basic plots: scatterplots, boxplots, histograms, barcharts and more <br/> some aesthetics: color, shape, ... <br/> [1-GraphicsIntro.R](code/1-GraphicsIntro.R)
 10:30 - 10:45 | **Break** |
 10:45 - 11:30 | [Basics](knitr/2-Basics.html) | Why is data visualization important?. <br/> Data Types, Formats, and Structures <br/> Formatting your data: A tidy data discussion <br/> [2-Basics.R](code/2-Basics.R)
-11:30 - 12:30 | **Lunch Break** | 
+11:30 - 12:30 | **Lunch Break (on your own)** | 
 12:30 - 2:00 | [Layers of Graphics](knitr/3-Layers.html) |  	More detailed look at the ggplot2 package: layers, geoms. <br/>[3-Layers.R](code/3-Layers.R)
 2:00 - 2:15 | **Break** |
 2:15 - 3:15 | [What do we see?](knitr/4-Perception.html) |  	Discussion of faceting and cognitive aspects of human perception. <br/>[4-Perception.R](code/4-Perception.R)
 3:15 - 4:00 | [Polishing your plots](knitr/5-PolishingPlots.html) |  	Finishing touches: options, themes. <br/>[5-PolishingPlots.R](code/5-PolishingPlots.R)
 
 ## Solutions
-+ [YourTurnSolutions.R](code/99-YourTurnSolutions.R)
++ [Your Turn Solutions](code/99-YourTurnSolutions.html)
 
 ## Useful Links
 
@@ -46,6 +46,8 @@ Time | Notes | Lectures and Resources
 
 ### Types of Charts and Chart Styling
 
++ [The R Graph Gallery](https://www.r-graph-gallery.com/index.html)
++ [R Graph Catelog](https://shiny.srvanderplas.com/r-graph-catalog/)
 + [The Data Vis Project](https://datavizproject.com/)
 + [Data Visualization Catalogue](https://datavizcatalogue.com/)
 + [The pros and cons of chart taxonomies](https://medium.com/nightingale/the-pros-and-cons-of-chart-taxonomies-5c8e094578c4)
