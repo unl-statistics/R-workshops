@@ -29,7 +29,15 @@ Time | Notes | Lectures and Resources
 2:45-3:00| **Break** |
 3:00-4:00| [Web APIs and Accessing Web-based Data](knitr/3-WebAPIs.html) | Use APIs and other programmatic methods of accessing web-based data
 
-<!--## Notes and Resources
+## Setup Code
++ [Setup.R](code/0-Setup.R)
+
+## Solutions
++ [YourTurnSolutions.R](code/99-YourTurnSolutions.R)
+
+
+
+<!-- ## Notes and Resources
 
 [Notes](knitr/1-WebScraping.html) -->
 
