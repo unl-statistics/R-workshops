@@ -60,7 +60,7 @@ Read in the pitch data set (in the folder 03-r-format/data). The data are from a
 
 ```{r message = FALSE, warning=FALSE, echo = FALSE}
 library(tidyverse)
-pitch <- read_csv("http://srvanderplas.github.io/rwrks/03-r-format/data/pitchdata.csv")
+pitch <- read_csv("http://srvanderplas.github.io/rwrks/03-r-format/data/pitch.csv")
 pitch %>% 
   filter(pitcher_hand == "R", pitch_type == "CU") %>%
   head()
