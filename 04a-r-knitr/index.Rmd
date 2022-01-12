@@ -16,6 +16,8 @@ Date | Description
 
 ## Notes and Resources
 
+[Installation Help](https://bookdown.org/yihui/rmarkdown/installation.html)
+
 [Notes](knitr/1-Intro.html)
 
 [Minimal knitr Example](code/minimal-knitr.Rmd)
