@@ -257,7 +257,7 @@ pitch %>%
 
 ---
 
-## Caution with pip operator
+## Caution with pipe operator
 
 Why does 
 
