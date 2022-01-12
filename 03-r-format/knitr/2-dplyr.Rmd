@@ -60,14 +60,14 @@ Read in the pitch data set (in the folder 03-r-format/data). The data are from a
 
 ```{r message = FALSE, warning=FALSE, eval = FALSE}
 library(tidyverse)
-curve <- read_csv("../data/pitchdata.csv")
+curve <- read_csv("http://srvanderplas.github.io/rwrks/03-r-format/data/pitchdata.csv")
 curve %>% 
   filter(pitcher_hand == "R", pitch_type == "CU") %>% 
   head(3)
 ```
 ```{r message = FALSE, warning=FALSE, echo = FALSE}
 library(tidyverse)
-pitch <- read_csv("../data/pitchdata.csv")
+pitch <- read_csv("http://srvanderplas.github.io/rwrks/03-r-format/data/pitchdata.csv")
 pitch %>% 
   filter(pitcher_hand == "R", pitch_type == "CU") %>% 
   head(3)
@@ -150,7 +150,7 @@ pitch %>%
 ---
 class: inverse
 
-## Your Turn (5 min)
+## Your Turn
 
 1. Look up the help file for the function `slice`.
 
@@ -211,7 +211,7 @@ pitch %>%
 ---
 class: inverse
 
-## Your Turn (5 minutes)
+## Your Turn
 
 1. Select only playerid, spin_rate, and action result
 
@@ -246,6 +246,15 @@ pitch %>%
     summarise(mean_spin = mean(spin_rate), sd_spin = sd(spin_rate)) %>%
     mutate(mean = sum(mean_spin) / n()) %>%
     mutate(difference = mean - mean_spin)
+```
+
+---
+## Utilzing ifelse
+-Sometimes you are tasked to create a new column based on a clause
+-ifelse function allows you to create an if else statement within the creation 
+of the new variable.
+```{r}
+pitch %>% 
 ```
 
 ---
@@ -382,7 +391,7 @@ figure() %>%
 ---
 class: inverse
 
-##  Your Turn (10 min)
+##  Your Turn
 
 The dataset `ChickWeight` is part of the core packages that come with R 
 
@@ -397,7 +406,7 @@ From the help file:
 ---
 class: inverse
 
-## Your Turn (10 min)
+## Your Turn
 
 1. Create a line plot with each line representing the weight of each Chick 
 
