@@ -30,7 +30,7 @@ knitr::opts_chunk$set(message= FALSE, warning = FALSE)
 
 ```{r message=FALSE, warning=FALSE}
 library(readr)
-midwest <- read_csv("http://heike.github.io/rwrks/03-r-format/data/midwest.csv")
+midwest <- read_csv("http://srvanderplas.github.io/rwrks/03-r-format/data/midwest.csv")
 head(midwest)
 ```
 
@@ -61,10 +61,10 @@ Hint: Visit http://heike.github.io/rwrks/03-r-format/data/midwest.csv to downloa
 
 ```{r, message=FALSE}
 midwest_names <- read_csv(
-  "http://heike.github.io/rwrks/03-r-format/data/midwest.csv", n_max= 2, 
+  "http://srvanderplas.github.io/rwrks/03-r-format/data/midwest.csv", n_max= 2, 
   col_names = FALSE)
 midwest_data <- read_csv(
-  "http://heike.github.io/rwrks/03-r-format/data/midwest.csv", 
+  "http://srvanderplas.github.io/rwrks/03-r-format/data/midwest.csv", 
   skip = 2, col_names = FALSE)
 ```
 
