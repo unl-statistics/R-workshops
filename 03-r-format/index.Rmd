@@ -4,7 +4,7 @@ output: html_document
 ---
 
 
-This workshop will to prepare you for dealing with messy data by walking you through real-life examples. We will work on improving your programming skills and help you move beyond using copy-and-paste. We will discuss how to write functions in order to reduce duplication in your code and automate common tasks and how to use iteration in order to further reduce duplication. You will leave with skills that will allow you to both tackle problems with more ease.
+This workshop will to prepare you for dealing with messy data by walking you through real-life examples. We will work on improving your programming skills, and help you move beyond using copy-and-paste. We will discuss how to write functions in order to reduce duplication in your code and automate common tasks and how to use iteration in order to further reduce duplication. You will leave with skills that will allow you to both tackle problems with more ease.
 The course will be data centric, with lots of different data sets that illustrate examples of the different techniques used for different problems.
 The course will be a mix of instruction and follow-up exercises. It will be held in a computer lab but you are encouraged to bring your own laptops, with software already loaded. A list of software will be available at this site several days prior to the workshop. 
 
@@ -19,8 +19,11 @@ Date | Notes | Lectures and Resources
 2:45 - 3:00 | **Break** | 
 3:00 - 4:00 | [Joining Data](knitr/4-joining.html) | Join dataframes together using SQL-based logic <br/>[4-joining.R](code/4-joining.R), [boxoffice.csv](data/boxoffice.csv), [baseball.csv](data/baseball.csv)
 
+
 ## Useful Links
 
 - [The Split-Apply-Combine Strategy for Data Analysis](http://www.jstatsoft.org/v40/i01), Journal of Statistical Software, 2011
 - [Overview of base apply functions](https://ademos.people.uic.edu/Chapter4.html)
 - [Dplyr and Tidyr Cheat Sheet](https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf)
+
+
