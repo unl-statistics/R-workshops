@@ -64,30 +64,19 @@ There are some of the primary `dplyr` *verbs*, representing distinct data analys
 
 ## Filter
 
-Read in the pitch data set (in the folder 03-r-format/data). The data are from an experiment on different advanced metrics of a MLB baseball pitchers different pitch types.
+Read in the pitch data set (in the folder 03-r-format/data). The data are from an experiment on different advanced metrics of MLB baseball pitchers different pitch types.
 
-
-```r
-library(tidyverse)
-curve &lt;- read_csv("../data/pitchdata.csv")
-curve %&gt;% 
-  filter(pitcher_hand == "R", pitch_type == "CU") %&gt;% 
-  head(3)
-```
 
 ```
-## # A tibble: 3 × 31
-##   playerid batter_stand pitcher_hand prev_pitch_type prev_start_speed prev_px 
-##      &lt;dbl&gt; &lt;chr&gt;        &lt;chr&gt;        &lt;chr&gt;           &lt;chr&gt;            &lt;chr&gt;   
-## 1     3103 R            R            "\\N"           "\\N"            "\\N"   
-## 2     3103 R            R            "KN"            "68.09"          "-0.320"
-## 3     2309 R            R            "SL"            "61.64"          "0.180" 
-## # … with 25 more variables: prev_pz &lt;chr&gt;, pitch_type &lt;chr&gt;, px &lt;dbl&gt;,
-## #   pz &lt;dbl&gt;, start_speed &lt;dbl&gt;, x0 &lt;dbl&gt;, y0 &lt;dbl&gt;, z0 &lt;dbl&gt;, vx0 &lt;dbl&gt;,
-## #   vy0 &lt;dbl&gt;, vz0 &lt;dbl&gt;, ax &lt;dbl&gt;, ay &lt;dbl&gt;, az &lt;dbl&gt;, exit_velocity &lt;dbl&gt;,
-## #   pfx_x &lt;dbl&gt;, pfx_z &lt;dbl&gt;, spin_dir &lt;dbl&gt;, spin_rate &lt;dbl&gt;, ball &lt;dbl&gt;,
-## #   strike &lt;dbl&gt;, action_result &lt;chr&gt;, ab_result &lt;chr&gt;, adj_h &lt;dbl&gt;,
-## #   adj_tb &lt;dbl&gt;
+## # A tibble: 6 × 8
+##      X1 playerid pitcher_hand pitch_type spin_rate ab_result action_result adj_h
+##   &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;        &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;         &lt;dbl&gt;
+## 1     1     2795 R            CU             3000. "\\N"     F                 0
+## 2     3     2795 R            CU             3146. "\\N"     B                 0
+## 3     4     3646 R            CU             3012. "\\N"     B                 0
+## 4     5     2795 R            CU             3026. "HB"      B                 0
+## 5     8     2795 R            CU             3261. "\\N"     F                 0
+## 6     9      476 R            CU             3025. "\\N"     B                 0
 ```
 
 `filter` is similar to the base function `subset`
@@ -124,14 +113,13 @@ hint: what is the default first argument of the `ggplot` function?
 
 ```r
   pitch %&gt;%
-  filter(spin_rate &gt;= 3200 &amp; pitcher_hand == "L") %&gt;%
+  filter(spin_rate &gt;= 3300 &amp; pitcher_hand == "L") %&gt;%
   ggplot(aes(x=action_result, y=spin_rate)) +
   geom_point(aes(color=playerid)) +
-  geom_smooth() + 
   theme(legend.position = "none")
 ```
 
-![](2-dplyr_files/figure-html/unnamed-chunk-3-1.png)&lt;!-- --&gt;
+![](2-dplyr_files/figure-html/unnamed-chunk-2-1.png)&lt;!-- --&gt;
 
 ---
 
@@ -141,13 +129,13 @@ hint: what is the default first argument of the `ggplot` function?
 ```r
 library(rbokeh)
  pitch %&gt;%
-  filter(spin_rate &gt;= 3200 &amp; pitcher_hand == "L") %&gt;%
+  filter(spin_rate &gt;= 3300 &amp; pitcher_hand == "L") %&gt;%
   figure() %&gt;%
   ly_points(x = action_result, y = spin_rate, color = playerid, hover = list(playerid, spin_rate, action_result), legend = FALSE) 
 ```
 
-<div id="htmlwidget-f1cb5cb742ba2facfca6" style="width:504px;height:216px;" class="rbokeh html-widget"></div>
-<script type="application/json" data-for="htmlwidget-f1cb5cb742ba2facfca6">{"x":{"elementid":"2c222d3aee51bb3e4a5af22ab7125d82","modeltype":"Plot","modelid":"9af5cefc39720f799b16402c1ae3c1c7","docid":"75d8baa30050cdf0ecbb4ccf6a8f1d5a","docs_json":{"75d8baa30050cdf0ecbb4ccf6a8f1d5a":{"version":"0.12.5","title":"Bokeh Figure","roots":{"root_ids":["9af5cefc39720f799b16402c1ae3c1c7"],"references":[{"type":"Plot","id":"9af5cefc39720f799b16402c1ae3c1c7","attributes":{"id":"9af5cefc39720f799b16402c1ae3c1c7","sizing_mode":"scale_both","x_range":{"type":"FactorRange","id":"a4ad705186ed75e7fdf633e0a97830c2"},"y_range":{"type":"Range1d","id":"c032d6428403c97ef84bdf4b275d0b81"},"left":[{"type":"LinearAxis","id":"d98713b9baa407a5c6346ec66053008d"}],"below":[{"type":"CategoricalAxis","id":"2528c2cff9edbc2a4b98fb791e2a6032"}],"right":[],"above":[],"renderers":[{"type":"BoxAnnotation","id":"13baaa0cc8ebd61daa9dcc30e06033be"},{"type":"GlyphRenderer","id":"3dce5ddfb03bc57ff90c63986eb23197"},{"type":"CategoricalAxis","id":"2528c2cff9edbc2a4b98fb791e2a6032"},{"type":"Grid","id":"648984d886582feeee8717df71c62091"},{"type":"LinearAxis","id":"d98713b9baa407a5c6346ec66053008d"},{"type":"Grid","id":"a177d0f250f5f0f295be99701b31b54b"}],"extra_y_ranges":{},"extra_x_ranges":{},"tags":[],"min_border_left":4,"min_border_right":4,"min_border_top":4,"min_border_bottom":4,"lod_threshold":null,"toolbar":{"type":"Toolbar","id":"672d741b6dba9f480d3efa1435d68808"},"tool_events":{"type":"ToolEvents","id":"6aa55f77cd432ebda6988be7fbe008c5"}},"subtype":"Figure"},{"type":"Toolbar","id":"672d741b6dba9f480d3efa1435d68808","attributes":{"id":"672d741b6dba9f480d3efa1435d68808","tags":[],"active_drag":"auto","active_scroll":"auto","active_tap":"auto","tools":[{"type":"PanTool","id":"11650f7e54f484caf96d8a778598df18"},{"type":"WheelZoomTool","id":"5fe14fd4b0be76916d632427aadd6ff5"},{"type":"BoxZoomTool","id":"44603f57a0ef08b11f03a6e9cfb643ff"},{"type":"ResetTool","id":"17c25dfa7728d112d8fe3acb22d30b79"},{"type":"SaveTool","id":"df0a735ae0fc0a95ed8129e04c1268b5"},{"type":"HelpTool","id":"bf98db5838dffdce65de53f7e347c996"},{"type":"HoverTool","id":"2553877ba648a9a67dedab9b266a87d9"}],"logo":null}},{"type":"PanTool","id":"11650f7e54f484caf96d8a778598df18","attributes":{"id":"11650f7e54f484caf96d8a778598df18","tags":[],"plot":{"type":"Plot","id":"9af5cefc39720f799b16402c1ae3c1c7","subtype":"Figure"},"dimensions":"both"}},{"type":"ToolEvents","id":"6aa55f77cd432ebda6988be7fbe008c5","attributes":{"id":"6aa55f77cd432ebda6988be7fbe008c5","tags":[]},"geometries":[]},{"type":"WheelZoomTool","id":"5fe14fd4b0be76916d632427aadd6ff5","attributes":{"id":"5fe14fd4b0be76916d632427aadd6ff5","tags":[],"plot":{"type":"Plot","id":"9af5cefc39720f799b16402c1ae3c1c7","subtype":"Figure"},"dimensions":"both"}},{"type":"BoxAnnotation","id":"13baaa0cc8ebd61daa9dcc30e06033be","attributes":{"id":"13baaa0cc8ebd61daa9dcc30e06033be","tags":[],"line_color":{"units":"data","value":"black"},"line_alpha":{"units":"data","value":1},"fill_color":{"units":"data","value":"lightgrey"},"fill_alpha":{"units":"data","value":0.5},"line_dash":[4,4],"line_width":{"units":"data","value":2},"level":"overlay","top_units":"screen","bottom_units":"screen","left_units":"screen","right_units":"screen","render_mode":"css"}},{"type":"BoxZoomTool","id":"44603f57a0ef08b11f03a6e9cfb643ff","attributes":{"id":"44603f57a0ef08b11f03a6e9cfb643ff","tags":[],"plot":{"type":"Plot","id":"9af5cefc39720f799b16402c1ae3c1c7","subtype":"Figure"},"overlay":{"type":"BoxAnnotation","id":"13baaa0cc8ebd61daa9dcc30e06033be"}}},{"type":"ResetTool","id":"17c25dfa7728d112d8fe3acb22d30b79","attributes":{"id":"17c25dfa7728d112d8fe3acb22d30b79","tags":[],"plot":{"type":"Plot","id":"9af5cefc39720f799b16402c1ae3c1c7","subtype":"Figure"}}},{"type":"SaveTool","id":"df0a735ae0fc0a95ed8129e04c1268b5","attributes":{"id":"df0a735ae0fc0a95ed8129e04c1268b5","tags":[],"plot":{"type":"Plot","id":"9af5cefc39720f799b16402c1ae3c1c7","subtype":"Figure"}}},{"type":"HelpTool","id":"bf98db5838dffdce65de53f7e347c996","attributes":{"id":"bf98db5838dffdce65de53f7e347c996","tags":[],"plot":{"type":"Plot","id":"9af5cefc39720f799b16402c1ae3c1c7","subtype":"Figure"},"redirect":"https://hafen.github.io/rbokeh/","help_tooltip":"Click to learn more about rbokeh."}},{"type":"HoverTool","id":"2553877ba648a9a67dedab9b266a87d9","attributes":{"id":"2553877ba648a9a67dedab9b266a87d9","tags":[],"plot":{"type":"Plot","id":"9af5cefc39720f799b16402c1ae3c1c7","subtype":"Figure"},"renderers":[{"type":"GlyphRenderer","id":"3dce5ddfb03bc57ff90c63986eb23197"}],"names":[],"anchor":"center","attachment":"horizontal","line_policy":"prev","mode":"mouse","point_policy":"snap_to_data","tooltips":[["playerid","@hover_col_1"],["spin_rate","@hover_col_2"],["action_result","@hover_col_3"]]}},{"type":"ColumnDataSource","id":"5d0b4d9a7e237b971f78c10630bf9e38","attributes":{"id":"5d0b4d9a7e237b971f78c10630bf9e38","tags":[],"column_names":["x","y","line_color","fill_color","hover_col_1","hover_col_2","hover_col_3"],"selected":[],"data":{"x":["B","B","S","F","B","F","B","B","B"],"y":[3286.313,3248.3821,3203.5969,3237.7629,3278.4861,3237.9861,3226.5071,3206.4629,3264.386],"line_color":["#238B45","#0B7734","#0B7734","#0B7734","#66C2A4","#37A265","#37A265","#00441B","#00441B"],"fill_color":["#238B45","#0B7734","#0B7734","#0B7734","#66C2A4","#37A265","#37A265","#00441B","#00441B"],"hover_col_1":[" 7291"," 8247"," 8247"," 8247","  607"," 4629"," 4629","13586","13586"],"hover_col_2":["3286.313","3248.382","3203.597","3237.763","3278.486","3237.986","3226.507","3206.463","3264.386"],"hover_col_3":["B","B","S","F","B","F","B","B","B"]}}},{"type":"Circle","id":"7f72765904e67b30632f7da842d7fe50","attributes":{"id":"7f72765904e67b30632f7da842d7fe50","tags":[],"size":{"units":"screen","value":10},"line_alpha":{"units":"data","value":1},"fill_alpha":{"units":"data","value":0.5},"x":{"units":"data","field":"x"},"y":{"units":"data","field":"y"},"line_color":{"units":"data","field":"line_color"},"fill_color":{"units":"data","field":"fill_color"}}},{"type":"Circle","id":"e1290ef36a055fa315061042ee79e9fb","attributes":{"id":"e1290ef36a055fa315061042ee79e9fb","tags":[],"size":{"units":"screen","value":10},"line_alpha":{"units":"data","value":1},"fill_alpha":{"units":"data","value":0.5},"x":{"units":"data","field":"x"},"y":{"units":"data","field":"y"},"line_color":{"units":"data","value":"#e1e1e1"},"fill_color":{"units":"data","value":"#e1e1e1"}}},{"type":"Circle","id":"40e47d22a8e27c11a73f1e7cbc5fb9af","attributes":{"id":"40e47d22a8e27c11a73f1e7cbc5fb9af","tags":[],"size":{"units":"screen","value":10},"line_alpha":{"units":"data","value":1},"fill_alpha":{"units":"data","value":1},"x":{"units":"data","field":"x"},"y":{"units":"data","field":"y"},"line_color":{"units":"data","field":"line_color"},"fill_color":{"units":"data","field":"fill_color"}}},{"type":"GlyphRenderer","id":"3dce5ddfb03bc57ff90c63986eb23197","attributes":{"id":"3dce5ddfb03bc57ff90c63986eb23197","tags":[],"selection_glyph":null,"nonselection_glyph":{"type":"Circle","id":"e1290ef36a055fa315061042ee79e9fb"},"hover_glyph":{"type":"Circle","id":"40e47d22a8e27c11a73f1e7cbc5fb9af"},"name":null,"data_source":{"type":"ColumnDataSource","id":"5d0b4d9a7e237b971f78c10630bf9e38"},"glyph":{"type":"Circle","id":"7f72765904e67b30632f7da842d7fe50"}}},{"type":"FactorRange","id":"a4ad705186ed75e7fdf633e0a97830c2","attributes":{"id":"a4ad705186ed75e7fdf633e0a97830c2","tags":[],"factors":["B","F","S"]}},{"type":"Range1d","id":"c032d6428403c97ef84bdf4b275d0b81","attributes":{"id":"c032d6428403c97ef84bdf4b275d0b81","tags":[],"start":3197.806773,"end":3292.103127}},{"type":"CategoricalAxis","id":"2528c2cff9edbc2a4b98fb791e2a6032","attributes":{"id":"2528c2cff9edbc2a4b98fb791e2a6032","tags":[],"plot":{"type":"Plot","id":"9af5cefc39720f799b16402c1ae3c1c7","subtype":"Figure"},"axis_label":"action_result","formatter":{"type":"CategoricalTickFormatter","id":"5e04dcae64d7408abe0580667a9e6c58"},"ticker":{"type":"CategoricalTicker","id":"bd18f64005c3e0e9c07a40728f2233bd"},"visible":true,"axis_label_text_font_size":"12pt"}},{"type":"CategoricalTickFormatter","id":"5e04dcae64d7408abe0580667a9e6c58","attributes":{"id":"5e04dcae64d7408abe0580667a9e6c58","tags":[]}},{"type":"CategoricalTicker","id":"bd18f64005c3e0e9c07a40728f2233bd","attributes":{"id":"bd18f64005c3e0e9c07a40728f2233bd","tags":[]}},{"type":"Grid","id":"648984d886582feeee8717df71c62091","attributes":{"id":"648984d886582feeee8717df71c62091","tags":[],"dimension":0,"plot":{"type":"Plot","id":"9af5cefc39720f799b16402c1ae3c1c7","subtype":"Figure"},"ticker":{"type":"CategoricalTicker","id":"bd18f64005c3e0e9c07a40728f2233bd"}}},{"type":"LinearAxis","id":"d98713b9baa407a5c6346ec66053008d","attributes":{"id":"d98713b9baa407a5c6346ec66053008d","tags":[],"plot":{"type":"Plot","id":"9af5cefc39720f799b16402c1ae3c1c7","subtype":"Figure"},"axis_label":"spin_rate","formatter":{"type":"BasicTickFormatter","id":"9d56bfa6a0ccf69bffad8ef5347f2b47"},"ticker":{"type":"BasicTicker","id":"96fce86c9fc61a9fef20a5b1abccbf3a"},"visible":true,"axis_label_text_font_size":"12pt"}},{"type":"BasicTickFormatter","id":"9d56bfa6a0ccf69bffad8ef5347f2b47","attributes":{"id":"9d56bfa6a0ccf69bffad8ef5347f2b47","tags":[]}},{"type":"BasicTicker","id":"96fce86c9fc61a9fef20a5b1abccbf3a","attributes":{"id":"96fce86c9fc61a9fef20a5b1abccbf3a","tags":[],"num_minor_ticks":5}},{"type":"Grid","id":"a177d0f250f5f0f295be99701b31b54b","attributes":{"id":"a177d0f250f5f0f295be99701b31b54b","tags":[],"dimension":1,"plot":{"type":"Plot","id":"9af5cefc39720f799b16402c1ae3c1c7","subtype":"Figure"},"ticker":{"type":"BasicTicker","id":"96fce86c9fc61a9fef20a5b1abccbf3a"}}}]}}},"debug":false},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-90a1b00bd496a48eebb1" style="width:504px;height:216px;" class="rbokeh html-widget"></div>
+<script type="application/json" data-for="htmlwidget-90a1b00bd496a48eebb1">{"x":null,"evals":[],"jsHooks":null}</script>
 
 ---
 
@@ -166,11 +154,11 @@ pitch %&gt;%
 ## # A tibble: 5 × 2
 ##   playerid spin_rate
 ##      &lt;dbl&gt;     &lt;dbl&gt;
-## 1    24121     2147.
-## 2    24121     2294.
-## 3    24121     2300.
-## 4    24121     2309.
-## 5    24121     2317.
+## 1    16669     3056.
+## 2    16669     3072.
+## 3    16669     3075.
+## 4    16669     3165.
+## 5    15686     3033.
 ```
 
 Successive variables are used for breaking ties from previous variables.
@@ -187,17 +175,17 @@ pitch %&gt;%
 ## # A tibble: 5 × 2
 ##   playerid spin_rate
 ##      &lt;dbl&gt;     &lt;dbl&gt;
-## 1      476     1961.
-## 2      476     2098.
-## 3      476     2148.
-## 4      476     2179.
-## 5      476     2181.
+## 1      476     3013.
+## 2      476     3017.
+## 3      476     3025.
+## 4      476     3028.
+## 5      476     3040.
 ```
 
 ---
 class: inverse
 
-## Your Turn (5 min)
+## Your Turn
 
 1. Look up the help file for the function `slice`.
 
@@ -219,16 +207,10 @@ pitch %&gt;%
 ```
 
 ```
-## # A tibble: 1 × 31
-##   playerid batter_stand pitcher_hand prev_pitch_type prev_start_speed prev_px
-##      &lt;dbl&gt; &lt;chr&gt;        &lt;chr&gt;        &lt;chr&gt;           &lt;chr&gt;            &lt;chr&gt;  
-## 1    24121 R            L            "\\N"           "\\N"            "\\N"  
-## # … with 25 more variables: prev_pz &lt;chr&gt;, pitch_type &lt;chr&gt;, px &lt;dbl&gt;,
-## #   pz &lt;dbl&gt;, start_speed &lt;dbl&gt;, x0 &lt;dbl&gt;, y0 &lt;dbl&gt;, z0 &lt;dbl&gt;, vx0 &lt;dbl&gt;,
-## #   vy0 &lt;dbl&gt;, vz0 &lt;dbl&gt;, ax &lt;dbl&gt;, ay &lt;dbl&gt;, az &lt;dbl&gt;, exit_velocity &lt;dbl&gt;,
-## #   pfx_x &lt;dbl&gt;, pfx_z &lt;dbl&gt;, spin_dir &lt;dbl&gt;, spin_rate &lt;dbl&gt;, ball &lt;dbl&gt;,
-## #   strike &lt;dbl&gt;, action_result &lt;chr&gt;, ab_result &lt;chr&gt;, adj_h &lt;dbl&gt;,
-## #   adj_tb &lt;dbl&gt;
+## # A tibble: 1 × 8
+##      X1 playerid pitcher_hand pitch_type spin_rate ab_result action_result adj_h
+##   &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;        &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;         &lt;dbl&gt;
+## 1   664    15540 R            CU             3042. "\\N"     F                 0
 ```
 
 
@@ -239,20 +221,14 @@ pitch %&gt;%
 ```
 
 ```
-## # A tibble: 5 × 31
-##   playerid batter_stand pitcher_hand prev_pitch_type prev_start_speed prev_px
-##      &lt;dbl&gt; &lt;chr&gt;        &lt;chr&gt;        &lt;chr&gt;           &lt;chr&gt;            &lt;chr&gt;  
-## 1    24121 R            L            "\\N"           "\\N"            "\\N"  
-## 2    24121 R            L            "\\N"           "\\N"            "\\N"  
-## 3    24121 R            L            "\\N"           "\\N"            "\\N"  
-## 4    24121 R            L            "CU"            "72.04"          "1.500"
-## 5    24121 R            L            "\\N"           "\\N"            "\\N"  
-## # … with 25 more variables: prev_pz &lt;chr&gt;, pitch_type &lt;chr&gt;, px &lt;dbl&gt;,
-## #   pz &lt;dbl&gt;, start_speed &lt;dbl&gt;, x0 &lt;dbl&gt;, y0 &lt;dbl&gt;, z0 &lt;dbl&gt;, vx0 &lt;dbl&gt;,
-## #   vy0 &lt;dbl&gt;, vz0 &lt;dbl&gt;, ax &lt;dbl&gt;, ay &lt;dbl&gt;, az &lt;dbl&gt;, exit_velocity &lt;dbl&gt;,
-## #   pfx_x &lt;dbl&gt;, pfx_z &lt;dbl&gt;, spin_dir &lt;dbl&gt;, spin_rate &lt;dbl&gt;, ball &lt;dbl&gt;,
-## #   strike &lt;dbl&gt;, action_result &lt;chr&gt;, ab_result &lt;chr&gt;, adj_h &lt;dbl&gt;,
-## #   adj_tb &lt;dbl&gt;
+## # A tibble: 5 × 8
+##      X1 playerid pitcher_hand pitch_type spin_rate ab_result action_result adj_h
+##   &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;        &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;         &lt;dbl&gt;
+## 1   966    16669 R            CU             3056. "\\N"     C                 0
+## 2  1136    16669 R            CU             3072. "\\N"     B                 0
+## 3  1165    16669 R            CU             3075. "\\N"     B                 0
+## 4  1411    16669 R            CU             3165. "\\N"     C                 0
+## 5   649    15686 R            CU             3033. "K"       S                 0
 ```
 
 ---
@@ -263,20 +239,20 @@ pitch %&gt;%
 
 ```r
 pitch %&gt;% 
-  select(playerid, pitcher_hand, action_result, ab_result, spin_dir, spin_rate) %&gt;%
+  select(playerid, pitcher_hand, action_result, spin_rate) %&gt;%
   head()
 ```
 
 ```
-## # A tibble: 6 × 6
-##   playerid pitcher_hand action_result ab_result spin_dir spin_rate
-##      &lt;dbl&gt; &lt;chr&gt;        &lt;chr&gt;         &lt;chr&gt;        &lt;dbl&gt;     &lt;dbl&gt;
-## 1     3103 R            B             "\\N"        182.      1140.
-## 2     3103 R            X             "O"          196.      1098.
-## 3     2309 R            F             "\\N"         31.0     1573.
-## 4     2028 R            F             "\\N"         90.5     1540.
-## 5     3183 R            C             "\\N"        176.      1222.
-## 6     3183 R            B             "\\N"        179.      1220.
+## # A tibble: 6 × 4
+##   playerid pitcher_hand action_result spin_rate
+##      &lt;dbl&gt; &lt;chr&gt;        &lt;chr&gt;             &lt;dbl&gt;
+## 1     2795 R            F                 3000.
+## 2      959 L            C                 3052.
+## 3     2795 R            B                 3146.
+## 4     3646 R            B                 3012.
+## 5     2795 R            B                 3026.
+## 6     2795 L            B                 3039.
 ```
 
 ---
@@ -294,7 +270,7 @@ pitch %&gt;%
 ## # A tibble: 1 × 2
 ##   mean_spinrate sd_spinrate
 ##           &lt;dbl&gt;       &lt;dbl&gt;
-## 1         2537.        306.
+## 1         3126.        110.
 ```
 
 ---
@@ -310,26 +286,26 @@ pitch %&gt;%
 ```
 
 ```
-## # A tibble: 383 × 3
+## # A tibble: 65 × 3
 ##    playerid mean_spinrate sd_spinrate
 ##       &lt;dbl&gt;         &lt;dbl&gt;       &lt;dbl&gt;
-##  1      476         2726.       161. 
-##  2      485         2434.       155. 
-##  3      517         2543.        92.3
-##  4      607         1986.       283. 
-##  5      645         2473.        77.9
-##  6      646         2132.       145. 
-##  7      657         2817.       103. 
-##  8      702         1782.       426. 
-##  9      721         2352.        70.3
-## 10      843         2222.       151. 
-## # … with 373 more rows
+##  1      476         3066.       44.6 
+##  2      607         3278.       NA   
+##  3      657         3042.       43.0 
+##  4      959         3056.       42.9 
+##  5     1030         3044.       37.7 
+##  6     1241         3004.        4.54
+##  7     1489         3068.        2.53
+##  8     1802         3239.      130.  
+##  9     1828         3058.       52.4 
+## 10     1862         3062.       39.6 
+## # … with 55 more rows
 ```
 
 ---
 class: inverse
 
-## Your Turn (5 minutes)
+## Your Turn
 
 1. Select only playerid, spin_rate, and action result
 
@@ -350,7 +326,7 @@ pitch %&gt;%
   ggplot(aes(x = mean_spin)) + geom_histogram()
 ```
 
-![](2-dplyr_files/figure-html/unnamed-chunk-10-1.png)&lt;!-- --&gt;
+![](2-dplyr_files/figure-html/unnamed-chunk-9-1.png)&lt;!-- --&gt;
 
 ---
 
@@ -375,26 +351,56 @@ pitch %&gt;%
 ```
 
 ```
-## # A tibble: 1,662 × 6
-## # Groups:   playerid [383]
+## # A tibble: 218 × 6
+## # Groups:   playerid [65]
 ##    playerid action_result mean_spin sd_spin  mean difference
 ##       &lt;dbl&gt; &lt;chr&gt;             &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;      &lt;dbl&gt;
-##  1      476 B                 2739.    161. 2728.     -10.8 
-##  2      476 C                 2699.    147. 2728.      29.4 
-##  3      476 F                 2733.    174. 2728.      -4.35
-##  4      476 S                 2754.    199. 2728.     -25.5 
-##  5      476 X                 2717.    140. 2728.      11.3 
-##  6      485 B                 2415.    188. 2438.      23.6 
-##  7      485 C                 2460.    111. 2438.     -22.2 
-##  8      485 F                 2462.    125. 2438.     -23.5 
-##  9      485 S                 2434.    145. 2438.       4.25
-## 10      485 X                 2421.    155. 2438.      17.8 
-## # … with 1,652 more rows
+##  1      476 B                 3077.   52.1  3058.     -19.1 
+##  2      476 F                 3101.    1.69 3058.     -43.4 
+##  3      476 S                 3041.   17.0  3058.      17.2 
+##  4      476 X                 3013.   NA    3058.      45.3 
+##  5      607 B                 3278.   NA    3278.       0   
+##  6      657 B                 3047.   46.2  3036.     -11.2 
+##  7      657 F                 3025.   34.7  3036.      11.2 
+##  8      959 B                 3066.   53.6  3057.      -9.56
+##  9      959 C                 3039.   35.6  3057.      18.0 
+## 10      959 F                 3054.   38.1  3057.       3.00
+## # … with 208 more rows
+```
+
+---
+## Utilzing ifelse
+-Sometimes you are tasked to create a new column based on a clause
+-ifelse function allows you to create an if else statement within the creation 
+of the new variable.
+-Consider rewriting the handedness of our pitchers.
+-If the pitcher_hand is R write "Right" if not, "Left"
+
+```r
+pitch %&gt;% 
+  select(pitcher_hand) %&gt;% mutate(Handedness = ifelse(pitcher_hand == "R", "Right", "Left"))
+```
+
+```
+## # A tibble: 2,239 × 2
+##    pitcher_hand Handedness
+##    &lt;chr&gt;        &lt;chr&gt;     
+##  1 R            Right     
+##  2 L            Left      
+##  3 R            Right     
+##  4 R            Right     
+##  5 R            Right     
+##  6 L            Left      
+##  7 L            Left      
+##  8 R            Right     
+##  9 R            Right     
+## 10 R            Right     
+## # … with 2,229 more rows
 ```
 
 ---
 
-## Caution: Be careful about using the newly created variable outside of a chunk
+## Caution with pip operator
 
 Why does 
 
@@ -415,6 +421,8 @@ not return a real-valued summary?
 
 --
 
+- When we use the piping operator like we have been, the data is only ever being
+changed within 
 - We only ever look at this new variable in the previous chunk.
 - It has not been created globally into the dataset itself
 
@@ -468,7 +476,7 @@ pitch %&gt;% summarize(n=n())
 ```
 
 
-`group_by(time, subject) %&gt;% summarize(n = n())` is equivalent to `count(time, subject)`
+`group_by(playerid, action_result) %&gt;% summarize(n = n())` is equivalent to `count(playerid, action_result)`
 
 
 ```r
@@ -481,9 +489,11 @@ class: inverse
 
 
 Based on your (limited) knowledge of baseball, you determine what is a "successful" curveball.
-Then determine what pitchers pitched the most successful curveballs! If time allows create a visual that shows the top 5 pitchers who threw the most successful curveballs
+Then determine what pitchers pitched the most successful curveballs!
 
-Note: There are many different ways of answering this question. None are wrong and you don't need to know anything about baseball to try. Consider criteria that it needs to meet. Ex. A successful curveball needs to be above 90 mph in velocity and have over 2800 rpms in spin rate.
+Note: There are many different ways of answering this question. None are wrong and you don't need to know anything about baseball to try. Consider criteria that it needs to meet. Ex. A successful curveball needs to be above 90 mph in velocity and have over 3100 rpms in spin rate.
+
+utilize the sum() function to add up all your curveballs!
 ---
 
 ## One Solution
@@ -503,21 +513,21 @@ SScurve
 ```
 
 ```
-## # A tibble: 42,158 × 7
-## # Groups:   playerid [383]
+## # A tibble: 2,239 × 7
+## # Groups:   playerid [65]
 ##    playerid action_result ab_result adj_h successfulCU totalSSCU percentSSCU
 ##       &lt;dbl&gt; &lt;chr&gt;         &lt;chr&gt;     &lt;dbl&gt;        &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;
-##  1    24121 B             "\\N"         0            0       159       0.528
-##  2    24121 C             "\\N"         0            1       159       0.528
-##  3    24121 C             "\\N"         0            1       159       0.528
-##  4    24121 B             "\\N"         0            0       159       0.528
-##  5    24121 C             "\\N"         0            1       159       0.528
-##  6    24121 C             "\\N"         0            1       159       0.528
-##  7    24121 B             "\\N"         0            0       159       0.528
-##  8    24121 B             "\\N"         0            0       159       0.528
-##  9    24121 B             "\\N"         0            0       159       0.528
-## 10    24121 C             "\\N"         0            1       159       0.528
-## # … with 42,148 more rows
+##  1    16669 C             "\\N"      0               1         2       0.5  
+##  2    16669 B             "\\N"      0               0         2       0.5  
+##  3    16669 B             "\\N"      0               0         2       0.5  
+##  4    16669 C             "\\N"      0               1         2       0.5  
+##  5    15686 S             "K"        0               1         1       1    
+##  6    15540 X             "2B"       0.88            0        19       0.576
+##  7    15540 S             "\\N"      0               1        19       0.576
+##  8    15540 F             "\\N"      0               1        19       0.576
+##  9    15540 B             "\\N"      0               0        19       0.576
+## 10    15540 S             "\\N"      0               1        19       0.576
+## # … with 2,229 more rows
 ```
 
 ---
@@ -540,9 +550,9 @@ ggplot(data = percentages) + geom_point(aes(x = percentSSCU, y = totalSSCU,
 ## Solution (Cont.)
 
 ```r
-#Filter down to get the best pitchers with a minimum of 127 curveballs thrown 
+#Filter down to get the best pitchers with a minimum of 50 curveballs thrown 
 #(our median)
-qualifiedPercentages &lt;- percentages %&gt;% filter(totalSSCU &gt; 127) %&gt;% 
+qualifiedPercentages &lt;- percentages %&gt;% filter(totalSSCU &gt; 50) %&gt;% 
   arrange(desc(percentSSCU))
 figure() %&gt;%
   ly_points(x = percentSSCU, y = totalSSCU, color = playerid,
@@ -551,15 +561,15 @@ figure() %&gt;%
             legend = FALSE)
 ```
 
-<div id="htmlwidget-e2d1d8bfed8ad144db1d" style="width:504px;height:216px;" class="rbokeh html-widget"></div>
-<script type="application/json" data-for="htmlwidget-e2d1d8bfed8ad144db1d">{"x":{"elementid":"2755128b6fef99d4eda7782001ae085b","modeltype":"Plot","modelid":"ccd7cb80b7c6f91fe6e10e3d98f6c29a","docid":"6acb258f9f329d5296af9f6fe4d6a92d","docs_json":{"6acb258f9f329d5296af9f6fe4d6a92d":{"version":"0.12.5","title":"Bokeh Figure","roots":{"root_ids":["ccd7cb80b7c6f91fe6e10e3d98f6c29a"],"references":[{"type":"Plot","id":"ccd7cb80b7c6f91fe6e10e3d98f6c29a","attributes":{"id":"ccd7cb80b7c6f91fe6e10e3d98f6c29a","sizing_mode":"scale_both","x_range":{"type":"Range1d","id":"221bddf32b9f044071d234f61aa232ca"},"y_range":{"type":"Range1d","id":"4de53dc2c104583cca6e32f9f7d46135"},"left":[{"type":"LinearAxis","id":"c4a256b758d3226207ace6f330745b7a"}],"below":[{"type":"LinearAxis","id":"308486cb1bfa682b4bfd0d9537171add"}],"right":[],"above":[],"renderers":[{"type":"BoxAnnotation","id":"8dbde3c485f3fd18795ad6d8b4248ce5"},{"type":"GlyphRenderer","id":"255869c937efb66d3a2fcadec71110a2"},{"type":"LinearAxis","id":"308486cb1bfa682b4bfd0d9537171add"},{"type":"Grid","id":"04b91869b424bd732d9329e2e47f1996"},{"type":"LinearAxis","id":"c4a256b758d3226207ace6f330745b7a"},{"type":"Grid","id":"baccd02455b8cb35e0ca461d70d843c3"}],"extra_y_ranges":{},"extra_x_ranges":{},"tags":[],"min_border_left":4,"min_border_right":4,"min_border_top":4,"min_border_bottom":4,"lod_threshold":null,"toolbar":{"type":"Toolbar","id":"2ea2c8f968398b91fc84c983c018c32f"},"tool_events":{"type":"ToolEvents","id":"2e551ea8739aa796ec80ce848e4f37e1"}},"subtype":"Figure"},{"type":"Toolbar","id":"2ea2c8f968398b91fc84c983c018c32f","attributes":{"id":"2ea2c8f968398b91fc84c983c018c32f","tags":[],"active_drag":"auto","active_scroll":"auto","active_tap":"auto","tools":[{"type":"PanTool","id":"8128e99948eafe9f3439502b38cce58a"},{"type":"WheelZoomTool","id":"b23bd208c5e1d39f1857fbb1ee6eb560"},{"type":"BoxZoomTool","id":"8812a2ea1d65146c0ec5bd5bc60b09c8"},{"type":"ResetTool","id":"70e4faacfeb6f1f703a05445558aafc9"},{"type":"SaveTool","id":"2cde05e2f0c4d4b39c7325aad9495227"},{"type":"HelpTool","id":"af5818dc6a0313488ef433f9139ed8e1"},{"type":"HoverTool","id":"0c200e46f69794d5e7d7f5b36726492a"}],"logo":null}},{"type":"PanTool","id":"8128e99948eafe9f3439502b38cce58a","attributes":{"id":"8128e99948eafe9f3439502b38cce58a","tags":[],"plot":{"type":"Plot","id":"ccd7cb80b7c6f91fe6e10e3d98f6c29a","subtype":"Figure"},"dimensions":"both"}},{"type":"ToolEvents","id":"2e551ea8739aa796ec80ce848e4f37e1","attributes":{"id":"2e551ea8739aa796ec80ce848e4f37e1","tags":[]},"geometries":[]},{"type":"WheelZoomTool","id":"b23bd208c5e1d39f1857fbb1ee6eb560","attributes":{"id":"b23bd208c5e1d39f1857fbb1ee6eb560","tags":[],"plot":{"type":"Plot","id":"ccd7cb80b7c6f91fe6e10e3d98f6c29a","subtype":"Figure"},"dimensions":"both"}},{"type":"BoxAnnotation","id":"8dbde3c485f3fd18795ad6d8b4248ce5","attributes":{"id":"8dbde3c485f3fd18795ad6d8b4248ce5","tags":[],"line_color":{"units":"data","value":"black"},"line_alpha":{"units":"data","value":1},"fill_color":{"units":"data","value":"lightgrey"},"fill_alpha":{"units":"data","value":0.5},"line_dash":[4,4],"line_width":{"units":"data","value":2},"level":"overlay","top_units":"screen","bottom_units":"screen","left_units":"screen","right_units":"screen","render_mode":"css"}},{"type":"BoxZoomTool","id":"8812a2ea1d65146c0ec5bd5bc60b09c8","attributes":{"id":"8812a2ea1d65146c0ec5bd5bc60b09c8","tags":[],"plot":{"type":"Plot","id":"ccd7cb80b7c6f91fe6e10e3d98f6c29a","subtype":"Figure"},"overlay":{"type":"BoxAnnotation","id":"8dbde3c485f3fd18795ad6d8b4248ce5"}}},{"type":"ResetTool","id":"70e4faacfeb6f1f703a05445558aafc9","attributes":{"id":"70e4faacfeb6f1f703a05445558aafc9","tags":[],"plot":{"type":"Plot","id":"ccd7cb80b7c6f91fe6e10e3d98f6c29a","subtype":"Figure"}}},{"type":"SaveTool","id":"2cde05e2f0c4d4b39c7325aad9495227","attributes":{"id":"2cde05e2f0c4d4b39c7325aad9495227","tags":[],"plot":{"type":"Plot","id":"ccd7cb80b7c6f91fe6e10e3d98f6c29a","subtype":"Figure"}}},{"type":"HelpTool","id":"af5818dc6a0313488ef433f9139ed8e1","attributes":{"id":"af5818dc6a0313488ef433f9139ed8e1","tags":[],"plot":{"type":"Plot","id":"ccd7cb80b7c6f91fe6e10e3d98f6c29a","subtype":"Figure"},"redirect":"https://hafen.github.io/rbokeh/","help_tooltip":"Click to learn more about rbokeh."}},{"type":"HoverTool","id":"0c200e46f69794d5e7d7f5b36726492a","attributes":{"id":"0c200e46f69794d5e7d7f5b36726492a","tags":[],"plot":{"type":"Plot","id":"ccd7cb80b7c6f91fe6e10e3d98f6c29a","subtype":"Figure"},"renderers":[{"type":"GlyphRenderer","id":"255869c937efb66d3a2fcadec71110a2"}],"names":[],"anchor":"center","attachment":"horizontal","line_policy":"prev","mode":"mouse","point_policy":"snap_to_data","tooltips":[["playerid","@hover_col_1"],["totalSSCU","@hover_col_2"],["percentSSCU","@hover_col_3"]]}},{"type":"ColumnDataSource","id":"358062aa27dff891c70a94f0e478841f","attributes":{"id":"358062aa27dff891c70a94f0e478841f","tags":[],"column_names":["x","y","line_color","fill_color","hover_col_1","hover_col_2","hover_col_3"],"selected":[],"data":{"x":[0.693333333333333,0.668161434977579,0.652027027027027,0.639130434782609,0.635179153094462,0.634297520661157,0.625641025641026,0.620224719101124,0.618046971569839,0.617021276595745,0.616797900262467,0.609218436873748,0.607758620689655,0.607558139534884,0.606896551724138,0.601910828025478,0.599749058971142,0.595317725752508,0.593220338983051,0.591011235955056,0.585751978891821,0.584558823529412,0.579185520361991,0.577319587628866,0.576335877862595,0.570332480818414,0.56969696969697,0.5696,0.566091954022989,0.564377682403433,0.561111111111111,0.557213930348259,0.553719008264463,0.553086419753086,0.549909255898367,0.548571428571429,0.548254620123203,0.546268656716418,0.54040404040404,0.533864541832669,0.529230769230769,0.528239202657807,0.524752475247525,0.522448979591837,0.512626262626263,0.510869565217391,0.507042253521127,0.50561797752809,0.471976401179941],"y":[156,149,193,441,195,307,244,276,500,377,235,304,141,209,352,189,478,178,175,263,222,159,128,168,151,223,188,356,197,263,202,224,134,224,303,192,267,183,214,134,172,159,159,128,203,141,144,225,160],"line_color":["#66C2A4","#66C2A4","#66C2A4","#238B45","#66C2A4","#41AE76","#66C2A4","#66C2A4","#66C2A4","#66C2A4","#66C2A4","#41AE76","#006D2C","#66C2A4","#41AE76","#66C2A4","#41AE76","#66C2A4","#66C2A4","#66C2A4","#41AE76","#238B45","#41AE76","#006D2C","#66C2A4","#41AE76","#238B45","#66C2A4","#66C2A4","#66C2A4","#66C2A4","#41AE76","#66C2A4","#66C2A4","#41AE76","#41AE76","#238B45","#66C2A4","#66C2A4","#66C2A4","#66C2A4","#00441B","#66C2A4","#66C2A4","#66C2A4","#66C2A4","#66C2A4","#66C2A4","#66C2A4"],"fill_color":["#66C2A4","#66C2A4","#66C2A4","#238B45","#66C2A4","#41AE76","#66C2A4","#66C2A4","#66C2A4","#66C2A4","#66C2A4","#41AE76","#006D2C","#66C2A4","#41AE76","#66C2A4","#41AE76","#66C2A4","#66C2A4","#66C2A4","#41AE76","#238B45","#41AE76","#006D2C","#66C2A4","#41AE76","#238B45","#66C2A4","#66C2A4","#66C2A4","#66C2A4","#41AE76","#66C2A4","#66C2A4","#41AE76","#41AE76","#238B45","#66C2A4","#66C2A4","#66C2A4","#66C2A4","#00441B","#66C2A4","#66C2A4","#66C2A4","#66C2A4","#66C2A4","#66C2A4","#66C2A4"],"hover_col_1":[" 3730","  645","  485","10060"," 4378"," 5666","  959"," 3229"," 1030"," 3394"," 4478"," 6803","16448"," 4787"," 5070"," 1828"," 5972"," 4322"," 4482"," 1815"," 6205","13586"," 8347","16762"," 3467"," 6822","11683"," 3411"," 3062"," 3802"," 2653"," 9410"," 3680"," 3138"," 8247"," 8288","14344","  657"," 3211"," 1151"," 3733","24121"," 3646"," 3282"," 4198"," 2295"," 4208"," 2108"," 1711"],"hover_col_2":["156","149","193","441","195","307","244","276","500","377","235","304","141","209","352","189","478","178","175","263","222","159","128","168","151","223","188","356","197","263","202","224","134","224","303","192","267","183","214","134","172","159","159","128","203","141","144","225","160"],"hover_col_3":["0.6933333","0.6681614","0.6520270","0.6391304","0.6351792","0.6342975","0.6256410","0.6202247","0.6180470","0.6170213","0.6167979","0.6092184","0.6077586","0.6075581","0.6068966","0.6019108","0.5997491","0.5953177","0.5932203","0.5910112","0.5857520","0.5845588","0.5791855","0.5773196","0.5763359","0.5703325","0.5696970","0.5696000","0.5660920","0.5643777","0.5611111","0.5572139","0.5537190","0.5530864","0.5499093","0.5485714","0.5482546","0.5462687","0.5404040","0.5338645","0.5292308","0.5282392","0.5247525","0.5224490","0.5126263","0.5108696","0.5070423","0.5056180","0.4719764"]}}},{"type":"Circle","id":"878d3a5640c43d7f32a3ace6ac8b256d","attributes":{"id":"878d3a5640c43d7f32a3ace6ac8b256d","tags":[],"size":{"units":"screen","value":10},"line_alpha":{"units":"data","value":1},"fill_alpha":{"units":"data","value":0.5},"x":{"units":"data","field":"x"},"y":{"units":"data","field":"y"},"line_color":{"units":"data","field":"line_color"},"fill_color":{"units":"data","field":"fill_color"}}},{"type":"Circle","id":"af21f280b1b3a625618b7c1f74f88424","attributes":{"id":"af21f280b1b3a625618b7c1f74f88424","tags":[],"size":{"units":"screen","value":10},"line_alpha":{"units":"data","value":1},"fill_alpha":{"units":"data","value":0.5},"x":{"units":"data","field":"x"},"y":{"units":"data","field":"y"},"line_color":{"units":"data","value":"#e1e1e1"},"fill_color":{"units":"data","value":"#e1e1e1"}}},{"type":"Circle","id":"862d75180aa267c37cd6c6a85b7ce300","attributes":{"id":"862d75180aa267c37cd6c6a85b7ce300","tags":[],"size":{"units":"screen","value":10},"line_alpha":{"units":"data","value":1},"fill_alpha":{"units":"data","value":1},"x":{"units":"data","field":"x"},"y":{"units":"data","field":"y"},"line_color":{"units":"data","field":"line_color"},"fill_color":{"units":"data","field":"fill_color"}}},{"type":"GlyphRenderer","id":"255869c937efb66d3a2fcadec71110a2","attributes":{"id":"255869c937efb66d3a2fcadec71110a2","tags":[],"selection_glyph":null,"nonselection_glyph":{"type":"Circle","id":"af21f280b1b3a625618b7c1f74f88424"},"hover_glyph":{"type":"Circle","id":"862d75180aa267c37cd6c6a85b7ce300"},"name":null,"data_source":{"type":"ColumnDataSource","id":"358062aa27dff891c70a94f0e478841f"},"glyph":{"type":"Circle","id":"878d3a5640c43d7f32a3ace6ac8b256d"}}},{"type":"Range1d","id":"221bddf32b9f044071d234f61aa232ca","attributes":{"id":"221bddf32b9f044071d234f61aa232ca","tags":[],"start":0.456481415929204,"end":0.708828318584071}},{"type":"Range1d","id":"4de53dc2c104583cca6e32f9f7d46135","attributes":{"id":"4de53dc2c104583cca6e32f9f7d46135","tags":[],"start":101.96,"end":526.04}},{"type":"LinearAxis","id":"308486cb1bfa682b4bfd0d9537171add","attributes":{"id":"308486cb1bfa682b4bfd0d9537171add","tags":[],"plot":{"type":"Plot","id":"ccd7cb80b7c6f91fe6e10e3d98f6c29a","subtype":"Figure"},"axis_label":"percentSSCU","formatter":{"type":"BasicTickFormatter","id":"abf45c1e67071eed33be545d2e4c4e1d"},"ticker":{"type":"BasicTicker","id":"52159d1dfb20108536d37703d8ab172a"},"visible":true,"axis_label_text_font_size":"12pt"}},{"type":"BasicTickFormatter","id":"abf45c1e67071eed33be545d2e4c4e1d","attributes":{"id":"abf45c1e67071eed33be545d2e4c4e1d","tags":[]}},{"type":"BasicTicker","id":"52159d1dfb20108536d37703d8ab172a","attributes":{"id":"52159d1dfb20108536d37703d8ab172a","tags":[],"num_minor_ticks":5}},{"type":"Grid","id":"04b91869b424bd732d9329e2e47f1996","attributes":{"id":"04b91869b424bd732d9329e2e47f1996","tags":[],"dimension":0,"plot":{"type":"Plot","id":"ccd7cb80b7c6f91fe6e10e3d98f6c29a","subtype":"Figure"},"ticker":{"type":"BasicTicker","id":"52159d1dfb20108536d37703d8ab172a"}}},{"type":"LinearAxis","id":"c4a256b758d3226207ace6f330745b7a","attributes":{"id":"c4a256b758d3226207ace6f330745b7a","tags":[],"plot":{"type":"Plot","id":"ccd7cb80b7c6f91fe6e10e3d98f6c29a","subtype":"Figure"},"axis_label":"totalSSCU","formatter":{"type":"BasicTickFormatter","id":"f381c495ad093779e8532a76f634f20f"},"ticker":{"type":"BasicTicker","id":"2e849e5c6f0db8bf5fc99c96e8f71424"},"visible":true,"axis_label_text_font_size":"12pt"}},{"type":"BasicTickFormatter","id":"f381c495ad093779e8532a76f634f20f","attributes":{"id":"f381c495ad093779e8532a76f634f20f","tags":[]}},{"type":"BasicTicker","id":"2e849e5c6f0db8bf5fc99c96e8f71424","attributes":{"id":"2e849e5c6f0db8bf5fc99c96e8f71424","tags":[],"num_minor_ticks":5}},{"type":"Grid","id":"baccd02455b8cb35e0ca461d70d843c3","attributes":{"id":"baccd02455b8cb35e0ca461d70d843c3","tags":[],"dimension":1,"plot":{"type":"Plot","id":"ccd7cb80b7c6f91fe6e10e3d98f6c29a","subtype":"Figure"},"ticker":{"type":"BasicTicker","id":"2e849e5c6f0db8bf5fc99c96e8f71424"}}}]}}},"debug":false},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-39838abb5072389b08dc" style="width:504px;height:216px;" class="rbokeh html-widget"></div>
+<script type="application/json" data-for="htmlwidget-39838abb5072389b08dc">{"x":{"elementid":"73c93acb8e252e1f3a2b8d5ab52e6302","modeltype":"Plot","modelid":"926626c9bdc00054aea0fffd8a0ecc9b","docid":"dcb7dcf48c234ed16758c09674c64f8c","docs_json":{"dcb7dcf48c234ed16758c09674c64f8c":{"version":"0.12.5","title":"Bokeh Figure","roots":{"root_ids":["926626c9bdc00054aea0fffd8a0ecc9b"],"references":[{"type":"Plot","id":"926626c9bdc00054aea0fffd8a0ecc9b","attributes":{"id":"926626c9bdc00054aea0fffd8a0ecc9b","sizing_mode":"scale_both","x_range":{"type":"Range1d","id":"67df38bf7c600ffe8b27c9d1adb1d86d"},"y_range":{"type":"Range1d","id":"c6ce9f75de3fedfd68a92d926724b82b"},"left":[{"type":"LinearAxis","id":"d5232d3ff9c580b7820e8473f5506bb8"}],"below":[{"type":"LinearAxis","id":"ebc22a6d6ec96352973fb350232cc2a0"}],"right":[],"above":[],"renderers":[{"type":"BoxAnnotation","id":"1d9d7efe1f64aca2429bead2f532db96"},{"type":"GlyphRenderer","id":"27357ccb46013fa9272714bfa7f08c7a"},{"type":"LinearAxis","id":"ebc22a6d6ec96352973fb350232cc2a0"},{"type":"Grid","id":"582000aee246b45b099fb3132e481843"},{"type":"LinearAxis","id":"d5232d3ff9c580b7820e8473f5506bb8"},{"type":"Grid","id":"1b2a3d02ef3f4316f72c756d73b504f2"}],"extra_y_ranges":{},"extra_x_ranges":{},"tags":[],"min_border_left":4,"min_border_right":4,"min_border_top":4,"min_border_bottom":4,"lod_threshold":null,"toolbar":{"type":"Toolbar","id":"857c9f573a98fac1f3dcb6cc3782781f"},"tool_events":{"type":"ToolEvents","id":"09183d3fb35ee69094a193b0547010a3"}},"subtype":"Figure"},{"type":"Toolbar","id":"857c9f573a98fac1f3dcb6cc3782781f","attributes":{"id":"857c9f573a98fac1f3dcb6cc3782781f","tags":[],"active_drag":"auto","active_scroll":"auto","active_tap":"auto","tools":[{"type":"PanTool","id":"d61b5932c0581d35a2b5ad229325d516"},{"type":"WheelZoomTool","id":"6fae3ed06e156a1aeec0d8ba7664af30"},{"type":"BoxZoomTool","id":"1f172c40df1d1790df8482a5fec532d3"},{"type":"ResetTool","id":"7d2c49b613c0d8979d1dae2cf77f8aef"},{"type":"SaveTool","id":"07c01ac852af21084a2c81a27cd77754"},{"type":"HelpTool","id":"9b43944b94b44b2128e11dd785bc1da1"},{"type":"HoverTool","id":"46a44fef1ea4fe008ddb4c91f92d1dca"}],"logo":null}},{"type":"PanTool","id":"d61b5932c0581d35a2b5ad229325d516","attributes":{"id":"d61b5932c0581d35a2b5ad229325d516","tags":[],"plot":{"type":"Plot","id":"926626c9bdc00054aea0fffd8a0ecc9b","subtype":"Figure"},"dimensions":"both"}},{"type":"ToolEvents","id":"09183d3fb35ee69094a193b0547010a3","attributes":{"id":"09183d3fb35ee69094a193b0547010a3","tags":[]},"geometries":[]},{"type":"WheelZoomTool","id":"6fae3ed06e156a1aeec0d8ba7664af30","attributes":{"id":"6fae3ed06e156a1aeec0d8ba7664af30","tags":[],"plot":{"type":"Plot","id":"926626c9bdc00054aea0fffd8a0ecc9b","subtype":"Figure"},"dimensions":"both"}},{"type":"BoxAnnotation","id":"1d9d7efe1f64aca2429bead2f532db96","attributes":{"id":"1d9d7efe1f64aca2429bead2f532db96","tags":[],"line_color":{"units":"data","value":"black"},"line_alpha":{"units":"data","value":1},"fill_color":{"units":"data","value":"lightgrey"},"fill_alpha":{"units":"data","value":0.5},"line_dash":[4,4],"line_width":{"units":"data","value":2},"level":"overlay","top_units":"screen","bottom_units":"screen","left_units":"screen","right_units":"screen","render_mode":"css"}},{"type":"BoxZoomTool","id":"1f172c40df1d1790df8482a5fec532d3","attributes":{"id":"1f172c40df1d1790df8482a5fec532d3","tags":[],"plot":{"type":"Plot","id":"926626c9bdc00054aea0fffd8a0ecc9b","subtype":"Figure"},"overlay":{"type":"BoxAnnotation","id":"1d9d7efe1f64aca2429bead2f532db96"}}},{"type":"ResetTool","id":"7d2c49b613c0d8979d1dae2cf77f8aef","attributes":{"id":"7d2c49b613c0d8979d1dae2cf77f8aef","tags":[],"plot":{"type":"Plot","id":"926626c9bdc00054aea0fffd8a0ecc9b","subtype":"Figure"}}},{"type":"SaveTool","id":"07c01ac852af21084a2c81a27cd77754","attributes":{"id":"07c01ac852af21084a2c81a27cd77754","tags":[],"plot":{"type":"Plot","id":"926626c9bdc00054aea0fffd8a0ecc9b","subtype":"Figure"}}},{"type":"HelpTool","id":"9b43944b94b44b2128e11dd785bc1da1","attributes":{"id":"9b43944b94b44b2128e11dd785bc1da1","tags":[],"plot":{"type":"Plot","id":"926626c9bdc00054aea0fffd8a0ecc9b","subtype":"Figure"},"redirect":"https://hafen.github.io/rbokeh/","help_tooltip":"Click to learn more about rbokeh."}},{"type":"HoverTool","id":"46a44fef1ea4fe008ddb4c91f92d1dca","attributes":{"id":"46a44fef1ea4fe008ddb4c91f92d1dca","tags":[],"plot":{"type":"Plot","id":"926626c9bdc00054aea0fffd8a0ecc9b","subtype":"Figure"},"renderers":[{"type":"GlyphRenderer","id":"27357ccb46013fa9272714bfa7f08c7a"}],"names":[],"anchor":"center","attachment":"horizontal","line_policy":"prev","mode":"mouse","point_policy":"snap_to_data","tooltips":[["playerid","@hover_col_1"],["totalSSCU","@hover_col_2"],["percentSSCU","@hover_col_3"]]}},{"type":"ColumnDataSource","id":"9641ef1dcee07f10ad3f743f3104a140","attributes":{"id":"9641ef1dcee07f10ad3f743f3104a140","tags":[],"column_names":["x","y","line_color","fill_color","hover_col_1","hover_col_2","hover_col_3"],"selected":[],"data":{"x":[0.666666666666667,0.634615384615385,0.621848739495798,0.603351955307263,0.543814432989691,0.53030303030303],"y":[60,66,74,108,211,70],"line_color":["#66C2A4","#3CA96F","#50B689","#05712F","#00441B","#50B689"],"fill_color":["#66C2A4","#3CA96F","#50B689","#05712F","#00441B","#50B689"],"hover_col_1":[" 1030"," 4878"," 2850","10045","14344"," 3138"],"hover_col_2":[" 60"," 66"," 74","108","211"," 70"],"hover_col_3":["0.6666667","0.6346154","0.6218487","0.6033520","0.5438144","0.5303030"]}}},{"type":"Circle","id":"66473fcb5d12956dbf2748a258ed5ba6","attributes":{"id":"66473fcb5d12956dbf2748a258ed5ba6","tags":[],"size":{"units":"screen","value":10},"line_alpha":{"units":"data","value":1},"fill_alpha":{"units":"data","value":0.5},"x":{"units":"data","field":"x"},"y":{"units":"data","field":"y"},"line_color":{"units":"data","field":"line_color"},"fill_color":{"units":"data","field":"fill_color"}}},{"type":"Circle","id":"37b6acbe0c3dbe207f608080a8fc29fa","attributes":{"id":"37b6acbe0c3dbe207f608080a8fc29fa","tags":[],"size":{"units":"screen","value":10},"line_alpha":{"units":"data","value":1},"fill_alpha":{"units":"data","value":0.5},"x":{"units":"data","field":"x"},"y":{"units":"data","field":"y"},"line_color":{"units":"data","value":"#e1e1e1"},"fill_color":{"units":"data","value":"#e1e1e1"}}},{"type":"Circle","id":"d61d4902f878a2c41b3a2689ec4cfc8e","attributes":{"id":"d61d4902f878a2c41b3a2689ec4cfc8e","tags":[],"size":{"units":"screen","value":10},"line_alpha":{"units":"data","value":1},"fill_alpha":{"units":"data","value":1},"x":{"units":"data","field":"x"},"y":{"units":"data","field":"y"},"line_color":{"units":"data","field":"line_color"},"fill_color":{"units":"data","field":"fill_color"}}},{"type":"GlyphRenderer","id":"27357ccb46013fa9272714bfa7f08c7a","attributes":{"id":"27357ccb46013fa9272714bfa7f08c7a","tags":[],"selection_glyph":null,"nonselection_glyph":{"type":"Circle","id":"37b6acbe0c3dbe207f608080a8fc29fa"},"hover_glyph":{"type":"Circle","id":"d61d4902f878a2c41b3a2689ec4cfc8e"},"name":null,"data_source":{"type":"ColumnDataSource","id":"9641ef1dcee07f10ad3f743f3104a140"},"glyph":{"type":"Circle","id":"66473fcb5d12956dbf2748a258ed5ba6"}}},{"type":"Range1d","id":"67df38bf7c600ffe8b27c9d1adb1d86d","attributes":{"id":"67df38bf7c600ffe8b27c9d1adb1d86d","tags":[],"start":0.520757575757576,"end":0.676212121212121}},{"type":"Range1d","id":"c6ce9f75de3fedfd68a92d926724b82b","attributes":{"id":"c6ce9f75de3fedfd68a92d926724b82b","tags":[],"start":49.43,"end":221.57}},{"type":"LinearAxis","id":"ebc22a6d6ec96352973fb350232cc2a0","attributes":{"id":"ebc22a6d6ec96352973fb350232cc2a0","tags":[],"plot":{"type":"Plot","id":"926626c9bdc00054aea0fffd8a0ecc9b","subtype":"Figure"},"axis_label":"percentSSCU","formatter":{"type":"BasicTickFormatter","id":"337b7df8f6649eceac94850ea78e7655"},"ticker":{"type":"BasicTicker","id":"26f7a27e74195f959aa84e8496264fc6"},"visible":true,"axis_label_text_font_size":"12pt"}},{"type":"BasicTickFormatter","id":"337b7df8f6649eceac94850ea78e7655","attributes":{"id":"337b7df8f6649eceac94850ea78e7655","tags":[]}},{"type":"BasicTicker","id":"26f7a27e74195f959aa84e8496264fc6","attributes":{"id":"26f7a27e74195f959aa84e8496264fc6","tags":[],"num_minor_ticks":5}},{"type":"Grid","id":"582000aee246b45b099fb3132e481843","attributes":{"id":"582000aee246b45b099fb3132e481843","tags":[],"dimension":0,"plot":{"type":"Plot","id":"926626c9bdc00054aea0fffd8a0ecc9b","subtype":"Figure"},"ticker":{"type":"BasicTicker","id":"26f7a27e74195f959aa84e8496264fc6"}}},{"type":"LinearAxis","id":"d5232d3ff9c580b7820e8473f5506bb8","attributes":{"id":"d5232d3ff9c580b7820e8473f5506bb8","tags":[],"plot":{"type":"Plot","id":"926626c9bdc00054aea0fffd8a0ecc9b","subtype":"Figure"},"axis_label":"totalSSCU","formatter":{"type":"BasicTickFormatter","id":"86cd5027c6c2c7a8f0bf76cec6efdb13"},"ticker":{"type":"BasicTicker","id":"ca310fd2549cd372423bedae6c5bfec7"},"visible":true,"axis_label_text_font_size":"12pt"}},{"type":"BasicTickFormatter","id":"86cd5027c6c2c7a8f0bf76cec6efdb13","attributes":{"id":"86cd5027c6c2c7a8f0bf76cec6efdb13","tags":[]}},{"type":"BasicTicker","id":"ca310fd2549cd372423bedae6c5bfec7","attributes":{"id":"ca310fd2549cd372423bedae6c5bfec7","tags":[],"num_minor_ticks":5}},{"type":"Grid","id":"1b2a3d02ef3f4316f72c756d73b504f2","attributes":{"id":"1b2a3d02ef3f4316f72c756d73b504f2","tags":[],"dimension":1,"plot":{"type":"Plot","id":"926626c9bdc00054aea0fffd8a0ecc9b","subtype":"Figure"},"ticker":{"type":"BasicTicker","id":"ca310fd2549cd372423bedae6c5bfec7"}}}]}}},"debug":false},"evals":[],"jsHooks":[]}</script>
 
 
 
 ---
 class: inverse
 
-##  Your Turn (10 min)
+##  Your Turn
 
 The dataset `ChickWeight` is part of the core packages that come with R 
 
@@ -574,7 +584,7 @@ From the help file:
 ---
 class: inverse
 
-## Your Turn (10 min)
+## Your Turn
 
 1. Create a line plot with each line representing the weight of each Chick 
 
