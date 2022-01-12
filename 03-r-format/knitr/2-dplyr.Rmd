@@ -100,7 +100,7 @@ hint: what is the default first argument of the `ggplot` function?
 
 ```{r, purl=FALSE, message=FALSE, warning= FALSE, fig.height=3}
   pitch %>%
-  filter(spin_rate >= 3300 & pitcher_hand == "L") %>%
+  filter(spin_rate >= 3200 & pitcher_hand == "L") %>%
   ggplot(aes(x=action_result, y=spin_rate)) +
   geom_point(aes(color=playerid)) +
   theme(legend.position = "none")
@@ -113,7 +113,7 @@ hint: what is the default first argument of the `ggplot` function?
 ```{r, purl=FALSE, message=FALSE, warning= FALSE, fig.height=3}
 library(rbokeh)
  pitch %>%
-  filter(spin_rate >= 3300 & pitcher_hand == "L") %>%
+  filter(spin_rate >= 3200 & pitcher_hand == "L") %>%
   figure() %>%
   ly_points(x = action_result, y = spin_rate, color = playerid, hover = list(playerid, spin_rate, action_result), legend = FALSE) 
 
