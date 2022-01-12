@@ -36,7 +36,7 @@ class: center, middle, inverse, title-slide
 
 ```r
 library(readr)
-midwest &lt;- read_csv("http://heike.github.io/rwrks/03-r-format/data/midwest.csv")
+midwest &lt;- read_csv("http://srvanderplas.github.io/rwrks/03-r-format/data/midwest.csv")
 head(midwest)
 ```
 
@@ -81,10 +81,10 @@ Hint: Visit http://heike.github.io/rwrks/03-r-format/data/midwest.csv to downloa
 
 ```r
 midwest_names &lt;- read_csv(
-  "http://heike.github.io/rwrks/03-r-format/data/midwest.csv", n_max= 2, 
+  "http://srvanderplas.github.io/rwrks/03-r-format/data/midwest.csv", n_max= 2, 
   col_names = FALSE)
 midwest_data &lt;- read_csv(
-  "http://heike.github.io/rwrks/03-r-format/data/midwest.csv", 
+  "http://srvanderplas.github.io/rwrks/03-r-format/data/midwest.csv", 
   skip = 2, col_names = FALSE)
 ```
 

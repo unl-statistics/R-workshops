@@ -433,7 +433,30 @@ class: inverse
 
 - Load the `Lahman` package into your R session.
 - Join (relevant pieces of) the `Master` data set and the `HallOfFame` data.
-- For the `ggplot2` chart label all last attempts of individuals with 15 or more attempts. Make sure to deal with missing values appropriately.
+- Output the names of individuals with 15 or more attempts ("times" in the data set). Make sure to deal with missing values appropriately.
+
+---
+## Solution
+
+```r
+Voted &lt;- HallOfFame %&gt;% filter(!is.na(ballots)) %&gt;% 
+  group_by(playerID) %&gt;% arrange(yearID) %&gt;% 
+  mutate( attempt = order(yearID))
+
+Voted &lt;- left_join(Voted, Master %&gt;% select(playerID, nameFirst, nameLast), 
+                   by = "playerID") %&gt;% filter(attempt &gt; 15)
+Names &lt;- Voted %&gt;% mutate(FullName = paste(nameFirst, nameLast))
+Names$FullName %&gt;% unique()
+```
+
+```
+##  [1] "Rabbit Maranville" "Dazzy Vance"       "Ray Schalk"       
+##  [4] "Ross Youngs"       "Edd Roush"         "Zack Wheat"       
+##  [7] "Hank Gowdy"        "Eppa Rixey"        "Hack Wilson"      
+## [10] "Red Faber"         "Red Ruffing"       "Phil Rizzuto"     
+## [13] "Pee Wee Reese"     "Mickey Vernon"     "Don Newcombe"     
+## [16] "Al Dark"
+```
 
 
 &lt;!---
