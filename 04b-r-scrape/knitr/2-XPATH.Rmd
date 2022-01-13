@@ -122,7 +122,7 @@ myhtml %>%
 
 ---
 
-## Your Turn #2
+## Your Turn 
 
 Find another website you want to scrape (ideas: [all bills in the house so far this year](https://www.congress.gov/search), [video game reviews](http://www.metacritic.com/game), anything Wikipedia) and use *at least* 3 different `rvest` functions in a chain to extract some data.
 
@@ -255,10 +255,10 @@ head(presidential_words)
 ## Longest speeches
 
 ```{r longestspeech}
-presidential_words %>% 
+presidential_wordtotals <- presidential_words %>% 
   group_by(President,year) %>% 
   summarize(num_words = n()) %>%
-  arrange(desc(num_words)) -> presidential_wordtotals
+  arrange(desc(num_words)) -> 
 ```
 
 ```{r speechplot, echo = FALSE, fig.align='center', cache = T, fig.height=5, fig.width=9.5}
@@ -266,6 +266,8 @@ library(ggrepel)
 ggplot(presidential_wordtotals) + 
   geom_bar(aes(x = reorder(year, num_words), y = num_words), stat = "identity", fill = 'white', color = 'black') + 
   geom_label_repel(aes(x = reorder(year, num_words), y = num_words, label = President), size = 2.5) +
-  labs(y = "Word count of Speech", x = "Year (sorted by word count)", title = "Length of Presidential Inaugural Addresses", subtitle = "Max: 8,459; Min: 135; Median: 2,090; Mean: 2,341") + 
+  labs(y = "Word count of Speech", x = "Year (sorted by word count)", 
+       title = "Length of Presidential Inaugural Addresses", 
+       subtitle = "Max: 8,459; Min: 135; Median: 2,090; Mean: 2,341") + 
   theme(axis.text.x = element_text(angle = 45, size = 7), plot.subtitle = element_text(hjust = .5))
 ```

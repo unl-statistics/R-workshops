@@ -105,6 +105,12 @@ html <- read_html(url)
 html %>% html_nodes("strong a") %>% html_text()
 ```
 
+---
 
+## Your Turn 
+
+1. Find a website that you may want to scrape (i.e. FDA, Census, NCAA Stats, Baseball Reference, etc.) 
+2. Read the URL into R and save the url as an object. 
+3. Using the SelectorGadget on your website and look for a node with data that you want to collect.
 
 

@@ -18,7 +18,7 @@ pre code, pre, code {
 }
 </style>
 
-## Web APIs {.build} 
+## Web APIs
 
 - [Server-side Web APIs](https://en.wikipedia.org/wiki/Web_API#Server-side) (Application Programming Interfaces) are a popular way to provide easy access to data and other services. 
 - If you (the client) want data from a server, you typically need one HTTP verb -- `GET`.
@@ -33,7 +33,7 @@ content(sam)[c("name", "company")]
 
 ---
 
-## Request/response model {.build}
+## Request/response model 
 
 - When you (the client) _requests_ a resource from the server. The server _responds_ with a bunch of additional information.
 
@@ -69,28 +69,29 @@ XML is a markup language that looks very similar to HTML.
 ---
 
 ## XML2R
-
 [XML2R](https://github.com/cpsievert/XML2R) is a framework to simplify acquisition of tabular/relational XML.
-
-```{r, echo=FALSE, message = FALSE, warning=FALSE}
-# hopefully no one is watching
-# devtools::install_github("cpsievert/XML2R")
-library(XML2R)
-
-#obs <- read_xml("https://gist.githubusercontent.com/cpsievert/85e340814cb855a60dc4/raw/651b7626e34751c7485cff2d7ea3ea66413609b8/mariokart.xml")
-obs <- XML2Obs("https://gist.githubusercontent.com/cpsievert/85e340814cb855a60dc4/raw/651b7626e34751c7485cff2d7ea3ea66413609b8/mariokart.xml", quiet = TRUE)
-data.frame(obs)
-table(names(obs))
-```
 
 * **XML2R** coerces XML into a *flat* list of observations.
 * The list names track the "observational unit".
 * The list values track the "observational attributes".
 
+```{r, echo=FALSE, message = FALSE, warning=FALSE}
+# hopefully no one is watching
+# devtools::install_github("cpsievert/XML2R")
+library(XML2R)
+library(tidyverse)
+
+#obs <- read_xml("https://gist.githubusercontent.com/cpsievert/85e340814cb855a60dc4/raw/651b7626e34751c7485cff2d7ea3ea66413609b8/mariokart.xml")
+obs <- XML2Obs("https://gist.githubusercontent.com/cpsievert/85e340814cb855a60dc4/raw/651b7626e34751c7485cff2d7ea3ea66413609b8/mariokart.xml", quiet = TRUE)
+data.frame(obs) %>% head()
+table(names(obs)) 
+```
+
+
 ---
 
 ```{r}
-obs # named list of observations
+head(obs) # named list of observations
 ```
 
 ---
@@ -104,6 +105,7 @@ collapse_obs(obs) # group into table(s) by observational name/unit
 ```
 
 ---
+
 ## Code to use Collapse observations
 ```{r}
 library(dplyr)
@@ -130,14 +132,17 @@ left_join(as.data.frame(tabs[[1]]), as.data.frame(tabs[[2]]))
     * objects => {"key1": value1, "key2": [value2, value3]} 
 - [jsonlite](http://cran.r-project.org/web/packages/jsonlite/index.html) is the preferred R package for parsing JSON (it's even used by Shiny!)
 - Understanding Third-party JSONs with extensive documentation or creating your own JSONs, using [Postman](https://www.postman.com/product/what-is-postman/) could be helpful. The tool is free to use and explore with fees for creating APIs.
-    
-```{r echo=FALSE, out.width='45%', fig.show='hold', fig.align='center'}
+
+![](images/Postman.png)
+```{r include=FALSE, echo=FALSE, out.width='45%', fig.show='hold', fig.align='center'}
 knitr::include_graphics(c('./images/Postman.png'), auto_pdf = FALSE)
 ```    
 
---- 
 
-## Back to Mariokart Example
+---
+## Back to Mariokart 
+
+What does raw JSON code look like anyway??
 
 ```json
 [
@@ -176,7 +181,6 @@ knitr::include_graphics(c('./images/Postman.png'), auto_pdf = FALSE)
 ]
 ```
 
-
 ---
 
 ## JSON Code Example
@@ -197,12 +201,20 @@ mario$driver
 mario$vehicles
 ```
 
-
-
 ```{r}
 vehicles <- rbind(mario$vehicles[[1]], mario$vehicles[[2]])
 vehicles <- cbind(driver = mario$driver, vehicles)
 ```
+
+---
+
+## Helpful Web API sites (Survey Responses)
+- [USDA API](https://quickstats.nass.usda.gov/api)
+- [FDA API](https://open.fda.gov/apis/try-the-api/)
+- [Qualtrics Data Retrieve in Real Time API](https://api.qualtrics.com/api-reference/ZG9jOjg3NzY3MQ-retrieve-survey-responses-in-real-time)
+- [FAO Stats API*](https://www.programmableweb.com/api/faostat-data-rest-api)
+
+*FAO Stats actually has a R package that you can use [here](https://cran.r-project.org/web/packages/FAOSTAT/FAOSTAT.pdf)
 
 ---
 
