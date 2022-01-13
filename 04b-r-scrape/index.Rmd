@@ -24,7 +24,7 @@ At the end of Web Scraping in R using rvest, we expect our students to be able t
 
 Time | Notes | Lectures and Resources
 ---- | ---- | ----
-1:00-1:30 | [Intro & HTML Intro](knitr/1-GraphicsIntro.html)  | Understand the structure of HTML web pages (DOM, tags, attributes) [Setup.R](code/0-Setup.R)
+1:00-1:30 | [Intro & HTML Intro](knitr/1-WebscrapeIntro.html)  | Understand the structure of HTML web pages (DOM, tags, attributes) [Setup.R](code/0-Setup.R)
 1:30-2:45| [XPATH & Data Extraction](knitr/2-XPATH.html)  | Use CSS and XPATH to navigate HTML pages and select HTML nodes & Extract data from HTML nodes
 2:45-3:00| **Break** |
 3:00-4:00| [Web APIs and Accessing Web-based Data](knitr/3-WebAPIs.html) | Use APIs and other programmatic methods of accessing web-based data
