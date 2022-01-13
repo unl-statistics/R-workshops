@@ -1,0 +1,275 @@
+---
+title: "Your Turn Solutions"
+output: html_document
+---
+
+## Reading files
+
+#### 1. Have a look at the parameters of read_csv to solve the following problems:
+
+Read the first two lines of the file into an object called midwest_names
+
+Read everything EXCEPT the first two lines into an object called midwest_data
+
+**Solution**
+```{r, message = FALSE}
+library(tidyverse)
+midwest_names <- read_csv(
+  "http://srvanderplas.github.io/rwrks/03-r-format/data/midwest.csv", n_max= 2, 
+  col_names = FALSE)
+midwest_data <- read_csv(
+  "http://srvanderplas.github.io/rwrks/03-r-format/data/midwest.csv", 
+  skip = 2, col_names = FALSE)
+head(midwest_data)
+head(midwest_names)
+```
+
+### 2. The NHANES (National Health and Nutrition Survey) publishes data in the SAS xport format:
+
+Scroll to the bottom, choose one of the datasets (Demographics, Examination, etc.). Download the Data file (XPT)
+
+Use read.xport() to load the file into R
+
+Briefly examine the dataset you've imported (use head or tail, etc)
+
+```{r}
+# library(foreign)
+# labdata <- read.xport("https://srvanderplas.github.io/rwrks/03-r-format/data/AMDGDS_H.XPT")
+#Your file path
+# head(labdata)
+```
+
+## Summarizing with dplyr
+
+#### 1. Use filter to get a subset of the pitch dataset
+
+Ex. Filter the data down to left handed pitchers, who throw a curve with at least 3200 rpms (spin_rate), and the play results in a ball (action_result).
+
+%>% the subset and create a plot
+
+**Solution**
+```{r, warning=FALSE, message=FALSE}
+
+pitch <- read_csv("https://srvanderplas.github.io/rwrks/03-r-format/data/pitch.csv")
+
+pitch %>%
+  filter(spin_rate >= 3200 & pitcher_hand == "L") %>%
+  ggplot(aes(x=action_result, y=spin_rate)) +
+  geom_point(aes(color=playerid)) +
+  theme(legend.position = "none") #Your graph could be different
+
+library(rbokeh)
+ pitch %>%
+  filter(spin_rate >= 3200 & pitcher_hand == "L") %>%
+  figure() %>%
+  ly_points(x = action_result, y = spin_rate, color = playerid, hover = list(playerid, spin_rate, action_result), legend = FALSE)
+
+```
+
+#### 2. Look up the help file for the function slice.
+
+Use slice on the arranged pitchdata dataset to select a single row
+
+Use slice to select multiple rows
+
+```{r}
+pitch %>% 
+  arrange(desc(playerid), spin_rate) %>% 
+  slice(11)
+
+pitch %>% 
+  arrange(desc(playerid), spin_rate) %>% 
+  slice(1:5)
+```
+
+#### 3. Select only playerid, spin_rate, and action result
+
+Group by both playerid and action result and find mean and sd of spin rates
+
+%>% the summaries into a ggplot histogram
+
+**Solution**
+```{r, message=FALSE}
+pitch %>%
+  select(playerid, spin_rate, action_result) %>%
+    group_by(playerid, action_result) %>%
+    summarise(mean_spin = mean(spin_rate), sd_spin = sd(spin_rate)) %>%
+  ggplot(aes(x = mean_spin)) + geom_histogram()
+```
+
+#### 4. Based on your (limited) knowledge of baseball, you determine what is a "successful" curveball. Then determine what pitchers pitched the most successful curveballs!
+
+*Note: There are many different ways of answering this question. None are wrong and you don't need to know anything about baseball to try. Consider criteria that it needs to meet. Ex. A successful curveball needs to be above 90 mph in velocity and have over 3100 rpms in spin rate.*
+
+*Your answer may be different*
+
+**Solution**
+```{r, message=FALSE, warning=FALSE}
+SScurve <- pitch %>%
+  select("playerid", "action_result", "ab_result", "adj_h") %>%  
+  arrange(desc(playerid)) %>% mutate(successfulCU = ifelse(
+    (adj_h < .3 & ab_result != "\\N" ) | 
+      (action_result %in% c("C","S","F")), 1, 0)) %>%
+#Consider a success any strike and any batted ball resulting in a 
+#adj_h less than the league average of .300 BABIP (according to MLB.com).
+  group_by(playerid) %>% mutate(totalSSCU=sum(successfulCU)) %>% 
+  mutate(percentSSCU=totalSSCU / n())
+SScurve
+
+percentages <- distinct(.data = SScurve, playerid, totalSSCU, percentSSCU)
+#Look at some graphs to see what the data actually looks like now. 
+library(rbokeh)
+library(quanteda)
+ggplot(data = percentages) + geom_point(aes(x = percentSSCU, y = totalSSCU, 
+                                            colour = playerid))
+#Filter down to get the best pitchers with a minimum of 50 curveballs thrown 
+qualifiedPercentages <- percentages %>% filter(totalSSCU > 50) %>% 
+  arrange(desc(percentSSCU))
+figure() %>%
+  ly_points(x = percentSSCU, y = totalSSCU, color = playerid,
+            data = qualifiedPercentages, hover = list(playerid, totalSSCU, 
+                                                      percentSSCU), 
+            legend = FALSE)
+
+
+```
+
+#### 5. The dataset ChickWeight is part of the core packages that come with R
+
+
+**Solution**<br>
+Create a line plot with each line representing the weight of each Chick
+```{r}
+ChickWeight <- ChickWeight
+
+ChickWeight %>% 
+  ggplot(aes(x=Time, y=weight, group=Chick, color=Diet)) +
+  geom_line() + 
+  facet_wrap(~Diet)
+```
+
+Focus on weight on day 21. Draw side-by-side dotplots of weight by diet.
+```{r}
+ChickWeight %>%   
+  filter(Time==21) %>% 
+  ggplot(aes(x=Diet)) +
+  geom_point(aes(y=weight, color=Diet), size=3)
+```
+
+Bonus: Use summarize the average weight on day 21 under each diet. Overlay the dotplots by error bars around the average weight under each diet (see ?geom_errorbar)
+```{r}
+ChickW1 <- ChickWeight %>% 
+  filter(Time==21) %>% 
+  group_by(Diet) %>% 
+  summarize(mean_weight = mean(weight, na.rm=TRUE),
+            sd_weight = sd(weight, na.rm=TRUE)/n())
+
+ChickWeight %>% 
+  filter(Time==21) %>% 
+  ggplot(aes(x=Diet)) +
+  geom_point(aes(y=weight), size=2) +
+  geom_errorbar(data= ChickW1, aes(ymin = mean_weight-1.96*sd_weight, ymax = mean_weight+1.96*sd_weight, colour = Diet), width=.3) +
+  geom_point(data=ChickW1, aes(y=mean_weight, color=Diet), size=3)
+
+```
+
+## Tidy Data
+
+#### 1. The Iowa Data Portal is a wealth of information on and about the State of Iowa.
+
+Assess the 'messiness' of the data. List issues that prevent us from working with the data directly. Which of these issues are of type (1) or (2) of messiness?
+
+```{r, message=FALSE}
+url <- "https://data.iowa.gov/api/views/3adi-mht4/rows.csv"
+campaign <- readr::read_csv(url)
+```
+**Solution**<br>
+-Date is text, in the format of Month/Day/Year (Messy 2)<br>
+-City coordinates are a combination of City name, state, zip code and geographic latitude and longitude. (Messy 2) <br>
+-Expenditure amount is a textual expression, not a number (Messy different)<br>
+-No Messy 1? - problems of type Messy 1 are typically hard to detect and often up to interpretation/dependent on the analysis to be done. <br>
+
+#### 2. During the 1870 census data on people's occupation was collected. The data occupation-1870 contains state-level aggregates of occupation by gender.
+
+Use tidyr to get the data into a long format.
+
+Separate the occupation.gender type variable into two variables.
+
+Spread the data such that you can draw scatterplots of values for men against women facetted by occupation.
+
+```{r, message=FALSE}
+occupation <- read_csv("https://srvanderplas.github.io/rwrks/03-r-format/data/occupation-1870.csv")
+occupation_long <- occupation %>% 
+  gather(key = Occupation, value = Measurement, Agriculture.Male:School.Female) %>%
+  separate(Occupation, c("Occupation", "Gender"), sep="\\.") %>%
+  spread(key = Gender, value = Measurement)
+head(occupation_long, 10)
+```
+
+#### 3. The flights dataset contains information on over 300,000 flights that departed from New York City in the year 2013.
+
+Using the flights data, create a new column Date using lubridate. You will need to paste together the columns year, month, and day in order to do this. See the paste function.
+
+Use dplyr to calculate the average departure delay for each date.
+
+Plot the date versus the average departure delay
+
+```{r, message=FALSE}
+library(lubridate)
+flights <- read.csv("http://srvanderplas.github.io/rwrks/03-r-format/data/flights.csv")
+
+flights$date <- ymd(paste(flights$year, flights$month, flights$day, sep = "-"))
+delay.dat <- flights %>% 
+  group_by(date) %>% 
+  summarise(dep_delay = mean(dep_delay, na.rm = TRUE))
+
+ggplot(delay.dat) + geom_line(aes(date, dep_delay))
+```
+
+#### 4. Read in the billboard top 100 music data:
+
+Use tidyr to convert this data into a long format.
+
+Use ggplot2 to create something like this: <br>
+```{r, fig.width=6.5, fig.height=3.5, warning=FALSE, purl=FALSE, echo=FALSE}
+
+billboard <- read.csv("http://srvanderplas.github.io/rwrks/03-r-format/data/billboard.csv")
+long_billboard <- gather(billboard, key = week, value = rank, X1:X76) %>%
+  mutate(week = parse_number(week))
+
+ggplot(long_billboard) + geom_line(aes(week, rank, colour = artist, group = track))+
+  xlim(c(0, 30))
+```
+
+```{r, warning=FALSE}
+billboard <- read.csv("http://srvanderplas.github.io/rwrks/03-r-format/data/billboard.csv")
+long_billboard <- gather(billboard, key = week, value = rank, X1:X76) %>%
+  mutate(week = parse_number(week))
+
+ggplot(long_billboard) + geom_line(aes(week, rank, colour = artist, group = track))+
+  xlim(c(0, 30))
+```
+
+## Joining Data
+
+#### 1. Load the Lahman package into your R session.
+
+Join (relevant pieces of) the Master data set and the HallOfFame data.
+
+Output the names of individuals with more than 15 attempts (attempts is how many times the playerid shows up in the hall of fame data. Make sure to deal with missing values appropriately.
+
+**Solution**
+```{r}
+library(Lahman)
+
+Voted <- HallOfFame %>% filter(!is.na(ballots)) %>% 
+  group_by(playerID) %>% arrange(yearID) %>% 
+  mutate( attempt = order(yearID))
+Voted <- left_join(Voted, Master %>% select(playerID, nameFirst, nameLast), 
+                   by = "playerID") %>% filter(attempt > 15)
+Names <- Voted %>% mutate(FullName = paste(nameFirst, nameLast))
+Names$FullName %>% unique()
+
+```
+
+
