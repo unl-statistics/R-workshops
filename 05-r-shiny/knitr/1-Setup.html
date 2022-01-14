@@ -3,9 +3,9 @@
   <head>
     <title>Setting up Shiny</title>
     <meta charset="utf-8" />
-    <script src="libs/header-attrs/header-attrs.js"></script>
-    <link href="libs/remark-css/default.css" rel="stylesheet" />
-    <link href="libs/remark-css/default-fonts.css" rel="stylesheet" />
+    <script src="libs/header-attrs-2.11/header-attrs.js"></script>
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/default-fonts.css" rel="stylesheet" />
   </head>
   <body>
     <textarea id="source">
@@ -48,14 +48,16 @@ Check the tutorial first, then search the mailing list.
 ---
 ## Installing Shiny
 
++ Download and **extract** `apps.zip` from the R workshop webpage. *Make sure you know where you saved this!*
++ Create an R project for your `apps` folder.
+
+&lt;br&gt;
+&lt;br&gt;
+
 
 ```r
 *install.packages("shiny")
 ```
-&lt;br&gt;
-&lt;br&gt;
---
-Download extract `apps.zip` from the R workshop webpage. Make sure you know where you saved this!
 
 ---
 ## A Simple Example
@@ -64,8 +66,8 @@ If your working directory is set appropriately, run the following code:
 
 
 ```r
-library(shiny)
-runApp("05-r-shiny/code/01_Hello")
+*library(shiny)
+*runApp("01_Hello")
 ```
 &lt;center&gt;
 &lt;img src="images/HelloShinyScreenshot.png" alt="Picture of Hello Shiny! Applet" style="width:650px;"&gt;

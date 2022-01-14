@@ -41,13 +41,15 @@ Check the tutorial first, then search the mailing list.
 ---
 ## Installing Shiny
 
++ Download and **extract** `apps.zip` from the R workshop webpage. *Make sure you know where you saved this!*
++ Create an R project for your `apps` folder.
+
+<br>
+<br>
+
 ```{r, eval=FALSE}
 install.packages("shiny") #<<
 ```
-<br>
-<br>
---
-Download extract `apps.zip` from the R workshop webpage. Make sure you know where you saved this!
 
 ---
 ## A Simple Example
@@ -55,8 +57,8 @@ Download extract `apps.zip` from the R workshop webpage. Make sure you know wher
 If your working directory is set appropriately, run the following code:
 
 ```{r, eval=FALSE}
-library(shiny)
-runApp("05-r-shiny/code/01_Hello")
+library(shiny) #<<
+runApp("01_Hello") #<<
 ```
 <center>
 <img src="images/HelloShinyScreenshot.png" alt="Picture of Hello Shiny! Applet" style="width:650px;">
