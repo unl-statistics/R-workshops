@@ -10,7 +10,10 @@ announcements](mailto:R-at-UNL+subscribe@googlegroups.com?Subject=subscribe-gith
 
 <!-- ** Schedule is tentative and subject to change due to enrollment and lab availability ** -->
 
-Workshops will be held in **Keim 214**.
+<!-- Workshops will be held in **Keim 214**.-->
+Workshops will be held on East Campus (Location TBD as workshops are closer)
+
+Register for the workshops [here](https://forms.gle/7gS6phh6UHCcFLd1A). We will send you an email about a week before the workshops are held with additional details (location, what to expect, how to set up your computer).
 
 <!--**Mask policy:** We ask that you wear masks during the workshops. Some of our instructors and participants are immunocompromised or have immunocompromised family or children under 5 years old at home. Our instructors will be wearing masks unless they are presenting at the front of the room. -->
 
