@@ -15,6 +15,8 @@ Workshops will be held on East Campus (Location TBD as workshops are closer)
 
 Register for the workshops [here](https://forms.gle/7gS6phh6UHCcFLd1A). We will send you an email about a week before the workshops are held with additional details (location, what to expect, how to set up your computer).
 
+The schedule listed below is for the next set of workshops. Workshops are typically offered just before the classes start (August and January) and the week after Spring finals. We anticipate that these classes will be offered in person, with no online option.
+
 <!--**Mask policy:** We ask that you wear masks during the workshops. Some of our instructors and participants are immunocompromised or have immunocompromised family or children under 5 years old at home. Our instructors will be wearing masks unless they are presenting at the front of the room. -->
 
 | Date       |    Time    | Course                                                                          | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
