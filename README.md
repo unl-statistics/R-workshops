@@ -6,22 +6,24 @@ announcements](mailto:R-at-UNL+subscribe@googlegroups.com?Subject=subscribe-gith
 
 # R Workshops
 
-## January 2022 - A Week of R
+## May 2022 - A Week of R
 
 <!-- ** Schedule is tentative and subject to change due to enrollment and lab availability ** -->
 
 Workshops will be held in **Keim 214**.
 
-**Mask policy:** We ask that you wear masks during the workshops. Some of our instructors and participants are immunocompromised or have immunocompromised family or children under 5 years old at home. Our instructors will be wearing masks unless they are presenting at the front of the room. 
+<!--**Mask policy:** We ask that you wear masks during the workshops. Some of our instructors and participants are immunocompromised or have immunocompromised family or children under 5 years old at home. Our instructors will be wearing masks unless they are presenting at the front of the room. -->
 
 | Date       |    Time    | Course                                                                          | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
 |------------|:----------:|---------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| January 10 | 9am - 4pm  | [Introduction to R](https://srvanderplas.github.io/rwrks/01-r-intro/index.html) | Learn the basics of R & Rstudio, how to write your own R scripts and get an introduction to the tidyverse. We’ll start with the beginning and quickly get you up to speed with the basic tools of data exploration. You will learn how to import and manage data sets, create R objects, install and load R packages, and how to ask for help in R.                                                                                                                                                                                                                                                               |
-| January 11 | 9am - 4pm  | [Graphics with `ggplot2`](https://srvanderplas.github.io/rwrks/02-r-graphics/index.html)                                                         | `ggplot2` provides a framework to produce elegant, high-end graphical displays using the Grammar of Graphics. You will learn how to create a wide variety of graphical displays in R. We will use lots of data examples to wok through the basic plots as well as more advanced tools, such as facetting, colors, themes and more.                                                                                                                                                                                                                                                                                |
-| January 12 | 9am - 4pm  | [Data Wrangling](https://srvanderplas.github.io/rwrks/03-r-format/index.html)                                                                  | This workshop will to prepare you for dealing with messy data by walking you through real-life examples. We will help you to automate cleaning your data, fixing spelling errors, transforming variables, and generating data summaries using the split-apply-combine paradigm. We will also talk about wide and long format data and help you to convert between these formats and to know when each format is useful.                                                                                                                                                                                           |
-| January 13 | 9am - 12pm | [Dynamic Documents with `knitr` and `rmarkdown`](https://srvanderplas.github.io/rwrks/04a-r-knitr/index.html)                                  | Create reports and write papers using R! Let R do the heavy lifting so that you can focus on the content - use R to assemble your data and `knitr` or `rmarkdown` to produce reports which integrate graphs and conclusions from your data automatically. Whether you are writing business reports or journal articles, `knitr` and `rmarkdown` are extremely valuable tools to use to make your life easier!                                                                                                                                                                                                     |
-| January 13 | 1pm - 4pm  | [Web Scraping](https://srvanderplas.github.io/rwrks/04b-r-scrape/index.html)                                                                    | Read data in from the internet using packages like `rvest`. Learn to navigate HTML and XML structured data files, and convert data stored in these files into tabular data more commonly used in statistical analyses.                                                                                                                                                                                                                                                                                                                                                                                            |
-| January 14 | 9am - 12pm | [Interactive applets with Shiny](https://srvanderplas.github.io/rwrks/05-r-shiny/index.html)                                                  | Learn how to create interactive, web-based applets entirely within R! The shiny package allows us to create interactive applets for teaching, data analysis, or publication, without requiring knowledge of HTML or JavaScript!. See some of the fantastic applets in the [Shiny showcase](https://shiny.rstudio.com/gallery/), and learn how to create applets of your own in our workshop.<br/>This session is designed as a workshop, so bring your data and analysis code, and leave with a Shiny applet! (If you don’t have data you’d like to use for this, we’ll provide you with some data to play with!) |
+| May 16 | 9am - 4pm  | [Introduction to R](https://srvanderplas.github.io/rwrks/01-r-intro/index.html) | Learn the basics of R & Rstudio, how to write your own R scripts and get an introduction to the tidyverse. We’ll start with the beginning and quickly get you up to speed with the basic tools of data exploration. You will learn how to import and manage data sets, create R objects, install and load R packages, and how to ask for help in R.                                                                                                                                                                                                                                                               |
+| May 17 | 9am - 4pm  | [Graphics with `ggplot2`](https://srvanderplas.github.io/rwrks/02-r-graphics/index.html)                                                         | `ggplot2` provides a framework to produce elegant, high-end graphical displays using the Grammar of Graphics. You will learn how to create a wide variety of graphical displays in R. We will use lots of data examples to wok through the basic plots as well as more advanced tools, such as facetting, colors, themes and more.                                                                                                                                                                                                                                                                                |
+| May 18 | 9am - 4pm  | [Data Wrangling](https://srvanderplas.github.io/rwrks/03-r-format/index.html)                                                                  | This workshop will to prepare you for dealing with messy data by walking you through real-life examples. We will help you to automate cleaning your data, fixing spelling errors, transforming variables, and generating data summaries using the split-apply-combine paradigm. We will also talk about wide and long format data and help you to convert between these formats and to know when each format is useful.                                                                                                                                                                                           |
+| May 19 | 9am - 12pm | [Dynamic Documents with `knitr` and `rmarkdown`](https://srvanderplas.github.io/rwrks/04a-r-knitr/index.html)                                  | Create reports and write papers using R! Let R do the heavy lifting so that you can focus on the content - use R to assemble your data and `knitr` or `rmarkdown` to produce reports which integrate graphs and conclusions from your data automatically. Whether you are writing business reports or journal articles, `knitr` and `rmarkdown` are extremely valuable tools to use to make your life easier!                                                                                                                                                                                                     |
+| May 19 | 1pm - 4pm | [Interactive applets with Shiny](https://srvanderplas.github.io/rwrks/05-r-shiny/index.html)                                                  | Learn how to create interactive, web-based applets entirely within R! The shiny package allows us to create interactive applets for teaching, data analysis, or publication, without requiring knowledge of HTML or JavaScript!. See some of the fantastic applets in the [Shiny showcase](https://shiny.rstudio.com/gallery/), and learn how to create applets of your own in our workshop.<br/>This session is designed as a workshop, so bring your data and analysis code, and leave with a Shiny applet! (If you don’t have data you’d like to use for this, we’ll provide you with some data to play with!) |
+| May 20 | 9am - 4pm | [Statistical Modeling in R](https://srvanderplas.github.io/rwrks/06-r-modeling/index.html)                                                  | Learn how to fit models, test hypotheses, create model output tables and plots, and more! In the morning, we will cover model-fitting basics (linear regression, mixed models), and in the afternoon we will look into more advanced types of models (generalized additive models, generalized linear mixed models, etc.) |
+
+<!--| January 13 | 1pm - 4pm  | [Web Scraping](https://srvanderplas.github.io/rwrks/04b-r-scrape/index.html)                                                                    | Read data in from the internet using packages like `rvest`. Learn to navigate HTML and XML structured data files, and convert data stored in these files into tabular data more commonly used in statistical analyses.                                                                                                                                                                                                                                                                                                                                                                                            |-->
 
 ## Learning Outcomes
 
@@ -83,7 +85,7 @@ Dynamic Documents with <code>knitr</code> and <code>rmarkdown</code>
 -   Create slides using markdown and/or LaTeX with R output
 
 </details>
-<details>
+<!--<details>
 <summary>
 Web Scraping
 </summary>
@@ -93,7 +95,8 @@ Web Scraping
 -   Extract data from HTML nodes
 -   Use APIs and other programmatic methods of accessing web-based data
 
-</details>
+</details>-->
+
 <details>
 <summary>
 Shiny
@@ -103,6 +106,16 @@ Shiny
 -   Create R code to respond to interactive elements of the UI
 -   Connect the user interface to reactive R code to create an
     interactive applet
+
+</details>
+<details>
+<summary>
+Statistical Modeling
+</summary>
+
+-   Fit linear and mixed models
+-   Create model summary output tables and plots
+-   Fit generalized additive models and generalized linear mixed models
 
 </details>
 
@@ -122,11 +135,11 @@ graduate student activities.
 | Workshop Type | Student | UNL Affiliate | Corporate |
 |---------------|---------|---------------|-----------|
 | Full Day      | $25     | $50           | $200      |
-| Half Day      | $15     | $25           | $100      |
-| Full Week     | $100    | $200          | $1000     |
+| Half Day      | $15     | $30           | $120      |
+| Full Week     | $110    | $220          | $1000     |
 
-If you are anticipating registering several people who are not UNL
-Affiliates as a group, please feel free to contact [Susan
+If you are anticipating registering more than 4 people who are **not UNL
+Affiliates** as a group, please feel free to contact [Susan
 Vanderplas](mailto:svanderplas2@unl.edu?subject=R%20Workshops%20Pricing)
 for a group rate.
 
