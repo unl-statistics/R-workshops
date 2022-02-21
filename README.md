@@ -6,6 +6,8 @@ announcements](mailto:R-at-UNL+subscribe@googlegroups.com?Subject=subscribe-gith
 
 # R Workshops
 
+The schedule listed below is for the next set of workshops. Workshops are typically offered just before the classes start (August and January) and the week after Spring finals. We anticipate that these classes will be offered in person, with no online option.
+
 ## May 2022 - A Week of R
 
 <!-- ** Schedule is tentative and subject to change due to enrollment and lab availability ** -->
@@ -15,7 +17,6 @@ Workshops will be held on East Campus (Location TBD as workshops are closer)
 
 Register for the workshops [here](https://forms.gle/7gS6phh6UHCcFLd1A). We will send you an email about a week before the workshops are held with additional details (location, what to expect, how to set up your computer).
 
-The schedule listed below is for the next set of workshops. Workshops are typically offered just before the classes start (August and January) and the week after Spring finals. We anticipate that these classes will be offered in person, with no online option.
 
 <!--**Mask policy:** We ask that you wear masks during the workshops. Some of our instructors and participants are immunocompromised or have immunocompromised family or children under 5 years old at home. Our instructors will be wearing masks unless they are presenting at the front of the room. -->
 
@@ -126,7 +127,7 @@ Statistical Modeling
 
 # Sign Up
 
-[Register](https://forms.gle/KXeetJvppY9uFuJv9)
+[Register](https://forms.gle/7gS6phh6UHCcFLd1A)
 
 ## Pricing
 
@@ -155,9 +156,8 @@ We accept exact cash, checks, or a University cost object. We cannot accept N-ca
 You will need to bring a laptop with the following software installed:
 
 -   [R](https://cloud.r-project.org/) (version 4.0.0 or greater)
--   [RStudio](https://www.rstudio.com/products/rstudio/download/#download)
-    (version 2021.09 or greater)
--   \[Windows only\]
+-   [RStudio](https://www.rstudio.com/products/rstudio/download/#download) (version 2021.09 or greater)
+-   Windows only:    
     [Rtools](https://cloud.r-project.org/bin/windows/Rtools/)
 -   In R, please run the following code:
 
