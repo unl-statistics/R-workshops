@@ -422,7 +422,6 @@ head(french_fries)
 ```
 
 ```{r, echo=TRUE}
-french_fries <- read_csv("../data/frenchfries.csv")
 head(french_fries)
 ```
 
@@ -525,8 +524,17 @@ df %>% separate(x, into = c("A", "B"))
 ```
 
 ---
+
+## separate ex. 2
+```{r}
+df2 <- data.frame(y = c("Lincoln, NE", "Chicago, IL", "Ames, IA", "Nasheville, TN"))
+df2
+df2 %>% separate(y, c("City", "State"), sep = ", ")
+```
+---
+
 class: inverse
-## Your Turn (5 min)
+## Your Turn
 
 The Iowa Data Portal is a wealth of information on and about the State of Iowa. 
 
@@ -555,7 +563,7 @@ no Messy 1? - problems of type Messy 1 are typically hard to detect and often up
 ---
 class: inverse
 
-## Your Turn (10 mins)
+## Your Turn
 
 During the 1870 census data on people's occupation was collected. The data [occupation-1870](../data/occupation-1870.csv) contains state-level aggregates of occupation by gender.
 
@@ -613,7 +621,7 @@ class: inverse
 The flights dataset contains information on over 300,000 flights that departed from New York City in the year 2013.
 
 ```{r}
-flights <- read.csv("http://heike.github.io/rwrks/03-r-format/data/flights.csv")
+flights <- read.csv("http://srvanderplas.github.io/rwrks/03-r-format/data/flights.csv")
 ```
 
 
@@ -647,7 +655,7 @@ class: inverse
 - Read in the billboard top 100 music data:
 
 ```{r}
-billboard <- read.csv("http://heike.github.io/rwrks/03-r-format/data/billboard.csv")
+billboard <- read.csv("http://srvanderplas.github.io/rwrks/03-r-format/data/billboard.csv")
 ```
     
 - Use `tidyr` to convert this data into a long format.

@@ -43,6 +43,20 @@ How do you get your results from `R` into those documents?
 
 ---
 
+## knitr vs. Markdown
+
+* knitr (.Rnw)
+  - Created First
+  - Can do some things that markdown can't
+  - Essentially takes the .Rnw file converts to a .tex file (Latex) and then outputs a pdf
+
+* markdown (.Rmd)
+  - Takes the .Rmd file converts to a pandoc file (.md) and then can otuput to multiple formats (.html, .pdf)
+  - What we will be focusing on 
+
+
+---
+
 ## What is *R* Markdown?
 
 * Straight from the [R Markdown home page](http://rmarkdown.rstudio.com/):
@@ -73,14 +87,15 @@ A lot of what is presented here can be found on the [R Markdown Cheatsheet](http
 
 - LaTeX: If you don't have this installed, you will need to use our computers.
 
-- knitr: use install.packages("knitr") to install the knitr package in R
+- knitr: use install.packages("rmarkdown") to install the knitr package in R
 
 - RStudio: File -> New File -> R Markdown (This tells RStudio to use knitr to compile the document)
 
-```{r, echo=FALSE, out.height="50%", out.width="60%"}
+- [Installation Help](https://bookdown.org/yihui/rmarkdown/installation.html)
+
+```{r, echo=FALSE, out.height="40%", out.width="60%"}
 knitr::include_graphics("markdown.png")
 ```
-
 
 
 ---

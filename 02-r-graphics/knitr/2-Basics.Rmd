@@ -508,6 +508,16 @@ img <- readPNG("images/tablelong2.png")
 
 # Tidy Data
 
+.center[
+<img src="images/tidy-data-0.jpg" alt="Tidy Data" style="width:800px;"/>
+
+Like families..., by [Allison Horst](https://www.allisonhorst.com/)
+]
+
+---
+
+# Tidy Data
+
 
 - Each variable is a column
 
@@ -564,12 +574,22 @@ img <- readPNG("images/tablelong2.png")
 
 
 ---
-
 # Messy data
 
  *Happy families are all alike; every unhappy family is unhappy in its own way. - Leo Tolstoy*  
 <br/>
---
+
+.center[
+<img src="images/tidy-data.jpg" alt="Tidy Data" style="width:600px;"/>
+
+Comparison of work benches, by [Allison Horst](https://www.allisonhorst.com/)
+]
+
+---
+# Messy data
+
+ *Happy families are all alike; every unhappy family is unhappy in its own way. - Leo Tolstoy*  
+<br/>
 
 **Five main ways tables of data tend not to be tidy:**
 

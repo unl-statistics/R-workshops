@@ -1,0 +1,259 @@
+---
+title: 'Graphics with ggplot: Your Turn Solutions'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+	echo = TRUE,
+	fig.align = "center",
+	message = FALSE,
+	warning = FALSE,
+	cache = TRUE
+)
+```
+
+## Load Libraries
+
+**Note:** the `ggplot` package is contained within the `tidyverse` library.
+
+```{r packages}
+library(tidyverse)
+```
+
+## Graphics Intro
+
+### Make your first figure
+
+1. Data set
+
+```{r first-figure1, eval = F, echo = T}
+head(diamonds)
+```
+
+```{r, echo = F}
+head(diamonds) %>% knitr::kable()
+```
+
+2. Begin with the data
+```{r first-figure2}
+ggplot(data = diamonds)
+```
+
+3. Specify the aesthetic mappings
+```{r}
+ggplot(data = diamonds, aes(x = carat, y = price))
+```
+
+4. Choose a geom
+```{r}
+ggplot(data = diamonds, aes(x = carat, y = price)) +
+  geom_point()
+```
+
+5. Add an aesthetic
+```{r}
+ggplot(data = diamonds, aes(x = carat, y = price)) +
+  geom_point(aes(colour = cut))
+```
+
+6. Add another layer
+```{r}
+ggplot(data = diamonds, aes(x = carat, y = price)) +
+  geom_point(aes(colour = cut), size = 2, alpha = .5) +
+  geom_smooth()
+```
+
+7. Mapping aesthetics vs setting aesthetics
+```{r}
+ggplot(data = diamonds, aes(x = carat, y = price)) +
+  geom_point(aes(colour = cut), size = 2, alpha = .5) +
+  geom_smooth(aes(fill = cut), colour = "lightgrey") 
+```
+
+8. Coordinate transformations can be specified
+```{r}
+ggplot(data = diamonds, aes(x = carat, y = price)) +
+  geom_point(aes(colour = cut), size = 2, alpha = .5) +
+  geom_smooth(aes(fill = cut), colour = "lightgrey") +
+  scale_y_log10()
+```
+
+9. Specify facet variables
+```{r}
+ggplot(data = diamonds, aes(x = carat, y = price)) +
+  geom_point(aes(colour = cut), size = 2, alpha = .5) +
+  geom_smooth(aes(fill = cut), colour = "lightgrey") +
+  scale_y_log10() +
+  facet_wrap(~cut)
+```
+
+
+## Basics
+
+### Tidy Your Data
+
+To tidy the `preg` table use `pivot_longer()` to create a long table.
+
+```{r}
+preg <- tibble(pregnant = c("yes", "no"),
+               male = c(NA, 10),
+               female = c(20, 12))
+preg
+```
+
+**Solution**
+
+```{r}
+preg_long <- preg %>%
+  pivot_longer(cols = c("male", "female"),
+               names_to = "sex",
+               values_to = "count")
+preg_long
+```
+
+## Layers 
+
+Change the code below to have the points **on top** of the boxplots.
+```{r}
+ggplot(data = mpg, aes(x = class, y = hwy)) + 
+  geom_jitter() + 
+  geom_boxplot()
+```
+
+**Solution**
+```{r}
+ggplot(data = mpg, aes(x = class, y = hwy)) + 
+  geom_boxplot() +
+  geom_jitter() 
+```
+
+## Perception
+
+### Diamonds
+	
+In the `diamonds` data, `clarity` and `cut` are ordinal, while `price` and `carat` are continuous. 
+
+Create a graphic that gives an overview of these four variables while respecting their types.
+
+One possible plot, there will be many!
+
+```{r}
+data(diamonds)
+	
+ggplot(diamonds, aes(x = carat, y = price)) +
+  geom_point(aes(color = clarity)) + 
+  geom_smooth(aes()) + 
+  facet_grid(~cut)
+```
+	
+### Movies
+
+The `movies` data set contains information from IMDB.com including ratings, genre, length in minutes, and year of release. Explore the differences in length, rating, etc. in movie genres over time. **Hint:** use faceting!
+	  
+A few different plots, there will be many!
+
+```{r}
+movies <- read.csv("https://srvanderplas.github.io/rwrks/02-r-graphics/data/MovieSummary.csv")
+summary(movies)
+	
+ggplot(movies, aes(x = year, y = budget, group = genre, color = genre)) + 
+  geom_point()
+	
+ggplot(movies, aes(x = year, y = length, group = genre, color = genre)) +
+  geom_smooth()	
+	 
+ggplot(movies, aes(x = budget, y = rating, color = genre, group = genre)) + 
+  geom_point() +
+  geom_smooth()  + 
+  facet_wrap(~mpaa)
+	
+ggplot(movies, aes(x = log(budget + 1), y = rating, color = genre, group = genre)) + 
+  geom_point() +
+  geom_smooth() 
+	
+ggplot(movies, aes(x = genre, fill = mpaa)) + 
+  geom_bar() 
+	
+ggplot(movies, aes(x = rating, group = mpaa, fill = mpaa)) + 
+  geom_density(alpha = .4) + 
+  facet_wrap(~genre, nrow = 2)
+```
+
+## Polishing Plots
+
+### [Palmer Penguins](https://allisonhorst.github.io/palmerpenguins/)
+
+```{r, eval = F, echo = T}
+	install.packages("palmerpenguins")
+	data(penguins, package = "palmerpenguins")
+	head(penguins)
+```
+
+```{r, eval = T, echo = F}
+	data(penguins, package = "palmerpenguins")
+	head(penguins) %>% knitr:: kable()
+```
+
+```{r, echo=FALSE,out.width="49%", out.height="20%",fig.show='hold',fig.align='center'}
+
+knitr::include_graphics(c("../knitr/images/meet-the-palmer-penguins.png","../knitr/images/culmen_depth.png"))
+
+```
+
+**Meet the Palmer penguins & Bill Dimensions by [Allison Horst](https://www.allisonhorst.com/)**
+
+1. Create a scatterplot of `bill length` versus `bill width` from the `penguins` data, colored by `species`
+
+```{r}
+p0 <- ggplot(data = penguins, aes(x = bill_length_mm, y = bill_depth_mm, color = species)) +
+  geom_point()
+	p0
+```
+	
+2. Use the black and white theme
+```{r}
+p1 <- p0 + 
+  theme_bw()
+p1
+```
+	
+3. Clean up axis labels and include an informative title.
+
+```{r}
+p2 <- p1 +
+  scale_x_continuous("Bill Length (mm)") +
+  scale_y_continuous("Bill Depth (mm)") +
+  ggtitle("Palmer Penguins", subtitle = "Bill Size")
+p2
+```
+	
+4. Capitalize legend title and change the color palette from default.
+```{r}
+p3 <- p2 +
+  scale_color_viridis_d("Species")
+p3
+```
+
+5. Move the legend to the bottom and set aspect ratio to 1.
+```{r}
+p4 <- p3 + 
+  theme(legend.position = "bottom",
+        aspect.ratio = 1)
+p4
+```
+
+6. Save your plot to a pdf file and open it in a pdf viewer. 
+
+*Make sure you know where this is saving to; remember R projects and working directories!*
+
+```{r, eval = F}
+ggsave(filename = "penguins.pdf", plot = p4)
+```
+
+7. Save a png of the same scatterplot. 
+```{r, eval = F}
+ggsave(filename = "diamonds.png", plot = p4)
+```
+	
+8. Embed the png into MS word or another editor.	 

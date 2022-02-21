@@ -56,21 +56,15 @@ There are some of the primary `dplyr` *verbs*, representing distinct data analys
 
 ## Filter
 
-Read in the pitch data set (in the folder 03-r-format/data). The data are from an experiment on different advanced metrics of a MLB baseball pitchers different pitch types.
+Read in the pitch data set (in the folder 03-r-format/data). The data are from an experiment on different advanced metrics of MLB baseball pitchers different pitch types.
 
-```{r message = FALSE, warning=FALSE, eval = FALSE}
-library(tidyverse)
-curve <- read_csv("../data/pitchdata.csv")
-curve %>% 
-  filter(pitcher_hand == "R", pitch_type == "CU") %>% 
-  head(3)
-```
 ```{r message = FALSE, warning=FALSE, echo = FALSE}
 library(tidyverse)
-pitch <- read_csv("../data/pitchdata.csv")
+pitch <- read_csv("http://srvanderplas.github.io/rwrks/03-r-format/data/pitch.csv")
 pitch %>% 
-  filter(pitcher_hand == "R", pitch_type == "CU") %>% 
-  head(3)
+  filter(pitcher_hand == "R", pitch_type == "CU") %>%
+  head()
+
 ```
 
 `filter` is similar to the base function `subset`
@@ -109,7 +103,6 @@ hint: what is the default first argument of the `ggplot` function?
   filter(spin_rate >= 3200 & pitcher_hand == "L") %>%
   ggplot(aes(x=action_result, y=spin_rate)) +
   geom_point(aes(color=playerid)) +
-  geom_smooth() + 
   theme(legend.position = "none")
 ```
 
@@ -150,7 +143,7 @@ pitch %>%
 ---
 class: inverse
 
-## Your Turn (5 min)
+## Your Turn
 
 1. Look up the help file for the function `slice`.
 
@@ -183,8 +176,9 @@ pitch %>%
  the subset function in base.
 ```{r}
 pitch %>% 
-  select(playerid, pitcher_hand, action_result, ab_result, spin_dir, spin_rate) %>%
+  select(playerid, pitcher_hand, action_result, spin_rate) %>%
   head()
+  
 ```
 
 ---
@@ -211,7 +205,7 @@ pitch %>%
 ---
 class: inverse
 
-## Your Turn (5 minutes)
+## Your Turn
 
 1. Select only playerid, spin_rate, and action result
 
@@ -249,8 +243,21 @@ pitch %>%
 ```
 
 ---
+## Utilzing ifelse
+-Sometimes you are tasked to create a new column based on a clause
+-ifelse function allows you to create an if else statement within the creation 
+of the new variable.
+-Consider rewriting the handedness of our pitchers.
+-If the pitcher_hand is R write "Right" if not, "Left"
+```{r}
+pitch %>% 
+  select(pitcher_hand) %>% mutate(Handedness = ifelse(pitcher_hand == "R", "Right", "Left"))
 
-## Caution: Be careful about using the newly created variable outside of a chunk
+```
+
+---
+
+## Caution with pipe operator
 
 Why does 
 
@@ -262,6 +269,8 @@ not return a real-valued summary?
 
 --
 
+- When we use the piping operator like we have been, the data is only ever being
+changed within 
 - We only ever look at this new variable in the previous chunk.
 - It has not been created globally into the dataset itself
 
@@ -315,7 +324,7 @@ pitch %>% summarize(n=n())
 ```
 
 
-`group_by(time, subject) %>% summarize(n = n())` is equivalent to `count(time, subject)`
+`group_by(playerid, action_result) %>% summarize(n = n())` is equivalent to `count(playerid, action_result)`
 
 ```{r, eval=FALSE}
 pitch %>% count(playerid, action_result)
@@ -328,9 +337,11 @@ class: inverse
 
 
 Based on your (limited) knowledge of baseball, you determine what is a "successful" curveball.
-Then determine what pitchers pitched the most successful curveballs! If time allows create a visual that shows the top 5 pitchers who threw the most successful curveballs
+Then determine what pitchers pitched the most successful curveballs!
 
-Note: There are many different ways of answering this question. None are wrong and you don't need to know anything about baseball to try. Consider criteria that it needs to meet. Ex. A successful curveball needs to be above 90 mph in velocity and have over 2800 rpms in spin rate.
+Note: There are many different ways of answering this question. None are wrong and you don't need to know anything about baseball to try. Consider criteria that it needs to meet. Ex. A successful curveball needs to be above 90 mph in velocity and have over 3100 rpms in spin rate.
+
+utilize the sum() function to add up all your curveballs!
 ---
 
 ## One Solution
@@ -366,9 +377,9 @@ ggplot(data = percentages) + geom_point(aes(x = percentSSCU, y = totalSSCU,
 ## Solution (Cont.)
 ```{r fig.height=3, warning=FALSE, purl=FALSE}
 
-#Filter down to get the best pitchers with a minimum of 127 curveballs thrown 
+#Filter down to get the best pitchers with a minimum of 50 curveballs thrown 
 #(our median)
-qualifiedPercentages <- percentages %>% filter(totalSSCU > 127) %>% 
+qualifiedPercentages <- percentages %>% filter(totalSSCU > 50) %>% 
   arrange(desc(percentSSCU))
 figure() %>%
   ly_points(x = percentSSCU, y = totalSSCU, color = playerid,
@@ -382,7 +393,7 @@ figure() %>%
 ---
 class: inverse
 
-##  Your Turn (10 min)
+##  Your Turn
 
 The dataset `ChickWeight` is part of the core packages that come with R 
 
@@ -397,7 +408,7 @@ From the help file:
 ---
 class: inverse
 
-## Your Turn (10 min)
+## Your Turn
 
 1. Create a line plot with each line representing the weight of each Chick 
 

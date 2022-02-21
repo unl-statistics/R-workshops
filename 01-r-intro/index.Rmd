@@ -26,3 +26,8 @@ Recommended Reading:
 
 - [R for Data Science](https://r4ds.had.co.nz/) 
 - [R for ecologists](https://datacarpentry.org/R-ecology-lesson/) Data Carpentry workshop 
+
+### Your Turn Solutions
+Please make sure to try the practice problem before viewing solutions
+
+- [Your Turn Solutions](knitr/99-YourTurnSolutions.html)

@@ -17,6 +17,16 @@ class: center, middle, inverse, title-slide
 ---
 
 
+&lt;style&gt;
+pre code, pre, code {
+  white-space: pre !important;
+  overflow-x: scroll !important;
+  word-break: keep-all !important;
+  word-wrap: initial !important;
+}
+&lt;/style&gt;
+
+
 
 
 ## Key Functions: `html_nodes`
@@ -29,12 +39,8 @@ class: center, middle, inverse, title-slide
 ```r
 myurl &lt;- "https://en.wikipedia.org/wiki/List_of_countries_by_GDP_(PPP)_per_capita"
 myhtml &lt;- read_html(myurl)
-myhtml %&gt;% 
- html_nodes("table") %&gt;%
- magrittr::extract2(2) %&gt;%
- html_table(header = TRUE) %&gt;% 
- #dplyr::mutate(`Int$` = parse_number(`Int$`)) %&gt;% 
- head
+
+myhtml %&gt;% html_nodes("table") %&gt;% magrittr::extract2(2) %&gt;% html_table(header = TRUE) %&gt;% head()
 ```
 
 ```
@@ -48,37 +54,6 @@ myhtml %&gt;%
 ## 5 Singapore *         South-eastern As… Asia   102,742  2021     98,526         
 ## 6 Ireland *           Northern Europe   Europe 99,239   2021     93,612         
 ## # … with 3 more variables: World Bank[6] &lt;chr&gt;, CIA[7] &lt;chr&gt;, CIA[7] &lt;chr&gt;
-```
-
-```r
-myhtml %&gt;% 
-  html_nodes("p") %&gt;% # first get all the paragraphs 
-  html_nodes("a") # then get all the links in those paragraphs
-```
-
-```
-## {xml_nodeset (40)}
-##  [1] &lt;a href="/wiki/Gross_domestic_product" title="Gross domestic product"&gt;gr ...
-##  [2] &lt;a href="/wiki/Purchasing_power_parity" title="Purchasing power parity"&gt; ...
-##  [3] &lt;a href="/wiki/Goods_and_services" title="Goods and services"&gt;goods and  ...
-##  [4] &lt;a href="/wiki/International_dollar" title="International dollar"&gt;Int$&lt;/a&gt;
-##  [5] &lt;a href="#cite_note-world-2019-3"&gt;[n 1]&lt;/a&gt;
-##  [6] &lt;a href="/wiki/List_of_countries_by_wealth_per_adult" title="List of cou ...
-##  [7] &lt;a href="/wiki/Gross_domestic_product" title="Gross domestic product"&gt;gr ...
-##  [8] &lt;a href="/wiki/Per_capita" title="Per capita"&gt;per capita&lt;/a&gt;
-##  [9] &lt;a href="/wiki/IMF" class="mw-redirect" title="IMF"&gt;IMF&lt;/a&gt;
-## [10] &lt;a href="/wiki/World_Bank" title="World Bank"&gt;World Bank&lt;/a&gt;
-## [11] &lt;a href="/wiki/Savings" class="mw-redirect" title="Savings"&gt;savings&lt;/a&gt;
-## [12] &lt;a href="/wiki/Cost_of_living" title="Cost of living"&gt;cost of living&lt;/a&gt;
-## [13] &lt;a href="/wiki/List_of_countries_by_GDP_(nominal)_per_capita" title="Lis ...
-## [14] &lt;a href="https://en.wiktionary.org/wiki/generalized" class="extiw" title ...
-## [15] &lt;a href="/wiki/Living_standards" class="mw-redirect" title="Living stand ...
-## [16] &lt;a href="/wiki/Inflation_rates" class="mw-redirect" title="Inflation rat ...
-## [17] &lt;a href="/wiki/Exchange_rates" class="mw-redirect" title="Exchange rates ...
-## [18] &lt;a href="#cite_note-4"&gt;[3]&lt;/a&gt;
-## [19] &lt;a href="#cite_note-5"&gt;[4]&lt;/a&gt;
-## [20] &lt;a href="/wiki/Personal_income" title="Personal income"&gt;personal income&lt;/a&gt;
-## ...
 ```
 
 ---
@@ -141,7 +116,7 @@ myhtml %&gt;%
 
 ---
 
-## Key Functions: `html_table` {.smaller}
+## Key Functions: `html_table` 
 
 - `html_table(x, header, fill)` - parse html table(s) from `x` into a data frame or list of data frames 
 - Structure of HTML makes finding and extracting tables easy!
@@ -197,9 +172,7 @@ myhtml %&gt;%
 
 ```r
 myhtml %&gt;% 
-  html_nodes("table") %&gt;% 
-  magrittr::extract2(2) %&gt;%
-  html_attrs()
+  html_nodes("table") %&gt;% magrittr::extract2(2) %&gt;% html_attrs()
 ```
 
 ```
@@ -214,9 +187,7 @@ myhtml %&gt;%
 
 ```r
 myhtml %&gt;% 
-  html_nodes("p") %&gt;% 
-  html_nodes("a") %&gt;%
-  html_attr("href")
+  html_nodes("p") %&gt;% html_nodes("a") %&gt;% html_attr("href")
 ```
 
 ```
@@ -263,17 +234,13 @@ myhtml %&gt;%
 ```
 
 ---
-
 ## Other functions
-
 - `html_children` - list the "children" of the HTML page. Can be chained like `html_nodes`
 - `html_name` - gives the tags of a nodeset. Use in a chain with `html_children`
 
 
 ```r
-myhtml %&gt;% 
-  html_children() %&gt;% 
-  html_name()
+myhtml %&gt;% html_children() %&gt;% html_name()
 ```
 
 ```
@@ -284,15 +251,45 @@ myhtml %&gt;%
 - `html_session` - simulate a session in an html browser; use the functions `jump_to`, `back` to navigate through the page
 ---
 
-## Your Turn #2
+## Your Turn 
 
 Find another website you want to scrape (ideas: [all bills in the house so far this year](https://www.congress.gov/search), [video game reviews](http://www.metacritic.com/game), anything Wikipedia) and use *at least* 3 different `rvest` functions in a chain to extract some data.
 
 ---
 
-# Advanced Example: Inaugural Addresses
+## Your Turn Example (Using Weather Data)
 
-## The Data
+
+```r
+lincoln_forecasts &lt;- 
+    read_html("https://forecast.weather.gov/MapClick.php?x=177&amp;y=197&amp;site=oax&amp;zmx=&amp;zmy=&amp;map_x=177&amp;map_y=196#.YeBDWxPMKdY") %&gt;%
+    html_nodes(".temp") %&gt;%
+    html_text()
+
+lincoln_forecasts
+```
+
+```
+## [1] "High: 56 °F" "Low: 30 °F"  "High: 41 °F" "Low: 16 °F"  "High: 24 °F"
+## [6] "Low: 7 °F"   "High: 38 °F" "Low: 22 °F"  "High: 40 °F"
+```
+
+```r
+#Let's take the scrape data one step further 
+#and add what we learned yesterday
+library(readr)
+parse_number(lincoln_forecasts)
+```
+
+```
+## [1] 56 30 41 16 24  7 38 22 40
+```
+
+
+---
+
+## Advanced Example: Inaugural Addresses
+**The Data**
 - [The Avalon Project](http://avalon.law.yale.edu/subject_menus/inaug.asp) has most of the U.S. Presidential inaugural addresses. 
 - Obama &amp; Trump's ('13, '17), VanBuren 1837, Buchanan 1857, Garfield 1881, and Coolidge 1925 are missing, but are easily found elsewhere. I have them saved as text files on the website. 
 - Let's scrape all of them from The Avalon Project! 
@@ -300,7 +297,6 @@ Find another website you want to scrape (ideas: [all bills in the house so far t
 ---
 
 ## Get data frame of addresses
-
 - Could use another source to get this data of President names and years of inaugurations, but we'll use The Avalon Project's site because it's a good example of data that needs tidying. 
 
 ```r
@@ -334,7 +330,6 @@ head(all_inaugs_tidy)
 ---
 
 ## Get links to visit &amp; scrape
-
 
 ```r
 # get the links to the addresses 
@@ -378,11 +373,9 @@ get_inaugurations &lt;- function(url){
       html_text() -&gt; address
     return(unlist(address))
 }
-
 # takes about 30 secs to run
 all_inaugs_text &lt;- all_inaugs_tidy %&gt;% 
   mutate(address_text = (map(url, get_inaugurations))) 
-
 all_inaugs_text$address_text[[1]]
 ```
 
@@ -420,7 +413,14 @@ buchanan1857 &lt;- readLines("speeches/buchanan1857.txt") # row 18
 garfield1881 &lt;- readLines("speeches/garfield1881.txt") # row 24
 coolidge1925 &lt;- readLines("speeches/coolidge1925.txt") # row 35
 all_inaugs_text$address_text[c(13,18,24,35)] &lt;- list(vanburen1837,buchanan1857, garfield1881, coolidge1925)
+```
 
+---
+
+## Add Missings 
+
+
+```r
 # lets combine them all now
 recents &lt;- data.frame(President = c(rep("Barack Obama", 2), 
                                     "Donald Trump"),
@@ -430,12 +430,25 @@ recents &lt;- data.frame(President = c(rep("Barack Obama", 2),
 
 all_inaugs_text &lt;- rbind(all_inaugs_text, recents)
 all_inaugs_text$address_text[c(56:58)] &lt;- list(obama09, obama13, trump17)
+head(all_inaugs_text)
 ```
+
+```
+## # A tibble: 6 × 4
+##   President          year url                                       address_text
+##   &lt;chr&gt;             &lt;dbl&gt; &lt;chr&gt;                                     &lt;list&gt;      
+## 1 George Washington  1789 http://avalon.law.yale.edu/18th_century/… &lt;chr [7]&gt;   
+## 2 George Washington  1793 http://avalon.law.yale.edu/18th_century/… &lt;chr [3]&gt;   
+## 3 John Adams         1797 http://avalon.law.yale.edu/18th_century/… &lt;chr [15]&gt;  
+## 4 Thomas Jefferson   1801 http://avalon.law.yale.edu/19th_century/… &lt;chr [6]&gt;   
+## 5 Thomas Jefferson   1805 http://avalon.law.yale.edu/19th_century/… &lt;chr [15]&gt;  
+## 6 James Madison      1809 http://avalon.law.yale.edu/19th_century/… &lt;chr [9]&gt;
+```
+
 
 ---
 
-## Check-in: What did we do? {.smaller}
-
+## Check-in: What did we do?
 1. We found some interesting data to scrape from the web using `rvest`.
 2. We used `tidyr` to create tidy data: A data frame of President and year. One observation per row!
 3. We used the consistent HTML structure of the urls we wanted to scrape to automate collection of web data
@@ -443,28 +456,19 @@ all_inaugs_text$address_text[c(56:58)] &lt;- list(obama09, obama13, trump17)
     + Though  we had to do some by hand, we took advantage of the tidy data and added the missing data manually without much pain.
 4. We now have a tidy data set of Presidential inaugural addresses for text analysis!
 
---- 
+---
 
 ## A (Small) Text Analysis
-
 Now, I use the [`tidytext`](http://tidytextmining.com/) package to get the words out of each inaugural address. 
 
 
 ```r
 # install.packages("tidytext")
 library(tidytext)
-all_inaugs_text %&gt;% 
+presidential_words &lt;- all_inaugs_text %&gt;% 
   select(-url) %&gt;% 
   unnest() %&gt;% 
-  unnest_tokens(word, address_text) -&gt; presidential_words
-```
-
-```
-## Warning: `cols` is now required when using unnest().
-## Please use `cols = c(address_text)`
-```
-
-```r
+  unnest_tokens(word, address_text) 
 head(presidential_words)
 ```
 
@@ -483,23 +487,14 @@ head(presidential_words)
 ---
 
 ## Longest speeches
+- Let's determine the presidential speech is the longest.
 
 
 ```r
-presidential_words %&gt;% 
+presidential_wordtotals &lt;- presidential_words %&gt;% 
   group_by(President,year) %&gt;% 
   summarize(num_words = n()) %&gt;%
-  arrange(desc(num_words)) -&gt; presidential_wordtotals
-```
-
-```
-## `summarise()` has grouped output by 'President'. You can override using the `.groups` argument.
-```
-
-
-```
-## Warning: ggrepel: 50 unlabeled data points (too many overlaps). Consider
-## increasing max.overlaps
+  arrange(desc(num_words))
 ```
 
 &lt;img src="2-XPATH_files/figure-html/speechplot-1.png" style="display: block; margin: auto;" /&gt;

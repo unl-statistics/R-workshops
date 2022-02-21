@@ -315,7 +315,7 @@ We first create a csv file (We can use a text editor or MS Excel)
 Then we load it in:
 
 ```{r, eval=FALSE}
-littledata <- read_csv("tips.csv", header = TRUE)
+littledata <- read.csv("tips.csv", header = TRUE)
 
 head(littledata)
 ```

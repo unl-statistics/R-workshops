@@ -21,17 +21,12 @@ library(tidyverse)
 ## Recall - Sources of Messiness
 
 1. Column headers are values, not variable names.<br>
-
-e.g. *treatmenta, treatmentb*
-
-2. Multiple variables are stored in one column.<br>
-
+e.g. *treatmenta, treatmentb* <br>
+2. Multiple variables are stored in one column. <br>
 e.g. *Fall 2015, Spring 2016* or *"1301 8th St SE, Orange City, Iowa 51041
 (42.99755, -96.04149)", "2102 Durant, Harlan, Iowa 51537
-(41.65672, -95.33780)"*
-
+(41.65672, -95.33780)"* <br>
 3. Multiple observational units are stored in the same table.
-
 4. A single observational unit is stored in multiple tables.
 
 ---
@@ -105,7 +100,7 @@ What does that mean? The *key is split*,
 
 i.e. for some values all key variables are necessary, while other values only need some key variables.
 
-![](../images/normal-not-2.png)
+![](images/normal-not-2.png)
 
 ---
 
@@ -125,12 +120,7 @@ i.e. for some values all key variables are necessary, while other values only ne
 
 Splitting into separate datasets:
 
-![](../images/normal-split.png)
-
----
-class: inverse, middle, center
-
-# Messy (4)
+![](images/normal-split.png)
 
 ---
 
@@ -196,7 +186,7 @@ HallOfFame %>%
 
 ## Joins - general idea
 
-![](../images/join.png)
+![](images/join.png)
 
 ---
 
@@ -260,7 +250,8 @@ full_join(df1, df2, by = "id")
 
 ## Traps of joins
 
-- sometimes we unexpectedly cannot match values: missing values, different spelling, ... 
+- sometimes we unexpectedly cannot match values: missing values, different spelling, ...
+- Be very aware of things like a trailing or leading space
 - join can be along multiple variables, e.g. `by = c("ID", "Date")`
 - joining variable(s) can have different names, e.g. `by = c("State" = "Name")`
 - always make sure to check dimensions of data before and after a join
@@ -284,7 +275,7 @@ anti_join(df2, df1, by="id") # no values for id in df1
 
 Does lifetime batting average make a difference in a player being inducted? 
 
-```{r, warning = FALSE}
+```{r, warning = FALSE, fig.height=3}
 Batting2 <- Batting %>% group_by(playerID) %>% 
   mutate(BatAvg = H/AB) %>% 
   summarise(LifeBA = mean(BatAvg, na.rm=TRUE))
@@ -304,7 +295,7 @@ hof_bats %>%
 
 What about pitchers? Are pitchers with lower lifetime ERAs more likely to be inducted?
 
-```{r}
+```{r, fig.height=3, warning=FALSE}
 Pitching2 <- Pitching %>% group_by(playerID) %>% 
   summarise(LifeERA = mean(ERA, na.rm = TRUE))
 
@@ -325,7 +316,20 @@ class: inverse
 
 - Load the `Lahman` package into your R session.
 - Join (relevant pieces of) the `Master` data set and the `HallOfFame` data.
-- For the `ggplot2` chart label all last attempts of individuals with 15 or more attempts. Make sure to deal with missing values appropriately.
+- Output the names of individuals with 15 or more attempts ("times" in the data set). Make sure to deal with missing values appropriately.
+
+---
+## Solution
+```{r}
+Voted <- HallOfFame %>% filter(!is.na(ballots)) %>% 
+  group_by(playerID) %>% arrange(yearID) %>% 
+  mutate( attempt = order(yearID))
+
+Voted <- left_join(Voted, Master %>% select(playerID, nameFirst, nameLast), 
+                   by = "playerID") %>% filter(attempt > 15)
+Names <- Voted %>% mutate(FullName = paste(nameFirst, nameLast))
+Names$FullName %>% unique()
+```
 
 
 <!---

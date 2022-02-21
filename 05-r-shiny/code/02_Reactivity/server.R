@@ -11,7 +11,7 @@ shinyServer(function(input, output) {
   #  2) The computation and result are shared by all the callers (it 
   #     only executes a single time)
   #
-  datasetInput <- reactive({
+  datasetValue <- reactive({
     switch(input$dataset,
            "rock" = rock,
            "pressure" = pressure,
@@ -35,7 +35,7 @@ shinyServer(function(input, output) {
   # so will be re-executed whenever datasetInput is invalidated
   # (i.e. whenever the input$dataset changes)
   output$summary <- renderPrint({
-    dataset <- datasetInput()
+    dataset <- datasetValue()
     summary(dataset)
   })
   
@@ -43,6 +43,6 @@ shinyServer(function(input, output) {
   # and input$obs, so will be re-executed whenever input$dataset or 
   # input$obs is changed. 
   output$view <- renderTable({
-    head(datasetInput(), n = input$obs)
+    head(datasetValue(), n = input$obs)
   })
 })

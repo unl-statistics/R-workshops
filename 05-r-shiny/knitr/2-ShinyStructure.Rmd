@@ -11,13 +11,15 @@ output:
 
 ## Reactivity
 
-- shiny is built on the idea of **reactive programming**. 
-  - i.e. outputs automatically update whenever an input value changes
+Shiny is built on the idea of **reactive programming**. 
 
-```
-input values => R code => output values
-```
++ i.e. outputs automatically update whenever an input value changes
 
+.center[
+`input values => R code => output values`
+]
+<br>
+<br>
 **Reactive expressions** keep track of what values they read and what values they change. If those values become "out of date", they know their return value is out of date and will automatically recalculate.
 
 ---
@@ -55,21 +57,31 @@ ui <- fluidPage(
 ---
 ## User Interface (ui)
 
-- elements of the user interface are called **widgets**
-- we distinguish between `input` and `output`
-- overview of available input widgets in shiny at http://shiny.rstudio.com/gallery/widget-gallery.html
-- input widgets have a similar structure `xxxInput (inputId, label, value)` where `xxx` is the name of the widget
-    - `inputId` is the (unique) name you give to the widget (object name)
-    - `label` is the text that appears with the widget in interface
-    - `value` all widgets have a value - the type of this value is specific to the widget
-    - ... other parameters are widget-specific
+- elements of the user interface are called **widgets**.
+
+- we distinguish between `input` and `output`.
+
+- overview of available input [widgets](http://shiny.rstudio.com/gallery/widget-gallery.html) in shiny.
+
+- input widgets have a similar structure:
+
+.center[
+`xxxInput(inputID, label, value, ...)` 
+]
+
+  where `xxx` is the name of the widget.
+  + `inputID` is the (unique) name you give to the widget (object name)
+  
+  + `label` is the text that appears with the widget in interface
+  
+  + `value` all widgets have a value - the type of this value is specific to the widget
+  
+  + `...` other parameters are widget-specific
 
 ---
 ## server.R
 
 ```{r, eval=FALSE}
-
-
 # Server side logic 
 server <- function(input, output) {
   # do something
@@ -92,21 +104,23 @@ server <- function(input, output, session) {
 shinyApp(ui, server)
 ```
 
-- save this code in a separate folder call the file `app.R`
++ save this code in a separate folder call the file `app.R`
 
-- run the code:
-  + highlight code or paste into the console
-  + use `runApp()` on folder name
-  + hit green `Run App` button in top right of your R script
++ run the code *(choose 1 of 3 options)*:
+  1. highlight code or paste into the console
+  
+  2. use `runApp()` on folder name
+  
+  3. hit green `Run App` "play button" in top right of your R script
 
 ---
 ## Shiny Inputs
 
 ```{r eval = FALSE}
-textInput("text", label = h3("Text input"), value = "Enter text...")
+textInput("text", # ID R uses to recognize this input
+          label = h3("Text input"), # human-readable label
+          value = "Enter text...") # starting input
 ```
-
-<br>
 
 `h3()` is just converting html into a header of level 3:
 ```{r eval = FALSE}
@@ -117,27 +131,39 @@ h3("Hello")
 <h3>Hello</h3>
 ```
 
+<br>
 ```{r eval = FALSE}
-selectInput("select", label = h3("What do you like?"), 
-            choices = c("Pizza", "Ice cream", 
-                        "Donuts", "None of the above"), 
-            selected=2)
+selectInput("select", 
+            label = h3("What do you like?"), 
+            choices = c("Pizza", "Ice cream", "Donuts", "None of the above"), 
+            selected = 2)
 ```
 
 ---
 ## Shiny Inputs (cont'd)
 
 - `actionButton()` - creates a clickable button
+
 - `checkboxInput()` and `checkboxGroupInput()`
+
 - `dateInput()` - calendar to select a date
+
 - `dateRangeInput()` - select a range of dates
+
 - `fileInput()` - upload a file
+
 - `numericInput()` - input a numeric value
+
 - `radioButtons()` - select one or more items
+
 - `sliderInput()` - slide along a range of values
+
 - `textInput()` - input a string
 
-[widget resource](http://shiny.rstudio.com/gallery/widget-gallery.html)
+<br>
+
+  [Widget resource](http://shiny.rstudio.com/gallery/widget-gallery.html)
+
 
 ---
 class: inverse
@@ -149,20 +175,26 @@ class: inverse
 runApp("01_Hello", display.mode = "showcase")
 ```
 
-- **Challenge 1:** add an input to change the mean and standard deviation (Hint: see `?numericInput`).
+**Challenge 1:** add an `input` to change the mean and an `input` to change the standard deviation
++ Hint: see `?numericInput`
 
-- **Challenge 2:** add an input to simulate from a gamma as well as a normal (Hint: you can simulate from gamma distribution with `rgamma`).
+**Challenge 2:** add an `input` to simulate from a gamma as well as a normal 
++ Hint: see `?textInput`
 
-- **Challenge 3:** (Tricky) how do we get the shiny app to react to the input?
+**Challenge 3:** (Tricky) how do we get the shiny app to react to the input?
++ Hint: use `if ()` and `else if ()` statements
++ Hint: you can simulate from gamma distribution with `rgamma`
++ Hint: see also [conditionalPanel](https://shiny.rstudio.com/reference/shiny/1.6.0/conditionalPanel.html)
 
 ---
 ## Shiny Outputs
 
 Shiny also has a set of output functions with general structure:
 
-```
-xxxOutput (outputId, ...)
-```
+.center[
+`xxxOutput(outputId, ...)`
+]
+
 where `outputId` is a (unique) object name (and `xxx` is one of the choices below)
 
 - `html`, `image`, `plot`, `table`, `text`,  creates what the names says
