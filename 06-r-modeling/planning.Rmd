@@ -1,0 +1,59 @@
+---
+title: "Statistical Modeling in R (Planning)"
+author: "Emily Robinson, Denise Bradford, & Rachel Rogers"
+date: "Spring 2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Overview
+
+Learn how to fit models, test hypotheses, create model output tables and plots, and more! In the morning, we will cover model-fitting basics (linear regression, mixed models), and in the afternoon we will look into more advanced types of models (generalized additive models, generalized linear mixed models, etc.)
+
+## Target Audience
+
+We assume the participants have taken a class where they learned ANOVA, regression, some experimental design, and maybe generalized linear models (e.g. 801 and 802). The goal is to teach them how to implement the models in R and extract and display the output, not to teach them what the models are doing.
+
+## Packages
+
+```{r packages, eval = F}
+library(lme4) # lm, glm, lmer, glmer glm.nb glmer.nb
+library(nlme) # repeated measures
+library(nls)  # nonlinear regression?
+library(mgcv) # generalized additive mixed models
+
+library(emmeans) # obtains estimates
+library(broom) # cleans up model output
+```
+
+## Topics
+
++ Randomization / Experimental Design
++ ANOVA
++ ANCOVA
++ MANOVA??
++ Linear Regression, Multiple Linear Regression
++ Generalized Models
++ Mixed Models
++ Dimension Reduction / Variable Selection
+  + Stepwise selection, PCA, NMDS, LASSO, varImp, etc.
++ What to spot - how to determine your test?
+  
+## Order
++ t.test, chi.sq test
++ lm (ANOVA, ANCOVA, linear regression, multiple linear regression (stepwise selection, etc.))
+  + crd experimental
+  + one way
+  + two way
+  + quant and qual
++ lmer
+  + rcbd, split plot
++ glm
+  + change response type
++ glmer
+
+## Examples
++ Pick one or two scenarios and modify for the different types of tests.

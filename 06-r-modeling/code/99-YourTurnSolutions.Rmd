@@ -1,0 +1,21 @@
+---
+title: 'Graphics with ggplot: Your Turn Solutions'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+	echo = TRUE,
+	fig.align = "center",
+	message = FALSE,
+	warning = FALSE,
+	cache = TRUE
+)
+```
+
+## Load Libraries
+
+```{r packages}
+library(tidyverse)
+```
+
