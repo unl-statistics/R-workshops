@@ -1,0 +1,224 @@
+---
+title: "Modeling_Basics"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Dataset
+
+The Nebraska Annual Social Indicators Survey (NASIS) is an annual survey conducted
+by the Bureau of Sociological Research (BOSR) at UNL. Data is publicly available.
+The data used for these examples are from the 2018 survey.
+
+```{r reading, echo=FALSE}
+library(readr)
+setwd("~/R Workshops/rwrks/06-r-modeling")
+NASIS <- read_csv("data/NASIS_Reduced_Dataset.csv")
+```
+
+## T-Tests
+
+### One Sample T-Test
+
+The one sample t-test is used in order to determine if there is a significant difference
+between the sample mean and a proposed population mean.
+
+#### Example 1: Work Hours
+
+For this example, we will hypothesize that the long run average number of hours
+worked per week for Nebraskans in 2018 is 40, with the alternative hypothesis that
+the long run average number of hours worked per week for Nebraskans in 2018 is different than 40. 
+These hypotheses are shown below.
+$$
+H_0: \mu=40
+$$
+$$
+H_A: \mu \ne 40
+$$
+We can test this hypothesis using a one-sample t-test:
+```{r one_sample_ttest, echo=TRUE}
+one_sample<-t.test(NASIS$whrs, alternative="two.sided", mu=40)
+one_sample
+```
+Here, we can see that there is a p-value of `r one_sample$p.value`, and that the
+95% confidence interval is [`r one_sample$conf.int[1]`, `r one_sample$conf.int[2]`].  
+
+Say that instead of performing a two-sided test, we are only interested in if the
+long run average number of hours worked per week is less than 40, and we were interested
+in a 90% confidence interval. The alternative hypothesis would then become:
+$$
+H_A: \mu <40
+$$
+These adjustments can be made using the "alternative" and "conf.level" options,
+as shown below.
+
+```{r one_sided_ttest, echo=TRUE}
+one_side<-t.test(NASIS$whrs, alternative="less", mu=40, conf.level=0.90)
+one_side
+```
+Here, we can see that there is a p-value of `r one_side$p.value`, and that the
+95% confidence interval is [`r one_side$conf.int[1]`, `r one_side$conf.int[2]`].
+Note that because this is a one-sided test, only the upper limit of the confidence
+interval is calculated.
+
+### Two Sample T-Test
+
+The two-sample test is used in order to determine if there is a significant difference
+between two samples. 
+
+#### Example 2: Work Hours and Location
+
+The "rurb" or Rural/Urban variable has three levels:  
+1: Farm
+2: Open Country, but not a farm
+3: Town or City
+
+I hypothesize that the long run average number of hours worked by Nebraskans in 2018
+in the country is more than the long run average number of hours worked by Nebraskans
+in 2018 in urban locations:
+$$
+H_0: \mu_{rural}=\mu_{urban}
+$$
+$$
+H_A: \mu_{rural}>\mu_{urban}
+$$
+The above hypotheses can be rewritten as follows:
+$$
+H_0: \mu_{rural}-\mu_{urban}=0
+$$
+$$
+H_A: \mu_{rural}-\mu_{urban}>0
+$$
+This is the way that the hypotheses are understood in the t.test function.  
+To test this hypothesis, we first need to divide the dataset by urban and rural:
+```{r split, echo=TRUE}
+urban<-NASIS[NASIS$rurb==3,]$whrs
+rural<-NASIS[NASIS$rurb==1 | NASIS$rurb==2,]$whrs
+```
+
+In this case, rural will be the x variable, and urban will be the y variable.
+
+```{r two_sample_ttest, echo=TRUE}
+two_sample<-t.test(x=rural, y=urban, alternative="greater")
+two_sample
+```
+This produced a p-value of `r two_sample$p.value`, indicating that there is evidence
+that the long run average amount of hours worked per week by rural Nebraskans in 2018 is greater
+than the long run average number of hours worked per week by urban Nebraskans in 2018.  
+
+Similar to the first example, we can use a two-sided t-test in order to calculate
+a two-sided confidence interval:
+
+```{r two_sample_ci, echo=TRUE}
+two_sample_ci<-t.test(x=rural, y=urban, alternative="two.sided")
+two_sample_ci
+```
+Based on the confidence interval above, we can say that we would expect the 
+long run average number of hours worked per week by Nebraskans in 2018 to be 
+`r two_sample_ci$conf.int[1]` hours to `r two_sample_ci$conf.int[2]` hours greater
+for rural Nebraskans, compared to urban Nebraskans.
+
+## Chi-Squared Test
+
+The Chi-Squared Test allows us to analyze categorical variables, by evaluating 
+the number of observations per group.
+
+### One Sample Chi-Squared Test
+
+A one-sample test can be used in order to analyze if there is an overall
+difference in number of observations per group.
+
+#### Example 3: Sex
+
+For a survey such as NASIS, we may hypothesize that we would expect to see, on
+average, an equal amount of males and females. For the NASIS dataset,
+1 indicates Male and 2 indicates Female
+
+```{r s_table, echo=TRUE}
+s_table<- data.frame(Male=sum(NASIS$sexr_18==1, na.rm=TRUE), Female=sum(NASIS$sexr_18==2, na.rm=TRUE))
+s_table
+```
+
+For this NASIS survey, there were `r s_table[1,1]` male respondents and
+`r s_table[1,2]` female respondents. 
+```{r chis_s, echo=TRUE}
+chi_s<- chisq.test(s_table)
+chi_s
+```
+
+In this basic chi-squared test, we are testing if there is a significant difference
+between the number of male respondents and the number of female respondents. With
+a p-value of `r chi_s$p.value`, we can say that there is a significant difference.
+
+```{r chi_s_expected, echo=TRUE}
+chi_s$expected
+```
+By using the above code, we can see that the null hypothesis would result in 
+an equal number of respondents for each group.
+
+#### Example 4: Age
+
+According to the NASIS 2018 Methodology Report, the 2010 Census indicates that
+the age distribution in Nebraska is as follows:  
+19 - 49: 56.0%  
+50 - 64: 25.6%  
+65+:  18.4%  
+
+We can evaluate if the NASIS age groups differ significantly from the 2010 Census,
+based on the number of respondents per age group.
+```{r age_table, echo=TRUE}
+age_table<-data.frame("19_49"=sum((NASIS$agyr<50 & NASIS$agyr>18), na.rm=TRUE),
+                      "50_64"=sum((NASIS$agyr<65 & NASIS$agyr>49), na.rm=TRUE),
+                      "65+"=sum(NASIS$agyr>64, na.rm=TRUE))
+age_table
+```
+Here, we can use the "p=" argument in order to set the expected probabilities.
+```{r age_chis, echo=TRUE}
+age_chis<-chisq.test(age_table, p=c(0.56, 0.256, 0.184))
+age_chis
+```
+
+With a p-value of `r age_chis$p.value`, we can see that the NASIS 2018 sample
+is significantly different from the 2010 census, with respect to the number of 
+respondents per age group.
+
+### Two Sample Chi-Squared Test
+
+With a two sample test, we can evaluate if two categorical variables are independent,
+based on the number of observations per group.
+
+#### Example 5: Age and Sex
+
+We can see if there is a relationship between age categories and sex, by using
+the categories as defined above. First, we must construct a categorical variable for age:
+```{r age_sex_cat, echo=TRUE}
+NASIS$ag_cat<-""
+NASIS[NASIS$agyr<50 & NASIS$agyr>18 & !is.na(NASIS$agyr),]$ag_cat<-"19_49"
+NASIS[NASIS$agyr<65 & NASIS$agyr>49 & !is.na(NASIS$agyr),]$ag_cat<-"50_64"
+NASIS[NASIS$agyr>64 & !is.na(NASIS$agyr),]$ag_cat<-"65+"
+NASIS[NASIS$ag_cat=="",]$ag_cat<-NA
+table(NASIS$ag_cat)
+```
+As can be seen, these values match the table above. The column was initialized
+as a blank character, then these blank characters were converted to NA's. We
+can construct a table of age as a category and sex (male or female):
+```{r age_sex_table, echo=TRUE}
+age_sex<-table(NASIS[NASIS$sexr_18<3,]$ag_cat, NASIS[NASIS$sexr_18<3,]$sexr_18)
+age_sex
+```
+As before, 1 indicates male and 2 indicates female. 3, which indicates another selection,
+was not included in the table due to a small number of observations.
+```{r age_sex_chi, echo=TRUE}
+a_s_chi<-chisq.test(age_sex)
+a_s_chi
+```
+
+With a p-value of `r a_s_chi$p.value`, it can be said that age and sex are not
+independent in terms of NASIS 2018 respondents. As before, we can view the
+expected values:
+```{r age_sex_expected, echo=TRUE}
+a_s_chi$expected
+```
