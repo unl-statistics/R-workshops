@@ -22,10 +22,11 @@ knitr::opts_chunk$set(
 ```
 
 class: center, middle
+.center[
+<img src="images/data_wrangling.png" style="width:680px;"/>
 
-![](images/data_wrangling.png)
 R knowledge Data Wrangling, by [Allison Horst](https://www.allisonhorst.com/)
-
+]
 ---
 class: center, middle
 
@@ -44,9 +45,11 @@ What is data wrangling?
 Data Wrangling offers the flexibility of collaboration with other formats.
 
 
-![](images/data-science-wrangle.png)
-[Data Wrangling Flowchart](https://r4ds.had.co.nz/wrangle-intro.html) by Hadley Wickham and Garrett Grolemund
+.center[
+<img src="images/data-science-wrangle.png" style="width:680px;"/>
 
+[Data Wrangling Flowchart](https://r4ds.had.co.nz/wrangle-intro.html) by Hadley Wickham and Garrett Grolemund
+]
 
 One of the main reasons for data wrangling is to use any type of data.
 
