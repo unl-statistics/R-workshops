@@ -1,7 +1,7 @@
 ---
-title: "Reading Files"
-author: 
-output: 
+title: "Data Wragling"
+subtitle: "Reading Files"
+output:
   xaringan::moon_reader:
     lib_dir: libs
     nature:
@@ -11,18 +11,67 @@ output:
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(message= FALSE, warning = FALSE)
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(
+	echo = FALSE,
+	message = FALSE,
+	warning = FALSE,
+	cache = TRUE
+)
+
 ```
 
-## Data in Excel
+class: center, middle
 
-- Formats xls and csv - what's the difference?
+![](images/data_wrangling.png)
+R knowledge Data Wrangling, by [Allison Horst](https://www.allisonhorst.com/)
 
-- File extensions xls and xlsx are proprietary Excel formats, binary files
+---
+class: center, middle
+
+# MOTIVATION
+
+---
+
+# Why Data Wrangling?
+
+What is data wrangling?
++ Reading in files from various formats (.xls, .xlsx, .csv, .txt, .sps, .xport)
++ Summarizing Data using dplyr (Toolbox of data cleaning functionc)
++ Tidy Data for future analyses and reproducibility
++ Joining Data from different Data Sources
+
+Data Wrangling offers the flexibility of collaboration with other formats.
+
+
+![](images/data-science-wrangle.png)
+[Data Wrangling Flowchart](https://r4ds.had.co.nz/wrangle-intro.html) by Hadley Wickham and Garrett Grolemund
+
+
+One of the main reasons for data wrangling is to use any type of data.
+
+---
+class: center, middle
+
+# DATA FILES - Excel
+
+---
+
+## Data Files in Excel
+
+- Formats .xls and .csv - what's the difference?
+
+- File extensions .xls and .xlsx are proprietary Excel formats, binary files
 
 - csv is an extension for Comma Separated Value files. They are text files - directly readable.
 
-- Example: Gas prices in midwest since 1994
+- Motivating Example: Gas prices in the Midwest since 1994
+
+---
+class: center, middle
+
+# MOTIVATING EXAMPLE 
+## Gas prices in the Midwest since 1994
 
 ---
 
@@ -30,13 +79,14 @@ knitr::opts_chunk$set(message= FALSE, warning = FALSE)
 
 ```{r message=FALSE, warning=FALSE}
 library(readr)
+library(knitr)
 midwest <- read_csv("http://srvanderplas.github.io/rwrks/03-r-format/data/midwest.csv")
-head(midwest)
+knitr::kable(head(midwest), format = "html")
 ```
 
 
 ---
-## `read_csv` vs. `read_*`
+## What's the difference `read_csv` vs. `read_*` ??
 
 `read_csv` is just one way to read a file using the `readr` package: 
 
@@ -57,7 +107,9 @@ Have a look at the parameters of `read_csv` to solve the following problems:
 2. Read everything EXCEPT the first two lines into an object called `midwest_data`
 
 Hint: Visit http://srvanderplas.github.io/rwrks/03-r-format/data/midwest.csv to download the data and look at it in Excel to help figure out what the issue is. 
+
 ---
+## Your Turn Solutions
 
 ```{r, message=FALSE}
 midwest_names <- read_csv(
@@ -69,7 +121,6 @@ midwest_data <- read_csv(
 ```
 
 ---
-
 ## Quick Lesson in Data Cleaning
 
 ```{r, warning=FALSE, message=FALSE}
