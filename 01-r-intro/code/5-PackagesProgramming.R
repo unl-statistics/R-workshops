@@ -6,11 +6,25 @@ mymean <- function(data) {
     ans <- sum(data) / length(data)
     return(ans)
 }
+
+set.seed(4) 
+example <- sample(1:200, 15) 
+mymean(example)
+
+
 ## if (condition) {
 ##     # Some code that runs if condition is TRUE
 ## } else {
 ##     # Some code that runs if condition is FALSE
 ## }
+
+x <- -4
+if(x > 0){
+  print("Non-negative number")
+} else {
+  print("Negative number")
+}
+
 mymean <- function(data) {
     if (!is.numeric(data)) {
         stop("Numeric input is required")
@@ -19,22 +33,28 @@ mymean <- function(data) {
         return(ans)
     }
 }
+
+mymean("dog")
+mymean(c(2,4,5,6,7))
+
 for (i in 1:3) {
     print(i)
 }
-final_shed <- read.csv("https://srvanderplas.github.io/rwrks/01-r-intro/data/daily_shedding.csv")
 
-id <- c("pig_weight", "total_shedding", "daily_shedding")
-for (colname in id) {
-    print(colname)
+for(i in 1:5) {# Head of for-loop
+  x1 <- i^2 # Code block
+  print(x1) # Print results
 }
 
+final_shed <- read.csv("https://srvanderplas.github.io/rwrks/01-r-intro/data/daily_shedding.csv")
+id <- c("pig_weight", "total_shedding", "daily_shedding")
 # this does NOT work if the csv is read in using read_csv
 for(colname in id) {
     print(paste(colname, mymean(final_shed[, colname])))
 }
+
 i <- 1
-while (i <= 5) {
-    print(i)
-    i <- i + 1
+while (i < 5) {
+  print(i)
+  i <- i + 1
 }
