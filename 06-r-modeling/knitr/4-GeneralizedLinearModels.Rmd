@@ -22,9 +22,9 @@ knitr::opts_chunk$set(
 
 class: center, middle
 
-# Basic Statistical Tests
+# Generalized Linear Models (and more!)
 
-+ t-test, chi-square, p-values, confidence intervals, simple regression
++ GLM (poisson, binomial), possible split plot? blocking?
 
 ---
 

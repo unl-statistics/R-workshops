@@ -9,7 +9,6 @@ output:
       highlightLines: true
       countIncrementalSlides: false
 ---
-
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE)
 knitr::opts_chunk$set(
@@ -20,10 +19,14 @@ knitr::opts_chunk$set(
 )
 ```
 
----
+
 class: center, middle
 
 # Introduction to Statistical Modeling
+
++ Why do modeling
++ EDA
++ Data Format (tidy data - experimental units vs sampling units?)
 
 ---
 

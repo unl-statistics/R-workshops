@@ -22,9 +22,9 @@ knitr::opts_chunk$set(
 
 class: center, middle
 
-# Basic Statistical Tests
+# Workshop - Bring your own data!
 
-+ t-test, chi-square, p-values, confidence intervals, simple regression
++ examples of regression, factorial, and glm
 
 ---
 

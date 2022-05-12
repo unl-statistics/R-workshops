@@ -22,9 +22,9 @@ knitr::opts_chunk$set(
 
 class: center, middle
 
-# Basic Statistical Tests
+# Linear Models (and more!)
 
-+ t-test, chi-square, p-values, confidence intervals, simple regression
++ One Way, Two-way (qual/qual & quant/qual), blocking
 
 ---
 
