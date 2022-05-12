@@ -21,6 +21,8 @@ output:
 
 - Follow along using [2-MotivatingExample.R](../code/2-MotivatingExample.R)
 
+- Tip: Using "#" in your R File to take notes
+  + Super important to document your code!
 
 ---
 ## Getting Started
@@ -35,6 +37,7 @@ library(tidyverse)
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 library(tidyverse)
 ```
+
 
 This workshop will focus largely on a group of packages that live together under the name `tidyverse`. 
 

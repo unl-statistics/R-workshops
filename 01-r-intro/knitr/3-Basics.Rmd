@@ -142,6 +142,16 @@ The Rstudio cheatsheets are VERY helpful.
 
 https://www.rstudio.com/resources/cheatsheets/
 
+---
+
+## Warnings vs. Errors
+
++ Routinely beginners to R panic if they see a red message as innocuous as confirming that a library loaded
+  - Not all red text mean that there is an error!
++ A warning is a message that does not disturb the program flow but is displayed along with the output
+  - Not always a cause for concern
++ An error will terminate a program from being ran
+  - Google is a beautiful thing
 
 ---
 class: inverse

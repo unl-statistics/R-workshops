@@ -68,6 +68,62 @@ This should also be done already, but if not...
 # Let's take a look at RStudio together...
 
 ![](images/rstudioExp.png)
+
+---
+
+#Creating a R File
+
++ Creates a R File that you are able to save and edit
+
+![](images/new_file.png)
+
+
+---
+
+# Project Management
+
+- Important to understand your file structure and where you save everything
+- Working directory 
+ + "Default location where R will look for files you want to load and where it will put any files you save" [source](https://intro2r.com/work-d.html)
+
+
+```r
+#Returns the file path of the current working directory
+getwd()
+
+#Set Working Directory
+setwd()
+```
+
+
++ Easier way to set Working Directory: 
+  - Session -&gt; Set Working Directory -&gt; Choose Directory
+  - Point and Click Method
+
+---
+
+## Project Management: R Projects
+
+- What is R Projects?
+  + When working on your research it is beneficial to keep all associated files with a project together. 
+  + Sets your working directory for you
+- How to Create One?
+  + File -&gt; New Project -&gt; New Directory -&gt; New Project
+  + If already have a folder created: File -&gt; New Project -&gt; Existing Directory 
+  + This will take you to a page where you create a folder and then the file path to that folder (subdirectory)
+
+[Reference for creating RStudio Projects](https://r4ds.had.co.nz/workflow-projects.html#rstudio-projects) `\(\\\)`
+[RStudio Projects Website](https://support.rstudio.com/hc/en-us/articles/200526207-Using-RStudio-Projects)
+
+
+---
+class: inverse
+## Your Turn: Create a Project Together for this Workshop
+
+- Create a RStudio Project for the workshop that you can use throughout the week. 
+  + You can save R files along with the datasets, so you won't have to set your working directory each day.
+- Save [2-MotivatingExample.R](/01-r-intro/code/2-MotivatingExample.R) from the [website](https://srvanderplas.github.io/rwrks/01-r-intro/index.html) in your project
+  + This is the file we are going to use in the next section
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
