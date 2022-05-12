@@ -8,7 +8,7 @@ The course will be a mix of instruction and follow-up exercises. It will be held
 
 After the end of Statistical Modeling in R, we expect you to be able to do the following:
 
-+ Fit models (linear regression, anova, mixed models, generalized additive models, generalized linear mixed models)
++ Fit models (linear regression, anova, mixed models, generalized linear mixed models)
 + Test hypotheses
 + Create model output tables and plots
 
@@ -16,17 +16,14 @@ After the end of Statistical Modeling in R, we expect you to be able to do the f
 
 Time | Notes | Lectures and Resources
 ---- | ---- | ----
-9 - 10:30 | [Look at that!](knitr/1-GraphicsIntro.html) | basic plots: scatterplots, boxplots, histograms, barcharts and more <br/> some aesthetics: color, shape, ... <br/> [1-GraphicsIntro.R](code/1-GraphicsIntro.R)
-10:30 - 10:45 | **Break** |
-10:45 - 11:30 | [Basics](knitr/2-Basics.html) | Why is data visualization important?. <br/> Data Types, Formats, and Structures <br/> Formatting your data: A tidy data discussion <br/> [2-Basics.R](code/2-Basics.R)
-11:30 - 12:30 | **Lunch Break (on your own)** | 
-12:30 - 2:00 | [Layers of Graphics](knitr/3-Layers.html) |  	More detailed look at the ggplot2 package: layers, geoms. <br/>[3-Layers.R](code/3-Layers.R)
+9 - 9:15 | [Introduction to Statistical Modeling](knitr/1-ModelingIntro.html) |  <br/> [1-ModelingIntro.R](code/1-ModelingIntro.R)
+9:15 - 9:45 | [Basic Statistical Tests](knitr/2-BasicStatisticalTests.html) |  <br/> [2-BasicStatisticalTests.R](code/2-BasicStatisticalTests.R)
+10:00 - 12:00 | [Basics](knitr/2-Basics.html) | Why is data visualization important?. <br/> Data Types, Formats, and Structures <br/> Formatting your data: A tidy data discussion <br/> [2-Basics.R](code/2-Basics.R)
+12:00 - 1:00 | **Lunch Break (on your own)** | 
+1:30 - 2:45 | [Layers of Graphics](knitr/3-Layers.html) |  	More detailed look at the ggplot2 package: layers, geoms. <br/>[3-Layers.R](code/3-Layers.R)
 2:00 - 2:15 | **Break** |
 2:15 - 3:15 | [What do we see?](knitr/4-Perception.html) |  	Discussion of faceting and cognitive aspects of human perception. <br/>[4-Perception.R](code/4-Perception.R)
 3:15 - 4:00 | [Polishing your plots](knitr/5-PolishingPlots.html) |  	Finishing touches: options, themes. <br/>[5-PolishingPlots.R](code/5-PolishingPlots.R)
-
-## Solutions
-+ [Your Turn Solutions](code/99-YourTurnSolutions.html)
 
 ## Useful Links
 
