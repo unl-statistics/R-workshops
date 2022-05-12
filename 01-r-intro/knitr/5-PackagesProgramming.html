@@ -65,6 +65,11 @@ functions for community and vegetation ecologists.
 
 ---
 ## Creating Your Own Functions
++ Sometimes you just need to create your own function to tackle your data
+  - Especially if you notice yourself duplicating code
+
+
++ "Remember that a function is essentially a “black box” into which you add some inputs and then receive some outputs. Building a function is about building that “black box”, and there are several components that go into it." [source](https://www.r-bloggers.com/2022/04/how-to-create-your-own-functions-in-r/)
 
 Code Skeleton:
 
@@ -76,6 +81,9 @@ foo &lt;- function(arg1, arg2, ...) {
 }
 ```
 
+---
+## Creating Your Own Functions (continued)
+
 Example:
 
 
@@ -85,13 +93,19 @@ mymean &lt;- function(data) {
     return(ans)
 }
 
-example &lt;- sample(1:200, 15)
-mymean(example)
+set.seed(4) #to generate the same random numbers each time run sample function
+example &lt;- sample(1:200, 15) #return 15 random values between 1 and 200 without replacement. without set.seed, will return different values each time
+mymean(example) #mean of random generated data
 ```
 
 ```
-## [1] 89
+## [1] 110.7333
 ```
+
++ Function Name: mymean
++ Arguments (inputs): data (data you want to calculate mean of)
++ Body: ans &lt;- sum(data) / length(data) (code you run to get desired output)
++ Return Value: ans (the mean of the data)
 
 ---
 ## If/Else Statements
@@ -107,18 +121,53 @@ if (condition) {
 }
 ```
 
-Example:
+Basic Example:
+
+
+```r
+x &lt;- -4
+if(x &gt; 0){
+print("Non-negative number")
+} else {
+print("Negative number")
+}
+```
+
+```
+## [1] "Negative number"
+```
+
+
+---
+
+## If/Else Statements (Continued)
+
+Example within a Function:
 
 
 ```r
 mymean &lt;- function(data) {
     if (!is.numeric(data)) {
-        stop("Numeric input is required")
+        print("Numeric input is required")
     } else {
         ans &lt;- sum(data) / length(data)
         return(ans)
     }
 }
+
+mymean("dog")
+```
+
+```
+## [1] "Numeric input is required"
+```
+
+```r
+mymean(c(2,4,5,6,7))
+```
+
+```
+## [1] 4.8
 ```
 
 ---
@@ -144,25 +193,35 @@ for (i in 1:3) {
 ```
 
 ---
-## For Loops
+## For Loops ([source](https://statisticsglobe.com/for-loop-in-r))
 
+![](images/for_loop.png)
+[source](https://statisticsglobe.com/for-loop-in-r)
+
+---
+
+## For Loop Example:
+
+
+```r
+for(i in 1:5) {# Head of for-loop
+  x1 &lt;- i^2 # Code block
+  print(x1) # Print results
+}
+```
+
+```
+## [1] 1
+## [1] 4
+## [1] 9
+## [1] 16
+## [1] 25
+```
 
 ```r
 final_shed &lt;- read.csv("https://srvanderplas.github.io/rwrks/01-r-intro/data/daily_shedding.csv")
 
 id &lt;- c("pig_weight", "total_shedding", "daily_shedding")
-for (colname in id) {
-    print(colname)
-}
-```
-
-```
-## [1] "pig_weight"
-## [1] "total_shedding"
-## [1] "daily_shedding"
-```
-
-```r
 for(colname in id) {
     print(paste(colname, mymean(final_shed[, colname])))
 }
@@ -177,10 +236,11 @@ for(colname in id) {
 ---
 ## While Loops
 
++ Loop until a specific condition is met
 
 ```r
 i &lt;- 1
-while (i &lt;= 5) {
+while (i &lt; 5) {
     print(i)
     i &lt;- i + 1
 }
@@ -191,14 +251,21 @@ while (i &lt;= 5) {
 ## [1] 2
 ## [1] 3
 ## [1] 4
-## [1] 5
 ```
+
++ The test_expression is i &lt; 5 which is TRUE since 1 is less than 5. So, the body of the loop is entered and i is printed and incremented (i + 1)
+
++ This will continue until i takes the value 5. The condition 5 &lt; 5 will give FALSE and the while loop exits.
+
++ Make sure the loop will eventually meet the condition, otherwise the loop will run infinitely. 
+
+
 
 ---
 class: inverse
 ## Your Turn 
 
-1. Create a function that takes numeric input and provides the mean and a 95% confidence interval for the mean for the data (the t.test function could be useful)
+1. Create a function that takes numeric input and provides the mean and a 95% confidence interval for the mean for the data (the t.test function could be useful - example in 4-DataStructures.R - will give you your confidence interval)
 
 2. Add checks to your function to make sure the data is either numeric or logical.  If it is logical convert it to numeric.
 

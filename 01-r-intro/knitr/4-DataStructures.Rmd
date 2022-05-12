@@ -130,6 +130,8 @@ matrix(c(2,4,6,8,10,12), nrow=3, ncol = 2, byrow = FALSE)
 ---
 ## Adding a new Variable to a Data Frame
 
+- Maybe you need to do a calculation using data in your data frame
+
 - Create a new vector that is the same length as other columns
 
 - Append new column to the data frame using the `$` operator
@@ -181,6 +183,25 @@ flower[flower$Species=="setosa", ]
 ```
 
 ---
+
+## Demo (Continued)
+
+```{r}
+
+two_sepal_width <- flower$Sepal.Width * 2
+
+flower_new <- data.frame(flower,two_sepal_width)
+
+head(flower_new, n=3)
+
+ncol(flower)
+ncol(flower_new)
+  
+  
+```
+
+
+---
 ## Creating our own Data Frame
 
 Create our own data frame using `data_frame` function
@@ -215,6 +236,11 @@ class: inverse
 3. Rename both column 1 and column 2 to something of your choosing.
 
 4. `mtcars` is a built-in data set like `iris`: Extract the 4th row of the `mtcars` data.
+
+5. Create another column in the flower data frame, that is the sum of Sepal Width, Sepal Length, Petal Width and Petal Length. 
+  - Hint: use "+" instead of sum function (gives total sum). Better ways to do this using dplyr package, but just trying to practice adding new columns right now
+
+6. Step Further. Create another column in the flower data frame, that is the sum of Sepal Width, Sepal Length, Petal Width and Petal Length, where Sepal Length is greater than 6.  
 
 ---
 ## Lists
@@ -343,8 +369,10 @@ str(tout)
 Since this is simply a list, we can use our regular indexing:
 
 ```{r}
+#pvalue
 tout$p.value
 tout[[3]]
+
 ```
 
 ---
