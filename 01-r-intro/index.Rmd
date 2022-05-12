@@ -11,15 +11,15 @@ The course will be a mix of instruction and follow-up exercises. It will be held
 
 Date | Notes | Lectures and Resources
 ---- | ---- | ----
-9 - 9:15 | [Setting Up](knitr/1-Setup.html) | This will make sure that everybody's system is up and running. You should try to install R ahead of time, so that this time can be used to address potential problems. <br/> [Setup.R](code/1-Setup.R)
-9:15 - 10:15 | [Motivating Example](knitr/2-MotivatingExample.html) | First taste of R: Jumping right into it to get an idea of how to use R and what it is capable of. <br/> [2-MotivatingExample.R](code/2-MotivatingExample.R)<br/> [daily_shedding.csv](data/daily_shedding.csv)
-10:15 - 11:15 | [Basics](knitr/3-Basics.html) |  	Working with data and learning about vectors, indexing vectors, and additional statistical functions. <br/>[3-Basics.R](code/3-Basics.R)<br/>[R Reference Card](https://cran.r-project.org/doc/contrib/Short-refcard.pdf)
-11:15 - 11:45 | **Break** | 
-11:45 - 12:45 | [Data Structures](knitr/4-DataStructures.html) |  	Using and examining the other data structures that are available in R. <br/>[4-DataStructures.R](code/4-DataStructures.R) <br/> [tips.csv](data/tips.csv)<br/>[yourturndata.txt](data/yourturndata.txt)
-12:45 - 1:45 | **Lunch Break** (on your own) | 
-1:45 - 2:45 | [Packages and Basic Programming](knitr/5-PackagesProgramming.html) | Introduction to packages and finding useful packages. We will also cover simple programming constructs to make your life easier with R. <br/>[5-PackagesProgramming.R](code/5-PackagesProgramming.R)
-2:45 - 3:00 | **Break** | 
-3:00 - 4:00 | [Working with Regular Expressions](knitr/6-RegularExpressions.html) | Learn about using regular expressions for parsing data <br/>[6-RegularExpressions.R](code/6-RegularExpressions.R)<br/>[meta.txt](data/meta.txt)
+9 - 9:30 | [Setting Up](knitr/1-Setup.html) | This will make sure that everybody's system is up and running. You should try to install R ahead of time, so that this time can be used to address potential problems. <br/> [Setup.R](code/1-Setup.R)
+9:30 - 10:30 | [Motivating Example](knitr/2-MotivatingExample.html) | First taste of R: Jumping right into it to get an idea of how to use R and what it is capable of. <br/> [2-MotivatingExample.R](code/2-MotivatingExample.R)<br/> [daily_shedding.csv](data/daily_shedding.csv)
+10:30 - 10:45 | **Break** | 
+10:45 - 11:45 | [Basics](knitr/3-Basics.html) |  	Working with data and learning about vectors, indexing vectors, and additional statistical functions. <br/>[3-Basics.R](code/3-Basics.R)<br/>[R Reference Card](https://cran.r-project.org/doc/contrib/Short-refcard.pdf)
+11:45 - 12:45 | **Lunch Break** (on your own) | 
+12:45 - 2:15 | [Data Structures](knitr/4-DataStructures.html) |  	Using and examining the other data structures that are available in R. <br/>[4-DataStructures.R](code/4-DataStructures.R) <br/> [tips.csv](data/tips.csv)<br/>[yourturndata.txt](data/yourturndata.txt)
+2:15 - 2:30 | **Break**| 
+2:30 - 4:00 | [Packages and Basic Programming](knitr/5-PackagesProgramming.html) | Introduction to packages and finding useful packages. We will also cover simple programming constructs to make your life easier with R. <br/>[5-PackagesProgramming.R](code/5-PackagesProgramming.R)
+
 
 ## Useful Links
 Recommended Reading:
