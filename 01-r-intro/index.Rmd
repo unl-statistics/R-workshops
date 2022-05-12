@@ -13,12 +13,12 @@ Date | Notes | Lectures and Resources
 ---- | ---- | ----
 9 - 9:30 | [Setting Up](knitr/1-Setup.html) | This will make sure that everybody's system is up and running. You should try to install R ahead of time, so that this time can be used to address potential problems. <br/> [Setup.R](code/1-Setup.R)
 9:30 - 10:30 | [Motivating Example](knitr/2-MotivatingExample.html) | First taste of R: Jumping right into it to get an idea of how to use R and what it is capable of. <br/> [2-MotivatingExample.R](code/2-MotivatingExample.R)<br/> [daily_shedding.csv](data/daily_shedding.csv)
-10:30 - 10:45 | **Break** | 
-10:45 - 11:45 | [Basics](knitr/3-Basics.html) |  	Working with data and learning about vectors, indexing vectors, and additional statistical functions. <br/>[3-Basics.R](code/3-Basics.R)<br/>[R Reference Card](https://cran.r-project.org/doc/contrib/Short-refcard.pdf)
-11:45 - 12:45 | **Lunch Break** (on your own) | 
-12:45 - 2:15 | [Data Structures](knitr/4-DataStructures.html) |  	Using and examining the other data structures that are available in R. <br/>[4-DataStructures.R](code/4-DataStructures.R) <br/> [tips.csv](data/tips.csv)<br/>[yourturndata.txt](data/yourturndata.txt)
-2:15 - 2:30 | **Break**| 
-2:30 - 4:00 | [Packages and Basic Programming](knitr/5-PackagesProgramming.html) | Introduction to packages and finding useful packages. We will also cover simple programming constructs to make your life easier with R. <br/>[5-PackagesProgramming.R](code/5-PackagesProgramming.R)
+10:30 - 10:50 | **Break** | 
+10:50 - 11:50 | [Basics](knitr/3-Basics.html) |  	Working with data and learning about vectors, indexing vectors, and additional statistical functions. <br/>[3-Basics.R](code/3-Basics.R)<br/>[R Reference Card](https://cran.r-project.org/doc/contrib/Short-refcard.pdf)
+11:50 - 12:50 | **Lunch Break** (on your own) | 
+12:50 - 2:20 | [Data Structures](knitr/4-DataStructures.html) |  	Using and examining the other data structures that are available in R. <br/>[4-DataStructures.R](code/4-DataStructures.R) <br/> [tips.csv](data/tips.csv)<br/>[yourturndata.txt](data/yourturndata.txt)
+2:20 - 2:40 | **Break**| 
+2:40 - 4:00 | [Packages and Basic Programming](knitr/5-PackagesProgramming.html) | Introduction to packages and finding useful packages. We will also cover simple programming constructs to make your life easier with R. <br/>[5-PackagesProgramming.R](code/5-PackagesProgramming.R)
 
 
 ## Useful Links

@@ -20,6 +20,8 @@ class: center, middle, inverse, title-slide
 
 ## Overgrown Calculator
 
+[Basics Cheatsheet](cheatsheets/base-r.pdf)
+
 
 ```r
 # Addition and Subtraction
@@ -101,7 +103,7 @@ We can create variables using the assignment operator `&lt;-`:
 
 ```r
 x &lt;- 5
-MyAge &lt;- 26
+MyAge &lt;- 25
 ```
 
 We can then perform any of the functions on the variables:
@@ -120,7 +122,7 @@ MyAge^2
 ```
 
 ```
-## [1] 676
+## [1] 625
 ```
 
 ---
@@ -139,7 +141,7 @@ MyAge^2
 ---
 ## Vectors
 
-A variable does not need to be a single value. We can create a **vector** using the `c` (combine) function:
+A variable does not need to be a single value. We can create a **vector** using the `c` (combine - combines several objects into one) function:
 
 
 ```r
@@ -215,15 +217,15 @@ class: inverse
 
 Using the R Reference Card (and the Help pages, if needed), do the following:
 
-Find out how many rows and columns the `iris` data set has (use `data(iris)` to load in the dataset). Figure out at least 2 ways to do this.
++ Find out how many rows and columns the `iris` data set has (use `data(iris)` to load in the dataset). Figure out at least 2 ways to do this.
 
 **Hint**: "Variable Information" section on the first page of the reference card!
 
-Use the `rep` function to construct the following vector: `1 1 2 2 3 3 4 4 5 5`
++ Use the `rep` function to construct the following vector: `1 1 2 2 3 3 4 4 5 5`
 
 **Hint**: "Data Creation" section of the reference card
 
-Use `rep` to construct this vector: `1 2 3 4 5 1 2 3 4 5 1 2 3 4 5`
++ Use `rep` to construct this vector: `1 2 3 4 5 1 2 3 4 5 1 2 3 4 5`
 
 ---
 ## Data Frames: Introduction
