@@ -9,6 +9,97 @@ output:
       countIncrementalSlides: false
 ---
 
+## Matrices
+
+- A matrix is a rectangular arrangement of numbers in rows and columns
+- There are some functions in R that will require your data to be arranged as a matrix.
+
+```{r, eval = TRUE}
+# Creating a matrix (3x3)
+row_matrix <-  matrix(
+  # Taking sequence of elements 
+  c(1, 2, 3, 4, 5, 6, 7, 8, 9),
+  # Number of rows
+  nrow = 3,  
+  # No of columns
+  ncol = 3,        
+  # By default matrices are in column-wise order
+  # So this parameter decides how to arrange the matrix
+  byrow = TRUE         
+)
+
+row_matrix
+
+```
+
+---
+## Naming Rows and Columns in Matrices
+
+```{r}
+# Naming rows
+rownames(row_matrix) = c("r1", "r2", "r3")
+  
+# Naming columns
+colnames(row_matrix) = c("c1", "c2", "c3")
+
+row_matrix
+
+```
+
+
+---
+
+## Indexing Elements in a Matrix
+
+If only need certain elements in a matrix, you can index them 
+
+
+```{r}
+#matrix[row,col]
+
+row_matrix[1,]
+row_matrix[,1]
+row_matrix[c(1,3),2]
+
+
+```
+
+---
+
+## Matrix Multiplication
+
+
+```{r}
+A <- matrix(c(1, 2, 3, 4), ncol=2)
+A
+B <- matrix(c(5, 6, 7, 8), ncol=2) #would print out similarily
+
+A%*%B
+# Note * does element by element multiplication
+
+t(A) #transpose of A
+
+
+```
+
+---
+class: inverse
+## Your Turn 
+
++ In row_matrix, change 'byrow = FALSE' to see what happens
++ Recreate this matrix 
+
+```{r, echo=FALSE}
+
+matrix(c(2,4,6,8,10,12), nrow=3, ncol = 2, byrow = FALSE)
+
+```
+
++ Index the above matrix to return "4"
+
+
+---
+
 ## Data Frames
 
 - Data Frames are the work horse of R objects
@@ -257,39 +348,6 @@ tout[[3]]
 ```
 
 ---
-
-## Project Management: Working Directories
-
-- The working directory in R is the folder where you are working
-  + Place where you have to store your files of your project in order to load them into R or where would save outputs
-  
-- Check your working directory using `getwd()` function
-
-- Change your working directory using `setwd()` function
-  + `setwd("My\\Path")` or `setwd("My/Path")` 
-  + Or Session -> Set Working Directory -> Choose Directory. This allows you to browse your computer and choose your desired folder without having to know the file path. 
-  
----
-## Project Management: R Projects
-
-- What is R Projects?
-  + When working on your research it is beneficial to keep all associated files with a project together. 
-  + Sets your working directory for you
-- How to Create One?
-  + File -> New Project -> New Directory -> New Project
-  + If already have a folder created: File -> New Project -> Existing Directory 
-  + This will take you to a page where you create a folder and then the file path to that folder (subdirectory)
-
-[Reference for creating RStudio Projects](https://r4ds.had.co.nz/workflow-projects.html#rstudio-projects) $\\$
-[RStudio Projects Website](https://support.rstudio.com/hc/en-us/articles/200526207-Using-RStudio-Projects)
-
----
-## Your Turn: Create a Project Together for this Workshop
-
-- Create a RStudio Project for the workshop that you can use throughout the week. 
-  + You can save R files along with the datasets, so you won't have to set your working directory each day. 
-
----
 ## Importing Data
 
 We often need to import in our own data rather than just using built-in datasets.
@@ -299,9 +357,9 @@ We often need to import in our own data rather than just using built-in datasets
 
 - Data read in using R functions such as:
 
-    - `read_table()` for reading in .txt files
+    - `read.table()` for reading in .txt files
 
-    - `read_csv()` for reading in .csv files
+    - `read.csv()` for reading in .csv files
     
     - `read_excel() from the readxl package for .xlsx files`
 

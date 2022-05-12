@@ -197,6 +197,16 @@ The Rstudio cheatsheets are VERY helpful.
 
 https://www.rstudio.com/resources/cheatsheets/
 
+---
+
+## Warnings vs. Errors
+
++ Routinely beginners to R panic if they see a red message as innocuous as confirming that a library loaded
+  - Not all red text mean that there is an error!
++ A warning is a message that does not disturb the program flow but is displayed along with the output
+  - Not always a cause for concern
++ An error will terminate a program from being ran
+  - Google is a beautiful thing
 
 ---
 class: inverse
@@ -349,8 +359,8 @@ shedding[bad_shedder]
 ```
 
 ```
-## [1] 59.04973 56.12656 66.20657 51.98984 58.53921 64.74017 64.27066
-## [8] 56.06566 53.76049
+## [1] 59.04973 56.12656 66.20657 51.98984 58.53921 64.74017
+## [7] 64.27066 56.06566 53.76049
 ```
 
 ---
@@ -404,13 +414,13 @@ final_shed[id,]
 
 ```
 ## # A tibble: 4 x 7
-##   pignum time_point pig_weight daily_shedding treatment total_shedding
-##    &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;          &lt;dbl&gt; &lt;chr&gt;              &lt;dbl&gt;
-## 1    122         21       33.9           5.01 control             59.0
-## 2    224         21       22.9           3.91 control             56.1
-## 3    337         21       29.5           5.52 control             66.2
-## 4    419         21       31             6.21 control             52.0
-## # ... with 1 more variable: gain &lt;dbl&gt;
+##   pignum time_point pig_weight daily_shedding treatment
+##    &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;          &lt;dbl&gt; &lt;chr&gt;    
+## 1    122         21       33.9           5.01 control  
+## 2    224         21       22.9           3.91 control  
+## 3    337         21       29.5           5.52 control  
+## 4    419         21       31             6.21 control  
+## # ... with 2 more variables: total_shedding &lt;dbl&gt;, gain &lt;dbl&gt;
 ```
 
 ---
