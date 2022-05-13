@@ -94,7 +94,7 @@ MyAge^2
 ---
 ## Vectors
 
-A variable does not need to be a single value. We can create a **vector** using the `c` (combine - combines several objects into one) function:
+A variable does not need to be a single value. We can create a **vector** using the `c` function (combine - combines several objects into one):
 
 ```{r}
 y <- c(1, 5, 3, 2)
@@ -191,7 +191,7 @@ treatment <- final_shed$treatment
 ```
 
 .footnote[
-[1] a column can also be a list! This is a more advanced topic that will be saved for later.
+[1] A column can also be a list! This is a more advanced topic that will be saved for later.
 ]
 ---
 ## More about Vectors
@@ -261,7 +261,7 @@ class: inverse
 
 ## Your Turn 
 
-1. Find out how many pigs had a total shedding value of less than 30 log10 CFUs.
++ Find out how many pigs had a total shedding value of less than 30 log10 CFUs.
 
 **Hint**: if you use the `sum` function on a logical vector, it'll return how many TRUEs are in the vector:
 
@@ -269,7 +269,7 @@ class: inverse
 sum(c(TRUE, TRUE, FALSE, TRUE, FALSE))
 ```
 
-2. **More Challenging**: Calculate the sum of the total shedding log10 CFUs of all pigs with a total shedding value of less than 30 log10 CFUs.
++ **More Challenging**: Calculate the sum of the total shedding log10 CFUs of all pigs with a total shedding value of less than 30 log10 CFUs.
 
 ---
 ## Element-wise Logical Operators
@@ -352,11 +352,11 @@ length(x)
 sum(x)
 ```
 
-Note: Be careful, if you `length` with a dataframe, will return number of variables not number of observations. 
+Note: Be careful, if you use `length` with a dataframe, it will return number of variables not number of observations. 
 ---
 ## Statistical Functions
 
-Using the basic functions we've learned it wouldn't be hard to compute some basic statistics.
+Using the basic functions we've learned, it wouldn't be hard to compute some basic statistics.
 
 ```{r}
 (n <- length(pig_weight))
@@ -377,10 +377,11 @@ quantile(pig_weight, c(.025, .975))
 ```
 
 ---
+class: inverse
 
 ## Your Turn
 
-- Which pigs have a shedding value less than or equal to 30 OR is in the Acid treatment group?
+- Which pigs have a shedding value less than or equal to 30 **OR** is in the Acid treatment group?
 
 - Explore any more calculations in the dataset you may find interesting.
 

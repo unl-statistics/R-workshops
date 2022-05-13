@@ -89,10 +89,10 @@ example <- sample(1:200, 15) #return 15 random values between 1 and 200 without 
 mymean(example) #mean of random generated data
 ```
 
-+ Function Name: mymean
-+ Arguments (inputs): data (data you want to calculate mean of)
-+ Body: ans <- sum(data) / length(data) (code you run to get desired output)
-+ Return Value: ans (the mean of the data)
++ Function Name: `mymean`
++ Arguments (inputs): `data` (data you want to calculate mean of)
++ Body: `ans <- sum(data) / length(data)` (code you run to get desired output)
++ Return Value: `ans` (the mean of the data)
 
 ---
 ## If/Else Statements

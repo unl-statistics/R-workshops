@@ -11,7 +11,9 @@
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
+.title[
 # Basics
+]
 
 ---
 
@@ -141,7 +143,7 @@ MyAge^2
 ---
 ## Vectors
 
-A variable does not need to be a single value. We can create a **vector** using the `c` (combine - combines several objects into one) function:
+A variable does not need to be a single value. We can create a **vector** using the `c` function (combine - combines several objects into one):
 
 
 ```r
@@ -247,7 +249,7 @@ treatment &lt;- final_shed$treatment
 ```
 
 .footnote[
-[1] a column can also be a list! This is a more advanced topic that will be saved for later.
+[1] A column can also be a list! This is a more advanced topic that will be saved for later.
 ]
 ---
 ## More about Vectors
@@ -361,8 +363,8 @@ shedding[bad_shedder]
 ```
 
 ```
-## [1] 59.04973 56.12656 66.20657 51.98984 58.53921 64.74017
-## [7] 64.27066 56.06566 53.76049
+## [1] 59.04973 56.12656 66.20657 51.98984 58.53921 64.74017 64.27066 56.06566
+## [9] 53.76049
 ```
 
 ---
@@ -370,7 +372,7 @@ class: inverse
 
 ## Your Turn 
 
-1. Find out how many pigs had a total shedding value of less than 30 log10 CFUs.
++ Find out how many pigs had a total shedding value of less than 30 log10 CFUs.
 
 **Hint**: if you use the `sum` function on a logical vector, it'll return how many TRUEs are in the vector:
 
@@ -383,7 +385,7 @@ sum(c(TRUE, TRUE, FALSE, TRUE, FALSE))
 ## [1] 3
 ```
 
-2. **More Challenging**: Calculate the sum of the total shedding log10 CFUs of all pigs with a total shedding value of less than 30 log10 CFUs.
++ **More Challenging**: Calculate the sum of the total shedding log10 CFUs of all pigs with a total shedding value of less than 30 log10 CFUs.
 
 ---
 ## Element-wise Logical Operators
@@ -416,13 +418,12 @@ final_shed[id,]
 
 ```
 ## # A tibble: 4 x 7
-##   pignum time_point pig_weight daily_shedding treatment
-##    &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;          &lt;dbl&gt; &lt;chr&gt;    
-## 1    122         21       33.9           5.01 control  
-## 2    224         21       22.9           3.91 control  
-## 3    337         21       29.5           5.52 control  
-## 4    419         21       31             6.21 control  
-## # ... with 2 more variables: total_shedding &lt;dbl&gt;, gain &lt;dbl&gt;
+##   pignum time_point pig_weight daily_shedding treatment total_shedding  gain
+##    &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;          &lt;dbl&gt; &lt;chr&gt;              &lt;dbl&gt; &lt;dbl&gt;
+## 1    122         21       33.9           5.01 control             59.0  16.8
+## 2    224         21       22.9           3.91 control             56.1  11.4
+## 3    337         21       29.5           5.52 control             66.2  16.2
+## 4    419         21       31             6.21 control             52.0  16.8
 ```
 
 ---
@@ -470,8 +471,8 @@ head(shedding)
 ```
 
 ```
-## [1] "37.1402150411922" "43.8807276727966" ":-("             
-## [4] "44.9696314253854" "38.7434232007542" ":-("
+## [1] "37.1402150411922" "43.8807276727966" ":-("              "44.9696314253854"
+## [5] "38.7434232007542" ":-("
 ```
 
 By changing a value to a string, all the other values were also changed.
@@ -563,11 +564,11 @@ sum(x)
 ## [1] 140.36
 ```
 
-Note: Be careful, if you `length` with a dataframe, will return number of variables not number of observations. 
+Note: Be careful, if you use `length` with a dataframe, it will return number of variables not number of observations. 
 ---
 ## Statistical Functions
 
-Using the basic functions we've learned it wouldn't be hard to compute some basic statistics.
+Using the basic functions we've learned, it wouldn't be hard to compute some basic statistics.
 
 
 ```r
@@ -635,10 +636,11 @@ quantile(pig_weight, c(.025, .975))
 ```
 
 ---
+class: inverse
 
 ## Your Turn
 
-- Which pigs have a shedding value less than or equal to 30 OR is in the Acid treatment group?
+- Which pigs have a shedding value less than or equal to 30 **OR** is in the Acid treatment group?
 
 - Explore any more calculations in the dataset you may find interesting.
 
@@ -706,6 +708,19 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     deleted = true;
   });
 })();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
 (function() {
   "use strict"
   // Replace <script> tags in slides area to make them executable

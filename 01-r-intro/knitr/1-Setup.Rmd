@@ -27,7 +27,7 @@ What do you know already?
 
 ## What is R?
 
-+ An opensoure, free software environment
++ An open-source, free software environment
 
 + According to it's website, "R is a system for statistical computation and graphics" [Source](https://www.r-project.org/)
 
@@ -68,7 +68,7 @@ This should also be done already, but if not...
 - Choose the installer appropriate for your platform
 
 - If you are using a Mac, you may need to download XQuartz from https://www.xquartz.org/
-  + If you run into issues, try downloading this to see if it helps.
+  + If you run into issues, try downloading this to see if it helps, especially with certain graphics.
 
 ---
 

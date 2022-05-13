@@ -67,7 +67,7 @@ This workshop will focus largely on a group of packages that live together under
 ---
 ## First look at data in R
 
-Lets use R to look at the top few rows of the *Salmonella* shedding data set. First, we load tip using `read_csv`:
+Let's use R to look at the top few rows of the *Salmonella* shedding data set. First, we load the data set using `read_csv`:
 
 ```{r message=FALSE, warning=FALSE}
 shed <- read_csv("https://srvanderplas.github.io/rwrks/01-r-intro/data/daily_shedding.csv")
@@ -82,7 +82,7 @@ head(shed)
 ---
 ## *Salmonella* Shedding Data: Attributes
 
-How big is this data set and what types of variables are in each column?
+How big is this data set, and what types of variables are in each column?
 
 ```{r}
 str(shed)
@@ -100,7 +100,7 @@ summary(shed)
 ---
 ## Scatterplots
 
-Lets look at the relationship between time point and *Salmonella* shedding.  
+Let's look at the relationship between time point and *Salmonella* shedding.  
 
 ```{r, fig.height=5, fig.width=8}
 ggplot(shed, aes(x=time_point, y=total_shedding)) + geom_point()
@@ -128,7 +128,7 @@ ggplot(shed, aes(x=time_point, y=total_shedding, colour = treatment)) + geom_lin
 ---
 ## Even More Plots
 
-Add facetting
+Add faceting
 
 ```{r, fig.height=5, fig.width=9}
 ggplot(shed, aes(x=time_point, y=total_shedding, color=treatment)) + 
@@ -154,7 +154,7 @@ summary(final_shed$gain)
 ---
 ## Histogram
 
-Lets look distribution of the final shedding values with a histogram
+Let's look distribution of the final shedding values with a histogram
 
 ```{r, fig.height=5, fig.width=8}
 ggplot(final_shed) + geom_histogram(aes(x = total_shedding))
@@ -163,7 +163,7 @@ ggplot(final_shed) + geom_histogram(aes(x = total_shedding))
 ---
 ## One pig did not shed at all...
 
-which pig and what treatment did it receive?
+Which pig, and what treatment did it receive?
 
 ```{r}
 final_shed[which.min(final_shed$total_shedding),]
@@ -172,7 +172,7 @@ final_shed[which.min(final_shed$total_shedding),]
 ---
 ## Shedding by Treatment
 
-Look at the average cumulative shedding value for each treatment seperately
+Look at the average cumulative shedding value for each treatment separately
 
 
 ```{r}
@@ -180,10 +180,6 @@ Look at the average cumulative shedding value for each treatment seperately
 median(final_shed$total_shedding[final_shed$treatment == "control"])
 # then repeat for each treatment. Or ...
 
-```
-
-
-```{r}
 # Using `tidyverse`:
 final_shed %>%  group_by(treatment) %>% 
   summarise(med_shed = median(total_shedding))
@@ -192,7 +188,7 @@ final_shed %>%  group_by(treatment) %>%
 ---
 ## Statistical Significance
 
-There is a difference but is it statistically significant?
+There is a difference, but is it statistically significant?
 
 ```{r}
 wilcox.test(total_shedding ~ treatment, data = final_shed,
@@ -212,7 +208,7 @@ ggplot(final_shed) +
 ---
 ## Boxplots Again
 
-Alternatively, we could use the original data to compare the daily shedding values of each treatment group with a side by side boxplot over time
+Alternatively, we could use the original data to compare the daily shedding values of each treatment group with side by side boxplots over time
 
 ```{r, fig.height=4, fig.width=9}
 shed %>% filter(time_point != 0) %>% ggplot() + 
@@ -232,4 +228,4 @@ Try playing with chunks of code from this session to further investigate the *Sa
 
 2. Make side by side boxplots of final weight gain by treatment group (use the `final_shed` data set)
 
-3. Compute a wilcox test for control vs. the "Bglu" treatment group 
+3. Compute a Wilcox test for control vs. the "Bglu" treatment group 

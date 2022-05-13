@@ -11,7 +11,9 @@
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
+.title[
 # Packages and Basic Programming
+]
 
 ---
 
@@ -102,10 +104,10 @@ mymean(example) #mean of random generated data
 ## [1] 110.7333
 ```
 
-+ Function Name: mymean
-+ Arguments (inputs): data (data you want to calculate mean of)
-+ Body: ans &lt;- sum(data) / length(data) (code you run to get desired output)
-+ Return Value: ans (the mean of the data)
++ Function Name: `mymean`
++ Arguments (inputs): `data` (data you want to calculate mean of)
++ Body: `ans &lt;- sum(data) / length(data)` (code you run to get desired output)
++ Return Value: `ans` (the mean of the data)
 
 ---
 ## If/Else Statements
@@ -317,6 +319,19 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     deleted = true;
   });
 })();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
 (function() {
   "use strict"
   // Replace <script> tags in slides area to make them executable
