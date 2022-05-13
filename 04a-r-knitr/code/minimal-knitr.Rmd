@@ -1,7 +1,7 @@
 ---
 title: "A Minimal Demo of Knitr"
 author: "R Workshop"
-date: "1/13/2021"
+date: "5/19/2022"
 output: pdf_document
 ---
 
