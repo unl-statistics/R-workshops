@@ -360,7 +360,7 @@ ggsave("mpg_by_wt.pdf", plot = p1) #<<
 class: inverse
 ## Your Turn
 
-1. Create a scatterplot of `bill length` versus `bill width` from the `penguins` 
+1. Create a scatterplot of `bill length` versus `bill width` from the `penguins` and color by species.
 2. Use the black and white theme
 3. Clean up axis labels and include an informative title.
 4. Capitalize legend title and change the color palette from default.
