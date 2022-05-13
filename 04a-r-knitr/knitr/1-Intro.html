@@ -6,8 +6,6 @@
     <script src="libs/header-attrs-2.11/header-attrs.js"></script>
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="libs/remark-css-0.0.1/default-fonts.css" rel="stylesheet" />
-    <script src="libs/kePrint-0.0.1/kePrint.js"></script>
-    <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
   </head>
   <body>
     <textarea id="source">
@@ -42,6 +40,16 @@ How do you get your results from `R` into those documents?
 
 ---
 
+## How is a R Markdown Document (.Rmd) Created?
+
+&lt;img src="knitr.png" width="1271" /&gt;
+
+- Takes the .Rmd file converts to a pandoc file (.md) and then can otuput to multiple formats (.html, .pdf)
+- What we will be focusing on 
+- [Picture Source](https://bookdown.org/yihui/rmarkdown-cookbook/rmarkdown-process.html)
+
+---
+
 ## Reproduceable Research
 
 - Journals often require code and data to be included in a paper submission so the analysis can be reproduced
@@ -49,20 +57,6 @@ How do you get your results from `R` into those documents?
 - Statistical analyses are often re-used for multiple similar experiments
 
 - We don't always comment code when we write it - knitr provides context for the code by including the writeup with the code
-
----
-
-## knitr vs. Markdown
-
-* knitr (.Rnw)
-  - Created First
-  - Can do some things that markdown can't
-  - Essentially takes the .Rnw file converts to a .tex file (Latex) and then outputs a pdf
-
-* markdown (.Rmd)
-  - Takes the .Rmd file converts to a pandoc file (.md) and then can otuput to multiple formats (.html, .pdf)
-  - What we will be focusing on 
-
 
 ---
 
@@ -88,8 +82,7 @@ A lot of what is presented here can be found on the [R Markdown Cheatsheet](http
 
 - More features are added and more templates created all the time! 
 
-- Example: see the `rticles` package for PLOS, PNAS, Elselvier, and many, many other journal templates.  
-
+- Example: see the `rticles` package for PLOS, PNAS, Elselvier, and many, many other journal templates. 
 
 ---
 ## Setup
@@ -110,8 +103,8 @@ A lot of what is presented here can be found on the [R Markdown Cheatsheet](http
 ## Contents of a .Rmd
 
 1. The YAML front matter
-2. The markdown
-3. Code chunks
+2. Code chunks
+3. The markdown
 
 ---
 ## YAML Front Matter
@@ -122,7 +115,7 @@ The stuff at the top of the .Rmd file (called YAML front matter) tells **rmarkdo
 ---
 title: "How to Not Age"
 author: "Paul Rudd"
-date: "December 30, 2021"
+date: "May 14, 2022"
 output: html_document or pdf_document
 ---
 ```
@@ -326,75 +319,28 @@ See if you can this out in R markdown using Mathmode:
 Make sure it compiles in your document!
 
 ---
-## Tables with kableextra
+## Tables with kable
 
 
 
 ```r
-#install.packages(kableExtra)
-library(kableExtra)
-kable(head(iris), caption = "Demo Table") %&gt;%
-  kable_styling(latex_options = "striped")
+knitr::kable(head(iris), "pipe")
 ```
 
-&lt;table class="table" style="margin-left: auto; margin-right: auto;"&gt;
-&lt;caption&gt;Demo Table&lt;/caption&gt;
- &lt;thead&gt;
-  &lt;tr&gt;
-   &lt;th style="text-align:right;"&gt; Sepal.Length &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; Sepal.Width &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; Petal.Length &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; Petal.Width &lt;/th&gt;
-   &lt;th style="text-align:left;"&gt; Species &lt;/th&gt;
-  &lt;/tr&gt;
- &lt;/thead&gt;
-&lt;tbody&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 5.1 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 3.5 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1.4 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.2 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; setosa &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 4.9 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 3.0 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1.4 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.2 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; setosa &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 4.7 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 3.2 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1.3 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.2 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; setosa &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 4.6 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 3.1 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1.5 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.2 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; setosa &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 5.0 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 3.6 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1.4 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.2 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; setosa &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 5.4 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 3.9 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1.7 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.4 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; setosa &lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
 
-[More Styling Options](https://bookdown.org/yihui/rmarkdown-cookbook/kableextra.html)
+
+| Sepal.Length| Sepal.Width| Petal.Length| Petal.Width|Species |
+|------------:|-----------:|------------:|-----------:|:-------|
+|          5.1|         3.5|          1.4|         0.2|setosa  |
+|          4.9|         3.0|          1.4|         0.2|setosa  |
+|          4.7|         3.2|          1.3|         0.2|setosa  |
+|          4.6|         3.1|          1.5|         0.2|setosa  |
+|          5.0|         3.6|          1.4|         0.2|setosa  |
+|          5.4|         3.9|          1.7|         0.4|setosa  |
+
++ [More Options](https://bookdown.org/yihui/rmarkdown-cookbook/kable.html)
+
++ kableExtra Package - extension of basic functionality of kable function [More Info](https://bookdown.org/yihui/rmarkdown-cookbook/kableextra.html)
 
 ---
 
@@ -407,15 +353,18 @@ kable(head(iris), caption = "Demo Table") %&gt;%
 knitr::include_graphics("IncludeGraphic.png")
 ```
 
-&lt;img src="IncludeGraphic.png" width="1529" /&gt;
+&lt;img src="IncludeGraphic.png" width="50%" height="50%" /&gt;
 
++ Note: Working directory is the directory where your .Rmd file is saved. 
++ Use 'out.height="50%" &amp; out.width="50%"' to play with figure size.
 
 ---
 
 ## Including Pictures Way 2
 
 ``![alt text here](path-to-image-here)`` `\(\\\)`
-``![](IncludeGraphic.png)``
+``![](IncludeGraphic.png)`` `\(\\\)`
+``![](IncludeGraphic.png){width=50%}`` - Reduce width
 
 ![](IncludeGraphic.png)
 ---
@@ -424,14 +373,20 @@ knitr::include_graphics("IncludeGraphic.png")
 
 - Include a Picture in your R markdown file
 
-- Create a table of a dataframe in your R markdown file. Play with the different styling options of the table. (For example change the background color of a row to highlight that row in your table)
+- Create a table of a dataframe in your R markdown file. Play with the different styling options of the table. (Can try and read in your own data to create a table!)
 
 ---
 
 ## Other things that you can do!
 
++ If have a pdf output, can enter "\newpage" into the markdown part of document to create a new page
+
++ In RStudio, you can click the menu Edit -&gt; Check Spelling to spell-check an Rmd document
+  - There is real time spell-check in newer versions of RStudio, but useful if checking whole document at once. 
+  
 - Create slide shows with R markdown
   + [Website for more Info](https://rmarkdown.rstudio.com/lesson-11.html)
+  + [Built in Markdown Presentations](https://bookdown.org/yihui/rmarkdown/presentations.html)
 - Bookdown and Blogdown for creating books and webpages, respectively.
   + [Bookdown Website](https://bookdown.org/)
   + [Blogdown Website](https://bookdown.org/yihui/blogdown/)

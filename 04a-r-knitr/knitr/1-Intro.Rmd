@@ -33,6 +33,18 @@ How do you get your results from `R` into those documents?
 
 ---
 
+## How is a R Markdown Document (.Rmd) Created?
+
+```{r, echo = FALSE}
+knitr::include_graphics("knitr.png")
+```
+
+- Takes the .Rmd file converts to a pandoc file (.md) and then can otuput to multiple formats (.html, .pdf)
+- What we will be focusing on 
+- [Picture Source](https://bookdown.org/yihui/rmarkdown-cookbook/rmarkdown-process.html)
+
+---
+
 ## Reproduceable Research
 
 - Journals often require code and data to be included in a paper submission so the analysis can be reproduced
@@ -40,20 +52,6 @@ How do you get your results from `R` into those documents?
 - Statistical analyses are often re-used for multiple similar experiments
 
 - We don't always comment code when we write it - knitr provides context for the code by including the writeup with the code
-
----
-
-## knitr vs. Markdown
-
-* knitr (.Rnw)
-  - Created First
-  - Can do some things that markdown can't
-  - Essentially takes the .Rnw file converts to a .tex file (Latex) and then outputs a pdf
-
-* markdown (.Rmd)
-  - Takes the .Rmd file converts to a pandoc file (.md) and then can otuput to multiple formats (.html, .pdf)
-  - What we will be focusing on 
-
 
 ---
 
@@ -79,8 +77,7 @@ A lot of what is presented here can be found on the [R Markdown Cheatsheet](http
 
 - More features are added and more templates created all the time! 
 
-- Example: see the `rticles` package for PLOS, PNAS, Elselvier, and many, many other journal templates.  
-
+- Example: see the `rticles` package for PLOS, PNAS, Elselvier, and many, many other journal templates. 
 
 ---
 ## Setup
@@ -103,8 +100,8 @@ knitr::include_graphics("markdown.png")
 ## Contents of a .Rmd
 
 1. The YAML front matter
-2. The markdown
-3. Code chunks
+2. Code chunks
+3. The markdown
 
 ---
 ## YAML Front Matter
@@ -115,7 +112,7 @@ The stuff at the top of the .Rmd file (called YAML front matter) tells **rmarkdo
 ---
 title: "How to Not Age"
 author: "Paul Rudd"
-date: "December 30, 2021"
+date: "May 14, 2022"
 output: html_document or pdf_document
 ---
 ```
@@ -316,18 +313,18 @@ $$x = \frac{-b\pm\sqrt{b^{2} - 4ac}}{2a}$$
 Make sure it compiles in your document!
 
 ---
-## Tables with kableextra
+## Tables with kable
 
 
 ```{r}
-#install.packages(kableExtra)
-library(kableExtra)
-kable(head(iris), caption = "Demo Table") %>%
-  kable_styling(latex_options = "striped")
+
+knitr::kable(head(iris), "pipe")
 
 ```
 
-[More Styling Options](https://bookdown.org/yihui/rmarkdown-cookbook/kableextra.html)
++ [More Options](https://bookdown.org/yihui/rmarkdown-cookbook/kable.html)
+
++ kableExtra Package - extension of basic functionality of kable function [More Info](https://bookdown.org/yihui/rmarkdown-cookbook/kableextra.html)
 
 ---
 
@@ -335,17 +332,20 @@ kable(head(iris), caption = "Demo Table") %>%
 
 `knitr::include_graphics("File path to Picture")`
 
-```{r}
+```{r, echo = TRUE, out.height="50%", out.width="50%"}
 knitr::include_graphics("IncludeGraphic.png")
 ```
 
++ Note: Working directory is the directory where your .Rmd file is saved. 
++ Use 'out.height="50%" & out.width="50%"' to play with figure size.
 
 ---
 
 ## Including Pictures Way 2
 
 ``![alt text here](path-to-image-here)`` $\\$
-``![](IncludeGraphic.png)``
+``![](IncludeGraphic.png)`` $\\$
+``![](IncludeGraphic.png){width=50%}`` - Reduce width
 
 ![](IncludeGraphic.png)
 ---
@@ -354,14 +354,20 @@ knitr::include_graphics("IncludeGraphic.png")
 
 - Include a Picture in your R markdown file
 
-- Create a table of a dataframe in your R markdown file. Play with the different styling options of the table. (For example change the background color of a row to highlight that row in your table)
+- Create a table of a dataframe in your R markdown file. Play with the different styling options of the table. (Can try and read in your own data to create a table!)
 
 ---
 
 ## Other things that you can do!
 
++ If have a pdf output, can enter "\newpage" into the markdown part of document to create a new page
+
++ In RStudio, you can click the menu Edit -> Check Spelling to spell-check an Rmd document
+  - There is real time spell-check in newer versions of RStudio, but useful if checking whole document at once. 
+  
 - Create slide shows with R markdown
   + [Website for more Info](https://rmarkdown.rstudio.com/lesson-11.html)
+  + [Built in Markdown Presentations](https://bookdown.org/yihui/rmarkdown/presentations.html)
 - Bookdown and Blogdown for creating books and webpages, respectively.
   + [Bookdown Website](https://bookdown.org/)
   + [Blogdown Website](https://bookdown.org/yihui/blogdown/)
