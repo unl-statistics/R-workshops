@@ -36,8 +36,34 @@ class: center, middle
 
 ---
 
----
-
 # Overarching Example
 
+A plant pathology researcher is studying the effect of an experimental fungicide on the fresh weight of azaleas inoculated with a certain fungus. She has 49 potted plants of a particular azalea variety growing in a greenhouse. All plants are inoculated with a fungus. To start, she has 7 different fungicide combinations, with 7 plants per treatment.
+
+```{r echo = TRUE}
+azalea <- read.csv("https://srvanderplas.github.io/rwrks/06-r-modeling/data/AzaleaOneWay.csv")
+head(azalea)
+```
+
+**Note**: As we go along, we will continue to use this scenario; we will just continue to get more specific on what the treatments are. The dataset will be updated accordingly as well.
+
 ---
+
+# One-Way Analysis of Variance (ANOVA)
+
++ Esstentially an expansion of the t-test [Source](https://tjfisher19.github.io/introStatModeling/introduction-to-statistical-modeling-and-designed-experiments.html#one-way-anova)
+
++ Compare more than 2 levels of a treatment factor
+
+  - Treatment factor is your independent variable, the variable you expect to possibly cause the variation we see in the response. (i.e. the fungicide combination)
+  
+  - Levels are the subdivisions of your overall treatment factor. (i.e. the 7 different combinations)
+  
+  - If you only have two levels of a factor, a One-Way ANOVA would be equivalent to t-test.
+  
++ Randomly sample your experimental units, and then randomly assign them to the different levels of the treatment factor.
+
+---
+
+# One-Way ANOVA Model
+
