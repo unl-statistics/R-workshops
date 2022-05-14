@@ -18,6 +18,11 @@ knitr::opts_chunk$set(
 	warning = FALSE,
 	cache = TRUE
 )
+
+library(tidyverse)
+library(knitr)
+library(kableExtra)
+library(ggsci)
 ```
 
 class: center, middle
@@ -74,25 +79,289 @@ class: center, middle
 ---
 ## What is a p-value?
 
+
+
 ---
 ## What does a confidence interval tell me?
 
 ---
+## Penguins Data
+
+```{r penguins-data, eval = T, purl = T, echo = T}
+data(penguins, package = "palmerpenguins")
+```
+
+![](images/palmer-penguins.png)
+
+---
 ## Two-sample independent t-test
 
----
-## Paired t-test
+**Research Question** Is there a difference in the body mass (g) of penguins between male and female penguins?
+
+.pull-left[
+**Data**
+```{r penguins-ttest-data}
+penguins2 <- penguins %>%
+  select(sex, body_mass_g) %>%
+  na.omit()
+
+penguins2[1:3,] %>% kable()
+```
+
+**Numerical Summary**
+
+```{r penguins-ttest-summary}
+penguins2 %>%
+  group_by(sex) %>%
+  summarize(mean = mean(body_mass_g),
+            sd = sd(body_mass_g)) %>% 
+  kable(digits = 1)
+```
+].pull-right[
+
+**Graphical Summary**
+
+```{r penguins-ttest-boxplot, fig.width = 6, fig.height = 6}
+penguins2 %>%
+  ggplot(aes(x = sex, y = body_mass_g, color = sex, fill = sex)) +
+  geom_boxplot(alpha = 0.1, width = 0.5) +
+  geom_point(shape = 1, position = position_jitter(width = 0.2)) +
+  theme_bw() +
+  theme(aspect.ratio = 1,
+        axis.text = element_text(size = 16),
+        axis.title = element_text(size = 18),
+        legend.position = "none") +
+  ylab("Body Mass (g)") +
+  xlab("Sex") +
+  scale_color_locuszoom()  +
+  scale_fill_locuszoom()
+```
+
+]
 
 ---
-## Chi-square test
+## Two-sample t-test
 
+```{r ttest-echo, echo = T, eval = F, purl = F}
+help(t.test)
+t.test(y ~ x, 
+       data = data_name,
+       alternative = “two.sided”, 
+       mu = 0, 
+       paired = FALSE, 
+       var.equal = FALSE, 
+       conf.level = 0.95)
+```
+
++ **y:** The variable name of the quantitative response.
++ **x:** The variable name of the grouping variable (or treatment).
++ **data:** The name of the data set
++ **alternative:** The alternative hypothesis. Options include “two.sided”, “less”, or “greater.”
++ **mu:** The value assumed to be the true difference in means.
++ **paired:** Whether or not to use a paired t-test.
++ **var.equal:** Whether or not the variances are equal between the two groups.
++ **conf.level:** The confidence level to use for the test.
+
+???
+
+**Test for equal variances**
+```{r, penguin, equal variance, echo = T}
+library(car)
+leveneTest(penguins2$body_mass_g, group = penguins2$sex, center = mean)
+```
+
+---
+## Two-sample independent t-test
+
++ *Null:* the mean body mass for female penguins is equal to the mean body mass for male penguins (female - male $= 0$)
++ *Alternative:* the mean body mass for female penguins is **not** equal to the mean body mass for male penguins (female - male $\ne 0$)
+
+```{r penguins-ttest-echo, echo = T, eval = F, purl = T}
+penguins_ttest <- t.test(body_mass_g ~ sex, data = penguins2) #<<
+penguins_ttest
+```
+
+```{r penguins-ttest, echo = F, purl = F, eval = T}
+penguins_ttest <- t.test(body_mass_g ~ sex, data = penguins2)
+penguins_ttest
+```
+
+---
+## Two-sample independent t-test (table results)
+
+**Extract specific output**
+
+```{r, penguins-ttest-results-echo, echo = T, eval = F, purl = T}
+penguins_ttest$statistic
+penguins_ttest$df
+penguins_ttest$p.value
+```
+
+**Summarize results with `library(broom)`**
+
+```{r, penguins-ttest-broom-echo, echo = T, eval = F, purl = T}
+install.packages("broom")
+library(broom)
+penguins_results <- tidy(penguins_ttest) #<<
+penguins_results
+```
+
+```{r penguins-ttest-broom, echo = F, purl = F, eval = T}
+library(broom)
+penguins_results <- tidy(penguins_ttest)
+penguins_results %>%  kable(format = 'html', digits = 1) %>% kable_styling("striped") %>% scroll_box(width = "100%")
+``` 
+
+---
+## Two-sample independent t-test (graphical results)
+
+```{r penguins-ttest-graph-results-echo, echo = T, purl = T, eval = F, fig.align='center', fig.width = 7, fig.height = 3.5}
+ggplot(penguins_results, aes(x = NA, y = estimate)) +
+  geom_point(size = 2) +
+  geom_errorbar(aes(ymin = conf.low, ymax = conf.high), width = 0.2) +
+  geom_hline(yintercept = 0, linetype = "dashed", color = "red") +
+  theme_bw() +
+  theme(aspect.ratio = 0.5, axis.text.y = element_blank()) +
+  xlab("") + ylab("Difference in Body Mass \n (Female - Male)") +
+  coord_flip()
+``` 
+
+```{r penguins-ttest-graph-results, echo = F, purl = F, eval = T, fig.align='center', fig.width = 8, fig.height = 4}
+ggplot(penguins_results, aes(x = NA, y = estimate)) +
+  geom_point(size = 2) +
+  geom_errorbar(aes(ymin = conf.low, ymax = conf.high), width = 0.1) +
+  geom_hline(yintercept = 0, linetype = "dashed", color = "red") +
+  theme_bw() +
+  theme(aspect.ratio = 0.5,
+        axis.text.y = element_blank(),
+        axis.text = element_text(size = 16),
+        axis.title = element_text(size = 18)) +
+  xlab("") +
+  ylab("Difference in Penguin Body Mass \n (Female - Male)") +
+  coord_flip()
+``` 
+
+---
+## Two-sample independent t-test (Your turn!)
+
++ What if you wanted the difference to be male - female? (Hint: use `relevel()`)
+
++ The default confidence level is 95%, how would you change it to a 90% confidence level? 
+  + Does your p-value change?
+  + How about your confidence interval?
+  
+---
+## Two-sample independent t-test (Your turn!)
++ What if you wanted the difference to be male - female?
+
+```{r penguins-ttest-yourturn1-echo1, purl = F, echo = T, eval = T}
+levels(penguins2$sex)
+penguins2$sex <- relevel(penguins2$sex, ref = "male") #<<
+levels(penguins2$sex)
+```
+
+```{r penguins-ttest-yourturn1-echo2, purl = F, echo = T, eval = F}
+penguins_ttest2 <- t.test(body_mass_g ~ sex, data = penguins2)
+penguins_ttest2
+```
+
+```{r penguins-ttest-yourturn1, purl = F, echo = F, eval = T}
+penguins_ttest2 <- t.test(body_mass_g ~ sex, data = penguins2)
+tidy(penguins_ttest2)  %>%  kable(format = 'html', digits = 1) %>% kable_styling("striped") %>% scroll_box(width = "100%")
+```
+
+---
+## Two-sample independent t-test (Your turn!)
++ The default confidence level is 95%, how would you change it to a 90% confidence level? 
+  + Does your p-value change?
+  + How about your confidence interval?
+
+```{r penguins-ttest-yourturn-echo1, purl = F, echo = F, eval = T}
+penguins_ttest2$p.value
+penguins_ttest2$conf.int
+```
+
+```{r penguins-ttest-yourturn2-echo2, purl = F, echo = T, eval = F}
+penguins_ttest3 <- t.test(body_mass_g ~ sex, 
+                          data = penguins2, 
+                          conf.level = 0.9) #<<
+penguins_ttest3$p.value
+penguins_ttest3$conf.int
+```
+
+```{r penguins-ttest-yourturn2, purl = F, echo = F, eval = T}
+penguins_ttest3 <- t.test(body_mass_g ~ sex, data = penguins2, conf.level = 0.9)
+penguins_ttest3$p.value
+penguins_ttest3$conf.int
+```
+
+---
+## Chi-square test of independence
+
+**Research Question** Are island and the species of penguin associated?
+
+.pull-left[
+**Data**
+```{r penguins-chisq-data}
+penguins3 <- penguins %>%
+  select(species, island) %>%
+  na.omit()
+
+penguins3[1:3,] %>% kable()
+```
+
+<br>
+<br>
+**Numerical Summary**
+
+```{r penguins-chisq-summary}
+with(penguins3, table(island, species))
+```
+
+].pull-right[
+
+**Graphical Summary**
+ 
+```{r penguins-chisq-mosaicplot, fig.height = 5.5, fig.width = 7}
+library(ggmosaic)
+ggplot(penguins3) +
+  geom_mosaic(aes(x = product(island), fill = species), color = "white") +
+  theme_test() +
+  theme(aspect.ratio = 1,
+        axis.text.y = element_blank(),
+        axis.text = element_text(size = 16),
+        axis.title = element_text(size = 18),
+        legend.text = element_text(size = 16),
+        legend.title = element_text(size = 18)) +
+  ylab("Species") +
+  xlab("Island") +
+  scale_fill_locuszoom()
+```
+
+]
+
+---
+## Chi-square test of independence
+
+```{r chisqtest-echo, echo = T, eval = F, purl = F}
+help("chisq.test")
+chisq.test(y ~ x, 
+       data = data_name,
+       simulate.p.value = FALSE,
+       B = 2000)
+```
+
+---
+## Chi-square test of independence
+
+```{r penguins-chisq, echo = T, eval = T, purl = T}
+chisq.test(penguins3$island, penguins3$species) #<<
+chisq.test(penguins3$island, penguins3$species, 
+           simulate.p.value = T) #<<
+```
+ 
 ---
 ## Simple Regression
 
-In a manufacturing study, the production times for 111 recent production runs were obtained. The researchers are curious if the production lot size can predict the production time in hours.
-
-```{r, eda-example, echo = T, eval = T}
-production_data <- read.csv("https://srvanderplas.github.io/rwrks/06-r-modeling/data/production.csv")
-head(produciton_data) %>% kable()
-```
-
+---
+## Main points

@@ -24,9 +24,35 @@ class: center, middle
 
 # Workshop - Bring your own data!
 
-+ examples of regression, factorial, and glm
+---
+## Production
+
+In a manufacturing study, the production times for 111 recent production runs were obtained. The researchers are curious if the production lot size can predict the production time in hours.
+
+```{r, production-echo, purl = T, echo = T, eval = F}
+production_data <- read.csv("https://srvanderplas.github.io/rwrks/06-r-modeling/data/production.csv")
+head(production_data)
+```
+
+.pull-left[
+```{r, production-data, purl = F, echo = F, eval = T}
+production_data <- read.csv("https://srvanderplas.github.io/rwrks/06-r-modeling/data/production.csv")
+head(production_data) %>% kable()
+```
+].pull-right[
+```{r, production-eda, purl = T, echo = F, eval = T, fig.width = 4, fig.height = 4}
+ggplot(data = production_data, aes(x = Lot.Size, y = Time)) +
+  geom_point(shape = 1) +
+  theme_bw() +
+  theme(aspect.ratio = 1,
+        axis.text = element_text(size = 16),
+        axis.title = element_text(size = 18))
+```
+]
 
 ---
+## Palmer Penguins (extention)
 
+What if you wanted to fit a linear regression line between bill length and bill depth for each species?
 
 
