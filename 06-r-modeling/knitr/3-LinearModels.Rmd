@@ -16,7 +16,7 @@ knitr::opts_chunk$set(
 	echo = FALSE,
 	message = FALSE,
 	warning = FALSE,
-	cache = TRUE
+	cache = FALSE
 )
 ```
 
@@ -281,3 +281,143 @@ azalea2$AppRate.new <- as.factor(azalea2$AppRate)
 mod.fit2 <- lm(Weight ~ AppTime.new + AppRate.new + AppTime.new:AppRate.new, data = azalea2)
 Anova(mod.fit2, type = "II")
 ```
+
+---
+
+# Results
+
++ No evidence of an interaction between the time of application and application rate.
++ No evidence of a main effect of time of application.
++ We have strong evidence there is a main effect of application rate.
++ Thus, we look at the *main effect* of application rate using `emmeans`.
+
+```{r echo=TRUE}
+emmeans(mod.fit2, pairwise ~ AppRate.new)
+```
+
+---
+
+# But what if there HAD been an interaction?
+
++ Still use the `emmeans` function!
+
++ In the `pairwise` part of the argument, use the vertical bar, |, to denote which treatment factor you want to keep **constant**.
+
+  - Factor you want to look at differences of | Factor you want to keep constant
+
+---
+
+```{r echo=TRUE}
+emmeans(mod.fit2, pairwise ~ AppRate.new|AppTime.new)
+```
+
+---
+
+```{r echo=TRUE}
+emmeans(mod.fit2, pairwise ~ AppTime.new|AppRate.new)
+```
+
+---
+
+# Another Twist!
+
+In the previous analysis, we treated application rate as a qualitative/categorical variable, meaning the researchers are *only* interested in the levels of 1 oz., 3 oz., and 5 oz. You learn the researchers actually want to be able to predict the fresh weight of azaleas that were given **N** at the 2 oz. rate. 
+
++ Before, we were analyzing a qualitative/qualitative factorial, where both treatment factors are qualitative.
+
++ Now, we want to change the analysis to a qualitative/quantitative factorial.
+
+  - Time of application remains a qualitative variable.
+  
+  - Application rate is updated to a quantitative.
+  
+---
+
+# Quant/Qual Factorial
+
++ We are now adding in *regression* to our factorial analysis.
+
++ Want to know if the same line can be fit for the two levels time of application
+
+  - In other words, does the time of application effect the prediction of fresh weight of azaleas for the rate of application?
+  
+  - In other, other words, is there an interaction?
+
++ Our hypotheses are very similar to what they were earlier. We just now need to add in a test of shape for the regression lines.
+
+  - To determine the maximum power of your regression line, take the number of levels of your quantitative factor and subtract 1.
+  
+  - So for our example, we have 3 levels. Thus, we can fit up to a maximum power of 2 (a quadratic).
+  
+---
+
+# Quant/Qual Factorial in R
+
++ Need to use orthogonal contrasts in order to test for shape. Outside the scope of this workshop.
+  - These contrasts are nicely built into R.
+
+```{r echo=TRUE}
+mod.fit3 <- aov(Weight ~ AppTime.new + AppRate.new + AppTime.new:AppRate.new, data = azalea2)
+summary(mod.fit3, split=list(AppRate.new = list(Linear=1, Quad=2)))
+```
+
+---
+
+# Model based on our actual results
+
++ Need to get estimates for our coefficients.
+$$y = 37.4554 - 1.1786*rate + 0.4375*rate^2$$ 
+
+```{r echo=TRUE}
+mod.fit4 <- lm(Weight ~ AppRate + I(AppRate^2), data = azalea2)
+summary(mod.fit4)
+```
+
+---
+
+# If there had been an interaction?
+
++ For 3 days before: $y = 39.0565 - 1.3393*rate + 0.4375*rate^2$
+
++ For 7 days after: $y = 35.8541 - 1.0179*rate + 0.4375*rate^2$
+
+```{r echo=TRUE}
+mod.fit5 <- lm(Weight ~ AppTime.new + AppRate + I(AppRate^2) + AppTime.new:AppRate, data = azalea2)
+summary(mod.fit5)
+```
+
+---
+
+# Last Twist!
+
+You learn the researchers actually 7 plots, and they made sure all six treatment combinations of the **N** fungicide were included. The researchers completed the experiment in a Randomized Complete Block Design! (*Note*: We are also going to go back to the assumption it is a qualitative/qualitative analysis.)
+
++ A *block* allows us to group experimental units together such that the variance expected within the block is a lot smaller than the variance between blocks.
+
+  - Think of a plot of land with a river running along one side.
+  
++ We typically assume blocks are a random sample from the population, and thus, our sample of blocks is representative of the population of similar constructed blocks.
+
+  - Makes the effect of the block a *random effect*.
+
+---
+
+# RCBD Models Examples
+
++ One-Way ANOVA
+
+$$y_{ij} = \mu + \tau_i + b_j + \varepsilon_{ij}$$
+
++ $b_j \sim N(0,\sigma_b^2)$ is the effect of the $j^{th}$ block
++ The rest of the aspects of the model are basically the same as before. Description of subscripts changes.
+
++ Two-Way ANOVA
+
+$$y_{ijk} = \mu + \alpha_i + \beta_j + \alpha\beta_{ij} + b_k + \varepsilon_{ijk}$$
+
++ $b_k \sim N(0,\sigma_b^2)$ is the effect of the $k^{th}$ block
++ The rest of the aspects of the model are basically the same as before. Description of subscripts changes.
+
+---
+
+# RCBD Analysis in R

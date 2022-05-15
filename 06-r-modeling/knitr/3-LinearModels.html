@@ -388,12 +388,343 @@ Anova(mod.fit2, type = "II")
 ## Anova Table (Type II tests)
 ## 
 ## Response: Weight
-##                          Sum Sq Df F value Pr(&gt;F)
-## AppTime.new               52.60  1  1.3442 0.2539
-## AppRate.new               52.33  2  0.6688 0.5186
-## AppTime.new:AppRate.new   71.48  2  0.9134 0.4103
-## Residuals               1408.57 36
+##                          Sum Sq Df F value
+## AppTime.new               52.60  1  1.4966
+## AppRate.new              262.90  2  3.7405
+## AppTime.new:AppRate.new    4.33  2  0.0617
+## Residuals               1265.14 36        
+##                          Pr(&gt;F)  
+## AppTime.new             0.22914  
+## AppRate.new             0.03342 *
+## AppTime.new:AppRate.new 0.94031  
+## Residuals                        
+## ---
+## Signif. codes:  
+## 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ```
+
+---
+
+# Results
+
++ No evidence of an interaction between the time of application and application rate.
++ No evidence of a main effect of time of application.
++ We have strong evidence there is a main effect of application rate.
++ Thus, we look at the *main effect* of application rate using `emmeans`.
+
+
+```r
+emmeans(mod.fit2, pairwise ~ AppRate.new)
+```
+
+```
+## $emmeans
+##  AppRate.new emmean   SE df lower.CL upper.CL
+##  1             36.7 1.58 36     33.5     39.9
+##  3             37.9 1.58 36     34.6     41.1
+##  5             42.5 1.58 36     39.3     45.7
+## 
+## Results are averaged over the levels of: AppTime.new 
+## Confidence level used: 0.95 
+## 
+## $contrasts
+##  contrast estimate   SE df t.ratio p.value
+##  1 - 3       -1.14 2.24 36  -0.510  0.8669
+##  1 - 5       -5.79 2.24 36  -2.582  0.0365
+##  3 - 5       -4.64 2.24 36  -2.072  0.1100
+## 
+## Results are averaged over the levels of: AppTime.new 
+## P value adjustment: tukey method for comparing a family of 3 estimates
+```
+
+---
+
+# But what if there HAD been an interaction?
+
++ Still use the `emmeans` function!
+
++ In the `pairwise` part of the argument, use the vertical bar, |, to denote which treatment factor you want to keep **constant**.
+
+  - Factor you want to look at differences of | Factor you want to keep constant
+
+---
+
+
+```r
+emmeans(mod.fit2, pairwise ~ AppRate.new|AppTime.new)
+```
+
+```
+## $emmeans
+## AppTime.new = 1:
+##  AppRate.new emmean   SE df lower.CL upper.CL
+##  1             38.3 2.24 36     33.7     42.8
+##  3             38.7 2.24 36     34.2     43.3
+##  5             43.4 2.24 36     38.9     48.0
+## 
+## AppTime.new = 2:
+##  AppRate.new emmean   SE df lower.CL upper.CL
+##  1             35.1 2.24 36     30.6     39.7
+##  3             37.0 2.24 36     32.5     41.5
+##  5             41.6 2.24 36     37.0     46.1
+## 
+## Confidence level used: 0.95 
+## 
+## $contrasts
+## AppTime.new = 1:
+##  contrast estimate   SE df t.ratio p.value
+##  1 - 3      -0.429 3.17 36  -0.135  0.9900
+##  1 - 5      -5.143 3.17 36  -1.623  0.2492
+##  3 - 5      -4.714 3.17 36  -1.488  0.3086
+## 
+## AppTime.new = 2:
+##  contrast estimate   SE df t.ratio p.value
+##  1 - 3      -1.857 3.17 36  -0.586  0.8284
+##  1 - 5      -6.429 3.17 36  -2.029  0.1198
+##  3 - 5      -4.571 3.17 36  -1.443  0.3303
+## 
+## P value adjustment: tukey method for comparing a family of 3 estimates
+```
+
+---
+
+
+```r
+emmeans(mod.fit2, pairwise ~ AppTime.new|AppRate.new)
+```
+
+```
+## $emmeans
+## AppRate.new = 1:
+##  AppTime.new emmean   SE df lower.CL upper.CL
+##  1             38.3 2.24 36     33.7     42.8
+##  2             35.1 2.24 36     30.6     39.7
+## 
+## AppRate.new = 3:
+##  AppTime.new emmean   SE df lower.CL upper.CL
+##  1             38.7 2.24 36     34.2     43.3
+##  2             37.0 2.24 36     32.5     41.5
+## 
+## AppRate.new = 5:
+##  AppTime.new emmean   SE df lower.CL upper.CL
+##  1             43.4 2.24 36     38.9     48.0
+##  2             41.6 2.24 36     37.0     46.1
+## 
+## Confidence level used: 0.95 
+## 
+## $contrasts
+## AppRate.new = 1:
+##  contrast estimate   SE df t.ratio p.value
+##  1 - 2        3.14 3.17 36   0.992  0.3279
+## 
+## AppRate.new = 3:
+##  contrast estimate   SE df t.ratio p.value
+##  1 - 2        1.71 3.17 36   0.541  0.5918
+## 
+## AppRate.new = 5:
+##  contrast estimate   SE df t.ratio p.value
+##  1 - 2        1.86 3.17 36   0.586  0.5615
+```
+
+---
+
+# Another Twist!
+
+In the previous analysis, we treated application rate as a qualitative/categorical variable, meaning the researchers are *only* interested in the levels of 1 oz., 3 oz., and 5 oz. You learn the researchers actually want to be able to predict the fresh weight of azaleas that were given **N** at the 2 oz. rate. 
+
++ Before, we were analyzing a qualitative/qualitative factorial, where both treatment factors are qualitative.
+
++ Now, we want to change the analysis to a qualitative/quantitative factorial.
+
+  - Time of application remains a qualitative variable.
+  
+  - Application rate is updated to a quantitative.
+  
+---
+
+# Quant/Qual Factorial
+
++ We are now adding in *regression* to our factorial analysis.
+
++ Want to know if the same line can be fit for the two levels time of application
+
+  - In other words, does the time of application effect the prediction of fresh weight of azaleas for the rate of application?
+  
+  - In other, other words, is there an interaction?
+
++ Our hypotheses are very similar to what they were earlier. We just now need to add in a test of shape for the regression lines.
+
+  - To determine the maximum power of your regression line, take the number of levels of your quantitative factor and subtract 1.
+  
+  - So for our example, we have 3 levels. Thus, we can fit up to a maximum power of 2 (a quadratic).
+  
+---
+
+# Quant/Qual Factorial in R
+
++ Need to use orthogonal contrasts in order to test for shape. Outside the scope of this workshop.
+  - These contrasts are nicely built into R.
+
+
+```r
+mod.fit3 &lt;- aov(Weight ~ AppTime.new + AppRate.new + AppTime.new:AppRate.new, data = azalea2)
+summary(mod.fit3, split=list(AppRate.new = list(Linear=1, Quad=2)))
+```
+
+```
+##                                   Df Sum Sq
+## AppTime.new                        1   52.6
+## AppRate.new                        2  262.9
+##   AppRate.new: Linear              1   28.6
+##   AppRate.new: Quad                1  234.3
+## AppTime.new:AppRate.new            2    4.3
+##   AppTime.new:AppRate.new: Linear  1    1.4
+##   AppTime.new:AppRate.new: Quad    1    2.9
+## Residuals                         36 1265.1
+##                                   Mean Sq F value
+## AppTime.new                         52.60   1.497
+## AppRate.new                        131.45   3.741
+##   AppRate.new: Linear               28.58   0.813
+##   AppRate.new: Quad                234.32   6.668
+## AppTime.new:AppRate.new              2.17   0.062
+##   AppTime.new:AppRate.new: Linear    1.44   0.041
+##   AppTime.new:AppRate.new: Quad      2.89   0.082
+## Residuals                           35.14        
+##                                   Pr(&gt;F)  
+## AppTime.new                       0.2291  
+## AppRate.new                       0.0334 *
+##   AppRate.new: Linear             0.3731  
+##   AppRate.new: Quad               0.0140 *
+## AppTime.new:AppRate.new           0.9403  
+##   AppTime.new:AppRate.new: Linear 0.8407  
+##   AppTime.new:AppRate.new: Quad   0.7758  
+## Residuals                                 
+## ---
+## Signif. codes:  
+## 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+```
+
+---
+
+# Model based on our actual results
+
++ Need to get estimates for our coefficients.
+`$$y = 37.4554 - 1.1786*rate + 0.4375*rate^2$$` 
+
+
+```r
+mod.fit4 &lt;- lm(Weight ~ AppRate + I(AppRate^2), data = azalea2)
+summary(mod.fit4)
+```
+
+```
+## 
+## Call:
+## lm(formula = Weight ~ AppRate + I(AppRate^2), data = azalea2)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -13.7143  -3.3393   0.3929   4.0357   9.5000 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)
+## (Intercept)   37.4554     3.5548  10.537  5.7e-13
+## AppRate       -1.1786     2.9112  -0.405    0.688
+## I(AppRate^2)   0.4375     0.4764   0.918    0.364
+##                 
+## (Intercept)  ***
+## AppRate         
+## I(AppRate^2)    
+## ---
+## Signif. codes:  
+## 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 5.822 on 39 degrees of freedom
+## Multiple R-squared:  0.1659,	Adjusted R-squared:  0.1231 
+## F-statistic: 3.878 on 2 and 39 DF,  p-value: 0.02911
+```
+
+---
+
+# If there had been an interaction?
+
++ For 3 days before: `\(y = 39.0565 - 1.3393*rate + 0.4375*rate^2\)`
+
++ For 7 days after: `\(y = 35.8541 - 1.0179*rate + 0.4375*rate^2\)`
+
+
+```r
+mod.fit5 &lt;- lm(Weight ~ AppTime.new + AppRate + I(AppRate^2) + AppTime.new:AppRate, data = azalea2)
+summary(mod.fit5)
+```
+
+```
+## 
+## Call:
+## lm(formula = Weight ~ AppTime.new + AppRate + I(AppRate^2) + 
+##     AppTime.new:AppRate, data = azalea2)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -12.2738  -4.0119   0.2798   4.4702   9.7262 
+## 
+## Coefficients:
+##                      Estimate Std. Error t value
+## (Intercept)           39.0565     4.0406   9.666
+## AppTime.new2          -3.2024     3.7767  -0.848
+## AppRate               -1.3393     2.9772  -0.450
+## I(AppRate^2)           0.4375     0.4788   0.914
+## AppTime.new2:AppRate   0.3214     1.1057   0.291
+##                      Pr(&gt;|t|)    
+## (Intercept)          1.15e-11 ***
+## AppTime.new2            0.402    
+## AppRate                 0.655    
+## I(AppRate^2)            0.367    
+## AppTime.new2:AppRate    0.773    
+## ---
+## Signif. codes:  
+## 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 5.851 on 37 degrees of freedom
+## Multiple R-squared:  0.2009,	Adjusted R-squared:  0.1145 
+## F-statistic: 2.325 on 4 and 37 DF,  p-value: 0.07446
+```
+
+---
+
+# Last Twist!
+
+You learn the researchers actually 7 plots, and they made sure all six treatment combinations of the **N** fungicide were included. The researchers completed the experiment in a Randomized Complete Block Design! (*Note*: We are also going to go back to the assumption it is a qualitative/qualitative analysis.)
+
++ A *block* allows us to group experimental units together such that the variance expected within the block is a lot smaller than the variance between blocks.
+
+  - Think of a plot of land with a river running along one side.
+  
++ We typically assume blocks are a random sample from the population, and thus, our sample of blocks is representative of the population of similar constructed blocks.
+
+  - Makes the effect of the block a *random effect*.
+
+---
+
+# RCBD Models Examples
+
++ One-Way ANOVA
+
+`$$y_{ij} = \mu + \tau_i + b_j + \varepsilon_{ij}$$`
+
++ `\(b_j \sim N(0,\sigma_b^2)\)` is the effect of the `\(j^{th}\)` block
++ The rest of the aspects of the model are basically the same as before. Description of subscripts changes.
+
++ Two-Way ANOVA
+
+`$$y_{ijk} = \mu + \alpha_i + \beta_j + \alpha\beta_{ij} + b_k + \varepsilon_{ijk}$$`
+
++ `\(b_k \sim N(0,\sigma_b^2)\)` is the effect of the `\(k^{th}\)` block
++ The rest of the aspects of the model are basically the same as before. Description of subscripts changes.
+
+---
+
+# RCBD Analysis in R
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
