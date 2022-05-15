@@ -249,7 +249,7 @@ penguins_results
    &lt;th style="text-align:right;"&gt; estimate1 &lt;/th&gt;
    &lt;th style="text-align:right;"&gt; estimate2 &lt;/th&gt;
    &lt;th style="text-align:right;"&gt; statistic &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; p.value &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; p.value &lt;/th&gt;
    &lt;th style="text-align:right;"&gt; parameter &lt;/th&gt;
    &lt;th style="text-align:right;"&gt; conf.low &lt;/th&gt;
    &lt;th style="text-align:right;"&gt; conf.high &lt;/th&gt;
@@ -263,7 +263,7 @@ penguins_results
    &lt;td style="text-align:right;"&gt; 3862.3 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 4545.7 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; -8.6 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &amp;lt;0.001 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 323.9 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; -840.6 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; -526.2 &lt;/td&gt;
@@ -334,7 +334,7 @@ penguins_ttest2
    &lt;th style="text-align:right;"&gt; estimate1 &lt;/th&gt;
    &lt;th style="text-align:right;"&gt; estimate2 &lt;/th&gt;
    &lt;th style="text-align:right;"&gt; statistic &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; p.value &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; p.value &lt;/th&gt;
    &lt;th style="text-align:right;"&gt; parameter &lt;/th&gt;
    &lt;th style="text-align:right;"&gt; conf.low &lt;/th&gt;
    &lt;th style="text-align:right;"&gt; conf.high &lt;/th&gt;
@@ -348,7 +348,7 @@ penguins_ttest2
    &lt;td style="text-align:right;"&gt; 4545.7 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 3862.3 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 8.6 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &amp;lt;0.001 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 323.9 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 526.2 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 840.6 &lt;/td&gt;
@@ -489,6 +489,144 @@ chisq.test(penguins3$island, penguins3$species,
  
 ---
 ## Simple Regression
+
+**Research Question** Is there a relationship between penguin body mass and flipper length?
+
+.pull-left[
+**Data**
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:right;"&gt; body_mass_g &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; flipper_length_mm &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 3750 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 181 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 3800 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 186 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 3250 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 195 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;br&gt;
+&lt;br&gt;
+**Numerical Summary**
+
+Pearson Correlation
+
+```
+## [1] 0.8712018
+```
+
+].pull-right[
+
+**Graphical Summary**
+ 
+![](2-BasicStatisticalTests_files/figure-html/penguins-regression-scatterplot-1.png)&lt;!-- --&gt;
+
+]
+
+---
+## Simple Regression
+
+`$$y = \text{slope} \cdot x + \text{intercept} + \text{error}$$`
+
+
+```r
+help(lm)
+regression_mod &lt;- lm(y ~ x, data = data_name)
+summary(regression_mod)
+```
+
+---
+## Simple Regression
+
+
+```r
+*penguins_regression &lt;- lm(body_mass_g ~ flipper_length_mm, data = penguins4)
+summary(penguins_regression)
+```
+
+```
+## 
+## Call:
+## lm(formula = body_mass_g ~ flipper_length_mm, data = penguins4)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -1058.80  -259.27   -26.88   247.33  1288.69 
+## 
+## Coefficients:
+##                    Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)       -5780.831    305.815  -18.90   &lt;2e-16 ***
+## flipper_length_mm    49.686      1.518   32.72   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 394.3 on 340 degrees of freedom
+## Multiple R-squared:  0.759,	Adjusted R-squared:  0.7583 
+## F-statistic:  1071 on 1 and 340 DF,  p-value: &lt; 2.2e-16
+```
+
+---
+## Simple Regression (evaluate model)
+
+```r
+par(mfrow = c(2,2))
+plot(penguins_regression)
+```
+
+&lt;img src="2-BasicStatisticalTests_files/figure-html/penguins-assumptions-1.png" style="display: block; margin: auto;" /&gt;
+
+```r
+par(mfrow = c(1,1))
+```
+
+---
+## Simple Regression (results)
+
+
+```r
+tidy(penguins_regression)  %&gt;% 
+  mutate(p.value = scales::pvalue(p.value))
+```
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; term &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; estimate &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; std.error &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; statistic &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; p.value &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; (Intercept) &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -5780.831 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 305.815 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -18.903 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &amp;lt;0.001 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; flipper_length_mm &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 49.686 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.518 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 32.722 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &amp;lt;0.001 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
 
 ---
 ## Main points
