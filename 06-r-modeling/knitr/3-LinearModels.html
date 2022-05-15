@@ -32,16 +32,20 @@ class: center, middle
 # Outline
 
 + One Way ANOVA
+
 + Two-way ANOVA 
+
   + Qualitative/Qualitative
+  
   + Quantitative/Qualitative
+  
 + Blocking
 
 ---
 
 # Overarching Example
 
-A plant pathology researcher is studying the effect of an experimental fungicide on the fresh weight of azaleas inoculated with a certain fungus. She has 49 potted plants of a particular azalea variety growing in a greenhouse. All plants are inoculated with a fungus. To start, she has 7 different fungicide combinations, with 7 plants per treatment.
+A plant pathology researcher is studying the effect of an experimental fungicide on the fresh weight of azaleas inoculated with a certain fungus. She has 49 potted plants of a particular azalea variety growing in a greenhouse. All plants are inoculated with a fungus. To start, she has 7 different fungicide combinations, with 7 plants per treatment.(Example from Lentner and Bishop, *Experimental Design and Analysis (2nd)*)
 
 
 ```r
@@ -65,7 +69,7 @@ head(azalea)
 
 # One-Way Analysis of Variance (ANOVA)
 
-+ Esstentially an expansion of the t-test [Source](https://tjfisher19.github.io/introStatModeling/introduction-to-statistical-modeling-and-designed-experiments.html#one-way-anova)
++ Essentially an expansion of the t-test [Source](https://tjfisher19.github.io/introStatModeling/introduction-to-statistical-modeling-and-designed-experiments.html#one-way-anova)
 
 + Compare more than 2 levels of a treatment factor
 
@@ -81,6 +85,295 @@ head(azalea)
 
 # One-Way ANOVA Model
 
+`$$y_{ij} = \mu + \tau_i + \varepsilon_{ij}$$`
+
++ `\(y_{ij}\)` is the response of the `\(j^{th}\)` observation in the `\(i^{th}\)` treatment level
++ `\(\mu\)` is the overall/grand mean
++ `\(\tau_i\)` is the effect of the `\(i^{th}\)` treatment level
++ `\(\varepsilon_{ij} \sim N(0,\sigma^2)\)` is the residual error
+
+In terms of our example:
+
++ `\(y_{ij}\)` is the fresh weight of the `\(j^{th}\)` azalea in the `\(i^{th}\)` fungicide level
++ `\(\mu\)` is the overall/grand mean
++ `\(\tau_i\)` is the effect of the `\(i^{th}\)` fungicide level
++ `\(\varepsilon_{ij} \sim N(0,\sigma^2)\)` is the residual error
+
+---
+
+# One-Way ANOVA Hypotheses
+
+`$$H_0: \mu_1 = \mu_2 = ... = \mu_n$$`
+`$$H_A: \text{at least one } \mu_i \text{ is different}$$`
+
+OR
+
+`$$H_0: \tau_1 = \tau_2 = ... = \tau_n = 0$$`
+`$$H_A: \text{at least one } \tau_i \ne 0$$`
+
+These hypotheses are **equivalent**, just being expressed in two different ways.
+
+---
+
+# One-Way ANOVA in R
+
++ When running this in R, **make sure** the variables are the type you need them.
++ The following code is incorrect... why?
+
+
+```r
+library(car)
+#mod.fit &lt;- lm(response ~ trt, data = data)
+mod.fit &lt;- lm(Weight ~ Trt, data = azalea)
+Anova(mod.fit, type = "II")
+```
+
+```
+## Anova Table (Type II tests)
+## 
+## Response: Weight
+##            Sum Sq Df F value Pr(&gt;F)
+## Trt         11.27  1  0.3117 0.5793
+## Residuals 1699.26 47
+```
+
++ Note the only 1 degree of freedom with treatment. We should have 6!
+
+---
+
+# One-Way ANOVA in R
+
++ When running this in R, **make sure** the variables are the type you need them.
++ Change `Trt` to a factor!
+
+
+```r
+library(car)
+#mod.fit &lt;- lm(response ~ trt, data = data)
+azalea$Trt.new &lt;- as.factor(azalea$Trt)
+mod.fit &lt;- lm(Weight ~ Trt.new, data = azalea)
+Anova(mod.fit, type = "II")
+```
+
+```
+## Anova Table (Type II tests)
+## 
+## Response: Weight
+##            Sum Sq Df F value Pr(&gt;F)
+## Trt.new    337.96  6  1.7236 0.1392
+## Residuals 1372.57 42
+```
+
++ We do not have evidence of an effect of fungicide combination on the mean fresh weight of azaleas.
+
+---
+
+# But what if we did have a difference?!
+
++ If you reject the null hypothesis in a One-Way ANOVA, the result only tells you that **at least** one mean is different (i.e. at least one treatment level is different from the others).
++ We want to know *which* treatment levels are different!
++ Use `emmeans`
+
+---
+
+# `emmeans` results
+
+
+```r
+library(emmeans)
+emmeans(mod.fit, pairwise ~ Trt.new)
+```
+
+```
+## $emmeans
+##  Trt.new emmean   SE df lower.CL upper.CL
+##  1         37.3 2.16 42     32.9     41.6
+##  2         38.3 2.16 42     33.9     42.6
+##  3         38.7 2.16 42     34.4     43.1
+##  4         43.4 2.16 42     39.1     47.8
+##  5         35.1 2.16 42     30.8     39.5
+##  6         37.0 2.16 42     32.6     41.4
+##  7         41.6 2.16 42     37.2     45.9
+## 
+## Confidence level used: 0.95 
+## 
+## $contrasts
+##  contrast estimate   SE df t.ratio p.value
+##  1 - 2      -1.000 3.06 42  -0.327  0.9999
+##  1 - 3      -1.429 3.06 42  -0.468  0.9991
+##  1 - 4      -6.143 3.06 42  -2.010  0.4236
+##  1 - 5       2.143 3.06 42   0.701  0.9918
+##  1 - 6       0.286 3.06 42   0.094  1.0000
+##  1 - 7      -4.286 3.06 42  -1.403  0.7974
+##  2 - 3      -0.429 3.06 42  -0.140  1.0000
+##  2 - 4      -5.143 3.06 42  -1.683  0.6307
+##  2 - 5       3.143 3.06 42   1.029  0.9444
+##  2 - 6       1.286 3.06 42   0.421  0.9995
+##  2 - 7      -3.286 3.06 42  -1.075  0.9319
+##  3 - 4      -4.714 3.06 42  -1.543  0.7179
+##  3 - 5       3.571 3.06 42   1.169  0.9018
+##  3 - 6       1.714 3.06 42   0.561  0.9976
+##  3 - 7      -2.857 3.06 42  -0.935  0.9645
+##  4 - 5       8.286 3.06 42   2.712  0.1204
+##  4 - 6       6.429 3.06 42   2.104  0.3693
+##  4 - 7       1.857 3.06 42   0.608  0.9962
+##  5 - 6      -1.857 3.06 42  -0.608  0.9962
+##  5 - 7      -6.429 3.06 42  -2.104  0.3693
+##  6 - 7      -4.571 3.06 42  -1.496  0.7455
+## 
+## P value adjustment: tukey method for comparing a family of 7 estimates
+```
+
+---
+
+# New Information!
+
+Suppose you find out from the researchers that are actually only two fungicides used. Treatment 1 is a standard fungicide, Truban (**T**), and is used as a control in the experiment. Treatments 2-7 are the experimental fungicide, Nurell (**N**), that is applied at different times and rates. The researchers want to compare **T** and **N** to see if there is a difference between these two fungicide treatments.
+
+---
+
+# How do we address this new information?
+
++ Contrast!
++ We can write a specific test that uses our model from before to test for a difference between **T** and **N**. 
+
+| 1       | 2       | 3       | 4       | 5       | 6       | 7       |
+|---------|---------|---------|---------|---------|---------|---------|
+| T       | N       | N       | N       | N       | N       | N       |
+| `\(\mu_1\)` | `\(\mu_2\)` | `\(\mu_3\)` | `\(\mu_4\)` | `\(\mu_5\)` | `\(\mu_6\)` | `\(\mu_7\)` |
+
++ We would average together treatments 2-7 and compare to treatment 1.
+
+`$$H_0: \mu_1 = \frac{\mu_2 + \mu_3 + \mu_4 + \mu_5 + \mu_6 + \mu_7}{6}$$`
+
+`$$H_A: \mu_1 \ne \frac{\mu_2 + \mu_3 + \mu_4 + \mu_5 + \mu_6 + \mu_7}{6}$$`
+
+---
+
+# Contrast in R
+
+
+
++ If you care about the estimate and standard error:
+
+```r
+library(gmodels)
+fit.contrast(mod.fit, "Trt.new", c(1, -1/6, -1/6, -1/6, -1/6, -1/6, -1/6))
+```
+
+```
+##                                                                                                                                    Estimate
+## Trt.new c=( 1 -0.166666666666667 -0.166666666666667 -0.166666666666667 -0.166666666666667 -0.166666666666667 -0.166666666666667 ) -1.738095
+##                                                                                                                                   Std. Error
+## Trt.new c=( 1 -0.166666666666667 -0.166666666666667 -0.166666666666667 -0.166666666666667 -0.166666666666667 -0.166666666666667 )   2.333819
+##                                                                                                                                      t value
+## Trt.new c=( 1 -0.166666666666667 -0.166666666666667 -0.166666666666667 -0.166666666666667 -0.166666666666667 -0.166666666666667 ) -0.7447429
+##                                                                                                                                    Pr(&gt;|t|)
+## Trt.new c=( 1 -0.166666666666667 -0.166666666666667 -0.166666666666667 -0.166666666666667 -0.166666666666667 -0.166666666666667 ) 0.4605743
+## attr(,"class")
+## [1] "fit_contrast"
+```
+
+---
+
+# Contrast in R
+
++ If you **only care** about the test:
+
+```r
+fit.contrast(mod.fit, "Trt.new", c(6, -1, -1, -1, -1, -1, -1))
+```
+
+```
+##                                    Estimate
+## Trt.new c=( 6 -1 -1 -1 -1 -1 -1 ) -10.42857
+##                                   Std. Error
+## Trt.new c=( 6 -1 -1 -1 -1 -1 -1 )   14.00292
+##                                      t value
+## Trt.new c=( 6 -1 -1 -1 -1 -1 -1 ) -0.7447429
+##                                    Pr(&gt;|t|)
+## Trt.new c=( 6 -1 -1 -1 -1 -1 -1 ) 0.4605743
+## attr(,"class")
+## [1] "fit_contrast"
+```
+
++ Again, no evidence there is a difference between the mean fresh weight of **T** and **N**.
+
+---
+
+# More information!
+
+Now that the researchers know there isn't a difference between the **T** and **N** fungicides, they want to know more about the **N** fungicide specifically. You learn that this fungicide was applied either 3 days before inoculation or 7 days after inoculation. Additionally, it is applied at either the 1 oz., 3 oz., or 5 oz. dose rates.
+
+| N             | N             | N             | N            | N            | N            |
+|---------------|---------------|---------------|--------------|--------------|--------------|
+| 3 days before | 3 days before | 3 days before | 7 days after | 7 days after | 7 days after |
+| 1 oz.         | 3 oz.         | 5 oz.         | 1 oz.        | 3 oz.        | 5 oz.        |
+
+Now, instead of a single treatment factor, we have 2! We have time of application and rate of application. Thus, a One-Way ANOVA will no longer suffice. 
+
+---
+
+# Two-Way ANOVA
+
++ Extension of One-Way ANOVA, we just now have two treatment factors instead of one.
+
++ When dealing with more than one treatment factor, our treatment design is now a *factorial*.
+
++ You have an `\(i \times j\)` factorial
+  - `\(i\)` is the number of levels of treatment 1
+  - `\(j\)` is the number of levels of treatment 2
+  - So in our example, we have a `\(2 \times 3\)` factorial.
+  
++ We are interested in knowing if the two treatment factors *interact* in their effect on the response.
+  - If the response of one factor strongly depends on the level of the other factor, the two factors are said to *interact*.
+
+---
+
+# Two-Way ANOVA Model
+
+`$$y_{ijk} = \mu + \alpha_i + \beta_j + \alpha\beta_{ij} + \varepsilon_{ijk}$$`
+
++ `\(y_{ijk}\)` is the response of the `\(k^{th}\)` observation in the `\(i^{th}\)` treatment level of treatment 1 and the `\(j^{th}\)` treatment level of treatment 2
++ `\(\mu\)` is the overall/grand mean
++ `\(\alpha_i\)` is the effect of the `\(i^{th}\)` treatment level of treatment 1
++ `\(\beta_j\)` is the effect of the `\(j^{th}\)` treatment level of treatment 2
++ `\(\alpha\beta_{ij}\)` is the interaction effect of the `\(i^{th}\)` and `\(j^th\)` treatment levels of treatments 1 and 2 respectively
++ `\(\varepsilon_{ijk} \sim N(0,\sigma^2)\)` is the residual error
+
+---
+
+# Two-Way ANOVA Model cont.
+
+In terms of our example:
+
++ `\(y_{ijk}\)` is the fresh weight of the `\(k^{th}\)` azalea in the `\(i^{th}\)` treatment level of time of application and the `\(j^{th}\)` treatment level of application rate
++ `\(\mu\)` is the overall/grand mean
++ `\(\alpha_i\)` is the effect of the `\(i^{th}\)` treatment level of time of application
++ `\(\beta_j\)` is the effect of the `\(j^{th}\)` treatment level of application rate
++ `\(\alpha\beta_{ij}\)` is the interaction effect of the `\(i^{th}\)` and `\(j^th\)` treatment levels of time of application and application rate respectively
++ `\(\varepsilon_{ijk} \sim N(0,\sigma^2)\)` is the residual error
+
+---
+
+# Two-Way ANOVA Hypotheses
+
++ The first set of hypotheses we analyze with a Two-Way ANOVA is a test of the interaction.
+
+`$$H_0: \text{There is no interaction.}$$`
+`$$H_A: \text{There is an interaction.}$$`
+
++ If we **reject** the null hypothesis and conclude there is an interaction, we proceed by looking at the *simple effects*. 
+
+  - The difference between means of two levels of one factor **at a single level of the other factor**.
+  
++ If we **fail to reject** the null hypothesis and conclude there is no evidence of an interaction, we proceed by looking at the *main effects*.
+
+  - The means for each level of one factor averaged over the levels of the other.
+  
+---
+
+# Two-Way ANOVA in R
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
