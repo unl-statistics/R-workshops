@@ -1,13 +1,52 @@
-# --------------------------------------
-# R PACKAGE SETUP ----------------------
-# --------------------------------------
-library(ggplot2)
-library(gridExtra)
-library(patchwork)
+## ----setup, include=FALSE-------------------------------------------------------------------------------
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(
+	echo = TRUE,
+	message = FALSE,
+	warning = FALSE,
+	cache = TRUE
+)
 
-# --------------------------------------
-# BUILT IN THEMES ----------------------
-# --------------------------------------
+
+## ---- echo=FALSE----------------------------------------------------------------------------------------
+library(ggplot2)
+library(ggsci)
+library(ggthemes)
+library(gridExtra)
+library(grid)
+
+grid_arrange_shared_legend <- function(..., ncol = length(list(...)), nrow = 1, position = c("bottom", "right")) {
+
+  plots <- list(...)
+  position <- match.arg(position)
+  g <- ggplotGrob(plots[[1]] + theme(legend.position = position))$grobs
+  legend <- g[[which(sapply(g, function(x) x$name) == "guide-box")]]
+  lheight <- sum(legend$height)
+  lwidth <- sum(legend$width)
+  gl <- lapply(plots, function(x) x + theme(legend.position="none"))
+  gl <- c(gl, ncol = ncol, nrow = nrow)
+
+  combined <- switch(position,
+                     "bottom" = arrangeGrob(do.call(arrangeGrob, gl),
+                                            legend,
+                                            ncol = 1,
+                                            heights = unit.c(unit(1, "npc") - lheight, lheight)),
+                     "right" = arrangeGrob(do.call(arrangeGrob, gl),
+                                           legend,
+                                           ncol = 2,
+                                           widths = unit.c(unit(1, "npc") - lwidth, lwidth)))
+  
+  grid.newpage()
+  grid.draw(combined)
+
+  # return gtable invisibly
+  invisible(combined)
+
+}
+
+
+
+## ---- echo=FALSE, fig.height=7, fig.width=10, message=FALSE, warning=FALSE------------------------------
 mtcars$gear <- factor(mtcars$gear)
 
 p0 <- ggplot(mtcars, aes(x = wt, y = mpg, colour = gear)) + geom_point() 
@@ -37,9 +76,8 @@ p6 <- p0 +
 
 grid.arrange(p11, p2, p3, p4, p5, p6, nrow = 2)
 
-# --------------------------------------
-# ggthemes (a ggplot2 extension) -------
-# --------------------------------------
+
+## ---- echo=FALSE, fig.height=7, fig.width=10------------------------------------------------------------
 library(ggthemes)
 
 # Economist theme
@@ -88,70 +126,100 @@ p8 <- p0 +
 
 grid.arrange(p11, p1, p2, p3, p4, p5, p6, p7, p8, nrow = 3)
 
-# --------------------------------------
-# SETTING THEMES -----------------------
-# --------------------------------------
 
+## ---- fig.width=8, fig.height=5, fig.align = "center"---------------------------------------------------
 theme_set(theme_bw()) #<<
 ggplot(mtcars, aes(x = wt, y = mpg, colour = gear)) + 
   geom_point()
 
-# --------------------------------------
-# MODIFYING A PLOT ---------------------
-# --------------------------------------
 
+## ---- fig.height=4, fig.width=10, eval = FALSE----------------------------------------------------------
+## p1 <- ggplot(mpg) +
+##   geom_bar(aes(x = class, colour = manufacturer, fill = manufacturer) )
+## 
+## p2 <- p1 + #<<
+##   theme_classic() +
+##   ## modify plot background
+##   theme(plot.background = element_rect(fill = "lightskyblue1",colour = "pink",size = 0.5, linetype = "longdash")) #<<
+
+
+## ---- fig.height=4, fig.width=12, echo = FALSE, fig.align = "center"------------------------------------
 p1 <- ggplot(mpg) + 
   geom_bar(aes(x = class, colour = manufacturer, fill = manufacturer) ) 
 
-## modify plot background
-p2 <- p1 +
-  theme_classic() + 
-  theme(plot.background = element_rect(fill = "lightskyblue1",colour = "pink",size = 0.5, linetype = "longdash")) #<<
+p2 <- p1 + theme_classic() + theme(
+  ## modify plot background
+  plot.background = element_rect(fill = "lightskyblue1",colour = "pink",size = 0.5, linetype = "longdash")
+  )
+grid.arrange(p1, p2, nrow = 1)
 
-p1 + p2
 
-# move and modify legend
+## ---- fig.height=4, fig.width=12, fig.align = "center"--------------------------------------------------
 p3 <- p2 + 
   theme(
-    legend.title = element_blank(),
-    legend.position = "top",
-    legend.key = element_rect(fill = "lightskyblue1", color = "lightskyblue1"),
-    legend.background = element_rect( fill = "lightskyblue1",color = "pink", size = 0.5,linetype = "longdash")
+  ### move and modify legend 
+  legend.title = element_blank(), #<<
+  legend.position = "top", #<<
+  legend.key = element_rect(fill = "lightskyblue1", color = "lightskyblue1"), #<<
+  legend.background = element_rect( fill = "lightskyblue1",color = "pink", size = 0.5,linetype = "longdash") #<<
   )
 
-p2 + p3
 
-# modifying axes
+## ---- fig.height=4, fig.width=10, echo = FALSE----------------------------------------------------------
+grid.arrange(p2, p3, nrow = 1)
+
+
+## ---- echo=TRUE, fig.height=4, fig.width=12-------------------------------------------------------------
 p4 <- p3 + theme(
   ### remove axis ticks
-  axis.ticks=element_blank(),
+  axis.ticks=element_blank(), #<<
   ### modify axis lines
   axis.line.y = element_line(colour = "pink", size = 1, linetype = "dashed"),#<<
   axis.line.x = element_line(colour = "pink", size = 1.2, linetype = "dashed") #<<
-)
+  )
 
-p3 + p4
 
-# plot labels
-p5a <- p4 + 
-  labs(x = "Class of car", 
-       y = "", 
-       title = "Cars by class and manufacturer", 
-       subtitle = "With a custom theme!!") 
+## ---- echo=FALSE, fig.height=4, fig.width=8-------------------------------------------------------------
+grid.arrange(p3, p4, nrow = 1)
 
-# alternative labels
-p5b <- p4 + 
-  scale_x_discrete(name = "Class of car") +
-  scale_y_continuous(name = "") +
-  ggtitle("Cars by class and manufacturer", subtitle = "With a custom theme!!")
 
-p4 + p5a + p5b
+## ---- echo=TRUE, fig.height=3.5, fig.width=10-----------------------------------------------------------
+p5 <- p4 + 
+  labs(x = "Class of car", #<<
+       y = "", #<<
+       title = "Cars by class and manufacturer", #<<
+       subtitle = "With a custom theme!!") #<<
 
-# zoom
+
+## ---- echo=FALSE, fig.height=3.5, fig.width=10----------------------------------------------------------
+grid.arrange(p4, p5, nrow = 1)
+
+
+## ---- echo=TRUE, fig.height=3.5, fig.width=10-----------------------------------------------------------
+p <- ggplot(mtcars, aes(x = wt, y = mpg, colour = gear)) + 
+  geom_point() 
+
+p_zoom_in <- p + 
+  xlim(2, 4) + #<<
+  ylim(10, 25) #<<
+
+p_zoom_out <- p + 
+  scale_x_continuous(limits = c(0,7)) + #<<
+  scale_y_continuous(limits = c(0, 45)) #<<
+
+
+## ---- echo=FALSE, fig.height=3.5, fig.width=10----------------------------------------------------------
 p <- ggplot(mtcars, aes(x = wt, y = mpg, colour = gear)) + 
   geom_point() + 
   theme(legend.position = "none") + 
-  ggtitle("Default")
+  ggtitle("Default") + 
+  scale_color_locuszoom() +
+  theme(aspect.ratio = 1,
+        axis.text = element_text(size = 14),
+        axis.title = element_text(size = 14),
+        legend.text = element_text(size = 14),
+        legend.title = element_text(size = 14),
+        strip.text = element_text(size = 14))
 
 p_zoom_in <- p + 
   xlim(2, 4) + 
@@ -163,40 +231,27 @@ p_zoom_out <- p +
   scale_y_continuous(limits = c(0, 45)) + 
   ggtitle("Zoomed out")
 
-p + p_zoom_in + p_zoom_out
+grid.arrange(p, p_zoom_in, p_zoom_out, nrow = 1)
 
-# --------------------------------------
-# INTERACTIVE GRAPHICS -----------------
-# --------------------------------------
+
+## ---- fig.height=5, fig.width=8, fig.align = 'center'---------------------------------------------------
 p <- ggplot(mtcars, aes(x = wt, y = mpg, colour = gear)) + 
-  geom_point()
+  geom_point() +
+  scale_color_locuszoom()
 
-library(plotly) 
-ggplotly(p)
+library(plotly) #<<
+ggplotly(p) #<<
 
-# --------------------------------------
-# SAVING GRAPHICS ----------------------
-# --------------------------------------
 
-p1 <- ggplot(mtcars, aes(x = wt, y = mpg, colour = gear)) + 
-  geom_point()
+## ---- eval=FALSE----------------------------------------------------------------------------------------
+## p1 <- ggplot(mtcars, aes(x = wt, y = mpg, colour = gear)) +
+##   geom_point()
+## 
+## ggsave("mpg_by_wt.pdf", plot = p1) #<<
 
-ggsave("mpg_by_wt.pdf", plot = p1)
 
-# --------------------------------------
-# YOUR TURN ----------------------------
-# --------------------------------------
-
-  # 1. Create a scatterplot of `bill length` versus `bill width` from the `penguins` 
-  # 2. Use the black and white theme
-  # 3. Clean up axis labels and include an informative title.
-  # 4. Capitalize legend title and change the color palette from default.
-  # 5. Move the legend to the bottom and set aspect ratio to 1.
-  # 6. Save your plot to a pdf file and open it in a pdf viewer.
-  # 7. Save a png of the same scatterplot. 
-  # 8. Embed the png into MS word or another editor.
-
-# install.packages("palmerpenguins")
-data(penguins, package = "palmerpenguins")
-head(penguins)
+## ---- echo = T, eval = F, fig.width=6, fig.height=4, fig.align = "center"-------------------------------
+## install.packages("palmerpenguins")
+## data(penguins, package = "palmerpenguins")
+## head(penguins)
 

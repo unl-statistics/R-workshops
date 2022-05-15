@@ -1,16 +1,31 @@
-## ----setup, include=FALSE------------------------------------------------
-knitr::opts_chunk$set(message= FALSE, warning = FALSE)
+## ----setup, include=FALSE-------------------------------------------------------------------------------
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(
+	echo = FALSE,
+	message = FALSE,
+	warning = FALSE,
+	cache = TRUE
+)
 
-## ----message=FALSE, warning=FALSE----------------------------------------
+
+
+## ----message=FALSE, warning=FALSE-----------------------------------------------------------------------
 library(readr)
-midwest <- read_csv("http://heike.github.io/rwrks/03-r-format/data/midwest.csv")
-head(midwest)
+library(knitr)
+midwest <- read_csv("http://srvanderplas.github.io/rwrks/03-r-format/data/midwest.csv")
+knitr::kable(head(midwest), format = "html")
 
-## ---- echo=FALSE---------------------------------------------------------
-midwest_names <- read_csv("http://heike.github.io/rwrks/03-r-format/data/midwest.csv", n_max= 2, col_names = FALSE)
-midwest_data <- read_csv("http://heike.github.io/rwrks/03-r-format/data/midwest.csv", skip = 2, col_names = FALSE)
 
-## ---- warning=FALSE, message=FALSE---------------------------------------
+## ---- message=FALSE-------------------------------------------------------------------------------------
+midwest_names <- read_csv(
+  "http://srvanderplas.github.io/rwrks/03-r-format/data/midwest.csv", n_max= 2, 
+  col_names = FALSE)
+midwest_data <- read_csv(
+  "http://srvanderplas.github.io/rwrks/03-r-format/data/midwest.csv", 
+  skip = 2, col_names = FALSE)
+
+
+## ---- warning=FALSE, message=FALSE----------------------------------------------------------------------
 library(lubridate)
 library(tidyverse)
 values <- c(midwest_data$X3, midwest_data$X5, midwest_data$X7, 
@@ -29,32 +44,37 @@ dates <- ymd(dates)
 midwest_gas <- data_frame(date = dates, price = values)
 midwest_gas <- arrange(midwest_gas, dates)
 
-## ---- warning=FALSE, message=FALSE, fig.width=7, fig.height=4------------
+
+## ---- warning=FALSE, message=FALSE, fig.width=7, fig.height=4-------------------------------------------
 library(ggplot2)
 ggplot(midwest_gas, aes(x = date, y = price)) + geom_line()
 
-## ---- eval=FALSE---------------------------------------------------------
+
+## ---- eval=FALSE----------------------------------------------------------------------------------------
 ## library(readxl)
 ## 
 ## midwest2 <- read_excel("midwest.xls")
 ## 
 ## head(midwest2)
 
-## ----midwest, echo=FALSE-------------------------------------------------
+
+## ----midwest, echo=FALSE--------------------------------------------------------------------------------
 library(readxl)
 
 midwest2 <- read_excel("../data/midwest.xls")
 
 head(midwest2)
 
-## ---- eval=FALSE---------------------------------------------------------
+
+## ---- eval=FALSE----------------------------------------------------------------------------------------
 ## library(readxl)
 ## 
 ## midwest2 <- read_excel("midwest.xls", skip = 1)
 ## names(midwest2)[1] <- "Year-Month"
 ## head(midwest2)
 
-## ----midwest2, echo=FALSE------------------------------------------------
+
+## ----midwest2, echo=FALSE-------------------------------------------------------------------------------
 library(readxl)
 
 midwest2 <- read_excel("../data/midwest.xls", skip = 1)

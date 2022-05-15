@@ -1,29 +1,72 @@
-# --------------------------------------
-# R PACKAGE SETUP ----------------------
-# --------------------------------------
+## ----setup, include=FALSE-------------------------------------------------------------------------------
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(
+	echo = FALSE,
+	message = FALSE,
+	warning = FALSE,
+	cache = TRUE
+)
+
+
+## ----setup2---------------------------------------------------------------------------------------------
 library(dplyr)     # data wrangling
 library(tidyr)     # data wrangling
 library(ggplot2)   # creates plots
 library(ggsci)     # color palette
 library(gridExtra) # display multiple ggplots together
+library(patchwork) # display multiple ggplots together
 library(grid)      # create data sets
 
-# --------------------------------------
-# MOTIVATING EXAMPLE -------------------
-# --------------------------------------
+grid_arrange_shared_legend <- function(..., ncol = length(list(...)), nrow = 1, position = c("bottom", "right")) {
 
+  plots <- list(...)
+  position <- match.arg(position)
+  g <- ggplotGrob(plots[[1]] + theme(legend.position = position))$grobs
+  legend <- g[[which(sapply(g, function(x) x$name) == "guide-box")]]
+  lheight <- sum(legend$height)
+  lwidth <- sum(legend$width)
+  gl <- lapply(plots, function(x) x + theme(legend.position="none"))
+  gl <- c(gl, ncol = ncol, nrow = nrow)
+
+  combined <- switch(position,
+                     "bottom" = arrangeGrob(do.call(arrangeGrob, gl),
+                                            legend,
+                                            ncol = 1,
+                                            heights = unit.c(unit(1, "npc") - lheight, lheight)),
+                     "right" = arrangeGrob(do.call(arrangeGrob, gl),
+                                           legend,
+                                           ncol = 2,
+                                           widths = unit.c(unit(1, "npc") - lwidth, lwidth)))
+  
+  grid.newpage()
+  grid.draw(combined)
+
+  # return gtable invisibly
+  invisible(combined)
+
+}
+
+
+
+## -------------------------------------------------------------------------------------------------------
 data(iris)
-head(iris)
+iris[c(1:3,50:53, 100:103),] %>% knitr::kable(row.names = F)
+
+
+## ----motivating-example, fig.height=6, fig.width=10, fig.align = "center"-------------------------------
+data(iris)
 ggplot(data = iris) + 
-  geom_point(aes(x = Sepal.Length, y = Sepal.Width, colour = Species))
+  geom_point(aes(x = Sepal.Length, y = Sepal.Width, colour = Species), size = 2.5) +
+  theme(axis.text = element_text(size = 14),
+        axis.title = element_text(size = 14),
+        legend.text = element_text(size = 14),
+        legend.title = element_text(size = 14)) +
+  scale_color_locuszoom()
 
-# --------------------------------------
-# BEGINNER PLOTS -----------------------
-# --------------------------------------
 
+## ----beginner-plots, fig.height=4, fig.width=20, fig.pos="center"---------------------------------------
 # bar chart
 data(mtcars)
-head(mtcars)
 p1 <- ggplot(mtcars, aes(x = factor(cyl), fill = factor(cyl))) + 
   geom_bar() + 
   scale_x_discrete("Cylinder") +
@@ -66,10 +109,9 @@ p5 <- data %>%
 
 grid.arrange(p1, p2, p3, p4, p5, ncol = 5, nrow = 1)
 
-# --------------------------------------
-# Intermediate Plots -------------------
-# --------------------------------------
 
+
+## ----intermediate-plots, fig.height=4, fig.width=20, fig.pos="center", message = FALSE, warning = FALSE----
 # parallel coordinate plot
 iris2 <- iris %>% 
   mutate(obs = 1:nrow(iris)) %>%
@@ -108,9 +150,11 @@ i4 <- ggradar(mtcars_radar, group.line.width = .7,
 df.team_data <- expand.grid(teams = c("Team A", "Team B", "Team C", "Team D"), 
                             metrics = c("Metric 1", "Metric 2", "Metric 3", "Metric 4", "Metric 5")
                             )
+
+# add variable: performance
 set.seed(41)
-df.team_data$performance <- rnorm(nrow(df.team_data)) # add variable: performance
-head(df.team_data)
+df.team_data$performance <- rnorm(nrow(df.team_data))
+
 i5 <- ggplot(data = df.team_data, aes(x = metrics, y = teams)) +
   geom_tile(aes(fill = performance)) + 
   scale_fill_distiller(palette = "Greys") + 
@@ -119,12 +163,9 @@ i5 <- ggplot(data = df.team_data, aes(x = metrics, y = teams)) +
 
 grid.arrange(i2, i3, i4, i5, ncol = 4, nrow = 1)
 
-# --------------------------------------
-# ADVANCED PLOTS -----------------------
-# --------------------------------------
 
+## ----advanced-plots, fig.height=4, fig.width=18, fig.pos="center"---------------------------------------
 # density plot
-head(diamonds)
 a1 <- ggplot(diamonds, aes(x = depth)) +
     geom_density(aes(fill = cut), alpha = .8) +
     scale_x_continuous("", limits = c(55,70)) +
@@ -135,7 +176,6 @@ a1 <- ggplot(diamonds, aes(x = depth)) +
     theme(legend.position = "none")
 
 # violin plot
-head(diamonds)
 a2 <- ggplot(diamonds, aes(x = cut, y = price)) + 
   geom_violin(aes(fill = cut), alpha = .8) + 
   scale_x_discrete("") +
@@ -162,7 +202,6 @@ a3 <- ggnet2(A,
   theme_net() +
   theme(legend.position = "none") +
   ggtitle(label = "Network Plot")
-a3
 
 # devtools::install_github("sctyner/geomnet")
 # library(geomnet)
@@ -177,12 +216,9 @@ a3
 
 grid.arrange(a1, a2, a3, ncol = 3, nrow = 1)
 
-# --------------------------------------
-# GRAMMAR OF GRAPHICS ------------------
-# --------------------------------------
 
+## ----plots-3, fig.align='bottom', fig.height=5, fig.width=15--------------------------------------------
 data(diamonds)
-head(diamonds)
 
 # bar chart
 gg1 <- ggplot(diamonds, aes(cut, fill=cut)) + 
@@ -211,8 +247,113 @@ gg3 <- ggplot(diamonds, aes(x = factor(1), fill=cut)) +
 
 grid.arrange(gg1, gg2, gg3, ncol = 3, nrow = 1)
 
-# --------------------------------------
-# MAKE YOUR FIRST FIGURE ---------------
-# --------------------------------------
-# See Your Turn Solutions
+
+## ----gg-layers, fig.align='top', fig.height=5, fig.width=15---------------------------------------------
+grid.arrange(gg1, gg2, gg3, ncol = 3, nrow = 1)
+
+
+## ----echo = TRUE, eval = F------------------------------------------------------------------------------
+## library(ggplot2) #<<
+## head(diamonds) #<<
+
+
+## ----echo = F, eval = T---------------------------------------------------------------------------------
+library(ggplot2)
+head(diamonds) %>% knitr::kable()
+
+
+## ---- fig.width=10, fig.height=5, echo = TRUE-----------------------------------------------------------
+ggplot(data = diamonds) #<<
+
+
+## ---- eval=FALSE, fig.height=5, fig.width=10, echo = TRUE-----------------------------------------------
+## ggplot(data = diamonds, aes(x = carat, y = price)) #<<
+## 
+
+
+## ---- echo=FALSE, fig.height=5, fig.width=10------------------------------------------------------------
+ggplot(data = diamonds, aes(x = carat, y = price))+ scale_fill_locuszoom()
+
+
+## ---- eval=FALSE, fig.width=10, fig.height=5, echo = TRUE-----------------------------------------------
+## ggplot(data = diamonds, aes(x = carat, y = price)) +
+##     geom_point() #<<
+
+
+## ---- echo=FALSE, fig.width=10, fig.height=5------------------------------------------------------------
+ggplot(data = diamonds, aes(x = carat, y = price)) +
+    geom_point() + 
+    scale_color_locuszoom()
+
+
+## ---- eval=FALSE, fig.width=10, fig.height=5, echo = TRUE-----------------------------------------------
+## ggplot(data = diamonds, aes(x = carat, y = price)) +
+##     geom_point(aes(colour = cut)) #<<
+
+
+## ---- echo=FALSE, fig.width=10, fig.height=5------------------------------------------------------------
+ggplot(data = diamonds, aes(x = carat, y = price)) +
+    geom_point(aes(colour = cut)) + 
+    scale_color_locuszoom()
+
+
+## ---- eval = FALSE, fig.width=10, fig.height=5, echo = TRUE---------------------------------------------
+## ggplot(data = diamonds, aes(x = carat, y = price)) +
+##     geom_point(aes(colour = cut)) +
+##     geom_smooth() #<<
+
+
+## ---- echo = FALSE, fig.width=10, fig.height=5----------------------------------------------------------
+ggplot(data = diamonds, aes(x = carat, y = price)) +
+    geom_point(aes(colour = cut)) +
+    geom_smooth() + 
+    scale_color_locuszoom()
+
+
+## ---- fig.width=10, fig.height=5, eval = FALSE, echo = TRUE---------------------------------------------
+## ggplot(data = diamonds, aes(x = carat, y = price) +
+##     geom_point(aes(colour = cut), size = 2, alpha = .5) + #<<
+##     geom_smooth(aes(fill = cut), colour = "lightgrey") #<<
+
+
+## ---- fig.width=10, fig.height=5, echo = FALSE----------------------------------------------------------
+ggplot(data = diamonds, aes(x = carat, y = price)) +
+    geom_point(aes(colour = cut), size = 2, alpha = .5) + 
+    scale_color_locuszoom() + 
+    scale_fill_locuszoom() +
+    geom_smooth(aes(fill = cut), colour = "lightgrey")
+
+
+## ---- fig.width=10, fig.height=5, eval = FALSE, echo = TRUE---------------------------------------------
+## ggplot(data = diamonds, aes(x = carat, y = price)) +
+##     geom_point(aes(colour = cut), size = 2, alpha = .5) +
+##     geom_smooth(aes(fill = cut), colour = "lightgrey") +
+##     scale_y_log10() #<<
+
+
+## ---- fig.width=10, fig.height=5, echo = FALSE----------------------------------------------------------
+ggplot(data = diamonds, aes(x = carat, y = price)) +
+    geom_point(aes(colour = cut), size = 2, alpha = .5) +
+    geom_smooth(aes(fill = cut), colour = "lightgrey") +
+    scale_color_locuszoom() + 
+    scale_fill_locuszoom() + 
+    scale_y_log10()
+
+
+## ---- fig.width=10, fig.height=5, eval = FALSE, echo = TRUE---------------------------------------------
+## ggplot(data = diamonds, aes(x = carat, y = price)) +
+##     geom_point(aes(colour = cut), size = 2, alpha = .5) +
+##     geom_smooth(aes(fill = cut), colour = "lightgrey") +
+##     scale_y_log10() +
+##     facet_wrap(~cut) #<<
+
+
+## ---- fig.width=10, fig.height=5, echo = FALSE----------------------------------------------------------
+ggplot(data = diamonds, aes(x = carat, y = price)) +
+    geom_point(aes(colour = cut), size = 2, alpha = .5) +
+    geom_smooth(aes(fill = cut), colour = "lightgrey") +
+    scale_color_locuszoom() + 
+    scale_fill_locuszoom() +
+    scale_y_log10() +
+    facet_wrap(~cut)
 
