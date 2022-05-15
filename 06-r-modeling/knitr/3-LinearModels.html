@@ -725,6 +725,36 @@ You learn the researchers actually 7 plots, and they made sure all six treatment
 ---
 
 # RCBD Analysis in R
+
+
+```r
+azalea3 &lt;- read.csv("https://srvanderplas.github.io/rwrks/06-r-modeling/data/AzaleaBlock.csv")
+azalea3$AppTime.new &lt;- as.factor(azalea3$AppTime)
+azalea3$AppRate.new &lt;- as.factor(azalea3$AppRate)
+azalea3$Block.new &lt;- as.factor(azalea3$Block)
+library(lme4)
+mod.fit6 &lt;- lmer(Weight ~ AppTime.new + AppRate.new + AppTime.new:AppRate.new + (1|Block.new), data = azalea3)
+Anova(mod.fit3, type = "II")
+```
+
+```
+## Anova Table (Type II tests)
+## 
+## Response: Weight
+##                          Sum Sq Df F value
+## AppTime.new               52.60  1  1.4966
+## AppRate.new              262.90  2  3.7405
+## AppTime.new:AppRate.new    4.33  2  0.0617
+## Residuals               1265.14 36        
+##                          Pr(&gt;F)  
+## AppTime.new             0.22914  
+## AppRate.new             0.03342 *
+## AppTime.new:AppRate.new 0.94031  
+## Residuals                        
+## ---
+## Signif. codes:  
+## 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+```
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

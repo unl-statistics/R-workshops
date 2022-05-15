@@ -421,3 +421,13 @@ $$y_{ijk} = \mu + \alpha_i + \beta_j + \alpha\beta_{ij} + b_k + \varepsilon_{ijk
 ---
 
 # RCBD Analysis in R
+
+```{r echo = TRUE}
+azalea3 <- read.csv("https://srvanderplas.github.io/rwrks/06-r-modeling/data/AzaleaBlock.csv")
+azalea3$AppTime.new <- as.factor(azalea3$AppTime)
+azalea3$AppRate.new <- as.factor(azalea3$AppRate)
+azalea3$Block.new <- as.factor(azalea3$Block)
+library(lme4)
+mod.fit6 <- lmer(Weight ~ AppTime.new + AppRate.new + AppTime.new:AppRate.new + (1|Block.new), data = azalea3)
+Anova(mod.fit3, type = "II")
+```
