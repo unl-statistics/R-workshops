@@ -40,9 +40,10 @@ production_data <- read.csv("https://srvanderplas.github.io/rwrks/06-r-modeling/
 head(production_data) %>% kable()
 ```
 ].pull-right[
-```{r, production-eda, purl = T, echo = F, eval = T, fig.width = 4, fig.height = 4}
+```{r, production-eda, purl = F, echo = F, eval = T, fig.width = 4, fig.height = 4}
 ggplot(data = production_data, aes(x = Lot.Size, y = Time)) +
   geom_point(shape = 1) +
+  geom_smooth(method = "lm") +
   theme_bw() +
   theme(aspect.ratio = 1,
         axis.text = element_text(size = 16),
@@ -54,5 +55,25 @@ ggplot(data = production_data, aes(x = Lot.Size, y = Time)) +
 ## Palmer Penguins (extention)
 
 What if you wanted to fit a linear regression line between bill length and bill depth for each species?
+
+```{r penguins-data, echo = T, purl = F}
+data(penguins, package = "palmerpenguins")
+```
+
+```{r penguins-regression-bonus, purl = F, fig.align = 'center', fig.height = 5, fig.width = 7}
+ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g, color = species, fill = species)) +
+  geom_point(shape = 1) +
+  geom_smooth(method = "lm") +
+  theme_bw() + 
+  theme(aspect.ratio = 1,
+        axis.text = element_text(size = 16),
+        axis.title = element_text(size = 18),
+        legend.text = element_text(size = 16),
+        legend.title = element_text(size = 18)) +
+  scale_color_locuszoom() +
+  scale_fill_locuszoom() +
+  ylab("Flipper Length (mm)") +
+  xlab("Body Mass (g)")
+```
 
 

@@ -73,12 +73,53 @@ class: center, middle
   + The results of hypothesis testing will be presented in the results and discussion sections of your research paper.
 
 ---
-## What is a p-value?
+## Statistical Hypotheses
 
++ **Null Hypothesis** what we are hoping to disprove?
 
++ **Alternative Hypothesis** if random chance isn’t the reason, then what?
 
 ---
-## What does a confidence interval tell me?
+## What is a p-value?
+
+![](images/p-value-logic.png)
+
+.small[Image source: [Susan VanderPlas UNL Extension](https://srvanderplas.github.io/UNL-extension-APL/experimental-design-and-statistical-analysis.html#the-logic-of-statistical-hypothesis-testing)]
+
+???
+
+
+The p-value is the probability of observing the data we saw under the null hypothesis ($H_0$)
+
+A p-value is the area under the reference distribution where values are as or more extreme than the hypothesized value.
+ 
+If the p-value is low (p `\(&lt; \alpha\)`), where `\(\alpha = 0.05, 0.01,\)` or another pre-specified value) then we know that it is relatively unlikely to observe our data under `\(H_0\)` which means that it is more likely that `\(H_0\)` is false and `\(H_A\)` is true.
+
+---
+## What is a p-value?
+
+![](images/two-sided-test.png)
+
+.small[Image source: [Susan VanderPlas UNL Extension](https://srvanderplas.github.io/UNL-extension-APL/experimental-design-and-statistical-analysis.html#the-logic-of-statistical-hypothesis-testing)]
+
+---
+## What is a confidence interval?
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="images/confidence-interval-best-est-uncertainty.png" alt="Confidence intervals are a range of values around the central estimate obtained from the sample data." width="40%" /&gt;
+&lt;p class="caption"&gt;Confidence intervals are a range of values around the central estimate obtained from the sample data.&lt;/p&gt;
+&lt;/div&gt;
+
+.small[Image source: [Susan VanderPlas UNL Extension](https://srvanderplas.github.io/UNL-extension-APL/experimental-design-and-statistical-analysis.html#the-logic-of-statistical-hypothesis-testing)]
+
+???
+Sometimes, we don’t want to test whether a parameter is equal to a specific value - instead, we might want to know what that value is (or at least, a range of possible values for that parameter).
+
+In this case, we construct a confidence interval - a set of plausible values for the parameter.
+
+We can think of a confidence interval as our best estimate of the parameter value + uncertainty.
+
+Confidence intervals, like hypothesis tests, are conducted based on a parameter `\(\alpha\)` representing the acceptable level of error. If we want to be 95% confident in our estimate, our interval will be wider than if we want to be 90% confident in our estimate – we have to include more values to get a wider interval.
 
 ---
 ## Penguins Data
@@ -538,7 +579,7 @@ Pearson Correlation
 ---
 ## Simple Regression
 
-`$$y = \text{slope} \cdot x + \text{intercept} + \text{error}$$`
+`$$y = \text{intercept} + \text{slope} \cdot x + \text{error}$$`
 
 
 ```r
@@ -594,6 +635,13 @@ par(mfrow = c(1,1))
 ---
 ## Simple Regression (results)
 
+`$$y_{i} = \beta_0 + \beta_1 \cdot x_{i} + \epsilon_{i}$$`
++ `\(y_{i}\)` is the body mass (g) for penguin `\(i = 1, ..., n\)`
++ `\(\beta_0\)` is the intercept coefficient
++ `\(\beta_1\)` is the slope coefficient
++ `\(x_{i}\)` is the flipper length (mm) for penguin `\(i = 1, ..., n\)`
++ `\(\epsilon_i\)` is the error for penguin `\(i = 1, ..., n\)` where `\(\epsilon \sim N(0, \sigma^2)\)`
+
 
 ```r
 tidy(penguins_regression)  %&gt;% 
@@ -613,23 +661,89 @@ tidy(penguins_regression)  %&gt;%
 &lt;tbody&gt;
   &lt;tr&gt;
    &lt;td style="text-align:left;"&gt; (Intercept) &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; -5780.831 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 305.815 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; -18.903 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -5780.83 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 305.81 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -18.90 &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; &amp;lt;0.001 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:left;"&gt; flipper_length_mm &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 49.686 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1.518 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 32.722 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 49.69 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.52 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 32.72 &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; &amp;lt;0.001 &lt;/td&gt;
   &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
 
+`\(\text{flipper length}_{i} = -5780.83 + 49.56 \cdot \text{body mass}_{i} + \epsilon_{i}\)` where `\(\epsilon \sim N(0, \sigma^2)\)`
+
 ---
-## Main points
+## Simple Regression (results)
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; term &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; estimate &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; std.error &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; statistic &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; p.value &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; (Intercept) &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -5780.83 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 305.81 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -18.90 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &amp;lt;0.001 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; flipper_length_mm &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 49.69 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.52 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 32.72 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &amp;lt;0.001 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;br&gt;
+
+**Hypotheses**
+
+`$$H_0: \beta_1 = 0 \text{ (the slope is equal to 0)}$$`
+`$$H_A: \beta_1 \ne 0 \text{ (the slope is not equal to 0)}$$`
+
+&lt;br&gt;
+
+**Conclusion** 
+
+We have evidence to conclude there is an association between flipper length and body mass (t = 32.72; df = 340; p &lt; 0.0001).
+
+---
+## Simple Regression (results)
+
+
+```r
+*penguins_preds &lt;- cbind(penguins4, predict(penguins_regression, interval = 'confidence'))
+ggplot(penguins_preds, aes(x = flipper_length_mm, y = body_mass_g)) +
+  geom_point(shape = 1) +
+* geom_line(aes(y = fitted(penguins_regression))) +
+* geom_ribbon(aes(ymin = lwr, ymax = upr), alpha = 0.3)
+```
+
+&lt;img src="2-BasicStatisticalTests_files/figure-html/penguins-regression-results-graph-1.png" style="display: block; margin: auto;" /&gt;
+]
+
+---
+## Simple Regression (Your Turn Bonus!)
+
+What if you wanted to fit a linear regression line between bill length and bill depth for each species?
+
+&lt;img src="2-BasicStatisticalTests_files/figure-html/penguins-regression-bonus-1.png" style="display: block; margin: auto;" /&gt;
+
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
