@@ -374,6 +374,26 @@ In terms of our example:
 ---
 
 # Two-Way ANOVA in R
+
+
+```r
+azalea2 &lt;- read.csv("https://srvanderplas.github.io/rwrks/06-r-modeling/data/AzaleaTwoWay.csv")
+azalea2$AppTime.new &lt;- as.factor(azalea2$AppTime)
+azalea2$AppRate.new &lt;- as.factor(azalea2$AppRate)
+mod.fit2 &lt;- lm(Weight ~ AppTime.new + AppRate.new + AppTime.new:AppRate.new, data = azalea2)
+Anova(mod.fit2, type = "II")
+```
+
+```
+## Anova Table (Type II tests)
+## 
+## Response: Weight
+##                          Sum Sq Df F value Pr(&gt;F)
+## AppTime.new               52.60  1  1.3442 0.2539
+## AppRate.new               52.33  2  0.6688 0.5186
+## AppTime.new:AppRate.new   71.48  2  0.9134 0.4103
+## Residuals               1408.57 36
+```
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

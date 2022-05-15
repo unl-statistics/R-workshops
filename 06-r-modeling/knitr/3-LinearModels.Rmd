@@ -273,3 +273,11 @@ $$H_A: \text{There is an interaction.}$$
 ---
 
 # Two-Way ANOVA in R
+
+```{r echo = TRUE}
+azalea2 <- read.csv("https://srvanderplas.github.io/rwrks/06-r-modeling/data/AzaleaTwoWay.csv")
+azalea2$AppTime.new <- as.factor(azalea2$AppTime)
+azalea2$AppRate.new <- as.factor(azalea2$AppRate)
+mod.fit2 <- lm(Weight ~ AppTime.new + AppRate.new + AppTime.new:AppRate.new, data = azalea2)
+Anova(mod.fit2, type = "II")
+```
