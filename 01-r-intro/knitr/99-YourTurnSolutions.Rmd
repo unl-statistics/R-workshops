@@ -236,41 +236,9 @@ mean_and_ci <- function(x) {
 3. Loop over the columns of the diamonds data set and apply your function to all of the numeric columns.
 
 ```{r}
-for (i in 1:ncol(diamonds)) {
-    if (is.numeric(diamonds[,i])) print(mean_and_ci(diamonds[,i]))
+for (i in colnames(diamonds)) {
+  if (is.numeric(diamonds[,i,drop = TRUE])) {print(mean_and_ci(diamonds[,i,drop = TRUE]))}
+  else {print("nope")}
 }
 ```
-
-
-## Regular Expressions
-
-1. How many state names contain one or two S's?
-
-```{r}
-
-data(state)
-
-grep(pattern = "s{1,2}", state.name, value = TRUE)
-```
-
-2. For any state that has a name in the form New ----, replace New with Old.
-
-```{r}
-gsub("New", "Old", state.name)
-```
-
-
-1. Extract the pen number, experiment, and tissue for each row. 
-
-```{r}
-meta <- read.table("https://srvanderplas.github.io/rwrks/01-r-intro/data/meta.txt")
-
-meta$pen <- sub('X.P.*N(..).*D.*', '\\1', meta$Group)
-meta$experiment <- sub('(X.)P[:digit:]*.*', '\\1', meta$Group)
-meta$tissue <- sub('X.P.*N..(.*)D.*', '\\1', meta$Group)
-head(meta$pen)
-head(meta$experiment)
-head(meta$tissue)
-```
-
 

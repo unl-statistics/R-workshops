@@ -661,55 +661,68 @@ or logical. If it is logical convert it to numeric.</li>
 <li>Loop over the columns of the diamonds data set and apply your
 function to all of the numeric columns.</li>
 </ol>
-<pre class="r"><code>for (i in 1:ncol(diamonds)) {
-    if (is.numeric(diamonds[,i])) print(mean_and_ci(diamonds[,i]))
+<pre class="r"><code>for (i in colnames(diamonds)) {
+  if (is.numeric(diamonds[,i,drop = TRUE])) {print(mean_and_ci(diamonds[,i,drop = TRUE]))}
+  else {print(&quot;nope&quot;)}
 }</code></pre>
-</div>
-<div id="regular-expressions" class="section level2">
-<h2>Regular Expressions</h2>
-<ol style="list-style-type: decimal">
-<li>How many state names contain one or two S’s?</li>
-</ol>
-<pre class="r"><code>data(state)
-
-grep(pattern = &quot;s{1,2}&quot;, state.name, value = TRUE)</code></pre>
-<pre><code>##  [1] &quot;Alaska&quot;        &quot;Arkansas&quot;      &quot;Illinois&quot;      &quot;Kansas&quot;       
-##  [5] &quot;Louisiana&quot;     &quot;Massachusetts&quot; &quot;Minnesota&quot;     &quot;Mississippi&quot;  
-##  [9] &quot;Missouri&quot;      &quot;Nebraska&quot;      &quot;New Hampshire&quot; &quot;New Jersey&quot;   
-## [13] &quot;Pennsylvania&quot;  &quot;Rhode Island&quot;  &quot;Tennessee&quot;     &quot;Texas&quot;        
-## [17] &quot;Washington&quot;    &quot;West Virginia&quot; &quot;Wisconsin&quot;</code></pre>
-<ol start="2" style="list-style-type: decimal">
-<li>For any state that has a name in the form New —-, replace New with
-Old.</li>
-</ol>
-<pre class="r"><code>gsub(&quot;New&quot;, &quot;Old&quot;, state.name)</code></pre>
-<pre><code>##  [1] &quot;Alabama&quot;        &quot;Alaska&quot;         &quot;Arizona&quot;        &quot;Arkansas&quot;      
-##  [5] &quot;California&quot;     &quot;Colorado&quot;       &quot;Connecticut&quot;    &quot;Delaware&quot;      
-##  [9] &quot;Florida&quot;        &quot;Georgia&quot;        &quot;Hawaii&quot;         &quot;Idaho&quot;         
-## [13] &quot;Illinois&quot;       &quot;Indiana&quot;        &quot;Iowa&quot;           &quot;Kansas&quot;        
-## [17] &quot;Kentucky&quot;       &quot;Louisiana&quot;      &quot;Maine&quot;          &quot;Maryland&quot;      
-## [21] &quot;Massachusetts&quot;  &quot;Michigan&quot;       &quot;Minnesota&quot;      &quot;Mississippi&quot;   
-## [25] &quot;Missouri&quot;       &quot;Montana&quot;        &quot;Nebraska&quot;       &quot;Nevada&quot;        
-## [29] &quot;Old Hampshire&quot;  &quot;Old Jersey&quot;     &quot;Old Mexico&quot;     &quot;Old York&quot;      
-## [33] &quot;North Carolina&quot; &quot;North Dakota&quot;   &quot;Ohio&quot;           &quot;Oklahoma&quot;      
-## [37] &quot;Oregon&quot;         &quot;Pennsylvania&quot;   &quot;Rhode Island&quot;   &quot;South Carolina&quot;
-## [41] &quot;South Dakota&quot;   &quot;Tennessee&quot;      &quot;Texas&quot;          &quot;Utah&quot;          
-## [45] &quot;Vermont&quot;        &quot;Virginia&quot;       &quot;Washington&quot;     &quot;West Virginia&quot; 
-## [49] &quot;Wisconsin&quot;      &quot;Wyoming&quot;</code></pre>
-<ol style="list-style-type: decimal">
-<li>Extract the pen number, experiment, and tissue for each row.</li>
-</ol>
-<pre class="r"><code>meta &lt;- read.table(&quot;https://srvanderplas.github.io/rwrks/01-r-intro/data/meta.txt&quot;)
-
-meta$pen &lt;- sub(&#39;X.P.*N(..).*D.*&#39;, &#39;\\1&#39;, meta$Group)
-meta$experiment &lt;- sub(&#39;(X.)P[:digit:]*.*&#39;, &#39;\\1&#39;, meta$Group)
-meta$tissue &lt;- sub(&#39;X.P.*N..(.*)D.*&#39;, &#39;\\1&#39;, meta$Group)
-head(meta$pen)</code></pre>
-<pre><code>## [1] &quot;2A&quot; &quot;2A&quot; &quot;2A&quot; &quot;2A&quot; &quot;2A&quot; &quot;2A&quot;</code></pre>
-<pre class="r"><code>head(meta$experiment)</code></pre>
-<pre><code>## [1] &quot;X1&quot; &quot;X1&quot; &quot;X1&quot; &quot;X1&quot; &quot;X1&quot; &quot;X1&quot;</code></pre>
-<pre class="r"><code>head(meta$tissue)</code></pre>
-<pre><code>## [1] &quot;C&quot; &quot;F&quot; &quot;F&quot; &quot;I&quot; &quot;C&quot; &quot;F&quot;</code></pre>
+<pre><code>## $mean
+## [1] 0.7979397
+## 
+## $ci
+## [1] 0.7939395 0.8019400
+## attr(,&quot;conf.level&quot;)
+## [1] 0.95
+## 
+## [1] &quot;nope&quot;
+## [1] &quot;nope&quot;
+## [1] &quot;nope&quot;
+## $mean
+## [1] 61.7494
+## 
+## $ci
+## [1] 61.73731 61.76150
+## attr(,&quot;conf.level&quot;)
+## [1] 0.95
+## 
+## $mean
+## [1] 57.45718
+## 
+## $ci
+## [1] 57.43833 57.47604
+## attr(,&quot;conf.level&quot;)
+## [1] 0.95
+## 
+## $mean
+## [1] 3932.8
+## 
+## $ci
+## [1] 3899.132 3966.467
+## attr(,&quot;conf.level&quot;)
+## [1] 0.95
+## 
+## $mean
+## [1] 5.731157
+## 
+## $ci
+## [1] 5.721690 5.740624
+## attr(,&quot;conf.level&quot;)
+## [1] 0.95
+## 
+## $mean
+## [1] 5.734526
+## 
+## $ci
+## [1] 5.724887 5.744165
+## attr(,&quot;conf.level&quot;)
+## [1] 0.95
+## 
+## $mean
+## [1] 3.538734
+## 
+## $ci
+## [1] 3.532778 3.544689
+## attr(,&quot;conf.level&quot;)
+## [1] 0.95</code></pre>
 </div>
 
 
