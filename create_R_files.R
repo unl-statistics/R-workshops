@@ -3,6 +3,7 @@ library(tidyverse)
 # List all slide Rmd files
 input <- list.files(pattern = "*.Rmd", full.names = T, recursive = T)
 input <- input[str_detect(input, "knitr")]
+input <- input[!str_detect(input, "Old|summerschool")]
 
 # Location to put the code files
 output <- str_replace(input, "/knitr/", "/code/") %>%

@@ -28,6 +28,7 @@ Time | Notes | Lectures and Resources
 2:00 - 2:15 | **Break** |
 2:15 - 3:15 | [What do we see?](knitr/4-Perception.html) |  	Discussion of faceting and cognitive aspects of human perception. <br/>[4-Perception.R](code/4-Perception.R)
 3:15 - 4:00 | [Polishing your plots](knitr/5-PolishingPlots.html) |  	Finishing touches: options, themes. <br/>[5-PolishingPlots.R](code/5-PolishingPlots.R)
+3:55 - 4:00 | [Evaluation](https://forms.gle/nEvYK9C7YYKhtLLB7) | Help us make the workshops better!
 
 ## Solutions
 + [Your Turn Solutions](code/99-YourTurnSolutions.html)

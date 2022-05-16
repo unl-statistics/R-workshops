@@ -1,4 +1,4 @@
-## ----setup, include=FALSE-------------------------------------------------------------------------------
+## ----setup, include=FALSE-----------------------------------------------------------------------------------------
 options(htmltools.dir.version = FALSE)
 knitr::opts_chunk$set(
 	echo = TRUE,
@@ -8,7 +8,7 @@ knitr::opts_chunk$set(
 )
 
 
-## ---- echo=FALSE----------------------------------------------------------------------------------------
+## ---- echo=FALSE--------------------------------------------------------------------------------------------------
 library(ggplot2)
 library(ggsci)
 library(ggthemes)
@@ -46,7 +46,7 @@ grid_arrange_shared_legend <- function(..., ncol = length(list(...)), nrow = 1, 
 
 
 
-## ---- echo=FALSE, fig.height=7, fig.width=10, message=FALSE, warning=FALSE------------------------------
+## ---- echo=FALSE, fig.height=7, fig.width=10, message=FALSE, warning=FALSE----------------------------------------
 mtcars$gear <- factor(mtcars$gear)
 
 p0 <- ggplot(mtcars, aes(x = wt, y = mpg, colour = gear)) + geom_point() 
@@ -77,7 +77,7 @@ p6 <- p0 +
 grid.arrange(p11, p2, p3, p4, p5, p6, nrow = 2)
 
 
-## ---- echo=FALSE, fig.height=7, fig.width=10------------------------------------------------------------
+## ---- echo=FALSE, fig.height=7, fig.width=10----------------------------------------------------------------------
 library(ggthemes)
 
 # Economist theme
@@ -127,13 +127,13 @@ p8 <- p0 +
 grid.arrange(p11, p1, p2, p3, p4, p5, p6, p7, p8, nrow = 3)
 
 
-## ---- fig.width=8, fig.height=5, fig.align = "center"---------------------------------------------------
+## ---- fig.width=8, fig.height=5, fig.align = "center"-------------------------------------------------------------
 theme_set(theme_bw()) #<<
 ggplot(mtcars, aes(x = wt, y = mpg, colour = gear)) + 
   geom_point()
 
 
-## ---- fig.height=4, fig.width=10, eval = FALSE----------------------------------------------------------
+## ---- fig.height=4, fig.width=10, eval = FALSE--------------------------------------------------------------------
 ## p1 <- ggplot(mpg) +
 ##   geom_bar(aes(x = class, colour = manufacturer, fill = manufacturer) )
 ## 
@@ -143,7 +143,7 @@ ggplot(mtcars, aes(x = wt, y = mpg, colour = gear)) +
 ##   theme(plot.background = element_rect(fill = "lightskyblue1",colour = "pink",size = 0.5, linetype = "longdash")) #<<
 
 
-## ---- fig.height=4, fig.width=12, echo = FALSE, fig.align = "center"------------------------------------
+## ---- fig.height=4, fig.width=12, echo = FALSE, fig.align = "center"----------------------------------------------
 p1 <- ggplot(mpg) + 
   geom_bar(aes(x = class, colour = manufacturer, fill = manufacturer) ) 
 
@@ -154,7 +154,7 @@ p2 <- p1 + theme_classic() + theme(
 grid.arrange(p1, p2, nrow = 1)
 
 
-## ---- fig.height=4, fig.width=12, fig.align = "center"--------------------------------------------------
+## ---- fig.height=4, fig.width=12, fig.align = "center"------------------------------------------------------------
 p3 <- p2 + 
   theme(
   ### move and modify legend 
@@ -165,11 +165,11 @@ p3 <- p2 +
   )
 
 
-## ---- fig.height=4, fig.width=10, echo = FALSE----------------------------------------------------------
+## ---- fig.height=4, fig.width=10, echo = FALSE--------------------------------------------------------------------
 grid.arrange(p2, p3, nrow = 1)
 
 
-## ---- echo=TRUE, fig.height=4, fig.width=12-------------------------------------------------------------
+## ---- echo=TRUE, fig.height=4, fig.width=12-----------------------------------------------------------------------
 p4 <- p3 + theme(
   ### remove axis ticks
   axis.ticks=element_blank(), #<<
@@ -179,11 +179,11 @@ p4 <- p3 + theme(
   )
 
 
-## ---- echo=FALSE, fig.height=4, fig.width=8-------------------------------------------------------------
+## ---- echo=FALSE, fig.height=4, fig.width=8-----------------------------------------------------------------------
 grid.arrange(p3, p4, nrow = 1)
 
 
-## ---- echo=TRUE, fig.height=3.5, fig.width=10-----------------------------------------------------------
+## ---- echo=TRUE, fig.height=3.5, fig.width=10---------------------------------------------------------------------
 p5 <- p4 + 
   labs(x = "Class of car", #<<
        y = "", #<<
@@ -191,11 +191,11 @@ p5 <- p4 +
        subtitle = "With a custom theme!!") #<<
 
 
-## ---- echo=FALSE, fig.height=3.5, fig.width=10----------------------------------------------------------
+## ---- echo=FALSE, fig.height=3.5, fig.width=10--------------------------------------------------------------------
 grid.arrange(p4, p5, nrow = 1)
 
 
-## ---- echo=TRUE, fig.height=3.5, fig.width=10-----------------------------------------------------------
+## ---- echo=TRUE, fig.height=3.5, fig.width=10---------------------------------------------------------------------
 p <- ggplot(mtcars, aes(x = wt, y = mpg, colour = gear)) + 
   geom_point() 
 
@@ -208,7 +208,7 @@ p_zoom_out <- p +
   scale_y_continuous(limits = c(0, 45)) #<<
 
 
-## ---- echo=FALSE, fig.height=3.5, fig.width=10----------------------------------------------------------
+## ---- echo=FALSE, fig.height=3.5, fig.width=10--------------------------------------------------------------------
 p <- ggplot(mtcars, aes(x = wt, y = mpg, colour = gear)) + 
   geom_point() + 
   theme(legend.position = "none") + 
@@ -234,7 +234,7 @@ p_zoom_out <- p +
 grid.arrange(p, p_zoom_in, p_zoom_out, nrow = 1)
 
 
-## ---- fig.height=5, fig.width=8, fig.align = 'center'---------------------------------------------------
+## ---- fig.height=5, fig.width=8, fig.align = 'center'-------------------------------------------------------------
 p <- ggplot(mtcars, aes(x = wt, y = mpg, colour = gear)) + 
   geom_point() +
   scale_color_locuszoom()
@@ -243,14 +243,14 @@ library(plotly) #<<
 ggplotly(p) #<<
 
 
-## ---- eval=FALSE----------------------------------------------------------------------------------------
+## ---- eval=FALSE--------------------------------------------------------------------------------------------------
 ## p1 <- ggplot(mtcars, aes(x = wt, y = mpg, colour = gear)) +
 ##   geom_point()
 ## 
 ## ggsave("mpg_by_wt.pdf", plot = p1) #<<
 
 
-## ---- echo = T, eval = F, fig.width=6, fig.height=4, fig.align = "center"-------------------------------
+## ---- echo = T, eval = F, fig.width=6, fig.height=4, fig.align = "center"-----------------------------------------
 ## install.packages("palmerpenguins")
 ## data(penguins, package = "palmerpenguins")
 ## head(penguins)

@@ -3,6 +3,9 @@ title: "Programming with Data"
 output: html_document
 ---
 
+<br>
+ <p style="text-align:center;"><img src="https://raw.githubusercontent.com/rstudio/hex-stickers/master/SVG/RStudio.svg" alt="rstudio-hex" style="width:200px;"></p>
+<br>
 
 In Programming with data you get a head start with the statistical software R. R has gained a huge number of users in the last years and the number of methods from add-on packages is growing rapidly. The course will be data centric, with lots of different data sets that illustrate examples of the different techniques used for different problems.
 The course will be a mix of instruction and follow-up exercises. It will be held in a computer lab but you are encouraged to bring your own laptops, with software already loaded. A list of software is available to help you prepare your machine for the workshop. 
@@ -19,6 +22,7 @@ Date | Notes | Lectures and Resources
 12:50 - 2:20 | [Data Structures](knitr/4-DataStructures.html) |  	Using and examining the other data structures that are available in R. <br/>[4-DataStructures.R](code/4-DataStructures.R) <br/> [tips.csv](data/tips.csv)<br/>[yourturndata.txt](data/yourturndata.txt)
 2:20 - 2:40 | **Break**| 
 2:40 - 4:00 | [Packages and Basic Programming](knitr/5-PackagesProgramming.html) | Introduction to packages and finding useful packages. We will also cover simple programming constructs to make your life easier with R. <br/>[5-PackagesProgramming.R](code/5-PackagesProgramming.R)
+3:55 - 4:00 | [Evaluation](https://forms.gle/nEvYK9C7YYKhtLLB7) | Help us make the workshops better!
 
 
 ## Useful Links

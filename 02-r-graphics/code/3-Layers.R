@@ -1,4 +1,4 @@
-## ----setup, include=FALSE-------------------------------------------------------------------------------
+## ----setup, include=FALSE-----------------------------------------------------------------------------------------
 options(htmltools.dir.version = FALSE)
 knitr::opts_chunk$set(
 	echo = FALSE,
@@ -9,7 +9,7 @@ knitr::opts_chunk$set(
 )
 
 
-## ---- echo=FALSE----------------------------------------------------------------------------------------
+## ---- echo=FALSE--------------------------------------------------------------------------------------------------
 library(ggplot2)
 library(ggsci)
 library(ggthemes)
@@ -48,7 +48,7 @@ grid_arrange_shared_legend <- function(..., ncol = length(list(...)), nrow = 1, 
 
 
 
-## ----plots-4, fig.align='bottom', fig.height=5, fig.width=15--------------------------------------------
+## ----plots-4, fig.align='bottom', fig.height=5, fig.width=15------------------------------------------------------
 p1 <- ggplot(data = mpg, aes(x = class, y = hwy)) + 
   ggtitle(label = "") +
   theme(plot.title = element_text(size = 22))
@@ -67,13 +67,13 @@ p3 <- ggplot(data = mpg, aes(x = class, y = hwy)) +
 grid.arrange(p1, p2, p3, ncol = 3, nrow = 1)
 
 
-## ----echo=TRUE, fig.height=4, fig.width=8, purl=T, fig.align = "center"---------------------------------
+## ----echo=TRUE, fig.height=4, fig.width=8, purl=T, fig.align = "center"-------------------------------------------
 ggplot(data = mpg, aes(x = class, y = hwy)) + 
   geom_jitter() + 
   geom_boxplot()
 
 
-## ---- fig.align='top', fig.height=4, fig.width=10-------------------------------------------------------
+## ---- fig.align='top', fig.height=4, fig.width=10-----------------------------------------------------------------
 p1 <- ggplot(data = mpg, aes(x = cty, y = hwy, colour = class)) + 
   geom_point() + 
   scale_color_locuszoom() + 
@@ -91,7 +91,7 @@ p2 <- ggplot(data = mpg, aes(x = cty, y = hwy, colour = class)) +
 p1 + p2
 
 
-## ---- fig.align='bottom', fig.height=5, fig.width=15----------------------------------------------------
+## ---- fig.align='bottom', fig.height=5, fig.width=15--------------------------------------------------------------
 p1 <- ggplot(data = mpg, aes(x = class, y = hwy, colour = class)) + 
   geom_jitter(width = 0.1) + 
   scale_fill_locuszoom() + 
@@ -111,18 +111,18 @@ p3 <- ggplot(data = mpg, aes(x = class, y = hwy, colour = class)) +
 p1 + p2 + p3
 
 
-## ---- fig.width=10, fig.height=4, echo = TRUE, eval=FALSE-----------------------------------------------
+## ---- fig.width=10, fig.height=4, echo = TRUE, eval=FALSE---------------------------------------------------------
 ## ggplot(data = mpg, aes(x = cty, y = hwy, colour = class)) +
 ##   geom_point()
 
 
-## ---- fig.width=10, fig.height=4, echo = TRUE, eval=FALSE-----------------------------------------------
+## ---- fig.width=10, fig.height=4, echo = TRUE, eval=FALSE---------------------------------------------------------
 ## ggplot(data = mpg, aes(x = cty, y = hwy, colour = class)) +
 ##   geom_point() +
 ##   facet_grid(~class) #<<
 
 
-## ---- fig.width=10, fig.height=3, fig.align = "center", echo=FALSE--------------------------------------
+## ---- fig.width=10, fig.height=3, fig.align = "center", echo=FALSE------------------------------------------------
 a <- ggplot(data = mpg, aes(x = cty, y = hwy, colour = class)) + 
   geom_point() + 
   scale_color_locuszoom() +
@@ -137,12 +137,12 @@ b <- ggplot(data = mpg, aes(x = cty, y = hwy, colour = class)) +
 a + b + plot_layout(widths = c(1, 7))
 
 
-## ----position-adj, eval = F, echo = T-------------------------------------------------------------------
+## ----position-adj, eval = F, echo = T-----------------------------------------------------------------------------
 ## ggplot(mpg, aes(fl, fill = drv)) +
 ##   geom_bar(position = "")` #<<
 
 
-## ---- fig.width=12, fig.height=4, fig.align = "center"--------------------------------------------------
+## ---- fig.width=12, fig.height=4, fig.align = "center"------------------------------------------------------------
 
 s <- ggplot(mpg, aes(fl, fill = drv)) + 
   ggtitle("") + 
@@ -166,7 +166,7 @@ s3 <- s +
 s1 + s2 + s3
 
 
-## ---- fig.width=12, fig.height=4, fig.align = "center"--------------------------------------------------
+## ---- fig.width=12, fig.height=4, fig.align = "center"------------------------------------------------------------
 p2 <- ggplot(mpg, aes(cyl, hwy, color = factor(cyl))) + 
   geom_point() + ggtitle("geom_point()") + 
   scale_color_locuszoom() + 
@@ -186,7 +186,7 @@ p4 <- ggplot(mpg, aes(cyl, hwy, color = factor(cyl))) +
 p2 + p3 + p4
 
 
-## ---- fig.width=10, fig.height=4, fig.align = "center", eval = FALSE------------------------------------
+## ---- fig.width=10, fig.height=4, fig.align = "center", eval = FALSE----------------------------------------------
 ## r <- ggplot(mpg, aes(fl)) + geom_bar()
 ## r + coord_cartesian(xlim = c(0, 5))
 ## r + coord_fixed(ratio = 1/10)
@@ -197,7 +197,7 @@ p2 + p3 + p4
 ## z + coord_map(projection = "ortho", orientation = c(-90, 0, 0))
 
 
-## ---- fig.width=10, fig.height=5, fig.align = "center"--------------------------------------------------
+## ---- fig.width=10, fig.height=5, fig.align = "center"------------------------------------------------------------
 r <- ggplot(mpg, aes(fl)) + geom_bar()
 r1 <- r + coord_cartesian(xlim = c(0, 5)) + ggtitle("coord_cartesian")
 r2 <- r + coord_fixed(ratio = 1/10) + ggtitle("coord_fixed")
@@ -216,29 +216,29 @@ r8 <- worldmap + coord_map("ortho", orientation = c(-90, 0, 0)) + ggtitle("coord
 grid.arrange(r1, r2, r3, r5, r4, r7, r8, nrow = 2)
 
 
-## ----ne-map-data1, echo = T, eval = F-------------------------------------------------------------------
+## ----ne-map-data1, echo = T, eval = F-----------------------------------------------------------------------------
 ## ne_counties <- map_data("county", "nebraska")
 
 
-## ----ne-map-data2, echo = F, eval = T-------------------------------------------------------------------
+## ----ne-map-data2, echo = F, eval = T-----------------------------------------------------------------------------
 ne_counties <- map_data("county", "nebraska")
 ne_counties[1:2,] %>% knitr::kable()
 
 
-## ----ne-pop1, echo = T, eval = F------------------------------------------------------------------------
+## ----ne-pop1, echo = T, eval = F----------------------------------------------------------------------------------
 ## ne_population <- read.csv("https://srvanderplas.github.io/rwrks/02-r-graphics/data/nebraska-population.csv")
 
 
-## ----ne-pop2--------------------------------------------------------------------------------------------
+## ----ne-pop2------------------------------------------------------------------------------------------------------
 ne_population <- read.csv("https://srvanderplas.github.io/rwrks/02-r-graphics/data/nebraska-population.csv")
 ne_population[1:2,] %>% knitr::kable()  
 
 
-## ---- combine-ne-data, echo = F-------------------------------------------------------------------------
+## ---- combine-ne-data, echo = F-----------------------------------------------------------------------------------
 ne_data <- left_join(ne_counties, ne_population, by = "subregion") 
 
 
-## ----ne-map, echo = T, eval = T, fig.align = 'center', fig.height = 4, fig.width = 10-------------------
+## ----ne-map, echo = T, eval = T, fig.align = 'center', fig.height = 4, fig.width = 10-----------------------------
 ggplot(ne_data) +
   geom_polygon(aes(x = long, y = lat, group = group, fill = log(population)), color = "black") +
   coord_map() +
@@ -246,14 +246,14 @@ ggplot(ne_data) +
   scale_fill_gradient(low = "white", high = "green4")
 
 
-## ----facet-zoom, eval = T, echo = T, fig.width = 8, fig.height = 5, fig.align = 'center'----------------
+## ----facet-zoom, eval = T, echo = T, fig.width = 8, fig.height = 5, fig.align = 'center'--------------------------
 library(ggforce)
 ggplot(iris, aes(Petal.Length, Petal.Width, colour = Species)) +
   geom_point() +
   facet_zoom(x = Species == 'versicolor') #<<
 
 
-## ----voronoi-plot, echo = F, fig.width = 12, fig.height = 8, fig.align = 'center'-----------------------
+## ----voronoi-plot, echo = F, fig.width = 12, fig.height = 8, fig.align = 'center'---------------------------------
 library(dplyr)
 library(ggvoronoi)
 
@@ -277,7 +277,7 @@ cali_map +
   geom_voronoi(aes(fill=elev),outline=california)
 
 
-## ----ggridges, echo = F, eval = F-----------------------------------------------------------------------
+## ----ggridges, echo = F, eval = F---------------------------------------------------------------------------------
 ## ggplot(lincoln_weather, aes(x = `Mean Temperature [F]`, y = Month, fill = stat(x))) +
 ##   geom_density_ridges_gradient(scale = 3, rel_min_height = 0.01, gradient_lwd = 1.) + #<<
 ##   scale_x_continuous(expand = c(0, 0)) +
