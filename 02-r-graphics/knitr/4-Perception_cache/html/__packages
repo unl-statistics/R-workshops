@@ -13,6 +13,9 @@ forcats
 spatstat.data
 nlme
 rpart
+spatstat.geom
+spatstat.core
+spatstat.linnet
 spatstat
 RColorBrewer
 png
@@ -25,9 +28,6 @@ ggmosaic
 ggradar
 geomnet
 maps
-spatstat.geom
-spatstat.core
-spatstat.linnet
 xaringanthemer
 ggraph
 GGally

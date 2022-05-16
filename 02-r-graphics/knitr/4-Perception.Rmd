@@ -247,6 +247,7 @@ swimming <- read.csv("https://srvanderplas.github.io/rwrks/02-r-graphics/data/ge
 ```{r gestalt-swimming2, echo = F}
 factorCols <- c("Location", "WaterTemp", "Time")
 swimming[,factorCols] <- lapply(swimming[,factorCols], factor)
+swimming$Time <- relevel(swimming$Time, ref = "pre")
 summary(swimming)
 ```
 
