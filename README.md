@@ -13,7 +13,7 @@ The schedule listed below is for the next set of workshops. Workshops are typica
 <!-- ** Schedule is tentative and subject to change due to enrollment and lab availability ** -->
 
 <!-- Workshops will be held in **Keim 214**.-->
-Workshops will be held on East Campus (Location TBD as workshops are closer)
+Workshops will be held in Hardin 49 (North wing, basement).
 
 Register for the workshops [here](https://forms.gle/7gS6phh6UHCcFLd1A). We will send you an email about a week before the workshops are held with additional details (location, what to expect, how to set up your computer).
 
