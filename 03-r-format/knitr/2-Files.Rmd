@@ -1,5 +1,5 @@
 ---
-title: "Data Wragling"
+title: "Data Wrangling"
 subtitle: "Reading Files"
 output:
   xaringan::moon_reader:
@@ -21,39 +21,6 @@ knitr::opts_chunk$set(
 
 ```
 
-class: center, middle
-.center[
-<img src="images/data_wrangling.png" style="width:680px;"/>
-
-R knowledge Data Wrangling, by [Allison Horst](https://www.allisonhorst.com/)
-]
----
-class: center, middle
-
-# MOTIVATION
-
----
-
-# Why Data Wrangling?
-
-What is data wrangling?
-+ Reading in files from various formats (.xls, .xlsx, .csv, .txt, .sps, .xport)
-+ Summarizing Data using dplyr (Toolbox of data cleaning functionc)
-+ Tidy Data for future analyses and reproducibility
-+ Joining Data from different Data Sources
-
-Data Wrangling offers the flexibility of collaboration with other formats.
-
-
-.center[
-<img src="images/data-science-wrangle.png" style="width:680px;"/>
-
-[Data Wrangling Flowchart](https://r4ds.had.co.nz/wrangle-intro.html) by Hadley Wickham and Garrett Grolemund
-]
-
-One of the main reasons for data wrangling is to use any type of data.
-
----
 class: center, middle
 
 # DATA FILES - Excel
@@ -112,21 +79,24 @@ Have a look at the parameters of `read_csv` to solve the following problems:
 Hint: Visit http://srvanderplas.github.io/rwrks/03-r-format/data/midwest.csv to download the data and look at it in Excel to help figure out what the issue is. 
 
 ---
+
 ## Your Turn Solutions
 
-```{r, message=FALSE}
+```{r, message=FALSE, echo = TRUE}
 midwest_names <- read_csv(
-  "http://srvanderplas.github.io/rwrks/03-r-format/data/midwest.csv", n_max= 2, 
-  col_names = FALSE)
+"http://srvanderplas.github.io/rwrks/03-r-format/data/midwest.csv", 
+  n_max= 2, col_names = FALSE) 
+
+
 midwest_data <- read_csv(
-  "http://srvanderplas.github.io/rwrks/03-r-format/data/midwest.csv", 
-  skip = 2, col_names = FALSE)
+"http://srvanderplas.github.io/rwrks/03-r-format/data/midwest.csv", 
+  skip = 2, col_names = FALSE) 
 ```
 
 ---
 ## Quick Lesson in Data Cleaning
 
-```{r, warning=FALSE, message=FALSE}
+```{r, warning=FALSE, message=FALSE, echo = TRUE}
 library(lubridate)
 library(tidyverse)
 values <- c(midwest_data$X3, midwest_data$X5, midwest_data$X7, 
@@ -149,34 +119,29 @@ midwest_gas <- arrange(midwest_gas, dates)
 ---
 
 ## Now we can make a plot!
-
-```{r, warning=FALSE, message=FALSE, fig.width=7, fig.height=4}
+.center[
+```{r, warning=FALSE, message=FALSE, fig.width=7, fig.height=4, echo = TRUE}
 library(ggplot2)
 ggplot(midwest_gas, aes(x = date, y = price)) + geom_line()
 ```
-
+]
 ---
 
 ## Reading Excel Data
 
 Download the midwest.xls file to your current working directory (`getwd()`)
 
-```{r, eval=FALSE}
+```{r, eval=FALSE, echo = TRUE}
 library(readxl)
-
-midwest2 <- read_excel("midwest.xls")
-
+midwest2 <- read_excel("midwest.xls") 
 head(midwest2)
 ```
 
 Something isn't quite right here...
-
 ```{r midwest, echo=FALSE}
 library(readxl)
-
-midwest2 <- read_excel("../data/midwest.xls")
-
-head(midwest2)
+midwest2 <- read_excel("../data/midwest.xls") 
+knitr::kable(head(midwest2), format = "html")
 ```
 
 ---
@@ -187,21 +152,16 @@ The 2nd row of the excel file also contains variable names.
 
 Let's skip the first this time. We can then rename the first column.
 
-```{r, eval=FALSE}
-library(readxl)
-
-midwest2 <- read_excel("midwest.xls", skip = 1)
+```{r, eval=FALSE, echo = TRUE}
+midwest2 <- read_excel("midwest.xls", skip = 1) #<<
 names(midwest2)[1] <- "Year-Month"
 head(midwest2)
 ```
 
 ```{r midwest2, echo=FALSE}
-library(readxl)
-
-midwest2 <- read_excel("../data/midwest.xls", skip = 1)
+midwest2 <- read_excel("../data/midwest.xls", skip = 1) 
 names(midwest2)[1] <- "Year-Month"
-head(midwest2)
-
+knitr::kable(head(midwest2), format = "html")
 ```
 
 Better, but not yet perfect...

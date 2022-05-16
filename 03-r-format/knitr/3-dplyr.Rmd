@@ -1,8 +1,7 @@
 ---
-title: "dplyr"
-author:
-ratio: 16x10
-output: 
+title: "Data Wrangling"
+subtitle: "dplyr"
+output:
   xaringan::moon_reader:
     lib_dir: libs
     nature:
@@ -10,12 +9,34 @@ output:
       highlightLines: true
       countIncrementalSlides: false
 ---
-
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(
+	echo = FALSE,
+	message = FALSE,
+	warning = FALSE,
+	cache = TRUE
+)
 data(baseball, package = "plyr")
 ```
 
+class: center, middle
+.center[
+<img src="images/dplyr.png" style="width:580px;"/>
+
+Data Wrangling Cheat Sheet, by [RStudio](https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf)
+]
+
+---
+## Motivating Example (Pipe Operator)
+class: center, middle
+.center[
+<img src="images/pipe_usage.png" style="width:580px;"/>
+
+Pipe Example, by [Sharp Sight Labs](https://www.sharpsightlabs.com/blog/dplyr-quick-introduction/)
+]
+
+---
 
 ## The pipe operator `%>%`
 
@@ -26,12 +47,9 @@ i.e. the output of one function is used as input to the next function. This func
 Consequences:
 
 - `x %>% f(y)` is the same as `f(x, y)`
-
 - statements of the form `k(h(g(f(x, y), z), u), v, w)` become
 `x %>% f(y) %>% g(z) %>% h(u) %>% k(v, w)`
-
 - read `%>%` as "then do"
-
 - in non-mathematical terms, the piping operator allows you to apply more than one different function at the same time to the same data frame.
 
 ---
@@ -51,7 +69,6 @@ There are some of the primary `dplyr` *verbs*, representing distinct data analys
 
 - **Group By**: Introduce structure to a data frame
  
- 
 ---
 
 ## Filter
@@ -63,7 +80,7 @@ library(tidyverse)
 pitch <- read_csv("http://srvanderplas.github.io/rwrks/03-r-format/data/pitch.csv")
 pitch %>% 
   filter(pitcher_hand == "R", pitch_type == "CU") %>%
-  head()
+  head() 
 
 ```
 
