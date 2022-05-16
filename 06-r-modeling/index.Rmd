@@ -29,4 +29,5 @@ Time | Notes | Lectures and Resources
 
 ## Useful Links
 
-+ [Words go here](link goes here)
++ [emmeans](https://cran.r-project.org/web/packages/emmeans/) - See links to Vignettes
++ [Mixed Models by Ben Bolker](https://bbolker.github.io/mixedmodels-misc/glmmFAQ.html)

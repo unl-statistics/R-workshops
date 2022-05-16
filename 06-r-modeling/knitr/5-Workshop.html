@@ -6,6 +6,8 @@
     <script src="libs/header-attrs/header-attrs.js"></script>
     <link href="libs/remark-css/default.css" rel="stylesheet" />
     <link href="libs/remark-css/default-fonts.css" rel="stylesheet" />
+    <script src="libs/kePrint/kePrint.js"></script>
+    <link href="libs/lightable/lightable.css" rel="stylesheet" />
   </head>
   <body>
     <textarea id="source">
@@ -22,6 +24,19 @@ class: center, middle, inverse, title-slide
 class: center, middle
 
 # Workshop - Bring your own data!
+
+
+---
+## Palmer Penguins (ANOVA)
+
+Are there differences in any of the measures (bill width, bill depth, flipper length, body mass) between the three species? Can you also account for the sex of the penguin?
+
+
+```r
+data(penguins, package = "palmerpenguins")
+```
+
+&lt;img src="5-Workshop_files/figure-html/unnamed-chunk-1-1.png" style="display: block; margin: auto;" /&gt;
 
 ---
 ## Production
@@ -74,7 +89,7 @@ head(production_data)
 ]
 
 ---
-## Palmer Penguins (extention)
+## Palmer Penguins (Regression Extention)
 
 What if you wanted to fit a linear regression line between bill length and bill depth for each species?
 
@@ -84,6 +99,60 @@ data(penguins, package = "palmerpenguins")
 ```
 
 &lt;img src="5-Workshop_files/figure-html/penguins-regression-bonus-1.png" style="display: block; margin: auto;" /&gt;
+
+
+---
+## Environmental Condition
+
+Here’s the big picture: there is an environmental condition suspected of causing increased incidence of a certain medical disorder. To assess the suspected link, 100 clusters are randomly selected where the environmental condition does not exist (coded “Condition = 0”) in the data set) and 100 clusters are randomly selected where the environmental condition does exist (coded “Condition = 1”). All households at each site are sent a survey (in survey design, this is called cluster sampling) – response is voluntary.
+
+
+```r
+condition_data &lt;- read.csv("https://srvanderplas.github.io/rwrks/06-r-modeling/data/condition.csv")
+head(condition_data)
+```
+
+.pull-left[
+&lt;div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:100%; "&gt;&lt;table class="table table-striped" style="margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:right;"&gt; Cluster &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Condition &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; N_respond &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; N_affected &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 23 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 25 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 26 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;&lt;/div&gt;
+].pull-right[
+
+![](5-Workshop_files/figure-html/condition-plot-1.png)&lt;!-- --&gt;
+]
 
 
     </textarea>

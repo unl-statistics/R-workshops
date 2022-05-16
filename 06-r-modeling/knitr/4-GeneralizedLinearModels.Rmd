@@ -9,7 +9,7 @@ output:
       highlightLines: true
       countIncrementalSlides: false
 ---
-
+ 
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE)
 knitr::opts_chunk$set(
@@ -18,15 +18,445 @@ knitr::opts_chunk$set(
 	warning = FALSE,
 	cache = TRUE
 )
+library(tidyverse)
 ```
 
 class: center, middle
 
 # Generalized Linear Models (and more!)
 
-+ GLM (poisson, binomial), possible split plot? blocking?
+---
+## Outline
+
++ What if my response does not follow a normal distribution?
+
++ Binomial Example
+
++ Count Example
+
++ Final Remarks
 
 ---
+## Generalized Linear Models (Basics)
+
+If your data is not normally distributed, it will violate the model assumptions of a linear model. You must consider the type of data you have!
+
+***Model Scale*** verses ***Data Scale***
+
+**Common Distributions**
+
++ Binomial (binary data or number of successes out of total)
+
++ Poisson (count data)
+
++ Negative Binomial (count data)
+
++ Gamma (right skewed continuous data)
+
++ Beta (continuous proportion/probability)
+
+---
+## GLMS and GLMM's in R
+
+**Packages**
+```{r pkgs, echo = T, purl = T, eval = T}
+library('lme4')
+library('emmeans')
+```
+
+**Generalized Linear Model (GLM)**
+```{r glm, echo = T, eval = F, purl = F}
+help(glm)
+```
+
+**Generalized Linear Mixed Model (GLMM)**
+```{r glmer, echo = T, eval = F, purl = F}
+help(glmer)
+```
+
+---
+class: inverse, center, middle
+
+# Binomial Example
+## Insects
+
+---
+## Binomial Example: Insects
+
+**Data** The number of insects killed at various doses of insecticide.
+
+```{r, insects-data-echo, echo = T, purl = T, eval = F}
+insects_data <- read_csv("https://srvanderplas.github.io/rwrks/06-r-modeling/data/insects.csv")
+head(insects_data)
+```
+
+```{r, insects-data, echo = F, eval = T}
+insects_data <- read_csv("https://srvanderplas.github.io/rwrks/06-r-modeling/data/insects.csv")
+insects_data[1:4,] %>% kable()
+```
+
++ **Killed** the number of insects killed at each poison level; a numeric vector
++ **Number** the number of insects exposed at each poison level; a numeric vector
++ **Insecticide** the insecticide used; a factor with levels A, B and C
++ **Deposit** the amount of deposit (insecticide) used in milligrams; a numeric vector
+
+---
+## Binomial Example: Insects EDA
+
+```{r deposit-summary, echo = F, purl = T, eval = T}
+factorCols <- c("Rep", "Insecticide")
+insects_data[,factorCols] <- lapply(insects_data[,factorCols], factor)
+summary(insects_data)
+```
+<br>
+
+```{r deposit-graph-eda, echo = F, purl = T, eval = T, fig.align = 'center', fig.height = 4, fig.width = 9}
+ggplot(data = insects_data, aes(x = Deposit, y = Killed/Number)) +
+  geom_point(position = position_jitter(width = 0.2, height = 0)) +
+  geom_smooth(method = "loess") +
+  facet_grid(~Insecticide) +
+  theme_bw() +
+  theme(aspect.ratio = 1)
+```
+
+---
+## Binomial Example: Insects Model
 
 
+**Statistical notation**
+
+$$y_{ij} \sim \text{Binomial}(\pi_{ij}, N_{ij})$$
+where $$\log\large(\frac{\pi_{ij}}{1-\pi_{ij}}\large) = \eta_{ij} = (\beta_0 + \tau_i) + (\beta_1 + \beta_{1i})\cdot x_{ij} + (\beta_2 + \beta_{2i})\cdot x_{ij}^2$$
+
++ $y_{ij}$ is the number of insects killed for the $i^{th}$ Insecticide given the $j^{th}$ deposit.
++ $N_{ij}$ is the total number of insects that started.
++ $\eta$ is the overall mean on the model scale.
++ $\tau_i$ is the effect of the $i^{th}$ habitat.
++ $b_j$ is the random variation due to the $j^{th}$ site.
+
+
++ $logit = \log(\frac{\pi}{1-\pi})$ data scale $\implies$ model scale (link function)
++ $\frac{1}{(1+e^{-\eta})}$ model scale $\implies$ data scale (ilink function)
+
+---
+## Binomial Example: Insects GLM
+
+```{r deposit-glm, echo = T, eval = T}
+ insects_glm <- glm(Killed/Number ~ Insecticide*Deposit + Insecticide*I(Deposit^2),
+     weights = Number, #<<
+     data = insects_data,
+     family = "binomial") #<<
+car::Anova(insects_glm)
+```
+
+---
+## Binomial Example: Insects GLM
+
+```{r insects-summary, echo = T, eval = T, purl = T}
+summary(insects_glm)
+```
+
+---
+## Binomial Example: Insects results
+
+```{r insects-emmeans-echo, echo = T, eval = F, purl = T}
+insects_emmeangrid <- ref_grid(insects_glm, at = list(Deposit = unique(insects_data$Deposit))) #<<
+insects_emmeans <- emmeans(insects_emmeangrid, specs =~Insecticide:Deposit, type = "response")
+insects_emmeans
+```
+
+```{r insects-emmeans, echo = F, eval = T, purl = F}
+insects_emmeangrid <- ref_grid(insects_glm, at = list(Deposit = unique(insects_data$Deposit)))
+insects_emmeans <- emmeans(insects_emmeangrid, specs =~Insecticide:Deposit, type = "response")
+insects_emmeans %>% as_tibble() %>% head() %>% kable(digits = 3)
+```
+
+
+---
+## Binomial Example: Insects compare insecticides
+
+```{r insects-pairs, echo = T, eval = T, purl = T}
+insects_pairs <- emmeans(insects_emmeangrid, specs =~Insecticide | Deposit, type = "response")
+pairs(insects_pairs, infer = c(T,T))
+```
+
+---
+## Binomial Example: Insects results plot
+
+```{r insecticide-plot-echo, echo = T, eval = F, purl = T}
+insects_predgrid <- ref_grid(insects_glm, at = list(Deposit = seq(min(insects_data$Deposit), max(insects_data$Deposit), 0.2)))
+insects_preds <- emmeans(insects_predgrid, specs =~Insecticide:Deposit, type = "response")
+insects_preds
+```
+
+```{r insecticide-plot, echo = F, eval = T, purl = F}
+insects_predgrid <- ref_grid(insects_glm, at = list(Deposit = seq(min(insects_data$Deposit), max(insects_data$Deposit), 0.2)))
+insects_preds <- emmeans(insects_predgrid, specs =~Insecticide:Deposit, type = "response")
+insects_preds %>% as_tibble() %>% head() %>% kable(digits = 3)
+```
+
+---
+## Binomial Example: Insects results plot
+
+.pull-left[
+```{r insects-plot-echo, echo = T, eval = F, purl = T}
+insects_preds %>%
+  as_tibble() %>%
+  ggplot(aes(x = Deposit, shape = Insecticide, color = Insecticide, fill = Insecticide)) +
+  geom_line(aes(y = prob)) + #<<
+  geom_ribbon(aes(ymin = asymp.LCL, ymax = asymp.UCL), color = NA, alpha = 0.2) + #<<
+  geom_point(data = insects_data, aes(y = Killed/Number), position = position_jitter(width = 0.2, height = 0)) + #<<
+  theme_bw() +
+  theme(aspect.ratio = 1) +
+  scale_color_locuszoom() +
+  scale_fill_locuszoom() +
+  scale_y_continuous("Mortality (%)", labels = scales::percent)
+```
+].pull-right[
+```{r insects-plot, echo = F, eval = T, purl = F, fig.height = 6, fig.width = 5}
+insects_preds %>%
+  as_tibble() %>%
+  ggplot(aes(x = Deposit, shape = Insecticide, color = Insecticide, fill = Insecticide)) +
+  geom_line(aes(y = prob)) +
+  geom_ribbon(aes(ymin = asymp.LCL, ymax = asymp.UCL), color = NA, alpha = 0.2) +
+  geom_point(data = insects_data, aes(y = Killed/Number), position = position_jitter(width = 0.2, height = 0)) +
+  theme_bw() +
+  theme(aspect.ratio = 1,
+        axis.text = element_text(size = 18),
+        axis.title = element_text(size = 24),
+        legend.text = element_text(size = 18),
+        legend.title = element_text(size = 24),
+        legend.position = "bottom") +
+  scale_color_locuszoom() +
+  scale_fill_locuszoom() +
+  scale_y_continuous("Mortality (%)", labels = scales::percent)
+```
+]
+
+---
+class: inverse, center, middle
+
+# Count Example
+## Birds
+
+---
+## Count Example: Birds
+
+An ecologist is investigating the impact of habitat type on the population of a certain type of bird. To do this, data were obtained from a study in which 24 randomly sampled sites were observed. Each site contains habitats of both types. Bird counts were obtained from each habitat type. 
+
+```{r birds-data-echo, echo = T, purl = T, eval = F}
+birds_data <- read_csv("https://srvanderplas.github.io/rwrks/06-r-modeling/data/birds.csv")
+head(birds_data) 
+```
+
+```{r birds-data1, echo = F, purl = F, eval = T}
+birds_data <- read_csv("https://srvanderplas.github.io/rwrks/06-r-modeling/data/birds.csv")
+head(birds_data) %>% kable()
+```
+
+---
+## Count Example: Birds EDA
+
+```{r birds-data2, echo = T, purl = T, eval = T}
+summary(birds_data)
+factorCols <- c("Site", "Habitat")
+birds_data[,factorCols] <- lapply(birds_data[,factorCols], factor)
+summary(birds_data)
+```
+
+---
+## Count Example: Birds EDA
+
+**Data Scale**
+
+```{r birds-graph-eda1, fig.height = 3, fig.width = 8, fig.align='center'}
+ggplot(data = birds_data, aes(x = Count, fill = Habitat)) +
+  geom_histogram( color = "black") +
+  facet_wrap(~Habitat, ncol = 2) +
+  theme_bw() +
+  theme(aspect.ratio = 1,
+        axis.text = element_text(size = 18),
+        axis.title = element_text(size = 24)) +
+  scale_fill_locuszoom()
+```
+
+**"Model Scale"**
+
+```{r birds-graph-eda2, fig.height = 3, fig.width = 8, fig.align='center'}
+ggplot(data = birds_data, aes(x = log(Count), fill = Habitat)) +
+  geom_histogram( color = "black") +
+  facet_wrap(~Habitat, ncol = 2) +
+  theme_bw() +
+  theme(aspect.ratio = 1,
+        axis.text = element_text(size = 18),
+        axis.title = element_text(size = 24)) +
+  scale_fill_locuszoom()
+```
+
+---
+## Count Example: Birds Model
+
+**In words** 
+
+$$\text{"log(Bird Count) = overall model scale mean + habitat + random site + scale"}$$
+
+**Statistical notation**
+
+$$y_i | b_j \sim \text{Negative Binomial}(\mu_{ij}, \phi)$$
+where $$\log(\mu_{ij}) = \eta_{ij} = \eta + \tau_i + b_j$$
+
++ $y_{ij}$ is bird count for the $i^{th}$ habitat at the $j^{th}$ site.
++ $\eta$ is the overall mean on the model scale.
++ $\tau_i$ is the effect of the $i^{th}$ habitat.
++ $b_j$ is the random variation due to the $j^{th}$ site.
+
+
++ **log:** data scale $\implies$ model scale (link function)
++ **exp:** model scale $\implies$ data scale (ilink function)
+
+---
+## Count Example: Birds GLMM
+
+```{r birds-glmer, echo = T, eval = T, purl = T}
+library(optimx)
+birds_nb <- glmer.nb(Count ~ Habitat + (1|Site),
+                     data = birds_data,
+                     nAGQ = 100)
+car::Anova(birds_nb)
+```
+
+---
+## Count Example: Birds GLMM results 
+
+```{r birds-results, echo = T, eval = T, purl = T}
+summary(birds_nb)
+```
+
+---
+## Poisson Example: Birds GLMM means
+
+```{r birds-emmeans-echo, echo = T, eval = F, purl = T}
+birds_emmeans <- emmeans(birds_nb, specs = ~ Habitat, 
+                         type = "response") #<<
+birds_emmeans
+```
+
+```{r birds-emmeans, echo = F, eval = T, purl = F}
+birds_emmeans <- emmeans(birds_nb, specs = ~ Habitat, type = "response")
+
+birds_emmeans %>%
+  as_tibble() %>%
+  kable(digits = 2)
+```
+
+---
+## Count Example: Birds GLMM compare habitats
+
+$$H_0: \mu_1 = \mu_2 \text{ (The mean bird count for habitat 1 is equal to habitat 2)}$$
+
+$$H_A: \mu_1 \ne \mu_2 \text{ (The mean bird count for habitat 1 is not equal to habitat 2)}$$
+
+```{r birds-pairs-echo, echo = T, eval = T, purl = T}
+pairs(birds_emmeans, infer = c(T,T))
+```
+
+---
+## Count Example: Birds GLMM compare habitats
+
+$$H_0: \mu_1 = \mu_2 \text{ (The mean bird count for habitat 1 is equal to habitat 2)}$$
+
+$$H_A: \mu_1 \ne \mu_2 \text{ (The mean bird count for habitat 1 is not equal to habitat 2)}$$
+
+```{r birds-groups-echo, echo = T, eval = F, purl = T}
+library(multcomp)
+library(multcompView)
+library(stringr)
+birds_letters <- cld(birds_emmeans, Letters = letters, alpha = 0.5) %>% #<<
+  mutate(.group = toupper(str_trim(.group))) #<<
+birds_letters 
+```
+
+```{r birds-groups, echo = F, eval = T, purl = F}
+library(multcomp)
+library(multcompView)
+library(stringr)
+birds_letters <- cld(birds_emmeans, Letters = letters, alpha = 0.5) %>%
+  mutate(.group = toupper(str_trim(.group)))
+birds_letters %>%
+  as_tibble() %>%
+  kable(digits = 2)
+```
+
+---
+## Count Example: Birds results plot
+
+.pull-left[
+```{r birds-plot-echo, echo = T, eval = F, purl = T, fig.align='center',fig.height=5, fig.width=5}
+birds_letters %>%
+  as_tibble() %>% #<<
+  ggplot(aes(x = Habitat, y = response)) +
+  geom_point() +
+  geom_errorbar(aes(ymin = asymp.LCL, ymax = asymp.UCL), width = 0.1) +
+  geom_text(aes(label = .group, y = asymp.UCL), vjust = -0.5, size = 6) + #<<
+  geom_point(data = birds_data, aes(y = Count), shape = 1, position = position_jitter(width = 0.2, height = 0)) + #<<
+  theme_bw() +
+  theme(aspect.ratio = 1) +
+  ylab("Number of Birds")
+```
+].pull-right[
+```{r birds-plot, echo = F, eval = T, purl = F, fig.align='center',fig.height=5, fig.width=5}
+birds_letters %>%
+  as_tibble() %>% #<<
+  ggplot(aes(x = Habitat, y = response)) +
+  geom_point(size = 3) +
+  geom_errorbar(aes(ymin = asymp.LCL, ymax = asymp.UCL), width = 0.1) +
+  geom_text(aes(label = .group, y = asymp.UCL), vjust = -0.5, size = 6) + #<<
+  geom_point(data = birds_data, aes(y = Count), shape = 1, position = position_jitter(width = 0.2, height = 0)) +
+  theme_bw() +
+  theme(aspect.ratio = 1,
+        axis.text = element_text(size = 18),
+        axis.title = element_text(size = 24)) +
+  ylab("Number of Birds")
+```
+]
+
+---
+class: inverse, center, middle
+
+# Final Remarks
+
+---
+## Models and functions
+
+| Model | Distribution | Experimental Design | R Function |
+|-------|--------------|---------------------|------------|
+| Linear Model | Normal | CRD | `lm()` |
+| Linear Mixed Model | Normal | Blocking (or more) | `lmer()` |
+| Generalized Linear Model | Non-normal | CRD | `glm()` |
+| Generalized Linear Mixed Model | Non-normal | Blocking (or more) | `glmer()` |
+
+---
+## Model Specifications
+
+![](images/model-specifications.png)
+
+Image source: https://bbolker.github.io/mixedmodels-misc/glmmFAQ.html
+
+---
+## Additional models and functions
+
+Repeated Measures
+
++ Take multiple measures on the same object over a period of time
++ `lme()` in `nlme` package
+
+Nonlinear Regression
+
++ Does not follow the typical polynomial framework
++ `nls()` in base R, `stats` package
+
+Generalized Additive Models (GAM)
+
++ Estimates smoothing splines
++ `gam()` in `mcgv` package
 
