@@ -1,6 +1,6 @@
 ---
 title: "Data Wrangling"
-subtitle: "dplyr"
+subtitle: "Using dplyr"
 output:
   xaringan::moon_reader:
     lib_dir: libs

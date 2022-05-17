@@ -23,18 +23,52 @@ class: center, middle, inverse, title-slide
 
 
 
-class: center, middle
+# Today's Brief Outline
+
+Data Wrangling offers the flexibility of collaboration with other formats.
+
 .center[
-&lt;img src="images/data_wrangling.png" style="width:580px;"/&gt;
+&lt;img src="images/data-science-wrangle.png" style="width:480px;"/&gt;
+
+[Data Wrangling Flowchart](https://r4ds.had.co.nz/wrangle-intro.html) by Hadley Wickham and Garrett Grolemund
+]
+
++ Reading in files from various formats (.xls, .xlsx, .csv, .txt, .sps, .xport)
++ Summarizing Data using dplyr (Toolbox of data cleaning function)
++ Tidy Data for future analyses and reproducibility
++ Joining Data from different Data Sources
+
+???
+
+One of the main reasons for data wrangling is to use any type of data.
+
+---
+
+## What is Data Wrangling?
+
+**Data wrangling** can be defined as the process of cleaning, organizing, and transforming raw data into the desired format for analysts to use for prompt decision-making. Also known as data cleaning or data munging.
+
+.center[
+&lt;img src="images/data_wrangling.png" style="width:480px;"/&gt;
 
 R knowledge Data Wrangling, by [Allison Horst](https://www.allisonhorst.com/)
 ]
----
-class: center, middle
 
-# REVIEW FROM GRAPHICS LECTURE
 
 ---
+## Why do you need this "Data Wrangling" Skill?
+
+- Data wrangling helps to improve data usability as it converts data into a compatible format for the end system. 
+
+- It helps to quickly build data flows within an intuitive user interface and easily schedule and automate the data-flow process.
+
+- Integrates various types of information and their sources (like databases, web services, files, etc.)
+
+- Help users to process very large volumes of data easily and easily share data-flow techniques.
+
+[Source](https://www.simplilearn.com/data-wrangling-article#:~:text=Data%20wrangling%20helps%20to%20improve,automate%20the%20data%2Dflow%20process)
+---
+
 # Messy data
 
  *Happy families are all alike; every unhappy family is unhappy in its own way. - Leo Tolstoy*  
@@ -46,6 +80,8 @@ class: center, middle
 Comparison of work benches, by [Allison Horst](https://www.allisonhorst.com/)
 ]
 
+???
+For those of you that were in the graphics lecture, this will be a bit of a review. 
 ---
 # Messy data
 
@@ -66,6 +102,7 @@ Comparison of work benches, by [Allison Horst](https://www.allisonhorst.com/)
 
 
 ---
+
 # MOTIVATION FOR TODAY
 
 .center[
@@ -75,47 +112,25 @@ Make Friends with Tidy Data, by [Allison Horst](https://www.allisonhorst.com/)
 ]
 ---
 
-# Why Data Wrangling?
-
-What is data wrangling?
-+ Reading in files from various formats (.xls, .xlsx, .csv, .txt, .sps, .xport)
-+ Summarizing Data using dplyr (Toolbox of data cleaning function)
-+ Tidy Data for future analyses and reproducibility
-+ Joining Data from different Data Sources
-
-Data Wrangling offers the flexibility of collaboration with other formats.
-
-.center[
-&lt;img src="images/data-science-wrangle.png" style="width:480px;"/&gt;
-
-[Data Wrangling Flowchart](https://r4ds.had.co.nz/wrangle-intro.html) by Hadley Wickham and Garrett Grolemund
-]
-
-???
-
-One of the main reasons for data wrangling is to use any type of data.
-
----
-
 class: inverse
 
-# Today's Outline
+# Today's Extendend Outline
 
 READING FILE TYPES
 1. What file types can be read in with R?
 2. Basics reading in different file types
-3. Formatting your data: A tidy data discussion (From Graphics Lecture - Yesterday)
+3. Formatting your data: A tidy data discussion (Review from Graphics Lecture)
 
 DPLYR PACKAGE
-1. Geoms, Stats, Coordinates, and Faceting
+1. filter, mutate, select, summarise, group by, and arrange
 
 TIDYR PACKAGES
-1. Basics of cognitive visual perception
-2. What makes a good graphic?
-3. Aesthetics and scales in ‘ggplot2‘
+1. What is tidy data?
+2. pivot longer, pivot wider and separate functions
+3. Lubridate package basics
 
 JOINING DATASETS
-1. 
+1. Basic set theory logic (joining/combining datasets)
 
 
     </textarea>

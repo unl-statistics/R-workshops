@@ -48,6 +48,9 @@ e.g. *Fall 2015, Spring 2016* or *"1301 8th St SE, Orange City, Iowa 51041
 
 3. Each type of observational unit forms a table.
 
+.center[
+![](images/featured_tidydata.jpeg)
+]
 &lt;!-----
 # Keys and Measurements
 
@@ -102,8 +105,22 @@ For each person, recorded age, sex, height and target weight, and then at multip
 *only patient ID is needed for variables in italics*
 ---&gt; 
 ---
+## Back to the **(Tidying data - Plan of attack)** List
 
-## Messy (3)
+**Messy (1)**: `tidyr` functions `pivot_longer` and `pivot_longer`.  
+`pivot_longer (data,names_to,values_to, ...)`: take multiple columns and collapse into key-value pairs
+
+`pivot_wider (data,names_from,values_from,values_fill = NA)`: spread a key-value pair across multiple columns.
+
+**Messy (2)**: `tidyr` function `separate (data, col, into, sep = " ")`: separate one column into multiple columns
+
+**Messy (3)**: `dplyr` : a combination of the functions discussed previously today
+
+**Messy (4)**: `dplyr` functionality `join` (and friends) to combine multiple data sets 
+
+---
+
+## Back to the list starting with **Messy (3)**
 
 Messy (3): *Multiple observational units are stored in the same table.*
 
@@ -127,7 +144,7 @@ i.e. for some values all key variables are necessary, while other values only ne
 
 ---
 
-## Tidying Messy (3)
+## Tidying **Messy (3)**
 
 Splitting into separate datasets:
 
@@ -135,7 +152,7 @@ Splitting into separate datasets:
 
 ---
 
-## Messy (4)
+## Now for **Messy (4)**
 
 **Messy (4)**: Values for a single observational unit are stored across multiple tables.
 
@@ -214,6 +231,7 @@ The `People` table includes names and other attributes for each player. &lt;br&g
 
 **Joining** multiple tables helps us to bring together (pieces of) information from multiple sources.
 
+![](images/baseball.jpeg)
 ---
 
 ## Example: Hall of Fame of Baseball
@@ -254,7 +272,7 @@ HallOfFame %&gt;%
 ## Joins - general idea
 
 .center[
-&lt;img src="images/joins.png" style="width:450px;"/&gt;
+&lt;img src="images/joins.png" style="width:420px;"/&gt;
 
 [RStudio Conf 2020](https://rstudio-conf-2020.github.io/r-for-excel/filter-join.html)
 ]
@@ -271,9 +289,21 @@ HallOfFame %&gt;%
 
 - Differences between join functions are only visible if not all values in one set have values in the other
 
+.center[
+![](images/join_sets.png)
+]
 ---
 
 ## Simple example data
+.pull-left[
+
+```r
+df1 &lt;- data.frame(
+  id = 1:6, 
+  trt = rep(c("A", "B", "C"),
+  rep=c(2,1,3)), 
+  value = c(5,3,7,1,2,3))
+```
 
 &lt;table&gt;
  &lt;thead&gt;
@@ -316,6 +346,15 @@ HallOfFame %&gt;%
   &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
+]
+.pull-right[
+
+```r
+df2 &lt;- data.frame(
+  id=c(4,4,5,5,7,7), 
+  stress=rep(c(0,1), 3),
+  bpm = c(65, 125, 74, 136, 48, 110))
+```
 
 &lt;table&gt;
  &lt;thead&gt;
@@ -358,7 +397,7 @@ HallOfFame %&gt;%
   &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-
+]
 ---
 
 ## Left join
@@ -658,7 +697,7 @@ hof_bats %&gt;%
   geom_point(aes(color = inducted))
 ```
 
-![](5-joining_files/figure-html/unnamed-chunk-10-1.png)&lt;!-- --&gt;
+![](5-joining_files/figure-html/unnamed-chunk-12-1.png)&lt;!-- --&gt;
 
 ---
 
@@ -679,7 +718,7 @@ hof_pitch %&gt;%
   geom_point(aes(color = inducted))
 ```
 
-![](5-joining_files/figure-html/unnamed-chunk-11-1.png)&lt;!-- --&gt;
+![](5-joining_files/figure-html/unnamed-chunk-13-1.png)&lt;!-- --&gt;
 
 
 ---
@@ -694,6 +733,7 @@ class: inverse
 ---
 ## Solution
 
+
 ```r
 Voted &lt;- HallOfFame %&gt;% 
   filter(!is.na(ballots)) %&gt;% 
@@ -705,7 +745,8 @@ Voted &lt;- left_join(Voted, People %&gt;%
                 dplyr::select(playerID, nameFirst, nameLast), 
                    by = "playerID") %&gt;% filter(attempt &gt; 15)
 Names &lt;- Voted %&gt;% mutate(FullName = paste(nameFirst, nameLast))
-Names$FullName %&gt;% unique() %&gt;% knitr::kable(format = "html")
+Names$FullName %&gt;% unique() %&gt;% 
+  head(3) %&gt;% knitr::kable(format = "html")
 ```
 
 &lt;table&gt;
@@ -724,47 +765,35 @@ Names$FullName %&gt;% unique() %&gt;% knitr::kable(format = "html")
   &lt;tr&gt;
    &lt;td style="text-align:left;"&gt; Ray Schalk &lt;/td&gt;
   &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Ross Youngs &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Edd Roush &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Zack Wheat &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Hank Gowdy &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Eppa Rixey &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Hack Wilson &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Red Faber &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Red Ruffing &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Phil Rizzuto &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Pee Wee Reese &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Mickey Vernon &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Don Newcombe &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Al Dark &lt;/td&gt;
-  &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
+
+---
+## Data Wrangling is a Super Power
+
+.center[
+![](https://media.giphy.com/media/kQYNaEa35hQ6pCYywH/giphy.gif)
+]
+---
+class: inverse
+
+# Review Today's Outline
+
+READING FILE TYPES
+1. What file types can be read in with R?
+2. Basics reading in different file types
+3. Formatting your data: A tidy data discussion (Review from Graphics Lecture)
+
+DPLYR PACKAGE
+1. filter, mutate, select, summarise, group by, and arrange
+
+TIDYR PACKAGES
+1. What is tidy data?
+2. pivot longer, pivot wider and separate functions
+3. Lubridate package basics
+
+JOINING DATASETS
+1. Basic set theory logic (joining/combining datasets)
 
 
 &lt;!---

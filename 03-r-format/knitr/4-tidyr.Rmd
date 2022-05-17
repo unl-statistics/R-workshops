@@ -1,6 +1,6 @@
 ---
 title: "Data Wrangling"
-subtitle: "tidyr"
+subtitle: "Using tidyr"
 output:
   xaringan::moon_reader:
     lib_dir: libs
@@ -18,8 +18,8 @@ data(french_fries, package="reshape2")
 
 ## What is tidy data?
 
-> Happy families are all alike; every unhappy family is unhappy in its own way.<br>
-Leo Tolstoy
+ *Happy families are all alike; every unhappy family is unhappy in its own way. - Leo Tolstoy*  
+<br/>
 
 - Resource: follow along `tidyr` vignette 
 
@@ -175,7 +175,7 @@ Neither #1 nor #2 are "clean" versions of the data: observed information is part
 
 ---
 
-## Sources of Messiness
+## Sources of Messiness (Review)
 
 
 **Five main ways tables of data tend not to be tidy:**
@@ -191,16 +191,6 @@ Neither #1 nor #2 are "clean" versions of the data: observed information is part
 5. A single observational unit is stored in multiple tables.
 
 
----
-class: center, middle
-
-## AHHH WHYYYYYY
-</br>
-</br>
-</br>
-.center[
-![](https://media.giphy.com/media/gVoQge4JXndPq/giphy.gif)
-]
 ---
 
 ## What we have and what we want
@@ -454,11 +444,17 @@ xlab("variable") + ylab("rating")
 ```
 
 ---
+## Let's start with **Messy (1)**
+.center[
+![](https://media.giphy.com/media/3nfqWYzKrDHEI/giphy.gif)
+]
+---
 
-## Tidy your data using `pivot_longer` (formerly known as `gather`)
+## Tidy your data using `pivot_longer` 
+### formerly known as `gather`
 
 .center[
-<img src="images/pivot_longer_new.png" style="width:320px;"/>
+<img src="images/pivot_longer_new.png" style="width:400px;"/>
 ]
 
 When pivoting longer, you need to specify: 
@@ -471,7 +467,9 @@ When pivoting longer, you need to specify:
 
 ```{r, echo=TRUE}
 french_fries_long <- french_fries %>% 
-  pivot_longer(cols = potato:painty, names_to = "variable", values_to = "rating")
+  pivot_longer(cols = potato:painty, 
+               names_to = "variable", 
+               values_to = "rating")
 
 french_fries_long %>% 
   head() %>% 
@@ -500,21 +498,25 @@ head(french_fries_long, 3) %>% knitr::kable(format = "html")
 ```
 
 ---
-## `pivot_wider` (formerly known as `spread`)
+## Tidy your data using `pivot_wider` 
+### formerly known as `spread`
 
-We use the `pivot_wider` function from `tidyr` to do this:
 
 .center[
-<img src="images/pivot_wider_new.png" style="width:320px;"/>
+<img src="images/pivot_wider_new.png" style="width:400px;"/>
 ]
 
+When pivoting wider, you need to specify:
+- the **names_from** (column name that we want to widen)
+- the **values_from** (measures from column we want to widen)
 ---
 ## `pivot_wider` Example
 
 ```{r, warning = FALSE, echo=TRUE}
 french_fries_wide <- french_fries_long %>% 
   pivot_wider(names_from = variable, 
-              values_from = rating, values_fill = NA)
+              values_from = rating, 
+              values_fill = NA)
 
 head(french_fries_wide, 2) %>% 
   knitr::kable(format = "html")
@@ -547,7 +549,6 @@ french_fries_wide %>%
   geom_abline(colour = "grey50")
 ```
 ---
-
 class: center, middle
 
 ## Motivatinng Example (separate function)
