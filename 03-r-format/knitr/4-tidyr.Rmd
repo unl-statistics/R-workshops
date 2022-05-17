@@ -1,7 +1,7 @@
 ---
-title: "tidyr"
-author: 
-output: 
+title: "Data Wrangling"
+subtitle: "tidyr"
+output:
   xaringan::moon_reader:
     lib_dir: libs
     nature:
@@ -9,7 +9,6 @@ output:
       highlightLines: true
       countIncrementalSlides: false
 ---
-
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -36,7 +35,7 @@ Leo Tolstoy
 
 - Key-Value pairs
 
-- `tidyr`: `spread` and `gather`, `separate`
+- `tidyr`: `pivot_wider` and `pivot_longer`, `separate`
 
 ---
 
@@ -175,8 +174,36 @@ read.csv("../data/preg2.csv")
 Neither #1 nor #2 are "clean" versions of the data: observed information is part of the data structure; some implicit information is assumed
 
 ---
-## What we have and what we want
 
+## Sources of Messiness
+
+
+**Five main ways tables of data tend not to be tidy:**
+
+1. Column headers are values, not variable names.
+
+2. Multiple variables are stored in one column.
+
+3. Variables are stored in both rows and columns.
+
+4. Multiple types of observational units are stored in the same table.
+
+5. A single observational unit is stored in multiple tables.
+
+
+---
+class: center, middle
+
+## AHHH WHYYYYYY
+</br>
+</br>
+</br>
+.center[
+![](https://media.giphy.com/media/gVoQge4JXndPq/giphy.gif)
+]
+---
+
+## What we have and what we want
 
 .pull-left[
 **Wide format**
@@ -211,6 +238,14 @@ img <- readPNG("images/tablelong2.png")
  grid.raster(img)
 ```
 
+]
+
+---
+class: center, middle
+## Remember from Graphics
+
+.center[
+![](images/tidydata.jpeg)
 ]
 
 ---
@@ -270,26 +305,6 @@ img <- readPNG("images/tablelong2.png")
   </tr>
 </table>
 
-
-
----
-
-## Sources of Messiness
-
-
-**Five main ways tables of data tend not to be tidy:**
-
-1. Column headers are values, not variable names.
-
-2. Multiple variables are stored in one column.
-
-3. Variables are stored in both rows and columns.
-
-4. Multiple types of observational units are stored in the same table.
-
-5. A single observational unit is stored in multiple tables.
-
-
 ---
 
 ## What makes data tidy?
@@ -343,7 +358,6 @@ img <- readPNG("images/tablelong2.png")
 ]
 
 .pull-right[
-
 - `treatment` and `patient` uniquely describe a single row in the dataset.
 
 - `treatment` and `patient` are **key variables**,
@@ -352,9 +366,7 @@ img <- readPNG("images/tablelong2.png")
 
 - this makes `treatment-patient` and `score` a **key-value pair**
 
-
 ]
-
 
 
 ---
@@ -366,9 +378,7 @@ abstract data representation that allows a lot of flexibility
 
 One way of telling whether a data set is tidy is to check that all keys for a value are aligned in one row:
 
-| | |
-|:------------- |:------------- | 
-| | |
+
 | <img src="images/kvp-unhappy.png" width=150> | <img src="images/kvp-happy.png" width=150>     | 
 |Untidy data | Tidy data |
 
@@ -393,22 +403,24 @@ One way of telling whether a data set is tidy is to check that all keys for a va
 - Usually numeric quantities
 
 ---
+## Let's ask for help...
 
+.center[
+<img src="images/pivot_monsters.png" style="width:720px;"/>
+
+[Pivot Monsters](https://rladiessydney.org/courses/ryouwithme/02-cleanitup-5/) drawing by Allison Horst & adjusted by R ladies Sydney
+]
+---
 ## Tidying data - Plan of attack
 
-Very few functions are needed to tidy data:
+**Messy (1)**: `tidyr` functions `pivot_longer` and `pivot_longer`.  
+`pivot_longer (data,names_to,values_to, ...)`: take multiple columns and collapse into key-value pairs
 
-**Messy (1)**: `tidyr` functions `gather` and `spread`.  
+`pivot_wider (data,names_from,values_from,values_fill = NA)`: spread a key-value pair across multiple columns.
 
-- `gather (data, key, value, ...)`: take multiple columns and collapse into key-value pairs
+**Messy (2)**: `tidyr` function `separate (data, col, into, sep = " ")`: separate one column into multiple columns
 
-- `spread (data, key, value, fill = NA)`: spread a key-value pair across multiple columns.
-
-**Messy (2)**: `tidyr` function `separate (data, col, into, sep = " ")`:
-
-- separate one column into multiple columns
-
-**Messy (3)**: `dplyr` - some combination of the functions discussed previously
+**Messy (3)**: `dplyr` : a combination of the functions discussed previously today
 
 **Messy (4)**: `dplyr` functionality `join` (and friends) to combine multiple data sets 
 
@@ -418,55 +430,65 @@ Very few functions are needed to tidy data:
 
 ```{r, echo=TRUE, eval=FALSE}
 french_fries <- read_csv("frenchfries.csv")
-head(french_fries)
+head(french_fries) 
 ```
 
-```{r, echo=TRUE}
-head(french_fries)
+```{r, echo=FALSE}
+head(french_fries) %>% knitr::kable(format = "html")
 ```
 
 ---
 
 ## This format is not ideal for data analysis
 
-```{r, fig.width=7, fig.height=3, warning=FALSE}
+```{r, fig.width=7, fig.height=3, warning=FALSE, echo=TRUE}
 library(ggplot2)
 
 ggplot(french_fries) + 
-  geom_boxplot(aes(x="1_buttery", y=buttery), fill = "cyan4") +
-  geom_boxplot(aes(x = "2_grassy", y = grassy), fill = "darkorange2") +
-  geom_boxplot(aes(x = "3_painty", y = painty), fill = "darkorchid1") +
-  geom_boxplot(aes(x = "4_potato", y = potato), fill = "chartreuse3") +
-  geom_boxplot(aes(x = "5_rancid", y = rancid), fill = "deeppink") +
-  xlab("variable") + ylab("rating")
+geom_boxplot(aes(x="1_buttery", y=buttery), fill = "cyan4") +
+geom_boxplot(aes(x = "2_grassy", y = grassy), fill = "darkorange2") +
+geom_boxplot(aes(x = "3_painty", y = painty), fill = "darkorchid1") +
+geom_boxplot(aes(x = "4_potato", y = potato), fill = "chartreuse3") +
+geom_boxplot(aes(x = "5_rancid", y = rancid), fill = "deeppink") +
+xlab("variable") + ylab("rating")
 ```
 
 ---
 
-## Tidy your data using `gather`
+## Tidy your data using `pivot_longer` (formerly known as `gather`)
 
-When gathering, you need to specify: 
-- the **keys** (identifiers) 
-- the **values** (measures)
+.center[
+<img src="images/pivot_longer_new.png" style="width:320px;"/>
+]
+
+When pivoting longer, you need to specify: 
+- the **cols** (identifiers) 
+- the **names_to** (new column name)
+- the **values_to** (measures from cols)
+---
+
+## `pivot_longer` Example
 
 ```{r, echo=TRUE}
-
 french_fries_long <- french_fries %>% 
-  gather(key = variable, value = rating, potato:painty)
-head(french_fries_long)
+  pivot_longer(cols = potato:painty, names_to = "variable", values_to = "rating")
+
+french_fries_long %>% 
+  head() %>% 
+  knitr::kable(format = "html")
 
 ```
 
 ---
 
 ## This format is better suited for data analysis
-
-```{r, fig.width=7, fig.height=4, warning=FALSE}
+.center[
+```{r, fig.width=7, fig.height=4, warning=FALSE, echo=TRUE}
 ggplot(french_fries_long) + 
   geom_boxplot(aes(x = variable, y = rating, fill = variable))
 
 ```
-
+]
 
 ---
 ## Long to Wide
@@ -474,50 +496,86 @@ ggplot(french_fries_long) +
 In certain applications, we may wish to take a long dataset and convert it to a wide dataset (Perhaps displaying in a table).
 
 ```{r}
-head(french_fries_long)
+head(french_fries_long, 3) %>% knitr::kable(format = "html")
 ```
 
 ---
-## Spread
+## `pivot_wider` (formerly known as `spread`)
 
-We use the `spread` function from `tidyr` to do this:
+We use the `pivot_wider` function from `tidyr` to do this:
 
-```{r, warning = FALSE}
+.center[
+<img src="images/pivot_wider_new.png" style="width:320px;"/>
+]
+
+---
+## `pivot_wider` Example
+
+```{r, warning = FALSE, echo=TRUE}
 french_fries_wide <- french_fries_long %>% 
-  spread(key = variable, value = rating)
+  pivot_wider(names_from = variable, 
+              values_from = rating, values_fill = NA)
 
-head(french_fries_wide)
+head(french_fries_wide, 2) %>% 
+  knitr::kable(format = "html")
 ```
 
 We are now back to our original format
 
 ---
-## Spread
+## `pivot_wider` (cont.)
 
-We can also use the `spread` function to compare reps
+We can also use the `pivot_wider` function to compare replicates within the French Fry dataset
 
 ```{r}
 french_fries_wide <- french_fries_long %>% 
-  spread(key = rep, value = rating)
+  pivot_wider(names_from = rep, 
+              values_from = rating)
 
-head(french_fries_wide)
+head(french_fries_wide, 3) %>% 
+  knitr::kable(format = "html")
 ```
 
 ---
-## Compare replicates
+## Compare replicates of tested French Fry Data
 
-```{r fig.height=4, warning=FALSE}
+```{r fig.height=4, warning=FALSE, echo=TRUE}
 french_fries_wide %>%
   ggplot(aes(x = `1`, y = `2`)) + 
   geom_point() +
   facet_wrap(~variable) + 
   geom_abline(colour = "grey50")
 ```
+---
+
+class: center, middle
+
+## Motivatinng Example (separate function)
+
+.pull-left[
+```{r echo=FALSE}
+df <- 
+  data.frame(states = c("Lincoln/NE", "Chicago/IL", "Ames/IA", "Nashville/TN"),
+            dates = c("Aug-2000", "Sep-2001", "Oct-2002", "Feb-2001"))
+df %>% knitr::kable(format = "html")
+```
+]
+.pull-right[
+![](https://media.giphy.com/media/l2SpYGTTBmGLxSF5C/giphy.gif)
+]
 
 ---
-## separate
+## Basic Idea: `separate` 
+- How do I handle those values in my dataset? Let's use `separate`
 
-```{r}
+.center[
+<img src="images/separate.png" style="width:480px;"/>
+]
+
+---
+## `separate` Example 1
+
+```{r echo =TRUE}
 df <- data.frame(x = c(NA, "a.b", "a.d", "b.c"))
 df
 df %>% separate(x, into = c("A", "B"))
@@ -525,13 +583,14 @@ df %>% separate(x, into = c("A", "B"))
 
 ---
 
-## separate ex. 2
-```{r}
-df2 <- data.frame(y = c("Lincoln, NE", "Chicago, IL", "Ames, IA", "Nasheville, TN"))
+## `separate` Example 2
+```{r echo=TRUE}
+df2 <- data.frame(y = c("Lincoln, NE", "Chicago, IL", "Ames, IA", "Nashville, TN"))
 df2
 df2 %>% separate(y, c("City", "State"), sep = ", ")
 ```
 ---
+
 
 class: inverse
 ## Your Turn
@@ -541,13 +600,17 @@ The Iowa Data Portal is a wealth of information on and about the State of Iowa.
 The website 
 [Campaign Expenditures](https://data.iowa.gov/Government/Campaign-Expenditures/3adi-mht4/data) provides data on campaign expenditures. The code below reads the data into an R session.
 
-```
+---
+
+## Why??
+
+```{r echo=TRUE}
 url <- "https://data.iowa.gov/api/views/3adi-mht4/rows.csv"
 campaign <- readr::read_csv(url)
+head(campaign, 3) %>% knitr::kable(format = "html")
 ```
 
 Assess the 'messiness' of the data. List issues that prevent us from working with the data directly. Which of these issues are of type (1) or (2) of messiness?
-
 ---
 
 ## Problems with the data
@@ -560,20 +623,22 @@ Assess the 'messiness' of the data. List issues that prevent us from working wit
 
 no Messy 1? - problems of type Messy 1 are typically hard to detect and often up to interpretation/dependent on the analysis to be done.
 
+.center[
+![](https://media.giphy.com/media/QSdauORwsTtSM/giphy.gif)
+]
 ---
+
 class: inverse
 
 ## Your Turn
 
 During the 1870 census data on people's occupation was collected. The data [occupation-1870](../data/occupation-1870.csv) contains state-level aggregates of occupation by gender.
 
-- Use `tidyr` to get the data into a long format. 
+- Use `tidyr` to get the data into a long format (use `pivot_longer`). 
 
 - Separate the `occupation.gender` type variable into two variables.
 
-- Spread the data such that you can draw scatterplots of values for men against women facetted by occupation.
-
-
+- "Spread" (use `pivot_wider`) the data such that you can draw scatterplots of values for men against women facetted by occupation.
 
 ---
 ## Dates and Times
@@ -593,8 +658,8 @@ The **lubridate** package helps tackle some of these issues.
 
 ## Basic Lubridate Use
 
-```{r, results='hold', message=FALSE}
-library(lubridate)
+```{r, results='hold', message=FALSE, echo=TRUE}
+library(lubridate) #<< #New Package Alert!!
 
 now()
 today()
@@ -605,7 +670,7 @@ today() - days(2)
 ---
 ## Parsing Dates
 
-```{r, results='hold'}
+```{r, results='hold', echo=TRUE}
 ymd("2013-05-14")
 mdy("05/14/2013")
 dmy("14052013")
@@ -620,8 +685,9 @@ class: inverse
 
 The flights dataset contains information on over 300,000 flights that departed from New York City in the year 2013.
 
-```{r}
-flights <- read.csv("http://srvanderplas.github.io/rwrks/03-r-format/data/flights.csv")
+```{r, echo=TRUE}
+flights <- 
+  read.csv("http://srvanderplas.github.io/rwrks/03-r-format/data/flights.csv")
 ```
 
 
@@ -654,8 +720,9 @@ class: inverse
 
 - Read in the billboard top 100 music data:
 
-```{r}
-billboard <- read.csv("http://srvanderplas.github.io/rwrks/03-r-format/data/billboard.csv")
+```{r, echo=TRUE}
+billboard <- 
+  read.csv("http://srvanderplas.github.io/rwrks/03-r-format/data/billboard.csv")
 ```
     
 - Use `tidyr` to convert this data into a long format.
@@ -663,14 +730,32 @@ billboard <- read.csv("http://srvanderplas.github.io/rwrks/03-r-format/data/bill
 - Use ``ggplot2`` to create something like this:
 
 ```{r, echo=FALSE, fig.width=6.5, fig.height=3.5, warning=FALSE, purl=FALSE}
-long_billboard <- gather(billboard, key = week, value = rank, X1:X76) %>%
+long_billboard <- pivot_longer(billboard, cols = X1:X76,
+    names_to = "week",
+    values_to = "rank", values_drop_na = TRUE) %>%
   mutate(week = parse_number(week))
 
-ggplot(long_billboard) + geom_line(aes(week, rank, colour = artist, group = track))+
+ggplot(long_billboard) + 
+  geom_line(aes(week, rank, colour = artist, group = track))+
   xlim(c(0, 30))
 ```
 
+---
 
+class: inverse
+
+## SOLUTION
+
+```{r, echo=TRUE, fig.width=6.5, fig.height=3.5, warning=FALSE, purl=FALSE, eval=FALSE}
+long_billboard <- pivot_longer(billboard, cols = X1:X76,
+    names_to = "week",
+    values_to = "rank", values_drop_na = TRUE) %>%
+  mutate(week = parse_number(week))
+
+ggplot(long_billboard) + 
+  geom_line(aes(week, rank, colour = artist, group = track))+
+  xlim(c(0, 30))
+```
 
 ```{r purl, eval=FALSE, include=FALSE, purl=FALSE}
 #copy paste this and run in console

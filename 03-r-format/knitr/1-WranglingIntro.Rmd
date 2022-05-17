@@ -64,6 +64,7 @@ Comparison of work benches, by [Allison Horst](https://www.allisonhorst.com/)
 
 
 ---
+
 # MOTIVATION FOR TODAY
 
 .center[
@@ -105,14 +106,14 @@ READING FILE TYPES
 3. Formatting your data: A tidy data discussion (From Graphics Lecture - Yesterday)
 
 DPLYR PACKAGE
-1. Geoms, Stats, Coordinates, and Faceting
+1. filter, mutate, select, summarise, group by, and arrange
 
 TIDYR PACKAGES
-1. Basics of cognitive visual perception
-2. What makes a good graphic?
-3. Aesthetics and scales in ‘ggplot2‘
+1. What is tidy data?
+2. pivot longer, pivot wider and separate functions
+3. Lubridate package basics
 
 JOINING DATASETS
-1. 
+1. Basics set theory logic (joining datasets)
 
 
