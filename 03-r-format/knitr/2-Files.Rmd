@@ -141,7 +141,7 @@ Something isn't quite right here...
 ```{r midwest, echo=FALSE}
 library(readxl)
 midwest2 <- read_excel("../data/midwest.xls") 
-knitr::kable(head(midwest2), format = "html")
+knitr::kable(head(midwest2, 3), format = "html")
 ```
 
 ---
@@ -161,24 +161,43 @@ head(midwest2)
 ```{r midwest2, echo=FALSE}
 midwest2 <- read_excel("../data/midwest.xls", skip = 1) 
 names(midwest2)[1] <- "Year-Month"
-knitr::kable(head(midwest2), format = "html")
+knitr::kable(head(midwest2, 3), format = "html")
 ```
 
 Better, but not yet perfect...
 
 ---
 
-## `foreign` Package
+## `haven` Package
 
-- Other file formats can be read using the functions from package `foreign`
+- Other file formats can be read using the functions from package `haven`
 
-- SPSS: `read.spss`
+- SPSS: `read_spss`
 
-- SAS: `read.xport`
+- SAS: `read_xpt`
 
-- Minitab: `read.mtp`
+- Stata: `read_dta`
 
-- Systat: `read.systat`
+.center[
+<img src="images/haven.png" style="width:280px;"/>
+
+]
+
+
+---
+## Useful Packages for Other Data Files
+
+- `foreign` package reads from Minitab, Systat, etc. files.
+
+- `rgdal` package reads shapefiles (for maps)
+
+- `sf` package reads arcgis files, etc. [sf package](https://r-spatial.github.io/sf/)
+
+.center[
+<img src="images/sf package.jpeg" style="width:320px;"/>
+
+R knowledge Spatial, by [Allison Horst](https://www.allisonhorst.com/)
+]
 
 ---
 class: inverse
@@ -190,9 +209,19 @@ https://wwwn.cdc.gov/Nchs/Nhanes/continuousnhanes/default.aspx?BeginYear=2013
 
 1. Scroll to the bottom, choose one of the datasets (Demographics, Examination, etc.). Download the Data file (XPT)
 
-2. Use `read.xport()` to load the file into R
+2. Use `read_xpt()` to load the file into R
 
 3. Briefly examine the dataset you've imported (use `head` or `tail`, etc)
+
+---
+
+## SOLUTION
+
+```{r echo=TRUE}
+library(haven) 
+sas.data <- read_xpt("../data/DEMO_G.XPT")
+sas.data %>% head(2)
+```
 
 
 ```{r purl, eval=FALSE, include=FALSE, purl=FALSE}
