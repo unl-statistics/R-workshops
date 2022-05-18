@@ -20,7 +20,7 @@ Date | Notes | Lectures and Resources
 10:05 - 10:30 | **Break** |
 10:30 - 12:15 | [Summarizing with dplyr](knitr/3-dplyr.html) | Pipe operator and dplyr verbs <br/> [3-dplyr.R](code/3-dplyr.R)<br/> [pitch.csv](data/pitch.csv)
 12:15 - 1:15 | **Lunch Break** (on your own) | 
-1:15 - 2:45 | [Tidy Data](knitr/4-tidyr.html) | Restructuring data with pivot wider, pivot longer, and separate. <br/>[4-tidyr.R](code/4-tidyr.R), [frenchfries.csv](data/frenchfries.csv), [billboard.csv](data/billboard.csv), [flights.csv](data/flights.csv)
+1:15 - 2:45 | [Tidy Data](knitr/4-tidyr.html) | Restructuring data with pivot wider, pivot longer, and separate. <br/>[4-tidyr.R](code/4-tidyr.R), [frenchfries.csv](data/frenchfries.csv), [billboard.csv](data/billboard.csv), [flights.csv](data/flights.csv), [occupation-1870.csv](data/occupation-1870.csv)
 2:45 - 3:00 | **Break** | 
 3:00 - 4:00 | [Joining Data](knitr/5-joining.html) | Join dataframes together using SQL-based logic <br/>[5-joining.R](code/5-joining.R), [boxoffice.csv](data/boxoffice.csv), [baseball.csv](data/baseball.csv)
 3:55 - 4:00 | [Evaluation](https://forms.gle/nEvYK9C7YYKhtLLB7) | Help us make the workshops better!

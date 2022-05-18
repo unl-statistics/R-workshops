@@ -200,9 +200,9 @@ Spread the data such that you can draw scatterplots of values for men against wo
 ```{r, message=FALSE}
 occupation <- read_csv("https://srvanderplas.github.io/rwrks/03-r-format/data/occupation-1870.csv")
 occupation_long <- occupation %>% 
-  gather(key = Occupation, value = Measurement, Agriculture.Male:School.Female) %>%
+  pivot_longer(Agriculture.Male:School.Female,names_to = "Occupation", values_to = "Measurement") %>%
   separate(Occupation, c("Occupation", "Gender"), sep="\\.") %>%
-  spread(key = Gender, value = Measurement)
+  pivot_wider(names_from = "Gender", values_from = "Measurement")
 head(occupation_long, 10)
 ```
 
@@ -265,8 +265,10 @@ library(Lahman)
 Voted <- HallOfFame %>% filter(!is.na(ballots)) %>% 
   group_by(playerID) %>% arrange(yearID) %>% 
   mutate( attempt = order(yearID))
-Voted <- left_join(Voted, Master %>% select(playerID, nameFirst, nameLast), 
+
+Voted <- left_join(Voted, People %>% select(playerID, nameFirst, nameLast), 
                    by = "playerID") %>% filter(attempt > 15)
+
 Names <- Voted %>% mutate(FullName = paste(nameFirst, nameLast))
 Names$FullName %>% unique()
 

@@ -975,90 +975,46 @@ campaign &lt;- readr::read_csv(url)
 ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
 ```
 
+
+---
+## Why??
+
+
 ```r
-head(campaign, 3) %&gt;% knitr::kable(format = "html")
+problems(campaign)
 ```
 
-&lt;table&gt;
- &lt;thead&gt;
-  &lt;tr&gt;
-   &lt;th style="text-align:left;"&gt; Date &lt;/th&gt;
-   &lt;th style="text-align:left;"&gt; Transaction Type &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; Committee Code &lt;/th&gt;
-   &lt;th style="text-align:left;"&gt; Committee Type &lt;/th&gt;
-   &lt;th style="text-align:left;"&gt; Committee Name &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; Receiving Committee Code &lt;/th&gt;
-   &lt;th style="text-align:left;"&gt; Receiving Organization Name &lt;/th&gt;
-   &lt;th style="text-align:left;"&gt; First Name &lt;/th&gt;
-   &lt;th style="text-align:left;"&gt; Last Name &lt;/th&gt;
-   &lt;th style="text-align:left;"&gt; Address - Line 1 &lt;/th&gt;
-   &lt;th style="text-align:left;"&gt; Address - Line 2 &lt;/th&gt;
-   &lt;th style="text-align:left;"&gt; City &lt;/th&gt;
-   &lt;th style="text-align:left;"&gt; State &lt;/th&gt;
-   &lt;th style="text-align:left;"&gt; Zip &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; Expenditure Amount &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; Check Number &lt;/th&gt;
-  &lt;/tr&gt;
- &lt;/thead&gt;
-&lt;tbody&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; 10/12/2004 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; EXP &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 9103 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; County Central Committee &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; Jefferson County Democratic Central Committee &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; Metcalf for Supervisor &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 2642 Hawthorne &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; Fairfield &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; IA &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 52556 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 50.00 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 518 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; 09/09/2004 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; EXP &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 9103 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; County Central Committee &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; Jefferson County Democratic Central Committee &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; Morning Star Studio &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 51 1/2 South Court St. &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; Fairfield &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; IA &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 52556 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 800.00 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 512 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; 12/06/2004 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; EXP &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 9103 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; County Central Committee &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; Jefferson County Democratic Central Committee &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; Morning Star Studio &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 51 1/2 South Court St. &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; Fairfield &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; IA &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 52556 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 354.56 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 525 &lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
+```
+## # A tibble: 2 × 5
+##      row   col expected actual    file 
+##    &lt;int&gt; &lt;int&gt; &lt;chr&gt;    &lt;chr&gt;     &lt;chr&gt;
+## 1 424979     6 a double SWGA50018 ""   
+## 2 426552     6 a double CTY50006  ""
+```
+
+- Let's rerun with the following in `guess_max` function
+
+```r
+campaign &lt;- readr::read_csv(url, guess_max = 50000)
+```
+
+```
+## Warning: One or more parsing issues, see `problems()` for details
+```
+
+```
+## Rows: 496888 Columns: 16
+## ── Column specification ────────────────────────────────────────────────────────
+## Delimiter: ","
+## chr (12): Date, Transaction Type, Committee Type, Committee Name, Receiving ...
+## dbl  (4): Committee Code, Receiving Committee Code, Expenditure Amount, Chec...
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+```
 
 Assess the 'messiness' of the data. List issues that prevent us from working with the data directly. Which of these issues are of type (1) or (2) of messiness?
+
 ---
 
 ## Problems with the data
@@ -1075,7 +1031,6 @@ no Messy 1? - problems of type Messy 1 are typically hard to detect and often up
 ![](https://media.giphy.com/media/QSdauORwsTtSM/giphy.gif)
 ]
 ---
-
 class: inverse
 
 ## Your Turn
@@ -1089,6 +1044,7 @@ During the 1870 census data on people's occupation was collected. The data [occu
 - "Spread" (use `pivot_wider`) the data such that you can draw scatterplots of values for men against women facetted by occupation.
 
 ---
+
 ## Dates and Times
 
 Dates are deceptively hard to work with in R.
@@ -1103,7 +1059,6 @@ Other things are difficult too:
 The **lubridate** package helps tackle some of these issues.
 
 ---
-
 ## Basic Lubridate Use
 
 
@@ -1117,9 +1072,9 @@ today() - days(2)
 ```
 
 ```
-## [1] "2022-05-18 13:39:52 CDT"
+## [1] "2022-05-18 14:46:44 CDT"
 ## [1] "2022-05-18"
-## [1] "2022-05-18 17:39:52 CDT"
+## [1] "2022-05-18 18:46:44 CDT"
 ## [1] "2022-05-16"
 ```
 
@@ -1155,7 +1110,6 @@ flights &lt;-
   read.csv("http://srvanderplas.github.io/rwrks/03-r-format/data/flights.csv")
 ```
 
-
 ---
 class: inverse
 
@@ -1167,7 +1121,25 @@ class: inverse
 
 3. Plot the date versus the average departure delay
 
-![](4-tidyr_files/figure-html/unnamed-chunk-20-1.png)&lt;!-- --&gt;
+![](4-tidyr_files/figure-html/unnamed-chunk-22-1.png)&lt;!-- --&gt;
+
+---
+class: inverse
+
+## SOLUTION
+
+
+```r
+flights$date &lt;- ymd(paste(flights$year, flights$month, flights$day, sep = "-"))
+delay.dat &lt;- flights %&gt;% 
+    group_by(date) %&gt;% 
+    summarise(dep_delay = mean(dep_delay, na.rm = TRUE))
+
+
+ggplot(delay.dat) + geom_line(aes(date, dep_delay))
+```
+
+![](4-tidyr_files/figure-html/unnamed-chunk-23-1.png)&lt;!-- --&gt;
 
 ---
 class: inverse
@@ -1186,10 +1158,9 @@ billboard &lt;-
 
 - Use ``ggplot2`` to create something like this:
 
-![](4-tidyr_files/figure-html/unnamed-chunk-22-1.png)&lt;!-- --&gt;
+![](4-tidyr_files/figure-html/unnamed-chunk-25-1.png)&lt;!-- --&gt;
 
 ---
-
 class: inverse
 
 ## SOLUTION
@@ -1205,6 +1176,10 @@ ggplot(long_billboard) +
   geom_line(aes(week, rank, colour = artist, group = track))+
   xlim(c(0, 30))
 ```
+
+![](4-tidyr_files/figure-html/unnamed-chunk-26-1.png)&lt;!-- --&gt;
+
+---
 
 
     </textarea>

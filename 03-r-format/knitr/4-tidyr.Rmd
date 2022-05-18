@@ -608,10 +608,23 @@ The website
 ```{r echo=TRUE}
 url <- "https://data.iowa.gov/api/views/3adi-mht4/rows.csv"
 campaign <- readr::read_csv(url)
-head(campaign, 3) %>% knitr::kable(format = "html")
+```
+
+
+---
+## Why??
+
+```{r echo=TRUE}
+problems(campaign)
+```
+
+- Let's rerun with the following in `guess_max` function
+```{r echo=TRUE}
+campaign <- readr::read_csv(url, guess_max = 50000)
 ```
 
 Assess the 'messiness' of the data. List issues that prevent us from working with the data directly. Which of these issues are of type (1) or (2) of messiness?
+
 ---
 
 ## Problems with the data
@@ -628,7 +641,6 @@ no Messy 1? - problems of type Messy 1 are typically hard to detect and often up
 ![](https://media.giphy.com/media/QSdauORwsTtSM/giphy.gif)
 ]
 ---
-
 class: inverse
 
 ## Your Turn
@@ -642,6 +654,7 @@ During the 1870 census data on people's occupation was collected. The data [occu
 - "Spread" (use `pivot_wider`) the data such that you can draw scatterplots of values for men against women facetted by occupation.
 
 ---
+
 ## Dates and Times
 
 Dates are deceptively hard to work with in R.
@@ -656,7 +669,6 @@ Other things are difficult too:
 The **lubridate** package helps tackle some of these issues.
 
 ---
-
 ## Basic Lubridate Use
 
 ```{r, results='hold', message=FALSE, echo=TRUE}
@@ -691,7 +703,6 @@ flights <-
   read.csv("http://srvanderplas.github.io/rwrks/03-r-format/data/flights.csv")
 ```
 
-
 ---
 class: inverse
 
@@ -704,6 +715,22 @@ class: inverse
 3. Plot the date versus the average departure delay
 
 ```{r, echo=FALSE, fig.width=7, fig.height=3, purl = FALSE}
+flights$date <- ymd(paste(flights$year, flights$month, flights$day, sep = "-"))
+delay.dat <- flights %>% 
+    group_by(date) %>% 
+    summarise(dep_delay = mean(dep_delay, na.rm = TRUE))
+
+
+ggplot(delay.dat) + geom_line(aes(date, dep_delay))
+
+```
+
+---
+class: inverse
+
+## SOLUTION
+
+```{r, echo=TRUE, fig.width=7, fig.height=3, purl = FALSE}
 flights$date <- ymd(paste(flights$year, flights$month, flights$day, sep = "-"))
 delay.dat <- flights %>% 
     group_by(date) %>% 
@@ -742,12 +769,11 @@ ggplot(long_billboard) +
 ```
 
 ---
-
 class: inverse
 
 ## SOLUTION
 
-```{r, echo=TRUE, fig.width=6.5, fig.height=3.5, warning=FALSE, purl=FALSE, eval=FALSE}
+```{r, echo=TRUE, fig.width=6.5, fig.height=3.5, warning=FALSE, purl=FALSE}
 long_billboard <- pivot_longer(billboard, cols = X1:X76,
     names_to = "week",
     values_to = "rank", values_drop_na = TRUE) %>%
@@ -757,6 +783,8 @@ ggplot(long_billboard) +
   geom_line(aes(week, rank, colour = artist, group = track))+
   xlim(c(0, 30))
 ```
+
+---
 
 ```{r purl, eval=FALSE, include=FALSE, purl=FALSE}
 #copy paste this and run in console
