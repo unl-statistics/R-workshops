@@ -377,7 +377,7 @@ abstract data representation that allows a lot of flexibility
 
 One way of telling whether a data set is tidy is to check that all keys for a value are aligned in one row:
 
-
+| *******   | *******    | 
 | &lt;img src="images/kvp-unhappy.png" width=150&gt; | &lt;img src="images/kvp-happy.png" width=150&gt;     | 
 |Untidy data | Tidy data |
 
@@ -544,9 +544,14 @@ xlab("variable") + ylab("rating")
 ![](4-tidyr_files/figure-html/unnamed-chunk-6-1.png)&lt;!-- --&gt;
 
 ---
+## Let's start with **Messy (1)**
+.center[
+![](https://media.giphy.com/media/3nfqWYzKrDHEI/giphy.gif)
+]
+---
 
 ## Tidy your data using `pivot_longer` 
-# formerly known as `gather`
+### formerly known as `gather`
 
 .center[
 &lt;img src="images/pivot_longer_new.png" style="width:400px;"/&gt;
@@ -699,7 +704,7 @@ head(french_fries_long, 3) %&gt;% knitr::kable(format = "html")
 
 ---
 ## Tidy your data using `pivot_wider` 
-# formerly known as `spread`
+### formerly known as `spread`
 
 
 .center[
@@ -833,7 +838,6 @@ french_fries_wide %&gt;%
 
 ![](4-tidyr_files/figure-html/unnamed-chunk-12-1.png)&lt;!-- --&gt;
 ---
-
 class: center, middle
 
 ## Motivatinng Example (separate function)
@@ -1113,10 +1117,10 @@ today() - days(2)
 ```
 
 ```
-## [1] "2022-05-17 12:26:29 CDT"
-## [1] "2022-05-17"
-## [1] "2022-05-17 16:26:29 CDT"
-## [1] "2022-05-15"
+## [1] "2022-05-18 13:39:52 CDT"
+## [1] "2022-05-18"
+## [1] "2022-05-18 17:39:52 CDT"
+## [1] "2022-05-16"
 ```
 
 ---

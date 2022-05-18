@@ -368,7 +368,7 @@ abstract data representation that allows a lot of flexibility
 
 One way of telling whether a data set is tidy is to check that all keys for a value are aligned in one row:
 
-
+| *******   | *******    | 
 | <img src="images/kvp-unhappy.png" width=150> | <img src="images/kvp-happy.png" width=150>     | 
 |Untidy data | Tidy data |
 
