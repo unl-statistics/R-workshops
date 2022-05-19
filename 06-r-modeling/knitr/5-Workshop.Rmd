@@ -130,4 +130,11 @@ condition_data %>%
 ```
 ]
 
+---
+## Built in R Datasets
+
+```{r datasets, purl = T, echo = T}
+data(package = .packages(all.available = TRUE))
+```
+
 
