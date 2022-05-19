@@ -7,11 +7,12 @@ output: pdf_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+library(ggplot2)
 ```
 
 You can test if \textbf{knitr} works with this minimal demo. OK, let's get started with some boring random numbers:
 
-```{r boring-numbers}
+```{r boring-numbers, tidy = FALSE}
 set.seed(1121)
 x=rnorm(20)
 mean(x)
@@ -21,7 +22,7 @@ var(x)
 The first element of \texttt{x} is 0.145. Boring boxplots
 and histograms recorded by the PDF device:
 
-```{r boring-plots, fig.width=10, fig.height=6, out.width='.9\\linewidth'}
+```{r boring-plots, fig.width=20, fig.height=10, out.width='.7\\linewidth', fig.cap= "it's a plot!"}
 
 ## two plots side by side
 par(mfrow = c(1,2))
