@@ -225,7 +225,7 @@ Imagine want to extract some sample data that has been coded into our sample nam
 For example, X1P10N2AFD0 encodes the experiment, pig number, pen, tissue, and day.
 
 ```{r}
-meta <- read.table("https://srvanderplas.github.io/rwrks/01-r-intro/data/meta.txt")
+meta <- read.table("https://unl-statistics.github.io/R-workshops/01-r-intro/data/meta.txt")
 head(meta)
 ```
 

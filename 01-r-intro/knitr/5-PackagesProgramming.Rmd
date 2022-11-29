@@ -172,7 +172,7 @@ for(i in 1:5) {# Head of for-loop
   print(x1) # Print results
 }
 
-final_shed <- read.csv("https://srvanderplas.github.io/rwrks/01-r-intro/data/daily_shedding.csv")
+final_shed <- read.csv("https://unl-statistics.github.io/R-workshops/01-r-intro/data/daily_shedding.csv")
 
 id <- c("pig_weight", "total_shedding", "daily_shedding")
 for(colname in id) {
