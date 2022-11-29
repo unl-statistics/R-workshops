@@ -1,15 +1,16 @@
-## ----setup, include=FALSE-----------------------------------------------------------------------------------------
+## ----setup, include=FALSE------------------------------
 knitr::opts_chunk$set(echo = TRUE)
+library(ggplot2)
 
 
-## ----boring-numbers-----------------------------------------------------------------------------------------------
+## ----boring-numbers, tidy = FALSE----------------------
 set.seed(1121)
 x=rnorm(20)
 mean(x)
 var(x)
 
 
-## ----boring-plots, fig.width=10, fig.height=6, out.width='.9\\linewidth'------------------------------------------
+## ----boring-plots, fig.width=20, fig.height=10, out.width='.7\\linewidth', fig.cap= "it's a plot!"----
 
 ## two plots side by side
 par(mfrow = c(1,2))

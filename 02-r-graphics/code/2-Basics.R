@@ -1,4 +1,4 @@
-## ----setup, include=FALSE-----------------------------------------------------------------------------------------
+## ----setup, include=FALSE------------------------------
 options(htmltools.dir.version = FALSE)
 knitr::opts_chunk$set(	echo = FALSE,
 	message = FALSE,
@@ -7,7 +7,7 @@ knitr::opts_chunk$set(	echo = FALSE,
 )
 
 
-## -----------------------------------------------------------------------------------------------------------------
+## ------------------------------------------------------
 library(ggplot2)
 library(ggsci)
 library(ggthemes)
@@ -45,7 +45,7 @@ grid_arrange_shared_legend <- function(..., ncol = length(list(...)), nrow = 1, 
 
 
 
-## ---- anscombe-set1-----------------------------------------------------------------------------------------------
+## ---- anscombe-set1------------------------------------
 quartet_setI <- anscombe %>%
   select(x1, y1) %>%
   mutate(set = "I") %>%
@@ -54,7 +54,7 @@ quartet_setI <- anscombe %>%
 quartet_setI %>% select(x, y) %>% knitr::kable(caption = "Set I")
 
 
-## ----anscombe-set2------------------------------------------------------------------------------------------------
+## ----anscombe-set2-------------------------------------
 quartet_setII <- anscombe %>%
   select(x2, y2) %>%
   mutate(set = "II") %>%
@@ -63,7 +63,7 @@ quartet_setII <- anscombe %>%
 quartet_setII %>% select(x, y) %>% knitr::kable(caption = "Set II")
 
 
-## ----anscombe-set3------------------------------------------------------------------------------------------------
+## ----anscombe-set3-------------------------------------
 quartet_setIII <- anscombe %>%
   select(x3, y3) %>%
   mutate(set = "III") %>%
@@ -72,7 +72,7 @@ quartet_setIII <- anscombe %>%
 quartet_setIII %>% select(x, y) %>% knitr::kable(caption = "Set III")
 
 
-## ----anscombe-set4------------------------------------------------------------------------------------------------
+## ----anscombe-set4-------------------------------------
 quartet_setIV <- anscombe %>%
   select(x4, y4) %>%
   mutate(set = "IV") %>%
@@ -81,7 +81,7 @@ quartet_setIV <- anscombe %>%
 quartet_setIV %>% select(x, y) %>% knitr::kable(caption = "Set IV")
 
 
-## ---- quartet-summary---------------------------------------------------------------------------------------------
+## ---- quartet-summary----------------------------------
 quartet <- rbind(quartet_setI,
                  quartet_setII,
                  quartet_setIII,
@@ -105,7 +105,7 @@ quartet_summary %>%
   knitr::kable(digits = 2)
 
 
-## ---- , quartet-plots, fig.height = 7, fig.width = 7, fig.align = "center"----------------------------------------
+## ---- , quartet-plots, fig.height = 7, fig.width = 7, fig.align = "center"----
 ggplot(quartet, aes(x, y)) + 
   geom_point(colour = "green4", size = 2.5) + 
   geom_smooth(method = lm, se = FALSE, colour = "gray", alpha = .5) +
@@ -117,7 +117,7 @@ ggplot(quartet, aes(x, y)) +
         strip.text = element_text(size = 16))
 
 
-## ---- eval = FALSE------------------------------------------------------------------------------------------------
+## ---- eval = FALSE-------------------------------------
 ## preg <- read.csv("data/preg.csv", stringsAsFactors = FALSE)
 ## preg
 ## knitr::kable(preg, format = 'html')
@@ -130,25 +130,25 @@ ggplot(quartet, aes(x, y)) +
 ## 
 
 
-## ----fig.width=3, fig.height=3.7,echo=FALSE, fig.align="center"---------------------------------------------------
+## ----fig.width=3, fig.height=3.7,echo=FALSE, fig.align="center"----
 library(png)
 library(grid)
 img <- readPNG("images/tablelong2.png")
  grid.raster(img)
 
 
-## ---- eval=FALSE, echo=TRUE---------------------------------------------------------------------------------------
+## ---- eval=FALSE, echo=TRUE----------------------------
 ## data(french_fries, package = "reshape2")
 ## head(french_fries)
 
 
-## ---- eval=T, echo=F----------------------------------------------------------------------------------------------
+## ---- eval=T, echo=F-----------------------------------
 library(reshape2)
 data(french_fries)
 head(french_fries)%>% knitr::kable(row.names = F)
 
 
-## ---- eval=FALSE, echo=TRUE---------------------------------------------------------------------------------------
+## ---- eval=FALSE, echo=TRUE----------------------------
 ## french_fries_long <- french_fries %>%
 ##   pivot_longer(cols = c("potato":"painty"), #<<
 ##                names_to = "variable", #<<
@@ -156,7 +156,7 @@ head(french_fries)%>% knitr::kable(row.names = F)
 ## head(french_fries_long)
 
 
-## ---- eval=T, echo=F----------------------------------------------------------------------------------------------
+## ---- eval=T, echo=F-----------------------------------
 french_fries_long <- french_fries %>% 
   pivot_longer(cols = c("potato":"painty"),
                names_to = "variable",
@@ -164,7 +164,7 @@ french_fries_long <- french_fries %>%
 head(french_fries_long) %>% knitr::kable(row.names = F)
 
 
-## ----preg, echo = T, eval = T-------------------------------------------------------------------------------------
+## ----preg, echo = T, eval = T--------------------------
 preg <- tibble(pregnant = c("yes", "no"),
                male = c(NA, 10),
                female = c(20, 12))

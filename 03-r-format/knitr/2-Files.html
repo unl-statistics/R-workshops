@@ -169,7 +169,7 @@ Have a look at the parameters of `read_csv` to solve the following problems:
 
 2. Read everything EXCEPT the first two lines into an object called `midwest_data`
 
-Hint: Visit http://srvanderplas.github.io/rwrks/03-r-format/data/midwest.csv to download the data and look at it in Excel to help figure out what the issue is. 
+Hint: Visit http://unl-statistics.github.io/R-workshops/03-r-format/data/midwest.csv to download the data and look at it in Excel to help figure out what the issue is. 
 
 ---
 
@@ -178,12 +178,12 @@ Hint: Visit http://srvanderplas.github.io/rwrks/03-r-format/data/midwest.csv to 
 
 ```r
 midwest_names &lt;- read_csv(
-"http://srvanderplas.github.io/rwrks/03-r-format/data/midwest.csv", 
+"http://unl-statistics.github.io/R-workshops/03-r-format/data/midwest.csv", 
   n_max= 2, col_names = FALSE) 
 
 
 midwest_data &lt;- read_csv(
-"http://srvanderplas.github.io/rwrks/03-r-format/data/midwest.csv", 
+"http://unl-statistics.github.io/R-workshops/03-r-format/data/midwest.csv", 
   skip = 2, col_names = FALSE) 
 ```
 

@@ -1,4 +1,4 @@
-## ----setup, include=FALSE-----------------------------------------------------------------------------------------
+## ----setup, include=FALSE------------------------------
 options(htmltools.dir.version = FALSE)
 knitr::opts_chunk$set(
 	echo = FALSE,
@@ -17,11 +17,11 @@ library(ggsci)
 knitr::include_graphics("images/confidence-interval-best-est-uncertainty.png")
 
 
-## ----penguins-data, eval = T, purl = T, echo = T------------------------------------------------------------------
+## ----penguins-data, eval = T, purl = T, echo = T-------
 data(penguins, package = "palmerpenguins")
 
 
-## ----penguins-ttest-data------------------------------------------------------------------------------------------
+## ----penguins-ttest-data-------------------------------
 penguins2 <- penguins %>%
   select(sex, body_mass_g) %>%
   na.omit()
@@ -29,7 +29,7 @@ penguins2 <- penguins %>%
 penguins2[1:3,] %>% kable()
 
 
-## ----penguins-ttest-summary---------------------------------------------------------------------------------------
+## ----penguins-ttest-summary----------------------------
 penguins2 %>%
   group_by(sex) %>%
   summarize(mean = mean(body_mass_g),
@@ -37,7 +37,7 @@ penguins2 %>%
   kable(digits = 1)
 
 
-## ----penguins-ttest-boxplot, fig.width = 6, fig.height = 6--------------------------------------------------------
+## ----penguins-ttest-boxplot, fig.width = 6, fig.height = 6----
 penguins2 %>%
   ggplot(aes(x = sex, y = body_mass_g, color = sex, fill = sex)) +
   geom_boxplot(alpha = 0.1, width = 0.5) +
@@ -55,25 +55,25 @@ penguins2 %>%
 
 
 
-## ---- penguin, equal variance, echo = T---------------------------------------------------------------------------
+## ---- penguin, equal variance, echo = T----------------
 library(car)
 leveneTest(penguins2$body_mass_g, group = penguins2$sex, center = mean)
 
 
-## ----penguins-ttest-echo, echo = T, eval = F, purl = T------------------------------------------------------------
+## ----penguins-ttest-echo, echo = T, eval = F, purl = T----
 ## penguins_ttest <- t.test(body_mass_g ~ sex, data = penguins2) #<<
 ## penguins_ttest
 
 
 
 
-## ---- penguins-ttest-results-echo, echo = T, eval = F, purl = T---------------------------------------------------
+## ---- penguins-ttest-results-echo, echo = T, eval = F, purl = T----
 ## penguins_ttest$statistic
 ## penguins_ttest$df
 ## penguins_ttest$p.value
 
 
-## ---- penguins-ttest-broom-echo, echo = T, eval = F, purl = T-----------------------------------------------------
+## ---- penguins-ttest-broom-echo, echo = T, eval = F, purl = T----
 ## install.packages("broom")
 ## library(broom)
 ## penguins_results <- tidy(penguins_ttest) #<<
@@ -107,7 +107,7 @@ leveneTest(penguins2$body_mass_g, group = penguins2$sex, center = mean)
 
 
 
-## ----penguins-chisq-data------------------------------------------------------------------------------------------
+## ----penguins-chisq-data-------------------------------
 penguins3 <- penguins %>%
   select(species, island) %>%
   na.omit()
@@ -115,11 +115,11 @@ penguins3 <- penguins %>%
 penguins3[1:3,] %>% kable()
 
 
-## ----penguins-chisq-summary---------------------------------------------------------------------------------------
+## ----penguins-chisq-summary----------------------------
 with(penguins3, table(island, species))
 
 
-## ----penguins-chisq-mosaicplot, fig.height = 5.5, fig.width = 7---------------------------------------------------
+## ----penguins-chisq-mosaicplot, fig.height = 5.5, fig.width = 7----
 library(ggmosaic)
 ggplot(penguins3) +
   geom_mosaic(aes(x = product(island), fill = species), color = "white") +
@@ -137,13 +137,13 @@ ggplot(penguins3) +
 
 
 
-## ----penguins-chisq, echo = T, eval = T, purl = T-----------------------------------------------------------------
+## ----penguins-chisq, echo = T, eval = T, purl = T------
 chisq.test(penguins3$island, penguins3$species) #<<
 chisq.test(penguins3$island, penguins3$species, 
            simulate.p.value = T) #<<
 
 
-## ----penguins-regression-data-------------------------------------------------------------------------------------
+## ----penguins-regression-data--------------------------
 penguins4 <- penguins %>%
   select(body_mass_g, flipper_length_mm) %>%
   na.omit()
@@ -151,11 +151,11 @@ penguins4 <- penguins %>%
 penguins4[1:3,] %>% kable()
 
 
-## ----penguins-regression-summary----------------------------------------------------------------------------------
+## ----penguins-regression-summary-----------------------
 with(penguins4, cor(body_mass_g, flipper_length_mm))
 
 
-## ----penguins-regression-scatterplot, fig.height = 5, fig.width = 5-----------------------------------------------
+## ----penguins-regression-scatterplot, fig.height = 5, fig.width = 5----
 ggplot(penguins4, aes(x = flipper_length_mm, y = body_mass_g)) +
   geom_point(shape = 1) +
   geom_smooth(method = "loess") +
@@ -171,7 +171,7 @@ ggplot(penguins4, aes(x = flipper_length_mm, y = body_mass_g)) +
 
 
 
-## ----penguins-regression-mod, echo = T, purl = T, eval = T--------------------------------------------------------
+## ----penguins-regression-mod, echo = T, purl = T, eval = T----
 penguins_regression <- lm(body_mass_g ~ flipper_length_mm, data = penguins4) #<<
 summary(penguins_regression)
 
@@ -182,7 +182,7 @@ plot(penguins_regression)
 par(mfrow = c(1,1))
 
 
-## ----penguins-regression-results-echo, echo = T, purl = T, eval = F-----------------------------------------------
+## ----penguins-regression-results-echo, echo = T, purl = T, eval = F----
 ## tidy(penguins_regression)  %>%
 ##   mutate(p.value = scales::pvalue(p.value))
 

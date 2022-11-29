@@ -3,15 +3,17 @@
   <head>
     <title>Regular Expressions</title>
     <meta charset="utf-8" />
-    <script src="libs/header-attrs-2.11/header-attrs.js"></script>
-    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
-    <link href="libs/remark-css-0.0.1/default-fonts.css" rel="stylesheet" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link href="libs/remark-css/default-fonts.css" rel="stylesheet" />
   </head>
   <body>
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
+.title[
 # Regular Expressions
+]
 
 ---
 
@@ -53,35 +55,21 @@ class: center, middle, inverse, title-slide
 `state.name` is a built in dataset within R that contains all the U.S. state names.
 
 
-```r
-data(state)
-```
 
 How many state names contain the pattern "ne"?
 
 
-```r
-grep(pattern = "ne", state.name)
-```
-
 ```
 ## [1]  7 19 23 42
-```
-
-```r
-state.name[7]
 ```
 
 ```
 ## [1] "Connecticut"
 ```
 
-```r
-grep(pattern = "ne", state.name, value = TRUE)
 ```
-
-```
-## [1] "Connecticut" "Maine"       "Minnesota"   "Tennessee"
+## [1] "Connecticut" "Maine"       "Minnesota"  
+## [4] "Tennessee"
 ```
 
 ---
@@ -91,14 +79,11 @@ grep(pattern = "ne", state.name, value = TRUE)
 We don’t care about the casing so we will make our pattern more promiscuous.
 
 
-```r
-grep(pattern = "[nN]e", state.name, value = TRUE)
 ```
-
-```
-##  [1] "Connecticut"   "Maine"         "Minnesota"     "Nebraska"     
-##  [5] "Nevada"        "New Hampshire" "New Jersey"    "New Mexico"   
-##  [9] "New York"      "Tennessee"
+##  [1] "Connecticut"   "Maine"         "Minnesota"    
+##  [4] "Nebraska"      "Nevada"        "New Hampshire"
+##  [7] "New Jersey"    "New Mexico"    "New York"     
+## [10] "Tennessee"
 ```
 
 ---
@@ -252,11 +237,6 @@ Imagine want to extract some sample data that has been coded into our sample nam
 For example, X1P10N2AFD0 encodes the experiment, pig number, pen, tissue, and day.
 
 
-```r
-meta &lt;- read.table("https://srvanderplas.github.io/rwrks/01-r-intro/data/meta.txt")
-head(meta)
-```
-
 ```
 ##    label       Group numOtus
 ## 27  0.03 X1P10N2ACD4    5802
@@ -275,11 +255,6 @@ Imagine, we want to extract the day number for each row.
 
 We use the expression `D` as cue; the number after that is the day:
 
-
-```r
-meta$day &lt;- gsub('.*D([:digit:]*)','\\1', meta$Group)
-head(meta$day)
-```
 
 ```
 ## [1] "4" "0" "4" "4" "4" "0"
@@ -342,6 +317,19 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     deleted = true;
   });
 })();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
 (function() {
   "use strict"
   // Replace <script> tags in slides area to make them executable

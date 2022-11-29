@@ -237,7 +237,7 @@ tibble("Gestalt Hierarchy" = c("Enclosure", "Connection", "Proximitiy", "Similar
 # Gestalt Principles: Case Study
 
 ```{r gestalt-swimming-data, eval = T, echo = T}
-swimming <- read.csv("https://srvanderplas.github.io/rwrks/02-r-graphics/data/gestalt-swimming.csv")
+swimming <- read.csv("https://unl-statistics.github.io/R-workshops/02-r-graphics/data/gestalt-swimming.csv")
 ```
 
 .center[
@@ -740,7 +740,7 @@ class: inverse
 The `movies` data set contains information from IMDB.com including ratings, genre, length in minutes, and year of release.
 
 ```{r, echo = TRUE}
-movies <- read.csv("https://srvanderplas.github.io/rwrks/02-r-graphics/data/MovieSummary.csv")
+movies <- read.csv("https://unl-statistics.github.io/R-workshops/02-r-graphics/data/MovieSummary.csv")
 ```
                    
 - Explore the differences in length, rating, etc. in movie genres over time.

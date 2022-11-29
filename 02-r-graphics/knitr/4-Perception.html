@@ -11,8 +11,12 @@
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
+.title[
 # Data Visualization
+]
+.subtitle[
 ## Using ggplot2
+]
 
 ---
 
@@ -188,7 +192,7 @@ What sorts of relationships are inferred, and under what circumstances?
 
 
 ```r
-swimming &lt;- read.csv("https://srvanderplas.github.io/rwrks/02-r-graphics/data/gestalt-swimming.csv")
+swimming &lt;- read.csv("https://unl-statistics.github.io/R-workshops/02-r-graphics/data/gestalt-swimming.csv")
 ```
 
 .center[
@@ -510,7 +514,7 @@ The `movies` data set contains information from IMDB.com including ratings, genr
 
 
 ```r
-movies &lt;- read.csv("https://srvanderplas.github.io/rwrks/02-r-graphics/data/MovieSummary.csv")
+movies &lt;- read.csv("https://unl-statistics.github.io/R-workshops/02-r-graphics/data/MovieSummary.csv")
 ```
                    
 - Explore the differences in length, rating, etc. in movie genres over time.
@@ -567,6 +571,19 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     deleted = true;
   });
 })();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
 (function() {
   "use strict"
   // Replace <script> tags in slides area to make them executable

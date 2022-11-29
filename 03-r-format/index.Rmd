@@ -2,6 +2,7 @@
 title: "Data Wrangling"
 output: html_document
 ---
+[**Return to rwrks homepage**](http://unl-statistics.github.io/R-workshops/)
 
 <br>
  <p style="text-align:center;"><img src="https://raw.githubusercontent.com/rstudio/hex-stickers/master/PNG/dplyr.png?raw=true" alt="dplyr-hex" style="width:200px;"> <img src="https://github.com/rstudio/hex-stickers/blob/master/PNG/tidyr.png?raw=true" alt="tidyr-hex" style="width:200px;"></p>

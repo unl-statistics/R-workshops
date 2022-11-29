@@ -85,7 +85,7 @@ Read in the pitch data set (in the folder 03-r-format/data). The data are from a
 ```r
 library(tidyverse)
 pitch &lt;- 
-  read_csv("http://srvanderplas.github.io/rwrks/03-r-format/data/pitch.csv")
+  read_csv("http://unl-statistics.github.io/R-workshops/03-r-format/data/pitch.csv")
 pitch[-1] %&gt;% 
   filter(pitcher_hand == "R", pitch_type == "CU") %&gt;%
   head()

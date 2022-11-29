@@ -45,7 +45,7 @@ class: center, middle
 A plant pathology researcher is studying the effect of an experimental fungicide on the fresh weight of azaleas inoculated with a certain fungus. She has 49 potted plants of a particular azalea variety growing in a greenhouse. All plants are inoculated with a fungus. To start, she has 7 different fungicide combinations, with 7 plants per treatment.(Example from Lentner and Bishop, *Experimental Design and Analysis (2nd)*)
 
 ```{r echo = TRUE}
-azalea <- read.csv("https://srvanderplas.github.io/rwrks/06-r-modeling/data/AzaleaOneWay.csv")
+azalea <- read.csv("https://unl-statistics.github.io/R-workshops/06-r-modeling/data/AzaleaOneWay.csv")
 head(azalea)
 ```
 
@@ -275,7 +275,7 @@ $$H_A: \text{There is an interaction.}$$
 # Two-Way ANOVA in R
 
 ```{r echo = TRUE}
-azalea2 <- read.csv("https://srvanderplas.github.io/rwrks/06-r-modeling/data/AzaleaTwoWay.csv")
+azalea2 <- read.csv("https://unl-statistics.github.io/R-workshops/06-r-modeling/data/AzaleaTwoWay.csv")
 azalea2$AppTime.new <- as.factor(azalea2$AppTime)
 azalea2$AppRate.new <- as.factor(azalea2$AppRate)
 mod.fit2 <- lm(Weight ~ AppTime.new + AppRate.new + AppTime.new:AppRate.new, data = azalea2)
@@ -423,7 +423,7 @@ $$y_{ijk} = \mu + \alpha_i + \beta_j + \alpha\beta_{ij} + b_k + \varepsilon_{ijk
 # RCBD Analysis in R
 
 ```{r echo = TRUE}
-azalea3 <- read.csv("https://srvanderplas.github.io/rwrks/06-r-modeling/data/AzaleaBlock.csv")
+azalea3 <- read.csv("https://unl-statistics.github.io/R-workshops/06-r-modeling/data/AzaleaBlock.csv")
 azalea3$AppTime.new <- as.factor(azalea3$AppTime)
 azalea3$AppRate.new <- as.factor(azalea3$AppRate)
 azalea3$Block.new <- as.factor(azalea3$Block)

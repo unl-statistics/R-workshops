@@ -1,4 +1,4 @@
-## ----setup, include=FALSE-----------------------------------------------------------------------------------------
+## ----setup, include=FALSE------------------------------
 options(htmltools.dir.version = FALSE)
 knitr::opts_chunk$set(
 	echo = FALSE,
@@ -12,7 +12,7 @@ library(kableExtra)
 library(ggsci)
 
 
-## ---- eda-example-echo, echo = T, eval = F, purl = T--------------------------------------------------------------
+## ---- eda-example-echo, echo = T, eval = F, purl = T----
 ## install.packages("palmerpenguins")
 ## data(penguins, package = "palmerpenguins")
 ## head(penguins)
@@ -20,7 +20,7 @@ library(ggsci)
 
 
 
-## ----numerical-summaries-echo, purl = T, echo = T, eval = F-------------------------------------------------------
+## ----numerical-summaries-echo, purl = T, echo = T, eval = F----
 ## penguins %>%
 ##   group_by(sex) %>%
 ##   summarize(across(c("body_mass_g"),
@@ -33,7 +33,7 @@ library(ggsci)
 
 
 
-## ----graphical-summaries-echo, purl = T, echo = T, eval = F-------------------------------------------------------
+## ----graphical-summaries-echo, purl = T, echo = T, eval = F----
 ## penguins %>%
 ##   ggplot(aes(x = sex, y = body_mass_g, color = sex, fill = sex)) +
 ##   geom_boxplot(alpha = 0.5) +

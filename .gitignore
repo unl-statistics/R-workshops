@@ -19,3 +19,6 @@ rwrks.Rproj
 *.vrb
 
 **/.DS_Store
+*/*/*/header-attrs
+*/*/*/header-attrs-2.18
+*/*/*/remark-css

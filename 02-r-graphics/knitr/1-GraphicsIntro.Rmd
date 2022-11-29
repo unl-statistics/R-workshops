@@ -270,7 +270,7 @@ i3 <- ggplot(diamonds) +
   labs(x="", y="", title="Mosaic Plot")
 
 # radar chart
-# devtools::install_github("ricardo-bion/ggradar")
+devtools::install_github("ricardo-bion/ggradar")
 library(ggradar)
 mtcars %>%
     tibble::rownames_to_column(var = "group") %>% 

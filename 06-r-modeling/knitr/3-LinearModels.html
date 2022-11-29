@@ -49,7 +49,7 @@ A plant pathology researcher is studying the effect of an experimental fungicide
 
 
 ```r
-azalea &lt;- read.csv("https://srvanderplas.github.io/rwrks/06-r-modeling/data/AzaleaOneWay.csv")
+azalea &lt;- read.csv("https://unl-statistics.github.io/R-workshops/06-r-modeling/data/AzaleaOneWay.csv")
 head(azalea)
 ```
 
@@ -377,7 +377,7 @@ In terms of our example:
 
 
 ```r
-azalea2 &lt;- read.csv("https://srvanderplas.github.io/rwrks/06-r-modeling/data/AzaleaTwoWay.csv")
+azalea2 &lt;- read.csv("https://unl-statistics.github.io/R-workshops/06-r-modeling/data/AzaleaTwoWay.csv")
 azalea2$AppTime.new &lt;- as.factor(azalea2$AppTime)
 azalea2$AppRate.new &lt;- as.factor(azalea2$AppRate)
 mod.fit2 &lt;- lm(Weight ~ AppTime.new + AppRate.new + AppTime.new:AppRate.new, data = azalea2)
@@ -728,7 +728,7 @@ You learn the researchers actually 7 plots, and they made sure all six treatment
 
 
 ```r
-azalea3 &lt;- read.csv("https://srvanderplas.github.io/rwrks/06-r-modeling/data/AzaleaBlock.csv")
+azalea3 &lt;- read.csv("https://unl-statistics.github.io/R-workshops/06-r-modeling/data/AzaleaBlock.csv")
 azalea3$AppTime.new &lt;- as.factor(azalea3$AppTime)
 azalea3$AppRate.new &lt;- as.factor(azalea3$AppRate)
 azalea3$Block.new &lt;- as.factor(azalea3$Block)

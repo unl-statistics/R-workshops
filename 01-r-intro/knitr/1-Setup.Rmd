@@ -130,5 +130,5 @@ class: inverse
 
 - Create a RStudio Project for the workshop that you can use throughout the week. 
   + You can save R files along with the datasets, so you won't have to set your working directory each day.
-- Save [2-MotivatingExample.R](/01-r-intro/code/2-MotivatingExample.R) from the [website](https://srvanderplas.github.io/rwrks/01-r-intro/index.html) in your project
+- Save [2-MotivatingExample.R](/01-r-intro/code/2-MotivatingExample.R) from the [website](https://unl-statistics.github.io/R-workshops/01-r-intro/index.html) in your project
   + This is the file we are going to use in the next section

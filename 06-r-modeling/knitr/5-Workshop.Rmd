@@ -55,13 +55,13 @@ penguins %>%
 In a manufacturing study, the production times for 111 recent production runs were obtained. The researchers are curious if the production lot size can predict the production time in hours.
 
 ```{r, production-echo, purl = T, echo = T, eval = F}
-production_data <- read.csv("https://srvanderplas.github.io/rwrks/06-r-modeling/data/production.csv")
+production_data <- read.csv("https://unl-statistics.github.io/R-workshops/06-r-modeling/data/production.csv")
 head(production_data)
 ```
 
 .pull-left[
 ```{r, production-data, purl = F, echo = F, eval = T}
-production_data <- read.csv("https://srvanderplas.github.io/rwrks/06-r-modeling/data/production.csv")
+production_data <- read.csv("https://unl-statistics.github.io/R-workshops/06-r-modeling/data/production.csv")
 head(production_data) %>% kable()
 ```
 ].pull-right[
@@ -108,13 +108,13 @@ ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g, color = species, fi
 Here’s the big picture: there is an environmental condition suspected of causing increased incidence of a certain medical disorder. To assess the suspected link, 100 clusters are randomly selected where the environmental condition does not exist (coded “Condition = 0”) in the data set) and 100 clusters are randomly selected where the environmental condition does exist (coded “Condition = 1”). All households at each site are sent a survey (in survey design, this is called cluster sampling) – response is voluntary.
 
 ```{r condition-data-echo, echo = T, purl = T, eval = F}
-condition_data <- read.csv("https://srvanderplas.github.io/rwrks/06-r-modeling/data/condition.csv")
+condition_data <- read.csv("https://unl-statistics.github.io/R-workshops/06-r-modeling/data/condition.csv")
 head(condition_data)
 ```
 
 .pull-left[
 ```{r condition-data, echo = F, purl = F, eval = T}
-condition_data <- read.csv("https://srvanderplas.github.io/rwrks/06-r-modeling/data/condition.csv")
+condition_data <- read.csv("https://unl-statistics.github.io/R-workshops/06-r-modeling/data/condition.csv")
 condition_data[1:4,] %>%
   kable() %>% kable_styling("striped") %>% scroll_box(width = "100%")
 ```

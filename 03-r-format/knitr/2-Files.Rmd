@@ -50,7 +50,7 @@ class: center, middle
 ```{r message=FALSE, warning=FALSE}
 library(readr)
 library(knitr)
-midwest <- read_csv("http://srvanderplas.github.io/rwrks/03-r-format/data/midwest.csv")
+midwest <- read_csv("http://unl-statistics.github.io/R-workshops/03-r-format/data/midwest.csv")
 knitr::kable(head(midwest), format = "html")
 ```
 
@@ -76,7 +76,7 @@ Have a look at the parameters of `read_csv` to solve the following problems:
 
 2. Read everything EXCEPT the first two lines into an object called `midwest_data`
 
-Hint: Visit http://srvanderplas.github.io/rwrks/03-r-format/data/midwest.csv to download the data and look at it in Excel to help figure out what the issue is. 
+Hint: Visit http://unl-statistics.github.io/R-workshops/03-r-format/data/midwest.csv to download the data and look at it in Excel to help figure out what the issue is. 
 
 ---
 
@@ -84,12 +84,12 @@ Hint: Visit http://srvanderplas.github.io/rwrks/03-r-format/data/midwest.csv to 
 
 ```{r, message=FALSE, echo = TRUE}
 midwest_names <- read_csv(
-"http://srvanderplas.github.io/rwrks/03-r-format/data/midwest.csv", 
+"http://unl-statistics.github.io/R-workshops/03-r-format/data/midwest.csv", 
   n_max= 2, col_names = FALSE) 
 
 
 midwest_data <- read_csv(
-"http://srvanderplas.github.io/rwrks/03-r-format/data/midwest.csv", 
+"http://unl-statistics.github.io/R-workshops/03-r-format/data/midwest.csv", 
   skip = 2, col_names = FALSE) 
 ```
 

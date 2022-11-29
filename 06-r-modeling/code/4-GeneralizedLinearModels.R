@@ -1,4 +1,4 @@
-## ----setup, include=FALSE-----------------------------------------------------------------------------------------
+## ----setup, include=FALSE------------------------------
 options(htmltools.dir.version = FALSE)
 knitr::opts_chunk$set(
 	echo = FALSE,
@@ -9,7 +9,7 @@ knitr::opts_chunk$set(
 library(tidyverse)
 
 
-## ----pkgs, echo = T, purl = T, eval = T---------------------------------------------------------------------------
+## ----pkgs, echo = T, purl = T, eval = T----------------
 library('lme4')
 library('emmeans')
 
@@ -18,23 +18,23 @@ library('emmeans')
 
 
 
-## ---- insects-data-echo, echo = T, purl = T, eval = F-------------------------------------------------------------
-## insects_data <- read_csv("https://srvanderplas.github.io/rwrks/06-r-modeling/data/insects.csv")
+## ---- insects-data-echo, echo = T, purl = T, eval = F----
+## insects_data <- read_csv("https://unl-statistics.github.io/R-workshops/06-r-modeling/data/insects.csv")
 ## head(insects_data)
 
 
-## ---- insects-data, echo = F, eval = T----------------------------------------------------------------------------
-insects_data <- read_csv("https://srvanderplas.github.io/rwrks/06-r-modeling/data/insects.csv")
+## ---- insects-data, echo = F, eval = T-----------------
+insects_data <- read_csv("https://unl-statistics.github.io/R-workshops/06-r-modeling/data/insects.csv")
 insects_data[1:4,] %>% kable()
 
 
-## ----deposit-summary, echo = F, purl = T, eval = T----------------------------------------------------------------
+## ----deposit-summary, echo = F, purl = T, eval = T-----
 factorCols <- c("Rep", "Insecticide")
 insects_data[,factorCols] <- lapply(insects_data[,factorCols], factor)
 summary(insects_data)
 
 
-## ----deposit-graph-eda, echo = F, purl = T, eval = T, fig.align = 'center', fig.height = 4, fig.width = 9---------
+## ----deposit-graph-eda, echo = F, purl = T, eval = T, fig.align = 'center', fig.height = 4, fig.width = 9----
 ggplot(data = insects_data, aes(x = Deposit, y = Killed/Number)) +
   geom_point(position = position_jitter(width = 0.2, height = 0)) +
   geom_smooth(method = "loess") +
@@ -43,7 +43,7 @@ ggplot(data = insects_data, aes(x = Deposit, y = Killed/Number)) +
   theme(aspect.ratio = 1)
 
 
-## ----deposit-glm, echo = T, eval = T------------------------------------------------------------------------------
+## ----deposit-glm, echo = T, eval = T-------------------
  insects_glm <- glm(Killed/Number ~ Insecticide*Deposit + Insecticide*I(Deposit^2),
      weights = Number, #<<
      data = insects_data,
@@ -51,11 +51,11 @@ ggplot(data = insects_data, aes(x = Deposit, y = Killed/Number)) +
 car::Anova(insects_glm)
 
 
-## ----insects-summary, echo = T, eval = T, purl = T----------------------------------------------------------------
+## ----insects-summary, echo = T, eval = T, purl = T-----
 summary(insects_glm)
 
 
-## ----insects-emmeans-echo, echo = T, eval = F, purl = T-----------------------------------------------------------
+## ----insects-emmeans-echo, echo = T, eval = F, purl = T----
 ## insects_emmeangrid <- ref_grid(insects_glm, at = list(Deposit = unique(insects_data$Deposit))) #<<
 ## insects_emmeans <- emmeans(insects_emmeangrid, specs =~Insecticide:Deposit, type = "response")
 ## insects_emmeans
@@ -63,12 +63,12 @@ summary(insects_glm)
 
 
 
-## ----insects-pairs, echo = T, eval = T, purl = T------------------------------------------------------------------
+## ----insects-pairs, echo = T, eval = T, purl = T-------
 insects_pairs <- emmeans(insects_emmeangrid, specs =~Insecticide | Deposit, type = "response")
 pairs(insects_pairs, infer = c(T,T))
 
 
-## ----insecticide-plot-echo, echo = T, eval = F, purl = T----------------------------------------------------------
+## ----insecticide-plot-echo, echo = T, eval = F, purl = T----
 ## insects_predgrid <- ref_grid(insects_glm, at = list(Deposit = seq(min(insects_data$Deposit), max(insects_data$Deposit), 0.2)))
 ## insects_preds <- emmeans(insects_predgrid, specs =~Insecticide:Deposit, type = "response")
 ## insects_preds
@@ -76,7 +76,7 @@ pairs(insects_pairs, infer = c(T,T))
 
 
 
-## ----insects-plot-echo, echo = T, eval = F, purl = T--------------------------------------------------------------
+## ----insects-plot-echo, echo = T, eval = F, purl = T----
 ## insects_preds %>%
 ##   as_tibble() %>%
 ##   ggplot(aes(x = Deposit, shape = Insecticide, color = Insecticide, fill = Insecticide)) +
@@ -92,21 +92,21 @@ pairs(insects_pairs, infer = c(T,T))
 
 
 
-## ----birds-data-echo, echo = T, purl = T, eval = F----------------------------------------------------------------
-## birds_data <- read_csv("https://srvanderplas.github.io/rwrks/06-r-modeling/data/birds.csv")
+## ----birds-data-echo, echo = T, purl = T, eval = F-----
+## birds_data <- read_csv("https://unl-statistics.github.io/R-workshops/06-r-modeling/data/birds.csv")
 ## head(birds_data)
 
 
 
 
-## ----birds-data2, echo = T, purl = T, eval = T--------------------------------------------------------------------
+## ----birds-data2, echo = T, purl = T, eval = T---------
 summary(birds_data)
 factorCols <- c("Site", "Habitat")
 birds_data[,factorCols] <- lapply(birds_data[,factorCols], factor)
 summary(birds_data)
 
 
-## ----birds-graph-eda1, fig.height = 3, fig.width = 8, fig.align='center'------------------------------------------
+## ----birds-graph-eda1, fig.height = 3, fig.width = 8, fig.align='center'----
 ggplot(data = birds_data, aes(x = Count, fill = Habitat)) +
   geom_histogram( color = "black") +
   facet_wrap(~Habitat, ncol = 2) +
@@ -117,7 +117,7 @@ ggplot(data = birds_data, aes(x = Count, fill = Habitat)) +
   scale_fill_locuszoom()
 
 
-## ----birds-graph-eda2, fig.height = 3, fig.width = 8, fig.align='center'------------------------------------------
+## ----birds-graph-eda2, fig.height = 3, fig.width = 8, fig.align='center'----
 ggplot(data = birds_data, aes(x = log(Count), fill = Habitat)) +
   geom_histogram( color = "black") +
   facet_wrap(~Habitat, ncol = 2) +
@@ -128,7 +128,7 @@ ggplot(data = birds_data, aes(x = log(Count), fill = Habitat)) +
   scale_fill_locuszoom()
 
 
-## ----birds-glmer, echo = T, eval = T, purl = T--------------------------------------------------------------------
+## ----birds-glmer, echo = T, eval = T, purl = T---------
 library(optimx)
 birds_nb <- glmer.nb(Count ~ Habitat + (1|Site),
                      data = birds_data,
@@ -136,11 +136,11 @@ birds_nb <- glmer.nb(Count ~ Habitat + (1|Site),
 car::Anova(birds_nb)
 
 
-## ----birds-results, echo = T, eval = T, purl = T------------------------------------------------------------------
+## ----birds-results, echo = T, eval = T, purl = T-------
 summary(birds_nb)
 
 
-## ----birds-emmeans-echo, echo = T, eval = F, purl = T-------------------------------------------------------------
+## ----birds-emmeans-echo, echo = T, eval = F, purl = T----
 ## birds_emmeans <- emmeans(birds_nb, specs = ~ Habitat,
 ##                          type = "response") #<<
 ## birds_emmeans
@@ -148,11 +148,11 @@ summary(birds_nb)
 
 
 
-## ----birds-pairs-echo, echo = T, eval = T, purl = T---------------------------------------------------------------
+## ----birds-pairs-echo, echo = T, eval = T, purl = T----
 pairs(birds_emmeans, infer = c(T,T))
 
 
-## ----birds-groups-echo, echo = T, eval = F, purl = T--------------------------------------------------------------
+## ----birds-groups-echo, echo = T, eval = F, purl = T----
 ## library(multcomp)
 ## library(multcompView)
 ## library(stringr)
@@ -163,7 +163,7 @@ pairs(birds_emmeans, infer = c(T,T))
 
 
 
-## ----birds-plot-echo, echo = T, eval = F, purl = T, fig.align='center',fig.height=5, fig.width=5------------------
+## ----birds-plot-echo, echo = T, eval = F, purl = T, fig.align='center',fig.height=5, fig.width=5----
 ## birds_letters %>%
 ##   as_tibble() %>% #<<
 ##   ggplot(aes(x = Habitat, y = response)) +

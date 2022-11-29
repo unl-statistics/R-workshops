@@ -700,7 +700,7 @@ The flights dataset contains information on over 300,000 flights that departed f
 
 ```{r, echo=TRUE}
 flights <- 
-  read.csv("http://srvanderplas.github.io/rwrks/03-r-format/data/flights.csv")
+  read.csv("http://unl-statistics.github.io/R-workshops/03-r-format/data/flights.csv")
 ```
 
 ---
@@ -750,7 +750,7 @@ class: inverse
 
 ```{r, echo=TRUE}
 billboard <- 
-  read.csv("http://srvanderplas.github.io/rwrks/03-r-format/data/billboard.csv")
+  read.csv("http://unl-statistics.github.io/R-workshops/03-r-format/data/billboard.csv")
 ```
     
 - Use `tidyr` to convert this data into a long format.

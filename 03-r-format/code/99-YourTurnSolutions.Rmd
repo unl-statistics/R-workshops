@@ -15,10 +15,10 @@ Read everything EXCEPT the first two lines into an object called midwest_data
 ```{r, message = FALSE}
 library(tidyverse)
 midwest_names <- read_csv(
-  "http://srvanderplas.github.io/rwrks/03-r-format/data/midwest.csv", n_max= 2, 
+  "http://unl-statistics.github.io/R-workshops/03-r-format/data/midwest.csv", n_max= 2, 
   col_names = FALSE)
 midwest_data <- read_csv(
-  "http://srvanderplas.github.io/rwrks/03-r-format/data/midwest.csv", 
+  "http://unl-statistics.github.io/R-workshops/03-r-format/data/midwest.csv", 
   skip = 2, col_names = FALSE)
 head(midwest_data)
 head(midwest_names)
@@ -34,7 +34,7 @@ Briefly examine the dataset you've imported (use head or tail, etc)
 
 ```{r}
 # library(foreign)
-# labdata <- read.xport("https://srvanderplas.github.io/rwrks/03-r-format/data/AMDGDS_H.XPT")
+# labdata <- read.xport("https://unl-statistics.github.io/R-workshops/03-r-format/data/AMDGDS_H.XPT")
 #Your file path
 # head(labdata)
 ```
@@ -50,7 +50,7 @@ Ex. Filter the data down to left handed pitchers, who throw a curve with at leas
 **Solution**
 ```{r, warning=FALSE, message=FALSE}
 
-pitch <- read_csv("https://srvanderplas.github.io/rwrks/03-r-format/data/pitch.csv")
+pitch <- read_csv("https://unl-statistics.github.io/R-workshops/03-r-format/data/pitch.csv")
 
 pitch %>%
   filter(spin_rate >= 3200 & pitcher_hand == "L") %>%
@@ -198,7 +198,7 @@ Separate the occupation.gender type variable into two variables.
 Spread the data such that you can draw scatterplots of values for men against women facetted by occupation.
 
 ```{r, message=FALSE}
-occupation <- read_csv("https://srvanderplas.github.io/rwrks/03-r-format/data/occupation-1870.csv")
+occupation <- read_csv("https://unl-statistics.github.io/R-workshops/03-r-format/data/occupation-1870.csv")
 occupation_long <- occupation %>% 
   pivot_longer(Agriculture.Male:School.Female,names_to = "Occupation", values_to = "Measurement") %>%
   separate(Occupation, c("Occupation", "Gender"), sep="\\.") %>%
@@ -216,7 +216,7 @@ Plot the date versus the average departure delay
 
 ```{r, message=FALSE}
 library(lubridate)
-flights <- read.csv("http://srvanderplas.github.io/rwrks/03-r-format/data/flights.csv")
+flights <- read.csv("http://unl-statistics.github.io/R-workshops/03-r-format/data/flights.csv")
 
 flights$date <- ymd(paste(flights$year, flights$month, flights$day, sep = "-"))
 delay.dat <- flights %>% 
@@ -233,7 +233,7 @@ Use tidyr to convert this data into a long format.
 Use ggplot2 to create something like this: <br>
 ```{r, fig.width=6.5, fig.height=3.5, warning=FALSE, purl=FALSE, echo=FALSE}
 
-billboard <- read.csv("http://srvanderplas.github.io/rwrks/03-r-format/data/billboard.csv")
+billboard <- read.csv("http://unl-statistics.github.io/R-workshops/03-r-format/data/billboard.csv")
 long_billboard <- gather(billboard, key = week, value = rank, X1:X76) %>%
   mutate(week = parse_number(week))
 
@@ -242,7 +242,7 @@ ggplot(long_billboard) + geom_line(aes(week, rank, colour = artist, group = trac
 ```
 
 ```{r, warning=FALSE}
-billboard <- read.csv("http://srvanderplas.github.io/rwrks/03-r-format/data/billboard.csv")
+billboard <- read.csv("http://unl-statistics.github.io/R-workshops/03-r-format/data/billboard.csv")
 long_billboard <- gather(billboard, key = week, value = rank, X1:X76) %>%
   mutate(week = parse_number(week))
 

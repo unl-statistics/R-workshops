@@ -1,4 +1,4 @@
-## ----setup, include=FALSE-----------------------------------------------------------------------------------------
+## ----setup, include=FALSE------------------------------
 knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 library(httr)
@@ -6,7 +6,7 @@ library(rvest)
 library(magrittr)
 
 
-## ----nodesex, size="huge"-----------------------------------------------------------------------------------------
+## ----nodesex, size="huge"------------------------------
 myurl <- "https://en.wikipedia.org/wiki/List_of_countries_by_GDP_(PPP)_per_capita"
 myhtml <- read_html(myurl)
 
@@ -14,41 +14,41 @@ myhtml %>% html_nodes("table") %>% magrittr::extract2(2) %>% html_table(header =
 
 
 
-## ----textex, size="huge"------------------------------------------------------------------------------------------
+## ----textex, size="huge"-------------------------------
 myhtml %>% 
   html_nodes("p") %>% # first get all the paragraphs 
   html_nodes("a") %>% # then get all the links in those paragraphs
   html_text() # get the linked text only 
 
 
-## ----tableex, size="huge"-----------------------------------------------------------------------------------------
+## ----tableex, size="huge"------------------------------
 myhtml %>% 
   html_nodes("table") %>% # get the tables 
   head(2) # look at first 2
 
 
-## ----tableex2, size="huge"----------------------------------------------------------------------------------------
+## ----tableex2, size="huge"-----------------------------
 myhtml %>% 
   html_nodes("table") %>% # get the tables 
   magrittr::extract2(2) %>% # pick the second one to parse
   html_table(header = TRUE) # parse table 
 
 
-## ----attrsex, size="huge"-----------------------------------------------------------------------------------------
+## ----attrsex, size="huge"------------------------------
 myhtml %>% 
   html_nodes("table") %>% magrittr::extract2(2) %>% html_attrs()
 
 
-## ----attrsex2, size="huge"----------------------------------------------------------------------------------------
+## ----attrsex2, size="huge"-----------------------------
 myhtml %>% 
   html_nodes("p") %>% html_nodes("a") %>% html_attr("href")
 
 
-## ----childex, size="huge"-----------------------------------------------------------------------------------------
+## ----childex, size="huge"------------------------------
 myhtml %>% html_children() %>% html_name()
 
 
-## -----------------------------------------------------------------------------------------------------------------
+## ------------------------------------------------------
 lincoln_forecasts <- 
     read_html("https://forecast.weather.gov/MapClick.php?x=177&y=197&site=oax&zmx=&zmy=&map_x=177&map_y=196#.YeBDWxPMKdY") %>%
     html_nodes(".temp") %>%
@@ -62,7 +62,7 @@ library(readr)
 parse_number(lincoln_forecasts)
 
 
-## ----getyears, size="huge"----------------------------------------------------------------------------------------
+## ----getyears, size="huge"-----------------------------
 url <- "http://avalon.law.yale.edu/subject_menus/inaug.asp"
 # even though it's called "all inaugs" some are missing
 all_inaugs <- (url %>% 
@@ -78,7 +78,7 @@ all_inaugs_tidy <- all_inaugs %>%
 head(all_inaugs_tidy)
 
 
-## ----getlinks, size="huge"----------------------------------------------------------------------------------------
+## ----getlinks, size="huge"-----------------------------
 # get the links to the addresses 
 inaugadds_adds <- (url %>%
   read_html() %>%
@@ -91,7 +91,7 @@ all_inaugs_tidy$url <- inaugurls
 head(all_inaugs_tidy)
 
 
-## ----functiongetspeech, cache=TRUE, message = FALSE, warning = FALSE, size="huge"---------------------------------
+## ----functiongetspeech, cache=TRUE, message = FALSE, warning = FALSE, size="huge"----
 get_inaugurations <- function(url){
   test <- try(url %>% read_html(), silent=T)
   if ("try-error" %in% class(test)) {
@@ -108,7 +108,7 @@ all_inaugs_text <- all_inaugs_tidy %>%
 all_inaugs_text$address_text[[1]]
 
 
-## ----missings, size="huge"----------------------------------------------------------------------------------------
+## ----missings, size="huge"-----------------------------
 all_inaugs_text$President[is.na(all_inaugs_text$address_text)]
 # there are 7 missing at this point: obama's and trump's, plus coolidge, garfield, buchanan, and van buren, which errored in the scraping.
 obama09 <- get_inaugurations("http://avalon.law.yale.edu/21st_century/obama.asp")
@@ -122,7 +122,7 @@ all_inaugs_text$address_text[c(13,18,24,35)] <- list(vanburen1837,buchanan1857, 
 
 
 
-## ----size="huge"--------------------------------------------------------------------------------------------------
+## ----size="huge"---------------------------------------
 # lets combine them all now
 recents <- data.frame(President = c(rep("Barack Obama", 2), 
                                     "Donald Trump"),
@@ -135,7 +135,7 @@ all_inaugs_text$address_text[c(56:58)] <- list(obama09, obama13, trump17)
 head(all_inaugs_text)
 
 
-## ----textanalysis, warning = FALSE, message = FALSE, size="huge"--------------------------------------------------
+## ----textanalysis, warning = FALSE, message = FALSE, size="huge"----
 # install.packages("tidytext")
 library(tidytext)
 presidential_words <- all_inaugs_text %>% 
@@ -145,7 +145,7 @@ presidential_words <- all_inaugs_text %>%
 head(presidential_words)
 
 
-## ----longestspeech, warning = FALSE, message = FALSE, size="huge"-------------------------------------------------
+## ----longestspeech, warning = FALSE, message = FALSE, size="huge"----
 presidential_wordtotals <- presidential_words %>% 
   group_by(President,year) %>% 
   summarize(num_words = n()) %>%

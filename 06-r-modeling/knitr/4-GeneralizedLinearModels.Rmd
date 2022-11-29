@@ -86,12 +86,12 @@ class: inverse, center, middle
 **Data** The number of insects killed at various doses of insecticide.
 
 ```{r, insects-data-echo, echo = T, purl = T, eval = F}
-insects_data <- read_csv("https://srvanderplas.github.io/rwrks/06-r-modeling/data/insects.csv")
+insects_data <- read_csv("https://unl-statistics.github.io/R-workshops/06-r-modeling/data/insects.csv")
 head(insects_data)
 ```
 
 ```{r, insects-data, echo = F, eval = T}
-insects_data <- read_csv("https://srvanderplas.github.io/rwrks/06-r-modeling/data/insects.csv")
+insects_data <- read_csv("https://unl-statistics.github.io/R-workshops/06-r-modeling/data/insects.csv")
 insects_data[1:4,] %>% kable()
 ```
 
@@ -245,12 +245,12 @@ class: inverse, center, middle
 An ecologist is investigating the impact of habitat type on the population of a certain type of bird. To do this, data were obtained from a study in which 24 randomly sampled sites were observed. Each site contains habitats of both types. Bird counts were obtained from each habitat type. 
 
 ```{r birds-data-echo, echo = T, purl = T, eval = F}
-birds_data <- read_csv("https://srvanderplas.github.io/rwrks/06-r-modeling/data/birds.csv")
+birds_data <- read_csv("https://unl-statistics.github.io/R-workshops/06-r-modeling/data/birds.csv")
 head(birds_data) 
 ```
 
 ```{r birds-data1, echo = F, purl = F, eval = T}
-birds_data <- read_csv("https://srvanderplas.github.io/rwrks/06-r-modeling/data/birds.csv")
+birds_data <- read_csv("https://unl-statistics.github.io/R-workshops/06-r-modeling/data/birds.csv")
 head(birds_data) %>% kable()
 ```
 

@@ -154,7 +154,7 @@ The `movies` data set contains information from IMDB.com including ratings, genr
 A few different plots, there will be many!
 
 ```{r}
-movies <- read.csv("https://srvanderplas.github.io/rwrks/02-r-graphics/data/MovieSummary.csv")
+movies <- read.csv("https://unl-statistics.github.io/R-workshops/02-r-graphics/data/MovieSummary.csv")
 summary(movies)
 	
 ggplot(movies, aes(x = year, y = budget, group = genre, color = genre)) + 

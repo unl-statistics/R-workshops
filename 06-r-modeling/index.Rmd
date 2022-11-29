@@ -2,7 +2,7 @@
 title: "Statistical Modeling in R"
 output: html_document
 ---
-[**Return to rwrks homepage**](http://srvanderplas.github.io/rwrks/)
+[**Return to rwrks homepage**](http://unl-statistics.github.io/R-workshops/)
 
 <br>
  <p style="text-align:center;"><img src="https://socialsciences.mcmaster.ca/jfox/Books/Companion/car-hex.png" alt="car-hex" style="width:200px;"></p>

@@ -2,6 +2,8 @@
 title: "Dynamic Documents with `knitr` and `R Markdown`"
 output: html_document
 ---
+
+[**Return to rwrks homepage**](http://unl-statistics.github.io/R-workshops/)
 <br>
  <p style="text-align:center;"><img src="https://raw.githubusercontent.com/rstudio/hex-stickers/master/PNG/knitr.png?raw=true" alt="knitr-hex" style="width:200px;"> <img src="https://github.com/rstudio/hex-stickers/blob/master/PNG/rmarkdown.png?raw=true" alt="rmarkdown-hex" style="width:200px;"></p>
 <br>

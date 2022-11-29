@@ -2,7 +2,7 @@
 title: "Interactive web applets with shiny"
 output: html_document
 ---
-[**Return to rwrks homepage**](http://srvanderplas.github.io/rwrks/)
+[**Return to rwrks homepage**](http://unl-statistics.github.io/R-workshops/)
 
 <br>
  <p style="text-align:center;"><img src="knitr/images/shiny-hex.png" alt="shiny-hex" style="width:200px;"></p>

@@ -3,6 +3,8 @@ title: "Web Scraping in R"
 output: html_document
 ---
 
+[**Return to rwrks homepage**](http://unl-statistics.github.io/R-workshops/)
+
 Read data in from the internet using packages like `rvest`. Learn to navigate HTML and XML structured data files, and convert data stored in these files into tabular data more commonly used in statistical analyses.
 
 <br>
