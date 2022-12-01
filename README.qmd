@@ -134,7 +134,7 @@ graduate student activities.
 |---------------|---------|---------------|-----------|
 | Full Day      | \$40    | \$60          | \$200     |
 | Half Day      | \$20    | \$30          | \$120     |
-| Full Week     | \$125   | \$250         | \$1000    |
+| Full Week     | \$120   | \$240         | \$800     |
 
 We accept exact cash, checks, or a University cost object. We cannot
 accept N-cards.
