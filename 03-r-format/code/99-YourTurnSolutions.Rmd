@@ -13,6 +13,8 @@ Read everything EXCEPT the first two lines into an object called midwest_data
 
 **Solution**
 ```{r, message = FALSE}
+#Would use your file path 
+
 library(tidyverse)
 midwest_names <- read_csv(
   "http://unl-statistics.github.io/R-workshops/03-r-format/data/midwest.csv", n_max= 2, 
@@ -33,10 +35,9 @@ Use read.xport() to load the file into R
 Briefly examine the dataset you've imported (use head or tail, etc)
 
 ```{r}
-# library(foreign)
-# labdata <- read.xport("https://unl-statistics.github.io/R-workshops/03-r-format/data/AMDGDS_H.XPT")
-#Your file path
-# head(labdata)
+library(haven) 
+sas.data <- read_xpt("../data/DEMO_G.XPT")
+sas.data %>% head(5)
 ```
 
 ## Summarizing with dplyr
@@ -53,10 +54,14 @@ Ex. Filter the data down to left handed pitchers, who throw a curve with at leas
 pitch <- read_csv("https://unl-statistics.github.io/R-workshops/03-r-format/data/pitch.csv")
 
 pitch %>%
-  filter(spin_rate >= 3200 & pitcher_hand == "L") %>%
+  filter(spin_rate >= 3200 & pitcher_hand == "L" & pitch_type == "CU") %>%
   ggplot(aes(x=action_result, y=spin_rate)) +
-  geom_point(aes(color=playerid)) +
-  theme(legend.position = "none") #Your graph could be different
+  geom_point(aes(color=as.factor(playerid)))  #Your graph could be different
+
+
+```
+
+```{r eval = FALSE, echo=FALSE}
 
 library(rbokeh)
  pitch %>%
@@ -95,6 +100,7 @@ pitch %>%
     group_by(playerid, action_result) %>%
     summarise(mean_spin = mean(spin_rate), sd_spin = sd(spin_rate)) %>%
   ggplot(aes(x = mean_spin)) + geom_histogram()
+
 ```
 
 #### 4. Based on your (limited) knowledge of baseball, you determine what is a "successful" curveball. Then determine what pitchers pitched the most successful curveballs!
@@ -105,31 +111,34 @@ pitch %>%
 
 **Solution**
 ```{r, message=FALSE, warning=FALSE}
+
+#Consider a success as any strike (S), catch (C), and foul ball (F) 
 SScurve <- pitch %>%
   select("playerid", "action_result", "ab_result", "adj_h") %>%  
-  arrange(desc(playerid)) %>% mutate(successfulCU = ifelse(
-    (adj_h < .3 & ab_result != "\\N" ) | 
-      (action_result %in% c("C","S","F")), 1, 0)) %>%
-#Consider a success any strike and any batted ball resulting in a 
-#adj_h less than the league average of .300 BABIP (according to MLB.com).
-  group_by(playerid) %>% mutate(totalSSCU=sum(successfulCU)) %>% 
+  arrange(desc(playerid)) %>% 
+  mutate(successfulCU = ifelse(
+    (action_result %in% c("C","S","F")), 1, 0)) %>%
+  group_by(playerid) %>% 
+  mutate(totalSSCU=sum(successfulCU)) %>% 
   mutate(percentSSCU=totalSSCU / n())
-SScurve
 
-percentages <- distinct(.data = SScurve, playerid, totalSSCU, percentSSCU)
-#Look at some graphs to see what the data actually looks like now. 
-library(rbokeh)
-library(quanteda)
-ggplot(data = percentages) + geom_point(aes(x = percentSSCU, y = totalSSCU, 
-                                            colour = playerid))
+SScurve %>% head(4)
+
+#Calculate successful curveball percentages
+percentages <- SScurve %>% 
+  distinct(playerid, totalSSCU, percentSSCU)
+
+#Look at some graphs to see what the data actually looks like now.
+ggplot(data = percentages) + 
+  geom_point(aes(x = percentSSCU, y = totalSSCU,
+                 colour = playerid))
+
+
 #Filter down to get the best pitchers with a minimum of 50 curveballs thrown 
-qualifiedPercentages <- percentages %>% filter(totalSSCU > 50) %>% 
-  arrange(desc(percentSSCU))
-figure() %>%
-  ly_points(x = percentSSCU, y = totalSSCU, color = playerid,
-            data = qualifiedPercentages, hover = list(playerid, totalSSCU, 
-                                                      percentSSCU), 
-            legend = FALSE)
+percentages %>% 
+  filter(totalSSCU > 50) %>% 
+  arrange(desc(percentSSCU)) %>% ggplot() +
+   geom_point(aes(x = percentSSCU, y = totalSSCU, colour = playerid))
 
 
 ```
@@ -146,6 +155,7 @@ ChickWeight %>%
   ggplot(aes(x=Time, y=weight, group=Chick, color=Diet)) +
   geom_line() + 
   facet_wrap(~Diet)
+
 ```
 
 Focus on weight on day 21. Draw side-by-side dotplots of weight by diet.
@@ -234,19 +244,14 @@ Use ggplot2 to create something like this: <br>
 ```{r, fig.width=6.5, fig.height=3.5, warning=FALSE, purl=FALSE, echo=FALSE}
 
 billboard <- read.csv("http://unl-statistics.github.io/R-workshops/03-r-format/data/billboard.csv")
-long_billboard <- gather(billboard, key = week, value = rank, X1:X76) %>%
+
+long_billboard <- pivot_longer(billboard, cols = X1:X76,
+    names_to = "week",
+    values_to = "rank", values_drop_na = TRUE) %>%
   mutate(week = parse_number(week))
 
-ggplot(long_billboard) + geom_line(aes(week, rank, colour = artist, group = track))+
-  xlim(c(0, 30))
-```
-
-```{r, warning=FALSE}
-billboard <- read.csv("http://unl-statistics.github.io/R-workshops/03-r-format/data/billboard.csv")
-long_billboard <- gather(billboard, key = week, value = rank, X1:X76) %>%
-  mutate(week = parse_number(week))
-
-ggplot(long_billboard) + geom_line(aes(week, rank, colour = artist, group = track))+
+ggplot(long_billboard) + 
+  geom_line(aes(week, rank, colour = artist, group = track))+
   xlim(c(0, 30))
 ```
 
@@ -262,11 +267,14 @@ Output the names of individuals with more than 15 attempts (attempts is how many
 ```{r}
 library(Lahman)
 
-Voted <- HallOfFame %>% filter(!is.na(ballots)) %>% 
-  group_by(playerID) %>% arrange(yearID) %>% 
+Voted <- HallOfFame %>% 
+  filter(!is.na(ballots)) %>% 
+  group_by(playerID) %>% 
+  arrange(yearID) %>% 
   mutate( attempt = order(yearID))
 
-Voted <- left_join(Voted, People %>% select(playerID, nameFirst, nameLast), 
+Voted <- left_join(Voted, People %>% 
+                dplyr::select(playerID, nameFirst, nameLast), 
                    by = "playerID") %>% filter(attempt > 15)
 
 Names <- Voted %>% mutate(FullName = paste(nameFirst, nameLast))

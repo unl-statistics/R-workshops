@@ -3,7 +3,7 @@
   <head>
     <title>Data Wrangling</title>
     <meta charset="utf-8" />
-    <script src="libs/header-attrs-2.14/header-attrs.js"></script>
+    <script src="libs/header-attrs-2.17/header-attrs.js"></script>
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="libs/remark-css-0.0.1/default-fonts.css" rel="stylesheet" />
   </head>
@@ -410,7 +410,7 @@ df2 &lt;- data.frame(
 
 
 ```r
-left_join(df1, df2, by="id") %&gt;% knitr::kable(format = "html")
+left_join(df1, df2, by="id")
 ```
 
 &lt;table&gt;
@@ -491,7 +491,7 @@ left_join(df1, df2, by="id") %&gt;% knitr::kable(format = "html")
 
 
 ```r
-inner_join(df1, df2, by = "id") %&gt;% knitr::kable(format = "html")
+inner_join(df1, df2, by = "id")
 ```
 
 &lt;table&gt;
@@ -544,8 +544,9 @@ inner_join(df1, df2, by = "id") %&gt;% knitr::kable(format = "html")
 
 
 ```r
-full_join(df1, df2, by = "id") %&gt;% knitr::kable(format = "html")
+full_join(df1, df2, by = "id") 
 ```
+
 
 &lt;table&gt;
  &lt;thead&gt;
@@ -697,7 +698,7 @@ hof_bats %&gt;%
   geom_point(aes(color = inducted))
 ```
 
-![](5-joining_files/figure-html/unnamed-chunk-12-1.png)&lt;!-- --&gt;
+![](5-joining_files/figure-html/unnamed-chunk-15-1.png)&lt;!-- --&gt;
 
 ---
 
@@ -718,7 +719,7 @@ hof_pitch %&gt;%
   geom_point(aes(color = inducted))
 ```
 
-![](5-joining_files/figure-html/unnamed-chunk-13-1.png)&lt;!-- --&gt;
+![](5-joining_files/figure-html/unnamed-chunk-16-1.png)&lt;!-- --&gt;
 
 
 ---
@@ -726,9 +727,9 @@ class: inverse
 
 ## Your turn
 
-- Load the `Lahman` package into your R session.
+- Load the `Lahman` package into your R session: `library(Lahman)`
 - Join (relevant pieces of) the `People` data set and the `HallOfFame` data.
-- Output the names of individuals with 15 or more attempts ("times" in the data set). Make sure to deal with missing values appropriately.
+- Output the names of individuals with 15 or more attempts in getting into the Hall of Fame ("times" in the data set). Make sure to deal with missing values appropriately.
 
 ---
 ## Solution

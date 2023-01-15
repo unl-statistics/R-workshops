@@ -44,7 +44,7 @@ One of the main reasons for data wrangling is to use any type of data.
 
 ## What is Data Wrangling?
 
-**Data wrangling** can be defined as the process of cleaning, organizing, and transforming raw data into the desired format for analysts to use for prompt decision-making. Also known as data cleaning or data munging.
+**Data wrangling** can be defined as the process of cleaning, organizing, and transforming raw data into the desired format for analysts to use for prompt decision-making. Also known as data cleaning.
 
 .center[
 <img src="images/data_wrangling.png" style="width:480px;"/>
@@ -83,6 +83,7 @@ For those of you that were in the graphics lecture, this will be a bit of a revi
 ---
 class: center, middle
 
+
 ## AHHH WHYYYYYY
 </br>
 </br>
@@ -90,6 +91,7 @@ class: center, middle
 .center[
 ![](https://media.giphy.com/media/gVoQge4JXndPq/giphy.gif)
 ]
+
 ---
 
 # Messy data

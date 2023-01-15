@@ -39,6 +39,11 @@ class: center, middle
 
 - Motivating Example: Gas prices in the Midwest since 1994
 
+???
+
+CSV - comma-separated values (contains plain text entries and commas)
+XLS - specific spreadsheet file for Microsoft Excel. Can't be opened with a text editor
+
 ---
 class: center, middle
 
@@ -159,6 +164,31 @@ class: center, middle
 - `read_file`: read a file into a single character element
 - `read_table`: read a file separated by space
 
+???
+
+Start by having them load tidyverse. (Includes all of the packages we'll be using today) 
+
+---
+
+# Project Management
+
+- Important to understand your file structure and where you save everything
+- Working directory 
+ + "Default location where R will look for files you want to load and where it will put any files you save" [source](https://intro2r.com/work-d.html)
+
+
+```r
+#Returns the file path of the current working directory
+getwd()
+
+#Set Working Directory
+setwd()
+```
+
++ Easiest way to set Working Directory: 
+  - Session -&gt; Set Working Directory -&gt; Choose Directory
+  - Point and Click Method
+
 ---
 class: inverse
 ## Your Turn 
@@ -169,22 +199,25 @@ Have a look at the parameters of `read_csv` to solve the following problems:
 
 2. Read everything EXCEPT the first two lines into an object called `midwest_data`
 
-Hint: Visit http://unl-statistics.github.io/R-workshops/03-r-format/data/midwest.csv to download the data and look at it in Excel to help figure out what the issue is. 
+Hint: Visit http://unl-statistics.github.io/R-workshops/03-r-format/data/midwest.csv to download the data into your current working directory (`getwd()`) and look at it in Excel to help figure out what the issue is. 
 
 ---
 
 ## Your Turn Solutions
 
 
+
+
+
 ```r
 midwest_names &lt;- read_csv(
-"http://unl-statistics.github.io/R-workshops/03-r-format/data/midwest.csv", 
-  n_max= 2, col_names = FALSE) 
+"midwest.csv", 
+  n_max= 2, col_names = FALSE)
 
 
 midwest_data &lt;- read_csv(
-"http://unl-statistics.github.io/R-workshops/03-r-format/data/midwest.csv", 
-  skip = 2, col_names = FALSE) 
+"midwest.csv", 
+  skip = 2, col_names = FALSE)
 ```
 
 ---
@@ -192,7 +225,7 @@ midwest_data &lt;- read_csv(
 
 
 ```r
-library(lubridate)
+library(lubridate) # works with dates
 library(tidyverse)
 values &lt;- c(midwest_data$X3, midwest_data$X5, midwest_data$X7, 
             midwest_data$X9, midwest_data$X11)
@@ -202,8 +235,8 @@ dates &lt;- c(paste(midwest_data$X1, midwest_data$X2, sep = "-"),
            paste(midwest_data$X1, midwest_data$X8, sep = "-"),
            paste(midwest_data$X1, midwest_data$X10, sep = "-"))
 
-dates &lt;- dates[!is.na(values)]
-values &lt;- values[!is.na(values)]
+dates &lt;- dates[!is.na(values)] #removing NAs
+values &lt;- values[!is.na(values)] #removing Nas
 
 dates &lt;- ymd(dates)
 
@@ -211,18 +244,30 @@ midwest_gas &lt;- data_frame(date = dates, price = values)
 midwest_gas &lt;- arrange(midwest_gas, dates)
 ```
 
+???
+
+explain - paste function
+values - vector of the different columns
+dates - vector of different dates (combining year/month with month/day)
+
+ymd function - transforms dates stored in a character to date with year, month, day components
+
+
 ---
 
 ## Now we can make a plot!
-.center[
+
 
 ```r
 library(ggplot2)
+
 ggplot(midwest_gas, aes(x = date, y = price)) + geom_line()
 ```
 
-![](2-Files_files/figure-html/unnamed-chunk-4-1.png)&lt;!-- --&gt;
-]
+&lt;img src="2-Files_files/figure-html/unnamed-chunk-6-1.png" style="display: block; margin: auto;" /&gt;
+
+
+
 ---
 
 ## Reading Excel Data
@@ -372,6 +417,12 @@ head(midwest2)
 
 Better, but not yet perfect...
 
+
+???
+
+How can you fix this? Brute force way by renaming all columns?
+Take this into consideration when entering in your data into spreadsheets (no merged columns names with subheadings)
+
 ---
 
 ## `haven` Package
@@ -432,17 +483,17 @@ sas.data %&gt;% head(2)
 
 ```
 ## # A tibble: 2 × 48
-##    SEQN SDDSRVYR RIDSTATR RIAGENDR RIDAGEYR RIDAGEMN RIDRETH1 RIDRETH3 RIDEXMON
-##   &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;
-## 1 62161        7        2        1       22       NA        3        3        2
-## 2 62162        7        2        2        3       NA        1        1        1
-## # … with 39 more variables: RIDEXAGY &lt;dbl&gt;, RIDEXAGM &lt;dbl&gt;, DMQMILIZ &lt;dbl&gt;,
-## #   DMQADFC &lt;dbl&gt;, DMDBORN4 &lt;dbl&gt;, DMDCITZN &lt;dbl&gt;, DMDYRSUS &lt;dbl&gt;,
-## #   DMDEDUC3 &lt;dbl&gt;, DMDEDUC2 &lt;dbl&gt;, DMDMARTL &lt;dbl&gt;, RIDEXPRG &lt;dbl&gt;,
-## #   SIALANG &lt;dbl&gt;, SIAPROXY &lt;dbl&gt;, SIAINTRP &lt;dbl&gt;, FIALANG &lt;dbl&gt;,
-## #   FIAPROXY &lt;dbl&gt;, FIAINTRP &lt;dbl&gt;, MIALANG &lt;dbl&gt;, MIAPROXY &lt;dbl&gt;,
-## #   MIAINTRP &lt;dbl&gt;, AIALANGA &lt;dbl&gt;, WTINT2YR &lt;dbl&gt;, WTMEC2YR &lt;dbl&gt;,
-## #   SDMVPSU &lt;dbl&gt;, SDMVSTRA &lt;dbl&gt;, INDHHIN2 &lt;dbl&gt;, INDFMIN2 &lt;dbl&gt;, …
+##    SEQN SDDSRVYR RIDSTATR RIAGENDR RIDAGEYR RIDAG…¹ RIDRE…² RIDRE…³ RIDEX…⁴ RIDEX…⁵ RIDEX…⁶ DMQMI…⁷ DMQADFC
+##   &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+## 1 62161        7        2        1       22      NA       3       3       2      NA      NA       2      NA
+## 2 62162        7        2        2        3      NA       1       1       1       3      41      NA      NA
+## # … with 35 more variables: DMDBORN4 &lt;dbl&gt;, DMDCITZN &lt;dbl&gt;, DMDYRSUS &lt;dbl&gt;, DMDEDUC3 &lt;dbl&gt;,
+## #   DMDEDUC2 &lt;dbl&gt;, DMDMARTL &lt;dbl&gt;, RIDEXPRG &lt;dbl&gt;, SIALANG &lt;dbl&gt;, SIAPROXY &lt;dbl&gt;, SIAINTRP &lt;dbl&gt;,
+## #   FIALANG &lt;dbl&gt;, FIAPROXY &lt;dbl&gt;, FIAINTRP &lt;dbl&gt;, MIALANG &lt;dbl&gt;, MIAPROXY &lt;dbl&gt;, MIAINTRP &lt;dbl&gt;,
+## #   AIALANGA &lt;dbl&gt;, WTINT2YR &lt;dbl&gt;, WTMEC2YR &lt;dbl&gt;, SDMVPSU &lt;dbl&gt;, SDMVSTRA &lt;dbl&gt;, INDHHIN2 &lt;dbl&gt;,
+## #   INDFMIN2 &lt;dbl&gt;, INDFMPIR &lt;dbl&gt;, DMDHHSIZ &lt;dbl&gt;, DMDFMSIZ &lt;dbl&gt;, DMDHHSZA &lt;dbl&gt;, DMDHHSZB &lt;dbl&gt;,
+## #   DMDHHSZE &lt;dbl&gt;, DMDHRGND &lt;dbl&gt;, DMDHRAGE &lt;dbl&gt;, DMDHRBR4 &lt;dbl&gt;, DMDHREDU &lt;dbl&gt;, DMDHRMAR &lt;dbl&gt;,
+## #   DMDHSEDU &lt;dbl&gt;, and abbreviated variable names ¹​RIDAGEMN, ²​RIDRETH1, ³​RIDRETH3, ⁴​RIDEXMON, …
 ```
 
 

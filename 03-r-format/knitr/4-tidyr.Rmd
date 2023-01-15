@@ -18,8 +18,7 @@ data(french_fries, package="reshape2")
 
 ## What is tidy data?
 
- *Happy families are all alike; every unhappy family is unhappy in its own way. - Leo Tolstoy*  
-<br/>
+- Aspect of data cleaning that structures a dataset to facilitate analysis
 
 - Resource: follow along `tidyr` vignette 
 
@@ -56,7 +55,7 @@ There are different ways of encoding the same information:
 </style>
 <table class="tg">
   <tr>
-    <th class="tg-hgcj">Name</th>
+    <th class="tg-hgcj">Patient</th>
     <th class="tg-hgcj">Treatment A</th>
     <th class="tg-hgcj">Treatment B</th>
   </tr>
@@ -90,7 +89,7 @@ There are different ways of encoding the same information:
 </style>
 <table class="tg">
   <tr>
-    <th class="tg-amwm">Treatment</th>
+    <th class="tg-amwm">Patient</th>
     <th class="tg-amwm">John Smith</th>
     <th class="tg-amwm">Jane Doe</th>
     <th class="tg-amwm">Mary Johnson</th>
@@ -122,9 +121,9 @@ There are different ways of encoding the same information:
 </style>
 <table class="tg">
   <tr>
-    <th class="tg-hgcj">Name</th>
+    <th class="tg-hgcj">Patient</th>
     <th class="tg-hgcj">Treatment</th>
-    <th class="tg-hgcj">Measurement</th>
+    <th class="tg-hgcj">Score</th>
   </tr>
   <tr>
     <td class="tg-s6z2">John Smith</td>
@@ -259,9 +258,9 @@ class: center, middle
 </style>
 <table class="tg">
   <tr>
-    <th class="tg-amwm">Name</th>
+    <th class="tg-amwm">Patient</th>
     <th class="tg-amwm">Treatment</th>
-    <th class="tg-amwm">Measurement</th>
+    <th class="tg-amwm">Score</th>
   </tr>
   <tr>
     <td class="tg-baqh">John Smith</td>
@@ -309,9 +308,9 @@ class: center, middle
 </style>
 <table class="tg">
   <tr>
-    <th class="tg-amwm">Name</th>
+    <th class="tg-amwm">Patient</th>
     <th class="tg-amwm">Treatment</th>
-    <th class="tg-amwm">Measurement</th>
+    <th class="tg-amwm">Score</th>
   </tr>
   <tr>
     <td class="tg-baqh">John Smith</td>
@@ -348,13 +347,13 @@ class: center, middle
 ]
 
 .pull-right[
-- `treatment` and `patient` uniquely describe a single row in the dataset.
+- `Treatment` and `Patient` uniquely describe a single row in the dataset.
 
-- `treatment` and `patient` are **key variables**,
+- `Treatment` and `Patient` are **key variables**,
 
-- `score` is a **measurement variable**
+- `Score` is a **measurement variable**
 
-- this makes `treatment-patient` and `score` a **key-value pair**
+- this makes `Treatment-Patient` and `Score` a **key-value pair**
 
 ]
 
@@ -368,9 +367,12 @@ abstract data representation that allows a lot of flexibility
 
 One way of telling whether a data set is tidy is to check that all keys for a value are aligned in one row:
 
-| *******   | *******    | 
-| <img src="images/kvp-unhappy.png" width=150> | <img src="images/kvp-happy.png" width=150>     | 
-|Untidy data | Tidy data |
+.center[
+
+<img src="images/kvp-unhappy.png" width=150> <img src="images/kvp-happy.png" width=150> 
+
+Untidy data  Tidy data
+]
 
 ---
 
@@ -403,7 +405,8 @@ One way of telling whether a data set is tidy is to check that all keys for a va
 ---
 ## Tidying data - Plan of attack
 
-**Messy (1)**: `tidyr` functions `pivot_longer` and `pivot_longer`.  
+**Messy (1)**: `tidyr` functions:
+
 `pivot_longer (data,names_to,values_to, ...)`: take multiple columns and collapse into key-value pairs
 
 `pivot_wider (data,names_from,values_from,values_fill = NA)`: spread a key-value pair across multiple columns.
@@ -431,7 +434,7 @@ head(french_fries) %>% knitr::kable(format = "html")
 
 ## This format is not ideal for data analysis
 
-```{r, fig.width=7, fig.height=3, warning=FALSE, echo=TRUE}
+```{r, fig.width=7, fig.height=3, warning=FALSE, echo=TRUE, fig.align='center'}
 library(ggplot2)
 
 ggplot(french_fries) + 
@@ -447,7 +450,12 @@ xlab("variable") + ylab("rating")
 ## Let's start with **Messy (1)**
 .center[
 ![](https://media.giphy.com/media/3nfqWYzKrDHEI/giphy.gif)
+
+Use `pivot_longer` and `pivot_wider`
+
 ]
+
+
 ---
 
 ## Tidy your data using `pivot_longer` 
@@ -467,10 +475,13 @@ When pivoting longer, you need to specify:
 
 ```{r, echo=TRUE}
 french_fries_long <- french_fries %>% 
-  pivot_longer(cols = potato:painty, 
+  pivot_longer(cols = potato:painty, #5:9
                names_to = "variable", 
                values_to = "rating")
 
+```
+
+```{r echo = FALSE}
 french_fries_long %>% 
   head() %>% 
   knitr::kable(format = "html")
@@ -480,20 +491,22 @@ french_fries_long %>%
 ---
 
 ## This format is better suited for data analysis
-.center[
-```{r, fig.width=7, fig.height=4, warning=FALSE, echo=TRUE}
+
+
+```{r, fig.width=7, fig.height=4, warning=FALSE, echo=TRUE, fig.align='center'}
+
 ggplot(french_fries_long) + 
   geom_boxplot(aes(x = variable, y = rating, fill = variable))
 
 ```
-]
+
 
 ---
 ## Long to Wide
 
 In certain applications, we may wish to take a long dataset and convert it to a wide dataset (Perhaps displaying in a table).
 
-```{r}
+```{r echo=FALSE}
 head(french_fries_long, 3) %>% knitr::kable(format = "html")
 ```
 
@@ -518,7 +531,11 @@ french_fries_wide <- french_fries_long %>%
               values_from = rating, 
               values_fill = NA)
 
-head(french_fries_wide, 2) %>% 
+```
+
+```{r echo = FALSE}
+
+head(french_fries_wide, 4) %>% 
   knitr::kable(format = "html")
 ```
 
@@ -533,7 +550,9 @@ We can also use the `pivot_wider` function to compare replicates within the Fren
 french_fries_wide <- french_fries_long %>% 
   pivot_wider(names_from = rep, 
               values_from = rating)
+```
 
+```{r echo = FALSE}
 head(french_fries_wide, 3) %>% 
   knitr::kable(format = "html")
 ```
@@ -551,7 +570,7 @@ french_fries_wide %>%
 ---
 class: center, middle
 
-## Motivatinng Example (separate function)
+## Motivating Example (separate function)
 
 .pull-left[
 ```{r echo=FALSE}
@@ -601,26 +620,12 @@ The Iowa Data Portal is a wealth of information on and about the State of Iowa.
 The website 
 [Campaign Expenditures](https://data.iowa.gov/Government/Campaign-Expenditures/3adi-mht4/data) provides data on campaign expenditures. The code below reads the data into an R session.
 
----
 
-## Why??
-
-```{r echo=TRUE}
+```{r echo=TRUE, message=FALSE}
 url <- "https://data.iowa.gov/api/views/3adi-mht4/rows.csv"
-campaign <- readr::read_csv(url)
-```
-
-
----
-## Why??
-
-```{r echo=TRUE}
-problems(campaign)
-```
-
-- Let's rerun with the following in `guess_max` function
-```{r echo=TRUE}
 campaign <- readr::read_csv(url, guess_max = 50000)
+
+head(campaign, n = 3)
 ```
 
 Assess the 'messiness' of the data. List issues that prevent us from working with the data directly. Which of these issues are of type (1) or (2) of messiness?
@@ -652,6 +657,36 @@ During the 1870 census data on people's occupation was collected. The data [occu
 - Separate the `occupation.gender` type variable into two variables.
 
 - "Spread" (use `pivot_wider`) the data such that you can draw scatterplots of values for men against women facetted by occupation.
+
+---
+class: inverse
+
+## Solution
+
+```{r, message=FALSE}
+
+occupation <- read_csv("https://unl-statistics.github.io/R-workshops/03-r-format/data/occupation-1870.csv")
+
+occupation_long <- occupation %>% 
+  pivot_longer(Agriculture.Male:School.Female,names_to = "Occupation", values_to = "Measurement") %>%
+  separate(Occupation, c("Occupation", "Gender"), sep="\\.") %>%
+  pivot_wider(names_from = "Gender", values_from = "Measurement")
+
+head(occupation_long, 10)
+
+```
+
+---
+class:inverse
+
+## Solution
+
+```{r, fig.align='center'}
+
+occupation_long %>% ggplot() + geom_point(aes(x = Male, y = Female)) + facet_wrap(~Occupation)
+
+```
+
 
 ---
 
@@ -703,10 +738,6 @@ flights <-
   read.csv("http://unl-statistics.github.io/R-workshops/03-r-format/data/flights.csv")
 ```
 
----
-class: inverse
-
-## Your Turn
 
 1. Using the `flights` data, create a new column Date using lubridate. You will need to paste together the columns year, month, and day in order to do this. See the `paste` function.
 
@@ -714,23 +745,12 @@ class: inverse
 
 3. Plot the date versus the average departure delay
 
-```{r, echo=FALSE, fig.width=7, fig.height=3, purl = FALSE}
-flights$date <- ymd(paste(flights$year, flights$month, flights$day, sep = "-"))
-delay.dat <- flights %>% 
-    group_by(date) %>% 
-    summarise(dep_delay = mean(dep_delay, na.rm = TRUE))
-
-
-ggplot(delay.dat) + geom_line(aes(date, dep_delay))
-
-```
-
 ---
 class: inverse
 
 ## SOLUTION
 
-```{r, echo=TRUE, fig.width=7, fig.height=3, purl = FALSE}
+```{r, echo=TRUE, fig.width=7, fig.height=3, purl = FALSE, fig.align='center'}
 flights$date <- ymd(paste(flights$year, flights$month, flights$day, sep = "-"))
 delay.dat <- flights %>% 
     group_by(date) %>% 
@@ -768,23 +788,6 @@ ggplot(long_billboard) +
   xlim(c(0, 30))
 ```
 
----
-class: inverse
-
-## SOLUTION
-
-```{r, echo=TRUE, fig.width=6.5, fig.height=3.5, warning=FALSE, purl=FALSE}
-long_billboard <- pivot_longer(billboard, cols = X1:X76,
-    names_to = "week",
-    values_to = "rank", values_drop_na = TRUE) %>%
-  mutate(week = parse_number(week))
-
-ggplot(long_billboard) + 
-  geom_line(aes(week, rank, colour = artist, group = track))+
-  xlim(c(0, 30))
-```
-
----
 
 ```{r purl, eval=FALSE, include=FALSE, purl=FALSE}
 #copy paste this and run in console

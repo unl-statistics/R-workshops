@@ -3,7 +3,7 @@
   <head>
     <title>Data Wrangling</title>
     <meta charset="utf-8" />
-    <script src="libs/header-attrs-2.14/header-attrs.js"></script>
+    <script src="libs/header-attrs-2.17/header-attrs.js"></script>
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="libs/remark-css-0.0.1/default-fonts.css" rel="stylesheet" />
   </head>
@@ -25,8 +25,7 @@ class: center, middle, inverse, title-slide
 
 ## What is tidy data?
 
- *Happy families are all alike; every unhappy family is unhappy in its own way. - Leo Tolstoy*  
-&lt;br/&gt;
+- Aspect of data cleaning that structures a dataset to facilitate analysis
 
 - Resource: follow along `tidyr` vignette 
 
@@ -63,7 +62,7 @@ There are different ways of encoding the same information:
 &lt;/style&gt;
 &lt;table class="tg"&gt;
   &lt;tr&gt;
-    &lt;th class="tg-hgcj"&gt;Name&lt;/th&gt;
+    &lt;th class="tg-hgcj"&gt;Patient&lt;/th&gt;
     &lt;th class="tg-hgcj"&gt;Treatment A&lt;/th&gt;
     &lt;th class="tg-hgcj"&gt;Treatment B&lt;/th&gt;
   &lt;/tr&gt;
@@ -97,7 +96,7 @@ There are different ways of encoding the same information:
 &lt;/style&gt;
 &lt;table class="tg"&gt;
   &lt;tr&gt;
-    &lt;th class="tg-amwm"&gt;Treatment&lt;/th&gt;
+    &lt;th class="tg-amwm"&gt;Patient&lt;/th&gt;
     &lt;th class="tg-amwm"&gt;John Smith&lt;/th&gt;
     &lt;th class="tg-amwm"&gt;Jane Doe&lt;/th&gt;
     &lt;th class="tg-amwm"&gt;Mary Johnson&lt;/th&gt;
@@ -129,9 +128,9 @@ There are different ways of encoding the same information:
 &lt;/style&gt;
 &lt;table class="tg"&gt;
   &lt;tr&gt;
-    &lt;th class="tg-hgcj"&gt;Name&lt;/th&gt;
+    &lt;th class="tg-hgcj"&gt;Patient&lt;/th&gt;
     &lt;th class="tg-hgcj"&gt;Treatment&lt;/th&gt;
-    &lt;th class="tg-hgcj"&gt;Measurement&lt;/th&gt;
+    &lt;th class="tg-hgcj"&gt;Score&lt;/th&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
     &lt;td class="tg-s6z2"&gt;John Smith&lt;/td&gt;
@@ -268,9 +267,9 @@ class: center, middle
 &lt;/style&gt;
 &lt;table class="tg"&gt;
   &lt;tr&gt;
-    &lt;th class="tg-amwm"&gt;Name&lt;/th&gt;
+    &lt;th class="tg-amwm"&gt;Patient&lt;/th&gt;
     &lt;th class="tg-amwm"&gt;Treatment&lt;/th&gt;
-    &lt;th class="tg-amwm"&gt;Measurement&lt;/th&gt;
+    &lt;th class="tg-amwm"&gt;Score&lt;/th&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
     &lt;td class="tg-baqh"&gt;John Smith&lt;/td&gt;
@@ -318,9 +317,9 @@ class: center, middle
 &lt;/style&gt;
 &lt;table class="tg"&gt;
   &lt;tr&gt;
-    &lt;th class="tg-amwm"&gt;Name&lt;/th&gt;
+    &lt;th class="tg-amwm"&gt;Patient&lt;/th&gt;
     &lt;th class="tg-amwm"&gt;Treatment&lt;/th&gt;
-    &lt;th class="tg-amwm"&gt;Measurement&lt;/th&gt;
+    &lt;th class="tg-amwm"&gt;Score&lt;/th&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
     &lt;td class="tg-baqh"&gt;John Smith&lt;/td&gt;
@@ -357,13 +356,13 @@ class: center, middle
 ]
 
 .pull-right[
-- `treatment` and `patient` uniquely describe a single row in the dataset.
+- `Treatment` and `Patient` uniquely describe a single row in the dataset.
 
-- `treatment` and `patient` are **key variables**,
+- `Treatment` and `Patient` are **key variables**,
 
-- `score` is a **measurement variable**
+- `Score` is a **measurement variable**
 
-- this makes `treatment-patient` and `score` a **key-value pair**
+- this makes `Treatment-Patient` and `Score` a **key-value pair**
 
 ]
 
@@ -377,9 +376,12 @@ abstract data representation that allows a lot of flexibility
 
 One way of telling whether a data set is tidy is to check that all keys for a value are aligned in one row:
 
-| *******   | *******    | 
-| &lt;img src="images/kvp-unhappy.png" width=150&gt; | &lt;img src="images/kvp-happy.png" width=150&gt;     | 
-|Untidy data | Tidy data |
+.center[
+
+&lt;img src="images/kvp-unhappy.png" width=150&gt; &lt;img src="images/kvp-happy.png" width=150&gt; 
+
+Untidy data  Tidy data
+]
 
 ---
 
@@ -412,7 +414,8 @@ One way of telling whether a data set is tidy is to check that all keys for a va
 ---
 ## Tidying data - Plan of attack
 
-**Messy (1)**: `tidyr` functions `pivot_longer` and `pivot_longer`.  
+**Messy (1)**: `tidyr` functions:
+
 `pivot_longer (data,names_to,values_to, ...)`: take multiple columns and collapse into key-value pairs
 
 `pivot_wider (data,names_from,values_from,values_fill = NA)`: spread a key-value pair across multiple columns.
@@ -541,13 +544,18 @@ geom_boxplot(aes(x = "5_rancid", y = rancid), fill = "deeppink") +
 xlab("variable") + ylab("rating")
 ```
 
-![](4-tidyr_files/figure-html/unnamed-chunk-6-1.png)&lt;!-- --&gt;
+&lt;img src="4-tidyr_files/figure-html/unnamed-chunk-6-1.png" style="display: block; margin: auto;" /&gt;
 
 ---
 ## Let's start with **Messy (1)**
 .center[
 ![](https://media.giphy.com/media/3nfqWYzKrDHEI/giphy.gif)
+
+Use `pivot_longer` and `pivot_wider`
+
 ]
+
+
 ---
 
 ## Tidy your data using `pivot_longer` 
@@ -568,13 +576,9 @@ When pivoting longer, you need to specify:
 
 ```r
 french_fries_long &lt;- french_fries %&gt;% 
-  pivot_longer(cols = potato:painty, 
+  pivot_longer(cols = potato:painty, #5:9
                names_to = "variable", 
                values_to = "rating")
-
-french_fries_long %&gt;% 
-  head() %&gt;% 
-  knitr::kable(format = "html")
 ```
 
 &lt;table&gt;
@@ -643,25 +647,21 @@ french_fries_long %&gt;%
 ---
 
 ## This format is better suited for data analysis
-.center[
+
+
 
 ```r
 ggplot(french_fries_long) + 
   geom_boxplot(aes(x = variable, y = rating, fill = variable))
 ```
 
-![](4-tidyr_files/figure-html/unnamed-chunk-8-1.png)&lt;!-- --&gt;
-]
+&lt;img src="4-tidyr_files/figure-html/unnamed-chunk-9-1.png" style="display: block; margin: auto;" /&gt;
+
 
 ---
 ## Long to Wide
 
 In certain applications, we may wish to take a long dataset and convert it to a wide dataset (Perhaps displaying in a table).
-
-
-```r
-head(french_fries_long, 3) %&gt;% knitr::kable(format = "html")
-```
 
 &lt;table&gt;
  &lt;thead&gt;
@@ -723,9 +723,6 @@ french_fries_wide &lt;- french_fries_long %&gt;%
   pivot_wider(names_from = variable, 
               values_from = rating, 
               values_fill = NA)
-
-head(french_fries_wide, 2) %&gt;% 
-  knitr::kable(format = "html")
 ```
 
 &lt;table&gt;
@@ -749,8 +746,8 @@ head(french_fries_wide, 2) %&gt;%
    &lt;td style="text-align:left;"&gt; 3 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 2.9 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 0.0 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 5.5 &lt;/td&gt;
   &lt;/tr&gt;
@@ -760,9 +757,31 @@ head(french_fries_wide, 2) %&gt;%
    &lt;td style="text-align:left;"&gt; 3 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 14.0 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 1.1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 10 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 11.0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6.4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 10 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9.9 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5.9 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.9 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.2 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 0.0 &lt;/td&gt;
   &lt;/tr&gt;
 &lt;/tbody&gt;
@@ -780,9 +799,6 @@ We can also use the `pivot_wider` function to compare replicates within the Fren
 french_fries_wide &lt;- french_fries_long %&gt;% 
   pivot_wider(names_from = rep, 
               values_from = rating)
-
-head(french_fries_wide, 3) %&gt;% 
-  knitr::kable(format = "html")
 ```
 
 &lt;table&gt;
@@ -836,11 +852,11 @@ french_fries_wide %&gt;%
   geom_abline(colour = "grey50")
 ```
 
-![](4-tidyr_files/figure-html/unnamed-chunk-12-1.png)&lt;!-- --&gt;
+![](4-tidyr_files/figure-html/unnamed-chunk-15-1.png)&lt;!-- --&gt;
 ---
 class: center, middle
 
-## Motivatinng Example (separate function)
+## Motivating Example (separate function)
 
 .pull-left[
 &lt;table&gt;
@@ -950,67 +966,26 @@ The Iowa Data Portal is a wealth of information on and about the State of Iowa.
 The website 
 [Campaign Expenditures](https://data.iowa.gov/Government/Campaign-Expenditures/3adi-mht4/data) provides data on campaign expenditures. The code below reads the data into an R session.
 
----
-
-## Why??
 
 
 ```r
 url &lt;- "https://data.iowa.gov/api/views/3adi-mht4/rows.csv"
-campaign &lt;- readr::read_csv(url)
-```
-
-```
-## Warning: One or more parsing issues, see `problems()` for details
-```
-
-```
-## Rows: 496888 Columns: 16
-## ── Column specification ────────────────────────────────────────────────────────
-## Delimiter: ","
-## chr (12): Date, Transaction Type, Committee Type, Committee Name, Receiving ...
-## dbl  (4): Committee Code, Receiving Committee Code, Expenditure Amount, Chec...
-## 
-## ℹ Use `spec()` to retrieve the full column specification for this data.
-## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
-```
-
-
----
-## Why??
-
-
-```r
-problems(campaign)
-```
-
-```
-## # A tibble: 2 × 5
-##      row   col expected actual    file 
-##    &lt;int&gt; &lt;int&gt; &lt;chr&gt;    &lt;chr&gt;     &lt;chr&gt;
-## 1 424979     6 a double SWGA50018 ""   
-## 2 426552     6 a double CTY50006  ""
-```
-
-- Let's rerun with the following in `guess_max` function
-
-```r
 campaign &lt;- readr::read_csv(url, guess_max = 50000)
+
+head(campaign, n = 3)
 ```
 
 ```
-## Warning: One or more parsing issues, see `problems()` for details
-```
-
-```
-## Rows: 496888 Columns: 16
-## ── Column specification ────────────────────────────────────────────────────────
-## Delimiter: ","
-## chr (12): Date, Transaction Type, Committee Type, Committee Name, Receiving ...
-## dbl  (4): Committee Code, Receiving Committee Code, Expenditure Amount, Chec...
-## 
-## ℹ Use `spec()` to retrieve the full column specification for this data.
-## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+## # A tibble: 3 × 16
+##   Date   Trans…¹ Commi…² Commi…³ Commi…⁴ Recei…⁵ Recei…⁶ First…⁷ Last …⁸ Addre…⁹ Addre…˟ City  State Zip  
+##   &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;
+## 1 10/12… EXP     9103    County… Jeffer… &lt;NA&gt;    Metcal… &lt;NA&gt;    &lt;NA&gt;    2642 H… &lt;NA&gt;    Fair… IA    52556
+## 2 09/09… EXP     9103    County… Jeffer… &lt;NA&gt;    Mornin… &lt;NA&gt;    &lt;NA&gt;    51 1/2… &lt;NA&gt;    Fair… IA    52556
+## 3 12/06… EXP     9103    County… Jeffer… &lt;NA&gt;    Mornin… &lt;NA&gt;    &lt;NA&gt;    51 1/2… &lt;NA&gt;    Fair… IA    52556
+## # … with 2 more variables: `Expenditure Amount` &lt;dbl&gt;, `Check Number` &lt;dbl&gt;, and abbreviated variable
+## #   names ¹​`Transaction Type`, ²​`Committee Code`, ³​`Committee Type`, ⁴​`Committee Name`,
+## #   ⁵​`Receiving Committee Code`, ⁶​`Receiving Organization Name`, ⁷​`First Name`, ⁸​`Last Name`,
+## #   ⁹​`Address - Line 1`, ˟​`Address - Line 2`
 ```
 
 Assess the 'messiness' of the data. List issues that prevent us from working with the data directly. Which of these issues are of type (1) or (2) of messiness?
@@ -1044,6 +1019,52 @@ During the 1870 census data on people's occupation was collected. The data [occu
 - "Spread" (use `pivot_wider`) the data such that you can draw scatterplots of values for men against women facetted by occupation.
 
 ---
+class: inverse
+
+## Solution
+
+
+```r
+occupation &lt;- read_csv("https://unl-statistics.github.io/R-workshops/03-r-format/data/occupation-1870.csv")
+
+occupation_long &lt;- occupation %&gt;% 
+  pivot_longer(Agriculture.Male:School.Female,names_to = "Occupation", values_to = "Measurement") %&gt;%
+  separate(Occupation, c("Occupation", "Gender"), sep="\\.") %&gt;%
+  pivot_wider(names_from = "Gender", values_from = "Measurement")
+
+head(occupation_long, 10)
+```
+
+```
+## # A tibble: 10 × 5
+##    `Area name`       Total.Population Occupation      Male Female
+##    &lt;chr&gt;                        &lt;dbl&gt; &lt;chr&gt;          &lt;dbl&gt;  &lt;dbl&gt;
+##  1 Alabama                     996992 Agriculture   226768  64860
+##  2 Alabama                     996992 Manufacturing  15078   1992
+##  3 Alabama                     996992 Trade          14345     90
+##  4 Alabama                     996992 Service        19449  22676
+##  5 Alabama                     996992 School         38600  38539
+##  6 Arizona Territory             9658 Agriculture     1284      1
+##  7 Arizona Territory             9658 Manufacturing    883    156
+##  8 Arizona Territory             9658 Trade            588      3
+##  9 Arizona Territory             9658 Service         2979    136
+## 10 Arizona Territory             9658 School            79     70
+```
+
+---
+class:inverse
+
+## Solution
+
+
+```r
+occupation_long %&gt;% ggplot() + geom_point(aes(x = Male, y = Female)) + facet_wrap(~Occupation)
+```
+
+&lt;img src="4-tidyr_files/figure-html/unnamed-chunk-21-1.png" style="display: block; margin: auto;" /&gt;
+
+
+---
 
 ## Dates and Times
 
@@ -1072,10 +1093,10 @@ today() - days(2)
 ```
 
 ```
-## [1] "2022-05-18 14:46:44 CDT"
-## [1] "2022-05-18"
-## [1] "2022-05-18 18:46:44 CDT"
-## [1] "2022-05-16"
+## [1] "2023-01-15 16:00:44 CST"
+## [1] "2023-01-15"
+## [1] "2023-01-15 20:00:44 CST"
+## [1] "2023-01-13"
 ```
 
 ---
@@ -1110,18 +1131,12 @@ flights &lt;-
   read.csv("http://unl-statistics.github.io/R-workshops/03-r-format/data/flights.csv")
 ```
 
----
-class: inverse
-
-## Your Turn
 
 1. Using the `flights` data, create a new column Date using lubridate. You will need to paste together the columns year, month, and day in order to do this. See the `paste` function.
 
 2. Use `dplyr` to calculate the average departure delay for each date.
 
 3. Plot the date versus the average departure delay
-
-![](4-tidyr_files/figure-html/unnamed-chunk-22-1.png)&lt;!-- --&gt;
 
 ---
 class: inverse
@@ -1139,7 +1154,7 @@ delay.dat &lt;- flights %&gt;%
 ggplot(delay.dat) + geom_line(aes(date, dep_delay))
 ```
 
-![](4-tidyr_files/figure-html/unnamed-chunk-23-1.png)&lt;!-- --&gt;
+&lt;img src="4-tidyr_files/figure-html/unnamed-chunk-25-1.png" style="display: block; margin: auto;" /&gt;
 
 ---
 class: inverse
@@ -1158,28 +1173,8 @@ billboard &lt;-
 
 - Use ``ggplot2`` to create something like this:
 
-![](4-tidyr_files/figure-html/unnamed-chunk-25-1.png)&lt;!-- --&gt;
+![](4-tidyr_files/figure-html/unnamed-chunk-27-1.png)&lt;!-- --&gt;
 
----
-class: inverse
-
-## SOLUTION
-
-
-```r
-long_billboard &lt;- pivot_longer(billboard, cols = X1:X76,
-    names_to = "week",
-    values_to = "rank", values_drop_na = TRUE) %&gt;%
-  mutate(week = parse_number(week))
-
-ggplot(long_billboard) + 
-  geom_line(aes(week, rank, colour = artist, group = track))+
-  xlim(c(0, 30))
-```
-
-![](4-tidyr_files/figure-html/unnamed-chunk-26-1.png)&lt;!-- --&gt;
-
----
 
 
     </textarea>

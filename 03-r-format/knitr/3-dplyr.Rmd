@@ -27,8 +27,36 @@ class: center, middle
 Data Wrangling Cheat Sheet, by [RStudio](https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf)
 ]
 
+???
+
+should already have this loaded if loaded all of tidyverse at the beginning
+
+---
+## dplyr terminology
+
+There are some of the primary `dplyr` *verbs*, representing distinct data analysis tasks:
+
+- **Filter**: Select specified rows of a data frame, produce subsets
+
+- **Arrange**: Reorder the rows of a data frame
+
+- **Select**: Select particular columns of a data frame
+
+- **Mutate**: Add new or change existing columns of the data frame (as functions of existing columns)
+
+- **Summarise**: Create collapsed summaries of a data frame
+
+- **Group By**: Introduce structure to a data frame
+ 
 ---
 ## Motivating Example (Pipe Operator)
+
+Use the pipe operator to combine dplyr functions in chain, which allows us to perform more complicated data manipulations
+
+Syntax (Pipe dataframe as input ino the dyplyr function):
+.center[
+dataframe %>% dplyr_function()
+]
 
 .center[
 <img src="images/pipe_usage.png" style="width:580px;"/>
@@ -53,34 +81,18 @@ Consequences:
 - in non-mathematical terms, the piping operator allows you to apply more than one different function at the same time to the same data frame.
 
 ---
-## dplyr terminology
-
-There are some of the primary `dplyr` *verbs*, representing distinct data analysis tasks:
-
-- **Filter**: Select specified rows of a data frame, produce subsets
-
-- **Arrange**: Reorder the rows of a data frame
-
-- **Select**: Select particular columns of a data frame
-
-- **Mutate**: Add new or change existing columns of the data frame (as functions of existing columns)
-
-- **Summarise**: Create collapsed summaries of a data frame
-
-- **Group By**: Introduce structure to a data frame
- 
----
 
 ## Filter
 
-Read in the pitch data set (in the folder 03-r-format/data). The data are from an experiment on different advanced metrics of MLB baseball pitchers different pitch types.
+Read in the pitch data set. The data are from an experiment on different advanced metrics of MLB baseball pitchers different pitch types.
 ```{r message = FALSE, warning=FALSE, echo = TRUE, eval = FALSE}
 library(tidyverse)
 pitch <- 
   read_csv("http://unl-statistics.github.io/R-workshops/03-r-format/data/pitch.csv")
+
 pitch[-1] %>% 
   filter(pitcher_hand == "R", pitch_type == "CU") %>%
-  head()
+  head(n=4)
 
 ```
 
@@ -89,7 +101,7 @@ library(tidyverse)
 pitch <- read_csv("http://unl-statistics.github.io/R-workshops/03-r-format/data/pitch.csv")
 pitch[-1] %>% 
   filter(pitcher_hand == "R", pitch_type == "CU") %>%
-  head() %>%
+  head(n=4) %>%
   knitr::kable(format = "html")
 
 ```
@@ -115,7 +127,7 @@ class: inverse
 1. Use `filter` to get a subset of the `pitchdata` dataset
 
 2. Ex. Filter the data down to left handed pitchers, who throw a curve with at least
-3300 rpms (spin_rate), and the play results in a ball (action_result).
+3300 rpms (spin_rate)..
 
 3. `%>%` the subset and create a plot
 
@@ -123,29 +135,13 @@ hint: what is the default first argument of the `ggplot` function?
 
 ---
 
-## One Solution 
+## Solution 
 
 ```{r, purl=FALSE, message=FALSE, warning= FALSE, fig.height=3, echo = TRUE}
-  pitch %>%
-  filter(spin_rate >= 3200 & pitcher_hand == "L") %>%
+pitch %>%
+  filter(spin_rate >= 3200 & pitcher_hand == "L" & pitch_type == "CU") %>%
   ggplot(aes(x=action_result, y=spin_rate)) +
-  geom_point(aes(color=playerid)) +
-  theme(legend.position = "none")
-```
-
----
-
-## Another Solution (interactive edition)
-
-```{r, purl=FALSE, message=FALSE, warning= FALSE, fig.height=4, echo = TRUE}
-library(rbokeh) #<< #New Package Alert!!
- pitch %>%
-  filter(spin_rate >= 3200 & pitcher_hand == "L") %>%
-  figure() %>%
-  ly_points(x = action_result, y = spin_rate, color = playerid, 
-            hover = list(playerid, spin_rate, action_result), 
-            legend = FALSE) 
-
+  geom_point(aes(color=as.factor(playerid))) 
 ```
 
 ---
@@ -154,17 +150,31 @@ library(rbokeh) #<< #New Package Alert!!
 ## Arrange
 
 Easy way to arrange your data in ascending or descending order
-```{r arr.desc, echo=TRUE}
+```{r arr.desc, echo=TRUE, eval = FALSE}
+pitch %>% 
+  subset(select = c("playerid", "spin_rate")) %>%
+  arrange(desc(playerid), spin_rate) 
+```
+
+```{r arr.desc2, echo=FALSE, eval = TRUE}
 pitch %>% 
   subset(select = c("playerid", "spin_rate")) %>%
   arrange(desc(playerid), spin_rate) %>% 
   head(5) %>% knitr::kable(format = "html")
 ```
 
+
 ---
 Successive variables are used for breaking ties from previous variables.
 
-```{r arr.asc, echo=TRUE}
+```{r arr.asc, echo=TRUE, eval = FALSE}
+pitch %>% 
+  subset(select = c("playerid", "spin_rate")) %>%
+  arrange(playerid, spin_rate)
+```
+
+
+```{r arr.asc2, echo=FALSE, eval = TRUE}
 pitch %>% 
   subset(select = c("playerid", "spin_rate")) %>%
   arrange(playerid, spin_rate) %>% 
@@ -188,14 +198,27 @@ Hint: Use the entire data set
 
 ## Solution
 
-```{r purl=FALSE, echo=TRUE}
+```{r purl=FALSE, echo=TRUE, eval = FALSE}
+pitch[-1] %>% 
+  arrange(desc(playerid), spin_rate) %>% 
+  slice(11)
+```
+
+```{r purl=FALSE, echo=FALSE, eval = TRUE}
 pitch[-1] %>% 
   arrange(desc(playerid), spin_rate) %>% 
   slice(11) %>% knitr::kable(format = "html")
 ```
 
 
-```{r purl=FALSE, echo=TRUE}
+```{r purl=FALSE, echo=TRUE, eval = FALSE}
+pitch[-1] %>% 
+  arrange(desc(playerid), spin_rate) %>% 
+  slice(1:5)
+```
+
+
+```{r purl=FALSE, echo=FALSE, eval = TRUE}
 pitch[-1] %>% 
   arrange(desc(playerid), spin_rate) %>% 
   slice(1:5) %>% knitr::kable(format = "html")
@@ -206,7 +229,15 @@ pitch[-1] %>%
 ## Select
  - Using Select we are easily able to create a subset of our data. This is similar to
  the subset function in base.
-```{r echo=TRUE}
+ 
+```{r echo=TRUE, eval = FALSE}
+pitch %>% 
+  select(playerid, pitcher_hand, action_result, spin_rate) %>%
+  head()
+  
+```
+
+```{r echo=FALSE, eval = TRUE}
 pitch %>% 
   select(playerid, pitcher_hand, action_result, spin_rate) %>%
   head() %>% 
@@ -214,22 +245,46 @@ pitch %>%
   
 ```
 
+
 ---
 
 ## Summarise
  - Finding summary statistics of a metric
-```{r echo=TRUE}
+ 
+```{r echo=TRUE, eval = FALSE}
+
+#na.rm - remove NAs from calculation
+
+pitch %>%
+    summarise(mean_spinrate = mean(spin_rate, na.rm=TRUE), 
+              sd_spinrate = sd(spin_rate, na.rm = TRUE)) 
+
+```
+
+```{r echo=FALSE, eval = TRUE}
+
 pitch %>%
     summarise(mean_spinrate = mean(spin_rate, na.rm=TRUE), 
               sd_spinrate = sd(spin_rate, na.rm = TRUE)) %>% 
   knitr::kable(format = "html")
+
 ```
 
 ---
 
 ## `summarise` and `group_by`
  - Finding summary statistics of a metric after accounting first for other variables
-```{r echo = TRUE}
+```{r echo = TRUE, eval = FALSE}
+pitch %>%
+    group_by(playerid) %>%
+    summarise(mean_spinrate = mean(spin_rate, na.rm=TRUE), 
+              sd_spinrate = sd(spin_rate, na.rm = TRUE)) %>% 
+  head(5)
+
+```
+
+
+```{r echo = FALSE, eval = TRUE}
 pitch %>%
     group_by(playerid) %>%
     summarise(mean_spinrate = mean(spin_rate, na.rm=TRUE), 
@@ -286,7 +341,7 @@ pitch %>%
     summarise(mean_spin = mean(spin_rate), 
               sd_spin = sd(spin_rate)) %>%
     mutate(mean = sum(mean_spin) / n()) %>%
-    mutate(difference = mean - mean_spin)
+    mutate(difference = mean - mean_spin) %>% head()
 ```
 
 ---
@@ -299,10 +354,10 @@ of the new variable.
 - Consider rewriting the handedness of our pitchers.
 
 - If the pitcher_hand is R write "Right" if not, "Left"
-```{r}
+```{r, echo=TRUE}
 pitch %>% 
   select(pitcher_hand) %>% 
-  mutate(Handedness = ifelse(pitcher_hand == "R", "Right", "Left"))
+  mutate(Handedness = ifelse(pitcher_hand == "R", "Right", "Left")) %>% head()
 
 ```
 
@@ -312,21 +367,27 @@ pitch %>%
 
 Why does `pitch$mean_spin` not return a real-valued summary??
 
-```{r}
+```{r echo=TRUE}
 pitch$mean_spin
+
+
+#Columns in our dataset
+colnames(pitch[,-1])
 ```
 
---
+---
 
 ## Reasons for pipe operator mishaps
 
 - When we use the piping operator like we have been, the data is only ever being
 changed within 
+
 - We only ever look at this new variable in the previous chunk.
+
 - It has not been created globally into the dataset itself
 
---
 - To do this, you need to create your new column by declaring it as its own variable.
+
 ```{r echo=TRUE}
 pitch$mean_spin <- mean(pitch$spin_rate)
 ```
@@ -364,7 +425,7 @@ Both commands introduce new variables - so which one should we use?
 ## Shortcuts
 
 
-`summarize(n = n())` is equivalent to `tally()` 
+`summarize(n = n())` is equivalent to `tally()` (Number of unique rows in dataset)
 
 ```{r, eval = FALSE, echo = TRUE}
 
@@ -374,12 +435,12 @@ pitch %>% summarize(n=n())
 ```
 
 
-`group_by(playerid, action_result) %>% summarize(n = n())` is equivalent to `count(playerid, action_result)`
+Number of unique observations in each group
 
 ```{r, eval=FALSE, echo = TRUE}
 pitch %>% count(playerid, action_result)
 pitch %>% group_by(playerid, action_result) %>% summarize(n=n())
-  
+pitch %>% group_by(playerid, action_result) %>% tally()
 ```
 ---
 class: inverse
@@ -395,18 +456,25 @@ utilize the `sum()` function to add up all your curveballs!
 ---
 
 ## One Solution
-Consider a success any strike and any batted ball resulting in a "adj_h" less than the league average of .300 BABIP (according to MLB.com)
+Consider a success as any strike (S), catch (C), and foul ball (F) 
+
+<!--and any batted ball resulting in a "adj_h" less than the league average of .300 BABIP (according to MLB.com) -->
+
 ```{r fig.height=1,figure.width=1, warning=FALSE, purl=FALSE, echo = TRUE}
 SScurve <- pitch %>%
   select("playerid", "action_result", "ab_result", "adj_h") %>%  
   arrange(desc(playerid)) %>% 
   mutate(successfulCU = ifelse(
-    (adj_h < .3 & ab_result != "\\N" ) | 
     (action_result %in% c("C","S","F")), 1, 0)) %>%
   group_by(playerid) %>% 
   mutate(totalSSCU=sum(successfulCU)) %>% 
   mutate(percentSSCU=totalSSCU / n())
-SScurve %>% head(2) %>% knitr::kable(format = "html")
+
+```
+
+```{r echo = FALSE}
+SScurve %>% head(4) %>% knitr::kable(format = "html")
+
 ```
 
 ---
@@ -414,13 +482,12 @@ SScurve %>% head(2) %>% knitr::kable(format = "html")
 ## Solution (cont.)
 1. Calculate successful curveball percentages
 2. Look at some graphs to see what the data actually looks like now. 
+
 ```{r fig.height=3, warning=FALSE, purl=FALSE, message=FALSE, echo = TRUE}
 
 percentages <- SScurve %>% 
   distinct(playerid, totalSSCU, percentSSCU)
 
-library(rbokeh)
-library(quanteda) #<< #New Package Alert!!
 ggplot(data = percentages) + 
   geom_point(aes(x = percentSSCU, y = totalSSCU,
                  colour = playerid))
@@ -433,17 +500,12 @@ ggplot(data = percentages) +
 Filter down to get the best pitchers with a minimum of 50 curveballs thrown (our median)
 ```{r fig.height=3, warning=FALSE, purl=FALSE, echo=TRUE}
 
-qualifiedPercentages <- percentages %>% 
+percentages %>% 
   filter(totalSSCU > 50) %>% 
-  arrange(desc(percentSSCU))
+  arrange(desc(percentSSCU)) %>% ggplot() +
+   geom_point(aes(x = percentSSCU, y = totalSSCU, colour = playerid))
 
-figure() %>%
-  ly_points(x = percentSSCU, y = totalSSCU, color = playerid,
-            data = qualifiedPercentages, 
-            hover = list(playerid, totalSSCU, percentSSCU), 
-            legend = FALSE)
 ```
-
 
 ---
 class: inverse
@@ -547,14 +609,6 @@ ChickPlus %>%
   filter(Chick == 1) %>% 
   select(-Diet) %>% 
   glimpse()
-```
-
-```{r echo=TRUE, purl=FALSE}
-ChickPlus %>% 
-  filter(Chick == 1) %>% 
-  ungroup() %>% 
-  select(-Diet, -Chick) %>% 
-  glimpse() 
 ```
 
 ---
