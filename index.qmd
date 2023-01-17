@@ -1,6 +1,6 @@
 ---
 format: 
-  html: default
+  # html: default
   gfm: default
 ---
 

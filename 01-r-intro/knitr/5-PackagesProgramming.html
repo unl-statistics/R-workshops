@@ -3,9 +3,9 @@
   <head>
     <title>Packages and Basic Programming</title>
     <meta charset="utf-8" />
-    <script src="libs/header-attrs/header-attrs.js"></script>
-    <link href="libs/remark-css/default.css" rel="stylesheet" />
-    <link href="libs/remark-css/default-fonts.css" rel="stylesheet" />
+    <script src="libs/header-attrs-2.18/header-attrs.js"></script>
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/default-fonts.css" rel="stylesheet" />
   </head>
   <body>
     <textarea id="source">
@@ -76,12 +76,29 @@ functions for community and vegetation ecologists.
 Code Skeleton:
 
 
+```r
+foo &lt;- function(arg1, arg2, ...) {
+    # Code goes here
+    return(output)
+}
+```
 
 ---
 ## Creating Your Own Functions (continued)
 
 Example:
 
+
+```r
+mymean &lt;- function(data) {
+    ans &lt;- sum(data) / length(data)
+    return(ans)
+}
+
+set.seed(4) #to generate the same random numbers each time run sample function
+example &lt;- sample(1:200, 15) #return 15 random values between 1 and 200 without replacement. without set.seed, will return different values each time
+mymean(example) #mean of random generated data
+```
 
 ```
 ## [1] 110.7333
@@ -98,9 +115,25 @@ Example:
 Skeleton:
 
 
+```r
+if (condition) {
+    # Some code that runs if condition is TRUE
+} else {
+    # Some code that runs if condition is FALSE
+}
+```
 
 Basic Example:
 
+
+```r
+x &lt;- -4
+if(x &gt; 0){
+print("Non-negative number")
+} else {
+print("Negative number")
+}
+```
 
 ```
 ## [1] "Negative number"
@@ -114,8 +147,25 @@ Basic Example:
 Example within a Function:
 
 
+```r
+mymean &lt;- function(data) {
+    if (!is.numeric(data)) {
+        print("Numeric input is required")
+    } else {
+        ans &lt;- sum(data) / length(data)
+        return(ans)
+    }
+}
+
+mymean("dog")
+```
+
 ```
 ## [1] "Numeric input is required"
+```
+
+```r
+mymean(c(2,4,5,6,7))
 ```
 
 ```
@@ -131,6 +181,12 @@ Example within a Function:
 
 - R offers several loops: `for`, `while`, `repeat`.
 
+
+```r
+for (i in 1:3) {
+    print(i)
+}
+```
 
 ```
 ## [1] 1
@@ -149,12 +205,28 @@ Example within a Function:
 ## For Loop Example:
 
 
+```r
+for(i in 1:5) {# Head of for-loop
+  x1 &lt;- i^2 # Code block
+  print(x1) # Print results
+}
+```
+
 ```
 ## [1] 1
 ## [1] 4
 ## [1] 9
 ## [1] 16
 ## [1] 25
+```
+
+```r
+final_shed &lt;- read.csv("https://unl-statistics.github.io/R-workshops/01-r-intro/data/daily_shedding.csv")
+
+id &lt;- c("pig_weight", "total_shedding", "daily_shedding")
+for(colname in id) {
+    print(paste(colname, mymean(final_shed[, colname])))
+}
 ```
 
 ```
@@ -167,6 +239,14 @@ Example within a Function:
 ## While Loops
 
 + Loop until a specific condition is met
+
+```r
+i &lt;- 1
+while (i &lt; 5) {
+    print(i)
+    i &lt;- i + 1
+}
+```
 
 ```
 ## [1] 1

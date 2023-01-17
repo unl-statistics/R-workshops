@@ -3,7 +3,7 @@
   <head>
     <title>Motivating Example</title>
     <meta charset="utf-8" />
-    <script src="libs/header-attrs-2.19/header-attrs.js"></script>
+    <script src="libs/header-attrs-2.18/header-attrs.js"></script>
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="libs/remark-css-0.0.1/default-fonts.css" rel="stylesheet" />
   </head>
@@ -91,17 +91,17 @@ head(shed)
 
 ```
 ## # A tibble: 6 × 12
-##   pignum time_point pig_we…¹  temp pan_wt wet_wt Dry_w…² Dry_w…³ perce…⁴ daily…⁵
-##    &lt;dbl&gt;      &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
-## 1     77          2       NA  103.   1.02   1.09    1.31    0.29   26.6     5.30
-## 2     87          2       NA  104.   1.04   1.02    1.33    0.29   28.4     5.70
-## 3    122          2       NA  104.   1.02   0.99    1.11    0.09    9.09   13.2 
-## 4    160          2       NA  104.   1.09   1       1.36    0.27   27       6.75
-## 5    191          2       NA  104.   1.03   1.02    1.27    0.24   23.5     5.86
-## 6    224          2       NA  103    1.08   1       1.39    0.31   31       6.48
+##   pignum time_p…¹ pig_w…²  temp pan_wt wet_wt Dry_w…³ Dry_w…⁴ perce…⁵ daily…⁶
+##    &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+## 1     77        2      NA  103.   1.02   1.09    1.31    0.29   26.6     5.30
+## 2     87        2      NA  104.   1.04   1.02    1.33    0.29   28.4     5.70
+## 3    122        2      NA  104.   1.02   0.99    1.11    0.09    9.09   13.2 
+## 4    160        2      NA  104.   1.09   1       1.36    0.27   27       6.75
+## 5    191        2      NA  104.   1.03   1.02    1.27    0.24   23.5     5.86
+## 6    224        2      NA  103    1.08   1       1.39    0.31   31       6.48
 ## # … with 2 more variables: treatment &lt;chr&gt;, total_shedding &lt;dbl&gt;, and
-## #   abbreviated variable names ¹​pig_weight, ²​Dry_wt_pan, ³​Dry_weight,
-## #   ⁴​percent_drymatter, ⁵​daily_shedding
+## #   abbreviated variable names ¹​time_point, ²​pig_weight, ³​Dry_wt_pan,
+## #   ⁴​Dry_weight, ⁵​percent_drymatter, ⁶​daily_shedding
 ```
 
 ---
@@ -157,30 +157,30 @@ summary(shed)
 ```
 
 ```
-##      pignum        time_point     pig_weight         temp           pan_wt     
-##  Min.   :  6.0   Min.   : 0.0   Min.   : 9.48   Min.   :101.2   Min.   :1.000  
-##  1st Qu.:119.0   1st Qu.: 2.0   1st Qu.:16.02   1st Qu.:102.4   1st Qu.:1.030  
-##  Median :224.0   Median : 7.0   Median :19.78   Median :102.9   Median :1.050  
-##  Mean   :234.7   Mean   : 8.8   Mean   :21.01   Mean   :102.9   Mean   :1.054  
-##  3rd Qu.:361.0   3rd Qu.:14.0   3rd Qu.:25.29   3rd Qu.:103.4   3rd Qu.:1.070  
-##  Max.   :472.0   Max.   :21.0   Max.   :36.30   Max.   :105.2   Max.   :1.120  
-##                                 NA's   :59      NA's   :118     NA's   :122    
-##      wet_wt        Dry_wt_pan      Dry_weight    percent_drymatter
-##  Min.   :0.700   Min.   :1.110   Min.   :0.090   Min.   : 9.091   
-##  1st Qu.:1.000   1st Qu.:1.300   1st Qu.:0.250   1st Qu.:24.292   
-##  Median :1.020   Median :1.320   Median :0.280   Median :26.923   
-##  Mean   :1.026   Mean   :1.322   Mean   :0.268   Mean   :26.109   
-##  3rd Qu.:1.050   3rd Qu.:1.353   3rd Qu.:0.290   3rd Qu.:28.431   
-##  Max.   :1.110   Max.   :1.460   Max.   :0.380   Max.   :36.893   
-##  NA's   :123     NA's   :123     NA's   :123     NA's   :123      
-##  daily_shedding    treatment         total_shedding  
-##  Min.   : 0.000   Length:295         Min.   : 0.000  
-##  1st Qu.: 0.000   Class :character   1st Qu.: 1.699  
-##  Median : 3.912   Mode  :character   Median :13.904  
-##  Mean   : 3.765                      Mean   :17.423  
-##  3rd Qu.: 5.521                      3rd Qu.:30.893  
-##  Max.   :13.218                      Max.   :66.207  
-## 
+##      pignum        time_point     pig_weight         temp      
+##  Min.   :  6.0   Min.   : 0.0   Min.   : 9.48   Min.   :101.2  
+##  1st Qu.:119.0   1st Qu.: 2.0   1st Qu.:16.02   1st Qu.:102.4  
+##  Median :224.0   Median : 7.0   Median :19.78   Median :102.9  
+##  Mean   :234.7   Mean   : 8.8   Mean   :21.01   Mean   :102.9  
+##  3rd Qu.:361.0   3rd Qu.:14.0   3rd Qu.:25.29   3rd Qu.:103.4  
+##  Max.   :472.0   Max.   :21.0   Max.   :36.30   Max.   :105.2  
+##                                 NA's   :59      NA's   :118    
+##      pan_wt          wet_wt        Dry_wt_pan      Dry_weight   
+##  Min.   :1.000   Min.   :0.700   Min.   :1.110   Min.   :0.090  
+##  1st Qu.:1.030   1st Qu.:1.000   1st Qu.:1.300   1st Qu.:0.250  
+##  Median :1.050   Median :1.020   Median :1.320   Median :0.280  
+##  Mean   :1.054   Mean   :1.026   Mean   :1.322   Mean   :0.268  
+##  3rd Qu.:1.070   3rd Qu.:1.050   3rd Qu.:1.353   3rd Qu.:0.290  
+##  Max.   :1.120   Max.   :1.110   Max.   :1.460   Max.   :0.380  
+##  NA's   :122     NA's   :123     NA's   :123     NA's   :123    
+##  percent_drymatter daily_shedding    treatment         total_shedding  
+##  Min.   : 9.091    Min.   : 0.000   Length:295         Min.   : 0.000  
+##  1st Qu.:24.292    1st Qu.: 0.000   Class :character   1st Qu.: 1.699  
+##  Median :26.923    Median : 3.912   Mode  :character   Median :13.904  
+##  Mean   :26.109    Mean   : 3.765                      Mean   :17.423  
+##  3rd Qu.:28.431    3rd Qu.: 5.521                      3rd Qu.:30.893  
+##  Max.   :36.893    Max.   :13.218                      Max.   :66.207  
+##  NA's   :123
 ```
 
 ---
