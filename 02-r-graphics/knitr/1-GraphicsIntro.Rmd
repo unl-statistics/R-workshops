@@ -337,7 +337,9 @@ a2 <- ggplot(diamonds, aes(x = cut, y = price)) +
 
 # network plot
 library(GGally)
-data(blood)
+# devtools::install_github("sctyner/geomnet")
+library(geomnet)
+data(blood, package="geomnet")
 
 edges <- cbind(as.character(blood$edges$from), as.character(blood$edges$to))
 codes <- unique(c(blood$edges$from, blood$edges$to))  # All available blood type codes
