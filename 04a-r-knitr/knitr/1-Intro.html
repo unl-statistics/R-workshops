@@ -181,6 +181,14 @@ make a plot here
 ```
 Plot Output
 ````
+
+```r
+set.seed(1121)
+x=rnorm(20)
+
+boxplot(x)
+```
+
 ![](1-Intro_files/figure-html/plot_example-1.png)&lt;!-- --&gt;
 
 
@@ -190,6 +198,12 @@ Plot Output
 Add a new code chunk to minimal-knitr.Rmd that generates a sample of 50 observations from a normal distribution and plot a histogram. 
 
 
+```r
+x &lt;- rnorm(50)
+
+library(ggplot2)
+qplot(x, geom = "histogram")
+```
 
 
 ---
@@ -308,6 +322,12 @@ Make sure it compiles in your document!
 
 ---
 ## Tables with kable
+
+
+
+```r
+knitr::kable(head(iris), "pipe")
+```
 
 
 

@@ -795,6 +795,11 @@ We are now back to our original format
 We can also use the `pivot_wider` function to compare replicates within the French Fry dataset
 
 
+```r
+french_fries_wide &lt;- french_fries_long %&gt;% 
+  pivot_wider(names_from = rep, 
+              values_from = rating)
+```
 
 &lt;table&gt;
  &lt;thead&gt;
@@ -1021,6 +1026,17 @@ class: inverse
 ## Solution
 
 
+```r
+occupation &lt;- read_csv("https://unl-statistics.github.io/R-workshops/03-r-format/data/occupation-1870.csv")
+
+occupation_long &lt;- occupation %&gt;% 
+  pivot_longer(Agriculture.Male:School.Female,names_to = "Occupation", values_to = "Measurement") %&gt;%
+  separate(Occupation, c("Occupation", "Gender"), sep="\\.") %&gt;%
+  pivot_wider(names_from = "Gender", values_from = "Measurement")
+
+head(occupation_long, 10)
+```
+
 ```
 ## # A tibble: 10 × 5
 ##    `Area name`       Total.Population Occupation      Male Female
@@ -1041,6 +1057,11 @@ class: inverse
 class:inverse
 
 ## Solution
+
+
+```r
+occupation_long %&gt;% ggplot() + geom_point(aes(x = Male, y = Female)) + facet_wrap(~Occupation)
+```
 
 &lt;img src="4-tidyr_files/figure-html/unnamed-chunk-21-1.png" style="display: block; margin: auto;" /&gt;
 
@@ -1074,9 +1095,9 @@ today() - days(2)
 ```
 
 ```
-## [1] "2023-01-17 11:10:16 CST"
+## [1] "2023-01-17 11:24:56 CST"
 ## [1] "2023-01-17"
-## [1] "2023-01-17 15:10:16 CST"
+## [1] "2023-01-17 15:24:56 CST"
 ## [1] "2023-01-15"
 ```
 
