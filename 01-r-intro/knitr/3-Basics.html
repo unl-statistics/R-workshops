@@ -3,9 +3,9 @@
   <head>
     <title>Basics</title>
     <meta charset="utf-8" />
-    <script src="libs/header-attrs-2.18/header-attrs.js"></script>
-    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
-    <link href="libs/remark-css-0.0.1/default-fonts.css" rel="stylesheet" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link href="libs/remark-css/default-fonts.css" rel="stylesheet" />
   </head>
   <body>
     <textarea id="source">
@@ -25,27 +25,12 @@ class: center, middle, inverse, title-slide
 [Basics Cheatsheet](cheatsheets/base-r.pdf)
 
 
-```r
-# Addition and Subtraction
-2 + 5 - 1
-```
-
 ```
 ## [1] 6
 ```
 
-```r
-# Multiplication
-109*23452
-```
-
 ```
 ## [1] 2556268
-```
-
-```r
-# Division
-3/7
 ```
 
 ```
@@ -56,27 +41,12 @@ class: center, middle, inverse, title-slide
 ## More Calculator Operations
 
 
-```r
-# Integer division
-7 %/% 2
-```
-
 ```
 ## [1] 3
 ```
 
-```r
-# Modulo operator (Remainder)
-7 %% 2
-```
-
 ```
 ## [1] 1
-```
-
-```r
-# Powers
-1.5^3
 ```
 
 ```
@@ -103,24 +73,12 @@ class: center, middle, inverse, title-slide
 We can create variables using the assignment operator `&lt;-`:
 
 
-```r
-x &lt;- 5
-MyAge &lt;- 25
-```
 
 We can then perform any of the functions on the variables:
 
 
-```r
-log(x)
-```
-
 ```
 ## [1] 1.609438
-```
-
-```r
-MyAge^2
 ```
 
 ```
@@ -146,16 +104,9 @@ MyAge^2
 A variable does not need to be a single value. We can create a **vector** using the `c` function (combine - combines several objects into one):
 
 
-```r
-y &lt;- c(1, 5, 3, 2)
-```
 
 Operations will then be done element-wise:
 
-
-```r
-y / 2
-```
 
 ```
 ## [1] 0.5 2.5 1.5 1.0
@@ -167,16 +118,10 @@ y / 2
 We will talk MUCH more about vectors in a bit, but for now, let's talk about a couple ways to get help. The primary function to use is the `help` function. Just pass in the name of the function you need help with:
 
 
-```r
-help(head)
-```
 
 The `?` function also works:
 
 
-```r
-?head
-```
 
 Googling for help can be difficult at first. You might need to search for R + CRAN + \&lt;your query\&gt; to get good results
 
@@ -243,10 +188,6 @@ Using the R Reference Card (and the Help pages, if needed), do the following:
 - We can access different columns using the `$` operator.
 
 
-```r
-shedding &lt;- final_shed$total_shedding
-treatment &lt;- final_shed$treatment
-```
 
 .footnote[
 [1] A column can also be a list! This is a more advanced topic that will be saved for later.
@@ -257,21 +198,12 @@ treatment &lt;- final_shed$treatment
 A vector is a list of values that are all the same type. We have seen that we can create them using the `c` or the `rep` function. We can also use the `:` operator if we wish to create consecutive values:
 
 
-```r
-a &lt;- 10:15
-a
-```
-
 ```
 ## [1] 10 11 12 13 14 15
 ```
 
 We can extract the different elements of the vector like so:
 
-
-```r
-shedding[3]
-```
 
 ```
 ## [1] 59.04973
@@ -283,24 +215,12 @@ shedding[3]
 We saw that we can access individual elements of the vector. But **indexing** is a lot more powerful than that:
 
 
-```r
-head(shedding)
-```
-
 ```
 ## [1] 37.14022 43.88073 59.04973 44.96963 38.74342 56.12656
 ```
 
-```r
-shedding[c(1, 3, 5)]
-```
-
 ```
 ## [1] 37.14022 59.04973 38.74342
-```
-
-```r
-shedding[1:5]
 ```
 
 ```
@@ -328,25 +248,12 @@ shedding[1:5]
 We can index vectors using logical values as well:
 
 
-```r
-x &lt;- c(2, 3, 5, 7)
-x[c(TRUE, FALSE, FALSE, TRUE)]
-```
-
 ```
 ## [1] 2 7
 ```
 
-```r
-x &gt; 3.5
-```
-
 ```
 ## [1] FALSE FALSE  TRUE  TRUE
-```
-
-```r
-x[x &gt; 3.5]
 ```
 
 ```
@@ -357,14 +264,9 @@ x[x &gt; 3.5]
 ## Logical Examples
 
 
-```r
-bad_shedder &lt;- shedding &gt; 50
-shedding[bad_shedder]
 ```
-
-```
-## [1] 59.04973 56.12656 66.20657 51.98984 58.53921 64.74017 64.27066 56.06566
-## [9] 53.76049
+## [1] 59.04973 56.12656 66.20657 51.98984 58.53921 64.74017
+## [7] 64.27066 56.06566 53.76049
 ```
 
 ---
@@ -376,10 +278,6 @@ class: inverse
 
 **Hint**: if you use the `sum` function on a logical vector, it'll return how many TRUEs are in the vector:
 
-
-```r
-sum(c(TRUE, TRUE, FALSE, TRUE, FALSE))
-```
 
 ```
 ## [1] 3
@@ -394,36 +292,24 @@ sum(c(TRUE, TRUE, FALSE, TRUE, FALSE))
 - `|` (elementwise OR)
 
 
-```r
-c(T, T, F, F) &amp; c(T, F, T, F)
-```
-
 ```
 ## [1]  TRUE FALSE FALSE FALSE
-```
-
-```r
-c(T, T, F, F) | c(T, F, T, F)
 ```
 
 ```
 ## [1]  TRUE  TRUE  TRUE FALSE
 ```
 
-```r
-# Which are high shedders in the control group?
-id &lt;- (shedding &gt; 50 &amp; treatment == "control")
-final_shed[id,]
-```
-
 ```
 ## # A tibble: 4 × 7
-##   pignum time_point pig_weight daily_shedding treatment total_shedding  gain
-##    &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;          &lt;dbl&gt; &lt;chr&gt;              &lt;dbl&gt; &lt;dbl&gt;
-## 1    122         21       33.9           5.01 control             59.0  16.8
-## 2    224         21       22.9           3.91 control             56.1  11.4
-## 3    337         21       29.5           5.52 control             66.2  16.2
-## 4    419         21       31             6.21 control             52.0  16.8
+##   pignum time_point pig_w…¹ daily…² treat…³ total…⁴  gain
+##    &lt;dbl&gt;      &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt;
+## 1    122         21    33.9    5.01 control    59.0  16.8
+## 2    224         21    22.9    3.91 control    56.1  11.4
+## 3    337         21    29.5    5.52 control    66.2  16.2
+## 4    419         21    31      6.21 control    52.0  16.8
+## # … with abbreviated variable names ¹​pig_weight,
+## #   ²​daily_shedding, ³​treatment, ⁴​total_shedding
 ```
 
 ---
@@ -433,18 +319,8 @@ final_shed[id,]
 We can modify vectors using indexing as well:
 
 
-```r
-x &lt;- shedding[1:5]
-x
-```
-
 ```
 ## [1] 37.14022 43.88073 59.04973 44.96963 38.74342
-```
-
-```r
-x[1] &lt;- 20
-x
 ```
 
 ```
@@ -457,22 +333,14 @@ x
 Elements of a vector must all be the same type:
 
 
-```r
-head(shedding)
-```
-
 ```
 ## [1] 37.14022 43.88073 59.04973 44.96963 38.74342 56.12656
 ```
 
-```r
-shedding[bad_shedder] &lt;- ":-("
-head(shedding)
 ```
-
-```
-## [1] "37.1402150411922" "43.8807276727966" ":-("             
-## [4] "44.9696314253854" "38.7434232007542" ":-("
+## [1] "37.1402150411922" "43.8807276727966"
+## [3] ":-("              "44.9696314253854"
+## [5] "38.7434232007542" ":-("
 ```
 
 By changing a value to a string, all the other values were also changed.
@@ -486,10 +354,6 @@ By changing a value to a string, all the other values were also changed.
 
 - Many data types: numeric, integer, character, Date, and factor most common
     
-
-```r
-str(final_shed)
-```
 
 ```
 ## tibble [59 × 7] (S3: tbl_df/tbl/data.frame)
@@ -508,33 +372,16 @@ str(final_shed)
 We can convert between different types using the `as` series of functions:
 
 
-```r
-pignum &lt;- head(final_shed$pignum)
-pignum
-```
-
 ```
 ## [1]  77  87 122 160 191 224
-```
-
-```r
-as.character(pignum)
 ```
 
 ```
 ## [1] "77"  "87"  "122" "160" "191" "224"
 ```
 
-```r
-as.numeric("77")
-```
-
 ```
 ## [1] 77
-```
-
-```r
-#as.factor()
 ```
 
 [More About Data Types](https://www.geeksforgeeks.org/r-data-types/)
@@ -546,18 +393,8 @@ There are a whole variety of useful functions to operate on vectors.
 A couple of the more common ones are `length`, which returns the length (number of elements) of a vector, and `sum`, which adds up all the elements of a vector.
 
 
-```r
-pig_weight &lt;- final_shed$pig_weight
-x &lt;- pig_weight[1:5]
-length(x)
-```
-
 ```
 ## [1] 5
-```
-
-```r
-sum(x)
 ```
 
 ```
@@ -571,24 +408,12 @@ Note: Be careful, if you use `length` with a dataframe, it will return number of
 Using the basic functions we've learned, it wouldn't be hard to compute some basic statistics.
 
 
-```r
-(n &lt;- length(pig_weight))
-```
-
 ```
 ## [1] 59
 ```
 
-```r
-(meanweight &lt;- sum(pig_weight) / n)
-```
-
 ```
 ## [1] 28.82305
-```
-
-```r
-(standdev &lt;- sqrt(sum((pig_weight - meanweight)^2) / (n - 1)))
 ```
 
 ```
@@ -601,33 +426,17 @@ But we don't have to.
 ## Built-in Statistical Functions
 
 
-```r
-mean(pig_weight)
-```
-
 ```
 ## [1] 28.82305
-```
-
-```r
-sd(pig_weight)
 ```
 
 ```
 ## [1] 4.10429
 ```
 
-```r
-summary(pig_weight)
-```
-
 ```
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##   19.50   25.79   28.80   28.82   32.24   36.30
-```
-
-```r
-quantile(pig_weight, c(.025, .975))
 ```
 
 ```

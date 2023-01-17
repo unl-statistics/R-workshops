@@ -20,7 +20,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r setup2}
+```{r setup2, cache = F}
 library(dplyr)     # data wrangling
 library(tidyr)     # data wrangling
 library(ggplot2)   # creates plots
@@ -336,8 +336,8 @@ a2 <- ggplot(diamonds, aes(x = cut, y = price)) +
   theme(legend.position = "none")
 
 # network plot
-data(blood)
 library(GGally)
+data(blood)
 
 edges <- cbind(as.character(blood$edges$from), as.character(blood$edges$to))
 codes <- unique(c(blood$edges$from, blood$edges$to))  # All available blood type codes
