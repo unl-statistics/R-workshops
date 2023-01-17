@@ -3,9 +3,9 @@
   <head>
     <title>Motivating Example</title>
     <meta charset="utf-8" />
-    <script src="libs/header-attrs/header-attrs.js"></script>
-    <link href="libs/remark-css/default.css" rel="stylesheet" />
-    <link href="libs/remark-css/default-fonts.css" rel="stylesheet" />
+    <script src="libs/header-attrs-2.18/header-attrs.js"></script>
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/default-fonts.css" rel="stylesheet" />
   </head>
   <body>
     <textarea id="source">
@@ -39,6 +39,10 @@ class: center, middle, inverse, title-slide
 Let's begin by installing and loading `tidyverse`:
 
 
+```r
+install.packages("tidyverse")
+library(tidyverse)
+```
 
 
 
@@ -81,20 +85,23 @@ shed &lt;- read_csv("https://unl-statistics.github.io/R-workshops/01-r-intro/dat
 Now, we use the `head` function to look at the first 6 rows of the data:
 
 
+```r
+head(shed)
+```
+
 ```
 ## # A tibble: 6 × 12
-##   pignum time_point pig_wei…¹  temp pan_wt wet_wt Dry_w…²
-##    &lt;dbl&gt;      &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;
-## 1     77          2        NA  103.   1.02   1.09    1.31
-## 2     87          2        NA  104.   1.04   1.02    1.33
-## 3    122          2        NA  104.   1.02   0.99    1.11
-## 4    160          2        NA  104.   1.09   1       1.36
-## 5    191          2        NA  104.   1.03   1.02    1.27
-## 6    224          2        NA  103    1.08   1       1.39
-## # … with 5 more variables: Dry_weight &lt;dbl&gt;,
-## #   percent_drymatter &lt;dbl&gt;, daily_shedding &lt;dbl&gt;,
-## #   treatment &lt;chr&gt;, total_shedding &lt;dbl&gt;, and
-## #   abbreviated variable names ¹​pig_weight, ²​Dry_wt_pan
+##   pignum time_p…¹ pig_w…²  temp pan_wt wet_wt Dry_w…³ Dry_w…⁴ perce…⁵ daily…⁶
+##    &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+## 1     77        2      NA  103.   1.02   1.09    1.31    0.29   26.6     5.30
+## 2     87        2      NA  104.   1.04   1.02    1.33    0.29   28.4     5.70
+## 3    122        2      NA  104.   1.02   0.99    1.11    0.09    9.09   13.2 
+## 4    160        2      NA  104.   1.09   1       1.36    0.27   27       6.75
+## 5    191        2      NA  104.   1.03   1.02    1.27    0.24   23.5     5.86
+## 6    224        2      NA  103    1.08   1       1.39    0.31   31       6.48
+## # … with 2 more variables: treatment &lt;chr&gt;, total_shedding &lt;dbl&gt;, and
+## #   abbreviated variable names ¹​time_point, ²​pig_weight, ³​Dry_wt_pan,
+## #   ⁴​Dry_weight, ⁵​percent_drymatter, ⁶​daily_shedding
 ```
 
 ---
@@ -102,6 +109,10 @@ Now, we use the `head` function to look at the first 6 rows of the data:
 
 How big is this data set, and what types of variables are in each column?
 
+
+```r
+str(shed)
+```
 
 ```
 ## spc_tbl_ [295 × 12] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
@@ -141,39 +152,35 @@ How big is this data set, and what types of variables are in each column?
 Let's get a summary of the values for each variable:
 
 
+```r
+summary(shed)
 ```
-##      pignum        time_point     pig_weight   
-##  Min.   :  6.0   Min.   : 0.0   Min.   : 9.48  
-##  1st Qu.:119.0   1st Qu.: 2.0   1st Qu.:16.02  
-##  Median :224.0   Median : 7.0   Median :19.78  
-##  Mean   :234.7   Mean   : 8.8   Mean   :21.01  
-##  3rd Qu.:361.0   3rd Qu.:14.0   3rd Qu.:25.29  
-##  Max.   :472.0   Max.   :21.0   Max.   :36.30  
-##                                 NA's   :59     
-##       temp           pan_wt          wet_wt     
-##  Min.   :101.2   Min.   :1.000   Min.   :0.700  
-##  1st Qu.:102.4   1st Qu.:1.030   1st Qu.:1.000  
-##  Median :102.9   Median :1.050   Median :1.020  
-##  Mean   :102.9   Mean   :1.054   Mean   :1.026  
-##  3rd Qu.:103.4   3rd Qu.:1.070   3rd Qu.:1.050  
-##  Max.   :105.2   Max.   :1.120   Max.   :1.110  
-##  NA's   :118     NA's   :122     NA's   :123    
-##    Dry_wt_pan      Dry_weight    percent_drymatter
-##  Min.   :1.110   Min.   :0.090   Min.   : 9.091   
-##  1st Qu.:1.300   1st Qu.:0.250   1st Qu.:24.292   
-##  Median :1.320   Median :0.280   Median :26.923   
-##  Mean   :1.322   Mean   :0.268   Mean   :26.109   
-##  3rd Qu.:1.353   3rd Qu.:0.290   3rd Qu.:28.431   
-##  Max.   :1.460   Max.   :0.380   Max.   :36.893   
-##  NA's   :123     NA's   :123     NA's   :123      
-##  daily_shedding    treatment         total_shedding  
-##  Min.   : 0.000   Length:295         Min.   : 0.000  
-##  1st Qu.: 0.000   Class :character   1st Qu.: 1.699  
-##  Median : 3.912   Mode  :character   Median :13.904  
-##  Mean   : 3.765                      Mean   :17.423  
-##  3rd Qu.: 5.521                      3rd Qu.:30.893  
-##  Max.   :13.218                      Max.   :66.207  
-## 
+
+```
+##      pignum        time_point     pig_weight         temp      
+##  Min.   :  6.0   Min.   : 0.0   Min.   : 9.48   Min.   :101.2  
+##  1st Qu.:119.0   1st Qu.: 2.0   1st Qu.:16.02   1st Qu.:102.4  
+##  Median :224.0   Median : 7.0   Median :19.78   Median :102.9  
+##  Mean   :234.7   Mean   : 8.8   Mean   :21.01   Mean   :102.9  
+##  3rd Qu.:361.0   3rd Qu.:14.0   3rd Qu.:25.29   3rd Qu.:103.4  
+##  Max.   :472.0   Max.   :21.0   Max.   :36.30   Max.   :105.2  
+##                                 NA's   :59      NA's   :118    
+##      pan_wt          wet_wt        Dry_wt_pan      Dry_weight   
+##  Min.   :1.000   Min.   :0.700   Min.   :1.110   Min.   :0.090  
+##  1st Qu.:1.030   1st Qu.:1.000   1st Qu.:1.300   1st Qu.:0.250  
+##  Median :1.050   Median :1.020   Median :1.320   Median :0.280  
+##  Mean   :1.054   Mean   :1.026   Mean   :1.322   Mean   :0.268  
+##  3rd Qu.:1.070   3rd Qu.:1.050   3rd Qu.:1.353   3rd Qu.:0.290  
+##  Max.   :1.120   Max.   :1.110   Max.   :1.460   Max.   :0.380  
+##  NA's   :122     NA's   :123     NA's   :123     NA's   :123    
+##  percent_drymatter daily_shedding    treatment         total_shedding  
+##  Min.   : 9.091    Min.   : 0.000   Length:295         Min.   : 0.000  
+##  1st Qu.:24.292    1st Qu.: 0.000   Class :character   1st Qu.: 1.699  
+##  Median :26.923    Median : 3.912   Mode  :character   Median :13.904  
+##  Mean   :26.109    Mean   : 3.765                      Mean   :17.423  
+##  3rd Qu.:28.431    3rd Qu.: 5.521                      3rd Qu.:30.893  
+##  Max.   :36.893    Max.   :13.218                      Max.   :66.207  
+##  NA's   :123
 ```
 
 ---
@@ -181,12 +188,22 @@ Let's get a summary of the values for each variable:
 
 Let's look at the relationship between time point and *Salmonella* shedding.  
 
+
+```r
+ggplot(shed, aes(x=time_point, y=total_shedding)) + geom_point()
+```
+
 ![](2-MotivatingExample_files/figure-html/unnamed-chunk-7-1.png)&lt;!-- --&gt;
 
 ---
 ## More Scatterplots
 
 Color the points by treatment groups
+
+
+```r
+ggplot(shed, aes(x=time_point, y=total_shedding, colour = treatment)) + geom_point()
+```
 
 ![](2-MotivatingExample_files/figure-html/unnamed-chunk-8-1.png)&lt;!-- --&gt;
 
@@ -196,12 +213,24 @@ Color the points by treatment groups
 
 Switch to lines for easier reading
 
+
+```r
+ggplot(shed, aes(x=time_point, y=total_shedding, colour = treatment)) + geom_line(aes(group=pignum))
+```
+
 ![](2-MotivatingExample_files/figure-html/unnamed-chunk-9-1.png)&lt;!-- --&gt;
 
 ---
 ## Even More Plots
 
 Add faceting
+
+
+```r
+ggplot(shed, aes(x=time_point, y=total_shedding, color=treatment)) + 
+  geom_line(aes(group=pignum)) + 
+  facet_wrap(~treatment)
+```
 
 ![](2-MotivatingExample_files/figure-html/unnamed-chunk-10-1.png)&lt;!-- --&gt;
 
@@ -213,6 +242,14 @@ We will make a new variable in the data: `gain = weight at day 21 - weight at da
 We will then filter the data to only include the final values.
 
 
+```r
+final_shed &lt;- shed %&gt;% 
+  group_by(pignum) %&gt;% 
+  mutate(gain = pig_weight[time_point == 21] - pig_weight[time_point == 0]) %&gt;% filter(time_point == 21) %&gt;% ungroup() %&gt;% select(-c(4:9))
+
+summary(final_shed$gain)
+```
+
 ```
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##    8.22   12.40   14.14   14.16   16.04   18.86
@@ -223,6 +260,15 @@ We will then filter the data to only include the final values.
 
 Let's look distribution of the final shedding values with a histogram
 
+
+```r
+ggplot(final_shed) + geom_histogram(aes(x = total_shedding))
+```
+
+```
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+```
+
 ![](2-MotivatingExample_files/figure-html/unnamed-chunk-12-1.png)&lt;!-- --&gt;
 
 ---
@@ -231,13 +277,15 @@ Let's look distribution of the final shedding values with a histogram
 Which pig, and what treatment did it receive?
 
 
+```r
+final_shed[which.min(final_shed$total_shedding),]
+```
+
 ```
 ## # A tibble: 1 × 7
-##   pignum time_point pig_w…¹ daily…² treat…³ total…⁴  gain
-##    &lt;dbl&gt;      &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt;
-## 1     97         21    24.9       0 RPS           0  12.9
-## # … with abbreviated variable names ¹​pig_weight,
-## #   ²​daily_shedding, ³​treatment, ⁴​total_shedding
+##   pignum time_point pig_weight daily_shedding treatment total_shedding  gain
+##    &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;          &lt;dbl&gt; &lt;chr&gt;              &lt;dbl&gt; &lt;dbl&gt;
+## 1     97         21       24.9              0 RPS                    0  12.9
 ```
 
 ---
@@ -247,8 +295,21 @@ Look at the average cumulative shedding value for each treatment separately
 
 
 
+```r
+# Using base `R`:
+median(final_shed$total_shedding[final_shed$treatment == "control"])
+```
+
 ```
 ## [1] 44.42518
+```
+
+```r
+# then repeat for each treatment. Or ...
+
+# Using `tidyverse`:
+final_shed %&gt;%  group_by(treatment) %&gt;% 
+  summarise(med_shed = median(total_shedding))
 ```
 
 ```
@@ -269,6 +330,11 @@ Look at the average cumulative shedding value for each treatment separately
 There is a difference, but is it statistically significant?
 
 
+```r
+wilcox.test(total_shedding ~ treatment, data = final_shed,
+            subset = treatment %in% c("control", "RPS"))
+```
+
 ```
 ## 
 ## 	Wilcoxon rank sum exact test
@@ -283,12 +349,25 @@ There is a difference, but is it statistically significant?
 
 We could compare the cumulative shedding values of each treatment group with a side by side boxplot
 
+
+```r
+ggplot(final_shed) + 
+  geom_boxplot( aes(treatment, total_shedding, fill = treatment))
+```
+
 ![](2-MotivatingExample_files/figure-html/unnamed-chunk-16-1.png)&lt;!-- --&gt;
 
 ---
 ## Boxplots Again
 
 Alternatively, we could use the original data to compare the daily shedding values of each treatment group with side by side boxplots over time
+
+
+```r
+shed %&gt;% filter(time_point != 0) %&gt;% ggplot() + 
+  geom_boxplot( aes(treatment, daily_shedding, fill = treatment), position = "dodge")  + 
+  facet_wrap(~time_point)
+```
 
 ![](2-MotivatingExample_files/figure-html/unnamed-chunk-17-1.png)&lt;!-- --&gt;
 
