@@ -7,7 +7,10 @@ file.copy("README.qmd", "index.qmd", overwrite = T)
 input <- list.files(pattern = "*.(q|R)md", full.names = T, recursive = T)
 index <- input[str_detect(input, "index|README")]
 knitr <- input[str_detect(input, "knitr")]
-knitr <- input[!str_detect(knitr, "Old|summerschool")]
+knitr <- knitr[!str_detect(knitr, "Old|summerschool")]
+
+# Exclude scrape/shiny for now
+knitr <- knitr[!str_detect(knitr, "scrape|shiny")]
 
 
 

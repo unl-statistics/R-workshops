@@ -3,9 +3,9 @@
   <head>
     <title>Data Wrangling</title>
     <meta charset="utf-8" />
-    <script src="libs/header-attrs-2.17/header-attrs.js"></script>
-    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
-    <link href="libs/remark-css-0.0.1/default-fonts.css" rel="stylesheet" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link href="libs/remark-css/default-fonts.css" rel="stylesheet" />
   </head>
   <body>
     <textarea id="source">
@@ -795,11 +795,6 @@ We are now back to our original format
 We can also use the `pivot_wider` function to compare replicates within the French Fry dataset
 
 
-```r
-french_fries_wide &lt;- french_fries_long %&gt;% 
-  pivot_wider(names_from = rep, 
-              values_from = rating)
-```
 
 &lt;table&gt;
  &lt;thead&gt;
@@ -977,15 +972,17 @@ head(campaign, n = 3)
 
 ```
 ## # A tibble: 3 × 16
-##   Date   Trans…¹ Commi…² Commi…³ Commi…⁴ Recei…⁵ Recei…⁶ First…⁷ Last …⁸ Addre…⁹ Addre…˟ City  State Zip  
-##   &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;
-## 1 10/12… EXP     9103    County… Jeffer… &lt;NA&gt;    Metcal… &lt;NA&gt;    &lt;NA&gt;    2642 H… &lt;NA&gt;    Fair… IA    52556
-## 2 09/09… EXP     9103    County… Jeffer… &lt;NA&gt;    Mornin… &lt;NA&gt;    &lt;NA&gt;    51 1/2… &lt;NA&gt;    Fair… IA    52556
-## 3 12/06… EXP     9103    County… Jeffer… &lt;NA&gt;    Mornin… &lt;NA&gt;    &lt;NA&gt;    51 1/2… &lt;NA&gt;    Fair… IA    52556
-## # … with 2 more variables: `Expenditure Amount` &lt;dbl&gt;, `Check Number` &lt;dbl&gt;, and abbreviated variable
-## #   names ¹​`Transaction Type`, ²​`Committee Code`, ³​`Committee Type`, ⁴​`Committee Name`,
-## #   ⁵​`Receiving Committee Code`, ⁶​`Receiving Organization Name`, ⁷​`First Name`, ⁸​`Last Name`,
-## #   ⁹​`Address - Line 1`, ˟​`Address - Line 2`
+##   Date       Transa…¹ Commi…² Commi…³ Commi…⁴ Recei…⁵ Recei…⁶ First…⁷ Last …⁸
+##   &lt;chr&gt;      &lt;chr&gt;    &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;  
+## 1 10/12/2004 EXP      9103    County… Jeffer… &lt;NA&gt;    Metcal… &lt;NA&gt;    &lt;NA&gt;   
+## 2 09/09/2004 EXP      9103    County… Jeffer… &lt;NA&gt;    Mornin… &lt;NA&gt;    &lt;NA&gt;   
+## 3 12/06/2004 EXP      9103    County… Jeffer… &lt;NA&gt;    Mornin… &lt;NA&gt;    &lt;NA&gt;   
+## # … with 7 more variables: `Address - Line 1` &lt;chr&gt;,
+## #   `Address - Line 2` &lt;chr&gt;, City &lt;chr&gt;, State &lt;chr&gt;, Zip &lt;chr&gt;,
+## #   `Expenditure Amount` &lt;dbl&gt;, `Check Number` &lt;dbl&gt;, and abbreviated
+## #   variable names ¹​`Transaction Type`, ²​`Committee Code`,
+## #   ³​`Committee Type`, ⁴​`Committee Name`, ⁵​`Receiving Committee Code`,
+## #   ⁶​`Receiving Organization Name`, ⁷​`First Name`, ⁸​`Last Name`
 ```
 
 Assess the 'messiness' of the data. List issues that prevent us from working with the data directly. Which of these issues are of type (1) or (2) of messiness?
@@ -1024,17 +1021,6 @@ class: inverse
 ## Solution
 
 
-```r
-occupation &lt;- read_csv("https://unl-statistics.github.io/R-workshops/03-r-format/data/occupation-1870.csv")
-
-occupation_long &lt;- occupation %&gt;% 
-  pivot_longer(Agriculture.Male:School.Female,names_to = "Occupation", values_to = "Measurement") %&gt;%
-  separate(Occupation, c("Occupation", "Gender"), sep="\\.") %&gt;%
-  pivot_wider(names_from = "Gender", values_from = "Measurement")
-
-head(occupation_long, 10)
-```
-
 ```
 ## # A tibble: 10 × 5
 ##    `Area name`       Total.Population Occupation      Male Female
@@ -1055,11 +1041,6 @@ head(occupation_long, 10)
 class:inverse
 
 ## Solution
-
-
-```r
-occupation_long %&gt;% ggplot() + geom_point(aes(x = Male, y = Female)) + facet_wrap(~Occupation)
-```
 
 &lt;img src="4-tidyr_files/figure-html/unnamed-chunk-21-1.png" style="display: block; margin: auto;" /&gt;
 
@@ -1093,10 +1074,10 @@ today() - days(2)
 ```
 
 ```
-## [1] "2023-01-15 16:00:44 CST"
+## [1] "2023-01-17 11:10:16 CST"
+## [1] "2023-01-17"
+## [1] "2023-01-17 15:10:16 CST"
 ## [1] "2023-01-15"
-## [1] "2023-01-15 20:00:44 CST"
-## [1] "2023-01-13"
 ```
 
 ---

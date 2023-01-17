@@ -3,9 +3,9 @@
   <head>
     <title>Data Wrangling</title>
     <meta charset="utf-8" />
-    <script src="libs/header-attrs-2.17/header-attrs.js"></script>
-    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
-    <link href="libs/remark-css-0.0.1/default-fonts.css" rel="stylesheet" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link href="libs/remark-css/default-fonts.css" rel="stylesheet" />
   </head>
   <body>
     <textarea id="source">
@@ -163,12 +163,6 @@ After data are normalized by splitting, we want to de-normalize again by **joini
 ## Motivating Example: Lahman package (Sports Database)
 
 Sean Lahman is a database journalist, who started databases of historical sports statistics, in particular, the Lahman database on baseball.
-
-
-```r
-library(Lahman)
-LahmanData %&gt;% head(5) %&gt;% knitr::kable(format = "html")
-```
 
 &lt;table&gt;
  &lt;thead&gt;
@@ -801,24 +795,10 @@ JOINING DATASETS
 ## Chart of induction
 
 
-```r
-Voted %&gt;% ggplot(aes(x = attempt, y = votes/needed)) +
-  geom_hline(yintercept = 1, colour = "grey25", size = 0.1) +
-  geom_line(aes(group = playerID), colour = "grey35", size = 0.2) + 
-  geom_point(aes(colour = inducted))
-```
 
 ## Getting the dataset for the labels
 
 
-```r
-labels &lt;- Voted %&gt;% group_by(playerID) %&gt;% summarize(
-  votes = votes[which.max(attempt)],
-  needed = needed[which.max(attempt)],
-  attempt = max(attempt),
-  name = paste(unique(nameFirst), unique(nameLast))
-)
-```
 
 
 ---&gt;

@@ -43,3 +43,7 @@ RColorBrewer
 viridisLite
 viridis
 wesanderson
+haven
+timechange
+lubridate
+Lahman
