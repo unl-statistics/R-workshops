@@ -98,7 +98,7 @@ Complete the template below to build a graph
 ---
 # How to build a graph
 
-`ggplot(data = mpg, aes(x = cty, y = hwy))`
+`ggplot(data = mpg, aes(x = class, y = hwy))`
 
 - This will begin a plot that you can finish by adding layers to.
 
