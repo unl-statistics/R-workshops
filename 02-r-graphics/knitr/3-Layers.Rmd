@@ -243,7 +243,7 @@ a + b + plot_layout(widths = c(1, 7))
 # Faceting Options
 
 - `facet_grid(. ~ b)`: facet into columns based on b 
-- `facet_grid(a ~ .)`: facet into columns based on a 
+- `facet_grid(a ~ .)`: facet into rows based on a 
 - `facet_grid(a ~ b)`: facet into both rows and columns
 - `facet_wrap( ~ fl)`: wrap facets into a rectangular layout
 
