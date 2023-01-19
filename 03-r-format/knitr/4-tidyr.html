@@ -3,9 +3,9 @@
   <head>
     <title>Data Wrangling</title>
     <meta charset="utf-8" />
-    <script src="libs/header-attrs/header-attrs.js"></script>
-    <link href="libs/remark-css/default.css" rel="stylesheet" />
-    <link href="libs/remark-css/default-fonts.css" rel="stylesheet" />
+    <script src="libs/header-attrs-2.17/header-attrs.js"></script>
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/default-fonts.css" rel="stylesheet" />
   </head>
   <body>
     <textarea id="source">
@@ -971,23 +971,20 @@ The website
 ```r
 url &lt;- "https://data.iowa.gov/api/views/3adi-mht4/rows.csv"
 campaign &lt;- readr::read_csv(url, guess_max = 50000)
-
-head(campaign, n = 3)
+head(campaign, n = 2)
 ```
 
 ```
-## # A tibble: 3 × 16
-##   Date       Transa…¹ Commi…² Commi…³ Commi…⁴ Recei…⁵ Recei…⁶ First…⁷ Last …⁸
-##   &lt;chr&gt;      &lt;chr&gt;    &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;  
-## 1 10/12/2004 EXP      9103    County… Jeffer… &lt;NA&gt;    Metcal… &lt;NA&gt;    &lt;NA&gt;   
-## 2 09/09/2004 EXP      9103    County… Jeffer… &lt;NA&gt;    Mornin… &lt;NA&gt;    &lt;NA&gt;   
-## 3 12/06/2004 EXP      9103    County… Jeffer… &lt;NA&gt;    Mornin… &lt;NA&gt;    &lt;NA&gt;   
-## # … with 7 more variables: `Address - Line 1` &lt;chr&gt;,
-## #   `Address - Line 2` &lt;chr&gt;, City &lt;chr&gt;, State &lt;chr&gt;, Zip &lt;chr&gt;,
-## #   `Expenditure Amount` &lt;dbl&gt;, `Check Number` &lt;dbl&gt;, and abbreviated
-## #   variable names ¹​`Transaction Type`, ²​`Committee Code`,
-## #   ³​`Committee Type`, ⁴​`Committee Name`, ⁵​`Receiving Committee Code`,
-## #   ⁶​`Receiving Organization Name`, ⁷​`First Name`, ⁸​`Last Name`
+## # A tibble: 2 × 16
+##   Date     Trans…¹ Commi…² Commi…³ Commi…⁴ Recei…⁵ Recei…⁶ First…⁷ Last …⁸ Addre…⁹ Addre…˟ City 
+##   &lt;chr&gt;    &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;
+## 1 10/12/2… EXP     9103    County… Jeffer… &lt;NA&gt;    Metcal… &lt;NA&gt;    &lt;NA&gt;    2642 H… &lt;NA&gt;    Fair…
+## 2 09/09/2… EXP     9103    County… Jeffer… &lt;NA&gt;    Mornin… &lt;NA&gt;    &lt;NA&gt;    51 1/2… &lt;NA&gt;    Fair…
+## # … with 4 more variables: State &lt;chr&gt;, Zip &lt;chr&gt;, `Expenditure Amount` &lt;dbl&gt;,
+## #   `Check Number` &lt;dbl&gt;, and abbreviated variable names ¹​`Transaction Type`,
+## #   ²​`Committee Code`, ³​`Committee Type`, ⁴​`Committee Name`, ⁵​`Receiving Committee Code`,
+## #   ⁶​`Receiving Organization Name`, ⁷​`First Name`, ⁸​`Last Name`, ⁹​`Address - Line 1`,
+## #   ˟​`Address - Line 2`
 ```
 
 Assess the 'messiness' of the data. List issues that prevent us from working with the data directly. Which of these issues are of type (1) or (2) of messiness?
@@ -1095,10 +1092,10 @@ today() - days(2)
 ```
 
 ```
-## [1] "2023-01-17 11:24:56 CST"
+## [1] "2023-01-19 10:25:15 CST"
+## [1] "2023-01-19"
+## [1] "2023-01-19 14:25:15 CST"
 ## [1] "2023-01-17"
-## [1] "2023-01-17 15:24:56 CST"
-## [1] "2023-01-15"
 ```
 
 ---

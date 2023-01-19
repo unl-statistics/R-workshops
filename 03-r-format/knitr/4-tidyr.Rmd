@@ -624,8 +624,7 @@ The website
 ```{r echo=TRUE, message=FALSE}
 url <- "https://data.iowa.gov/api/views/3adi-mht4/rows.csv"
 campaign <- readr::read_csv(url, guess_max = 50000)
-
-head(campaign, n = 3)
+head(campaign, n = 2)
 ```
 
 Assess the 'messiness' of the data. List issues that prevent us from working with the data directly. Which of these issues are of type (1) or (2) of messiness?
