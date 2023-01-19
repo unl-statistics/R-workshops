@@ -971,20 +971,6 @@ The website
 ```r
 url &lt;- "https://data.iowa.gov/api/views/3adi-mht4/rows.csv"
 campaign &lt;- readr::read_csv(url, guess_max = 50000)
-head(campaign, n = 2)
-```
-
-```
-## # A tibble: 2 × 16
-##   Date     Trans…¹ Commi…² Commi…³ Commi…⁴ Recei…⁵ Recei…⁶ First…⁷ Last …⁸ Addre…⁹ Addre…˟ City 
-##   &lt;chr&gt;    &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;
-## 1 10/12/2… EXP     9103    County… Jeffer… &lt;NA&gt;    Metcal… &lt;NA&gt;    &lt;NA&gt;    2642 H… &lt;NA&gt;    Fair…
-## 2 09/09/2… EXP     9103    County… Jeffer… &lt;NA&gt;    Mornin… &lt;NA&gt;    &lt;NA&gt;    51 1/2… &lt;NA&gt;    Fair…
-## # … with 4 more variables: State &lt;chr&gt;, Zip &lt;chr&gt;, `Expenditure Amount` &lt;dbl&gt;,
-## #   `Check Number` &lt;dbl&gt;, and abbreviated variable names ¹​`Transaction Type`,
-## #   ²​`Committee Code`, ³​`Committee Type`, ⁴​`Committee Name`, ⁵​`Receiving Committee Code`,
-## #   ⁶​`Receiving Organization Name`, ⁷​`First Name`, ⁸​`Last Name`, ⁹​`Address - Line 1`,
-## #   ˟​`Address - Line 2`
 ```
 
 Assess the 'messiness' of the data. List issues that prevent us from working with the data directly. Which of these issues are of type (1) or (2) of messiness?
@@ -1092,9 +1078,9 @@ today() - days(2)
 ```
 
 ```
-## [1] "2023-01-19 10:25:15 CST"
+## [1] "2023-01-19 11:43:22 CST"
 ## [1] "2023-01-19"
-## [1] "2023-01-19 14:25:15 CST"
+## [1] "2023-01-19 15:43:22 CST"
 ## [1] "2023-01-17"
 ```
 
