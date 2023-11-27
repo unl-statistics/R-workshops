@@ -1,8 +1,6 @@
 ---
 format: 
-  html: default
   gfm: default
-  docx: default
 ---
 
 # ![A Week of R at UNL](header.png)
