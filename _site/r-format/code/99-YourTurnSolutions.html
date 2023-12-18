@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.489">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>UNL R Workshops - Your Turn Solutions</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">UNL R Workshops</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-workshops" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Workshops</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-workshops">    
+        <li>
+    <a class="dropdown-item" href="../../r-intro/index.html">
+ <span class="dropdown-text">Introduction to R</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../r-graphics/index.html">
+ <span class="dropdown-text">Graphics with ggplot2</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../r-format/index.html">
+ <span class="dropdown-text">Data Wrangling</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#reading-files" id="toc-reading-files" class="nav-link active" data-scroll-target="#reading-files">Reading files</a>
+  <ul class="collapse">
+  <li><a href="#the-nhanes-national-health-and-nutrition-survey-publishes-data-in-the-sas-xport-format" id="toc-the-nhanes-national-health-and-nutrition-survey-publishes-data-in-the-sas-xport-format" class="nav-link" data-scroll-target="#the-nhanes-national-health-and-nutrition-survey-publishes-data-in-the-sas-xport-format">2. The NHANES (National Health and Nutrition Survey) publishes data in the SAS xport format:</a></li>
+  </ul></li>
+  <li><a href="#summarizing-with-dplyr" id="toc-summarizing-with-dplyr" class="nav-link" data-scroll-target="#summarizing-with-dplyr">Summarizing with dplyr</a></li>
+  <li><a href="#tidy-data" id="toc-tidy-data" class="nav-link" data-scroll-target="#tidy-data">Tidy Data</a></li>
+  <li><a href="#joining-data" id="toc-joining-data" class="nav-link" data-scroll-target="#joining-data">Joining Data</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content column-page-left" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Your Turn Solutions</h1>
+</div>
+
+
+
+<div class="quarto-title-meta column-page-left">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="reading-files" class="level2">
+<h2 class="anchored" data-anchor-id="reading-files">Reading files</h2>
+<section id="have-a-look-at-the-parameters-of-read_csv-to-solve-the-following-problems" class="level4">
+<h4 class="anchored" data-anchor-id="have-a-look-at-the-parameters-of-read_csv-to-solve-the-following-problems">1. Have a look at the parameters of read_csv to solve the following problems:</h4>
+<p>Read the first two lines of the file into an object called midwest_names</p>
+<p>Read everything EXCEPT the first two lines into an object called midwest_data</p>
+<p><strong>Solution</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Would use your file path </span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>midwest_names <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"http://unl-statistics.github.io/R-workshops/03-r-format/data/midwest.csv"</span>, <span class="at">n_max=</span> <span class="dv">2</span>, </span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_names =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>midwest_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">"http://unl-statistics.github.io/R-workshops/03-r-format/data/midwest.csv"</span>, </span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">skip =</span> <span class="dv">2</span>, <span class="at">col_names =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(midwest_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 11
+  X1       X2       X3 X4        X5 X6        X7 X8        X9 X10      X11
+  &lt;chr&gt;    &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt;
+1 1994-Nov &lt;NA&gt;  NA    &lt;NA&gt;   NA    &lt;NA&gt;   NA    28-Nov  1.12 &lt;NA&gt;   NA   
+2 1994-Dec 5-Dec  1.09 12-Dec  1.06 19-Dec  1.04 26-Dec  1.03 &lt;NA&gt;   NA   
+3 1995-Jan 2-Jan  1.02 9-Jan   1.05 16-Jan  1.03 23-Jan  1.05 30-Jan  1.06
+4 1995-Feb 6-Feb  1.04 13-Feb  1.04 20-Feb  1.03 27-Feb  1.05 &lt;NA&gt;   NA   
+5 1995-Mar 6-Mar  1.05 13-Mar  1.04 20-Mar  1.05 27-Mar  1.06 &lt;NA&gt;   NA   
+6 1995-Apr 3-Apr  1.09 10-Apr  1.11 17-Apr  1.12 24-Apr  1.15 &lt;NA&gt;   NA   </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(midwest_names)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 11
+  X1         X2       X3    X4       X5    X6      X7    X8    X9    X10   X11  
+  &lt;chr&gt;      &lt;chr&gt;    &lt;chr&gt; &lt;chr&gt;    &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;
+1 Year-Month Week 1   &lt;NA&gt;  Week 2   &lt;NA&gt;  Week 3  &lt;NA&gt;  Week… &lt;NA&gt;  Week… &lt;NA&gt; 
+2 &lt;NA&gt;       End Date Value End Date Value End Da… Value End … Value End … Value</code></pre>
+</div>
+</div>
+</section>
+<section id="the-nhanes-national-health-and-nutrition-survey-publishes-data-in-the-sas-xport-format" class="level3">
+<h3 class="anchored" data-anchor-id="the-nhanes-national-health-and-nutrition-survey-publishes-data-in-the-sas-xport-format">2. The NHANES (National Health and Nutrition Survey) publishes data in the SAS xport format:</h3>
+<p>Scroll to the bottom, choose one of the datasets (Demographics, Examination, etc.). Download the Data file (XPT)</p>
+<p>Use read.xport() to load the file into R</p>
+<p>Briefly examine the dataset you’ve imported (use head or tail, etc)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(haven) </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>sas.data <span class="ot">&lt;-</span> <span class="fu">read_xpt</span>(<span class="st">"../data/DEMO_G.XPT"</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>sas.data <span class="sc">%&gt;%</span> <span class="fu">head</span>(<span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 48
+   SEQN SDDSRVYR RIDSTATR RIAGENDR RIDAGEYR RIDAGEMN RIDRETH1 RIDRETH3 RIDEXMON
+  &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;
+1 62161        7        2        1       22       NA        3        3        2
+2 62162        7        2        2        3       NA        1        1        1
+3 62163        7        2        1       14       NA        5        6        2
+4 62164        7        2        2       44       NA        3        3        1
+5 62165        7        2        2       14       NA        4        4        2
+# ℹ 39 more variables: RIDEXAGY &lt;dbl&gt;, RIDEXAGM &lt;dbl&gt;, DMQMILIZ &lt;dbl&gt;,
+#   DMQADFC &lt;dbl&gt;, DMDBORN4 &lt;dbl&gt;, DMDCITZN &lt;dbl&gt;, DMDYRSUS &lt;dbl&gt;,
+#   DMDEDUC3 &lt;dbl&gt;, DMDEDUC2 &lt;dbl&gt;, DMDMARTL &lt;dbl&gt;, RIDEXPRG &lt;dbl&gt;,
+#   SIALANG &lt;dbl&gt;, SIAPROXY &lt;dbl&gt;, SIAINTRP &lt;dbl&gt;, FIALANG &lt;dbl&gt;,
+#   FIAPROXY &lt;dbl&gt;, FIAINTRP &lt;dbl&gt;, MIALANG &lt;dbl&gt;, MIAPROXY &lt;dbl&gt;,
+#   MIAINTRP &lt;dbl&gt;, AIALANGA &lt;dbl&gt;, WTINT2YR &lt;dbl&gt;, WTMEC2YR &lt;dbl&gt;,
+#   SDMVPSU &lt;dbl&gt;, SDMVSTRA &lt;dbl&gt;, INDHHIN2 &lt;dbl&gt;, INDFMIN2 &lt;dbl&gt;, …</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="summarizing-with-dplyr" class="level2">
+<h2 class="anchored" data-anchor-id="summarizing-with-dplyr">Summarizing with dplyr</h2>
+<section id="use-filter-to-get-a-subset-of-the-pitch-dataset" class="level4">
+<h4 class="anchored" data-anchor-id="use-filter-to-get-a-subset-of-the-pitch-dataset">1. Use filter to get a subset of the pitch dataset</h4>
+<p>Ex. Filter the data down to left handed pitchers, who throw a curve with at least 3200 rpms (spin_rate), and the play results in a ball (action_result).</p>
+<p>%&gt;% the subset and create a plot</p>
+<p><strong>Solution</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>pitch <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://unl-statistics.github.io/R-workshops/03-r-format/data/pitch.csv"</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>pitch <span class="sc">%&gt;%</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(spin_rate <span class="sc">&gt;=</span> <span class="dv">3200</span> <span class="sc">&amp;</span> pitcher_hand <span class="sc">==</span> <span class="st">"L"</span> <span class="sc">&amp;</span> pitch_type <span class="sc">==</span> <span class="st">"CU"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>action_result, <span class="at">y=</span>spin_rate)) <span class="sc">+</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color=</span><span class="fu">as.factor</span>(playerid)))  <span class="co">#Your graph could be different</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="99-YourTurnSolutions_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="look-up-the-help-file-for-the-function-slice." class="level4">
+<h4 class="anchored" data-anchor-id="look-up-the-help-file-for-the-function-slice.">2. Look up the help file for the function slice.</h4>
+<p>Use slice on the arranged pitchdata dataset to select a single row</p>
+<p>Use slice to select multiple rows</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>pitch <span class="sc">%&gt;%</span> </span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(playerid), spin_rate) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="dv">11</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 8
+   ...1 playerid pitcher_hand pitch_type spin_rate ab_result action_result adj_h
+  &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;        &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;         &lt;dbl&gt;
+1   664    15540 R            CU             3042. "\\N"     F                 0</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>pitch <span class="sc">%&gt;%</span> </span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(playerid), spin_rate) <span class="sc">%&gt;%</span> </span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 8
+   ...1 playerid pitcher_hand pitch_type spin_rate ab_result action_result adj_h
+  &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;        &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;         &lt;dbl&gt;
+1   966    16669 R            CU             3056. "\\N"     C                 0
+2  1136    16669 R            CU             3072. "\\N"     B                 0
+3  1165    16669 R            CU             3075. "\\N"     B                 0
+4  1411    16669 R            CU             3165. "\\N"     C                 0
+5   649    15686 R            CU             3033. "K"       S                 0</code></pre>
+</div>
+</div>
+</section>
+<section id="select-only-playerid-spin_rate-and-action-result" class="level4">
+<h4 class="anchored" data-anchor-id="select-only-playerid-spin_rate-and-action-result">3. Select only playerid, spin_rate, and action result</h4>
+<p>Group by both playerid and action result and find mean and sd of spin rates</p>
+<p>%&gt;% the summaries into a ggplot histogram</p>
+<p><strong>Solution</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>pitch <span class="sc">%&gt;%</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(playerid, spin_rate, action_result) <span class="sc">%&gt;%</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(playerid, action_result) <span class="sc">%&gt;%</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise</span>(<span class="at">mean_spin =</span> <span class="fu">mean</span>(spin_rate), <span class="at">sd_spin =</span> <span class="fu">sd</span>(spin_rate)) <span class="sc">%&gt;%</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> mean_spin)) <span class="sc">+</span> <span class="fu">geom_histogram</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="99-YourTurnSolutions_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="based-on-your-limited-knowledge-of-baseball-you-determine-what-is-a-successful-curveball.-then-determine-what-pitchers-pitched-the-most-successful-curveballs" class="level4">
+<h4 class="anchored" data-anchor-id="based-on-your-limited-knowledge-of-baseball-you-determine-what-is-a-successful-curveball.-then-determine-what-pitchers-pitched-the-most-successful-curveballs">4. Based on your (limited) knowledge of baseball, you determine what is a “successful” curveball. Then determine what pitchers pitched the most successful curveballs!</h4>
+<p><em>Note: There are many different ways of answering this question. None are wrong and you don’t need to know anything about baseball to try. Consider criteria that it needs to meet. Ex. A successful curveball needs to be above 90 mph in velocity and have over 3100 rpms in spin rate.</em></p>
+<p><em>Your answer may be different</em></p>
+<p><strong>Solution</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Consider a success as any strike (S), catch (C), and foul ball (F) </span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>SScurve <span class="ot">&lt;-</span> pitch <span class="sc">%&gt;%</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="st">"playerid"</span>, <span class="st">"action_result"</span>, <span class="st">"ab_result"</span>, <span class="st">"adj_h"</span>) <span class="sc">%&gt;%</span>  </span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(playerid)) <span class="sc">%&gt;%</span> </span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">successfulCU =</span> <span class="fu">ifelse</span>(</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    (action_result <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"C"</span>,<span class="st">"S"</span>,<span class="st">"F"</span>)), <span class="dv">1</span>, <span class="dv">0</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(playerid) <span class="sc">%&gt;%</span> </span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">totalSSCU=</span><span class="fu">sum</span>(successfulCU)) <span class="sc">%&gt;%</span> </span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">percentSSCU=</span>totalSSCU <span class="sc">/</span> <span class="fu">n</span>())</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>SScurve <span class="sc">%&gt;%</span> <span class="fu">head</span>(<span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 7
+# Groups:   playerid [1]
+  playerid action_result ab_result adj_h successfulCU totalSSCU percentSSCU
+     &lt;dbl&gt; &lt;chr&gt;         &lt;chr&gt;     &lt;dbl&gt;        &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;
+1    16669 C             "\\N"         0            1         2         0.5
+2    16669 B             "\\N"         0            0         2         0.5
+3    16669 B             "\\N"         0            0         2         0.5
+4    16669 C             "\\N"         0            1         2         0.5</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Calculate successful curveball percentages</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>percentages <span class="ot">&lt;-</span> SScurve <span class="sc">%&gt;%</span> </span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(playerid, totalSSCU, percentSSCU)</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="co">#Look at some graphs to see what the data actually looks like now.</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> percentages) <span class="sc">+</span> </span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> percentSSCU, <span class="at">y =</span> totalSSCU,</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>                 <span class="at">colour =</span> playerid))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="99-YourTurnSolutions_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Filter down to get the best pitchers with a minimum of 50 curveballs thrown </span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>percentages <span class="sc">%&gt;%</span> </span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(totalSSCU <span class="sc">&gt;</span> <span class="dv">50</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(percentSSCU)) <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>   <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> percentSSCU, <span class="at">y =</span> totalSSCU, <span class="at">colour =</span> playerid))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="99-YourTurnSolutions_files/figure-html/unnamed-chunk-7-2.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="the-dataset-chickweight-is-part-of-the-core-packages-that-come-with-r" class="level4">
+<h4 class="anchored" data-anchor-id="the-dataset-chickweight-is-part-of-the-core-packages-that-come-with-r">5. The dataset ChickWeight is part of the core packages that come with R</h4>
+<p><strong>Solution</strong><br> Create a line plot with each line representing the weight of each Chick</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>ChickWeight <span class="ot">&lt;-</span> ChickWeight</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>ChickWeight <span class="sc">%&gt;%</span> </span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>Time, <span class="at">y=</span>weight, <span class="at">group=</span>Chick, <span class="at">color=</span>Diet)) <span class="sc">+</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span> </span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>Diet)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="99-YourTurnSolutions_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Focus on weight on day 21. Draw side-by-side dotplots of weight by diet.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>ChickWeight <span class="sc">%&gt;%</span>   </span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Time<span class="sc">==</span><span class="dv">21</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>Diet)) <span class="sc">+</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y=</span>weight, <span class="at">color=</span>Diet), <span class="at">size=</span><span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="99-YourTurnSolutions_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Bonus: Use summarize the average weight on day 21 under each diet. Overlay the dotplots by error bars around the average weight under each diet (see ?geom_errorbar)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>ChickW1 <span class="ot">&lt;-</span> ChickWeight <span class="sc">%&gt;%</span> </span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Time<span class="sc">==</span><span class="dv">21</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Diet) <span class="sc">%&gt;%</span> </span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean_weight =</span> <span class="fu">mean</span>(weight, <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">sd_weight =</span> <span class="fu">sd</span>(weight, <span class="at">na.rm=</span><span class="cn">TRUE</span>)<span class="sc">/</span><span class="fu">n</span>())</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>ChickWeight <span class="sc">%&gt;%</span> </span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Time<span class="sc">==</span><span class="dv">21</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>Diet)) <span class="sc">+</span></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y=</span>weight), <span class="at">size=</span><span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="at">data=</span> ChickW1, <span class="fu">aes</span>(<span class="at">ymin =</span> mean_weight<span class="fl">-1.96</span><span class="sc">*</span>sd_weight, <span class="at">ymax =</span> mean_weight<span class="fl">+1.96</span><span class="sc">*</span>sd_weight, <span class="at">colour =</span> Diet), <span class="at">width=</span>.<span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data=</span>ChickW1, <span class="fu">aes</span>(<span class="at">y=</span>mean_weight, <span class="at">color=</span>Diet), <span class="at">size=</span><span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="99-YourTurnSolutions_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+</section>
+<section id="tidy-data" class="level2">
+<h2 class="anchored" data-anchor-id="tidy-data">Tidy Data</h2>
+<section id="the-iowa-data-portal-is-a-wealth-of-information-on-and-about-the-state-of-iowa." class="level4">
+<h4 class="anchored" data-anchor-id="the-iowa-data-portal-is-a-wealth-of-information-on-and-about-the-state-of-iowa.">1. The Iowa Data Portal is a wealth of information on and about the State of Iowa.</h4>
+<p>Assess the ‘messiness’ of the data. List issues that prevent us from working with the data directly. Which of these issues are of type (1) or (2) of messiness?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="st">"https://data.iowa.gov/api/views/3adi-mht4/rows.csv"</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>campaign <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(url)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: One or more parsing issues, call `problems()` on your data frame for details,
+e.g.:
+  dat &lt;- vroom(...)
+  problems(dat)</code></pre>
+</div>
+</div>
+<p><strong>Solution</strong><br> -Date is text, in the format of Month/Day/Year (Messy 2)<br> -City coordinates are a combination of City name, state, zip code and geographic latitude and longitude. (Messy 2) <br> -Expenditure amount is a textual expression, not a number (Messy different)<br> -No Messy 1? - problems of type Messy 1 are typically hard to detect and often up to interpretation/dependent on the analysis to be done. <br></p>
+</section>
+<section id="during-the-1870-census-data-on-peoples-occupation-was-collected.-the-data-occupation-1870-contains-state-level-aggregates-of-occupation-by-gender." class="level4">
+<h4 class="anchored" data-anchor-id="during-the-1870-census-data-on-peoples-occupation-was-collected.-the-data-occupation-1870-contains-state-level-aggregates-of-occupation-by-gender.">2. During the 1870 census data on people’s occupation was collected. The data occupation-1870 contains state-level aggregates of occupation by gender.</h4>
+<p>Use tidyr to get the data into a long format.</p>
+<p>Separate the occupation.gender type variable into two variables.</p>
+<p>Spread the data such that you can draw scatterplots of values for men against women facetted by occupation.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>occupation <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://unl-statistics.github.io/R-workshops/03-r-format/data/occupation-1870.csv"</span>)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>occupation_long <span class="ot">&lt;-</span> occupation <span class="sc">%&gt;%</span> </span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(Agriculture.Male<span class="sc">:</span>School.Female,<span class="at">names_to =</span> <span class="st">"Occupation"</span>, <span class="at">values_to =</span> <span class="st">"Measurement"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate</span>(Occupation, <span class="fu">c</span>(<span class="st">"Occupation"</span>, <span class="st">"Gender"</span>), <span class="at">sep=</span><span class="st">"</span><span class="sc">\\</span><span class="st">."</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> <span class="st">"Gender"</span>, <span class="at">values_from =</span> <span class="st">"Measurement"</span>)</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(occupation_long, <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10 × 5
+   `Area name`       Total.Population Occupation      Male Female
+   &lt;chr&gt;                        &lt;dbl&gt; &lt;chr&gt;          &lt;dbl&gt;  &lt;dbl&gt;
+ 1 Alabama                     996992 Agriculture   226768  64860
+ 2 Alabama                     996992 Manufacturing  15078   1992
+ 3 Alabama                     996992 Trade          14345     90
+ 4 Alabama                     996992 Service        19449  22676
+ 5 Alabama                     996992 School         38600  38539
+ 6 Arizona Territory             9658 Agriculture     1284      1
+ 7 Arizona Territory             9658 Manufacturing    883    156
+ 8 Arizona Territory             9658 Trade            588      3
+ 9 Arizona Territory             9658 Service         2979    136
+10 Arizona Territory             9658 School            79     70</code></pre>
+</div>
+</div>
+</section>
+<section id="the-flights-dataset-contains-information-on-over-300000-flights-that-departed-from-new-york-city-in-the-year-2013." class="level4">
+<h4 class="anchored" data-anchor-id="the-flights-dataset-contains-information-on-over-300000-flights-that-departed-from-new-york-city-in-the-year-2013.">3. The flights dataset contains information on over 300,000 flights that departed from New York City in the year 2013.</h4>
+<p>Using the flights data, create a new column Date using lubridate. You will need to paste together the columns year, month, and day in order to do this. See the paste function.</p>
+<p>Use dplyr to calculate the average departure delay for each date.</p>
+<p>Plot the date versus the average departure delay</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>flights <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"http://unl-statistics.github.io/R-workshops/03-r-format/data/flights.csv"</span>)</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>flights<span class="sc">$</span>date <span class="ot">&lt;-</span> <span class="fu">ymd</span>(<span class="fu">paste</span>(flights<span class="sc">$</span>year, flights<span class="sc">$</span>month, flights<span class="sc">$</span>day, <span class="at">sep =</span> <span class="st">"-"</span>))</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>delay.dat <span class="ot">&lt;-</span> flights <span class="sc">%&gt;%</span> </span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(date) <span class="sc">%&gt;%</span> </span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">dep_delay =</span> <span class="fu">mean</span>(dep_delay, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(delay.dat) <span class="sc">+</span> <span class="fu">geom_line</span>(<span class="fu">aes</span>(date, dep_delay))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="99-YourTurnSolutions_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="read-in-the-billboard-top-100-music-data" class="level4">
+<h4 class="anchored" data-anchor-id="read-in-the-billboard-top-100-music-data">4. Read in the billboard top 100 music data:</h4>
+<p>Use tidyr to convert this data into a long format.</p>
+<p>Use ggplot2 to create something like this: <br></p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="99-YourTurnSolutions_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="624"></p>
+</div>
+</div>
+</section>
+</section>
+<section id="joining-data" class="level2">
+<h2 class="anchored" data-anchor-id="joining-data">Joining Data</h2>
+<section id="load-the-lahman-package-into-your-r-session." class="level4">
+<h4 class="anchored" data-anchor-id="load-the-lahman-package-into-your-r-session.">1. Load the Lahman package into your R session.</h4>
+<p>Join (relevant pieces of) the Master data set and the HallOfFame data.</p>
+<p>Output the names of individuals with more than 15 attempts (attempts is how many times the playerid shows up in the hall of fame data. Make sure to deal with missing values appropriately.</p>
+<p><strong>Solution</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Lahman)</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>Voted <span class="ot">&lt;-</span> HallOfFame <span class="sc">%&gt;%</span> </span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(ballots)) <span class="sc">%&gt;%</span> </span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(playerID) <span class="sc">%&gt;%</span> </span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(yearID) <span class="sc">%&gt;%</span> </span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>( <span class="at">attempt =</span> <span class="fu">order</span>(yearID))</span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>Voted <span class="ot">&lt;-</span> <span class="fu">left_join</span>(Voted, People <span class="sc">%&gt;%</span> </span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>                dplyr<span class="sc">::</span><span class="fu">select</span>(playerID, nameFirst, nameLast), </span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>                   <span class="at">by =</span> <span class="st">"playerID"</span>) <span class="sc">%&gt;%</span> <span class="fu">filter</span>(attempt <span class="sc">&gt;</span> <span class="dv">15</span>)</span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a>Names <span class="ot">&lt;-</span> Voted <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">FullName =</span> <span class="fu">paste</span>(nameFirst, nameLast))</span>
+<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a>Names<span class="sc">$</span>FullName <span class="sc">%&gt;%</span> <span class="fu">unique</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "Rabbit Maranville" "Dazzy Vance"       "Ray Schalk"       
+ [4] "Ross Youngs"       "Edd Roush"         "Zack Wheat"       
+ [7] "Hank Gowdy"        "Eppa Rixey"        "Hack Wilson"      
+[10] "Red Faber"         "Red Ruffing"       "Phil Rizzuto"     
+[13] "Pee Wee Reese"     "Mickey Vernon"     "Don Newcombe"     
+[16] "Al Dark"          </code></pre>
+</div>
+</div>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    const typesetMath = (el) => {
+      if (window.MathJax) {
+        // MathJax Typeset
+        window.MathJax.typeset([el]);
+      } else if (window.katex) {
+        // KaTeX Render
+        var mathElements = el.getElementsByClassName("math");
+        var macros = [];
+        for (var i = 0; i < mathElements.length; i++) {
+          var texText = mathElements[i].firstChild;
+          if (mathElements[i].tagName == "SPAN") {
+            window.katex.render(texText.data, mathElements[i], {
+              displayMode: mathElements[i].classList.contains('display'),
+              throwOnError: false,
+              macros: macros,
+              fleqn: false
+            });
+          }
+        }
+      }
+    }
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        for (let i = 0; i < 2; i++) {
+          container.appendChild(note.children[i].cloneNode(true));
+        }
+        typesetMath(container);
+        return container.innerHTML
+      } else {
+        typesetMath(note);
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      typesetMath(note);
+      return note.innerHTML;
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
