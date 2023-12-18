@@ -7,7 +7,7 @@ format:
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 library(tidyverse)
-shed <- read_csv("https://unl-statistics.github.io/R-workshops/01-r-intro/data/daily_shedding.csv")
+shed <- read_csv("https://unl-statistics.github.io/R-workshops/r-intro/data/daily_shedding.csv")
 
 final_shed <- shed %>% 
   group_by(pignum) %>% 
@@ -29,7 +29,6 @@ final_shed <- shed %>%
 3/7
 ```
 
-
 ## More Calculator Operations
 
 ```{r}
@@ -43,20 +42,18 @@ final_shed <- shed %>%
 1.5^3
 ```
 
-
 ## Even More Functions
 
-- Exponentiation 
-    - `exp(x)`
-- Logarithms
-    - `log(x)`
-    - `log(x, base = 10)`
-- Trigonometric functions
-    - `sin(x)`
-    - `asin(x)`
-    - `cos(x)`
-    - `tan(x)`
-    
+-   Exponentiation
+    -   `exp(x)`
+-   Logarithms
+    -   `log(x)`
+    -   `log(x, base = 10)`
+-   Trigonometric functions
+    -   `sin(x)`
+    -   `asin(x)`
+    -   `cos(x)`
+    -   `tan(x)`
 
 ## Creating Variables
 
@@ -74,19 +71,17 @@ log(x)
 MyAge^2
 ```
 
-
 ## Rules for Variable Creation
 
-- Variable names can't start with a number
+-   Variable names can't start with a number
 
-- Variables in `R` are case-sensitive
+-   Variables in `R` are case-sensitive
 
-- Some common letters are used internally by R and should be avoided as variable names (c, q, t, C, D, F, T, I)
+-   Some common letters are used internally by R and should be avoided as variable names (c, q, t, C, D, F, T, I)
 
-- There are reserved words that R won't let you use for variable names. (for, in, while, if, else, repeat, break, next)
+-   There are reserved words that R won't let you use for variable names. (for, in, while, if, else, repeat, break, next)
 
-- R *will* let you use the name of a predefined function.  Try not to overwrite those though!
-
+-   R *will* let you use the name of a predefined function. Try not to overwrite those though!
 
 ## Vectors
 
@@ -101,7 +96,6 @@ Operations will then be done element-wise:
 ```{r}
 y / 2
 ```
-
 
 ## Getting Help
 
@@ -121,10 +115,9 @@ Googling for help can be difficult at first. You might need to search for R + CR
 
 Stackoverflow is VERY helpful
 
-
 ## Getting Help
 
-**R Reference Card **
+**R Reference Card**
 
 You can download the reference card from:
 
@@ -140,53 +133,47 @@ The Rstudio cheatsheets are VERY helpful.
 
 https://www.rstudio.com/resources/cheatsheets/
 
-
-
 ## Warnings vs. Errors
 
-+ Routinely beginners to R panic if they see a red message as innocuous as confirming that a library loaded
-  - Not all red text mean that there is an error!
-+ A warning is a message that does not disturb the program flow but is displayed along with the output
-  - Not always a cause for concern
-+ An error will terminate a program from being ran
-  - Google is a beautiful thing
-
+-   Routinely beginners to R panic if they see a red message as innocuous as confirming that a library loaded
+    -   Not all red text mean that there is an error!
+-   A warning is a message that does not disturb the program flow but is displayed along with the output
+    -   Not always a cause for concern
+-   An error will terminate a program from being ran
+    -   Google is a beautiful thing
 
 ## Your Turn {.inverse}
 
 Using the R Reference Card (and the Help pages, if needed), do the following:
 
-+ Find out how many rows and columns the `iris` data set has (use `data(iris)` to load in the dataset). Figure out at least 2 ways to do this.
+-   Find out how many rows and columns the `iris` data set has (use `data(iris)` to load in the dataset). Figure out at least 2 ways to do this.
 
 **Hint**: "Variable Information" section on the first page of the reference card!
 
-+ Use the `rep` function to construct the following vector: `1 1 2 2 3 3 4 4 5 5`
+-   Use the `rep` function to construct the following vector: `1 1 2 2 3 3 4 4 5 5`
 
 **Hint**: "Data Creation" section of the reference card
 
-+ Use `rep` to construct this vector: `1 2 3 4 5 1 2 3 4 5 1 2 3 4 5`
-
+-   Use `rep` to construct this vector: `1 2 3 4 5 1 2 3 4 5 1 2 3 4 5`
 
 ## Data Frames: Introduction
 
-- `final_shed` is a data frame.
+-   `final_shed` is a data frame.
 
-- Data frames hold data sets
+-   Data frames hold data sets
 
-- Not every column need be the same type - like an Excel spreadsheet
+-   Not every column need be the same type - like an Excel spreadsheet
 
-- Each column in a data frame is a vector <sup>1</sup> - so each column needs to have values that are all the same type. 
+-   Each column in a data frame is a vector <sup>1</sup> - so each column needs to have values that are all the same type.
 
-- We can access different columns using the `$` operator.
+-   We can access different columns using the `$` operator.
 
 ```{r}
 shedding <- final_shed$total_shedding
 treatment <- final_shed$treatment
 ```
 
-.footnote[
-[1] A column can also be a list! This is a more advanced topic that will be saved for later.
-]
+.footnote\[ \[1\] A column can also be a list! This is a more advanced topic that will be saved for later.\]
 
 ## More about Vectors
 
@@ -203,7 +190,6 @@ We can extract the different elements of the vector like so:
 shedding[3]
 ```
 
-
 ## Indexing Vectors
 
 We saw that we can access individual elements of the vector. But **indexing** is a lot more powerful than that:
@@ -215,21 +201,20 @@ shedding[c(1, 3, 5)]
 shedding[1:5]
 ```
 
-
 ## Logical Values
 
-- R has built in support for logical values
+-   R has built in support for logical values
 
-- TRUE and FALSE are built in.  T (for TRUE) and F (for FALSE) are supported but can be modified
+-   TRUE and FALSE are built in. T (for TRUE) and F (for FALSE) are supported but can be modified
 
-- Logicals can result from a comparison using
-    - `<` : "less than"
-    - `>` : "greater than"
-    - `<=` : "less than or equal to"
-    - `>=` : "greater than or equal to"
-    - `==` : "is equal to"
-    - `!=` : "not equal to"
-    
+-   Logicals can result from a comparison using
+
+    -   `<` : "less than"
+    -   `>` : "greater than"
+    -   `<=` : "less than or equal to"
+    -   `>=` : "greater than or equal to"
+    -   `==` : "is equal to"
+    -   `!=` : "not equal to"
 
 ## Indexing with Logicals
 
@@ -242,7 +227,6 @@ x > 3.5
 x[x > 3.5]
 ```
 
-
 ## Logical Examples
 
 ```{r}
@@ -252,7 +236,7 @@ shedding[bad_shedder]
 
 ## Your Turn {.inverse}
 
-+ Find out how many pigs had a total shedding value of less than 30 log10 CFUs.
+-   Find out how many pigs had a total shedding value of less than 30 log10 CFUs.
 
 **Hint**: if you use the `sum` function on a logical vector, it'll return how many TRUEs are in the vector:
 
@@ -260,13 +244,12 @@ shedding[bad_shedder]
 sum(c(TRUE, TRUE, FALSE, TRUE, FALSE))
 ```
 
-+ **More Challenging**: Calculate the sum of the total shedding log10 CFUs of all pigs with a total shedding value of less than 30 log10 CFUs.
-
+-   **More Challenging**: Calculate the sum of the total shedding log10 CFUs of all pigs with a total shedding value of less than 30 log10 CFUs.
 
 ## Element-wise Logical Operators
 
-- `&` (elementwise AND)
-- `|` (elementwise OR)
+-   `&` (elementwise AND)
+-   `|` (elementwise OR)
 
 ```{r}
 c(T, T, F, F) & c(T, F, T, F)
@@ -275,8 +258,6 @@ c(T, T, F, F) | c(T, F, T, F)
 id <- (shedding > 50 & treatment == "control")
 final_shed[id,]
 ```
-
-
 
 ## Modifying Vectors
 
@@ -288,7 +269,6 @@ x
 x[1] <- 20
 x
 ```
-
 
 ## Vector Elements
 
@@ -302,19 +282,17 @@ head(shedding)
 
 By changing a value to a string, all the other values were also changed.
 
-
 ## Data Types in R
 
-- Can use `mode` or `class` to find out information about variables
+-   Can use `mode` or `class` to find out information about variables
 
-- `str` is useful to find information about the structure of your data
+-   `str` is useful to find information about the structure of your data
 
-- Many data types: numeric, integer, character, Date, and factor most common
-    
+-   Many data types: numeric, integer, character, Date, and factor most common
+
 ```{r}
 str(final_shed)
 ```
-
 
 ## Converting Between Types
 
@@ -332,7 +310,7 @@ as.numeric("77")
 
 ## Some useful functions
 
-There are a whole variety of useful functions to operate on vectors. 
+There are a whole variety of useful functions to operate on vectors.
 
 A couple of the more common ones are `length`, which returns the length (number of elements) of a vector, and `sum`, which adds up all the elements of a vector.
 
@@ -343,7 +321,7 @@ length(x)
 sum(x)
 ```
 
-Note: Be careful, if you use `length` with a dataframe, it will return number of variables not number of observations. 
+Note: Be careful, if you use `length` with a dataframe, it will return number of variables not number of observations.
 
 ## Statistical Functions
 
@@ -357,7 +335,6 @@ Using the basic functions we've learned, it wouldn't be hard to compute some bas
 
 But we don't have to.
 
-
 ## Built-in Statistical Functions
 
 ```{r}
@@ -367,14 +344,13 @@ summary(pig_weight)
 quantile(pig_weight, c(.025, .975))
 ```
 
-
 ## Your Turn {.inverse}
 
-- Which pigs have a shedding value less than or equal to 30 **OR** is in the Acid treatment group?
+-   Which pigs have a shedding value less than or equal to 30 **OR** is in the Acid treatment group?
 
-- Explore any more calculations in the dataset you may find interesting.
+-   Explore any more calculations in the dataset you may find interesting.
 
-
+```{=html}
 <!-- 
 
 
@@ -391,3 +367,4 @@ class: inverse
 
 5. Explore any other interesting relationships you find
 -->
+```

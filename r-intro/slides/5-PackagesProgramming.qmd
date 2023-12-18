@@ -49,7 +49,7 @@ format:
 
 -   Sometimes you just need to create your own function to tackle your data
     -   Especially if you notice yourself duplicating code
--   "Remember that a function is essentially a "black box" into which you add some inputs and then receive some outputs. Building a function is about building that "black box", and there are several components that go into it." [source](https://www.r-bloggers.com/2022/04/how-to-create-your-own-functions-in-r/)
+-   "Remember that a function is essentially a"black box" into which you add some inputs and then receive some outputs. Building a function is about building that "black box", and there are several components that go into it." [source](https://www.r-bloggers.com/2022/04/how-to-create-your-own-functions-in-r/)
 
 Code Skeleton:
 
@@ -140,7 +140,7 @@ for (i in 1:3) {
 
 ![](images/for_loop.png) [source](https://statisticsglobe.com/for-loop-in-r)
 
-## For Loop Example:
+## For Loop Example
 
 ```{r message=FALSE, warning=FALSE}
 
@@ -148,9 +148,19 @@ for(i in 1:5) {# Head of for-loop
   x1 <- i^2 # Code block
   print(x1) # Print results
 }
+```
 
-final_shed <- read.csv("https://unl-statistics.github.io/R-workshops/01-r-intro/data/daily_shedding.csv")
+## For Loop Example
 
+```{r, echo = F, eval = T}
+final_shed <- read.csv("../data/daily_shedding.csv")
+```
+```{r, echo = T, eval = F}
+final_shed <- read.csv("https://unl-statistics.github.io/R-workshops/r-intro/data/daily_shedding.csv")
+
+```
+
+```{r}
 id <- c("pig_weight", "total_shedding", "daily_shedding")
 for(colname in id) {
     print(paste(colname, mymean(final_shed[, colname])))

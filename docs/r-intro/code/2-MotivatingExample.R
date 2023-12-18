@@ -8,7 +8,7 @@ library(tidyverse)
 
 
 ## ----message=FALSE, warning=FALSE, echo=TRUE----------------------------------
-shed <- read_csv("https://unl-statistics.github.io/R-workshops/01-r-intro/data/daily_shedding.csv")
+shed <- read_csv("https://unl-statistics.github.io/R-workshops/r-intro/data/daily_shedding.csv")
 
 
 ## -----------------------------------------------------------------------------

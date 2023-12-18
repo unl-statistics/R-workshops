@@ -1,7 +1,11 @@
 project:
   type: website
   pre-render: create_R_files.R
-
+  output-dir: docs
+  
+execute:
+  freeze: auto
+  
 website:
   title: "UNL R Workshops"
   navbar:

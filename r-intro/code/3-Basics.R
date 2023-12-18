@@ -1,6 +1,6 @@
 ## ----echo=FALSE, message=FALSE, warning=FALSE---------------------------------
 library(tidyverse)
-shed <- read_csv("https://unl-statistics.github.io/R-workshops/01-r-intro/data/daily_shedding.csv")
+shed <- read_csv("https://unl-statistics.github.io/R-workshops/r-intro/data/daily_shedding.csv")
 
 final_shed <- shed %>% 
   group_by(pignum) %>% 

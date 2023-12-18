@@ -138,12 +138,12 @@ ymd_hms("2013:05:14 14:50:30", tz = "America/Chicago")
 
 ## ----echo=TRUE----------------------------------------------------------------
 flights <- 
-  read.csv("http://unl-statistics.github.io/R-workshops/03-r-format/data/flights.csv")
+  read.csv("http://unl-statistics.github.io/R-workshops/r-format/data/flights.csv")
 
 
 
 
 ## ----echo=TRUE----------------------------------------------------------------
 billboard <- 
-  read.csv("http://unl-statistics.github.io/R-workshops/03-r-format/data/billboard.csv")
+  read.csv("http://unl-statistics.github.io/R-workshops/r-format/data/billboard.csv")
 

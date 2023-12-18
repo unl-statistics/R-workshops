@@ -10,35 +10,23 @@ knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 ```
 
-## Regular Expressions 
+## Regular Expressions
 
-
-<img src="images/email.png" class="cover" width=1600>
-$\\$ $\\$ $\\$ $\\$ $\\$ $\\$
-#### Regular Expressions are a sequence of characters that match a pattern in text.
-
-
-
-
+<img src="images/email.png" class="cover" width="1600"/> $\\$ $\\$ $\\$ $\\$ $\\$ $\\$ \#### Regular Expressions are a sequence of characters that match a pattern in text.
 
 ## [xkcd #208](https://xkcd.com/208/)
 
-
-<img src="https://imgs.xkcd.com/comics/regular_expressions.png" height=500>
-
-
-
+<img src="https://imgs.xkcd.com/comics/regular_expressions.png" height="500"/>
 
 ## Regular Expressions
 
-- Regular expressions (regex, regexp) is a sequence of characters that form a search pattern
+-   Regular expressions (regex, regexp) is a sequence of characters that form a search pattern
 
-- Originated in 1950s. American mathematician Stephen Kleene formalized the description of a regular language.
+-   Originated in 1950s. American mathematician Stephen Kleene formalized the description of a regular language.
 
--  Common usage with Unix text processing utilities ed, an editor, and grep (global regular expression print), a filter.
+-   Common usage with Unix text processing utilities ed, an editor, and grep (global regular expression print), a filter.
 
-- R language provides this capability through `grep`, `gsub`, ...
-
+-   R language provides this capability through `grep`, `gsub`, ...
 
 ## Example: State names
 
@@ -59,89 +47,77 @@ grep(pattern = "ne", state.name, value = TRUE)
 
 ```
 
-
-
 ## Example
 
-We don’t care about the casing so we will make our pattern more promiscuous.
+We don't care about the casing so we will make our pattern more promiscuous.
 
 ```{r}
 grep(pattern = "[nN]e", state.name, value = TRUE)
 
 ```
 
-
-
 ## Basics of regular expressions
 
-| expression          | meaning          |
-|:- | -- |
-| ordinary characters | match themselves |
-|  `$ ^ { [ ( ) ] } * + ? \`      |   special characters    |
-| `[abc]` | matches single letter from "a", "b", or "c" |
-| `[^abc]` | matches any single letter other than "a", "b", and "c" |
-| `[a-gm]` | matches any single letter out of "a", "b", ... "g" or "m" |
-| `[a-z][0-9]`   | matches one lower case letter followed by a digit|
-
-
+| expression                | meaning                                                   |
+|:--------------------------|-----------------------------------------------------------|
+| ordinary characters       | match themselves                                          |
+| `$ ^ { [ ( ) ] } * + ? \` | special characters                                        |
+| `[abc]`                   | matches single letter from "a", "b", or "c"               |
+| `[^abc]`                  | matches any single letter other than "a", "b", and "c"    |
+| `[a-gm]`                  | matches any single letter out of "a", "b", ... "g" or "m" |
+| `[a-z][0-9]`              | matches one lower case letter followed by a digit         |
 
 ## Basics of regular expressions (cont'd)
 
-| expression          | meaning          |
-|:- | -- |
-| `\x` | match a hexadecimal number |
-| `\s` | whitespace|
-| ^ | starting position within the string |
-| $ | ending position with in the string |
-| `< >` | start, end of a word |
+| expression    | meaning                                      |
+|:--------------|----------------------------------------------|
+| `\x`          | match a hexadecimal number                   |
+| `\s`          | whitespace                                   |
+| \^            | starting position within the string          |
+| \$            | ending position with in the string           |
+| `< >`         | start, end of a word                         |
 | `\t \r \v \n` | tab, carriage return, vertical tab, new line |
-| `\d` | represents a digit |
-
+| `\d`          | represents a digit                           |
 
 ## Multipliers
 
-- `?` indicates there is **zero or one** of the preceding element, eg `colou?r` matches "color" or "colour"
+-   `?` indicates there is **zero or one** of the preceding element, eg `colou?r` matches "color" or "colour"
 
-- `*` indicates there is **zero or more** of the preceding element, eg `ab*c` matches "ac", "abc", "abbc", "abbbc", ...
+-   `*` indicates there is **zero or more** of the preceding element, eg `ab*c` matches "ac", "abc", "abbc", "abbbc", ...
 
-- `+` indicates there is **one or more** of the preceding element, eg `ab+c` matches "abc", "abbc", "abbbc", ...
+-   `+` indicates there is **one or more** of the preceding element, eg `ab+c` matches "abc", "abbc", "abbbc", ...
 
-- `.` matches any **single** character, eg `a.c` matches "abc" or "atc"
+-   `.` matches any **single** character, eg `a.c` matches "abc" or "atc"
 
-- `{n}` indicates the preceding element is matched exactly *n* times
+-   `{n}` indicates the preceding element is matched exactly *n* times
 
-- `{n,}` indicates the preceding element is matched *n* or more times
+-   `{n,}` indicates the preceding element is matched *n* or more times
 
-- `{n,m}` indicates the preceding element is matched at least *n* times, but not more than *m* times
-
-
-
+-   `{n,m}` indicates the preceding element is matched at least *n* times, but not more than *m* times
 
 ## Advanced Patterns
 
 see `?regex`
 
-* `[:alpha:]` Any alphabetic character
+-   `[:alpha:]` Any alphabetic character
 
-* `[:lower:]` Any lowercase character
+-   `[:lower:]` Any lowercase character
 
-* `[:upper:]` Any uppercase character
+-   `[:upper:]` Any uppercase character
 
-* `[:digit:]` Any digit
+-   `[:digit:]` Any digit
 
-* `[:alnum:]` Any alphanumeric character (alphabetic or digit)
+-   `[:alnum:]` Any alphanumeric character (alphabetic or digit)
 
-* `[:blank:]` Any white space character (space, tab, vertical tab)
+-   `[:blank:]` Any white space character (space, tab, vertical tab)
 
-* `[:graph:]` Any printable character, except space
+-   `[:graph:]` Any printable character, except space
 
-* `[:print:]` Any printable character, including the space
+-   `[:print:]` Any printable character, including the space
 
-* `[:punct:]` Any punctuation (i.e., a printable character that is not white space or alphanumeric)
+-   `[:punct:]` Any punctuation (i.e., a printable character that is not white space or alphanumeric)
 
-* `[:cntrl:]` Any nonprintable character
-
-
+-   `[:cntrl:]` Any nonprintable character
 
 ## Examples
 
@@ -159,9 +135,6 @@ What do these regular expressions do?
 
 `[S]tat$`
 
-
-
-
 ## Trickier Examples
 
 What do these regular expressions do?
@@ -178,19 +151,15 @@ What do these regular expressions do?
 
 <!-- `(\w[-._\w]*\w@\w[-._\w]*\w\.\w{2,3})` - might be a little to difficult!! -->
 
-
-
-
-
 ## Regular expressions in R
 
 Patterns & Matches
 
-* Find pattern: <code>grep, regexpr, gregexpr</code>
+-   Find pattern: <code>grep, regexpr, gregexpr</code>
 
-* Pattern replacement: <code>gsub (pattern, replacement, x)</code>
+-   Pattern replacement: <code>gsub (pattern, replacement, x)</code>
 
-```
+```         
 grep(pattern, x, ignore.case = FALSE, perl = FALSE, value = FALSE,
      fixed = FALSE, useBytes = FALSE, invert = FALSE)
 
@@ -198,32 +167,26 @@ gsub(pattern, replacement, x, ignore.case = FALSE, perl = FALSE,
      fixed = FALSE, useBytes = FALSE)
 ```
 
-
 ## Your Turn {.inverse}
 
-1. How many state names contain one or two S's?
+1.  How many state names contain one or two S's?
 
-2. For any state that has a name in the form `New -`, replace `New` with `Old`.
-
-
-
+2.  For any state that has a name in the form `New -`, replace `New` with `Old`.
 
 ## Extracting pieces from a regular expression
 
-- parentheses `( )` group a pattern of interest together
+-   parentheses `( )` group a pattern of interest together
 
-- using `\\1`, `\\2`, `\\3`, ... we can extract the first, second, third ... pattern
+-   using `\\1`, `\\2`, `\\3`, ... we can extract the first, second, third ... pattern
 
 Imagine want to extract some sample data that has been coded into our sample names.
 
 For example, X1P10N2AFD0 encodes the experiment, pig number, pen, tissue, and day.
 
 ```{r}
-meta <- read.table("https://unl-statistics.github.io/R-workshops/01-r-intro/data/meta.txt")
+meta <- read.table("https://unl-statistics.github.io/R-workshops/r-intro/data/meta.txt")
 head(meta)
 ```
-
-
 
 ## Example
 
@@ -236,10 +199,6 @@ meta$day <- gsub('.*D([:digit:]*)','\\1', meta$Group)
 head(meta$day)
 ```
 
-
 ## Your Turn {.inverse}
 
 Extract the pen number, experiment, and tissue for each row.
-
-
-

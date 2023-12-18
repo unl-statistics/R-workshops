@@ -7,18 +7,19 @@ format:
 
 ## Motivating Example
 
-- Kick off the workshop by exploring a real data set using R!
+-   Kick off the workshop by exploring a real data set using R!
 
-- Goal: get the flavor of using R for data management and exploration
+-   Goal: get the flavor of using R for data management and exploration
 
-- Don't worry about understanding all the coding right away
+-   Don't worry about understanding all the coding right away
 
-- We will go back and explain how it all works in detail
+-   We will go back and explain how it all works in detail
 
-- Follow along using [2-MotivatingExample.R](../code/2-MotivatingExample.R)
+-   Follow along using [2-MotivatingExample.R](../code/2-MotivatingExample.R)
 
-- Tip: Using "#" in your R File to take notes
-  + Super important to document your code!
+-   Tip: Using "\#" in your R File to take notes
+
+    -   Super important to document your code!
 
 ## Getting Started
 
@@ -33,36 +34,34 @@ library(tidyverse)
 library(tidyverse)
 ```
 
-
-This workshop will focus largely on a group of packages that live together under the name `tidyverse`. 
+This workshop will focus largely on a group of packages that live together under the name `tidyverse`.
 
 `tidyverse` includes the following well known packages:
 
-- `ggplot2`
-- `dplyr`
-- `tidyr`
-- `readr`
-- and more!
+-   `ggplot2`
+-   `dplyr`
+-   `tidyr`
+-   `readr`
+-   and more!
 
 ## Salmonella Shedding Data
 
-- Fecal *Salmonella* shedding recorded over the course of 21 days
+-   Fecal *Salmonella* shedding recorded over the course of 21 days
 
-- Several **variables** were recorded for each pig at certain time points:
+-   Several **variables** were recorded for each pig at certain time points:
 
-    - Amount of *Salmonella* in feces (log10)
-    - Pig weight (kg)
-    - Dietary treatment group
-    
-- **Primary Question**: Do the different dietary treatments affect *Salmonella* shedding?
+    -   Amount of *Salmonella* in feces (log10)
+    -   Pig weight (kg)
+    -   Dietary treatment group
 
+-   **Primary Question**: Do the different dietary treatments affect *Salmonella* shedding?
 
 ## First look at data in R
 
 Let's use R to look at the top few rows of the *Salmonella* shedding data set. First, we load the data set using `read_csv`:
 
 ```{r message=FALSE, warning=FALSE, echo=TRUE}
-shed <- read_csv("https://unl-statistics.github.io/R-workshops/01-r-intro/data/daily_shedding.csv")
+shed <- read_csv("https://unl-statistics.github.io/R-workshops/r-intro/data/daily_shedding.csv")
 ```
 
 Now, we use the `head` function to look at the first 6 rows of the data:
@@ -89,12 +88,11 @@ summary(shed)
 
 ## Scatterplots
 
-Let's look at the relationship between time point and *Salmonella* shedding.  
+Let's look at the relationship between time point and *Salmonella* shedding.
 
 ```{r, fig.height=5, fig.width=8}
 ggplot(shed, aes(x=time_point, y=total_shedding)) + geom_point()
 ```
-
 
 ## More Scatterplots
 
@@ -103,7 +101,6 @@ Color the points by treatment groups
 ```{r, fig.height=5, fig.width=9}
 ggplot(shed, aes(x=time_point, y=total_shedding, colour = treatment)) + geom_point()
 ```
-
 
 ## More Scatterplots
 
@@ -123,7 +120,6 @@ ggplot(shed, aes(x=time_point, y=total_shedding, color=treatment)) +
   facet_wrap(~treatment)
 ```
 
-
 ## Variable Creation and Data Filtering
 
 We will make a new variable in the data: `gain = weight at day 21 - weight at day 0`.
@@ -137,7 +133,6 @@ final_shed <- shed %>%
 
 summary(final_shed$gain)
 ```
-
 
 ## Histogram
 
@@ -155,11 +150,9 @@ Which pig, and what treatment did it receive?
 final_shed[which.min(final_shed$total_shedding),]
 ```
 
-
 ## Shedding by Treatment
 
 Look at the average cumulative shedding value for each treatment separately
-
 
 ```{r}
 # Using base `R`:
@@ -180,7 +173,6 @@ wilcox.test(total_shedding ~ treatment, data = final_shed,
             subset = treatment %in% c("control", "RPS"))
 ```
 
-
 ## Boxplots
 
 We could compare the cumulative shedding values of each treatment group with a side by side boxplot
@@ -200,13 +192,12 @@ shed %>% filter(time_point != 0) %>% ggplot() +
   facet_wrap(~time_point)
 ```
 
-
 ## Your Turn {.inverse}
 
 Try playing with chunks of code from this session to further investigate the *Salmonella* shedding data:
 
-1. Get a summary of the daily shedding values (use the `shed` data set)
+1.  Get a summary of the daily shedding values (use the `shed` data set)
 
-2. Make side by side boxplots of final weight gain by treatment group (use the `final_shed` data set)
+2.  Make side by side boxplots of final weight gain by treatment group (use the `final_shed` data set)
 
-3. Compute a Wilcox test for control vs. the "Bglu" treatment group 
+3.  Compute a Wilcox test for control vs. the "Bglu" treatment group

@@ -10,7 +10,7 @@
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.4.489">
 
-  <title>UNL R Workshops - Motivating Example</title>
+  <title>UNL R Workshops - Basics</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -28,71 +28,6 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
-    /* CSS for syntax highlighting */
-    pre > code.sourceCode { white-space: pre; position: relative; }
-    pre > code.sourceCode > span { line-height: 1.25; }
-    pre > code.sourceCode > span:empty { height: 1.2em; }
-    .sourceCode { overflow: visible; }
-    code.sourceCode > span { color: inherit; text-decoration: inherit; }
-    div.sourceCode { margin: 1em 0; }
-    pre.sourceCode { margin: 0; }
-    @media screen {
-    div.sourceCode { overflow: auto; }
-    }
-    @media print {
-    pre > code.sourceCode { white-space: pre-wrap; }
-    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-    }
-    pre.numberSource code
-      { counter-reset: source-line 0; }
-    pre.numberSource code > span
-      { position: relative; left: -4em; counter-increment: source-line; }
-    pre.numberSource code > span > a:first-child::before
-      { content: counter(source-line);
-        position: relative; left: -1em; text-align: right; vertical-align: baseline;
-        border: none; display: inline-block;
-        -webkit-touch-callout: none; -webkit-user-select: none;
-        -khtml-user-select: none; -moz-user-select: none;
-        -ms-user-select: none; user-select: none;
-        padding: 0 4px; width: 4em;
-        color: #aaaaaa;
-      }
-    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-    div.sourceCode
-      { color: #003b4f; background-color: #f1f3f5; }
-    @media screen {
-    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-    }
-    code span { color: #003b4f; } /* Normal */
-    code span.al { color: #ad0000; } /* Alert */
-    code span.an { color: #5e5e5e; } /* Annotation */
-    code span.at { color: #657422; } /* Attribute */
-    code span.bn { color: #ad0000; } /* BaseN */
-    code span.bu { } /* BuiltIn */
-    code span.cf { color: #003b4f; } /* ControlFlow */
-    code span.ch { color: #20794d; } /* Char */
-    code span.cn { color: #8f5902; } /* Constant */
-    code span.co { color: #5e5e5e; } /* Comment */
-    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
-    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
-    code span.dt { color: #ad0000; } /* DataType */
-    code span.dv { color: #ad0000; } /* DecVal */
-    code span.er { color: #ad0000; } /* Error */
-    code span.ex { } /* Extension */
-    code span.fl { color: #ad0000; } /* Float */
-    code span.fu { color: #4758ab; } /* Function */
-    code span.im { color: #00769e; } /* Import */
-    code span.in { color: #5e5e5e; } /* Information */
-    code span.kw { color: #003b4f; } /* Keyword */
-    code span.op { color: #5e5e5e; } /* Operator */
-    code span.ot { color: #003b4f; } /* Other */
-    code span.pp { color: #ad0000; } /* Preprocessor */
-    code span.sc { color: #5e5e5e; } /* SpecialChar */
-    code span.ss { color: #20794d; } /* SpecialString */
-    code span.st { color: #20794d; } /* String */
-    code span.va { color: #111111; } /* Variable */
-    code span.vs { color: #20794d; } /* VerbatimString */
-    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto.css">
   <link rel="stylesheet" href="custom.css">
@@ -391,244 +326,398 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Motivating Example</h1>
+  <h1 class="title">Basics</h1>
 
 <div class="quarto-title-authors">
 </div>
 
 </section>
-<section id="motivating-example" class="slide level2">
-<h2>Motivating Example</h2>
+<section id="overgrown-calculator" class="slide level2">
+<h2>Overgrown Calculator</h2>
+<p><a href="cheatsheets/base-r.pdf">Basics Cheatsheet</a></p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 6</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2556268</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.4285714</code></pre>
+</div>
+</div>
+</section>
+<section id="more-calculator-operations" class="slide level2">
+<h2>More Calculator Operations</h2>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3.375</code></pre>
+</div>
+</div>
+</section>
+<section id="even-more-functions" class="slide level2">
+<h2>Even More Functions</h2>
 <ul>
-<li><p>Kick off the workshop by exploring a real data set using R!</p></li>
-<li><p>Goal: get the flavor of using R for data management and exploration</p></li>
-<li><p>Don’t worry about understanding all the coding right away</p></li>
-<li><p>We will go back and explain how it all works in detail</p></li>
-<li><p>Follow along using <a href="../code/2-MotivatingExample.R">2-MotivatingExample.R</a></p></li>
-<li><p>Tip: Using “#” in your R File to take notes</p>
+<li>Exponentiation
 <ul>
-<li>Super important to document your code!</li>
+<li><code>exp(x)</code></li>
+</ul></li>
+<li>Logarithms
+<ul>
+<li><code>log(x)</code></li>
+<li><code>log(x, base = 10)</code></li>
+</ul></li>
+<li>Trigonometric functions
+<ul>
+<li><code>sin(x)</code></li>
+<li><code>asin(x)</code></li>
+<li><code>cos(x)</code></li>
+<li><code>tan(x)</code></li>
 </ul></li>
 </ul>
 </section>
-<section id="getting-started" class="slide level2">
-<h2>Getting Started</h2>
-<p>Let’s begin by installing and loading <code>tidyverse</code>:</p>
-<p>This workshop will focus largely on a group of packages that live together under the name <code>tidyverse</code>.</p>
-<p><code>tidyverse</code> includes the following well known packages:</p>
+<section id="creating-variables" class="slide level2">
+<h2>Creating Variables</h2>
+<p>We can create variables using the assignment operator <code>&lt;-</code>:</p>
+<p>We can then perform any of the functions on the variables:</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1.609438</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 625</code></pre>
+</div>
+</div>
+</section>
+<section id="rules-for-variable-creation" class="slide level2">
+<h2>Rules for Variable Creation</h2>
 <ul>
-<li><code>ggplot2</code></li>
-<li><code>dplyr</code></li>
-<li><code>tidyr</code></li>
-<li><code>readr</code></li>
-<li>and more!</li>
+<li><p>Variable names can’t start with a number</p></li>
+<li><p>Variables in <code>R</code> are case-sensitive</p></li>
+<li><p>Some common letters are used internally by R and should be avoided as variable names (c, q, t, C, D, F, T, I)</p></li>
+<li><p>There are reserved words that R won’t let you use for variable names. (for, in, while, if, else, repeat, break, next)</p></li>
+<li><p>R <em>will</em> let you use the name of a predefined function. Try not to overwrite those though!</p></li>
 </ul>
 </section>
-<section id="salmonella-shedding-data" class="slide level2">
-<h2>Salmonella Shedding Data</h2>
+<section id="vectors" class="slide level2">
+<h2>Vectors</h2>
+<p>A variable does not need to be a single value. We can create a <strong>vector</strong> using the <code>c</code> function (combine - combines several objects into one):</p>
+<p>Operations will then be done element-wise:</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.5 2.5 1.5 1.0</code></pre>
+</div>
+</div>
+</section>
+<section id="getting-help" class="slide level2">
+<h2>Getting Help</h2>
+<p>We will talk MUCH more about vectors in a bit, but for now, let’s talk about a couple ways to get help. The primary function to use is the <code>help</code> function. Just pass in the name of the function you need help with:</p>
+<p>The <code>?</code> function also works:</p>
+<p>Googling for help can be difficult at first. You might need to search for R + CRAN + &lt;your query&gt; to get good results</p>
+<p>Stackoverflow is VERY helpful</p>
+</section>
+<section id="getting-help-1" class="slide level2">
+<h2>Getting Help</h2>
+<p><strong>R Reference Card</strong></p>
+<p>You can download the reference card from:</p>
+<p>http://cran.r-project.org/doc/contrib/Short-refcard.pdf</p>
+<p>Having this open or printed off and near you while working is helpful.</p>
+<p><br></p>
+<p><strong>Rstudio cheatsheets</strong></p>
+<p>The Rstudio cheatsheets are VERY helpful.</p>
+<p>https://www.rstudio.com/resources/cheatsheets/</p>
+</section>
+<section id="warnings-vs.-errors" class="slide level2">
+<h2>Warnings vs.&nbsp;Errors</h2>
 <ul>
-<li><p>Fecal <em>Salmonella</em> shedding recorded over the course of 21 days</p></li>
-<li><p>Several <strong>variables</strong> were recorded for each pig at certain time points:</p>
+<li>Routinely beginners to R panic if they see a red message as innocuous as confirming that a library loaded
 <ul>
-<li>Amount of <em>Salmonella</em> in feces (log10)</li>
-<li>Pig weight (kg)</li>
-<li>Dietary treatment group</li>
+<li>Not all red text mean that there is an error!</li>
 </ul></li>
-<li><p><strong>Primary Question</strong>: Do the different dietary treatments affect <em>Salmonella</em> shedding?</p></li>
+<li>A warning is a message that does not disturb the program flow but is displayed along with the output
+<ul>
+<li>Not always a cause for concern</li>
+</ul></li>
+<li>An error will terminate a program from being ran
+<ul>
+<li>Google is a beautiful thing</li>
+</ul></li>
 </ul>
 </section>
-<section id="first-look-at-data-in-r" class="slide level2">
-<h2>First look at data in R</h2>
-<p>Let’s use R to look at the top few rows of the <em>Salmonella</em> shedding data set. First, we load the data set using <code>read_csv</code>:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>shed <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://unl-statistics.github.io/R-workshops/01-r-intro/data/daily_shedding.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Now, we use the <code>head</code> function to look at the first 6 rows of the data:</p>
-<div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 12
-  pignum time_point pig_weight  temp pan_wt wet_wt Dry_wt_pan Dry_weight
-   &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;
-1     77          2         NA  103.   1.02   1.09       1.31       0.29
-2     87          2         NA  104.   1.04   1.02       1.33       0.29
-3    122          2         NA  104.   1.02   0.99       1.11       0.09
-4    160          2         NA  104.   1.09   1          1.36       0.27
-5    191          2         NA  104.   1.03   1.02       1.27       0.24
-6    224          2         NA  103    1.08   1          1.39       0.31
-# ℹ 4 more variables: percent_drymatter &lt;dbl&gt;, daily_shedding &lt;dbl&gt;,
-#   treatment &lt;chr&gt;, total_shedding &lt;dbl&gt;</code></pre>
-</div>
-</div>
-</section>
-<section id="salmonella-shedding-data-attributes" class="slide level2">
-<h2><em>Salmonella</em> Shedding Data: Attributes</h2>
-<p>How big is this data set, and what types of variables are in each column?</p>
-<div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>spc_tbl_ [295 × 12] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
- $ pignum           : num [1:295] 77 87 122 160 191 224 337 345 419 458 ...
- $ time_point       : num [1:295] 2 2 2 2 2 2 2 2 2 2 ...
- $ pig_weight       : num [1:295] NA NA NA NA NA NA NA NA NA NA ...
- $ temp             : num [1:295] 103 104 104 104 104 ...
- $ pan_wt           : num [1:295] 1.02 1.04 1.02 1.09 1.03 1.08 1.03 1.09 1.07 1.04 ...
- $ wet_wt           : num [1:295] 1.09 1.02 0.99 1 1.02 1 1.02 0.99 1.07 1.06 ...
- $ Dry_wt_pan       : num [1:295] 1.31 1.33 1.11 1.36 1.27 1.39 1.3 1.24 1.38 1.26 ...
- $ Dry_weight       : num [1:295] 0.29 0.29 0.09 0.27 0.24 0.31 0.27 0.15 0.31 0.22 ...
- $ percent_drymatter: num [1:295] 26.61 28.43 9.09 27 23.53 ...
- $ daily_shedding   : num [1:295] 5.3 5.7 13.22 6.75 5.86 ...
- $ treatment        : chr [1:295] "control" "control" "control" "control" ...
- $ total_shedding   : num [1:295] 2.3 2.48 5.74 2.93 2.54 ...
- - attr(*, "spec")=
-  .. cols(
-  ..   pignum = col_double(),
-  ..   time_point = col_double(),
-  ..   pig_weight = col_double(),
-  ..   temp = col_double(),
-  ..   pan_wt = col_double(),
-  ..   wet_wt = col_double(),
-  ..   Dry_wt_pan = col_double(),
-  ..   Dry_weight = col_double(),
-  ..   percent_drymatter = col_double(),
-  ..   daily_shedding = col_double(),
-  ..   treatment = col_character(),
-  ..   total_shedding = col_double()
-  .. )
- - attr(*, "problems")=&lt;externalptr&gt; </code></pre>
-</div>
-</div>
-</section>
-<section id="salmonella-shedding-variables" class="slide level2">
-<h2><em>Salmonella</em> Shedding: Variables</h2>
-<p>Let’s get a summary of the values for each variable:</p>
-<div class="cell" height="3000">
-<div class="cell-output cell-output-stdout">
-<pre><code>     pignum        time_point     pig_weight         temp           pan_wt     
- Min.   :  6.0   Min.   : 0.0   Min.   : 9.48   Min.   :101.2   Min.   :1.000  
- 1st Qu.:119.0   1st Qu.: 2.0   1st Qu.:16.02   1st Qu.:102.4   1st Qu.:1.030  
- Median :224.0   Median : 7.0   Median :19.78   Median :102.9   Median :1.050  
- Mean   :234.7   Mean   : 8.8   Mean   :21.01   Mean   :102.9   Mean   :1.054  
- 3rd Qu.:361.0   3rd Qu.:14.0   3rd Qu.:25.29   3rd Qu.:103.4   3rd Qu.:1.070  
- Max.   :472.0   Max.   :21.0   Max.   :36.30   Max.   :105.2   Max.   :1.120  
-                                NA's   :59      NA's   :118     NA's   :122    
-     wet_wt        Dry_wt_pan      Dry_weight    percent_drymatter
- Min.   :0.700   Min.   :1.110   Min.   :0.090   Min.   : 9.091   
- 1st Qu.:1.000   1st Qu.:1.300   1st Qu.:0.250   1st Qu.:24.292   
- Median :1.020   Median :1.320   Median :0.280   Median :26.923   
- Mean   :1.026   Mean   :1.322   Mean   :0.268   Mean   :26.109   
- 3rd Qu.:1.050   3rd Qu.:1.353   3rd Qu.:0.290   3rd Qu.:28.431   
- Max.   :1.110   Max.   :1.460   Max.   :0.380   Max.   :36.893   
- NA's   :123     NA's   :123     NA's   :123     NA's   :123      
- daily_shedding    treatment         total_shedding  
- Min.   : 0.000   Length:295         Min.   : 0.000  
- 1st Qu.: 0.000   Class :character   1st Qu.: 1.699  
- Median : 3.912   Mode  :character   Median :13.904  
- Mean   : 3.765                      Mean   :17.423  
- 3rd Qu.: 5.521                      3rd Qu.:30.893  
- Max.   :13.218                      Max.   :66.207  
-                                                     </code></pre>
-</div>
-</div>
-</section>
-<section id="scatterplots" class="slide level2">
-<h2>Scatterplots</h2>
-<p>Let’s look at the relationship between time point and <em>Salmonella</em> shedding.</p>
-
-<img data-src="2-MotivatingExample_files/figure-revealjs/unnamed-chunk-7-1.png" width="768" class="r-stretch"></section>
-<section id="more-scatterplots" class="slide level2">
-<h2>More Scatterplots</h2>
-<p>Color the points by treatment groups</p>
-
-<img data-src="2-MotivatingExample_files/figure-revealjs/unnamed-chunk-8-1.png" width="864" class="r-stretch"></section>
-<section id="more-scatterplots-1" class="slide level2">
-<h2>More Scatterplots</h2>
-<p>Switch to lines for easier reading</p>
-
-<img data-src="2-MotivatingExample_files/figure-revealjs/unnamed-chunk-9-1.png" width="864" class="r-stretch"></section>
-<section id="even-more-plots" class="slide level2">
-<h2>Even More Plots</h2>
-<p>Add faceting</p>
-
-<img data-src="2-MotivatingExample_files/figure-revealjs/unnamed-chunk-10-1.png" width="864" class="r-stretch"></section>
-<section id="variable-creation-and-data-filtering" class="slide level2">
-<h2>Variable Creation and Data Filtering</h2>
-<p>We will make a new variable in the data: <code>gain = weight at day 21 - weight at day 0</code>.</p>
-<p>We will then filter the data to only include the final values.</p>
-<div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-   8.22   12.40   14.14   14.16   16.04   18.86 </code></pre>
-</div>
-</div>
-</section>
-<section id="histogram" class="slide level2">
-<h2>Histogram</h2>
-<p>Let’s look distribution of the final shedding values with a histogram</p>
-
-<img data-src="2-MotivatingExample_files/figure-revealjs/unnamed-chunk-12-1.png" width="768" class="r-stretch"></section>
-<section id="one-pig-did-not-shed-at-all" class="slide level2">
-<h2>One pig did not shed at all…</h2>
-<p>Which pig, and what treatment did it receive?</p>
-<div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1 × 7
-  pignum time_point pig_weight daily_shedding treatment total_shedding  gain
-   &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;          &lt;dbl&gt; &lt;chr&gt;              &lt;dbl&gt; &lt;dbl&gt;
-1     97         21       24.9              0 RPS                    0  12.9</code></pre>
-</div>
-</div>
-</section>
-<section id="shedding-by-treatment" class="slide level2">
-<h2>Shedding by Treatment</h2>
-<p>Look at the average cumulative shedding value for each treatment separately</p>
-<div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 44.42518</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 2
-  treatment med_shed
-  &lt;chr&gt;        &lt;dbl&gt;
-1 Acid          35.4
-2 Bglu          37.6
-3 RCS           39.4
-4 RPS           29.1
-5 Zn+Cu         44.1
-6 control       44.4</code></pre>
-</div>
-</div>
-</section>
-<section id="statistical-significance" class="slide level2">
-<h2>Statistical Significance</h2>
-<p>There is a difference, but is it statistically significant?</p>
-<div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>
-    Wilcoxon rank sum exact test
-
-data:  total_shedding by treatment
-W = 75, p-value = 0.01327
-alternative hypothesis: true location shift is not equal to 0</code></pre>
-</div>
-</div>
-</section>
-<section id="boxplots" class="slide level2">
-<h2>Boxplots</h2>
-<p>We could compare the cumulative shedding values of each treatment group with a side by side boxplot</p>
-
-<img data-src="2-MotivatingExample_files/figure-revealjs/unnamed-chunk-16-1.png" width="864" class="r-stretch"></section>
-<section id="boxplots-again" class="slide level2">
-<h2>Boxplots Again</h2>
-<p>Alternatively, we could use the original data to compare the daily shedding values of each treatment group with side by side boxplots over time</p>
-
-<img data-src="2-MotivatingExample_files/figure-revealjs/unnamed-chunk-17-1.png" width="864" class="r-stretch"></section>
 <section id="your-turn" class="slide level2 inverse">
 <h2>Your Turn</h2>
-<p>Try playing with chunks of code from this session to further investigate the <em>Salmonella</em> shedding data:</p>
-<ol type="1">
-<li><p>Get a summary of the daily shedding values (use the <code>shed</code> data set)</p></li>
-<li><p>Make side by side boxplots of final weight gain by treatment group (use the <code>final_shed</code> data set)</p></li>
-<li><p>Compute a Wilcox test for control vs.&nbsp;the “Bglu” treatment group</p></li>
-</ol>
+<p>Using the R Reference Card (and the Help pages, if needed), do the following:</p>
+<ul>
+<li>Find out how many rows and columns the <code>iris</code> data set has (use <code>data(iris)</code> to load in the dataset). Figure out at least 2 ways to do this.</li>
+</ul>
+<p><strong>Hint</strong>: “Variable Information” section on the first page of the reference card!</p>
+<ul>
+<li>Use the <code>rep</code> function to construct the following vector: <code>1 1 2 2 3 3 4 4 5 5</code></li>
+</ul>
+<p><strong>Hint</strong>: “Data Creation” section of the reference card</p>
+<ul>
+<li>Use <code>rep</code> to construct this vector: <code>1 2 3 4 5 1 2 3 4 5 1 2 3 4 5</code></li>
+</ul>
+</section>
+<section id="data-frames-introduction" class="slide level2">
+<h2>Data Frames: Introduction</h2>
+<ul>
+<li><p><code>final_shed</code> is a data frame.</p></li>
+<li><p>Data frames hold data sets</p></li>
+<li><p>Not every column need be the same type - like an Excel spreadsheet</p></li>
+<li><p>Each column in a data frame is a vector <sup>1</sup> - so each column needs to have values that are all the same type.</p></li>
+<li><p>We can access different columns using the <code>$</code> operator.</p></li>
+</ul>
+<p>.footnote[ [1] A column can also be a list! This is a more advanced topic that will be saved for later.]</p>
+</section>
+<section id="more-about-vectors" class="slide level2">
+<h2>More about Vectors</h2>
+<p>A vector is a list of values that are all the same type. We have seen that we can create them using the <code>c</code> or the <code>rep</code> function. We can also use the <code>:</code> operator if we wish to create consecutive values:</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 10 11 12 13 14 15</code></pre>
+</div>
+</div>
+<p>We can extract the different elements of the vector like so:</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 59.04973</code></pre>
+</div>
+</div>
+</section>
+<section id="indexing-vectors" class="slide level2">
+<h2>Indexing Vectors</h2>
+<p>We saw that we can access individual elements of the vector. But <strong>indexing</strong> is a lot more powerful than that:</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 37.14022 43.88073 59.04973 44.96963 38.74342 56.12656</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 37.14022 59.04973 38.74342</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 37.14022 43.88073 59.04973 44.96963 38.74342</code></pre>
+</div>
+</div>
+</section>
+<section id="logical-values" class="slide level2">
+<h2>Logical Values</h2>
+<ul>
+<li><p>R has built in support for logical values</p></li>
+<li><p>TRUE and FALSE are built in. T (for TRUE) and F (for FALSE) are supported but can be modified</p></li>
+<li><p>Logicals can result from a comparison using</p>
+<ul>
+<li><code>&lt;</code> : “less than”</li>
+<li><code>&gt;</code> : “greater than”</li>
+<li><code>&lt;=</code> : “less than or equal to”</li>
+<li><code>&gt;=</code> : “greater than or equal to”</li>
+<li><code>==</code> : “is equal to”</li>
+<li><code>!=</code> : “not equal to”</li>
+</ul></li>
+</ul>
+</section>
+<section id="indexing-with-logicals" class="slide level2">
+<h2>Indexing with Logicals</h2>
+<p>We can index vectors using logical values as well:</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2 7</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] FALSE FALSE  TRUE  TRUE</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 5 7</code></pre>
+</div>
+</div>
+</section>
+<section id="logical-examples" class="slide level2">
+<h2>Logical Examples</h2>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 59.04973 56.12656 66.20657 51.98984 58.53921 64.74017 64.27066 56.06566
+[9] 53.76049</code></pre>
+</div>
+</div>
+</section>
+<section id="your-turn-1" class="slide level2 inverse">
+<h2>Your Turn</h2>
+<ul>
+<li>Find out how many pigs had a total shedding value of less than 30 log10 CFUs.</li>
+</ul>
+<p><strong>Hint</strong>: if you use the <code>sum</code> function on a logical vector, it’ll return how many TRUEs are in the vector:</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3</code></pre>
+</div>
+</div>
+<ul>
+<li><strong>More Challenging</strong>: Calculate the sum of the total shedding log10 CFUs of all pigs with a total shedding value of less than 30 log10 CFUs.</li>
+</ul>
+</section>
+<section id="element-wise-logical-operators" class="slide level2">
+<h2>Element-wise Logical Operators</h2>
+<ul>
+<li><code>&amp;</code> (elementwise AND)</li>
+<li><code>|</code> (elementwise OR)</li>
+</ul>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  TRUE FALSE FALSE FALSE</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  TRUE  TRUE  TRUE FALSE</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 7
+  pignum time_point pig_weight daily_shedding treatment total_shedding  gain
+   &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;          &lt;dbl&gt; &lt;chr&gt;              &lt;dbl&gt; &lt;dbl&gt;
+1    122         21       33.9           5.01 control             59.0  16.8
+2    224         21       22.9           3.91 control             56.1  11.4
+3    337         21       29.5           5.52 control             66.2  16.2
+4    419         21       31             6.21 control             52.0  16.8</code></pre>
+</div>
+</div>
+</section>
+<section id="modifying-vectors" class="slide level2">
+<h2>Modifying Vectors</h2>
+<p>We can modify vectors using indexing as well:</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 37.14022 43.88073 59.04973 44.96963 38.74342</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 20.00000 43.88073 59.04973 44.96963 38.74342</code></pre>
+</div>
+</div>
+</section>
+<section id="vector-elements" class="slide level2">
+<h2>Vector Elements</h2>
+<p>Elements of a vector must all be the same type:</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 37.14022 43.88073 59.04973 44.96963 38.74342 56.12656</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "37.1402150411922" "43.8807276727966" ":-("              "44.9696314253854"
+[5] "38.7434232007542" ":-("             </code></pre>
+</div>
+</div>
+<p>By changing a value to a string, all the other values were also changed.</p>
+</section>
+<section id="data-types-in-r" class="slide level2">
+<h2>Data Types in R</h2>
+<ul>
+<li><p>Can use <code>mode</code> or <code>class</code> to find out information about variables</p></li>
+<li><p><code>str</code> is useful to find information about the structure of your data</p></li>
+<li><p>Many data types: numeric, integer, character, Date, and factor most common</p></li>
+</ul>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>tibble [59 × 7] (S3: tbl_df/tbl/data.frame)
+ $ pignum        : num [1:59] 77 87 122 160 191 224 337 345 419 458 ...
+ $ time_point    : num [1:59] 21 21 21 21 21 21 21 21 21 21 ...
+ $ pig_weight    : num [1:59] 25.4 23.9 33.9 28.4 28.9 ...
+ $ daily_shedding: num [1:59] 4.61 3.91 5.01 3.91 3.91 ...
+ $ treatment     : chr [1:59] "control" "control" "control" "control" ...
+ $ total_shedding: num [1:59] 37.1 43.9 59 45 38.7 ...
+ $ gain          : num [1:59] 13.9 11.7 16.8 15.1 14.6 ...</code></pre>
+</div>
+</div>
+</section>
+<section id="converting-between-types" class="slide level2">
+<h2>Converting Between Types</h2>
+<p>We can convert between different types using the <code>as</code> series of functions:</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  77  87 122 160 191 224</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "77"  "87"  "122" "160" "191" "224"</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 77</code></pre>
+</div>
+</div>
+<p><a href="https://www.geeksforgeeks.org/r-data-types/">More About Data Types</a></p>
+</section>
+<section id="some-useful-functions" class="slide level2">
+<h2>Some useful functions</h2>
+<p>There are a whole variety of useful functions to operate on vectors.</p>
+<p>A couple of the more common ones are <code>length</code>, which returns the length (number of elements) of a vector, and <code>sum</code>, which adds up all the elements of a vector.</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 5</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 140.36</code></pre>
+</div>
+</div>
+<p>Note: Be careful, if you use <code>length</code> with a dataframe, it will return number of variables not number of observations.</p>
+</section>
+<section id="statistical-functions" class="slide level2">
+<h2>Statistical Functions</h2>
+<p>Using the basic functions we’ve learned, it wouldn’t be hard to compute some basic statistics.</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 59</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 28.82305</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 4.10429</code></pre>
+</div>
+</div>
+<p>But we don’t have to.</p>
+</section>
+<section id="built-in-statistical-functions" class="slide level2">
+<h2>Built-in Statistical Functions</h2>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 28.82305</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 4.10429</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  19.50   25.79   28.80   28.82   32.24   36.30 </code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  2.5%  97.5% 
+22.279 35.952 </code></pre>
+</div>
+</div>
+</section>
+<section id="your-turn-2" class="slide level2 inverse">
+<h2>Your Turn</h2>
+<ul>
+<li><p>Which pigs have a shedding value less than or equal to 30 <strong>OR</strong> is in the Acid treatment group?</p></li>
+<li><p>Explore any more calculations in the dataset you may find interesting.</p></li>
+</ul>
+<!-- 
+
+
+class: inverse
+## Your Turn
+
+1. Read up on the diamonds dataset (`?diamonds`)
+
+2. Plot price by carat (use qplot - go back to the motivating example for help with the syntax)
+
+3. Create a variable `ppc` for price/carat. Store this variable as a column in the diamonds data
+
+4. Make a histogram of all ppc values that exceed $10000 per carat.
+
+5. Explore any other interesting relationships you find
+-->
 
 <div class="footer footer-default">
 <p><a href="../../index.qmd">UNL R Workshops</a></p>

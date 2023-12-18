@@ -1446,7 +1446,7 @@ B
 <section id="solution" class="slide level2 inverse">
 <h2>Solution</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>occupation <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://unl-statistics.github.io/R-workshops/03-r-format/data/occupation-1870.csv"</span>)</span>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>occupation <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://unl-statistics.github.io/R-workshops/r-format/data/occupation-1870.csv"</span>)</span>
 <span id="cb17-2"><a href="#cb17-2"></a></span>
 <span id="cb17-3"><a href="#cb17-3"></a>occupation_long <span class="ot">&lt;-</span> occupation <span class="sc">%&gt;%</span> </span>
 <span id="cb17-4"><a href="#cb17-4"></a>  <span class="fu">pivot_longer</span>(Agriculture.Male<span class="sc">:</span>School.Female,<span class="at">names_to =</span> <span class="st">"Occupation"</span>, <span class="at">values_to =</span> <span class="st">"Measurement"</span>) <span class="sc">%&gt;%</span></span>
@@ -1499,9 +1499,9 @@ B
 <span id="cb20-5"><a href="#cb20-5"></a><span class="fu">now</span>() <span class="sc">+</span> <span class="fu">hours</span>(<span class="dv">4</span>)</span>
 <span id="cb20-6"><a href="#cb20-6"></a><span class="fu">today</span>() <span class="sc">-</span> <span class="fu">days</span>(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "2023-12-18 09:55:10 CST"
+<pre><code>[1] "2023-12-18 10:25:18 CST"
 [1] "2023-12-18"
-[1] "2023-12-18 13:55:10 CST"
+[1] "2023-12-18 14:25:18 CST"
 [1] "2023-12-16"</code></pre>
 </div>
 </div>
@@ -1526,7 +1526,7 @@ B
 <p>The flights dataset contains information on over 300,000 flights that departed from New York City in the year 2013.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a>flights <span class="ot">&lt;-</span> </span>
-<span id="cb24-2"><a href="#cb24-2"></a>  <span class="fu">read.csv</span>(<span class="st">"http://unl-statistics.github.io/R-workshops/03-r-format/data/flights.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb24-2"><a href="#cb24-2"></a>  <span class="fu">read.csv</span>(<span class="st">"http://unl-statistics.github.io/R-workshops/r-format/data/flights.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ol type="1">
 <li><p>Using the <code>flights</code> data, create a new column Date using lubridate. You will need to paste together the columns year, month, and day in order to do this. See the <code>paste</code> function.</p></li>
@@ -1554,7 +1554,7 @@ B
 </ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a>billboard <span class="ot">&lt;-</span> </span>
-<span id="cb26-2"><a href="#cb26-2"></a>  <span class="fu">read.csv</span>(<span class="st">"http://unl-statistics.github.io/R-workshops/03-r-format/data/billboard.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb26-2"><a href="#cb26-2"></a>  <span class="fu">read.csv</span>(<span class="st">"http://unl-statistics.github.io/R-workshops/r-format/data/billboard.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li><p>Use <code>tidyr</code> to convert this data into a long format.</p></li>

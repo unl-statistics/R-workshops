@@ -22,7 +22,7 @@ grep(pattern = "[nN]e", state.name, value = TRUE)
 
 
 ## -----------------------------------------------------------------------------
-meta <- read.table("https://unl-statistics.github.io/R-workshops/01-r-intro/data/meta.txt")
+meta <- read.table("https://unl-statistics.github.io/R-workshops/r-intro/data/meta.txt")
 head(meta)
 
 

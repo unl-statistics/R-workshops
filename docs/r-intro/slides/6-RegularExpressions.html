@@ -10,7 +10,7 @@
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.4.489">
 
-  <title>UNL R Workshops - Packages and Basic Programming</title>
+  <title>UNL R Workshops - Regular Expressions</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -28,6 +28,71 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto.css">
   <link rel="stylesheet" href="custom.css">
@@ -326,154 +391,250 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Packages and Basic Programming</h1>
+  <h1 class="title">Regular Expressions</h1>
 
 <div class="quarto-title-authors">
 </div>
 
 </section>
-<section id="r-packages" class="slide level2">
-<h2>R Packages</h2>
+<section id="regular-expressions" class="slide level2">
+<h2>Regular Expressions</h2>
+<p><img src="images/email.png" class="cover" width="1600"> <span class="math inline">\(\\\)</span> <span class="math inline">\(\\\)</span> <span class="math inline">\(\\\)</span> <span class="math inline">\(\\\)</span> <span class="math inline">\(\\\)</span> <span class="math inline">\(\\\)</span> #### Regular Expressions are a sequence of characters that match a pattern in text.</p>
+</section>
+<section id="xkcd-208" class="slide level2">
+<h2><a href="https://xkcd.com/208/">xkcd #208</a></h2>
+<p><img src="https://imgs.xkcd.com/comics/regular_expressions.png" height="500"></p>
+</section>
+<section id="regular-expressions-1" class="slide level2">
+<h2>Regular Expressions</h2>
 <ul>
-<li><p>Commonly used R functions are installed with base R</p></li>
-<li><p>R packages containing more specialized R functions can be installed freely from CRAN servers using function <code>install.packages()</code></p></li>
-<li><p>After packages are installed, their functions can be loaded into the current R session using the function <code>library()</code></p></li>
+<li><p>Regular expressions (regex, regexp) is a sequence of characters that form a search pattern</p></li>
+<li><p>Originated in 1950s. American mathematician Stephen Kleene formalized the description of a regular language.</p></li>
+<li><p>Common usage with Unix text processing utilities ed, an editor, and grep (global regular expression print), a filter.</p></li>
+<li><p>R language provides this capability through <code>grep</code>, <code>gsub</code>, …</p></li>
 </ul>
 </section>
-<section id="finding-r-packages" class="slide level2">
-<h2>Finding R Packages</h2>
-<ul>
-<li><p>How do I locate a package with the desired function?</p></li>
-<li><p>Google (“R project” + search term works well)</p></li>
-<li><p>R website task views to search relevant subjects: http://cran.r-project.org/web/views/</p></li>
-<li><p>??searchterm will search R help for pages related to the search term</p></li>
-</ul>
-</section>
-<section id="handy-r-packages" class="slide level2">
-<h2>Handy R Packages</h2>
-<ul>
-<li><p><code>ggplot2</code>: Statistical graphics</p></li>
-<li><p><code>tidyverse</code>: Manipulating data structures (includes <code>dplyr</code>, <code>tidyr</code>, <code>purr</code>, <code>tibble</code>, etc packages)</p></li>
-<li><p><code>lme4</code>: Mixed models</p></li>
-<li><p><code>knitr</code>: integrate LaTeX, HTML, or Markdown with R for easy reproducible research</p></li>
-<li><p><code>vegan</code>: Ordination methods, diversity analysis and other functions for community and vegetation ecologists.</p></li>
-<li><p><code>phyloseq</code>: Handling and analysis of high-throughput microbiome census data</p></li>
-<li><p><code>ggtree</code>: an R package for visualization and annotation of phylogenetic trees with their covariates and other associated data</p></li>
-<li><p><code>caret</code>: The R equivalent to scikit learn: train / test split, cross validation, model performance metrics</p></li>
-</ul>
-<p><a href="https://towardsdatascience.com/a-comprehensive-list-of-handy-r-packages-e85dad294b3d">List of some Handy R Packages</a> - Definitely NOT comprehensive</p>
-<!-- this needs updated!! -->
-</section>
-<section id="creating-your-own-functions" class="slide level2">
-<h2>Creating Your Own Functions</h2>
-<ul>
-<li>Sometimes you just need to create your own function to tackle your data
-<ul>
-<li>Especially if you notice yourself duplicating code</li>
-</ul></li>
-<li>“Remember that a function is essentially a”black box” into which you add some inputs and then receive some outputs. Building a function is about building that “black box”, and there are several components that go into it.” <a href="https://www.r-bloggers.com/2022/04/how-to-create-your-own-functions-in-r/">source</a></li>
-</ul>
-<p>Code Skeleton:</p>
-</section>
-<section id="creating-your-own-functions-continued" class="slide level2">
-<h2>Creating Your Own Functions (continued)</h2>
-<p>Example:</p>
+<section id="example-state-names" class="slide level2">
+<h2>Example: State names</h2>
+<p><code>state.name</code> is a built in dataset within R that contains all the U.S. state names.</p>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">data</span>(state)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>How many state names contain the pattern “ne”?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">grep</span>(<span class="at">pattern =</span> <span class="st">"ne"</span>, state.name)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 110.7333</code></pre>
+<pre><code>[1]  7 19 23 42</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>state.name[<span class="dv">7</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Connecticut"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">grep</span>(<span class="at">pattern =</span> <span class="st">"ne"</span>, state.name, <span class="at">value =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Connecticut" "Maine"       "Minnesota"   "Tennessee"  </code></pre>
 </div>
 </div>
+</section>
+<section id="example" class="slide level2">
+<h2>Example</h2>
+<p>We don’t care about the casing so we will make our pattern more promiscuous.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">grep</span>(<span class="at">pattern =</span> <span class="st">"[nN]e"</span>, state.name, <span class="at">value =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "Connecticut"   "Maine"         "Minnesota"     "Nebraska"     
+ [5] "Nevada"        "New Hampshire" "New Jersey"    "New Mexico"   
+ [9] "New York"      "Tennessee"    </code></pre>
+</div>
+</div>
+</section>
+<section id="basics-of-regular-expressions" class="slide level2">
+<h2>Basics of regular expressions</h2>
+<table>
+<colgroup>
+<col style="width: 31%">
+<col style="width: 68%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">expression</th>
+<th>meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">ordinary characters</td>
+<td>match themselves</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>$ ^ { [ ( ) ] } * + ? \</code></td>
+<td>special characters</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>[abc]</code></td>
+<td>matches single letter from “a”, “b”, or “c”</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>[^abc]</code></td>
+<td>matches any single letter other than “a”, “b”, and “c”</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>[a-gm]</code></td>
+<td>matches any single letter out of “a”, “b”, … “g” or “m”</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>[a-z][0-9]</code></td>
+<td>matches one lower case letter followed by a digit</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="basics-of-regular-expressions-contd" class="slide level2">
+<h2>Basics of regular expressions (cont’d)</h2>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">expression</th>
+<th>meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>\x</code></td>
+<td>match a hexadecimal number</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>\s</code></td>
+<td>whitespace</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">^</td>
+<td>starting position within the string</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">$</td>
+<td>ending position with in the string</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>&lt; &gt;</code></td>
+<td>start, end of a word</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>\t \r \v \n</code></td>
+<td>tab, carriage return, vertical tab, new line</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>\d</code></td>
+<td>represents a digit</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="multipliers" class="slide level2">
+<h2>Multipliers</h2>
 <ul>
-<li>Function Name: <code>mymean</code></li>
-<li>Arguments (inputs): <code>data</code> (data you want to calculate mean of)</li>
-<li>Body: <code>ans &lt;- sum(data) / length(data)</code> (code you run to get desired output)</li>
-<li>Return Value: <code>ans</code> (the mean of the data)</li>
+<li><p><code>?</code> indicates there is <strong>zero or one</strong> of the preceding element, eg <code>colou?r</code> matches “color” or “colour”</p></li>
+<li><p><code>*</code> indicates there is <strong>zero or more</strong> of the preceding element, eg <code>ab*c</code> matches “ac”, “abc”, “abbc”, “abbbc”, …</p></li>
+<li><p><code>+</code> indicates there is <strong>one or more</strong> of the preceding element, eg <code>ab+c</code> matches “abc”, “abbc”, “abbbc”, …</p></li>
+<li><p><code>.</code> matches any <strong>single</strong> character, eg <code>a.c</code> matches “abc” or “atc”</p></li>
+<li><p><code>{n}</code> indicates the preceding element is matched exactly <em>n</em> times</p></li>
+<li><p><code>{n,}</code> indicates the preceding element is matched <em>n</em> or more times</p></li>
+<li><p><code>{n,m}</code> indicates the preceding element is matched at least <em>n</em> times, but not more than <em>m</em> times</p></li>
 </ul>
 </section>
-<section id="ifelse-statements" class="slide level2">
-<h2>If/Else Statements</h2>
-<p>Skeleton:</p>
-<p>Basic Example:</p>
-<div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "Negative number"</code></pre>
-</div>
-</div>
-</section>
-<section id="ifelse-statements-continued" class="slide level2">
-<h2>If/Else Statements (Continued)</h2>
-<p>Example within a Function:</p>
-<div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "Numeric input is required"</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 4.8</code></pre>
-</div>
-</div>
-</section>
-<section id="looping" class="slide level2">
-<h2>Looping</h2>
+<section id="advanced-patterns" class="slide level2">
+<h2>Advanced Patterns</h2>
+<p>see <code>?regex</code></p>
 <ul>
-<li><p>Reducing the amount of typing we do can be nice</p></li>
-<li><p>If we have a lot of code that is essentially the same we can take advantage of looping.</p></li>
-<li><p>R offers several loops: <code>for</code>, <code>while</code>, <code>repeat</code>.</p></li>
+<li><p><code>[:alpha:]</code> Any alphabetic character</p></li>
+<li><p><code>[:lower:]</code> Any lowercase character</p></li>
+<li><p><code>[:upper:]</code> Any uppercase character</p></li>
+<li><p><code>[:digit:]</code> Any digit</p></li>
+<li><p><code>[:alnum:]</code> Any alphanumeric character (alphabetic or digit)</p></li>
+<li><p><code>[:blank:]</code> Any white space character (space, tab, vertical tab)</p></li>
+<li><p><code>[:graph:]</code> Any printable character, except space</p></li>
+<li><p><code>[:print:]</code> Any printable character, including the space</p></li>
+<li><p><code>[:punct:]</code> Any punctuation (i.e., a printable character that is not white space or alphanumeric)</p></li>
+<li><p><code>[:cntrl:]</code> Any nonprintable character</p></li>
 </ul>
-<div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 1
-[1] 2
-[1] 3</code></pre>
-</div>
-</div>
 </section>
-<section id="for-loops-source" class="slide level2">
-<h2>For Loops (<a href="https://statisticsglobe.com/for-loop-in-r">source</a>)</h2>
-<p><img data-src="images/for_loop.png"> <a href="https://statisticsglobe.com/for-loop-in-r">source</a></p>
+<section id="examples" class="slide level2">
+<h2>Examples</h2>
+<p>What do these regular expressions do?</p>
+<p><code>.at</code></p>
+<p><code>[hc]at</code></p>
+<p><code>[^t]at</code></p>
+<p><code>[^hc]at</code></p>
+<p><code>^[S]tat</code></p>
+<p><code>[S]tat$</code></p>
 </section>
-<section id="for-loop-example" class="slide level2">
-<h2>For Loop Example:</h2>
-<div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 1
-[1] 4
-[1] 9
-[1] 16
-[1] 25</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "pig_weight NA"
-[1] "total_shedding 17.4232730553356"
-[1] "daily_shedding 3.76549250132986"</code></pre>
-</div>
-</div>
+<section id="trickier-examples" class="slide level2">
+<h2>Trickier Examples</h2>
+<p>What do these regular expressions do?</p>
+<p><code>^s.*</code></p>
+<p><code>[A-Z]\{3,\}</code></p>
+<p><code>[bB]ar ?[cC]hart</code></p>
+<p><code>^[0-9]{5}$</code></p>
+<p><code>^(\d{3}-\d{3}-\d{4})*$</code></p>
+<!-- `(\w[-._\w]*\w@\w[-._\w]*\w\.\w{2,3})` - might be a little to difficult!! -->
 </section>
-<section id="while-loops" class="slide level2">
-<h2>While Loops</h2>
+<section id="regular-expressions-in-r" class="slide level2">
+<h2>Regular expressions in R</h2>
+<p>Patterns &amp; Matches</p>
 <ul>
-<li>Loop until a specific condition is met</li>
+<li><p>Find pattern: <code>grep, regexpr, gregexpr</code></p></li>
+<li><p>Pattern replacement: <code>gsub (pattern, replacement, x)</code></p></li>
 </ul>
-<div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 1
-[1] 2
-[1] 3
-[1] 4</code></pre>
-</div>
-</div>
-<ul>
-<li><p>The test_expression is i &lt; 5 which is TRUE since 1 is less than 5. So, the body of the loop is entered and i is printed and incremented (i + 1)</p></li>
-<li><p>This will continue until i takes the value 5. The condition 5 &lt; 5 will give FALSE and the while loop exits.</p></li>
-<li><p>Make sure the loop will eventually meet the condition, otherwise the loop will run infinitely.</p></li>
-</ul>
+<pre><code>grep(pattern, x, ignore.case = FALSE, perl = FALSE, value = FALSE,
+     fixed = FALSE, useBytes = FALSE, invert = FALSE)
+
+gsub(pattern, replacement, x, ignore.case = FALSE, perl = FALSE,
+     fixed = FALSE, useBytes = FALSE)</code></pre>
 </section>
 <section id="your-turn" class="slide level2 inverse">
 <h2>Your Turn</h2>
 <ol type="1">
-<li><p>Create a function that takes numeric input and provides the mean and a 95% confidence interval for the mean for the data (the t.test function could be useful - example in 4-DataStructures.R - will give you your confidence interval)</p></li>
-<li><p>Add checks to your function to make sure the data is either numeric or logical. If it is logical convert it to numeric.</p></li>
-<li><p>The diamonds data set is included in the <code>ggplot2</code> package and is well known as a convenient data set for examples. It can be read into your environment with the function <code>data("diamonds", package = "ggplot2")</code>. Loop over the columns of the diamonds data set and apply your function to all of the numeric columns.</p></li>
+<li><p>How many state names contain one or two S’s?</p></li>
+<li><p>For any state that has a name in the form <code>New -</code>, replace <code>New</code> with <code>Old</code>.</p></li>
 </ol>
+</section>
+<section id="extracting-pieces-from-a-regular-expression" class="slide level2">
+<h2>Extracting pieces from a regular expression</h2>
+<ul>
+<li><p>parentheses <code>( )</code> group a pattern of interest together</p></li>
+<li><p>using <code>\\1</code>, <code>\\2</code>, <code>\\3</code>, … we can extract the first, second, third … pattern</p></li>
+</ul>
+<p>Imagine want to extract some sample data that has been coded into our sample names.</p>
+<p>For example, X1P10N2AFD0 encodes the experiment, pig number, pen, tissue, and day.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>meta <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">"https://unl-statistics.github.io/R-workshops/r-intro/data/meta.txt"</span>)</span>
+<span id="cb11-2"><a href="#cb11-2"></a><span class="fu">head</span>(meta)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   label       Group numOtus
+27  0.03 X1P10N2ACD4    5802
+28  0.03 X1P10N2AFD0    5802
+29  0.03 X1P10N2AFD4    5802
+30  0.03 X1P10N2AID4    5802
+31  0.03 X1P11N2ACD4    5802
+32  0.03 X1P11N2AFD0    5802</code></pre>
+</div>
+</div>
+</section>
+<section id="example-1" class="slide level2">
+<h2>Example</h2>
+<p>Imagine, we want to extract the day number for each row.</p>
+<p>We use the expression <code>D</code> as cue; the number after that is the day:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>meta<span class="sc">$</span>day <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">'.*D([:digit:]*)'</span>,<span class="st">'</span><span class="sc">\\</span><span class="st">1'</span>, meta<span class="sc">$</span>Group)</span>
+<span id="cb13-2"><a href="#cb13-2"></a><span class="fu">head</span>(meta<span class="sc">$</span>day)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "4" "0" "4" "4" "4" "0"</code></pre>
+</div>
+</div>
+</section>
+<section id="your-turn-1" class="slide level2 inverse">
+<h2>Your Turn</h2>
+<p>Extract the pen number, experiment, and tissue for each row.</p>
 
 <div class="footer footer-default">
 <p><a href="../../index.qmd">UNL R Workshops</a></p>

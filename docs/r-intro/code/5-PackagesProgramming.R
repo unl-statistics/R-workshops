@@ -61,8 +61,16 @@ for(i in 1:5) {# Head of for-loop
   print(x1) # Print results
 }
 
-final_shed <- read.csv("https://unl-statistics.github.io/R-workshops/01-r-intro/data/daily_shedding.csv")
 
+## ----echo = F, eval = T-------------------------------------------------------
+final_shed <- read.csv("../data/daily_shedding.csv")
+
+## ----echo = T, eval = F-------------------------------------------------------
+## final_shed <- read.csv("https://unl-statistics.github.io/R-workshops/r-intro/data/daily_shedding.csv")
+## 
+
+
+## -----------------------------------------------------------------------------
 id <- c("pig_weight", "total_shedding", "daily_shedding")
 for(colname in id) {
     print(paste(colname, mymean(final_shed[, colname])))
