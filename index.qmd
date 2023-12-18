@@ -1,5 +1,9 @@
 ---
 format: 
-  html: default
+  html:
+    page-layout: full
+toc: true
+toc-depth: 3
 ---
+
 {{< include README.qmd >}}

@@ -1,0 +1,20 @@
+---
+title: 'R Modeling: Your Turn Solutions'
+format: html
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+	echo = TRUE,
+	fig.align = "center",
+	message = FALSE,
+	warning = FALSE,
+	cache = TRUE
+)
+```
+
+## Load Libraries
+
+```{r packages}
+library(tidyverse)
+```

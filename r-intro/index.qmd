@@ -1,0 +1,35 @@
+---
+title: "Programming with Data"
+format: html
+---
+
+![](https://raw.githubusercontent.com/rstudio/hex-stickers/master/SVG/RStudio.svg){width="200px" fig-alt="rstudio hex sticker" fig-align="center"}
+
+In Programming with data you get a head start with the statistical software R. R has gained a huge number of users in the last years and the number of methods from add-on packages is growing rapidly. The course will be data centric, with lots of different data sets that illustrate examples of the different techniques used for different problems. The course will be a mix of instruction and follow-up exercises. It will be held in a computer lab but you are encouraged to bring your own laptops, with software already loaded. A list of software is available to help you prepare your machine for the workshop.
+
+## Timetable
+
+| Date          | Notes                                                              | Lectures and Resources                                                                                                                                                                                                    |
+|------------------------|------------------------|------------------------|
+| 9 - 9:30      | [Setting Up](slides/1-Setup.qmd)                                   | This will make sure that everybody's system is up and running. You should try to install R ahead of time, so that this time can be used to address potential problems. <br/> [Setup.R](code/1-Setup.R)                    |
+| 9:30 - 10:30  | [Motivating Example](slides/2-MotivatingExample.qmd)               | First taste of R: Jumping right into it to get an idea of how to use R and what it is capable of. <br/> [2-MotivatingExample.R](code/2-MotivatingExample.R)<br/> [daily_shedding.csv](data/daily_shedding.csv)            |
+| 10:30 - 10:50 | **Break**                                                          |                                                                                                                                                                                                                           |
+| 10:50 - 11:50 | [Basics](slides/3-Basics.qmd)                                      | Working with data and learning about vectors, indexing vectors, and additional statistical functions. <br/>[3-Basics.R](code/3-Basics.R)<br/>[R Reference Card](https://cran.r-project.org/doc/contrib/Short-refcard.pdf) |
+| 11:50 - 12:50 | **Lunch Break** (on your own)                                      |                                                                                                                                                                                                                           |
+| 12:50 - 2:20  | [Data Structures](slides/4-DataStructures.qmd)                     | Using and examining the other data structures that are available in R. <br/>[4-DataStructures.R](code/4-DataStructures.R) <br/> [tips.csv](data/tips.csv)<br/>[yourturndata.txt](data/yourturndata.txt)                   |
+| 2:20 - 2:40   | **Break**                                                          |                                                                                                                                                                                                                           |
+| 2:40 - 4:00   | [Packages and Basic Programming](slides/5-PackagesProgramming.qmd) | Introduction to packages and finding useful packages. We will also cover simple programming constructs to make your life easier with R. <br/>[5-PackagesProgramming.R](code/5-PackagesProgramming.R)                      |
+| 3:55 - 4:00   | [Evaluation](https://forms.gle/nEvYK9C7YYKhtLLB7)                  | Help us make the workshops better!                                                                                                                                                                                        |
+
+## Useful Links
+
+Recommended Reading:
+
+-   [R for Data Science](https://r4ds.had.co.nz/)
+-   [R for ecologists](https://datacarpentry.org/R-ecology-lesson/) Data Carpentry workshop
+
+### Your Turn Solutions
+
+Please make sure to try the practice problem before viewing solutions
+
+-   [Your Turn Solutions](slides/99-YourTurnSolutions.qmd)

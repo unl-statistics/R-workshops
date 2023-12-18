@@ -1,7 +1,0 @@
-install.packages(c("rvest", "httr", "tidytext","XML2R","ggrepel","magrittr"))
-library(rvest)
-library(httr)
-library(XML2R)
-library(tidytext)
-library(ggrepel)
-library(magrittr)

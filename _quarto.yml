@@ -1,0 +1,28 @@
+project:
+  type: website
+  pre-render: create_R_files.R
+
+website:
+  title: "UNL R Workshops"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - text: "Workshops"
+        menu: 
+          - text: "Introduction to R"
+            href: r-intro/index.qmd
+          - text: "Graphics with ggplot2"
+            href: r-graphics/index.qmd
+          - text: "Data Wrangling"
+            href: r-format/index.qmd
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true
+    page-layout: full
+
+editor: visual
+

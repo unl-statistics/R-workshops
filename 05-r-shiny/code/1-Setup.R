@@ -1,8 +1,0 @@
-## ---- eval=FALSE---------------------------------------
-## install.packages("shiny") #<<
-
-
-## ---- eval=FALSE---------------------------------------
-## library(shiny) #<<
-## runApp("01_Hello") #<<
-

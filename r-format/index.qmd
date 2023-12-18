@@ -1,0 +1,41 @@
+---
+title: "Data Wrangling"
+format: html
+---
+
+[**Return to rwrks homepage**](http://unl-statistics.github.io/R-workshops/)
+
+::: {layout-ncol=3}
+
+![](https://raw.githubusercontent.com/rstudio/hex-stickers/master/PNG/dplyr.png?raw=true){width="200px" fig-alt="dplyr hex sticker"}
+![](https://raw.githubusercontent.com/rstudio/hex-stickers/master/PNG/tidyr.png?raw=true){width="200px" fig-alt="tidyr hex sticker"}
+![](https://raw.githubusercontent.com/rstudio/hex-stickers/master/PNG/lubridate.png?raw=true){width="200px" fig-alt="lubridate hex sticker"}
+
+:::
+
+
+This workshop will to prepare you for dealing with messy data by walking you through real-life examples. We will work on improving your programming skills and help you move beyond using copy-and-paste. We will discuss how to write functions in order to reduce duplication in your code and automate common tasks and how to use iteration in order to further reduce duplication. You will leave with skills that will allow you to both tackle problems with more ease. The course will be data centric, with lots of different data sets that illustrate examples of the different techniques used for different problems. The course will be a mix of instruction and follow-up exercises. It will be held in a computer lab but you are encouraged to bring your own laptops, with software already loaded. A list of software will be available at this site several days prior to the workshop.
+
+## Timetable
+
+| Date          | Notes                                             | Lectures and Resources                                                                                                                                                                                                                                            |
+|------------------------|------------------------|------------------------|
+| 9 - 9:15      | [Introduction](slides/1-WranglingIntro.qmd)       | reading in basic file types: .xls, .csv, .txt, .xport and more <br/> general functions: filter, join, ...                                                                                                                                                         |
+| 9:15 - 10:05  | [Reading Files](slides/2-Files.qmd)               | Excel files vs. text, data organization <br/> [2-Files.R](code/2-Files.R), [midwest.csv](data/midwest.csv), [midwest.xls](data/midwest.xls)                                                                                                                       |
+| 10:05 - 10:30 | **Break**                                         |                                                                                                                                                                                                                                                                   |
+| 10:30 - 12:15 | [Summarizing with dplyr](slides/3-dplyr.qmd)      | Pipe operator and dplyr verbs <br/> [3-dplyr.R](code/3-dplyr.R)<br/> [pitch.csv](data/pitch.csv)                                                                                                                                                                  |
+| 12:15 - 1:15  | **Lunch Break** (on your own)                     |                                                                                                                                                                                                                                                                   |
+| 1:15 - 2:45   | [Tidy Data](slides/4-tidyr.qmd)                   | Restructuring data with pivot wider, pivot longer, and separate. <br/>[4-tidyr.R](code/4-tidyr.R), [frenchfries.csv](data/frenchfries.csv), [billboard.csv](data/billboard.csv), [flights.csv](data/flights.csv), [occupation-1870.csv](data/occupation-1870.csv) |
+| 2:45 - 3:00   | **Break**                                         |                                                                                                                                                                                                                                                                   |
+| 3:00 - 4:00   | [Joining Data](slides/5-joining.qmd)              | Join dataframes together using SQL-based logic <br/>[5-joining.R](code/5-joining.R), [boxoffice.csv](data/boxoffice.csv), [baseball.csv](data/baseball.csv)                                                                                                       |
+| 3:55 - 4:00   | [Evaluation](https://forms.gle/nEvYK9C7YYKhtLLB7) | Help us make the workshops better!                                                                                                                                                                                                                                |
+
+## Your Turn Solutions
+
+-   [Your Turn Solutions](code/99-YourTurnSolutions.qmd)
+
+## Useful Links
+
+-   [The Split-Apply-Combine Strategy for Data Analysis](http://www.jstatsoft.org/v40/i01), Journal of Statistical Software, 2011
+-   [Overview of base apply functions](https://ademos.people.uic.edu/Chapter4.html)
+-   [Dplyr and Tidyr Cheat Sheet](https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf)
