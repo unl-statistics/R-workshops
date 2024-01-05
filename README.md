@@ -24,7 +24,7 @@ availability**
 - Location: Hardin 163 (North wing)
 - Required materials: Laptop with [software installed](@sec-setup)
 
-Register for the workshops [here](https://forms.gle/ZTC91J9zwy7xeeLW6).
+Register for the workshops [here](https://forms.gle/Lj9DfWFoySMRytUP8).
 
 We will send you an email about a week before the workshops are held
 with additional details.
@@ -63,11 +63,20 @@ for a group rate.
 If you are an independent student (e.g. not part of a research lab), and
 cannot afford the prices we’ve set, please contact [Susan
 Vanderplas](mailto:svanderplas2@unl.edu?subject=R%20Workshops%20Pricing)
-to see if scholarships are available.
+about 1 week before the workshops are scheduled to see if scholarships
+are available. Include how much you can afford to pay, why you need the
+workshops, and any other details you think are relevant. Scholarships
+will depend on the number of registered participants. We charge just
+enough to ensure that the instructors are paid for their time and
+effort - most semesters, we barely break even.
+
+Note that half-day workshops are those which are only offered from
+e.g. 9-12 or 1-4. We do not allow you to register and pay for only half
+of a full-day workshop.
 
 ## Sign Up
 
-[Register here](https://forms.gle/qyq68vnZCUhfT8MU9)
+[Register here](https://forms.gle/Lj9DfWFoySMRytUP8)
 
 # Learning Outcomes
 
