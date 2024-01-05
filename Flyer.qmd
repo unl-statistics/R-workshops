@@ -1,5 +1,0 @@
----
-format: 
-  docx: default
----
-{{< include README.qmd >}}
