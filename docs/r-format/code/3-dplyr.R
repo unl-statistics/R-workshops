@@ -12,7 +12,7 @@ data(baseball, package = "plyr")
 ## ----message = FALSE, warning=FALSE, echo = TRUE, eval = FALSE----------------
 ## library(tidyverse)
 ## pitch <-
-##   read_csv("http://unl-statistics.github.io/R-workshops/03-r-format/data/pitch.csv")
+##   read_csv("https://raw.githubusercontent.com/unl-statistics/R-workshops/main/r-format/data/pitch.csv")
 ## 
 ## pitch[-1] %>%
 ##   filter(pitcher_hand == "R", pitch_type == "CU") %>%
@@ -22,7 +22,7 @@ data(baseball, package = "plyr")
 
 ## ----message = FALSE, warning=FALSE, echo = FALSE-----------------------------
 library(tidyverse)
-pitch <- read_csv("http://unl-statistics.github.io/R-workshops/03-r-format/data/pitch.csv")
+pitch <- read_csv("https://raw.githubusercontent.com/unl-statistics/R-workshops/main/r-format/data/pitch.csv")
 pitch[-1] %>% 
   filter(pitcher_hand == "R", pitch_type == "CU") %>%
   head(n=4) %>%

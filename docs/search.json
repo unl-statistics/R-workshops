@@ -2244,7 +2244,7 @@
     "href": "r-format/slides/3-dplyr.html#recap",
     "title": "Data Wrangling",
     "section": "Recap",
-    "text": "Recap\n\nGetting used to dplyr actions can take a bit of time and practice\nRecognize keywords and match them to dplyr functions\nIncorporate dplyr functions in your regular workflow - the long-term benefits are there, we promise!"
+    "text": "Recap\n\nGetting used to dplyr actions can take a bit of time and practice\nRecognize keywords and match them to dplyr functions\nIncorporate dplyr functions in your regular workflow - the long-term benefits are there, we promise!\n\n\n\n\nUNL R Workshops"
   },
   {
     "objectID": "pricing.html",
@@ -3260,19 +3260,5 @@
     "title": "Data Visualization",
     "section": "Your Turn",
     "text": "Your Turn\nThe movies data set contains information from IMDB.com including ratings, genre, length in minutes, and year of release.\n\nmovies &lt;- read.csv(\"https://unl-statistics.github.io/R-workshops/02-r-graphics/data/MovieSummary.csv\")\n\n\nExplore the differences in length, rating, etc. in movie genres over time.\nHint: use faceting!\nDiscuss your graphic with a neighbor.\n\n\n\nUNL R Workshops"
-  },
-  {
-    "objectID": "r-format/slides/2-Files.html",
-    "href": "r-format/slides/2-Files.html",
-    "title": "Data Wrangling",
-    "section": "",
-    "text": "Important to understand your file structure and where you save everything\nWorking directory\n“Default location where R will look for files you want to load and where it will put any files you save” source\n\n\n#Returns the file path of the current working directory\ngetwd()\n\n#Set Working Directory\nsetwd()\n\n\nEasiest way to set Working Directory:\n\nSession -&gt; Set Working Directory -&gt; Choose Directory\nPoint and Click Method"
-  },
-  {
-    "objectID": "r-format/slides/3-dplyr.html",
-    "href": "r-format/slides/3-dplyr.html",
-    "title": "Data Wrangling",
-    "section": "",
-    "text": "Data Wrangling Cheat Sheet, by RStudio"
   }
 ]

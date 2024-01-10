@@ -62,20 +62,10 @@ ggplot(midwest_gas, aes(x = date, y = price)) + geom_line()
 ## head(midwest2)
 
 
-## ----midwest, echo=FALSE------------------------------------------------------
-library(readxl)
-midwest2 <- read_excel("../data/midwest.xls") 
-knitr::kable(head(midwest2, 3), format = "html")
 
 
 ## ----eval=FALSE, echo = TRUE--------------------------------------------------
 ## midwest2 <- read_excel("https://github.com/unl-statistics/R-workshops/raw/main/r-format/data/midwest.xls", skip = 1) #<<
 ## names(midwest2)[1] <- "Year-Month"
 ## head(midwest2)
-
-
-## ----midwest2, echo=FALSE-----------------------------------------------------
-midwest2 <- read_excel("../data/midwest.xls", skip = 1) 
-names(midwest2)[1] <- "Year-Month"
-knitr::kable(head(midwest2, 3), format = "html")
 
