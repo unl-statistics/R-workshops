@@ -539,12 +539,12 @@
 <section id="eda-example" class="slide level2">
 <h2>EDA Example</h2>
 <p>Recall the <a href="https://allisonhorst.github.io/palmerpenguins/">Palmer Penguin</a> data set.</p>
-<div class="cell" data-hash="1-ModelingIntro_cache/revealjs/eda-example-echo_0d0bfaf50343f252f5ecbf119a7e423d">
+<div class="cell" data-hash="1-ModelingIntro_cache/html/eda-example-echo_902a38eb68e9102de0b8067dc3616b96">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">install.packages</span>(<span class="st">"palmerpenguins"</span>)</span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="fu">data</span>(penguins, <span class="at">package =</span> <span class="st">"palmerpenguins"</span>)</span>
 <span id="cb1-3"><a href="#cb1-3"></a><span class="fu">head</span>(penguins)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-hash="1-ModelingIntro_cache/revealjs/eda-example_23bbe99fdb3c442c59f470cdfe45a161">
+<div class="cell" data-hash="1-ModelingIntro_cache/html/eda-example_cde78e52017645468c77c4f1287bd04c">
 <div class="cell-output-display">
 <div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:100%; ">
 <table class="table table-striped" data-quarto-postprocess="true" style="margin-left: auto; margin-right: auto;">
@@ -631,7 +631,7 @@
 </section>
 <section id="eda-example-numerical-summaries" class="slide level2">
 <h2>EDA Example: Numerical summaries</h2>
-<div class="cell" data-hash="1-ModelingIntro_cache/revealjs/numerical-summaries-echo_7abb67a1c7e65884c4a750e551dbfc28">
+<div class="cell" data-hash="1-ModelingIntro_cache/html/numerical-summaries-echo_5a82a48c0395e772f0dc1d77ea6aaae6">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>penguins <span class="sc">%&gt;%</span></span>
 <span id="cb2-2"><a href="#cb2-2"></a>  <span class="fu">group_by</span>(sex) <span class="sc">%&gt;%</span></span>
 <span id="cb2-3"><a href="#cb2-3"></a>  <span class="fu">summarize</span>(<span class="fu">across</span>(<span class="fu">c</span>(<span class="st">"body_mass_g"</span>), </span>
@@ -641,7 +641,7 @@
 <span id="cb2-7"><a href="#cb2-7"></a>                        <span class="at">Median =</span> <span class="sc">~</span> <span class="fu">median</span>(., <span class="at">na.rm =</span> T), </span>
 <span id="cb2-8"><a href="#cb2-8"></a>                        <span class="at">Max =</span> <span class="sc">~</span> <span class="fu">max</span>(., <span class="at">na.rm =</span> T))))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-hash="1-ModelingIntro_cache/revealjs/numerical-summaries_4b9f88d219a42d9a7cbcfa4d4d71c8c0">
+<div class="cell" data-hash="1-ModelingIntro_cache/html/numerical-summaries_69954a194a2879cd08f00ec0c7625fc4">
 <div class="cell-output-display">
 <div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:100%; ">
 <table class="table table-striped" data-quarto-postprocess="true" style="margin-left: auto; margin-right: auto;">
@@ -693,7 +693,7 @@
 <section id="eda-example-graphical-summaries" class="slide level2">
 <h2>EDA Example: Graphical summaries</h2>
 <p>::: columns ::: column</p>
-<div class="cell" data-hash="1-ModelingIntro_cache/revealjs/graphical-summaries-echo_4c186d27a63740eeb6631a2242cc6952">
+<div class="cell" data-hash="1-ModelingIntro_cache/html/graphical-summaries-echo_4683708ca170693fd52fb39038505ccd">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>penguins <span class="sc">%&gt;%</span></span>
 <span id="cb3-2"><a href="#cb3-2"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> sex, <span class="at">y =</span> body_mass_g, <span class="at">color =</span> sex, <span class="at">fill =</span> sex)) <span class="sc">+</span></span>
 <span id="cb3-3"><a href="#cb3-3"></a>  <span class="fu">geom_boxplot</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
@@ -703,9 +703,9 @@
 </div>
 <p>:::</p>
 <div class="column">
-<div class="cell" data-hash="1-ModelingIntro_cache/revealjs/graphical-summaries_8eac5d6523fc4b0aea4d24f48da3a4f4">
+<div class="cell" data-hash="1-ModelingIntro_cache/html/graphical-summaries_e5ee42d0bd3ac47caf8dad9d2c290e8e">
 <div class="cell-output-display">
-<p><img data-src="1-ModelingIntro_files/figure-revealjs/graphical-summaries-1.png" width="960"></p>
+<p><img data-src="1-ModelingIntro_files/figure-html/graphical-summaries-1.png" width="672"></p>
 </div>
 </div>
 </div>
@@ -976,44 +976,6 @@
         ]
       });
     </script>
-    
-    <script>
-      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
-      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
-      // slide changes (different for each slide format).
-      (function () {
-        // dispatch for htmlwidgets
-        function fireSlideEnter() {
-          const event = window.document.createEvent("Event");
-          event.initEvent("slideenter", true, true);
-          window.document.dispatchEvent(event);
-        }
-
-        function fireSlideChanged(previousSlide, currentSlide) {
-          fireSlideEnter();
-
-          // dispatch for shiny
-          if (window.jQuery) {
-            if (previousSlide) {
-              window.jQuery(previousSlide).trigger("hidden");
-            }
-            if (currentSlide) {
-              window.jQuery(currentSlide).trigger("shown");
-            }
-          }
-        }
-
-        // hookup for slidy
-        if (window.w3c_slidy) {
-          window.w3c_slidy.add_observer(function (slide_num) {
-            // slide_num starts at position 1
-            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
-          });
-        }
-
-      })();
-    </script>
-
     <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggleBodyColorMode = (bsSheetEl) => {
