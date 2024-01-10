@@ -16,9 +16,9 @@ knitr::opts_chunk$set(
 
 # Project Management
 
-- Important to understand your file structure and where you save everything
-- Working directory 
- + "Default location where R will look for files you want to load and where it will put any files you save" [source](https://intro2r.com/work-d.html)
+-   Important to understand your file structure and where you save everything
+-   Working directory
+-   "Default location where R will look for files you want to load and where it will put any files you save" [source](https://intro2r.com/work-d.html)
 
 ```{r, eval = FALSE, echo = TRUE}
 
@@ -30,70 +30,62 @@ setwd()
 
 ```
 
-+ Easiest way to set Working Directory: 
-  - Session -> Set Working Directory -> Choose Directory
-  - Point and Click Method
-
+-   Easiest way to set Working Directory:
+    -   Session -\> Set Working Directory -\> Choose Directory
+    -   Point and Click Method
 
 # Excel
 
 ## Data Files in Excel
 
-- Formats .xls and .csv - what's the difference?
+-   Formats .xls and .csv - what's the difference?
 
-- File extensions .xls and .xlsx are proprietary Excel formats, binary files
+-   File extensions .xls and .xlsx are proprietary Excel formats, binary files
 
-- csv is an extension for Comma Separated Value files. They are text files - directly readable.
+-   csv is an extension for Comma Separated Value files. They are text files - directly readable.
 
-- Motivating Example: Gas prices in the Midwest since 1994
+-   Motivating Example: Gas prices in the Midwest since 1994
 
 ::: notes
-
-CSV - comma-separated values (contains plain text entries and commas)
-XLS - specific spreadsheet file for Microsoft Excel. Can't be opened with a text editor
-
+CSV - comma-separated values (contains plain text entries and commas) XLS - specific spreadsheet file for Microsoft Excel. Can't be opened with a text editor
 :::
 
-## MOTIVATING EXAMPLE 
-### Gas prices in the Midwest since 1994
+## MOTIVATING EXAMPLE
 
+### Gas prices in the Midwest since 1994
 
 ## Gas Prices in the Midwest
 
 ```{r message=FALSE, warning=FALSE}
 library(readr)
 library(knitr)
-midwest <- read_csv("../data/midwest.csv")
+midwest <- read_csv("https://github.com/unl-statistics/R-workshops/raw/main/r-format/data/midwest.csv")
 knitr::kable(head(midwest))
 ```
 
-
 ## What's the difference `read_csv` vs. `read_*` ??
 
-`read_csv` is just one way to read a file using the `readr` package: 
+`read_csv` is just one way to read a file using the `readr` package:
 
-- `read_delim`: the most generic function. Use the `delim` argument to read a file with any type of delimiter 
-- `read_tsv`: read tab separated files 
-- `read_lines`: read a file into a vector that has one element per line of the file
-- `read_file`: read a file into a single character element
-- `read_table`: read a file separated by space
+-   `read_delim`: the most generic function. Use the `delim` argument to read a file with any type of delimiter
+-   `read_tsv`: read tab separated files
+-   `read_lines`: read a file into a vector that has one element per line of the file
+-   `read_file`: read a file into a single character element
+-   `read_table`: read a file separated by space
 
 ::: notes
-
-Start by having them load tidyverse. (Includes all of the packages we'll be using today) 
-
+Start by having them load tidyverse. (Includes all of the packages we'll be using today)
 :::
-
 
 ## Your Turn {.inverse}
 
 Have a look at the parameters of `read_csv` to solve the following problems:
 
-1. Read the first two lines of the file into an object called `midwest_names`
+1.  Read the first two lines of the file into an object called `midwest_names`
 
-2. Read everything EXCEPT the first two lines into an object called `midwest_data`
+2.  Read everything EXCEPT the first two lines into an object called `midwest_data`
 
-Hint: Visit http://unl-statistics.github.io/R-workshops/03-r-format/data/midwest.csv to download the data into your current working directory (`getwd()`) and look at it in Excel to help figure out what the issue is. 
+Hint: Visit http://unl-statistics.github.io/R-workshops/03-r-format/data/midwest.csv to download the data into your current working directory (`getwd()`) and look at it in Excel to help figure out what the issue is.
 
 ## Your Turn Solutions
 
@@ -106,11 +98,10 @@ midwest_names <- read_csv(
 
 #Reading in from Github page
 midwest_data <- read_csv(
-"http://unl-statistics.github.io/R-workshops/03-r-format/data/midwest.csv", 
+"https://github.com/unl-statistics/R-workshops/raw/main/r-format/data/midwest.csv", 
   skip = 2, col_names = FALSE)
 
 ```
-
 
 ```{r, message=FALSE, eval=FALSE, echo = TRUE, purl = F}
 
@@ -148,13 +139,9 @@ midwest_gas <- arrange(midwest_gas, dates)
 ```
 
 ::: notes
-
-explain - paste function
-values - vector of the different columns
-dates - vector of different dates (combining year/month with month/day)
+explain - paste function values - vector of the different columns dates - vector of different dates (combining year/month with month/day)
 
 ymd function - transforms dates stored in a character to date with year, month, day components
-
 :::
 
 ## Now we can make a plot!
@@ -165,25 +152,23 @@ library(ggplot2)
 ggplot(midwest_gas, aes(x = date, y = price)) + geom_line()
 ```
 
-
-
 ## Reading Excel Data
 
 Download the midwest.xls file to your current working directory (`getwd()`)
 
 ```{r, eval=FALSE, echo = TRUE}
 library(readxl)
-midwest2 <- read_excel("midwest.xls") 
+midwest2 <- read_excel("https://github.com/unl-statistics/R-workshops/raw/main/r-format/data/midwest.xls") 
 head(midwest2)
 ```
 
 Something isn't quite right here...
-```{r midwest, echo=FALSE}
+
+```{r midwest, echo=FALSE, purl = F}
 library(readxl)
 midwest2 <- read_excel("../data/midwest.xls") 
 knitr::kable(head(midwest2, 3), format = "html")
 ```
-
 
 ## Reading Excel Data: Attempt #2
 
@@ -192,12 +177,12 @@ The 2nd row of the excel file also contains variable names.
 Let's skip the first this time. We can then rename the first column.
 
 ```{r, eval=FALSE, echo = TRUE}
-midwest2 <- read_excel("midwest.xls", skip = 1) #<<
+midwest2 <- read_excel("https://github.com/unl-statistics/R-workshops/raw/main/r-format/data/midwest.xls", skip = 1) #<<
 names(midwest2)[1] <- "Year-Month"
 head(midwest2)
 ```
 
-```{r midwest2, echo=FALSE}
+```{r midwest2, echo=FALSE, purl = F}
 midwest2 <- read_excel("../data/midwest.xls", skip = 1) 
 names(midwest2)[1] <- "Year-Month"
 knitr::kable(head(midwest2, 3), format = "html")
@@ -205,51 +190,45 @@ knitr::kable(head(midwest2, 3), format = "html")
 
 Better, but not yet perfect...
 
-
 ::: notes
-
-How can you fix this? Brute force way by renaming all columns?
-Take this into consideration when entering in your data into spreadsheets (no merged columns names with subheadings)
-
+How can you fix this? Brute force way by renaming all columns? Take this into consideration when entering in your data into spreadsheets (no merged columns names with subheadings)
 :::
 
 # Other Data Types
 
 ## `haven` Package
 
-- Other file formats can be read using the functions from package `haven`
+-   Other file formats can be read using the functions from package `haven`
 
-- SPSS: `read_spss`
+-   SPSS: `read_spss`
 
-- SAS: `read_xpt`
+-   SAS: `read_xpt`
 
-- Stata: `read_dta`
+-   Stata: `read_dta`
 
 ![](images/haven.png){width="280px" fig-align="center"}
 
-
-
 ## Useful Packages for Other Data Files
 
-- `foreign` package reads from Minitab, Systat, etc. files.
+-   `foreign` package reads from Minitab, Systat, etc. files.
 
-- `rgdal` package reads shapefiles (for maps)
+-   `rgdal` package reads shapefiles (for maps)
 
-- `sf` package reads arcgis files, etc. [sf package](https://r-spatial.github.io/sf/)
+-   `sf` package reads arcgis files, etc. [sf package](https://r-spatial.github.io/sf/)
 
-![R knowledge Spatial, by [Allison Horst](https://www.allisonhorst.com/)](images/sf package.jpeg){width="320px" fig-align="center"}
+![R knowledge Spatial, by [Allison Horst](https://www.allisonhorst.com/)](images/sf%20package.jpeg){width="320px" fig-align="center"}
 
-## Your Turn (~2 minutes)  {.inverse}
+## Your Turn (\~2 minutes) {.inverse}
 
 The NHANES (National Health and Nutrition Survey) publishes data in the SAS xport format:
 
 https://wwwn.cdc.gov/Nchs/Nhanes/continuousnhanes/default.aspx?BeginYear=2013
 
-1. Scroll to the bottom, choose one of the datasets (Demographics, Examination, etc.). Download the Data file (XPT)
+1.  Scroll to the bottom, choose one of the datasets (Demographics, Examination, etc.). Download the Data file (XPT)
 
-2. Use `read_xpt()` to load the file into R
+2.  Use `read_xpt()` to load the file into R
 
-3. Briefly examine the dataset you've imported (use `head` or `tail`, etc)
+3.  Briefly examine the dataset you've imported (use `head` or `tail`, etc)
 
 ## Solution
 

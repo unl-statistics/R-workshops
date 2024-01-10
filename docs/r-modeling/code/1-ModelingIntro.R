@@ -8,7 +8,6 @@ knitr::opts_chunk$set(
 )
 library(tidyverse)
 library(knitr)
-library(kableExtra)
 library(ggsci)
 
 

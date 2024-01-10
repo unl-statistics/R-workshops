@@ -405,7 +405,7 @@
 <li>Working directory</li>
 <li>“Default location where R will look for files you want to load and where it will put any files you save” <a href="https://intro2r.com/work-d.html">source</a></li>
 </ul>
-<div class="cell" data-hash="2-Files_cache/revealjs/unnamed-chunk-1_ba391dcf967f6cf0bba1c42aeab56c3e">
+<div class="cell" data-hash="2-Files_cache/html/unnamed-chunk-1_4ddad557c99bde260cdea722a8d1d882">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co">#Returns the file path of the current working directory</span></span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="fu">getwd</span>()</span>
 <span id="cb1-3"><a href="#cb1-3"></a></span>
@@ -454,7 +454,7 @@
 </section>
 <section id="gas-prices-in-the-midwest" class="slide level2">
 <h2>Gas Prices in the Midwest</h2>
-<div class="cell" data-hash="2-Files_cache/revealjs/unnamed-chunk-2_d3b96b9ad17033cf2b1f22a0864f9445">
+<div class="cell" data-hash="2-Files_cache/html/unnamed-chunk-2_4cadbe7122d567e0ab45a787a4257ab1">
 <div class="cell-output-display">
 <table>
 <colgroup>
@@ -604,7 +604,7 @@
 </section>
 <section id="your-turn-solutions" class="slide level2">
 <h2>Your Turn Solutions</h2>
-<div class="cell" data-hash="2-Files_cache/revealjs/unnamed-chunk-4_4a5aa64e4df497fcb83079381c235d31">
+<div class="cell" data-hash="2-Files_cache/html/unnamed-chunk-4_12440457ee1a4cc921c35de447593f3e">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>midwest_names <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(</span>
 <span id="cb2-2"><a href="#cb2-2"></a><span class="st">"midwest.csv"</span>, </span>
 <span id="cb2-3"><a href="#cb2-3"></a>  <span class="at">n_max=</span> <span class="dv">2</span>, <span class="at">col_names =</span> <span class="cn">FALSE</span>)</span>
@@ -617,7 +617,7 @@
 </section>
 <section id="quick-lesson-in-data-cleaning" class="slide level2">
 <h2>Quick Lesson in Data Cleaning</h2>
-<div class="cell" data-hash="2-Files_cache/revealjs/unnamed-chunk-5_afea4e74dba144f291cbdde5f19cc207">
+<div class="cell" data-hash="2-Files_cache/html/unnamed-chunk-5_267e3b0eff24f51fc943a686975a6e04">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">library</span>(lubridate) <span class="co"># works with dates</span></span>
 <span id="cb3-2"><a href="#cb3-2"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb3-3"><a href="#cb3-3"></a>values <span class="ot">&lt;-</span> <span class="fu">c</span>(midwest_data<span class="sc">$</span>X3, midwest_data<span class="sc">$</span>X5, midwest_data<span class="sc">$</span>X7, </span>
@@ -653,23 +653,23 @@
 </section>
 <section id="now-we-can-make-a-plot" class="slide level2">
 <h2>Now we can make a plot!</h2>
-<div class="cell" data-layout-align="center" data-hash="2-Files_cache/revealjs/unnamed-chunk-6_b54996b72036bcc6df0b06a2897ffa70">
+<div class="cell" data-layout-align="center" data-hash="2-Files_cache/html/unnamed-chunk-6_1e00e2ec70205c8032b908231c290293">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">library</span>(ggplot2)</span>
 <span id="cb4-2"><a href="#cb4-2"></a></span>
 <span id="cb4-3"><a href="#cb4-3"></a><span class="fu">ggplot</span>(midwest_gas, <span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> price)) <span class="sc">+</span> <span class="fu">geom_line</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="2-Files_files/figure-revealjs/unnamed-chunk-6-1.png" class="quarto-figure-center r-stretch" width="672"></section>
+<img data-src="2-Files_files/figure-html/unnamed-chunk-6-1.png" class="quarto-figure-center r-stretch" width="672"></section>
 <section id="reading-excel-data" class="slide level2">
 <h2>Reading Excel Data</h2>
 <p>Download the midwest.xls file to your current working directory (<code>getwd()</code>)</p>
-<div class="cell" data-hash="2-Files_cache/revealjs/unnamed-chunk-7_5f11ef6f7d1fa9d47988150e6fd8aeca">
+<div class="cell" data-hash="2-Files_cache/html/unnamed-chunk-7_1702a96891130d49da0306a2572c1a45">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb5-2"><a href="#cb5-2"></a>midwest2 <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"midwest.xls"</span>) </span>
+<span id="cb5-2"><a href="#cb5-2"></a>midwest2 <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"https://github.com/unl-statistics/R-workshops/raw/main/r-format/data/midwest.xls"</span>) </span>
 <span id="cb5-3"><a href="#cb5-3"></a><span class="fu">head</span>(midwest2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Something isn’t quite right here…</p>
-<div class="cell" data-hash="2-Files_cache/revealjs/midwest_83b0accd21f04710fb78d38f2cdd55e1">
+<div class="cell" data-hash="2-Files_cache/html/midwest_982401520fef0e4f1d5c5189311ad5b6">
 <div class="cell-output-display">
 <table data-quarto-postprocess="true">
 <thead>
@@ -738,12 +738,12 @@
 <h2>Reading Excel Data: Attempt #2</h2>
 <p>The 2nd row of the excel file also contains variable names.</p>
 <p>Let’s skip the first this time. We can then rename the first column.</p>
-<div class="cell" data-hash="2-Files_cache/revealjs/unnamed-chunk-8_9da680621ae32132164b7aec495b8322">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>midwest2 <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"midwest.xls"</span>, <span class="at">skip =</span> <span class="dv">1</span>) <span class="co">#&lt;&lt;</span></span>
+<div class="cell" data-hash="2-Files_cache/html/unnamed-chunk-8_0816fffbfc2b2343084721331da47d85">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>midwest2 <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"https://github.com/unl-statistics/R-workshops/raw/main/r-format/data/midwest.xls"</span>, <span class="at">skip =</span> <span class="dv">1</span>) <span class="co">#&lt;&lt;</span></span>
 <span id="cb6-2"><a href="#cb6-2"></a><span class="fu">names</span>(midwest2)[<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="st">"Year-Month"</span></span>
 <span id="cb6-3"><a href="#cb6-3"></a><span class="fu">head</span>(midwest2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-hash="2-Files_cache/revealjs/midwest2_051a1b38d25b880c598db54feede5186">
+<div class="cell" data-hash="2-Files_cache/html/midwest2_9d267429fbcd250044c5b5a5abdeab4c">
 <div class="cell-output-display">
 <table data-quarto-postprocess="true">
 <thead>
@@ -858,7 +858,7 @@
 </section>
 <section id="solution" class="slide level2">
 <h2>Solution</h2>
-<div class="cell" data-hash="2-Files_cache/revealjs/unnamed-chunk-9_73b2c107a188ae6ef57414e0f7c8139a">
+<div class="cell" data-hash="2-Files_cache/html/unnamed-chunk-9_01144004c47fe46d4c5ef55b975f8149">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">library</span>(haven) </span>
 <span id="cb7-2"><a href="#cb7-2"></a>sas.data <span class="ot">&lt;-</span> <span class="fu">read_xpt</span>(<span class="st">"../data/DEMO_G.XPT"</span>)</span>
 <span id="cb7-3"><a href="#cb7-3"></a>sas.data <span class="sc">%&gt;%</span> <span class="fu">head</span>(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1092,44 +1092,6 @@
         ]
       });
     </script>
-    
-    <script>
-      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
-      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
-      // slide changes (different for each slide format).
-      (function () {
-        // dispatch for htmlwidgets
-        function fireSlideEnter() {
-          const event = window.document.createEvent("Event");
-          event.initEvent("slideenter", true, true);
-          window.document.dispatchEvent(event);
-        }
-
-        function fireSlideChanged(previousSlide, currentSlide) {
-          fireSlideEnter();
-
-          // dispatch for shiny
-          if (window.jQuery) {
-            if (previousSlide) {
-              window.jQuery(previousSlide).trigger("hidden");
-            }
-            if (currentSlide) {
-              window.jQuery(currentSlide).trigger("shown");
-            }
-          }
-        }
-
-        // hookup for slidy
-        if (window.w3c_slidy) {
-          window.w3c_slidy.add_observer(function (slide_num) {
-            // slide_num starts at position 1
-            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
-          });
-        }
-
-      })();
-    </script>
-
     <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggleBodyColorMode = (bsSheetEl) => {

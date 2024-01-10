@@ -683,14 +683,14 @@
     "href": "r-format/slides/2-Files.html#reading-excel-data",
     "title": "Data Wrangling",
     "section": "Reading Excel Data",
-    "text": "Reading Excel Data\nDownload the midwest.xls file to your current working directory (getwd())\n\nlibrary(readxl)\nmidwest2 &lt;- read_excel(\"midwest.xls\") \nhead(midwest2)\n\nSomething isn’t quite right here…\n\n\n\n\n\nYear-Month\nWeek 1\n...3\nWeek 2\n...5\nWeek 3\n...7\nWeek 4\n...9\nWeek 5\n...11\n\n\n\n\nNA\nEnd Date\nValue\nEnd Date\nValue\nEnd Date\nValue\nEnd Date\nValue\nEnd Date\nValue\n\n\n1994-Nov\nNA\nNA\nNA\nNA\nNA\nNA\n39779\n1.1220000000000001\nNA\nNA\n\n\n1994-Dec\n39786\n1.0860000000000001\n39793\n1.0569999999999999\n39800\n1.0389999999999999\n39807\n1.0269999999999999\nNA\nNA"
+    "text": "Reading Excel Data\nDownload the midwest.xls file to your current working directory (getwd())\n\nlibrary(readxl)\nmidwest2 &lt;- read_excel(\"https://github.com/unl-statistics/R-workshops/raw/main/r-format/data/midwest.xls\") \nhead(midwest2)\n\nSomething isn’t quite right here…\n\n\n\n\n\nYear-Month\nWeek 1\n...3\nWeek 2\n...5\nWeek 3\n...7\nWeek 4\n...9\nWeek 5\n...11\n\n\n\n\nNA\nEnd Date\nValue\nEnd Date\nValue\nEnd Date\nValue\nEnd Date\nValue\nEnd Date\nValue\n\n\n1994-Nov\nNA\nNA\nNA\nNA\nNA\nNA\n39779\n1.1220000000000001\nNA\nNA\n\n\n1994-Dec\n39786\n1.0860000000000001\n39793\n1.0569999999999999\n39800\n1.0389999999999999\n39807\n1.0269999999999999\nNA\nNA"
   },
   {
     "objectID": "r-format/slides/2-Files.html#reading-excel-data-attempt-2",
     "href": "r-format/slides/2-Files.html#reading-excel-data-attempt-2",
     "title": "Data Wrangling",
     "section": "Reading Excel Data: Attempt #2",
-    "text": "Reading Excel Data: Attempt #2\nThe 2nd row of the excel file also contains variable names.\nLet’s skip the first this time. We can then rename the first column.\n\nmidwest2 &lt;- read_excel(\"midwest.xls\", skip = 1) #&lt;&lt;\nnames(midwest2)[1] &lt;- \"Year-Month\"\nhead(midwest2)\n\n\n\n\n\n\nYear-Month\nEnd Date...2\nValue...3\nEnd Date...4\nValue...5\nEnd Date...6\nValue...7\nEnd Date...8\nValue...9\nEnd Date...10\nValue...11\n\n\n\n\n1994-Nov\nNA\nNA\nNA\nNA\nNA\nNA\n2012-11-28\n1.122\nNA\nNA\n\n\n1994-Dec\n2012-12-05\n1.086\n2012-12-12\n1.057\n2012-12-19\n1.039\n2012-12-26\n1.027\nNA\nNA\n\n\n1995-Jan\n2012-01-02\n1.025\n2012-01-09\n1.046\n2012-01-16\n1.031\n2012-01-23\n1.054\n2012-01-30\n1.055\n\n\n\n\n\n\n\nBetter, but not yet perfect…\n\nHow can you fix this? Brute force way by renaming all columns? Take this into consideration when entering in your data into spreadsheets (no merged columns names with subheadings)"
+    "text": "Reading Excel Data: Attempt #2\nThe 2nd row of the excel file also contains variable names.\nLet’s skip the first this time. We can then rename the first column.\n\nmidwest2 &lt;- read_excel(\"https://github.com/unl-statistics/R-workshops/raw/main/r-format/data/midwest.xls\", skip = 1) #&lt;&lt;\nnames(midwest2)[1] &lt;- \"Year-Month\"\nhead(midwest2)\n\n\n\n\n\n\nYear-Month\nEnd Date...2\nValue...3\nEnd Date...4\nValue...5\nEnd Date...6\nValue...7\nEnd Date...8\nValue...9\nEnd Date...10\nValue...11\n\n\n\n\n1994-Nov\nNA\nNA\nNA\nNA\nNA\nNA\n2012-11-28\n1.122\nNA\nNA\n\n\n1994-Dec\n2012-12-05\n1.086\n2012-12-12\n1.057\n2012-12-19\n1.039\n2012-12-26\n1.027\nNA\nNA\n\n\n1995-Jan\n2012-01-02\n1.025\n2012-01-09\n1.046\n2012-01-16\n1.031\n2012-01-23\n1.054\n2012-01-30\n1.055\n\n\n\n\n\n\n\nBetter, but not yet perfect…\n\nHow can you fix this? Brute force way by renaming all columns? Take this into consideration when entering in your data into spreadsheets (no merged columns names with subheadings)"
   },
   {
     "objectID": "r-format/slides/2-Files.html#haven-package",
@@ -1498,6 +1498,97 @@
     "text": "Your Turn\n\nCreate a function that takes numeric input and provides the mean and a 95% confidence interval for the mean for the data (the t.test function could be useful - example in 4-DataStructures.R - will give you your confidence interval)\nAdd checks to your function to make sure the data is either numeric or logical. If it is logical convert it to numeric.\nThe diamonds data set is included in the ggplot2 package and is well known as a convenient data set for examples. It can be read into your environment with the function data(\"diamonds\", package = \"ggplot2\"). Loop over the columns of the diamonds data set and apply your function to all of the numeric columns.\n\n\n\nUNL R Workshops"
   },
   {
+    "objectID": "r-intro/slides/1-Setup.html#your-background",
+    "href": "r-intro/slides/1-Setup.html#your-background",
+    "title": "Setup",
+    "section": "Your Background",
+    "text": "Your Background\nWhat do you know already?\n\nExcel, Numbers, Some sort of spreadsheet software\nSAS, SPSS, Minitab\nAny other programming language\nA text editor\nR"
+  },
+  {
+    "objectID": "r-intro/slides/1-Setup.html#what-is-r",
+    "href": "r-intro/slides/1-Setup.html#what-is-r",
+    "title": "Setup",
+    "section": "What is R?",
+    "text": "What is R?\n\nAn open-source, free software environment\n“a system for statistical computation and graphics”\nR has some basic infrastructure:\n\nCRAN: Central package repository\nCRAN mirrors: copies of this repository hosted at various locations worldwide"
+  },
+  {
+    "objectID": "r-intro/slides/1-Setup.html#installing-r",
+    "href": "r-intro/slides/1-Setup.html#installing-r",
+    "title": "Setup",
+    "section": "Installing R",
+    "text": "Installing R\nHopefully this is done already. If not, for Windows or OS X:\n\nGo to http://www.r-project.org/\nClick the CRAN link on the left, and pick a download site (0-Cloud is a good choice)\nChoose link based on your OS\nOn Windows, choose the “base” subdirectory to install R.\nOn OS X, choose the .pkg file to install R."
+  },
+  {
+    "objectID": "r-intro/slides/1-Setup.html#installing-rstudio",
+    "href": "r-intro/slides/1-Setup.html#installing-rstudio",
+    "title": "Setup",
+    "section": "Installing RStudio",
+    "text": "Installing RStudio\nThis should also be done already, but if not…\n\nBrowse to https://www.rstudio.com/\nClick on the “Download RStudio”\nDownload RStudio Desktop Free\nChoose the installer appropriate for your platform\nIf you are using a Mac, you may need to download XQuartz from https://www.xquartz.org/\n\nIf you run into issues, try downloading this to see if it helps, especially with certain graphics."
+  },
+  {
+    "objectID": "r-intro/slides/1-Setup.html#project-management-r-projects",
+    "href": "r-intro/slides/1-Setup.html#project-management-r-projects",
+    "title": "Setup",
+    "section": "Project Management: R Projects",
+    "text": "Project Management: R Projects\n\n\nWhat are R Projects?\n\nWhen working on your research it is beneficial to keep all associated files with a project together.\nSets your working directory for you\n\nHow to Create One?\n\nFile -&gt; New Project -&gt; New Directory -&gt; New Project\nIf already have a folder created: File -&gt; New Project -&gt; Existing Directory\nThis will take you to a page where you create a folder and then the file path to that folder (subdirectory)\n\n\n\nReference for creating RStudio Projects \\(\\\\\\) RStudio Projects Website"
+  },
+  {
+    "objectID": "r-intro/slides/1-Setup.html#your-turn-create-a-project-together-for-this-workshop",
+    "href": "r-intro/slides/1-Setup.html#your-turn-create-a-project-together-for-this-workshop",
+    "title": "Setup",
+    "section": "Your Turn: Create a Project Together for this Workshop",
+    "text": "Your Turn: Create a Project Together for this Workshop\n\nCreate a RStudio Project for the workshop that you can use throughout the week.\n\nYou can save R files along with the datasets, so you won’t have to set your working directory each day.\n\nSave 2-MotivatingExample.R from the website in your project\n\nThis is the file we are going to use in the next section\n\n\n\n\nUNL R Workshops"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "",
+    "section": "",
+    "text": "The schedule listed below is for the next set of workshops. Workshops are typically offered just before the classes start in the Spring as well as the week after Spring finals. We anticipate that these classes will be offered in person, with no online option.\n\n\nSchedule is tentative and subject to change due to enrollment and lab availability\n\nLocation: Hardin 163 (North wing)\nRequired materials: Laptop with software installed\n\nRegister for the workshops here.\nWe will send you an email about a week before the workshops are held with additional details.\n\n\n\nDate\nTime\nCourse\nDescription\n\n\n\n\nJan 15\n\n\nMartin Luther King, Jr. Day\n\n\nJan 16\n9am - 4pm\nIntroduction to R\nLearn the basics of R & Rstudio, how to write your own R scripts and get an introduction to the tidyverse. We’ll start with the beginning and quickly get you up to speed with the basic tools of data exploration. You will learn how to import and manage data sets, create R objects, install and load R packages, and how to ask for help in R.\n\n\nJan 17\n9am - 4pm\nGraphics with ggplot2\nggplot2 provides a framework to produce elegant, high-end graphical displays using the Grammar of Graphics. You will learn how to create a wide variety of graphical displays in R. We will use lots of data examples to wok through the basic plots as well as more advanced tools, such as facetting, colors, themes and more.\n\n\nJan 18\n9am - 4pm\nData Wrangling\nThis workshop will to prepare you for dealing with messy data by walking you through real-life examples. We will help you to automate cleaning your data, fixing spelling errors, transforming variables, and generating data summaries using the split-apply-combine paradigm. We will also talk about wide and long format data and help you to convert between these formats and to know when each format is useful.\n\n\nJan 19\n9am - 4pm\nStatistical Modeling in R\nLearn how to fit models, test hypotheses, create model output tables and plots, and more! In the morning, we will cover model-fitting basics (linear regression, mixed models), and in the afternoon we will look into more advanced types of models (generalized linear mixed models, etc.).  The last part of this session is designed as a workshop, so bring your data to analyze (we will have some data sets if you need one!)\n\n\n\n\n\n\nThese workshops are developed and hosted by graduate students in the Statistics department at University of Nebraska-Lincoln, primarily to assist UNL students and staff with developing R skills necessary for research and data analysis. Individuals from outside the university are welcome to participate. Proceeds from the workshops directly fund graduate student activities.\n\n\n\nWorkshop Type\nStudent\nUNL Affiliate\nCorporate\n\n\n\n\nFull Day\n$40\n$60\n$200\n\n\nHalf Day\n$20\n$30\n$120\n\n\nFull Week\n$120\n$240\n$800\n\n\n\nWe accept exact cash, checks, or a University cost object. We cannot accept N-cards.\nIf you are anticipating registering more than 4 people who are not UNL Affiliates as a group, please feel free to contact Susan Vanderplas for a group rate.\nIf you are an independent student (e.g. not part of a research lab), and cannot afford the prices we’ve set, please contact Susan Vanderplas about 1 week before the workshops are scheduled to see if scholarships are available. Include how much you can afford to pay, why you need the workshops, and any other details you think are relevant. Scholarships will depend on the number of registered participants. We charge just enough to ensure that the instructors are paid for their time and effort - most semesters, we barely break even.\nNote that half-day workshops are those which are only offered from e.g. 9-12 or 1-4. We do not allow you to register and pay for only half of a full-day workshop.\n\n\n\nRegister here"
+  },
+  {
+    "objectID": "index.html#schedule",
+    "href": "index.html#schedule",
+    "title": "",
+    "section": "",
+    "text": "Schedule is tentative and subject to change due to enrollment and lab availability\n\nLocation: Hardin 163 (North wing)\nRequired materials: Laptop with software installed\n\nRegister for the workshops here.\nWe will send you an email about a week before the workshops are held with additional details.\n\n\n\nDate\nTime\nCourse\nDescription\n\n\n\n\nJan 15\n\n\nMartin Luther King, Jr. Day\n\n\nJan 16\n9am - 4pm\nIntroduction to R\nLearn the basics of R & Rstudio, how to write your own R scripts and get an introduction to the tidyverse. We’ll start with the beginning and quickly get you up to speed with the basic tools of data exploration. You will learn how to import and manage data sets, create R objects, install and load R packages, and how to ask for help in R.\n\n\nJan 17\n9am - 4pm\nGraphics with ggplot2\nggplot2 provides a framework to produce elegant, high-end graphical displays using the Grammar of Graphics. You will learn how to create a wide variety of graphical displays in R. We will use lots of data examples to wok through the basic plots as well as more advanced tools, such as facetting, colors, themes and more.\n\n\nJan 18\n9am - 4pm\nData Wrangling\nThis workshop will to prepare you for dealing with messy data by walking you through real-life examples. We will help you to automate cleaning your data, fixing spelling errors, transforming variables, and generating data summaries using the split-apply-combine paradigm. We will also talk about wide and long format data and help you to convert between these formats and to know when each format is useful.\n\n\nJan 19\n9am - 4pm\nStatistical Modeling in R\nLearn how to fit models, test hypotheses, create model output tables and plots, and more! In the morning, we will cover model-fitting basics (linear regression, mixed models), and in the afternoon we will look into more advanced types of models (generalized linear mixed models, etc.).  The last part of this session is designed as a workshop, so bring your data to analyze (we will have some data sets if you need one!)"
+  },
+  {
+    "objectID": "index.html#pricing",
+    "href": "index.html#pricing",
+    "title": "",
+    "section": "",
+    "text": "These workshops are developed and hosted by graduate students in the Statistics department at University of Nebraska-Lincoln, primarily to assist UNL students and staff with developing R skills necessary for research and data analysis. Individuals from outside the university are welcome to participate. Proceeds from the workshops directly fund graduate student activities.\n\n\n\nWorkshop Type\nStudent\nUNL Affiliate\nCorporate\n\n\n\n\nFull Day\n$40\n$60\n$200\n\n\nHalf Day\n$20\n$30\n$120\n\n\nFull Week\n$120\n$240\n$800\n\n\n\nWe accept exact cash, checks, or a University cost object. We cannot accept N-cards.\nIf you are anticipating registering more than 4 people who are not UNL Affiliates as a group, please feel free to contact Susan Vanderplas for a group rate.\nIf you are an independent student (e.g. not part of a research lab), and cannot afford the prices we’ve set, please contact Susan Vanderplas about 1 week before the workshops are scheduled to see if scholarships are available. Include how much you can afford to pay, why you need the workshops, and any other details you think are relevant. Scholarships will depend on the number of registered participants. We charge just enough to ensure that the instructors are paid for their time and effort - most semesters, we barely break even.\nNote that half-day workshops are those which are only offered from e.g. 9-12 or 1-4. We do not allow you to register and pay for only half of a full-day workshop."
+  },
+  {
+    "objectID": "index.html#sign-up",
+    "href": "index.html#sign-up",
+    "title": "",
+    "section": "",
+    "text": "Register here"
+  },
+  {
+    "objectID": "r-intro/index.html",
+    "href": "r-intro/index.html",
+    "title": "Programming with Data",
+    "section": "",
+    "text": "In Programming with data you get a head start with the statistical software R. R has gained a huge number of users in the last years and the number of methods from add-on packages is growing rapidly. The course will be data centric, with lots of different data sets that illustrate examples of the different techniques used for different problems. The course will be a mix of instruction and follow-up exercises. It will be held in a computer lab but you are encouraged to bring your own laptops, with software already loaded. A list of software is available to help you prepare your machine for the workshop."
+  },
+  {
+    "objectID": "r-intro/index.html#timetable",
+    "href": "r-intro/index.html#timetable",
+    "title": "Programming with Data",
+    "section": "Timetable",
+    "text": "Timetable\n\n\n\nDate\nNotes\nLectures and Resources\n\n\n\n\n9 - 9:30\nSetting Up\nThis will make sure that everybody’s system is up and running. You should try to install R ahead of time, so that this time can be used to address potential problems.  Setup.R\n\n\n9:30 - 10:30\nMotivating Example\nFirst taste of R: Jumping right into it to get an idea of how to use R and what it is capable of.  2-MotivatingExample.R daily_shedding.csv\n\n\n10:30 - 10:50\nBreak\n\n\n\n10:50 - 11:50\nBasics\nWorking with data and learning about vectors, indexing vectors, and additional statistical functions. 3-Basics.RR Reference Card\n\n\n11:50 - 12:50\nLunch Break (on your own)\n\n\n\n12:50 - 2:20\nData Structures\nUsing and examining the other data structures that are available in R. 4-DataStructures.R  tips.csvyourturndata.txt\n\n\n2:20 - 2:40\nBreak\n\n\n\n2:40 - 4:00\nPackages and Basic Programming\nIntroduction to packages and finding useful packages. We will also cover simple programming constructs to make your life easier with R. 5-PackagesProgramming.R\n\n\n3:55 - 4:00\nEvaluation\nHelp us make the workshops better!"
+  },
+  {
+    "objectID": "r-intro/index.html#useful-links",
+    "href": "r-intro/index.html#useful-links",
+    "title": "Programming with Data",
+    "section": "Useful Links",
+    "text": "Useful Links\nRecommended Reading:\n\nR for Data Science\nR for ecologists Data Carpentry workshop\n\n\nYour Turn Solutions\nPlease make sure to try the practice problem before viewing solutions\n\nYour Turn Solutions"
+  },
+  {
     "objectID": "r-intro/slides/4-DataStructures.html#matrices",
     "href": "r-intro/slides/4-DataStructures.html#matrices",
     "title": "Data Structures",
@@ -1706,209 +1797,6 @@
     "title": "Data Structures",
     "section": "Your Turn",
     "text": "Your Turn\n\nMake 5 rows of data in an excel spreadsheet and save it as a tab-delimited txt file. (or use yourturndata.txt on the website)\nImport this new .txt file into R with read_table. You may need to look at the help page for read_table in order to properly do this.\nIf want to try a csv file, try reading in the tips.csv file yourself.\n\n\n\nUNL R Workshops"
-  },
-  {
-    "objectID": "r-intro/index.html",
-    "href": "r-intro/index.html",
-    "title": "Programming with Data",
-    "section": "",
-    "text": "In Programming with data you get a head start with the statistical software R. R has gained a huge number of users in the last years and the number of methods from add-on packages is growing rapidly. The course will be data centric, with lots of different data sets that illustrate examples of the different techniques used for different problems. The course will be a mix of instruction and follow-up exercises. It will be held in a computer lab but you are encouraged to bring your own laptops, with software already loaded. A list of software is available to help you prepare your machine for the workshop."
-  },
-  {
-    "objectID": "r-intro/index.html#timetable",
-    "href": "r-intro/index.html#timetable",
-    "title": "Programming with Data",
-    "section": "Timetable",
-    "text": "Timetable\n\n\n\nDate\nNotes\nLectures and Resources\n\n\n\n\n9 - 9:30\nSetting Up\nThis will make sure that everybody’s system is up and running. You should try to install R ahead of time, so that this time can be used to address potential problems.  Setup.R\n\n\n9:30 - 10:30\nMotivating Example\nFirst taste of R: Jumping right into it to get an idea of how to use R and what it is capable of.  2-MotivatingExample.R daily_shedding.csv\n\n\n10:30 - 10:50\nBreak\n\n\n\n10:50 - 11:50\nBasics\nWorking with data and learning about vectors, indexing vectors, and additional statistical functions. 3-Basics.RR Reference Card\n\n\n11:50 - 12:50\nLunch Break (on your own)\n\n\n\n12:50 - 2:20\nData Structures\nUsing and examining the other data structures that are available in R. 4-DataStructures.R  tips.csvyourturndata.txt\n\n\n2:20 - 2:40\nBreak\n\n\n\n2:40 - 4:00\nPackages and Basic Programming\nIntroduction to packages and finding useful packages. We will also cover simple programming constructs to make your life easier with R. 5-PackagesProgramming.R\n\n\n3:55 - 4:00\nEvaluation\nHelp us make the workshops better!"
-  },
-  {
-    "objectID": "r-intro/index.html#useful-links",
-    "href": "r-intro/index.html#useful-links",
-    "title": "Programming with Data",
-    "section": "Useful Links",
-    "text": "Useful Links\nRecommended Reading:\n\nR for Data Science\nR for ecologists Data Carpentry workshop\n\n\nYour Turn Solutions\nPlease make sure to try the practice problem before viewing solutions\n\nYour Turn Solutions"
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "",
-    "section": "",
-    "text": "The schedule listed below is for the next set of workshops. Workshops are typically offered just before the classes start in the Spring as well as the week after Spring finals. We anticipate that these classes will be offered in person, with no online option.\n\n\nSchedule is tentative and subject to change due to enrollment and lab availability\n\nLocation: Hardin 163 (North wing)\nRequired materials: Laptop with software installed\n\nRegister for the workshops here.\nWe will send you an email about a week before the workshops are held with additional details.\n\n\n\nDate\nTime\nCourse\nDescription\n\n\n\n\nJan 15\n\n\nMartin Luther King, Jr. Day\n\n\nJan 16\n9am - 4pm\nIntroduction to R\nLearn the basics of R & Rstudio, how to write your own R scripts and get an introduction to the tidyverse. We’ll start with the beginning and quickly get you up to speed with the basic tools of data exploration. You will learn how to import and manage data sets, create R objects, install and load R packages, and how to ask for help in R.\n\n\nJan 17\n9am - 4pm\nGraphics with ggplot2\nggplot2 provides a framework to produce elegant, high-end graphical displays using the Grammar of Graphics. You will learn how to create a wide variety of graphical displays in R. We will use lots of data examples to wok through the basic plots as well as more advanced tools, such as facetting, colors, themes and more.\n\n\nJan 18\n9am - 4pm\nData Wrangling\nThis workshop will to prepare you for dealing with messy data by walking you through real-life examples. We will help you to automate cleaning your data, fixing spelling errors, transforming variables, and generating data summaries using the split-apply-combine paradigm. We will also talk about wide and long format data and help you to convert between these formats and to know when each format is useful.\n\n\nJan 19\n9am - 4pm\nStatistical Modeling in R\nLearn how to fit models, test hypotheses, create model output tables and plots, and more! In the morning, we will cover model-fitting basics (linear regression, mixed models), and in the afternoon we will look into more advanced types of models (generalized linear mixed models, etc.).  The last part of this session is designed as a workshop, so bring your data to analyze (we will have some data sets if you need one!)\n\n\n\n\n\n\nThese workshops are developed and hosted by graduate students in the Statistics department at University of Nebraska-Lincoln, primarily to assist UNL students and staff with developing R skills necessary for research and data analysis. Individuals from outside the university are welcome to participate. Proceeds from the workshops directly fund graduate student activities.\n\n\n\nWorkshop Type\nStudent\nUNL Affiliate\nCorporate\n\n\n\n\nFull Day\n$40\n$60\n$200\n\n\nHalf Day\n$20\n$30\n$120\n\n\nFull Week\n$120\n$240\n$800\n\n\n\nWe accept exact cash, checks, or a University cost object. We cannot accept N-cards.\nIf you are anticipating registering more than 4 people who are not UNL Affiliates as a group, please feel free to contact Susan Vanderplas for a group rate.\nIf you are an independent student (e.g. not part of a research lab), and cannot afford the prices we’ve set, please contact Susan Vanderplas about 1 week before the workshops are scheduled to see if scholarships are available. Include how much you can afford to pay, why you need the workshops, and any other details you think are relevant. Scholarships will depend on the number of registered participants. We charge just enough to ensure that the instructors are paid for their time and effort - most semesters, we barely break even.\nNote that half-day workshops are those which are only offered from e.g. 9-12 or 1-4. We do not allow you to register and pay for only half of a full-day workshop.\n\n\n\nRegister here"
-  },
-  {
-    "objectID": "index.html#schedule",
-    "href": "index.html#schedule",
-    "title": "",
-    "section": "",
-    "text": "Schedule is tentative and subject to change due to enrollment and lab availability\n\nLocation: Hardin 163 (North wing)\nRequired materials: Laptop with software installed\n\nRegister for the workshops here.\nWe will send you an email about a week before the workshops are held with additional details.\n\n\n\nDate\nTime\nCourse\nDescription\n\n\n\n\nJan 15\n\n\nMartin Luther King, Jr. Day\n\n\nJan 16\n9am - 4pm\nIntroduction to R\nLearn the basics of R & Rstudio, how to write your own R scripts and get an introduction to the tidyverse. We’ll start with the beginning and quickly get you up to speed with the basic tools of data exploration. You will learn how to import and manage data sets, create R objects, install and load R packages, and how to ask for help in R.\n\n\nJan 17\n9am - 4pm\nGraphics with ggplot2\nggplot2 provides a framework to produce elegant, high-end graphical displays using the Grammar of Graphics. You will learn how to create a wide variety of graphical displays in R. We will use lots of data examples to wok through the basic plots as well as more advanced tools, such as facetting, colors, themes and more.\n\n\nJan 18\n9am - 4pm\nData Wrangling\nThis workshop will to prepare you for dealing with messy data by walking you through real-life examples. We will help you to automate cleaning your data, fixing spelling errors, transforming variables, and generating data summaries using the split-apply-combine paradigm. We will also talk about wide and long format data and help you to convert between these formats and to know when each format is useful.\n\n\nJan 19\n9am - 4pm\nStatistical Modeling in R\nLearn how to fit models, test hypotheses, create model output tables and plots, and more! In the morning, we will cover model-fitting basics (linear regression, mixed models), and in the afternoon we will look into more advanced types of models (generalized linear mixed models, etc.).  The last part of this session is designed as a workshop, so bring your data to analyze (we will have some data sets if you need one!)"
-  },
-  {
-    "objectID": "index.html#pricing",
-    "href": "index.html#pricing",
-    "title": "",
-    "section": "",
-    "text": "These workshops are developed and hosted by graduate students in the Statistics department at University of Nebraska-Lincoln, primarily to assist UNL students and staff with developing R skills necessary for research and data analysis. Individuals from outside the university are welcome to participate. Proceeds from the workshops directly fund graduate student activities.\n\n\n\nWorkshop Type\nStudent\nUNL Affiliate\nCorporate\n\n\n\n\nFull Day\n$40\n$60\n$200\n\n\nHalf Day\n$20\n$30\n$120\n\n\nFull Week\n$120\n$240\n$800\n\n\n\nWe accept exact cash, checks, or a University cost object. We cannot accept N-cards.\nIf you are anticipating registering more than 4 people who are not UNL Affiliates as a group, please feel free to contact Susan Vanderplas for a group rate.\nIf you are an independent student (e.g. not part of a research lab), and cannot afford the prices we’ve set, please contact Susan Vanderplas about 1 week before the workshops are scheduled to see if scholarships are available. Include how much you can afford to pay, why you need the workshops, and any other details you think are relevant. Scholarships will depend on the number of registered participants. We charge just enough to ensure that the instructors are paid for their time and effort - most semesters, we barely break even.\nNote that half-day workshops are those which are only offered from e.g. 9-12 or 1-4. We do not allow you to register and pay for only half of a full-day workshop."
-  },
-  {
-    "objectID": "index.html#sign-up",
-    "href": "index.html#sign-up",
-    "title": "",
-    "section": "",
-    "text": "Register here"
-  },
-  {
-    "objectID": "r-intro/slides/1-Setup.html#your-background",
-    "href": "r-intro/slides/1-Setup.html#your-background",
-    "title": "Setup",
-    "section": "Your Background",
-    "text": "Your Background\nWhat do you know already?\n\nExcel, Numbers, Some sort of spreadsheet software\nSAS, SPSS, Minitab\nAny other programming language\nA text editor\nR"
-  },
-  {
-    "objectID": "r-intro/slides/1-Setup.html#what-is-r",
-    "href": "r-intro/slides/1-Setup.html#what-is-r",
-    "title": "Setup",
-    "section": "What is R?",
-    "text": "What is R?\n\nAn open-source, free software environment\n“a system for statistical computation and graphics”\nR has some basic infrastructure:\n\nCRAN: Central package repository\nCRAN mirrors: copies of this repository hosted at various locations worldwide"
-  },
-  {
-    "objectID": "r-intro/slides/1-Setup.html#installing-r",
-    "href": "r-intro/slides/1-Setup.html#installing-r",
-    "title": "Setup",
-    "section": "Installing R",
-    "text": "Installing R\nHopefully this is done already. If not, for Windows or OS X:\n\nGo to http://www.r-project.org/\nClick the CRAN link on the left, and pick a download site (0-Cloud is a good choice)\nChoose link based on your OS\nOn Windows, choose the “base” subdirectory to install R.\nOn OS X, choose the .pkg file to install R."
-  },
-  {
-    "objectID": "r-intro/slides/1-Setup.html#installing-rstudio",
-    "href": "r-intro/slides/1-Setup.html#installing-rstudio",
-    "title": "Setup",
-    "section": "Installing RStudio",
-    "text": "Installing RStudio\nThis should also be done already, but if not…\n\nBrowse to https://www.rstudio.com/\nClick on the “Download RStudio”\nDownload RStudio Desktop Free\nChoose the installer appropriate for your platform\nIf you are using a Mac, you may need to download XQuartz from https://www.xquartz.org/\n\nIf you run into issues, try downloading this to see if it helps, especially with certain graphics."
-  },
-  {
-    "objectID": "r-intro/slides/1-Setup.html#project-management-r-projects",
-    "href": "r-intro/slides/1-Setup.html#project-management-r-projects",
-    "title": "Setup",
-    "section": "Project Management: R Projects",
-    "text": "Project Management: R Projects\n\n\nWhat are R Projects?\n\nWhen working on your research it is beneficial to keep all associated files with a project together.\nSets your working directory for you\n\nHow to Create One?\n\nFile -&gt; New Project -&gt; New Directory -&gt; New Project\nIf already have a folder created: File -&gt; New Project -&gt; Existing Directory\nThis will take you to a page where you create a folder and then the file path to that folder (subdirectory)\n\n\n\nReference for creating RStudio Projects \\(\\\\\\) RStudio Projects Website"
-  },
-  {
-    "objectID": "r-intro/slides/1-Setup.html#your-turn-create-a-project-together-for-this-workshop",
-    "href": "r-intro/slides/1-Setup.html#your-turn-create-a-project-together-for-this-workshop",
-    "title": "Setup",
-    "section": "Your Turn: Create a Project Together for this Workshop",
-    "text": "Your Turn: Create a Project Together for this Workshop\n\nCreate a RStudio Project for the workshop that you can use throughout the week.\n\nYou can save R files along with the datasets, so you won’t have to set your working directory each day.\n\nSave 2-MotivatingExample.R from the website in your project\n\nThis is the file we are going to use in the next section\n\n\n\n\nUNL R Workshops"
-  },
-  {
-    "objectID": "r-intro/slides/6-RegularExpressions.html#regular-expressions",
-    "href": "r-intro/slides/6-RegularExpressions.html#regular-expressions",
-    "title": "Regular Expressions",
-    "section": "Regular Expressions",
-    "text": "Regular Expressions\n \\(\\\\\\) \\(\\\\\\) \\(\\\\\\) \\(\\\\\\) \\(\\\\\\) \\(\\\\\\) #### Regular Expressions are a sequence of characters that match a pattern in text."
-  },
-  {
-    "objectID": "r-intro/slides/6-RegularExpressions.html#xkcd-208",
-    "href": "r-intro/slides/6-RegularExpressions.html#xkcd-208",
-    "title": "Regular Expressions",
-    "section": "xkcd #208",
-    "text": "xkcd #208"
-  },
-  {
-    "objectID": "r-intro/slides/6-RegularExpressions.html#regular-expressions-1",
-    "href": "r-intro/slides/6-RegularExpressions.html#regular-expressions-1",
-    "title": "Regular Expressions",
-    "section": "Regular Expressions",
-    "text": "Regular Expressions\n\nRegular expressions (regex, regexp) is a sequence of characters that form a search pattern\nOriginated in 1950s. American mathematician Stephen Kleene formalized the description of a regular language.\nCommon usage with Unix text processing utilities ed, an editor, and grep (global regular expression print), a filter.\nR language provides this capability through grep, gsub, …"
-  },
-  {
-    "objectID": "r-intro/slides/6-RegularExpressions.html#example-state-names",
-    "href": "r-intro/slides/6-RegularExpressions.html#example-state-names",
-    "title": "Regular Expressions",
-    "section": "Example: State names",
-    "text": "Example: State names\nstate.name is a built in dataset within R that contains all the U.S. state names.\n\ndata(state)\n\nHow many state names contain the pattern “ne”?\n\ngrep(pattern = \"ne\", state.name)\n\n[1]  7 19 23 42\n\nstate.name[7]\n\n[1] \"Connecticut\"\n\ngrep(pattern = \"ne\", state.name, value = TRUE)\n\n[1] \"Connecticut\" \"Maine\"       \"Minnesota\"   \"Tennessee\""
-  },
-  {
-    "objectID": "r-intro/slides/6-RegularExpressions.html#example",
-    "href": "r-intro/slides/6-RegularExpressions.html#example",
-    "title": "Regular Expressions",
-    "section": "Example",
-    "text": "Example\nWe don’t care about the casing so we will make our pattern more promiscuous.\n\ngrep(pattern = \"[nN]e\", state.name, value = TRUE)\n\n [1] \"Connecticut\"   \"Maine\"         \"Minnesota\"     \"Nebraska\"     \n [5] \"Nevada\"        \"New Hampshire\" \"New Jersey\"    \"New Mexico\"   \n [9] \"New York\"      \"Tennessee\""
-  },
-  {
-    "objectID": "r-intro/slides/6-RegularExpressions.html#basics-of-regular-expressions",
-    "href": "r-intro/slides/6-RegularExpressions.html#basics-of-regular-expressions",
-    "title": "Regular Expressions",
-    "section": "Basics of regular expressions",
-    "text": "Basics of regular expressions\n\n\n\n\n\n\n\nexpression\nmeaning\n\n\n\n\nordinary characters\nmatch themselves\n\n\n$ ^ { [ ( ) ] } * + ? \\\nspecial characters\n\n\n[abc]\nmatches single letter from “a”, “b”, or “c”\n\n\n[^abc]\nmatches any single letter other than “a”, “b”, and “c”\n\n\n[a-gm]\nmatches any single letter out of “a”, “b”, … “g” or “m”\n\n\n[a-z][0-9]\nmatches one lower case letter followed by a digit"
-  },
-  {
-    "objectID": "r-intro/slides/6-RegularExpressions.html#basics-of-regular-expressions-contd",
-    "href": "r-intro/slides/6-RegularExpressions.html#basics-of-regular-expressions-contd",
-    "title": "Regular Expressions",
-    "section": "Basics of regular expressions (cont’d)",
-    "text": "Basics of regular expressions (cont’d)\n\n\n\nexpression\nmeaning\n\n\n\n\n\\x\nmatch a hexadecimal number\n\n\n\\s\nwhitespace\n\n\n^\nstarting position within the string\n\n\n$\nending position with in the string\n\n\n&lt; &gt;\nstart, end of a word\n\n\n\\t \\r \\v \\n\ntab, carriage return, vertical tab, new line\n\n\n\\d\nrepresents a digit"
-  },
-  {
-    "objectID": "r-intro/slides/6-RegularExpressions.html#multipliers",
-    "href": "r-intro/slides/6-RegularExpressions.html#multipliers",
-    "title": "Regular Expressions",
-    "section": "Multipliers",
-    "text": "Multipliers\n\n? indicates there is zero or one of the preceding element, eg colou?r matches “color” or “colour”\n* indicates there is zero or more of the preceding element, eg ab*c matches “ac”, “abc”, “abbc”, “abbbc”, …\n+ indicates there is one or more of the preceding element, eg ab+c matches “abc”, “abbc”, “abbbc”, …\n. matches any single character, eg a.c matches “abc” or “atc”\n{n} indicates the preceding element is matched exactly n times\n{n,} indicates the preceding element is matched n or more times\n{n,m} indicates the preceding element is matched at least n times, but not more than m times"
-  },
-  {
-    "objectID": "r-intro/slides/6-RegularExpressions.html#advanced-patterns",
-    "href": "r-intro/slides/6-RegularExpressions.html#advanced-patterns",
-    "title": "Regular Expressions",
-    "section": "Advanced Patterns",
-    "text": "Advanced Patterns\nsee ?regex\n\n[:alpha:] Any alphabetic character\n[:lower:] Any lowercase character\n[:upper:] Any uppercase character\n[:digit:] Any digit\n[:alnum:] Any alphanumeric character (alphabetic or digit)\n[:blank:] Any white space character (space, tab, vertical tab)\n[:graph:] Any printable character, except space\n[:print:] Any printable character, including the space\n[:punct:] Any punctuation (i.e., a printable character that is not white space or alphanumeric)\n[:cntrl:] Any nonprintable character"
-  },
-  {
-    "objectID": "r-intro/slides/6-RegularExpressions.html#examples",
-    "href": "r-intro/slides/6-RegularExpressions.html#examples",
-    "title": "Regular Expressions",
-    "section": "Examples",
-    "text": "Examples\nWhat do these regular expressions do?\n.at\n[hc]at\n[^t]at\n[^hc]at\n^[S]tat\n[S]tat$"
-  },
-  {
-    "objectID": "r-intro/slides/6-RegularExpressions.html#trickier-examples",
-    "href": "r-intro/slides/6-RegularExpressions.html#trickier-examples",
-    "title": "Regular Expressions",
-    "section": "Trickier Examples",
-    "text": "Trickier Examples\nWhat do these regular expressions do?\n^s.*\n[A-Z]\\{3,\\}\n[bB]ar ?[cC]hart\n^[0-9]{5}$\n^(\\d{3}-\\d{3}-\\d{4})*$"
-  },
-  {
-    "objectID": "r-intro/slides/6-RegularExpressions.html#regular-expressions-in-r",
-    "href": "r-intro/slides/6-RegularExpressions.html#regular-expressions-in-r",
-    "title": "Regular Expressions",
-    "section": "Regular expressions in R",
-    "text": "Regular expressions in R\nPatterns & Matches\n\nFind pattern: grep, regexpr, gregexpr\nPattern replacement: gsub (pattern, replacement, x)\n\ngrep(pattern, x, ignore.case = FALSE, perl = FALSE, value = FALSE,\n     fixed = FALSE, useBytes = FALSE, invert = FALSE)\n\ngsub(pattern, replacement, x, ignore.case = FALSE, perl = FALSE,\n     fixed = FALSE, useBytes = FALSE)"
-  },
-  {
-    "objectID": "r-intro/slides/6-RegularExpressions.html#your-turn",
-    "href": "r-intro/slides/6-RegularExpressions.html#your-turn",
-    "title": "Regular Expressions",
-    "section": "Your Turn",
-    "text": "Your Turn\n\nHow many state names contain one or two S’s?\nFor any state that has a name in the form New -, replace New with Old."
-  },
-  {
-    "objectID": "r-intro/slides/6-RegularExpressions.html#extracting-pieces-from-a-regular-expression",
-    "href": "r-intro/slides/6-RegularExpressions.html#extracting-pieces-from-a-regular-expression",
-    "title": "Regular Expressions",
-    "section": "Extracting pieces from a regular expression",
-    "text": "Extracting pieces from a regular expression\n\nparentheses ( ) group a pattern of interest together\nusing \\\\1, \\\\2, \\\\3, … we can extract the first, second, third … pattern\n\nImagine want to extract some sample data that has been coded into our sample names.\nFor example, X1P10N2AFD0 encodes the experiment, pig number, pen, tissue, and day.\n\nmeta &lt;- read.table(\"https://unl-statistics.github.io/R-workshops/r-intro/data/meta.txt\")\nhead(meta)\n\n   label       Group numOtus\n27  0.03 X1P10N2ACD4    5802\n28  0.03 X1P10N2AFD0    5802\n29  0.03 X1P10N2AFD4    5802\n30  0.03 X1P10N2AID4    5802\n31  0.03 X1P11N2ACD4    5802\n32  0.03 X1P11N2AFD0    5802"
-  },
-  {
-    "objectID": "r-intro/slides/6-RegularExpressions.html#example-1",
-    "href": "r-intro/slides/6-RegularExpressions.html#example-1",
-    "title": "Regular Expressions",
-    "section": "Example",
-    "text": "Example\nImagine, we want to extract the day number for each row.\nWe use the expression D as cue; the number after that is the day:\n\nmeta$day &lt;- gsub('.*D([:digit:]*)','\\\\1', meta$Group)\nhead(meta$day)\n\n[1] \"4\" \"0\" \"4\" \"4\" \"4\" \"0\""
-  },
-  {
-    "objectID": "r-intro/slides/6-RegularExpressions.html#your-turn-1",
-    "href": "r-intro/slides/6-RegularExpressions.html#your-turn-1",
-    "title": "Regular Expressions",
-    "section": "Your Turn",
-    "text": "Your Turn\nExtract the pen number, experiment, and tissue for each row.\n\n\nUNL R Workshops"
   },
   {
     "objectID": "r-intro/slides/2-MotivatingExample.html#motivating-example",
@@ -3374,10 +3262,10 @@
     "text": "Your Turn\nThe movies data set contains information from IMDB.com including ratings, genre, length in minutes, and year of release.\n\nmovies &lt;- read.csv(\"https://unl-statistics.github.io/R-workshops/02-r-graphics/data/MovieSummary.csv\")\n\n\nExplore the differences in length, rating, etc. in movie genres over time.\nHint: use faceting!\nDiscuss your graphic with a neighbor.\n\n\n\nUNL R Workshops"
   },
   {
-    "objectID": "r-modeling/slides/1-ModelingIntro.html",
-    "href": "r-modeling/slides/1-ModelingIntro.html",
-    "title": "Introduction to Statistical Modeling",
+    "objectID": "r-format/slides/2-Files.html",
+    "href": "r-format/slides/2-Files.html",
+    "title": "Data Wrangling",
     "section": "",
-    "text": "What is statistical modeling?\nObservational Studies vs Planned Experiments\nData Format\nExploratory Data Analysis - why do it?\n\nContent modified from: https://tjfisher19.github.io/introStatModeling/introductory-statistics-in-r.html#goals-of-a-statistical-analysis"
+    "text": "Important to understand your file structure and where you save everything\nWorking directory\n“Default location where R will look for files you want to load and where it will put any files you save” source\n\n\n#Returns the file path of the current working directory\ngetwd()\n\n#Set Working Directory\nsetwd()\n\n\nEasiest way to set Working Directory:\n\nSession -&gt; Set Working Directory -&gt; Choose Directory\nPoint and Click Method"
   }
 ]
