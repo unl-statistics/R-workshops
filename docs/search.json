@@ -2020,7 +2020,7 @@
     "href": "r-format/slides/3-dplyr.html#filter",
     "title": "Data Wrangling",
     "section": "Filter",
-    "text": "Filter\nRead in the pitch data set. The data are from an experiment on different advanced metrics of MLB baseball pitchers different pitch types.\n\nlibrary(tidyverse)\npitch &lt;- \n  read_csv(\"http://unl-statistics.github.io/R-workshops/03-r-format/data/pitch.csv\")\n\npitch[-1] %&gt;% \n  filter(pitcher_hand == \"R\", pitch_type == \"CU\") %&gt;%\n  head(n=4)\n\n\n\n\n\n\nplayerid\npitcher_hand\npitch_type\nspin_rate\nab_result\naction_result\nadj_h\n\n\n\n\n2795\nR\nCU\n3000.024\n\\N\nF\n0\n\n\n2795\nR\nCU\n3146.456\n\\N\nB\n0\n\n\n3646\nR\nCU\n3012.067\n\\N\nB\n0\n\n\n2795\nR\nCU\n3026.256\nHB\nB\n0\n\n\n\n\n\n\n\nfilter is similar to the base function subset"
+    "text": "Filter\nRead in the pitch data set. The data are from an experiment on different advanced metrics of MLB baseball pitchers different pitch types.\n\nlibrary(tidyverse)\npitch &lt;- \n  read_csv(\"https://raw.githubusercontent.com/unl-statistics/R-workshops/main/r-format/data/pitch.csv\")\n\npitch[-1] %&gt;% \n  filter(pitcher_hand == \"R\", pitch_type == \"CU\") %&gt;%\n  head(n=4)\n\n\n\n\n\n\nplayerid\npitcher_hand\npitch_type\nspin_rate\nab_result\naction_result\nadj_h\n\n\n\n\n2795\nR\nCU\n3000.024\n\\N\nF\n0\n\n\n2795\nR\nCU\n3146.456\n\\N\nB\n0\n\n\n3646\nR\nCU\n3012.067\n\\N\nB\n0\n\n\n2795\nR\nCU\n3026.256\nHB\nB\n0\n\n\n\n\n\n\n\nfilter is similar to the base function subset"
   },
   {
     "objectID": "r-format/slides/3-dplyr.html#filter-cont.",
@@ -2244,7 +2244,7 @@
     "href": "r-format/slides/3-dplyr.html#recap",
     "title": "Data Wrangling",
     "section": "Recap",
-    "text": "Recap\n\nGetting used to dplyr actions can take a bit of time and practice\nRecognize keywords and match them to dplyr functions\nIncorporate dplyr functions in your regular workflow - the long-term benefits are there, we promise!\n\n\n\n\nUNL R Workshops"
+    "text": "Recap\n\nGetting used to dplyr actions can take a bit of time and practice\nRecognize keywords and match them to dplyr functions\nIncorporate dplyr functions in your regular workflow - the long-term benefits are there, we promise!"
   },
   {
     "objectID": "pricing.html",
@@ -3267,5 +3267,12 @@
     "title": "Data Wrangling",
     "section": "",
     "text": "Important to understand your file structure and where you save everything\nWorking directory\n“Default location where R will look for files you want to load and where it will put any files you save” source\n\n\n#Returns the file path of the current working directory\ngetwd()\n\n#Set Working Directory\nsetwd()\n\n\nEasiest way to set Working Directory:\n\nSession -&gt; Set Working Directory -&gt; Choose Directory\nPoint and Click Method"
+  },
+  {
+    "objectID": "r-format/slides/3-dplyr.html",
+    "href": "r-format/slides/3-dplyr.html",
+    "title": "Data Wrangling",
+    "section": "",
+    "text": "Data Wrangling Cheat Sheet, by RStudio"
   }
 ]

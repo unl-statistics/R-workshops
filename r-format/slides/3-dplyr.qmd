@@ -2,6 +2,7 @@
 title: "Data Wrangling"
 subtitle: "Using dplyr"
 ---
+
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE)
 knitr::opts_chunk$set(
@@ -13,8 +14,7 @@ knitr::opts_chunk$set(
 data(baseball, package = "plyr")
 ```
 
-![Data Wrangling Cheat Sheet, by [RStudio](https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf)
-](images/dplyr.png){width="580px"}
+![Data Wrangling Cheat Sheet, by [RStudio](https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf)](images/dplyr.png){width="580px"}
 
 ::: notes
 should already have this loaded if loaded all of tidyverse at the beginning
@@ -24,36 +24,33 @@ should already have this loaded if loaded all of tidyverse at the beginning
 
 There are some of the primary `dplyr` *verbs*, representing distinct data analysis tasks:
 
-- **Filter**: Select specified rows of a data frame, produce subsets
+-   **Filter**: Select specified rows of a data frame, produce subsets
 
-- **Arrange**: Reorder the rows of a data frame
+-   **Arrange**: Reorder the rows of a data frame
 
-- **Select**: Select particular columns of a data frame
+-   **Select**: Select particular columns of a data frame
 
-- **Mutate**: Add new or change existing columns of the data frame (as functions of existing columns)
+-   **Mutate**: Add new or change existing columns of the data frame (as functions of existing columns)
 
-- **Summarise**: Create collapsed summaries of a data frame
+-   **Summarise**: Create collapsed summaries of a data frame
 
-- **Group By**: Introduce structure to a data frame
- 
+-   **Group By**: Introduce structure to a data frame
+
 ## Motivating Example (Pipe Operator)
 
 Use the pipe operator to combine dplyr functions in chain, which allows us to perform more complicated data manipulations
 
 Syntax (Pipe dataframe as input into the dplyr function):
 
-```
+```         
 dataframe %>% dplyr_function()
 ```
 
 ![]()
 
-.center[
-<img src="images/pipe_usage.png" style="width:580px;"/>
+.center\[ <img src="images/pipe_usage.png" style="width:580px;"/>
 
-Pipe Example, by [Sharp Sight Labs](https://www.sharpsightlabs.com/blog/dplyr-quick-introduction/)
-]
-
+Pipe Example, by [Sharp Sight Labs](https://www.sharpsightlabs.com/blog/dplyr-quick-introduction/) \]
 
 ## The pipe operator `%>%`
 
@@ -63,20 +60,19 @@ i.e. the output of one function is used as input to the next function. This func
 
 Consequences:
 
-- `x %>% f(y)` is the same as `f(x,y)`
-- statements of the form `k(h(g(f(x,y),z),u),v,w)` become
-`x %>% f(y) %>% g(z) %>% h(u) %>% k(v,w)`
-- read `%>%` as "then do"
-- in non-mathematical terms, the piping operator allows you to apply more than one different function at the same time to the same data frame.
-
+-   `x %>% f(y)` is the same as `f(x,y)`
+-   statements of the form `k(h(g(f(x,y),z),u),v,w)` become `x %>% f(y) %>% g(z) %>% h(u) %>% k(v,w)`
+-   read `%>%` as "then do"
+-   in non-mathematical terms, the piping operator allows you to apply more than one different function at the same time to the same data frame.
 
 ## Filter
 
 Read in the pitch data set. The data are from an experiment on different advanced metrics of MLB baseball pitchers different pitch types.
+
 ```{r message = FALSE, warning=FALSE, echo = TRUE, eval = FALSE}
 library(tidyverse)
 pitch <- 
-  read_csv("http://unl-statistics.github.io/R-workshops/03-r-format/data/pitch.csv")
+  read_csv("https://raw.githubusercontent.com/unl-statistics/R-workshops/main/r-format/data/pitch.csv")
 
 pitch[-1] %>% 
   filter(pitcher_hand == "R", pitch_type == "CU") %>%
@@ -86,7 +82,7 @@ pitch[-1] %>%
 
 ```{r message = FALSE, warning=FALSE, echo = FALSE}
 library(tidyverse)
-pitch <- read_csv("http://unl-statistics.github.io/R-workshops/03-r-format/data/pitch.csv")
+pitch <- read_csv("https://raw.githubusercontent.com/unl-statistics/R-workshops/main/r-format/data/pitch.csv")
 pitch[-1] %>% 
   filter(pitcher_hand == "R", pitch_type == "CU") %>%
   head(n=4) %>%
@@ -98,29 +94,25 @@ pitch[-1] %>%
 
 ## Filter (cont.)
 
-Multiple conditions in `filter` are combined with a logical AND (i.e. all conditions must be fulfilled) 
+Multiple conditions in `filter` are combined with a logical AND (i.e. all conditions must be fulfilled)
 
 e.g. `filter(pitcher_hand == "R", pitch_type == "CU")`
 
-Logical expressions can also be used 
+Logical expressions can also be used
 
-e.g. `filter(pitcher_hand == "R" &  pitch_type == "CU")` or 
-`filter(pitch_type == "CU" | subject == "KN")`
+e.g. `filter(pitcher_hand == "R" &  pitch_type == "CU")` or `filter(pitch_type == "CU" | subject == "KN")`
 
+## Your Turn (\~3 minutes) {.inverse}
 
-## Your Turn (~3 minutes) {.inverse}
+1.  Use `filter` to get a subset of the `pitchdata` dataset
 
-1. Use `filter` to get a subset of the `pitchdata` dataset
+2.  Ex. Filter the data down to left handed pitchers, who throw a curve with at least 3300 rpms (spin_rate)..
 
-2. Ex. Filter the data down to left handed pitchers, who throw a curve with at least
-3300 rpms (spin_rate)..
-
-3. `%>%` the subset and create a plot
+3.  `%>%` the subset and create a plot
 
 hint: what is the default first argument of the `ggplot` function?
 
-
-## Solution 
+## Solution
 
 ```{r, purl=FALSE, message=FALSE, warning= FALSE, fig.height=3, echo = TRUE}
 pitch %>%
@@ -129,10 +121,10 @@ pitch %>%
   geom_point(aes(color=as.factor(playerid))) 
 ```
 
-
 ## Arrange
 
 Easy way to arrange your data in ascending or descending order
+
 ```{r arr.desc, echo=TRUE, eval = FALSE}
 pitch %>% 
   subset(select = c("playerid", "spin_rate")) %>%
@@ -156,7 +148,6 @@ pitch %>%
   arrange(playerid, spin_rate)
 ```
 
-
 ```{r arr.asc2, echo=FALSE, eval = TRUE}
 pitch %>% 
   subset(select = c("playerid", "spin_rate")) %>%
@@ -166,14 +157,13 @@ pitch %>%
 
 ## Your Turn {.inverse}
 
-1. Look up the help file for the function `slice`.
+1.  Look up the help file for the function `slice`.
 
-2. Use `slice` on the arranged `pitchdata` dataset to select a single row
+2.  Use `slice` on the arranged `pitchdata` dataset to select a single row
 
-3. use `slice` to select multiple rows
+3.  use `slice` to select multiple rows
 
 Hint: Use the entire data set
-
 
 ## Solution
 
@@ -189,13 +179,11 @@ pitch[-1] %>%
   slice(11) %>% knitr::kable(format = "html")
 ```
 
-
 ```{r purl=FALSE, echo=TRUE, eval = FALSE}
 pitch[-1] %>% 
   arrange(desc(playerid), spin_rate) %>% 
   slice(1:5)
 ```
-
 
 ```{r purl=FALSE, echo=FALSE, eval = TRUE}
 pitch[-1] %>% 
@@ -203,11 +191,10 @@ pitch[-1] %>%
   slice(1:5) %>% knitr::kable(format = "html")
 ```
 
-
 ## Select
- - Using Select we are easily able to create a subset of our data. This is similar to
- the subset function in base.
- 
+
+-   Using Select we are easily able to create a subset of our data. This is similar to the subset function in base.
+
 ```{r echo=TRUE, eval = FALSE}
 pitch %>% 
   select(playerid, pitcher_hand, action_result, spin_rate) %>%
@@ -223,11 +210,10 @@ pitch %>%
   
 ```
 
-
-
 ## Summarise
- - Finding summary statistics of a metric
- 
+
+-   Finding summary statistics of a metric
+
 ```{r echo=TRUE, eval = FALSE}
 
 #na.rm - remove NAs from calculation
@@ -248,7 +234,9 @@ pitch %>%
 ```
 
 ## `summarise` and `group_by`
- - Finding summary statistics of a metric after accounting first for other variables
+
+-   Finding summary statistics of a metric after accounting first for other variables
+
 ```{r echo = TRUE, eval = FALSE}
 pitch %>%
     group_by(playerid) %>%
@@ -257,7 +245,6 @@ pitch %>%
   head(5)
 
 ```
-
 
 ```{r echo = FALSE, eval = TRUE}
 pitch %>%
@@ -269,15 +256,13 @@ pitch %>%
 
 ```
 
-
 ## Your Turn {.inverse}
 
-1. Select only playerid, spin_rate, and action result
+1.  Select only playerid, spin_rate, and action result
 
-2. Group by both playerid and action result and find mean and sd of spin rates 
+2.  Group by both playerid and action result and find mean and sd of spin rates
 
-3. `%>%` the summaries into a `ggplot` histogram
-
+3.  `%>%` the summaries into a `ggplot` histogram
 
 ## A Solution
 
@@ -290,20 +275,18 @@ pitch %>%
   ggplot(aes(x = mean_spin)) + geom_histogram() #<<
 ```
 
-
 ## `mutate`
 
- - Change an existing or create a new variable into the data
- 
- - Creating a new column in your data set that represents something new
- 
- - Great for calculations 
- 
- - How would I create a calculation for how far above or below each players pitches are from their own average spin rates?
- 
- 
-## `mutate` Example 
- 
+-   Change an existing or create a new variable into the data
+
+-   Creating a new column in your data set that represents something new
+
+-   Great for calculations
+
+-   How would I create a calculation for how far above or below each players pitches are from their own average spin rates?
+
+## `mutate` Example
+
 ```{r echo = TRUE}
 pitch %>%
     select(playerid, spin_rate, action_result) %>%
@@ -315,14 +298,15 @@ pitch %>%
 ```
 
 ## Utilzing `ifelse`
-- Sometimes you are tasked to create a new column based on a clause
 
-- `ifelse` function allows you to create an if else statement within the creation 
-of the new variable.
+-   Sometimes you are tasked to create a new column based on a clause
 
-- Consider rewriting the handedness of our pitchers.
+-   `ifelse` function allows you to create an if else statement within the creation of the new variable.
 
-- If the pitcher_hand is R write "Right" if not, "Left"
+-   Consider rewriting the handedness of our pitchers.
+
+-   If the pitcher_hand is R write "Right" if not, "Left"
+
 ```{r, echo=TRUE}
 pitch %>% 
   select(pitcher_hand) %>% 
@@ -344,19 +328,17 @@ colnames(pitch[,-1])
 
 ## Reasons for pipe operator mishaps
 
-- When we use the piping operator like we have been, the data is only ever being changed within the sequence 
+-   When we use the piping operator like we have been, the data is only ever being changed within the sequence
 
-- We only ever look at this new variable in the previous chunk.
+-   We only ever look at this new variable in the previous chunk.
 
-- It has not been created globally into the dataset itself
+-   It has not been created globally into the dataset itself
 
-- To do this, you need to create your new column by declaring it as its own variable.
+-   To do this, you need to create your new column by declaring it as its own variable.
 
 ```{r echo=TRUE}
 pitch$mean_spin <- mean(pitch$spin_rate)
 ```
-
-
 
 ## `mutate` OR `summarize`?
 
@@ -364,29 +346,27 @@ Both commands introduce new variables - so which one should we use?
 
 ::: columns
 ::: column
-`mutate` 
+`mutate`
 
-- **adds variables** to the existing data set
+-   **adds variables** to the existing data set
 
-- The resulting variables must have the **same length** as the original data
+-   The resulting variables must have the **same length** as the original data
 
-- e.g. use for transformations, combinations of multiple variables
+-   e.g. use for transformations, combinations of multiple variables
 :::
 
 ::: column
-`summarize` 
+`summarize`
 
-- **creates aggregates** of the original data
+-   **creates aggregates** of the original data
 
-- The number of rows of the new dataset is determined by the number of combinations of the grouping structure. 
+-   The number of rows of the new dataset is determined by the number of combinations of the grouping structure.
 
-- The number of columns is determined by the number of grouping variables and the summary statistics.
+-   The number of columns is determined by the number of grouping variables and the summary statistics.
 :::
 :::
-
 
 ## Shortcuts
-
 
 `summarize(n = n())` is equivalent to `tally()` (Number of unique rows in dataset)
 
@@ -396,7 +376,6 @@ pitch %>% tally()
 pitch %>% summarize(n=n())
 
 ```
-
 
 Number of unique observations in each group
 
@@ -408,20 +387,17 @@ pitch %>% group_by(playerid, action_result) %>% tally()
 
 ## Your Turn (10 min) {.inverse}
 
+Based on your (limited) knowledge of baseball, you determine what is a "successful" curveball. Then determine what pitchers pitched the most successful curveballs!
 
-Based on your (limited) knowledge of baseball, you determine what is a "successful" curveball.
-Then determine what pitchers pitched the most successful curveballs!
-
-Note: There are many different ways of answering this question. None are wrong and you don't need to know anything about baseball to try. Consider criteria that it needs to meet. 
+Note: There are many different ways of answering this question. None are wrong and you don't need to know anything about baseball to try. Consider criteria that it needs to meet.
 
 Ex. A successful curveball needs to be above 90 mph in velocity and have over 3100 rpms in spin rate.
 
 utilize the `sum()` function to add up all your curveballs!
 
-
 ## One Solution
 
-Consider a success as any strike (S), catch (C), and foul ball (F) 
+Consider a success as any strike (S), catch (C), and foul ball (F)
 
 <!--and any batted ball resulting in a "adj_h" less than the league average of .300 BABIP (according to MLB.com) -->
 
@@ -443,8 +419,9 @@ SScurve %>% head(4) %>% knitr::kable(format = "html")
 ```
 
 ## Solution (cont.)
-1. Calculate successful curveball percentages
-2. Look at some graphs to see what the data actually looks like now. 
+
+1.  Calculate successful curveball percentages
+2.  Look at some graphs to see what the data actually looks like now.
 
 ```{r fig.height=3, warning=FALSE, purl=FALSE, message=FALSE, echo = TRUE}
 
@@ -457,9 +434,10 @@ ggplot(data = percentages) +
 
 ```
 
-
 ## Solution (cont.)
+
 Filter down to get the best pitchers with a minimum of 50 curveballs thrown (our median)
+
 ```{r fig.height=3, warning=FALSE, purl=FALSE, echo=TRUE}
 
 percentages %>% 
@@ -469,9 +447,9 @@ percentages %>%
 
 ```
 
-##  Your Turn {.inverse}
+## Your Turn {.inverse}
 
-The dataset `ChickWeight` is part of the core packages that come with R 
+The dataset `ChickWeight` is part of the core packages that come with R
 
 **Hint**: `data(ChickWeight)` gets the data into your active session.
 
@@ -483,16 +461,15 @@ From the help file:
 
 ## Your Turn {.inverse}
 
-1. Create a line plot with each line representing the weight of each Chick 
+1.  Create a line plot with each line representing the weight of each Chick
 
-2. Focus on weight on day 21. Draw side-by-side dotplots of weight by diet. 
+2.  Focus on weight on day 21. Draw side-by-side dotplots of weight by diet.
 
-3. **Bonus**: Use `summarize` the average weight on day 21 under each diet. Overlay the dotplots by error bars around the average weight under each diet (see `?geom_errorbar`)
+3.  **Bonus**: Use `summarize` the average weight on day 21 under each diet. Overlay the dotplots by error bars around the average weight under each diet (see `?geom_errorbar`)
 
 **Hint** for 1: check out `?group` and consider what varible or variables you might map to this option
 
-
-##  Solution - Q1
+## Solution - Q1
 
 ```{r fig.height=4, purl=FALSE, echo=TRUE}
 ChickWeight %>% 
@@ -502,8 +479,7 @@ ChickWeight %>%
 
 ```
 
-
-##  Solution - Q2
+## Solution - Q2
 
 ```{r fig.height=4, purl=FALSE, echo=TRUE}
 ChickWeight %>%   
@@ -513,8 +489,7 @@ ChickWeight %>%
 
 ```
 
-
-##  Solution - Q3 
+## Solution - Q3
 
 First, we need a separate dataset for the summary statistics:
 
@@ -527,8 +502,7 @@ ChickW1 <- ChickWeight %>%
 
 ```
 
-
-##  Solution - Q3 (cont)
+## Solution - Q3 (cont)
 
 ```{r, purl=FALSE, fig.height=3, echo=TRUE}
 ChickWeight %>% 
@@ -552,14 +526,12 @@ ChickPlus <- ChickWeight %>%
   mutate(gain = weight - weight[Time == 0])
 ```
 
-
 ```{r echo=TRUE, purl=FALSE}
 ChickPlus %>% 
   filter(Chick == 1) %>% 
   select(-Diet) %>% 
   glimpse()
 ```
-
 
 ## Plotting weight gain
 
@@ -571,16 +543,12 @@ ChickPlus %>%
 
 ```
 
-
 ## Recap
 
-- Getting used to `dplyr` actions can take a bit of time and practice
+-   Getting used to `dplyr` actions can take a bit of time and practice
 
-- Recognize keywords and match them to `dplyr` functions
+-   Recognize keywords and match them to `dplyr` functions
 
-- Incorporate `dplyr` functions in your regular workflow - the long-term benefits are there, we promise!
+-   Incorporate `dplyr` functions in your regular workflow - the long-term benefits are there, we promise!
 
 ![](images/dplyr.png){fig-align="center"}
-
-
-
