@@ -10,7 +10,7 @@ In Programming with data you get a head start with the statistical software R. R
 ## Timetable
 
 | Date          | Notes                                                              | Lectures and Resources                                                                                                                                                                                                    |
-|------------------------|------------------------|------------------------|
+|---------------|--------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | 9 - 9:30      | [Setting Up](slides/1-Setup.qmd)                                   | This will make sure that everybody's system is up and running. You should try to install R ahead of time, so that this time can be used to address potential problems. <br/> [Setup.R](code/1-Setup.R)                    |
 | 9:30 - 10:30  | [Motivating Example](slides/2-MotivatingExample.qmd)               | First taste of R: Jumping right into it to get an idea of how to use R and what it is capable of. <br/> [2-MotivatingExample.R](code/2-MotivatingExample.R)<br/> [daily_shedding.csv](data/daily_shedding.csv)            |
 | 10:30 - 10:50 | **Break**                                                          |                                                                                                                                                                                                                           |
