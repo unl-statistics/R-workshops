@@ -20,7 +20,7 @@ website:
             href: r-graphics/index.qmd
           - text: "Data Wrangling"
             href: r-format/index.qmd
-
+            
 format:
   html:
     theme: cosmo
