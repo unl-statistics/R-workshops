@@ -4,6 +4,11 @@
   R](#january-2024---a-week-of-r)
   - [<span class="toc-section-number">1.1</span> Schedule](#schedule)
   - [<span class="toc-section-number">1.2</span> Pricing](#pricing)
+    - [<span class="toc-section-number">1.2.1</span> Corporate Group
+      Rate](#corporate-group-rate)
+    - [<span class="toc-section-number">1.2.2</span> Independent
+      Students (not part of a research
+      lab)](#independent-students-not-part-of-a-research-lab)
   - [<span class="toc-section-number">1.3</span> Sign Up](#sign-up)
 - [<span class="toc-section-number">2</span> Learning
   Outcomes](#learning-outcomes)
@@ -39,36 +44,56 @@ with additional details.
 
 ## Pricing
 
-These workshops are developed and hosted by graduate students in the
-Statistics department at University of Nebraska-Lincoln, primarily to
-assist UNL students and staff with developing R skills necessary for
-research and data analysis. Individuals from outside the university are
-welcome to participate. Proceeds from the workshops directly fund
-graduate student activities.
+These workshops are developed and hosted by Statistics graduate students
+to assist UNL students, faculty, and staff with developing the R skills
+necessary for research and data analysis. Individuals from outside the
+university are welcome to participate. Proceeds from the workshops
+directly fund graduate student activities.
 
-| Workshop Type | Student | UNL Affiliate | Corporate |
-|---------------|---------|---------------|-----------|
-| Full Day      | \$40    | \$60          | \$200     |
-| Half Day      | \$20    | \$30          | \$120     |
-| Full Week     | \$120   | \$240         | \$800     |
+| Workshop Type |  Student | UNL Affiliate | Corporate |
+|:--------------|---------:|--------------:|----------:|
+| Full Day      |  \$40.00 |       \$60.00 |  \$200.00 |
+| Half Day      |  \$20.00 |       \$30.00 |  \$100.00 |
+| Full Week     | \$120.00 |      \$180.00 |  \$600.00 |
+
+<!-- | Workshop Type | Student | UNL Affiliate | Corporate | -->
+<!-- |---------------|---------|---------------|-----------| -->
+<!-- | Full Day      | \$40    | \$60          | \$200     | -->
+<!-- | Half Day      | \$20    | \$30          | \$120     | -->
+<!-- | Full Week     | \$120   | \$240         | \$800     | -->
 
 We accept exact cash, checks, or a University cost object. We cannot
 accept N-cards.
+
+<div class="callout-info" collapse="true">
+
+### Corporate Group Rate
 
 If you are anticipating registering more than 4 people who are **not UNL
 Affiliates** as a group, please feel free to contact [Susan
 Vanderplas](mailto:svanderplas2@unl.edu?subject=R%20Workshops%20Pricing)
 for a group rate.
 
+</div>
+
+<div class="callout-info" collapse="true">
+
+### Independent Students (not part of a research lab)
+
 If you are an independent student (e.g. not part of a research lab), and
 cannot afford the prices we’ve set, please contact [Susan
 Vanderplas](mailto:svanderplas2@unl.edu?subject=R%20Workshops%20Pricing)
-about 1 week before the workshops are scheduled to see if scholarships
-are available. Include how much you can afford to pay, why you need the
+about **1 week before the workshops are scheduled to see if scholarships
+are available.**
+
+Include in your email how much you can afford to pay, why you need the
 workshops, and any other details you think are relevant. Scholarships
 will depend on the number of registered participants. We charge just
 enough to ensure that the instructors are paid for their time and
-effort - most semesters, we barely break even.
+effort, which is why scholarships depend on registration (which is not
+known until about a week before workshops start).
+
+</div>
 
 Note that half-day workshops are those which are only offered from
 e.g. 9-12 or 1-4. We do not allow you to register and pay for only half

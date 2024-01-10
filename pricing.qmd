@@ -1,0 +1,35 @@
+```{r, include = F}
+n_days <- 4 # Number of full days of workshops, can be fractional
+discount <- 1 # Discount for registering for the full week, in days
+
+base_rate <- 40
+
+registrant_type <- c("Student", "UNL Affiliate", "Corporate")
+registrant_type <- factor(registrant_type, levels = registrant_type, ordered = T)
+registrant_multiplier <- c(1, 1.5, 5)
+
+workshop_type <- c("Full Day", "Half Day", "Full Week")
+workshop_type <- factor(workshop_type, levels = workshop_type, ordered = T)
+workshop_multiplier <- c(1, .5, n_days - discount)
+
+library(dplyr)
+library(tidyr)
+prices <- crossing(data.frame(registrant_type, registrant_multiplier), 
+         data.frame(workshop_type, workshop_multiplier)) %>%
+  mutate(price = base_rate * registrant_multiplier * workshop_multiplier,
+         price = sprintf(fmt = "$%0.2f", price)) %>%
+  select(-registrant_multiplier, -workshop_multiplier) %>%
+  pivot_wider(names_from = registrant_type, values_from = price) 
+names(prices)[1] <- c("Workshop Type")
+```
+
+```{r}
+#| echo: false
+knitr::kable(prices, align = "lrrr")
+```
+
+<!-- | Workshop Type | Student | UNL Affiliate | Corporate | -->
+<!-- |---------------|---------|---------------|-----------| -->
+<!-- | Full Day      | \$40    | \$60          | \$200     | -->
+<!-- | Half Day      | \$20    | \$30          | \$120     | -->
+<!-- | Full Week     | \$120   | \$240         | \$800     | -->

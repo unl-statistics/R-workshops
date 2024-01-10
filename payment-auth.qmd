@@ -1,0 +1,36 @@
+---
+title: "R Workshop Payment Form"
+format: 
+  pdf:
+    include-in-header:
+      - text: |
+          \usepackage{soul,fullpage,array,multirow,tabularx,graphicx}
+---
+\pagenumbering{gobble}
+\vspace*{-3cm}
+## Participant Information
+\begin{tabularx}{\linewidth}{lXXX}\large
+Name &&&\\\cline{2-4}\\
+Department &&&\\\cline{2-4}\\
+NUID &&&\\\cline{2-4}\\
+Payment & Cost Object & Cash & Check\\\\
+\hfill CO\# & & \hfill Check \#& \\\cline{2-2}\cline{4-4}\\
+Affiliation & Student & UNL Affiliate & Corporate \\\\
+\end{tabularx}
+
+{{< include pricing.qmd >}}
+
+\begin{tabularx}{\linewidth}{XlllllX}\large
+\textbf{A La Carte} & \# & & Rate & & Total\\\\
+\hspace*{1cm}Full Day Workshops & &$\times$& &$=$& \\\cline{2-2}\cline{4-4}\cline{6-6}\\
+\hspace*{1cm}Half Day Workshops & &$\times$& &$=$& \\\cline{2-2}\cline{4-4}\cline{6-6}\\
+\textbf{Full Week} & 1 & $\times$ & &$=$& \\\cline{4-4}\cline{6-6}\\
+ & &&&$-$& &(Scholarship)\\\cline{6-6}\\
+ & &&&$=$& & Total \\\cline{6-6}
+\end{tabularx}
+\vfill
+\begin{tabularx}{\linewidth}{XlX}\Large
+&\hspace*{1cm}&\\\cline{1-1}\cline{3-3}\\
+\small Participant Signature && Date \\
+\end{tabularx}
+
