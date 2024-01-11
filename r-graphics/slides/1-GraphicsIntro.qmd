@@ -244,11 +244,6 @@ Here are some common charts most often seen. A bar chart or pie cart are used fo
 - Radar Charts
 - Heat Maps
 
-<br/>
-<br/>
-<br/>
-<br/>
-
 ```{r intermediate-plots, fig.height=4, fig.width=20, fig.pos="center", message = FALSE, warning = FALSE}
 # parallel coordinate plot
 iris2 <- iris %>% 
@@ -312,10 +307,6 @@ There are many other kinds of plots that can be useful for exploring relationshi
 - Violin Plots
 - Social Network Plots
 
-<br/>
-<br/>
-<br/>
-<br/>
 
 ```{r advanced-plots, fig.height=4, fig.width=18, fig.pos="center"}
 # density plot
