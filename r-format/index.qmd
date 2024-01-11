@@ -5,13 +5,7 @@ format: html
 
 [**Return to rwrks homepage**](http://unl-statistics.github.io/R-workshops/)
 
-::: {layout-ncol=3}
-
-![](https://raw.githubusercontent.com/rstudio/hex-stickers/master/PNG/dplyr.png?raw=true){width="200px" fig-alt="dplyr hex sticker"}
-![](https://raw.githubusercontent.com/rstudio/hex-stickers/master/PNG/tidyr.png?raw=true){width="200px" fig-alt="tidyr hex sticker"}
-![](https://raw.githubusercontent.com/rstudio/hex-stickers/master/PNG/lubridate.png?raw=true){width="200px" fig-alt="lubridate hex sticker"}
-
-:::
+![](https://raw.githubusercontent.com/rstudio/hex-stickers/master/PNG/dplyr.png?raw=true){width="200px" fig-alt="dplyr hex sticker"} ![](https://raw.githubusercontent.com/rstudio/hex-stickers/master/PNG/tidyr.png?raw=true){width="200px" fig-alt="tidyr hex sticker"} ![](https://raw.githubusercontent.com/rstudio/hex-stickers/master/PNG/lubridate.png?raw=true){width="200px" fig-alt="lubridate hex sticker"}
 
 
 This workshop will to prepare you for dealing with messy data by walking you through real-life examples. We will work on improving your programming skills and help you move beyond using copy-and-paste. We will discuss how to write functions in order to reduce duplication in your code and automate common tasks and how to use iteration in order to further reduce duplication. You will leave with skills that will allow you to both tackle problems with more ease. The course will be data centric, with lots of different data sets that illustrate examples of the different techniques used for different problems. The course will be a mix of instruction and follow-up exercises. It will be held in a computer lab but you are encouraged to bring your own laptops, with software already loaded. A list of software will be available at this site several days prior to the workshop.

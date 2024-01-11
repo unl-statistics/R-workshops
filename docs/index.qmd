@@ -4,6 +4,7 @@ format:
     page-layout: full
 toc: true
 toc-depth: 3
+freeze: false
 ---
 
 {{< include README.qmd >}}

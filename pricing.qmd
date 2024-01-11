@@ -1,6 +1,6 @@
 ```{r pricing-schedule, include = F}
 n_days <- 4 # Number of full days of workshops, can be fractional
-discount <- 1 # Discount for registering for the full week, in days
+discount <- 0.5 # Discount for registering for the full week, in days
 
 base_rate <- 40
 
@@ -16,11 +16,11 @@ library(dplyr)
 library(tidyr)
 prices <- crossing(data.frame(registrant_type, registrant_multiplier), 
          data.frame(workshop_type, workshop_multiplier)) %>%
-  mutate(price = base_rate * registrant_multiplier * workshop_multiplier,
-         price = sprintf(fmt = "$%0.2f", price)) %>%
+  mutate(price = base_rate * registrant_multiplier * workshop_multiplier) %>%
   select(-registrant_multiplier, -workshop_multiplier) %>%
   pivot_wider(names_from = registrant_type, values_from = price) 
 names(prices)[1] <- c("Workshop Type")
+prices[3,2] <- 120
 ```
 
 ```{r}
