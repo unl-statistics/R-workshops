@@ -39,13 +39,13 @@ Proceeds from the workshops directly fund graduate student activities.
 
 We accept exact cash, checks, or a University cost object. We cannot accept N-cards.
 
-::: {.callout-note  collapse="true" .content-visible unless-format="docx"}
+::: {.callout-note .content-visible collapse="true"  unless-format="docx"}
 ### Corporate Group Rate
 
 If you are anticipating registering more than 4 people who are **not UNL Affiliates** as a group, please feel free to contact [Susan Vanderplas](mailto:svanderplas2@unl.edu?subject=R%20Workshops%20Pricing) for a group rate.
 :::
 
-::: {.callout-note collapse="true" .content-visible unless-format="docx"}
+::: {.callout-note .content-visible collapse="true"  unless-format="docx"}
 ### Independent Students (not part of a research lab)
 
 If you are an independent student (e.g. not part of a research lab), and cannot afford the prices we've set, please contact [Susan Vanderplas](mailto:svanderplas2@unl.edu?subject=R%20Workshops%20Pricing) about **1 week before the workshops are scheduled to see if scholarships are available.** 
