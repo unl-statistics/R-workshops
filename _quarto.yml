@@ -12,14 +12,14 @@ website:
     left:
       - href: index.qmd
         text: Home
-      - text: "Workshops"
-        menu: 
-          - text: "Introduction to R"
-            href: r-intro/index.qmd
-          - text: "Graphics with ggplot2"
-            href: r-graphics/index.qmd
-          - text: "Data Wrangling"
-            href: r-format/index.qmd
+      - text: "Introduction to R"
+        href: r-intro/index.qmd
+      - text: "Graphics with ggplot2"
+        href: r-graphics/index.qmd
+      - text: "Data Wrangling"
+        href: r-format/index.qmd
+      - text: "Modeling"
+        href: r-modeling/index.qmd
             
 format:
   html:

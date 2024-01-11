@@ -8,8 +8,8 @@ pricing_chunk <- pricing_chunk[-grep("```", pricing_chunk)]
 eval(parse(text = pricing_chunk))         
 
 # Calculate out rough pay rate
-instructors <- 3
-n_participants <- 17.5
+instructors <- 4
+n_participants <- 18.5
 hours <- 7*n_days
 pay_rate <- base_rate * (n_days-discount) * n_participants/(instructors*hours)
 
