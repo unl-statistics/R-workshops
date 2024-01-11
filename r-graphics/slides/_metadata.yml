@@ -1,5 +1,5 @@
 format: 
   revealjs:
     theme: [default, ../../css/inverse.scss]
-    footer: "[UNL R Workshops](../../index.qmd)"
+    footer: "[UNL R Workshops](../../index.html)"
     css: custom.css

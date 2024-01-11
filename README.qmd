@@ -2,8 +2,6 @@
 title: "![A Week of R at UNL](figure/header.png)"
 format: 
   gfm: default
-toc: true
-toc-depth: 3
 number-sections: true
 freeze: false
 ---
@@ -40,13 +38,15 @@ Proceeds from the workshops directly fund graduate student activities.
 
 We accept exact cash, checks, or a University cost object. We cannot accept N-cards.
 
-::: {.callout-note .content-visible collapse="true"  unless-format="docx"}
+::: {.content-visible  unless-format="docx"}
+
+::: {.callout-note collapse="true" }
 ### Corporate Group Rate
 
 If you are anticipating registering more than 4 people who are **not UNL Affiliates** as a group, please feel free to contact [Susan Vanderplas](mailto:svanderplas2@unl.edu?subject=R%20Workshops%20Pricing) for a group rate.
 :::
 
-::: {.callout-note .content-visible collapse="true"  unless-format="docx"}
+::: {.callout-note collapse="true"}
 ### Independent Students (not part of a research lab)
 
 If you are an independent student (e.g. not part of a research lab), and cannot afford the prices we've set, please contact [Susan Vanderplas](mailto:svanderplas2@unl.edu?subject=R%20Workshops%20Pricing) about **1 week before the workshops are scheduled to see if scholarships are available.** 
@@ -56,8 +56,6 @@ Scholarships will depend on the number of registered participants.
 We charge just enough to ensure that the instructors are paid for their time and effort, which is why scholarships depend on registration (which is not known until about a week before workshops start).
 :::
 
-
-::: {.content-visible unless-format="docx"}
 
 Note that half-day workshops are those which are only offered from e.g. 9-12 or 1-4. We do not allow you to register and pay for only half of a full-day workshop.
 

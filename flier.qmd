@@ -1,6 +1,7 @@
 ---
 title: "![A Week of R at UNL](figure/header.png)"
 format: docx
+freeze: false
 ---
 
 {{< include README.qmd >}}

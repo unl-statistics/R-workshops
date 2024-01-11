@@ -1649,7 +1649,7 @@
     "href": "r-format/index.html",
     "title": "Data Wrangling",
     "section": "",
-    "text": "Return to rwrks homepage\nThis workshop will to prepare you for dealing with messy data by walking you through real-life examples. We will work on improving your programming skills and help you move beyond using copy-and-paste. We will discuss how to write functions in order to reduce duplication in your code and automate common tasks and how to use iteration in order to further reduce duplication. You will leave with skills that will allow you to both tackle problems with more ease. The course will be data centric, with lots of different data sets that illustrate examples of the different techniques used for different problems. The course will be a mix of instruction and follow-up exercises. It will be held in a computer lab but you are encouraged to bring your own laptops, with software already loaded. A list of software will be available at this site several days prior to the workshop."
+    "text": "Return to rwrks homepage\nThis workshop will to prepare you for dealing with messy data by walking you through real-life examples. We will work on improving your programming skills and help you move beyond using copy-and-paste. We will discuss how to write functions in order to reduce duplication in your code and automate common tasks and how to use iteration in order to further reduce duplication. You will leave with skills that will allow you to both tackle problems with more ease.\nThe course will be data centric, with lots of different data sets that illustrate examples of the different techniques used for different problems."
   },
   {
     "objectID": "r-format/index.html#timetable",
@@ -2258,7 +2258,7 @@
     "href": "r-modeling/index.html",
     "title": "Statistical Modeling in R",
     "section": "",
-    "text": "Return to rwrks homepage\nThe course will be a mix of instruction and follow-up exercises. It will be held in a computer lab but you are encouraged to bring your own laptops, with software already loaded. A list of software is available to help you prepare your machine for the workshop.\nAfter the end of Statistical Modeling in R, we expect you to be able to do the following:\nNote: This workshop day is not a substitute for courses such as 801 and 802 which teach ANOVA, regression, some experimental design, etc. The goal is to teach you how to implement these models in R and extract and display the output; we will not be teaching experimental design or the statistical details of each test and model."
+    "text": "Return to rwrks homepage\nAfter the end of Statistical Modeling in R, we expect you to be able to do the following:\nNote: This workshop day is not a substitute for courses such as 801 and 802 which teach ANOVA, regression, some experimental design, etc. The goal is to teach you how to implement these models in R and extract and display the output; we will not be teaching experimental design or the statistical details of each test and model."
   },
   {
     "objectID": "r-modeling/index.html#timetable",
@@ -2769,7 +2769,7 @@
     "href": "r-graphics/index.html",
     "title": "Graphics with ggplot2",
     "section": "",
-    "text": "The course will be a mix of instruction and follow-up exercises. It will be held in a computer lab but you are encouraged to bring your own laptops, with software already loaded. A list of software is available to help you prepare your machine for the workshop.\nAfter the end of Graphics with ggplot, we expect you to be able to do the following:"
+    "text": "After the end of Graphics with ggplot, we expect you to be able to do the following:"
   },
   {
     "objectID": "r-graphics/index.html#timetable",

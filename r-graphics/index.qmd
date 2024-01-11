@@ -3,10 +3,8 @@ title: "Graphics with ggplot2"
 format: html
 ---
 
-![](slides/images/ggplot2-hex.png){fig-width="200px" fig-alt="ggplot2 hex sticker logo" fig-align="center"}
+![](slides/images/ggplot2-hex.png){width="200px" fig-alt="ggplot2 hex sticker logo" fig-align="center"}
 
-
-The course will be a mix of instruction and follow-up exercises. It will be held in a computer lab but you are encouraged to bring your own laptops, with software already loaded. A list of software is available to help you prepare your machine for the workshop.
 
 After the end of Graphics with ggplot, we expect you to be able to do the following:
 

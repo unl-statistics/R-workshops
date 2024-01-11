@@ -8,16 +8,14 @@ format: html
 ![](https://socialsciences.mcmaster.ca/jfox/Books/Companion/car-hex.png){fig-alt="car hex sticker" width="200px"}
 
 
-
-The course will be a mix of instruction and follow-up exercises. It will be held in a computer lab but you are encouraged to bring your own laptops, with software already loaded. A list of software is available to help you prepare your machine for the workshop.
-
 After the end of Statistical Modeling in R, we expect you to be able to do the following:
 
 -   Fit models (linear regression, anova, mixed models, generalized linear mixed models)
 -   Test hypotheses
 -   Create model output tables and plots
 
-**Note:** This workshop day is not a substitute for courses such as 801 and 802 which teach ANOVA, regression, some experimental design, etc. The goal is to teach you how to implement these models in R and extract and display the output; we will not be teaching experimental design or the statistical details of each test and model.
+**Note:** This workshop day is not a substitute for courses such as 801 and 802 which teach ANOVA, regression, some experimental design, etc. 
+The goal is to teach you how to implement these models in R and extract and display the output; we will not be teaching experimental design or the statistical details of each test and model.
 
 ## Timetable
 
