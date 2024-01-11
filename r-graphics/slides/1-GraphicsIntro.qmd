@@ -370,7 +370,7 @@ Density and Volin plots help us explore the distribution of different variables.
 # Grammar of Graphics {.inverse}
 
 
-## Grammar of Graphics
+## Grammar of Graphics {.smaller}
 
 What is the [grammar of graphics](https://link.springer.com/book/10.1007/0-387-28695-0)?
 
@@ -524,7 +524,7 @@ The Grammar of Graphics...
 
 The components are independent, meaning that we can generally change a single component in isolation
 
-## What is a graphic?
+## What is a graphic? {.smaller}
 
 ggplot2 uses the idea that you can build every graph with graphical components from three sources
 
@@ -541,7 +541,7 @@ ggplot2 uses the idea that you can build every graph with graphical components f
 ![](images/build1.png)![](images/build2.png)
 
 
-## ggplot2: A layered grammar
+## ggplot2: A layered grammar {.smaller}
 
 The layered grammar defines the components of a plot as:
 
@@ -572,7 +572,7 @@ The layered grammar defines the components of a plot as:
     4. a position adjustment
 
 
-## ggplot2: Specifications
+## ggplot2: Specifications {.smaller}
 
 A plot consists of several mostly independent specifications:
 
