@@ -194,8 +194,6 @@ This classic example really illustrates the importance of looking at your data, 
 
 Before it's possible to talk about a graphical grammar, it's important to know the type and format of the data you're working with.
 
-<br/>
-
 |      |
 |------|
 | Why? |
@@ -236,7 +234,7 @@ Before it's possible to talk about a graphical grammar, it's important to know t
 :::
 
 
-## Data: Dimensionality, Form, and Type
+## Data: Dimensionality, Form, and Type {.smaller}
 
 ::: columns
 ::: column
@@ -281,7 +279,7 @@ Before it's possible to talk about a graphical grammar, it's important to know t
 :::
 :::
 
-## Exploring Relationships
+## Exploring Relationships {.smaller}
 
 -   Continuous vs. Continuous
     -   scatter plot, line plot
@@ -315,7 +313,7 @@ Before it's possible to talk about a graphical grammar, it's important to know t
 -   ggplot expects your data to be in a particular sort of shape - "tidy data"
 
 
-## Same data, different layouts
+## Same data, different layouts {.smaller}
 
 ::: columns
 ::: column
