@@ -8,7 +8,7 @@
 <link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
 <link href="../../site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.4.489">
+  <meta name="generator" content="quarto-1.4.540">
 
   <title>UNL R Workshops - Data Visualization</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -385,6 +385,8 @@
       margin-right: 0; 
     }
   </style>
+  <script src="../../site_libs/kePrint/kePrint.js"></script>
+  <link href="../../site_libs/lightable/lightable.css" rel="stylesheet">
 </head>
 <body class="quarto-light">
   <div class="reveal">
@@ -422,18 +424,18 @@
 <li><h2 id="the-same-mean-median-standard-deviation-and-correlation-coefficient-between-x-and-y">the same mean, median, standard deviation, and correlation coefficient between x and y</h2></li>
 </ul>
 </section>
-<section id="anscombes-quartet-data" class="slide level2">
+<section id="anscombes-quartet-data" class="slide level2 smaller">
 <h2>Anscombe’s Quartet: data</h2>
 <div class="columns">
-<div class="column">
-<div class="cell" data-hash="2-Basics_cache/revealjs/anscombe-set1_54a1243f3210c35c20d00f4a364e0bdc">
+<div class="column" style="width:25%;">
+<div class="cell">
 <div class="cell-output-display">
-<table>
+<table class="table" data-quarto-postprocess="true" style="font-size: 25px; margin-left: auto; margin-right: auto;">
 <caption>Set I</caption>
 <thead>
 <tr class="header">
-<th style="text-align: right;">x</th>
-<th style="text-align: right;">y</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">x</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">y</th>
 </tr>
 </thead>
 <tbody>
@@ -483,17 +485,19 @@
 </tr>
 </tbody>
 </table>
+
+
 </div>
 </div>
-</div><div class="column">
-<div class="cell" data-hash="2-Basics_cache/revealjs/anscombe-set2_fa734903ba084fe0a4c5fd1236ed2194">
+</div><div class="column" style="width:25%;">
+<div class="cell">
 <div class="cell-output-display">
-<table>
+<table class="table" data-quarto-postprocess="true" style="font-size: 25px; margin-left: auto; margin-right: auto;">
 <caption>Set II</caption>
 <thead>
 <tr class="header">
-<th style="text-align: right;">x</th>
-<th style="text-align: right;">y</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">x</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">y</th>
 </tr>
 </thead>
 <tbody>
@@ -543,17 +547,19 @@
 </tr>
 </tbody>
 </table>
+
+
 </div>
 </div>
-</div><div class="column">
-<div class="cell" data-hash="2-Basics_cache/revealjs/anscombe-set3_9af80e68e40891a8a85fdc401d8d12ec">
+</div><div class="column" style="width:25%;">
+<div class="cell">
 <div class="cell-output-display">
-<table>
+<table class="table" data-quarto-postprocess="true" style="font-size: 25px; margin-left: auto; margin-right: auto;">
 <caption>Set III</caption>
 <thead>
 <tr class="header">
-<th style="text-align: right;">x</th>
-<th style="text-align: right;">y</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">x</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">y</th>
 </tr>
 </thead>
 <tbody>
@@ -603,17 +609,19 @@
 </tr>
 </tbody>
 </table>
+
+
 </div>
 </div>
-</div><div class="column">
-<div class="cell" data-hash="2-Basics_cache/revealjs/anscombe-set4_10482e5ba481513030064edaf84cd626">
+</div><div class="column" style="width:25%;">
+<div class="cell">
 <div class="cell-output-display">
-<table>
+<table class="table" data-quarto-postprocess="true" style="font-size: 25px; margin-left: auto; margin-right: auto;">
 <caption>Set IV</caption>
 <thead>
 <tr class="header">
-<th style="text-align: right;">x</th>
-<th style="text-align: right;">y</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">x</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">y</th>
 </tr>
 </thead>
 <tbody>
@@ -663,6 +671,8 @@
 </tr>
 </tbody>
 </table>
+
+
 </div>
 </div>
 </div>
@@ -671,7 +681,7 @@
 <section id="anscombes-quartet-summary-statistics" class="slide level2">
 <h2>Anscombe’s Quartet: summary statistics</h2>
 <p><br> <br></p>
-<div class="cell" data-hash="2-Basics_cache/revealjs/quartet-summary_75c8b3240cd2497fc9572a5d56c302bb">
+<div class="cell">
 <div class="cell-output-display">
 <table>
 <thead>
@@ -740,7 +750,7 @@
 <section id="anscombes-quartet-plots" class="slide level2">
 <h2>Anscombe’s Quartet: plots</h2>
 
-<img data-src="2-Basics_files/figure-revealjs/quartet-plots-1.png" class="quarto-figure-center r-stretch" width="672"><aside class="notes">
+<img data-src="2-Basics_files/figure-html/quartet-plots-1.png" class="quarto-figure quarto-figure-center r-stretch" width="672"><aside class="notes">
 <p>plot y versus x for each set with a linear regression trendline displayed on each plot:</p>
 <p>This classic example really illustrates the importance of looking at your data, not just the summary statistics and model parameters you compute from it.</p>
 <style type="text/css">
@@ -988,9 +998,13 @@
 <li><p>each observation is a row</p></li>
 <li><p>is likely not the data’s most compact form</p></li>
 </ul>
-<div class="cell" data-layout-align="center" data-hash="2-Basics_cache/revealjs/unnamed-chunk-3_e781b653a0eee4b10131367df14ad5b2">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<p><img data-src="2-Basics_files/figure-revealjs/unnamed-chunk-3-1.png" class="quarto-figure-center" width="288"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="2-Basics_files/figure-html/unnamed-chunk-3-1.png" class="quarto-figure quarto-figure-center" width="288"></p>
+</figure>
+</div>
 </div>
 </div>
 </div>
@@ -999,7 +1013,7 @@
 <section id="tidy-data" class="slide level2">
 <h2>Tidy Data</h2>
 
-<img data-src="images/tidy-data-0.jpg" width="800" class="r-stretch quarto-figure-center"><p class="caption">Like families…, by <a href="https://www.allisonhorst.com/">Allison Horst</a></p></section>
+<img data-src="images/tidy-data-0.jpg" class="quarto-figure quarto-figure-center r-stretch" alt="Tidy Data" width="800"><p class="caption">Like families…, by <a href="https://www.allisonhorst.com/">Allison Horst</a></p></section>
 <section id="tidy-data-1" class="slide level2">
 <h2>Tidy Data</h2>
 <ul>
@@ -1066,7 +1080,7 @@
 <h2>Messy data</h2>
 <p><em>Happy families are all alike; every unhappy family is unhappy in its own way. - Leo Tolstoy</em></p>
 
-<img data-src="images/tidy-data.jpg" width="600" class="r-stretch quarto-figure-center"><p class="caption">Comparison of work benches, by <a href="https://www.allisonhorst.com/">Allison Horst</a></p></section>
+<img data-src="images/tidy-data.jpg" class="quarto-figure quarto-figure-center r-stretch" alt="Tidy Data" width="600"><p class="caption">Comparison of work benches, by <a href="https://www.allisonhorst.com/">Allison Horst</a></p></section>
 <section id="messy-data-1" class="slide level2">
 <h2>Messy data</h2>
 <p><em>Happy families are all alike; every unhappy family is unhappy in its own way. - Leo Tolstoy</em><br>
@@ -1082,12 +1096,12 @@
 </section>
 <section id="tidy-your-data" class="slide level2">
 <h2>Tidy your data</h2>
-<div class="cell" data-hash="2-Basics_cache/revealjs/unnamed-chunk-4_40f81652f1adc50d412d4e5cee4be48a">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">data</span>(french_fries, <span class="at">package =</span> <span class="st">"reshape2"</span>)</span>
-<span id="cb2-2"><a href="#cb2-2"></a><span class="fu">head</span>(french_fries)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a><span class="fu">data</span>(french_fries, <span class="at">package =</span> <span class="st">"reshape2"</span>)</span>
+<span id="cb2-2"><a></a><span class="fu">head</span>(french_fries)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><strong>Wide Format:</strong></p>
-<div class="cell" data-hash="2-Basics_cache/revealjs/unnamed-chunk-5_e50fd52050739fa75ebe3eac9080fe8e">
+<div class="cell">
 <div class="cell-output-display">
 <table>
 <colgroup>
@@ -1188,15 +1202,15 @@
 </section>
 <section id="tidy-your-data-1" class="slide level2">
 <h2>Tidy your data</h2>
-<div class="cell" data-hash="2-Basics_cache/revealjs/unnamed-chunk-6_508f0c9c99b35c1193b9e8ccfe55e5f2">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>french_fries_long <span class="ot">&lt;-</span> french_fries <span class="sc">%&gt;%</span> </span>
-<span id="cb3-2"><a href="#cb3-2"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">c</span>(<span class="st">"potato"</span><span class="sc">:</span><span class="st">"painty"</span>), <span class="co">#&lt;&lt;</span></span>
-<span id="cb3-3"><a href="#cb3-3"></a>               <span class="at">names_to =</span> <span class="st">"variable"</span>, <span class="co">#&lt;&lt;</span></span>
-<span id="cb3-4"><a href="#cb3-4"></a>               <span class="at">values_to =</span> <span class="st">"value"</span>) <span class="co">#&lt;&lt;</span></span>
-<span id="cb3-5"><a href="#cb3-5"></a><span class="fu">head</span>(french_fries_long)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a>french_fries_long <span class="ot">&lt;-</span> french_fries <span class="sc">%&gt;%</span> </span>
+<span id="cb3-2"><a></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">c</span>(<span class="st">"potato"</span><span class="sc">:</span><span class="st">"painty"</span>), <span class="co">#&lt;&lt;</span></span>
+<span id="cb3-3"><a></a>               <span class="at">names_to =</span> <span class="st">"variable"</span>, <span class="co">#&lt;&lt;</span></span>
+<span id="cb3-4"><a></a>               <span class="at">values_to =</span> <span class="st">"value"</span>) <span class="co">#&lt;&lt;</span></span>
+<span id="cb3-5"><a></a><span class="fu">head</span>(french_fries_long)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><strong>Long Format:</strong></p>
-<div class="cell" data-hash="2-Basics_cache/revealjs/unnamed-chunk-7_6736381cc6a0683a9e86954edd64a866">
+<div class="cell">
 <div class="cell-output-display">
 <table>
 <thead>
@@ -1266,11 +1280,11 @@
 </section></section>
 <section id="your-turn" class="title-slide slide level1 inverse center">
 <h1>Your turn!</h1>
-<div class="cell" data-hash="2-Basics_cache/revealjs/preg_16f9855f4cd6ff5d36cd2cdf63cefcf9">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>preg <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">pregnant =</span> <span class="fu">c</span>(<span class="st">"yes"</span>, <span class="st">"no"</span>),</span>
-<span id="cb4-2"><a href="#cb4-2"></a>               <span class="at">male =</span> <span class="fu">c</span>(<span class="cn">NA</span>, <span class="dv">10</span>),</span>
-<span id="cb4-3"><a href="#cb4-3"></a>               <span class="at">female =</span> <span class="fu">c</span>(<span class="dv">20</span>, <span class="dv">12</span>))</span>
-<span id="cb4-4"><a href="#cb4-4"></a>preg</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a>preg <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">pregnant =</span> <span class="fu">c</span>(<span class="st">"yes"</span>, <span class="st">"no"</span>),</span>
+<span id="cb4-2"><a></a>               <span class="at">male =</span> <span class="fu">c</span>(<span class="cn">NA</span>, <span class="dv">10</span>),</span>
+<span id="cb4-3"><a></a>               <span class="at">female =</span> <span class="fu">c</span>(<span class="dv">20</span>, <span class="dv">12</span>))</span>
+<span id="cb4-4"><a></a>preg</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2 × 3
   pregnant  male female
@@ -1281,8 +1295,10 @@
 </div>
 <p>To tidy the <code>preg</code> table use <code>pivot_longer()</code> to create a long table.</p>
 
+<div class="quarto-auto-generated-content">
 <div class="footer footer-default">
 <p><a href="../../index.html">UNL R Workshops</a></p>
+</div>
 </div>
 </section>
     </div>
@@ -1495,44 +1511,6 @@
         ]
       });
     </script>
-    
-    <script>
-      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
-      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
-      // slide changes (different for each slide format).
-      (function () {
-        // dispatch for htmlwidgets
-        function fireSlideEnter() {
-          const event = window.document.createEvent("Event");
-          event.initEvent("slideenter", true, true);
-          window.document.dispatchEvent(event);
-        }
-
-        function fireSlideChanged(previousSlide, currentSlide) {
-          fireSlideEnter();
-
-          // dispatch for shiny
-          if (window.jQuery) {
-            if (previousSlide) {
-              window.jQuery(previousSlide).trigger("hidden");
-            }
-            if (currentSlide) {
-              window.jQuery(currentSlide).trigger("shown");
-            }
-          }
-        }
-
-        // hookup for slidy
-        if (window.w3c_slidy) {
-          window.w3c_slidy.add_observer(function (slide_num) {
-            // slide_num starts at position 1
-            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
-          });
-        }
-
-      })();
-    </script>
-
     <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggleBodyColorMode = (bsSheetEl) => {
