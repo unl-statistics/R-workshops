@@ -101,7 +101,7 @@ In 1812, Napoleon marched to Moscow in order to conquer the city. It was a disas
 
 :::
 
-## Tables and lists vs. Charts and graphs
+## Tables and lists vs. Charts and graphs {.smaller}
 
 
 ```{r}
