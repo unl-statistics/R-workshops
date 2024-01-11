@@ -55,26 +55,26 @@ grid_arrange_shared_legend <- function(..., ncol = length(list(...)), nrow = 1, 
 
 
 
-# Today's Outline {.inverse}
+# Today's Outline {.inverse .smaller}
 
-BASICS
-1. Why is data visualization important?
-2. Data Types, Formats, and Structures
-3. Formatting your data: A tidy data discussion
+BASICS  
+1. Why is data visualization important?  
+2. Data Types, Formats, and Structures  
+3. Formatting your data: A tidy data discussion  
 
-BUILDING PLOTS
-1. Geoms, Stats, Coordinates, and Faceting
+BUILDING PLOTS  
+1. Geoms, Stats, Coordinates, and Faceting  
 
-PERCEPTION
-1. Basics of cognitive visual perception
-2. What makes a good graphic?
-3. Aesthetics and scales in ‘ggplot2‘
+PERCEPTION  
+1. Basics of cognitive visual perception  
+2. What makes a good graphic?  
+3. Aesthetics and scales in ‘ggplot2‘  
 
-POLISHING PLOTS
-1. Setting themes
-2. Modifying elements of a plot  
-3. Making plots interactive!
-4. Saving your work
+POLISHING PLOTS  
+1. Setting themes  
+2. Modifying elements of a plot    
+3. Making plots interactive!  
+4. Saving your work  
 
 ## 
 
