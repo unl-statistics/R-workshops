@@ -95,7 +95,7 @@
     "href": "r-graphics/slides/2-Basics.html#tidy-data",
     "title": "Data Visualization",
     "section": "Tidy Data",
-    "text": "Tidy Data\n\nLike families…, by Allison Horst"
+    "text": "Tidy Data\n\n\n\nLike families…, by Allison Horst"
   },
   {
     "objectID": "r-graphics/slides/2-Basics.html#tidy-data-1",
@@ -109,14 +109,14 @@
     "href": "r-graphics/slides/2-Basics.html#messy-data",
     "title": "Data Visualization",
     "section": "Messy data",
-    "text": "Messy data\nHappy families are all alike; every unhappy family is unhappy in its own way. - Leo Tolstoy\n\nComparison of work benches, by Allison Horst"
+    "text": "Messy data\nHappy families are all alike; every unhappy family is unhappy in its own way. - Leo Tolstoy"
   },
   {
     "objectID": "r-graphics/slides/2-Basics.html#messy-data-1",
     "href": "r-graphics/slides/2-Basics.html#messy-data-1",
     "title": "Data Visualization",
     "section": "Messy data",
-    "text": "Messy data\nHappy families are all alike; every unhappy family is unhappy in its own way. - Leo Tolstoy\n\nFive main ways tables of data tend not to be tidy:\n\nColumn headers are values, not variable names.\nMultiple variables are stored in one column.\nVariables are stored in both rows and columns.\nMultiple types of observational units are stored in the same table.\nA single observational unit is stored in multiple tables."
+    "text": "Messy data\nHappy families are all alike; every unhappy family is unhappy in its own way. - Leo Tolstoy\nFive main ways tables of data tend not to be tidy:\n\nColumn headers are values, not variable names.\nMultiple variables are stored in one column.\nVariables are stored in both rows and columns.\nMultiple types of observational units are stored in the same table.\nA single observational unit is stored in multiple tables."
   },
   {
     "objectID": "r-graphics/slides/2-Basics.html#tidy-your-data",

@@ -425,7 +425,7 @@ img <- readPNG("images/tablelong2.png")
 
 ## Tidy Data {.r-fit-text}
 
-![Like families..., by [Allison Horst](https://www.allisonhorst.com/) ](images/tidy-data-0.jpg){fig-alt="Tidy Data" fig-align="center"}
+![Like families..., by [Allison Horst](https://www.allisonhorst.com/) ](images/tidy-data-0.jpg){fig-alt="Tidy Data" fig-align="center" width=800 height=550}
 
 
 ## Tidy Data {.smaller}
@@ -456,17 +456,16 @@ img <- readPNG("images/tablelong2.png")
 
 </font>
 
-## Messy data
+## Messy data {.smaller}
 
  *Happy families are all alike; every unhappy family is unhappy in its own way. - Leo Tolstoy*  
-
 ![
-Comparison of work benches, by [Allison Horst](https://www.allisonhorst.com/)](images/tidy-data.jpg){fig-alt="Tidy Data" width="600px" fig-align="center"}
+Comparison of work benches, by [Allison Horst](https://www.allisonhorst.com/)](images/tidy-data.jpg){fig-alt="Tidy Data" width=800 height=500 fig-align="center"}
 
 
-## Messy data
+## Messy data 
 
-*Happy families are all alike; every unhappy family is unhappy in its own way. - Leo Tolstoy*\
+*Happy families are all alike; every unhappy family is unhappy in its own way. - Leo Tolstoy*
 
 
 **Five main ways tables of data tend not to be tidy:**
