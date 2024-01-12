@@ -227,11 +227,11 @@ ne_counties[1:2,] %>% knitr::kable()
 
 
 ## ----ne-pop1, echo = T, eval = F----------------------------------------------
-## ne_population <- read.csv("https://unl-statistics.github.io/R-workshops/02-r-graphics/data/nebraska-population.csv")
+## ne_population <- read.csv("https://raw.githubusercontent.com/unl-statistics/R-workshops/main/r-graphics/data/nebraska-population.csv")
 
 
 ## ----ne-pop2------------------------------------------------------------------
-ne_population <- read.csv("https://unl-statistics.github.io/R-workshops/02-r-graphics/data/nebraska-population.csv")
+ne_population <- read.csv("https://raw.githubusercontent.com/unl-statistics/R-workshops/main/r-graphics/data/nebraska-population.csv")
 ne_population[1:2,] %>% knitr::kable()  
 
 

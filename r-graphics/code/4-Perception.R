@@ -71,7 +71,7 @@ tibble("Gestalt Hierarchy" = c("Enclosure", "Connection", "Proximitiy", "Similar
 
 
 ## ----gestalt-swimming-data, eval = T, echo = T--------------------------------
-swimming <- read.csv("https://unl-statistics.github.io/R-workshops/02-r-graphics/data/gestalt-swimming.csv")
+swimming <- read.csv("https://raw.githubusercontent.com/unl-statistics/R-workshops/main/r-graphics/data/gestalt-swimming.csv")
 
 
 ## ----gestalt-swimming2, echo = F----------------------------------------------
@@ -307,5 +307,5 @@ grid.arrange(p11, p2, p3, p4, p5, p6, #p7, p8,
 
 
 ## ----echo = TRUE--------------------------------------------------------------
-movies <- read.csv("https://unl-statistics.github.io/R-workshops/02-r-graphics/data/MovieSummary.csv")
+movies <- read.csv("https://raw.githubusercontent.com/unl-statistics/R-workshops/main/r-graphics/data/MovieSummary.csv")
 
