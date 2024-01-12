@@ -1697,8 +1697,8 @@
     "objectID": "r-modeling/slides/1-ModelingIntro.html#outline",
     "href": "r-modeling/slides/1-ModelingIntro.html#outline",
     "title": "Introduction to Statistical Modeling",
-    "section": "",
-    "text": "What is statistical modeling?\nObservational Studies vs Planned Experiments\nData Format\nExploratory Data Analysis - why do it?\n\nContent modified from: https://tjfisher19.github.io/introStatModeling/introductory-statistics-in-r.html#goals-of-a-statistical-analysis"
+    "section": "Outline",
+    "text": "Outline\n\nWhat is statistical modeling?\nObservational Studies vs Planned Experiments\nData Format\nExploratory Data Analysis - why do it?\n\nContent modified from: https://tjfisher19.github.io/introStatModeling/introductory-statistics-in-r.html#goals-of-a-statistical-analysis"
   },
   {
     "objectID": "r-modeling/slides/1-ModelingIntro.html#why-is-statistical-analysis-important",
@@ -1712,7 +1712,7 @@
     "href": "r-modeling/slides/1-ModelingIntro.html#data-science-process",
     "title": "Introduction to Statistical Modeling",
     "section": "Data science process",
-    "text": "Data science process\n\n\n\nImage source: https://towardsdatascience.com/the-data-science-process-a19eb7ebc41b?gi=10ee5878828e"
+    "text": "Data science process\n\nImage source: https://towardsdatascience.com/the-data-science-process-a19eb7ebc41b?gi=10ee5878828e"
   },
   {
     "objectID": "r-modeling/slides/1-ModelingIntro.html#data-collection",
@@ -1733,7 +1733,7 @@
     "href": "r-modeling/slides/1-ModelingIntro.html#experimental-unit-vs-sampling-unit",
     "title": "Introduction to Statistical Modeling",
     "section": "Experimental unit vs Sampling unit",
-    "text": "Experimental unit vs Sampling unit\nIn a planned experiment, it is important to know where your treatments were independently applied.\nExample:\nIf you apply different fertilizers to plots in a field and measure the height of 10 corn plants from the middle rows of the plot, where are the treatments applied?\n\n\nExperimental unit - plot (fertilizer was independently applied)\nSampling unit - corn plants (measurements were taken individually on the corn plants)\n\n\n\nOptions:\n\nAverage your response over your sub samples (e.g. find the average height of the 10 plants)\nAccount for sub-sampling in your statistical model.\n\nDo not treat each sub-sample as an independent unit in your analysis."
+    "text": "Experimental unit vs Sampling unit\n In a planned experiment, it is important to know where your treatments were independently applied.\nExample:\nIf you apply different fertilizers to plots in a field and measure the height of 10 corn plants from the middle rows of the plot, where are the treatments applied?\n\n\nExperimental unit - plot (fertilizer was independently applied)\nSampling unit - corn plants (measurements were taken individually on the corn plants)\n\n\n\nOptions:\n\nAverage your response over your sub samples (e.g. find the average height of the 10 plants)\nAccount for sub-sampling in your statistical model.\n\nDo not treat each sub-sample as an independent unit in your analysis."
   },
   {
     "objectID": "r-modeling/slides/1-ModelingIntro.html#exploratory-data-analysis-eda",
@@ -1761,7 +1761,7 @@
     "href": "r-modeling/slides/1-ModelingIntro.html#eda-example-graphical-summaries",
     "title": "Introduction to Statistical Modeling",
     "section": "EDA Example: Graphical summaries",
-    "text": "EDA Example: Graphical summaries\n::: columns ::: column\n\npenguins %&gt;%\n  ggplot(aes(x = sex, y = body_mass_g, color = sex, fill = sex)) +\n  geom_boxplot(alpha = 0.5) +\n  geom_point(position = \"jitter\", alpha = 0.7) + \n  theme_bw() +\n  theme(aspect.ratio = 1) \n\n:::"
+    "text": "EDA Example: Graphical summaries\n\npenguins %&gt;%\n  ggplot(aes(x = sex, y = body_mass_g, color = sex, fill = sex)) +\n  geom_boxplot(alpha = 0.5) +\n  geom_point(position = \"jitter\", alpha = 0.7) + \n  theme_bw() +\n  theme(aspect.ratio = 1)"
   },
   {
     "objectID": "r-modeling/slides/1-ModelingIntro.html#your-turn",
@@ -1782,7 +1782,7 @@
     "href": "r-modeling/slides/1-ModelingIntro.html#in-this-session-we-will",
     "title": "Introduction to Statistical Modeling",
     "section": "In this session we will…",
-    "text": "In this session we will…\n\nBasic statistical tests\n\nFive step hypothesis procedure\nconfidence intervals & p-values\nt-tests, chi-square tests, and simple regression\n\nLinear models\n\nOne-way and two-way ANOVA\nBlocking\n\nGeneralized Linear Models\n\nPoisson and binomial response variables\n\nWorkshop time: bring your own data!\n\nWe will have example data sets for you to practice."
+    "text": "In this session we will…\n\nBasic statistical tests\n\nFive step hypothesis procedure\nconfidence intervals & p-values\nt-tests, chi-square tests, and simple regression\n\nLinear models\n\nOne-way and two-way ANOVA\nBlocking\n\nGeneralized Linear Models\n\nPoisson and binomial response variables\n\nWorkshop time: bring your own data!\n\nWe will have example data sets for you to practice.\n\n\n\n\n\nUNL R Workshops"
   },
   {
     "objectID": "r-modeling/slides/3-LinearModels.html",
