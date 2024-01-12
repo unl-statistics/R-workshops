@@ -2077,5 +2077,131 @@
     "title": "",
     "section": "",
     "text": "Register here"
+  },
+  {
+    "objectID": "r-graphics/slides/3-Layers.html",
+    "href": "r-graphics/slides/3-Layers.html",
+    "title": "Data Visualization",
+    "section": "",
+    "text": "ggplot2 uses the idea that you can build every graph from the same components:\n\na data set\na coordinate system\ngeoms - visual marks that represent data\n\n\nto display values, map variables in the data to visual properties of the geom (aesthetics) like size, color, and x and y locations\n\n\n\n\n\nComplete the template below to build a graph\n\n\n\n\nggplot(data = mpg, aes(x = class, y = hwy))\n\nThis will begin a plot that you can finish by adding layers to.\nYou can add one geom per layer\n\n\n\n\n\n\n\n\n\n\n\n\n\nChange the code below to have the points on top of the boxplots.\n\nggplot(data = mpg, aes(x = class, y = hwy)) + \n  geom_jitter() + \n  geom_boxplot()"
+  },
+  {
+    "objectID": "r-graphics/slides/3-Layers.html#what-is-a-plot",
+    "href": "r-graphics/slides/3-Layers.html#what-is-a-plot",
+    "title": "Data Visualization",
+    "section": "What is a plot?",
+    "text": "What is a plot?\nggplot2 uses the idea that you can build every graph from the same components:\n\na data set\na coordinate system\ngeoms - visual marks that represent data\n\n\nto display values, map variables in the data to visual properties of the geom (aesthetics) like size, color, and x and y locations"
+  },
+  {
+    "objectID": "r-graphics/slides/3-Layers.html#how-to-build-a-graph",
+    "href": "r-graphics/slides/3-Layers.html#how-to-build-a-graph",
+    "title": "Data Visualization",
+    "section": "How to build a graph",
+    "text": "How to build a graph\nComplete the template below to build a graph"
+  },
+  {
+    "objectID": "r-graphics/slides/3-Layers.html#how-to-build-a-graph-1",
+    "href": "r-graphics/slides/3-Layers.html#how-to-build-a-graph-1",
+    "title": "Data Visualization",
+    "section": "How to build a graph",
+    "text": "How to build a graph\nggplot(data = mpg, aes(x = class, y = hwy))\n\nThis will begin a plot that you can finish by adding layers to.\nYou can add one geom per layer"
+  },
+  {
+    "objectID": "r-graphics/slides/3-Layers.html#your-turn",
+    "href": "r-graphics/slides/3-Layers.html#your-turn",
+    "title": "Data Visualization",
+    "section": "Your Turn!",
+    "text": "Your Turn!\nChange the code below to have the points on top of the boxplots.\n\nggplot(data = mpg, aes(x = class, y = hwy)) + \n  geom_jitter() + \n  geom_boxplot()"
+  },
+  {
+    "objectID": "r-graphics/slides/3-Layers.html#available-geoms",
+    "href": "r-graphics/slides/3-Layers.html#available-geoms",
+    "title": "Data Visualization",
+    "section": "Available Geoms",
+    "text": "Available Geoms"
+  },
+  {
+    "objectID": "r-graphics/slides/3-Layers.html#alternative-method-of-building-layers-stats",
+    "href": "r-graphics/slides/3-Layers.html#alternative-method-of-building-layers-stats",
+    "title": "Data Visualization",
+    "section": "Alternative method of building layers: Stats",
+    "text": "Alternative method of building layers: Stats\nA stat builds a new variable to plot (e.g., count and proportion)"
+  },
+  {
+    "objectID": "r-graphics/slides/3-Layers.html#faceting-options",
+    "href": "r-graphics/slides/3-Layers.html#faceting-options",
+    "title": "Data Visualization",
+    "section": "Faceting Options",
+    "text": "Faceting Options\n\nfacet_grid(. ~ b): facet into columns based on b\nfacet_grid(a ~ .): facet into rows based on a\nfacet_grid(a ~ b): facet into both rows and columns\nfacet_wrap( ~ fl): wrap facets into a rectangular layout\n\nYou can set scales to let axis limits vary across facets:\n\nfacet_grid(y ~ x, scales = \"free\"): x and y axis limits adjust to individual facets\n\n“free_x” - x axis limits adjust\n“free_y” - y axis limits adjust\n\n\nYou can also set a labeller to adjust facet labels: - facet_grid(. ~ fl, labeller = label_both) - facet_grid(. ~ fl, labeller = label_bquote(alpha ^ .(x))) - facet_grid(. ~ fl, labeller = label_parsed)"
+  },
+  {
+    "objectID": "r-graphics/slides/3-Layers.html#position-adjustments-jitter",
+    "href": "r-graphics/slides/3-Layers.html#position-adjustments-jitter",
+    "title": "Data Visualization",
+    "section": "Position Adjustments: Jitter",
+    "text": "Position Adjustments: Jitter\n\nJitter: Add random noise to X & Y position of each element to avoid overplotting\nThere is also a jitter geom"
+  },
+  {
+    "objectID": "r-graphics/slides/3-Layers.html#maps-1",
+    "href": "r-graphics/slides/3-Layers.html#maps-1",
+    "title": "Data Visualization",
+    "section": "Maps",
+    "text": "Maps\nPlotting geospatial data is a common visualization task, and one that requires specialized tools.\nTypically the problem can be decomposed into two problems:\n\nusing one data source to draw a map\nadding metadata from another information source to the map\n\nresource"
+  },
+  {
+    "objectID": "r-graphics/slides/3-Layers.html#example-nebraska-population",
+    "href": "r-graphics/slides/3-Layers.html#example-nebraska-population",
+    "title": "Data Visualization",
+    "section": "Example: Nebraska Population",
+    "text": "Example: Nebraska Population\nMap Source Data\n\nne_counties &lt;- map_data(\"county\", \"nebraska\")\n\n\n\n\n\n\nlong\nlat\ngroup\norder\nregion\nsubregion\n\n\n\n\n-98.72636\n40.69719\n1\n1\nnebraska\nadams\n\n\n-98.29664\n40.69719\n1\n2\nnebraska\nadams\n\n\n\n\n\nPopulation Data\n\nne_population &lt;- read.csv(\"https://raw.githubusercontent.com/unl-statistics/R-workshops/main/r-graphics/data/nebraska-population.csv\")\n\n\n\n\n\n\nsubregion\npopulation\n\n\n\n\nadams\n31205\n\n\nantelope\n6295"
+  },
+  {
+    "objectID": "r-graphics/slides/3-Layers.html#example-nebraska-population-1",
+    "href": "r-graphics/slides/3-Layers.html#example-nebraska-population-1",
+    "title": "Data Visualization",
+    "section": "Example: Nebraska Population",
+    "text": "Example: Nebraska Population\n\nggplot(ne_data) +\n  geom_polygon(aes(x = long, y = lat, group = group, fill = log(population)), color = \"black\") +\n  coord_map() +\n  theme_void() +\n  scale_fill_gradient(low = \"white\", high = \"green4\")"
+  },
+  {
+    "objectID": "r-graphics/slides/3-Layers.html#libraryggforce",
+    "href": "r-graphics/slides/3-Layers.html#libraryggforce",
+    "title": "Data Visualization",
+    "section": "library(ggforce)",
+    "text": "library(ggforce)\n\nlibrary(ggforce)\nggplot(iris, aes(Petal.Length, Petal.Width, colour = Species)) +\n  geom_point() +\n  facet_zoom(x = Species == 'versicolor') #&lt;&lt;"
+  },
+  {
+    "objectID": "r-graphics/slides/3-Layers.html#libraryggvoronoi",
+    "href": "r-graphics/slides/3-Layers.html#libraryggvoronoi",
+    "title": "Data Visualization",
+    "section": "library(ggvoronoi)",
+    "text": "library(ggvoronoi)"
+  },
+  {
+    "objectID": "r-graphics/slides/3-Layers.html#libraryggridges",
+    "href": "r-graphics/slides/3-Layers.html#libraryggridges",
+    "title": "Data Visualization",
+    "section": "library(ggridges)",
+    "text": "library(ggridges)\n\nBy Claus O. Wilke"
+  },
+  {
+    "objectID": "r-graphics/slides/3-Layers.html#libraryggrepel",
+    "href": "r-graphics/slides/3-Layers.html#libraryggrepel",
+    "title": "Data Visualization",
+    "section": "library(ggrepel)",
+    "text": "library(ggrepel)\n\nThe ggrepel library, as illustrated by Allison Horst"
+  },
+  {
+    "objectID": "r-graphics/slides/3-Layers.html#librarypatchwork",
+    "href": "r-graphics/slides/3-Layers.html#librarypatchwork",
+    "title": "Data Visualization",
+    "section": "library(patchwork)",
+    "text": "library(patchwork)\n\nPatchwork, as illustrated by Allison Horst"
+  },
+  {
+    "objectID": "r-graphics/slides/3-Layers.html#ggplot2-extensions",
+    "href": "r-graphics/slides/3-Layers.html#ggplot2-extensions",
+    "title": "Data Visualization",
+    "section": "ggplot2 extensions",
+    "text": "ggplot2 extensions\nCheck out slides for some frequently used extensions by Ashirwad Barnwal HERE.\n\n\n\nUNL R Workshops"
   }
 ]
