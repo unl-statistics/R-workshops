@@ -1039,43 +1039,43 @@
     "objectID": "r-graphics/slides/4-Perception.html#why-are-some-plots-easier-to-read-than-others",
     "href": "r-graphics/slides/4-Perception.html#why-are-some-plots-easier-to-read-than-others",
     "title": "Data Visualization",
-    "section": "",
-    "text": "What makes bad figures bad?\n\nissues can be (1) aesthetic, (2) substantive, and/or (3) perceptual\n\n\nWe have now learned about how to create a graphic, but how do we know if we are creating a “good” graphic? A chart is good if it allows the user to draw useful conclusions that are supported by data. Aesthetics choices, substantive content, or perceptual biases may affect the clarity of plots."
+    "section": "Why are some plots easier to read than others?",
+    "text": "Why are some plots easier to read than others?\nWhat makes bad figures bad?\n\nissues can be (1) aesthetic, (2) substantive, and/or (3) perceptual\n\n\nWe have now learned about how to create a graphic, but how do we know if we are creating a “good” graphic? A chart is good if it allows the user to draw useful conclusions that are supported by data. Aesthetics choices, substantive content, or perceptual biases may affect the clarity of plots."
   },
   {
     "objectID": "r-graphics/slides/4-Perception.html#why-are-some-plots-easier-to-read-than-others-1",
     "href": "r-graphics/slides/4-Perception.html#why-are-some-plots-easier-to-read-than-others-1",
     "title": "Data Visualization",
-    "section": "",
-    "text": "What makes bad figures bad?\n\nissues can be (1) aesthetic, (2) substantive, and/or (3) perceptual \nEdward R. Tufte is a better known critic of this style of visualization\nGraphical excellence is the well-designed presentation of interesting data and consists of:\n\ncomplex ideas communicated with clarity, precision, and efficiency\nmaximizes the “data-to-ink” ratio.\nnearly always multivariate\nrequires telling the truth about the data.\n\ndefines “chartjunk” as superfluous details\n\n\nIn learning how to create a graphic, we have seen there are many decisions we make when designing a graphic: the type of chart, colors, shapes, scales, etc. These aesthetic design choices we make can impact the way the chart is read. Edward Tufte has publically been a critic of chart design advocating for the most simplistic chart to minimize “chartjunk”. While chartjunk is not entirely devoid of merit, bear in mind that ease of recall is only one virtue amongst many for graphics."
+    "section": "Why are some plots easier to read than others?",
+    "text": "Why are some plots easier to read than others?\nWhat makes bad figures bad?\n\nissues can be (1) aesthetic, (2) substantive, and/or (3) perceptual \nEdward R. Tufte is a better known critic of this style of visualization\nGraphical excellence is the well-designed presentation of interesting data and consists of:\n\ncomplex ideas communicated with clarity, precision, and efficiency\nmaximizes the “data-to-ink” ratio.\nnearly always multivariate\nrequires telling the truth about the data.\n\ndefines “chartjunk” as superfluous details\n\n\nIn learning how to create a graphic, we have seen there are many decisions we make when designing a graphic: the type of chart, colors, shapes, scales, etc. These aesthetic design choices we make can impact the way the chart is read. Edward Tufte has publically been a critic of chart design advocating for the most simplistic chart to minimize “chartjunk”. While chartjunk is not entirely devoid of merit, bear in mind that ease of recall is only one virtue amongst many for graphics."
   },
   {
     "objectID": "r-graphics/slides/4-Perception.html#why-are-some-plots-easier-to-read-than-others-2",
     "href": "r-graphics/slides/4-Perception.html#why-are-some-plots-easier-to-read-than-others-2",
     "title": "Data Visualization",
-    "section": "",
-    "text": "What makes bad figures bad?\n\nissues can be (1) aesthetic, (2) substantive, and/or (3) perceptual \nbad data\n\n\nA good graphic can’t fix bad data. Recall that we create graphics by mapping the variables in the data set to attributes on the chart, what is in the data set shows up in the figure."
+    "section": "Why are some plots easier to read than others?",
+    "text": "Why are some plots easier to read than others?\nWhat makes bad figures bad?\n\nissues can be (1) aesthetic, (2) substantive, and/or (3) perceptual \nbad data\n\n\nA good graphic can’t fix bad data. Recall that we create graphics by mapping the variables in the data set to attributes on the chart, what is in the data set shows up in the figure."
   },
   {
     "objectID": "r-graphics/slides/4-Perception.html#why-are-some-plots-easier-to-read-than-others-3",
     "href": "r-graphics/slides/4-Perception.html#why-are-some-plots-easier-to-read-than-others-3",
     "title": "Data Visualization",
-    "section": "",
-    "text": "What makes bad figures bad?\n\nissues can be (1) aesthetic, (2) substantive, and/or (3) perceptual  \nLooking at pictures of data means looking at lines, shapes, and colors\nOur visual system works in a way that makes some things easier for us to see than others\n“Preattentive” features\nGestalt Principles\ncolor and contrast\n\n\nWhen interpreting a graphic, we are visually observing different features of the figure. While our visual system is amazing, it is not always as accurate as the computers we use to render graphics. We have physical limits in the number of colors we can perceive, our short term memory, attention, and our ability to accurately read information off of charts in different forms. We will discuss how an understanding of preattentive features and the gestalt principles can help us make decisions about how to display our data in order to reduce the cognitive load necessary to interpret a plot."
+    "section": "Why are some plots easier to read than others?",
+    "text": "Why are some plots easier to read than others?\nWhat makes bad figures bad?\n\nissues can be (1) aesthetic, (2) substantive, and/or (3) perceptual  \nLooking at pictures of data means looking at lines, shapes, and colors\nOur visual system works in a way that makes some things easier for us to see than others\n“Preattentive” features\nGestalt Principles\ncolor and contrast\n\n\nWhen interpreting a graphic, we are visually observing different features of the figure. While our visual system is amazing, it is not always as accurate as the computers we use to render graphics. We have physical limits in the number of colors we can perceive, our short term memory, attention, and our ability to accurately read information off of charts in different forms. We will discuss how an understanding of preattentive features and the gestalt principles can help us make decisions about how to display our data in order to reduce the cognitive load necessary to interpret a plot."
   },
   {
     "objectID": "r-graphics/slides/4-Perception.html#good-graphics",
     "href": "r-graphics/slides/4-Perception.html#good-graphics",
     "title": "Data Visualization",
-    "section": "",
-    "text": "Graphics consist of:\n\nStructure: boxplot, scatterplot, etc.\nAesthetics: features such as color, shape, and size that map other characteristics to structural features\n\nBoth the structure and aesthetics should help viewers interpret the information."
+    "section": "Good Graphics",
+    "text": "Good Graphics\nGraphics consist of:\n\nStructure: boxplot, scatterplot, etc.\nAesthetics: features such as color, shape, and size that map other characteristics to structural features\n\nBoth the structure and aesthetics should help viewers interpret the information."
   },
   {
     "objectID": "r-graphics/slides/4-Perception.html#which-has-more-structure",
     "href": "r-graphics/slides/4-Perception.html#which-has-more-structure",
     "title": "Data Visualization",
     "section": "Which has more structure?",
-    "text": "Which has more structure?\n\n\n\n\n\n\n\n\n\n\nWe look for structure all the time. We are so good at it that we will find it in random data, given time. (This is one of the reasons that data visualization can hardly be a replacement for statistical modeling.) The strong inferences we make about relationships between visual elements from relatively sparse visual information are called “gestalt rules”. They are not pure perceptual effects, like the checkerboard illusions. Rather, they describe our tendency to infer relationships between the objects we are looking at in a way that goes beyond what is strictly visible."
+    "text": "Which has more structure?\n\n\nWe look for structure all the time. We are so good at it that we will find it in random data, given time. (This is one of the reasons that data visualization can hardly be a replacement for statistical modeling.) The strong inferences we make about relationships between visual elements from relatively sparse visual information are called “gestalt rules”. They are not pure perceptual effects, like the checkerboard illusions. Rather, they describe our tendency to infer relationships between the objects we are looking at in a way that goes beyond what is strictly visible."
   },
   {
     "objectID": "r-graphics/slides/4-Perception.html#gestalt-principles-1",
@@ -1131,14 +1131,14 @@
     "href": "r-graphics/slides/4-Perception.html#pre-attentive-features-1",
     "title": "Data Visualization",
     "section": "Pre-Attentive Features",
-    "text": "Pre-Attentive Features\n\n\n\n\n\n\n\n\n\n\nhow quickly did you spot the circle?"
+    "text": "Pre-Attentive Features\n\n\nhow quickly did you spot the circle?"
   },
   {
     "objectID": "r-graphics/slides/4-Perception.html#pre-attentive-features-2",
     "href": "r-graphics/slides/4-Perception.html#pre-attentive-features-2",
     "title": "Data Visualization",
     "section": "Pre-Attentive Features",
-    "text": "Pre-Attentive Features\n\n\n\n\n\n\n\n\n\n\nDid you spot the green point quicker than the circle in the previous image?"
+    "text": "Pre-Attentive Features\n\n\nDid you spot the green point quicker than the circle in the previous image?"
   },
   {
     "objectID": "r-graphics/slides/4-Perception.html#pre-attentive-features-3",
@@ -1166,7 +1166,7 @@
     "href": "r-graphics/slides/4-Perception.html#color-1",
     "title": "Data Visualization",
     "section": "Color",
-    "text": "Color\nOur eyes are optimized for perceiving the yellow/green region of the color spectrum.\n\n\n\nSensitivity of the human eye to different wavelengths of visual light (Image from Wikimedia commons)\n\n\n\nOur eyes are optimized for perceiving the yellow/green region of the color spectrum. Why? Well, our sun produces yellow light, and plants tend to be green. It’s pretty important to be able to distinguish different shades of green (evolutionarily speaking) because it impacts your ability to feed yourself. There aren’t that many purple or blue predators, so there is less selection pressure to improve perception of that part of the visual spectrum."
+    "text": "Color\nOur eyes are optimized for perceiving the yellow/green region of the color spectrum.\n\nSensitivity of the human eye to different wavelengths of visual light (Image from Wikimedia commons)\nOur eyes are optimized for perceiving the yellow/green region of the color spectrum. Why? Well, our sun produces yellow light, and plants tend to be green. It’s pretty important to be able to distinguish different shades of green (evolutionarily speaking) because it impacts your ability to feed yourself. There aren’t that many purple or blue predators, so there is less selection pressure to improve perception of that part of the visual spectrum."
   },
   {
     "objectID": "r-graphics/slides/4-Perception.html#color-blindness",
@@ -1180,14 +1180,14 @@
     "href": "r-graphics/slides/4-Perception.html#context",
     "title": "Data Visualization",
     "section": "Context",
-    "text": "Context\nColor is context-sensitive: A and B are the same intensity and hue, but appear to be different.\n\n\n\nEdward Adelson’s checkershadow illusion\n\n\n\nIn addition to colorblindness, there are other factors than the actual color value which are important in how we experience color, such as context.\nOur brains are extremely dependent on context and make excellent use of the large amounts of experience we have with the real world. As a result, we implicitly “remove” the effect of things like shadows as we make sense of the input to the visual system. This can result in odd things, like the checkerboard and shadow shown above - because we’re correcting for the shadow, B looks lighter than A even though when the context is removed they are clearly the same shade."
+    "text": "Context\nColor is context-sensitive: A and B are the same intensity and hue, but appear to be different.\n\nEdward Adelson’s checkershadow illusion\nIn addition to colorblindness, there are other factors than the actual color value which are important in how we experience color, such as context.\nOur brains are extremely dependent on context and make excellent use of the large amounts of experience we have with the real world. As a result, we implicitly “remove” the effect of things like shadows as we make sense of the input to the visual system. This can result in odd things, like the checkerboard and shadow shown above - because we’re correcting for the shadow, B looks lighter than A even though when the context is removed they are clearly the same shade."
   },
   {
     "objectID": "r-graphics/slides/4-Perception.html#color-implications-and-guidelines",
     "href": "r-graphics/slides/4-Perception.html#color-implications-and-guidelines",
     "title": "Data Visualization",
     "section": "Color: Implications and Guidelines",
-    "text": "Color: Implications and Guidelines\n\nDo not use rainbow color gradient schemes.\nAvoid any scheme that uses green-yellow-red signaling if you have a target audience that may include colorblind people.\nTo “colorblind-proof” a graphic, you can use a couple of strategies:\n\ndouble encoding - where you use color, use another aesthetic (line type, shape)\nIf you can print your chart out in black and white and still read it, it will be safe for colorblind users. This is the only foolproof way to do it!\nIf you are using a color gradient, use a monochromatic color scheme where possible.\nIf you have a bidirectional scale (e.g. showing positive and negative values), the safest scheme to use is purple - white - orange. In any color scale that is multi-hue, it is important to transition through white, instead of from one color to another directly.\n\nBe conscious of what certain colors “mean”\n\n\n\nDo not use rainbow color gradient schemes - because of the unequal perception of different wavelengths, these schemes are misleading - the color distance does not match the perceptual distance.\nAvoid any scheme that uses green-yellow-red signaling if you have a target audience that may include colorblind people.\nTo “colorblind-proof” a graphic, you can use a couple of strategies:\n\ndouble encoding - where you use color, use another aesthetic (line type, shape) as well to help your colorblind readers out\nIf you can print your chart out in black and white and still read it, it will be safe for colorblind users. This is the only foolproof way to do it!\nIf you are using a color gradient, use a monochromatic color scheme where possible. This is perceived as light -&gt; dark by colorblind people, so it will be correctly perceived no matter what color you use.\nIf you have a bidirectional scale (e.g. showing positive and negative values), the safest scheme to use is purple - white - orange. In any color scale that is multi-hue, it is important to transition through white, instead of from one color to another directly.\n\nBe conscious of what certain colors “mean”\n\nLeveraging common associations can make it easier to read a color scale and remember what it stands for (e.g. blue for cold, orange/red for hot is a natural scale, red = Republican and blue = Democrat in the US, white -&gt; blue gradients for showing rainfall totals)\nSome colors can can provoke emotional responses that may not be desirable.\nIt is also important to be conscious of the social baggage that certain color schemes may have - the pink/blue color scheme often used to denote gender can be unnecessarily polarizing, and it may be easier to use a colder color (blue or purple) for men and a warmer color (yellow, orange, lighter green) for women.\n\nThere are packages such as RColorBrewer and dichromat that have color palettes which are aesthetically pleasing, and, in many cases, colorblind friendly (dichromat is better for that than RColorBrewer). You can also take a look at other ways to find nice color palettes."
+    "text": "Color: Implications and Guidelines\n\n\n\n\nTo “colorblind-proof” a graphic, you can use a couple of strategies:\n\ndouble encoding - where you use color, use another aesthetic (line type, shape)\nIf you can print your chart out in black and white and still read it, it will be safe for colorblind users. This is the only foolproof way to do it!\nIf you are using a color gradient, use a monochromatic color scheme where possible.\nIf you have a bidirectional scale (e.g. showing positive and negative values), the safest scheme to use is purple - white - orange. In any color scale that is multi-hue, it is important to transition through white, instead of from one color to another directly.\n\n\n\n\nDo not use rainbow color gradient schemes.\nAvoid any scheme that uses green-yellow-red signaling if you have a target audience that may include colorblind people.\nBe conscious of what certain colors “mean”\n\n\n\n\n\n\nDo not use rainbow color gradient schemes - because of the unequal perception of different wavelengths, these schemes are misleading - the color distance does not match the perceptual distance.\nAvoid any scheme that uses green-yellow-red signaling if you have a target audience that may include colorblind people.\nTo “colorblind-proof” a graphic, you can use a couple of strategies:\n\ndouble encoding - where you use color, use another aesthetic (line type, shape) as well to help your colorblind readers out\nIf you can print your chart out in black and white and still read it, it will be safe for colorblind users. This is the only foolproof way to do it!\nIf you are using a color gradient, use a monochromatic color scheme where possible. This is perceived as light -&gt; dark by colorblind people, so it will be correctly perceived no matter what color you use.\nIf you have a bidirectional scale (e.g. showing positive and negative values), the safest scheme to use is purple - white - orange. In any color scale that is multi-hue, it is important to transition through white, instead of from one color to another directly.\n\nBe conscious of what certain colors “mean”\n\nLeveraging common associations can make it easier to read a color scale and remember what it stands for (e.g. blue for cold, orange/red for hot is a natural scale, red = Republican and blue = Democrat in the US, white -&gt; blue gradients for showing rainfall totals)\nSome colors can can provoke emotional responses that may not be desirable.\nIt is also important to be conscious of the social baggage that certain color schemes may have - the pink/blue color scheme often used to denote gender can be unnecessarily polarizing, and it may be easier to use a colder color (blue or purple) for men and a warmer color (yellow, orange, lighter green) for women.\n\nThere are packages such as RColorBrewer and dichromat that have color palettes which are aesthetically pleasing, and, in many cases, colorblind friendly (dichromat is better for that than RColorBrewer). You can also take a look at other ways to find nice color palettes."
   },
   {
     "objectID": "r-graphics/slides/4-Perception.html#aesthetics-in-ggplot2-1",
@@ -1222,7 +1222,7 @@
     "href": "r-graphics/slides/4-Perception.html#more-gradients",
     "title": "Data Visualization",
     "section": "More Gradients",
-    "text": "More Gradients\nQuantitative schemes: use color gradient with two hues for positive and negative values. Gradient should go through a light, neutral color (white)\n\n\n\n\n\n\n\n\n\nSmall objects or thin lines need more contrast than larger areas"
+    "text": "More Gradients\nQuantitative schemes: use color gradient with two hues for positive and negative values. Gradient should go through a light, neutral color (white)\n\nSmall objects or thin lines need more contrast than larger areas"
   },
   {
     "objectID": "r-graphics/slides/4-Perception.html#factors-vs.-continuous-variables",
@@ -1257,7 +1257,7 @@
     "href": "r-graphics/slides/4-Perception.html#your-turn-1",
     "title": "Data Visualization",
     "section": "Your Turn",
-    "text": "Your Turn\nThe movies data set contains information from IMDB.com including ratings, genre, length in minutes, and year of release.\n\nmovies &lt;- read.csv(\"https://raw.githubusercontent.com/unl-statistics/R-workshops/main/r-graphics/data/MovieSummary.csv\")\n\n\nExplore the differences in length, rating, etc. in movie genres over time.\nHint: use faceting!\nDiscuss your graphic with a neighbor."
+    "text": "Your Turn\nThe movies data set contains information from IMDB.com including ratings, genre, length in minutes, and year of release.\n\nmovies &lt;- read.csv(\"https://raw.githubusercontent.com/unl-statistics/R-workshops/main/r-graphics/data/MovieSummary.csv\")\n\n\nExplore the differences in length, rating, etc. in movie genres over time.\nHint: use faceting!\nDiscuss your graphic with a neighbor.\n\n\n\n\nUNL R Workshops"
   },
   {
     "objectID": "r-intro/index.html",

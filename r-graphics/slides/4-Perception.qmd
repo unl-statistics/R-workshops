@@ -65,7 +65,7 @@ What makes bad figures bad?
 We have now learned about how to create a graphic, but how do we know if we are creating a "good" graphic? A chart is good if it allows the user to draw useful conclusions that are supported by data. Aesthetics choices, substantive content, or perceptual biases may affect the clarity of plots.
 :::
 
-## Why are some plots easier to read than others?
+## Why are some plots easier to read than others? {.smaller}
 
 What makes bad figures bad?
 
@@ -105,7 +105,7 @@ What makes bad figures bad?
 A good graphic can't fix bad data. Recall that we create graphics by mapping the variables in the data set to attributes on the chart, what is in the data set shows up in the figure.
 :::
 
-## Why are some plots easier to read than others?
+## Why are some plots easier to read than others? {.smaller}
 
 What makes bad figures bad?
 
@@ -181,7 +181,7 @@ Gestalt principles: Predictable ways by which we organize sensory information.
 :::
 
 
-## Gestalt principles
+## Gestalt principles {.smaller}
 
 What sorts of relationships are inferred, and under what circumstances? 
 
@@ -219,7 +219,7 @@ tibble("Gestalt Hierarchy" = c("Enclosure", "Connection", "Proximitiy", "Similar
 swimming <- read.csv("https://raw.githubusercontent.com/unl-statistics/R-workshops/main/r-graphics/data/gestalt-swimming.csv")
 ```
 
-![](images/swimming.png)
+![](images/swimming.png){width=800 height=250}
 
 ```{r gestalt-swimming2, echo = F}
 factorCols <- c("Location", "WaterTemp", "Time")
@@ -228,7 +228,7 @@ swimming$Time <- relevel(swimming$Time, ref = "pre")
 summary(swimming)
 ```
 
-## Gestalt Principles: Case Study
+## Gestalt Principles: Case Study {.smaller}
 
 **Research question:** Does the average body temperature recovery as recorded at the four body points depend on water temperature?
 
@@ -273,11 +273,11 @@ ggplot(data = swimming, aes(x = WaterTemp, y = AvgTemp)) +
   scale_fill_brewer()
 ```
 
-## Gestalt Principles: Case Study
+## Gestalt Principles: Case Study {.smaller}
 
 **Research question:** Does the average body temperature recovery as recorded at the four body points depend on water temperature?
 
-```{r swimming-plots3, fig.height = 3, fig.width = 12, fig.align = "center"}
+```{r swimming-plots3, fig.height = 2.5, fig.width = 12, fig.align = "center"}
 ggplot(data = swimming, aes(x = Time, y = AvgTemp)) +
   geom_point(aes(color = WaterTemp)) +
   facet_grid(~Location) +
@@ -289,9 +289,7 @@ ggplot(data = swimming, aes(x = Time, y = AvgTemp)) +
         strip.text = element_text(size = 14))
 ```
 
-
-
-```{r swimming-plots4, fig.height = 3, fig.width = 12, fig.align = "center"}
+```{r swimming-plots4, fig.height = 2.5, fig.width = 12, fig.align = "center"}
 ggplot(data = swimming, aes(x = Time, y = AvgTemp, color = WaterTemp)) +
   geom_point() +
   geom_line(aes(group = WaterTemp)) +
@@ -373,7 +371,7 @@ ggplot(data, aes(x, y)) + geom_point(aes(colour = shape), shape = 19, size = 5) 
 ```
 
 
-# Color
+# Color {.smaller}
 
 - **Hue**: shade of color (red, orange, yellow...)
 
@@ -421,19 +419,29 @@ In addition to colorblindness, there are other factors than the actual color val
 Our brains are extremely dependent on context and make excellent use of the large amounts of experience we have with the real world. As a result, we implicitly “remove” the effect of things like shadows as we make sense of the input to the visual system. This can result in odd things, like the checkerboard and shadow shown above - because we’re correcting for the shadow, B looks lighter than A even though when the context is removed they are clearly the same shade.
 :::
 
-## Color: Implications and Guidelines
+## Color: Implications and Guidelines {.smaller}
+<font size="5"> 
 
-+ Do not use rainbow color gradient schemes.
-
-+ Avoid any scheme that uses green-yellow-red signaling if you have a target audience that may include colorblind people.
-
+::: columns
+::: column
 + To “colorblind-proof” a graphic, you can use a couple of strategies:
     + double encoding - where you use color, use another aesthetic (line type, shape)
     + If you can print your chart out in black and white and still read it, it will be safe for colorblind users. This is the only foolproof way to do it!
     + If you are using a color gradient, use a monochromatic color scheme where possible. 
     + If you have a bidirectional scale (e.g. showing positive and negative values), the safest scheme to use is purple - white - orange. In any color scale that is multi-hue, it is important to transition through white, instead of from one color to another directly.
     
+:::
+::: column
++ Do not use rainbow color gradient schemes.
+
++ Avoid any scheme that uses green-yellow-red signaling if you have a target audience that may include colorblind people.
+
 + Be conscious of what certain colors “mean”
+
+:::
+:::
+
+</font>
 
 ::: notes
 + Do not use rainbow color gradient schemes - because of the unequal perception of different wavelengths, these schemes are misleading - the color distance does not match the perceptual distance.
@@ -452,7 +460,7 @@ Our brains are extremely dependent on context and make excellent use of the larg
 
 :::
 
-# Ordering Variables
+# Ordering Variables {.smaller}
 
 Which is bigger?
 
@@ -525,7 +533,7 @@ grid.arrange(p1, p2, p3, nrow = 1)
 ![](images/scales3.png)
 :::
 
-## Gradients
+## Gradients {.smaller}
 
 Qualitative schemes: no more than 7 colors
 
@@ -617,7 +625,7 @@ p2 <- ggplot(data = mpg, aes(x = cty, y = hwy, colour = hwy)) + geom_point() + l
 grid.arrange(p1, p2, ncol = 2, nrow = 1)
 ```
 
-## Color in ggplot2
+## Color in ggplot2 {.smaller}
 
 There are packages available for use that have color scheme options.
 

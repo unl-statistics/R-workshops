@@ -119,7 +119,7 @@ ggplot(data = swimming, aes(x = WaterTemp, y = AvgTemp)) +
   scale_fill_brewer()
 
 
-## ----swimming-plots3, fig.height = 3, fig.width = 12, fig.align = "center"----
+## ----swimming-plots3, fig.height = 2.5, fig.width = 12, fig.align = "center"----
 ggplot(data = swimming, aes(x = Time, y = AvgTemp)) +
   geom_point(aes(color = WaterTemp)) +
   facet_grid(~Location) +
@@ -131,7 +131,7 @@ ggplot(data = swimming, aes(x = Time, y = AvgTemp)) +
         strip.text = element_text(size = 14))
 
 
-## ----swimming-plots4, fig.height = 3, fig.width = 12, fig.align = "center"----
+## ----swimming-plots4, fig.height = 2.5, fig.width = 12, fig.align = "center"----
 ggplot(data = swimming, aes(x = Time, y = AvgTemp, color = WaterTemp)) +
   geom_point() +
   geom_line(aes(group = WaterTemp)) +
