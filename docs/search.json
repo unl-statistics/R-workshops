@@ -332,8 +332,8 @@
     "objectID": "r-modeling/slides/2-BasicStatisticalTests.html#outline",
     "href": "r-modeling/slides/2-BasicStatisticalTests.html#outline",
     "title": "Basic Statistical Tests",
-    "section": "",
-    "text": "p-values\nconfidence intervals\nt-tests\nchi-square tests\nsimple regression"
+    "section": "Outline",
+    "text": "Outline\n\np-values\nconfidence intervals\nt-tests\nchi-square tests\nsimple regression"
   },
   {
     "objectID": "r-modeling/slides/2-BasicStatisticalTests.html#five-step-hypothesis-testing-procedure",
@@ -354,21 +354,21 @@
     "href": "r-modeling/slides/2-BasicStatisticalTests.html#what-is-a-p-value",
     "title": "Basic Statistical Tests",
     "section": "What is a p-value?",
-    "text": "What is a p-value?\n\n\n\nImage source: Susan VanderPlas UNL Extension\n\n\n\nThe p-value is the probability of observing the data we saw under the null hypothesis (\\(H_0\\))\nA p-value is the area under the reference distribution where values are as or more extreme than the hypothesized value.\nIf the p-value is low (p \\(&lt; \\alpha\\)), where \\(\\alpha = 0.05, 0.01,\\) or another pre-specified value) then we know that it is relatively unlikely to observe our data under \\(H_0\\) which means that it is more likely that \\(H_0\\) is false and \\(H_A\\) is true."
+    "text": "What is a p-value?\n\nImage source: Susan VanderPlas UNL Extension\nThe p-value is the probability of observing the data we saw under the null hypothesis (\\(H_0\\))\nA p-value is the area under the reference distribution where values are as or more extreme than the hypothesized value.\nIf the p-value is low (p \\(&lt; \\alpha\\)), where \\(\\alpha = 0.05, 0.01,\\) or another pre-specified value) then we know that it is relatively unlikely to observe our data under \\(H_0\\) which means that it is more likely that \\(H_0\\) is false and \\(H_A\\) is true."
   },
   {
     "objectID": "r-modeling/slides/2-BasicStatisticalTests.html#what-is-a-p-value-1",
     "href": "r-modeling/slides/2-BasicStatisticalTests.html#what-is-a-p-value-1",
     "title": "Basic Statistical Tests",
     "section": "What is a p-value?",
-    "text": "What is a p-value?\n\n\n\nImage source: Susan VanderPlas UNL Extension"
+    "text": "What is a p-value?\n\nImage source: Susan VanderPlas UNL Extension"
   },
   {
     "objectID": "r-modeling/slides/2-BasicStatisticalTests.html#what-is-a-confidence-interval",
     "href": "r-modeling/slides/2-BasicStatisticalTests.html#what-is-a-confidence-interval",
     "title": "Basic Statistical Tests",
     "section": "What is a confidence interval?",
-    "text": "What is a confidence interval?\n\n\n\n\n\nConfidence intervals are a range of values around the central estimate obtained from the sample data.\n\n\n\n\nImage source: Susan VanderPlas UNL Extension\n\nSometimes, we don’t want to test whether a parameter is equal to a specific value - instead, we might want to know what that value is (or at least, a range of possible values for that parameter).\nIn this case, we construct a confidence interval - a set of plausible values for the parameter.\nWe can think of a confidence interval as our best estimate of the parameter value + uncertainty.\nConfidence intervals, like hypothesis tests, are conducted based on a parameter \\(\\alpha\\) representing the acceptable level of error. If we want to be 95% confident in our estimate, our interval will be wider than if we want to be 90% confident in our estimate – we have to include more values to get a wider interval."
+    "text": "What is a confidence interval?\n\nConfidence intervals are a range of values around the central estimate obtained from the sample data.Image source: Susan VanderPlas UNL Extension\n\nSometimes, we don’t want to test whether a parameter is equal to a specific value - instead, we might want to know what that value is (or at least, a range of possible values for that parameter).\nIn this case, we construct a confidence interval - a set of plausible values for the parameter.\nWe can think of a confidence interval as our best estimate of the parameter value + uncertainty.\nConfidence intervals, like hypothesis tests, are conducted based on a parameter \\(\\alpha\\) representing the acceptable level of error. If we want to be 95% confident in our estimate, our interval will be wider than if we want to be 90% confident in our estimate – we have to include more values to get a wider interval."
   },
   {
     "objectID": "r-modeling/slides/2-BasicStatisticalTests.html#penguins-data",
@@ -480,7 +480,7 @@
     "href": "r-modeling/slides/2-BasicStatisticalTests.html#simple-regression-evaluate-model",
     "title": "Basic Statistical Tests",
     "section": "Simple Regression (evaluate model)",
-    "text": "Simple Regression (evaluate model)\n\npar(mfrow = c(2,2))\nplot(penguins_regression)\n\n\n\n\n\n\n\npar(mfrow = c(1,1))"
+    "text": "Simple Regression (evaluate model)\n\npar(mfrow = c(2,2))\nplot(penguins_regression)\n\npar(mfrow = c(1,1))"
   },
   {
     "objectID": "r-modeling/slides/2-BasicStatisticalTests.html#simple-regression-results",
@@ -508,7 +508,7 @@
     "href": "r-modeling/slides/2-BasicStatisticalTests.html#your-turn-simple-regression",
     "title": "Basic Statistical Tests",
     "section": "Your Turn: Simple Regression",
-    "text": "Your Turn: Simple Regression\nFit a linear regression line between bill length and bill depth for each species"
+    "text": "Your Turn: Simple Regression\nFit a linear regression line between bill length and bill depth for each species\n\n\n\n\nUNL R Workshops"
   },
   {
     "objectID": "r-modeling/planning.html",
