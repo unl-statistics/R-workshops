@@ -141,7 +141,7 @@ grid.arrange(p11, p1, p2, p3, p4, p5, p6, p7, p8, nrow = 3)
 ```
 
 
-## Setting Themes
+## Setting Themes {.smaller}
 
 You can globally set a theme with the `theme_set()` function:
 
@@ -152,7 +152,7 @@ ggplot(mtcars, aes(x = wt, y = mpg, colour = gear)) +
 ```
 
 
-## Elements in a theme
+## Elements in a theme {.smaller}
 
 The function `theme()` is used to control non-data parts of the graph including:
 
@@ -170,7 +170,7 @@ There is a specific function to modify each of these three elements :
 **Note**: `rel()` is used to specify sizes relative to the parent, `margins()` is used to specify the margins of elements.
 
 
-## Modifying a plot
+## Modifying a plot {.smaller}
 
 ```{r, fig.height=4, fig.width=10, eval = FALSE}
 p1 <- ggplot(mpg) + 
@@ -182,7 +182,7 @@ p2 <- p1 + #<<
   theme(plot.background = element_rect(fill = "lightskyblue1",colour = "pink",size = 0.5, linetype = "longdash")) #<<
 ```
 
-```{r, fig.height=4, fig.width=12, echo = FALSE, fig.align = "center"}
+```{r, fig.height=4.5, fig.width=12, echo = FALSE, fig.align = "center"}
 p1 <- ggplot(mpg) + 
   geom_bar(aes(x = class, colour = manufacturer, fill = manufacturer) ) 
 
@@ -194,7 +194,7 @@ grid.arrange(p1, p2, nrow = 1)
 ```
 
 
-## Plot Legends
+## Plot Legends {.smaller}
 
 ```{r, fig.height=4, fig.width=12, fig.align = "center"}
 p3 <- p2 + 
@@ -207,7 +207,7 @@ p3 <- p2 +
   )
 ```
 
-```{r, fig.height=4, fig.width=10, echo = FALSE}
+```{r, fig.height=4, fig.width=12, echo = FALSE}
 grid.arrange(p2, p3, nrow = 1)
 ```
 
@@ -224,12 +224,12 @@ p4 <- p3 + theme(
   )
 ```
 
-```{r, echo=FALSE, fig.height=4, fig.width=8}
+```{r, echo=FALSE, fig.height=4, fig.width=12}
 grid.arrange(p3, p4, nrow = 1)
 ```
 
 
-## Plot Labels
+## Plot Labels {.smaller}
 
 Can be modified in several ways: - `labs()`, `xlab()`, `ylab()`, `ggtitle()` - You can also set axis and legend labels in the individual scales (using the first argument, the name) e.g. `scale_x_continuous()` .
 
@@ -241,7 +241,7 @@ p5 <- p4 +
        subtitle = "With a custom theme!!") #<<
 ```
 
-```{r, echo=FALSE, fig.height=3.5, fig.width=10}
+```{r, echo=FALSE, fig.height=3.25, fig.width=10}
 grid.arrange(p4, p5, nrow = 1)
 ```
 

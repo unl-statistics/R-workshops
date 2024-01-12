@@ -920,50 +920,50 @@
     "objectID": "r-graphics/slides/5-PolishingPlots.html#setting-themes",
     "href": "r-graphics/slides/5-PolishingPlots.html#setting-themes",
     "title": "Data Visualization",
-    "section": "",
-    "text": "You can globally set a theme with the theme_set() function:\n\ntheme_set(theme_bw()) #&lt;&lt;\nggplot(mtcars, aes(x = wt, y = mpg, colour = gear)) + \n  geom_point()"
+    "section": "Setting Themes",
+    "text": "Setting Themes\nYou can globally set a theme with the theme_set() function:\n\ntheme_set(theme_bw()) #&lt;&lt;\nggplot(mtcars, aes(x = wt, y = mpg, colour = gear)) + \n  geom_point()"
   },
   {
     "objectID": "r-graphics/slides/5-PolishingPlots.html#elements-in-a-theme",
     "href": "r-graphics/slides/5-PolishingPlots.html#elements-in-a-theme",
     "title": "Data Visualization",
-    "section": "",
-    "text": "The function theme() is used to control non-data parts of the graph including:\n\nLine elements: axis lines, minor and major grid lines, plot panel border, axis ticks background color, etc.\n\nText elements: plot title, axis titles, legend title and text, axis tick mark labels, etc.\n\nRectangle elements: plot background, panel background, legend background, etc.\n\nThere is a specific function to modify each of these three elements :\n\nelement_line() to modify the line elements of the theme\nelement_text() to modify the text elements\nelement_rect() to change the appearance of the rectangle elements\nelement_blank() to draw nothing and assign no space\n\nNote: rel() is used to specify sizes relative to the parent, margins() is used to specify the margins of elements."
+    "section": "Elements in a theme",
+    "text": "Elements in a theme\nThe function theme() is used to control non-data parts of the graph including:\n\nLine elements: axis lines, minor and major grid lines, plot panel border, axis ticks background color, etc.\n\nText elements: plot title, axis titles, legend title and text, axis tick mark labels, etc.\n\nRectangle elements: plot background, panel background, legend background, etc.\n\nThere is a specific function to modify each of these three elements :\n\nelement_line() to modify the line elements of the theme\nelement_text() to modify the text elements\nelement_rect() to change the appearance of the rectangle elements\nelement_blank() to draw nothing and assign no space\n\nNote: rel() is used to specify sizes relative to the parent, margins() is used to specify the margins of elements."
   },
   {
     "objectID": "r-graphics/slides/5-PolishingPlots.html#modifying-a-plot",
     "href": "r-graphics/slides/5-PolishingPlots.html#modifying-a-plot",
     "title": "Data Visualization",
-    "section": "",
-    "text": "p1 &lt;- ggplot(mpg) + \n  geom_bar(aes(x = class, colour = manufacturer, fill = manufacturer) ) \n\np2 &lt;- p1 + #&lt;&lt;\n  theme_classic() + \n  ## modify plot background\n  theme(plot.background = element_rect(fill = \"lightskyblue1\",colour = \"pink\",size = 0.5, linetype = \"longdash\")) #&lt;&lt;"
+    "section": "Modifying a plot",
+    "text": "Modifying a plot\n\np1 &lt;- ggplot(mpg) + \n  geom_bar(aes(x = class, colour = manufacturer, fill = manufacturer) ) \n\np2 &lt;- p1 + #&lt;&lt;\n  theme_classic() + \n  ## modify plot background\n  theme(plot.background = element_rect(fill = \"lightskyblue1\",colour = \"pink\",size = 0.5, linetype = \"longdash\")) #&lt;&lt;"
   },
   {
     "objectID": "r-graphics/slides/5-PolishingPlots.html#plot-legends",
     "href": "r-graphics/slides/5-PolishingPlots.html#plot-legends",
     "title": "Data Visualization",
-    "section": "",
-    "text": "p3 &lt;- p2 + \n  theme(\n  ### move and modify legend \n  legend.title = element_blank(), #&lt;&lt;\n  legend.position = \"top\", #&lt;&lt;\n  legend.key = element_rect(fill = \"lightskyblue1\", color = \"lightskyblue1\"), #&lt;&lt;\n  legend.background = element_rect( fill = \"lightskyblue1\",color = \"pink\", size = 0.5,linetype = \"longdash\") #&lt;&lt;\n  )"
+    "section": "Plot Legends",
+    "text": "Plot Legends\n\np3 &lt;- p2 + \n  theme(\n  ### move and modify legend \n  legend.title = element_blank(), #&lt;&lt;\n  legend.position = \"top\", #&lt;&lt;\n  legend.key = element_rect(fill = \"lightskyblue1\", color = \"lightskyblue1\"), #&lt;&lt;\n  legend.background = element_rect( fill = \"lightskyblue1\",color = \"pink\", size = 0.5,linetype = \"longdash\") #&lt;&lt;\n  )"
   },
   {
     "objectID": "r-graphics/slides/5-PolishingPlots.html#modifying-axes",
     "href": "r-graphics/slides/5-PolishingPlots.html#modifying-axes",
     "title": "Data Visualization",
-    "section": "",
-    "text": "p4 &lt;- p3 + theme(\n  ### remove axis ticks\n  axis.ticks=element_blank(), #&lt;&lt;\n  ### modify axis lines\n  axis.line.y = element_line(colour = \"pink\", size = 1, linetype = \"dashed\"),#&lt;&lt;\n  axis.line.x = element_line(colour = \"pink\", size = 1.2, linetype = \"dashed\") #&lt;&lt;\n  )"
+    "section": "Modifying Axes",
+    "text": "Modifying Axes\n\np4 &lt;- p3 + theme(\n  ### remove axis ticks\n  axis.ticks=element_blank(), #&lt;&lt;\n  ### modify axis lines\n  axis.line.y = element_line(colour = \"pink\", size = 1, linetype = \"dashed\"),#&lt;&lt;\n  axis.line.x = element_line(colour = \"pink\", size = 1.2, linetype = \"dashed\") #&lt;&lt;\n  )"
   },
   {
     "objectID": "r-graphics/slides/5-PolishingPlots.html#plot-labels",
     "href": "r-graphics/slides/5-PolishingPlots.html#plot-labels",
     "title": "Data Visualization",
-    "section": "",
-    "text": "Can be modified in several ways: - labs(), xlab(), ylab(), ggtitle() - You can also set axis and legend labels in the individual scales (using the first argument, the name) e.g. scale_x_continuous() .\n\np5 &lt;- p4 + \n  labs(x = \"Class of car\", #&lt;&lt;\n       y = \"\", #&lt;&lt;\n       title = \"Cars by class and manufacturer\", #&lt;&lt;\n       subtitle = \"With a custom theme!!\") #&lt;&lt;"
+    "section": "Plot Labels",
+    "text": "Plot Labels\nCan be modified in several ways: - labs(), xlab(), ylab(), ggtitle() - You can also set axis and legend labels in the individual scales (using the first argument, the name) e.g. scale_x_continuous() .\n\np5 &lt;- p4 + \n  labs(x = \"Class of car\", #&lt;&lt;\n       y = \"\", #&lt;&lt;\n       title = \"Cars by class and manufacturer\", #&lt;&lt;\n       subtitle = \"With a custom theme!!\") #&lt;&lt;"
   },
   {
     "objectID": "r-graphics/slides/5-PolishingPlots.html#zooming",
     "href": "r-graphics/slides/5-PolishingPlots.html#zooming",
     "title": "Data Visualization",
-    "section": "",
-    "text": "p &lt;- ggplot(mtcars, aes(x = wt, y = mpg, colour = gear)) + \n  geom_point() \n\np_zoom_in &lt;- p + \n  xlim(2, 4) + #&lt;&lt;\n  ylim(10, 25) #&lt;&lt;\n\np_zoom_out &lt;- p + \n  scale_x_continuous(limits = c(0,7)) + #&lt;&lt;\n  scale_y_continuous(limits = c(0, 45)) #&lt;&lt;"
+    "section": "Zooming",
+    "text": "Zooming\n\np &lt;- ggplot(mtcars, aes(x = wt, y = mpg, colour = gear)) + \n  geom_point() \n\np_zoom_in &lt;- p + \n  xlim(2, 4) + #&lt;&lt;\n  ylim(10, 25) #&lt;&lt;\n\np_zoom_out &lt;- p + \n  scale_x_continuous(limits = c(0,7)) + #&lt;&lt;\n  scale_y_continuous(limits = c(0, 45)) #&lt;&lt;"
   },
   {
     "objectID": "r-graphics/slides/5-PolishingPlots.html#plotly",
@@ -984,7 +984,7 @@
     "href": "r-graphics/slides/5-PolishingPlots.html#your-turn",
     "title": "Data Visualization",
     "section": "Your Turn",
-    "text": "Your Turn\n\nCreate a scatterplot of bill length versus bill width from the penguins and color by species.\nUse the black and white theme\nClean up axis labels and include an informative title.\nCapitalize legend title and change the color palette from default.\nMove the legend to the bottom and set aspect ratio to 1.\nSave your plot to a pdf file and open it in a pdf viewer.\nSave a png of the same scatterplot.\nEmbed the png into MS word or another editor.\n\n\ninstall.packages(\"palmerpenguins\")\ndata(penguins, package = \"palmerpenguins\")\nhead(penguins)"
+    "text": "Your Turn\n\nCreate a scatterplot of bill length versus bill width from the penguins and color by species.\nUse the black and white theme\nClean up axis labels and include an informative title.\nCapitalize legend title and change the color palette from default.\nMove the legend to the bottom and set aspect ratio to 1.\nSave your plot to a pdf file and open it in a pdf viewer.\nSave a png of the same scatterplot.\nEmbed the png into MS word or another editor.\n\n\ninstall.packages(\"palmerpenguins\")\ndata(penguins, package = \"palmerpenguins\")\nhead(penguins)\n\n\n\n\nUNL R Workshops"
   },
   {
     "objectID": "payment-auth.html",
@@ -2203,5 +2203,19 @@
     "title": "Data Visualization",
     "section": "ggplot2 extensions",
     "text": "ggplot2 extensions\nCheck out slides for some frequently used extensions by Ashirwad Barnwal HERE.\n\n\n\nUNL R Workshops"
+  },
+  {
+    "objectID": "r-graphics/slides/5-PolishingPlots.html#built-in-themes",
+    "href": "r-graphics/slides/5-PolishingPlots.html#built-in-themes",
+    "title": "Data Visualization",
+    "section": "Built-In Themes",
+    "text": "Built-In Themes"
+  },
+  {
+    "objectID": "r-graphics/slides/5-PolishingPlots.html#other-themes-ggthemes-a-ggplot2-extension",
+    "href": "r-graphics/slides/5-PolishingPlots.html#other-themes-ggthemes-a-ggplot2-extension",
+    "title": "Data Visualization",
+    "section": "Other Themes: ggthemes a ggplot2 extension",
+    "text": "Other Themes: ggthemes a ggplot2 extension"
   }
 ]

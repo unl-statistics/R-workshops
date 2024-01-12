@@ -143,7 +143,7 @@ ggplot(mtcars, aes(x = wt, y = mpg, colour = gear)) +
 ##   theme(plot.background = element_rect(fill = "lightskyblue1",colour = "pink",size = 0.5, linetype = "longdash")) #<<
 
 
-## ----fig.height=4, fig.width=12, echo = FALSE, fig.align = "center"-----------
+## ----fig.height=4.5, fig.width=12, echo = FALSE, fig.align = "center"---------
 p1 <- ggplot(mpg) + 
   geom_bar(aes(x = class, colour = manufacturer, fill = manufacturer) ) 
 
@@ -165,7 +165,7 @@ p3 <- p2 +
   )
 
 
-## ----fig.height=4, fig.width=10, echo = FALSE---------------------------------
+## ----fig.height=4, fig.width=12, echo = FALSE---------------------------------
 grid.arrange(p2, p3, nrow = 1)
 
 
@@ -179,7 +179,7 @@ p4 <- p3 + theme(
   )
 
 
-## ----echo=FALSE, fig.height=4, fig.width=8------------------------------------
+## ----echo=FALSE, fig.height=4, fig.width=12-----------------------------------
 grid.arrange(p3, p4, nrow = 1)
 
 
@@ -191,7 +191,7 @@ p5 <- p4 +
        subtitle = "With a custom theme!!") #<<
 
 
-## ----echo=FALSE, fig.height=3.5, fig.width=10---------------------------------
+## ----echo=FALSE, fig.height=3.25, fig.width=10--------------------------------
 grid.arrange(p4, p5, nrow = 1)
 
 
