@@ -15,6 +15,7 @@ library(gridExtra)
 library(grid)
 library(dplyr)
 library(tidyr)
+library(kableExtra)
 
 grid_arrange_shared_legend <- function(..., ncol = length(list(...)), nrow = 1, position = c("bottom", "right")) {
 
@@ -53,7 +54,8 @@ quartet_setI <- anscombe %>%
   mutate(set = "I") %>%
   rename(x = x1, 
          y = y1)
-quartet_setI %>% select(x, y) %>% knitr::kable(caption = "Set I")
+quartet_setI %>% select(x, y) %>% knitr::kable(caption = "Set I")%>%
+  kable_styling(font_size = 25)
 
 
 ## ----anscombe-set2------------------------------------------------------------
@@ -62,7 +64,8 @@ quartet_setII <- anscombe %>%
   mutate(set = "II") %>%
   rename(x = x2, 
          y = y2)
-quartet_setII %>% select(x, y) %>% knitr::kable(caption = "Set II")
+quartet_setII %>% select(x, y) %>% knitr::kable(caption = "Set II")%>%
+  kable_styling(font_size = 25)
 
 
 ## ----anscombe-set3------------------------------------------------------------
@@ -71,7 +74,8 @@ quartet_setIII <- anscombe %>%
   mutate(set = "III") %>%
   rename(x = x3, 
          y = y3)
-quartet_setIII %>% select(x, y) %>% knitr::kable(caption = "Set III")
+quartet_setIII %>% select(x, y) %>% knitr::kable(caption = "Set III")%>%
+  kable_styling(font_size = 25)
 
 
 ## ----anscombe-set4------------------------------------------------------------
@@ -80,7 +84,8 @@ quartet_setIV <- anscombe %>%
   mutate(set = "IV") %>%
   rename(x = x4, 
          y = y4)
-quartet_setIV %>% select(x, y) %>% knitr::kable(caption = "Set IV")
+quartet_setIV %>% select(x, y) %>% knitr::kable(caption = "Set IV")%>%
+  kable_styling(font_size = 25)
 
 
 ## ----quartet-summary----------------------------------------------------------
@@ -132,7 +137,7 @@ ggplot(quartet, aes(x, y)) +
 ## 
 
 
-## ----fig.width=3, fig.height=3.7,echo=FALSE, fig.align="center"---------------
+## ----fig.width=3, fig.height=2.7,echo=FALSE, fig.align="center"---------------
 library(png)
 library(grid)
 img <- readPNG("images/tablelong2.png")

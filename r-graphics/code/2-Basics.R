@@ -137,7 +137,7 @@ ggplot(quartet, aes(x, y)) +
 ## 
 
 
-## ----fig.width=3, fig.height=3.7,echo=FALSE, fig.align="center"---------------
+## ----fig.width=3, fig.height=2.7,echo=FALSE, fig.align="center"---------------
 library(png)
 library(grid)
 img <- readPNG("images/tablelong2.png")
