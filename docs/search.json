@@ -102,7 +102,7 @@
     "href": "r-graphics/slides/2-Basics.html#tidy-data-1",
     "title": "Data Visualization",
     "section": "Tidy Data",
-    "text": "Tidy Data\n\nEach variable is a column\nEach observation is a row\nEach type of observational unit forms a table\n\n\n\n\n\n\n\n\n\n\n\nName\nTreatment\nMeasurement\n\n\n\n\nJohn Smith\nA\nNA\n\n\nJohn Smith\nB\n18\n\n\nJane Doe\nA\n4\n\n\nJane Doe\nB\n1\n\n\nMary Johnson\nA\n6\n\n\nMary Johnson\nB\n7"
+    "text": "Tidy Data\n\nEach variable is a column\nEach observation is a row\nEach type of observational unit forms a table\n\n\n\n\n\n\n\n\n\n\nName\nTreatment\nMeasurement\n\n\n\n\nJohn Smith\nA\nNA\n\n\nJohn Smith\nB\n18\n\n\nJane Doe\nA\n4\n\n\nJane Doe\nB\n1\n\n\nMary Johnson\nA\n6\n\n\nMary Johnson\nB\n7"
   },
   {
     "objectID": "r-graphics/slides/2-Basics.html#messy-data",
@@ -130,7 +130,7 @@
     "href": "r-graphics/slides/2-Basics.html#tidy-your-data-1",
     "title": "Data Visualization",
     "section": "Tidy your data",
-    "text": "Tidy your data\n\nfrench_fries_long &lt;- french_fries %&gt;% \n  pivot_longer(cols = c(\"potato\":\"painty\"), #&lt;&lt;\n               names_to = \"variable\", #&lt;&lt;\n               values_to = \"value\") #&lt;&lt;\nhead(french_fries_long)\n\nLong Format:\n\n\n\n\n\ntime\ntreatment\nsubject\nrep\nvariable\nvalue\n\n\n\n\n1\n1\n3\n1\npotato\n2.9\n\n\n1\n1\n3\n1\nbuttery\n0.0\n\n\n1\n1\n3\n1\ngrassy\n0.0\n\n\n1\n1\n3\n1\nrancid\n0.0\n\n\n1\n1\n3\n1\npainty\n5.5\n\n\n1\n1\n3\n2\npotato\n14.0\n\n\n\n\n\n\n\n More on tidy data later!"
+    "text": "Tidy your data\n\nfrench_fries_long &lt;- french_fries %&gt;% \n  pivot_longer(cols = c(\"potato\":\"painty\"), #&lt;&lt;\n               names_to = \"variable\", #&lt;&lt;\n               values_to = \"value\") #&lt;&lt;\nhead(french_fries_long)\n\nLong Format:\n\n\n\n\n\ntime\ntreatment\nsubject\nrep\nvariable\nvalue\n\n\n\n\n1\n1\n3\n1\npotato\n2.9\n\n\n1\n1\n3\n1\nbuttery\n0.0\n\n\n1\n1\n3\n1\ngrassy\n0.0\n\n\n1\n1\n3\n1\nrancid\n0.0\n\n\n1\n1\n3\n1\npainty\n5.5\n\n\n1\n1\n3\n2\npotato\n14.0\n\n\n\n\n\n\n\nMore on tidy data later!"
   },
   {
     "objectID": "schedule.html",

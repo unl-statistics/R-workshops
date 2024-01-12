@@ -423,9 +423,9 @@ img <- readPNG("images/tablelong2.png")
 :::
 
 
-## Tidy Data
+## Tidy Data {.r-fit-text}
 
-![Like families..., by [Allison Horst](https://www.allisonhorst.com/) ](images/tidy-data-0.jpg){fig-alt="Tidy Data" width="700px" fig-align="center"}
+![Like families..., by [Allison Horst](https://www.allisonhorst.com/) ](images/tidy-data-0.jpg){fig-alt="Tidy Data" fig-align="center"}
 
 
 ## Tidy Data {.smaller}
@@ -436,17 +436,8 @@ img <- readPNG("images/tablelong2.png")
 
 -   Each type of observational unit forms a table
 
-<br/>
+<font size="5"> 
 
-```{=html}
-<style type="text/css">
-.tg  {border-collapse:collapse;border-spacing:0;border-color:#aaa;}
-.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-color:#aaa;color:#333;background-color:#fff;}
-.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-color:#aaa;color:#fff;background-color:#f38630;}
-.tg .tg-baqh{text-align:center;vertical-align:top}
-.tg .tg-amwm{font-weight:bold;text-align:center;vertical-align:top}
-</style>
-```
 +--------------+-----------+-------------+
 | Name         | Treatment | Measurement |
 +==============+===========+=============+
@@ -463,6 +454,7 @@ img <- readPNG("images/tablelong2.png")
 | Mary Johnson | B         | 7           |
 +--------------+-----------+-------------+
 
+</font>
 
 ## Messy data
 
@@ -501,10 +493,11 @@ head(french_fries)
 ```{r, eval=T, echo=F}
 library(reshape2)
 data(french_fries)
-head(french_fries)%>% knitr::kable(row.names = F)
+head(french_fries)%>% knitr::kable(row.names = F)%>%
+  kable_styling(font_size = 25)
 ```
 
-## Tidy your data
+## Tidy your data {.smaller}
 
 ```{r, eval=FALSE, echo=TRUE}
 french_fries_long <- french_fries %>% 
@@ -521,10 +514,11 @@ french_fries_long <- french_fries %>%
   pivot_longer(cols = c("potato":"painty"),
                names_to = "variable",
                values_to = "value")
-head(french_fries_long) %>% knitr::kable(row.names = F)
+head(french_fries_long) %>% knitr::kable(row.names = F)%>%
+  kable_styling(font_size = 25)
 ```
 
-<br> More on tidy data later!
+More on tidy data later!
 
 
 # Your turn! {.inverse}

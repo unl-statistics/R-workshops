@@ -152,7 +152,8 @@ img <- readPNG("images/tablelong2.png")
 ## ----eval=T, echo=F-----------------------------------------------------------
 library(reshape2)
 data(french_fries)
-head(french_fries)%>% knitr::kable(row.names = F)
+head(french_fries)%>% knitr::kable(row.names = F)%>%
+  kable_styling(font_size = 25)
 
 
 ## ----eval=FALSE, echo=TRUE----------------------------------------------------
@@ -168,7 +169,8 @@ french_fries_long <- french_fries %>%
   pivot_longer(cols = c("potato":"painty"),
                names_to = "variable",
                values_to = "value")
-head(french_fries_long) %>% knitr::kable(row.names = F)
+head(french_fries_long) %>% knitr::kable(row.names = F)%>%
+  kable_styling(font_size = 25)
 
 
 ## ----preg, echo = T, eval = T-------------------------------------------------
