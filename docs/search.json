@@ -2019,8 +2019,8 @@
     "objectID": "r-modeling/slides/5-Workshop.html#palmer-penguins-anova",
     "href": "r-modeling/slides/5-Workshop.html#palmer-penguins-anova",
     "title": "Workshop",
-    "section": "",
-    "text": "Are there differences in any of the measures (bill width, bill depth, flipper length, body mass) between the three species? Can you also account for the sex of the penguin?\n\ndata(penguins, package = \"palmerpenguins\")"
+    "section": "Palmer Penguins (ANOVA)",
+    "text": "Palmer Penguins (ANOVA)\nAre there differences in any of the measures (bill width, bill depth, flipper length, body mass) between the three species? Can you also account for the sex of the penguin?\n\ndata(penguins, package = \"palmerpenguins\")"
   },
   {
     "objectID": "r-modeling/slides/5-Workshop.html#production",
@@ -2048,7 +2048,7 @@
     "href": "r-modeling/slides/5-Workshop.html#built-in-r-datasets",
     "title": "Workshop",
     "section": "Built in R Datasets",
-    "text": "Built in R Datasets\n\ndata(package = .packages(all.available = TRUE))"
+    "text": "Built in R Datasets\n\ndata(package = .packages(all.available = TRUE))\n\n\n\n\nUNL R Workshops"
   },
   {
     "objectID": "index.html",
