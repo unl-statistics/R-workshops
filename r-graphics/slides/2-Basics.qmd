@@ -313,25 +313,13 @@ Before it's possible to talk about a graphical grammar, it's important to know t
 -   ggplot expects your data to be in a particular sort of shape - "tidy data"
 
 
-## Same data, different layouts {.smaller}
-
+## Same data, different layouts
+<font size="5">  
 
 :::: {.columns}
 
-::: {.column width="33%"}
+::: {.column width="50%"}
 **Option 1:**
-
-```{=html}
-<style type="text/css">
-.tg  {border-collapse:collapse;border-spacing:0;border-color:#aaa;}
-.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-color:#aaa;color:#333;background-color:#fff;}
-.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-color:#aaa;color:#fff;background-color:#f38630;}
-.tg .tg-s6z2{text-align:center}
-.tg .tg-gmsq{background-color:#FCFBE3;font-style:italic;text-align:center}
-.tg .tg-lyaj{background-color:#FCFBE3;text-align:center}
-.tg .tg-hgcj{font-weight:bold;text-align:center}
-</style>
-```
 
 +--------------+-------------+-------------+
 | Name         | Treatment A | Treatment B |
@@ -342,21 +330,8 @@ Before it's possible to talk about a graphical grammar, it's important to know t
 +--------------+-------------+-------------+
 | Mary Johnson | 6           | 7           |
 +--------------+-------------+-------------+
-:::
 
-::: {.column width="33%"}
 **Option 2:**
-
-```{=html}
-<style type="text/css">
-.tg  {border-collapse:collapse;border-spacing:0;border-color:#aaa;}
-.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-color:#aaa;color:#333;background-color:#fff;}
-.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-color:#aaa;color:#fff;background-color:#f38630;}
-.tg .tg-baqh{text-align:center;vertical-align:top}
-.tg .tg-amwm{font-weight:bold;text-align:center;vertical-align:top}
-.tg .tg-yq6s{background-color:#FCFBE3;text-align:center;vertical-align:top}
-</style>
-```
 
 +--------------+-------------+-------------+--------------+
 | Treatment    | John Smith  | Jane Doe    | Mary Johnson |
@@ -367,19 +342,8 @@ Before it's possible to talk about a graphical grammar, it's important to know t
 +--------------+-------------+-------------+--------------+
 :::
 
-::: {.column width="33%"}
+::: {.column width="50%"}
 **Option 3:**
-
-```{=html}
-<style type="text/css">
-.tg  {border-collapse:collapse;border-spacing:0;border-color:#aaa;}
-.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#aaa;color:#333;background-color:#fff;}
-.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#aaa;color:#fff;background-color:#f38630;}
-.tg .tg-s6z2{text-align:center}
-.tg .tg-baqh{text-align:center;vertical-align:top}
-.tg .tg-hgcj{font-weight:bold;text-align:center}
-</style>
-```
 
 +--------------+-----------+-------------+
 | Name         | Treatment | Measurement |
@@ -398,6 +362,8 @@ Before it's possible to talk about a graphical grammar, it's important to know t
 +--------------+-----------+-------------+
 :::
 ::::
+
+</font>
 
 ```{r, eval = FALSE}
 preg <- read.csv("data/preg.csv", stringsAsFactors = FALSE)
