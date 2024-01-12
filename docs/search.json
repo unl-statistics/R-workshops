@@ -1795,8 +1795,8 @@
     "objectID": "r-modeling/slides/3-LinearModels.html#outline",
     "href": "r-modeling/slides/3-LinearModels.html#outline",
     "title": "Linear Models (and more!)",
-    "section": "",
-    "text": "One Way ANOVA\nTwo-way ANOVA\n\nQualitative/Qualitative\nQuantitative/Qualitative\n\nBlocking"
+    "section": "Outline",
+    "text": "Outline\n\nOne Way ANOVA\nTwo-way ANOVA\n\nQualitative/Qualitative\nQuantitative/Qualitative\n\nBlocking"
   },
   {
     "objectID": "r-modeling/slides/3-LinearModels.html#overarching-example",
@@ -1929,7 +1929,7 @@
     "href": "r-modeling/slides/3-LinearModels.html#results",
     "title": "Linear Models (and more!)",
     "section": "Results",
-    "text": "Results\n\nNo evidence of an interaction between the time of application and application rate.\nNo evidence of a main effect of time of application.\nWe have strong evidence there is a main effect of application rate.\nThus, we look at the main effect of application rate using emmeans.\n\n\nemmeans(mod.fit2, pairwise ~ AppRate.new)\n\n$emmeans\n AppRate.new emmean   SE df lower.CL upper.CL\n 1             36.7 1.58 36     33.5     39.9\n 3             37.9 1.58 36     34.6     41.1\n 5             42.5 1.58 36     39.3     45.7\n\nResults are averaged over the levels of: AppTime.new \nConfidence level used: 0.95 \n\n$contrasts\n contrast                    estimate   SE df\n AppRate.new1 - AppRate.new3    -1.14 2.24 36\n AppRate.new1 - AppRate.new5    -5.79 2.24 36\n AppRate.new3 - AppRate.new5    -4.64 2.24 36\n t.ratio p.value\n  -0.510  0.8669\n  -2.582  0.0365\n  -2.072  0.1100\n\nResults are averaged over the levels of: AppTime.new \nP value adjustment: tukey method for comparing a family of 3 estimates"
+    "text": "Results\n\n\nNo evidence of an interaction between the time of application and application rate.\nNo evidence of a main effect of time of application.\nWe have strong evidence there is a main effect of application rate.\nThus, we look at the main effect of application rate using emmeans.\n\n\n\nemmeans(mod.fit2, pairwise ~ AppRate.new)\n\n$emmeans\n AppRate.new emmean   SE df lower.CL upper.CL\n 1             36.7 1.58 36     33.5     39.9\n 3             37.9 1.58 36     34.6     41.1\n 5             42.5 1.58 36     39.3     45.7\n\nResults are averaged over the levels of: AppTime.new \nConfidence level used: 0.95 \n\n$contrasts\n contrast                    estimate   SE df\n AppRate.new1 - AppRate.new3    -1.14 2.24 36\n AppRate.new1 - AppRate.new5    -5.79 2.24 36\n AppRate.new3 - AppRate.new5    -4.64 2.24 36\n t.ratio p.value\n  -0.510  0.8669\n  -2.582  0.0365\n  -2.072  0.1100\n\nResults are averaged over the levels of: AppTime.new \nP value adjustment: tukey method for comparing a family of 3 estimates"
   },
   {
     "objectID": "r-modeling/slides/3-LinearModels.html#but-what-if-there-had-been-an-interaction",
@@ -2006,7 +2006,7 @@
     "href": "r-modeling/slides/3-LinearModels.html#rcbd-analysis-in-r",
     "title": "Linear Models (and more!)",
     "section": "RCBD Analysis in R",
-    "text": "RCBD Analysis in R\n\nazalea3 &lt;- read.csv(\"https://unl-statistics.github.io/R-workshops/r-modeling/data/AzaleaBlock.csv\")\n\n\nazalea3$AppTime.new &lt;- as.factor(azalea3$AppTime)\nazalea3$AppRate.new &lt;- as.factor(azalea3$AppRate)\nazalea3$Block.new &lt;- as.factor(azalea3$Block)\nlibrary(lme4)\nmod.fit6 &lt;- lmer(Weight ~ AppTime.new + AppRate.new + AppTime.new:AppRate.new + (1|Block.new), data = azalea3)\nAnova(mod.fit3, type = \"II\")\n\nAnova Table (Type II tests)\n\nResponse: Weight\n                         Sum Sq Df F value\nAppTime.new               52.60  1  1.4966\nAppRate.new              262.90  2  3.7405\nAppTime.new:AppRate.new    4.33  2  0.0617\nResiduals               1265.14 36        \n                         Pr(&gt;F)  \nAppTime.new             0.22914  \nAppRate.new             0.03342 *\nAppTime.new:AppRate.new 0.94031  \nResiduals                        \n---\nSignif. codes:  \n0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1"
+    "text": "RCBD Analysis in R\n\nazalea3 &lt;- read.csv(\"https://unl-statistics.github.io/R-workshops/r-modeling/data/AzaleaBlock.csv\")\n\n\nazalea3$AppTime.new &lt;- as.factor(azalea3$AppTime)\nazalea3$AppRate.new &lt;- as.factor(azalea3$AppRate)\nazalea3$Block.new &lt;- as.factor(azalea3$Block)\nlibrary(lme4)\nmod.fit6 &lt;- lmer(Weight ~ AppTime.new + AppRate.new + AppTime.new:AppRate.new + (1|Block.new), data = azalea3)\nAnova(mod.fit3, type = \"II\")\n\nAnova Table (Type II tests)\n\nResponse: Weight\n                         Sum Sq Df F value\nAppTime.new               52.60  1  1.4966\nAppRate.new              262.90  2  3.7405\nAppTime.new:AppRate.new    4.33  2  0.0617\nResiduals               1265.14 36        \n                         Pr(&gt;F)  \nAppTime.new             0.22914  \nAppRate.new             0.03342 *\nAppTime.new:AppRate.new 0.94031  \nResiduals                        \n---\nSignif. codes:  \n0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n\n\n\n\nUNL R Workshops"
   },
   {
     "objectID": "r-modeling/slides/5-Workshop.html",
