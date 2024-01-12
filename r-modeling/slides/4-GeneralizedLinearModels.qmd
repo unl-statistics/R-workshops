@@ -26,7 +26,7 @@ library(kableExtra)
 
 + Final Remarks
 
-## Generalized Linear Models (Basics)
+## Generalized Linear Models (Basics) {.smaller}
 
 If your data is not normally distributed, it will violate the model assumptions of a linear model. You must consider the type of data you have!
 
@@ -64,7 +64,7 @@ help(glmer)
 
 # Binomial Example {.inverse .center .middle}
 
-## Insects
+## Insects {.smaller}
 
 **Data** The number of insects killed at various doses of insecticide.
 
@@ -101,8 +101,9 @@ ggplot(data = insects_data, aes(x = Deposit, y = Killed/Number)) +
   theme(aspect.ratio = 1)
 ```
 
-## Insects Model
+## Insects Model {.smaller}
 
+<font size = "5">
 
 **Statistical notation**
 
@@ -118,6 +119,8 @@ where $$\log\large(\frac{\pi_{ij}}{1-\pi_{ij}}\large) = \eta_{ij} = (\beta_0 + \
 
 + $logit = \log(\frac{\pi}{1-\pi})$ data scale $\implies$ model scale (link function)
 + $\frac{1}{(1+e^{-\eta})}$ model scale $\implies$ data scale (ilink function)
+
+</font>
 
 ## Insects GLM
 
@@ -146,7 +149,8 @@ insects_emmeans
 ```{r insects-emmeans, echo = F, eval = T, purl = F}
 insects_emmeangrid <- ref_grid(insects_glm, at = list(Deposit = unique(insects_data$Deposit)))
 insects_emmeans <- emmeans(insects_emmeangrid, specs =~Insecticide:Deposit, type = "response")
-insects_emmeans %>% as_tibble() %>% head() %>% kable(digits = 3)
+insects_emmeans %>% as_tibble() %>% head() %>% kable(digits = 3)%>%
+  kable_styling(font_size = 25)
 ```
 
 
@@ -168,7 +172,8 @@ insects_preds
 ```{r insecticide-plot, echo = F, eval = T, purl = F}
 insects_predgrid <- ref_grid(insects_glm, at = list(Deposit = seq(min(insects_data$Deposit), max(insects_data$Deposit), 0.2)))
 insects_preds <- emmeans(insects_predgrid, specs =~Insecticide:Deposit, type = "response")
-insects_preds %>% as_tibble() %>% head() %>% kable(digits = 3)
+insects_preds %>% as_tibble() %>% head() %>% kable(digits = 3)%>%
+  kable_styling(font_size = 25)
 ```
 
 
@@ -215,7 +220,7 @@ insects_preds %>%
 
 # Count Example {.inverse .center .middle}
 
-## Birds
+## Birds {.smaller}
 
 An ecologist is investigating the impact of habitat type on the population of a certain type of bird. To do this, data were obtained from a study in which 24 randomly sampled sites were observed. Each site contains habitats of both types. Bird counts were obtained from each habitat type. 
 
@@ -226,7 +231,8 @@ head(birds_data)
 
 ```{r birds-data1, echo = F, purl = F, eval = T}
 birds_data <- read_csv("../data/birds.csv")
-head(birds_data) %>% kable()
+head(birds_data) %>% kable()%>%
+  kable_styling(font_size = 25)
 ```
 
 ## Birds EDA
@@ -238,11 +244,14 @@ birds_data[,factorCols] <- lapply(birds_data[,factorCols], factor)
 summary(birds_data)
 ```
 
-## Birds EDA
+## Birds EDA {.smaller}
 
+:::: {.columns}
+
+::: {.column width="50%"}
 **Data Scale**
 
-```{r birds-graph-eda1, fig.height = 3, fig.width = 8, fig.align='center'}
+```{r birds-graph-eda1, fig.height = 12, fig.width = 15, fig.align='center'}
 ggplot(data = birds_data, aes(x = Count, fill = Habitat)) +
   geom_histogram( color = "black") +
   facet_wrap(~Habitat, ncol = 2) +
@@ -252,10 +261,12 @@ ggplot(data = birds_data, aes(x = Count, fill = Habitat)) +
         axis.title = element_text(size = 24)) +
   scale_fill_locuszoom()
 ```
+:::
 
+::: {.column width="50%"}
 **"Model Scale"**
 
-```{r birds-graph-eda2, fig.height = 3, fig.width = 8, fig.align='center'}
+```{r birds-graph-eda2, fig.height = 12, fig.width = 15, fig.align='center'}
 ggplot(data = birds_data, aes(x = log(Count), fill = Habitat)) +
   geom_histogram( color = "black") +
   facet_wrap(~Habitat, ncol = 2) +
@@ -265,8 +276,12 @@ ggplot(data = birds_data, aes(x = log(Count), fill = Habitat)) +
         axis.title = element_text(size = 24)) +
   scale_fill_locuszoom()
 ```
+:::
+::::
 
-## Birds Model
+## Birds Model {.smaller}
+
+<font size = "5">
 
 **In words** 
 
@@ -285,6 +300,8 @@ where $$\log(\mu_{ij}) = \eta_{ij} = \eta + \tau_i + b_j$$
 
 + **log:** data scale $\implies$ model scale (link function)
 + **exp:** model scale $\implies$ data scale (ilink function)
+
+</font>
 
 ## Birds GLMM
 
@@ -318,7 +335,7 @@ birds_emmeans %>%
   kable(digits = 2)
 ```
 
-## Birds GLMM compare habitats
+## Birds GLMM compare habitats {.smaller}
 
 $$H_0: \mu_1 = \mu_2 \text{ (The mean bird count for habitat 1 is equal to habitat 2)}$$
 
@@ -328,7 +345,7 @@ $$H_A: \mu_1 \ne \mu_2 \text{ (The mean bird count for habitat 1 is not equal to
 pairs(birds_emmeans, infer = c(T,T))
 ```
 
-## Birds GLMM compare habitats
+## Birds GLMM compare habitats {.smaller}
 
 $$H_0: \mu_1 = \mu_2 \text{ (The mean bird count for habitat 1 is equal to habitat 2)}$$
 
@@ -351,7 +368,8 @@ birds_letters <- cld(birds_emmeans, Letters = letters, alpha = 0.5) %>%
   mutate(.group = toupper(str_trim(.group)))
 birds_letters %>%
   as_tibble() %>%
-  kable(digits = 2)
+  kable(digits = 2)%>%
+  kable_styling(font_size = 25)
 ```
 
 ## Count Example: Birds results plot
@@ -394,6 +412,8 @@ birds_letters %>%
 
 ## Models and functions
 
+<font size ="5">
+
 | Model | Distribution | Experimental Design | R Function |
 |-------|--------------|---------------------|------------|
 | Linear Model | Normal | CRD | `lm()` |
@@ -401,12 +421,14 @@ birds_letters %>%
 | Generalized Linear Model | Non-normal | CRD | `glm()` |
 | Generalized Linear Mixed Model | Non-normal | Blocking (or more) | `glmer()` |
 
+</font>
+
 ## Model Specifications
 
 ![Image source: https://bbolker.github.io/mixedmodels-misc/glmmFAQ.html](images/model-specifications.png)
 
 
-## Additional models and functions
+## Additional models and functions {.smaller}
 
 Repeated Measures
 

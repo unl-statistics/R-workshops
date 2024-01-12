@@ -150,8 +150,8 @@
     "objectID": "r-modeling/slides/4-GeneralizedLinearModels.html#outline",
     "href": "r-modeling/slides/4-GeneralizedLinearModels.html#outline",
     "title": "Generalized Linear Models (and more!)",
-    "section": "",
-    "text": "What if my response does not follow a normal distribution?\nBinomial Example\nCount Example\nFinal Remarks"
+    "section": "Outline",
+    "text": "Outline\n\nWhat if my response does not follow a normal distribution?\nBinomial Example\nCount Example\nFinal Remarks"
   },
   {
     "objectID": "r-modeling/slides/4-GeneralizedLinearModels.html#generalized-linear-models-basics",
@@ -186,7 +186,7 @@
     "href": "r-modeling/slides/4-GeneralizedLinearModels.html#insects-model",
     "title": "Generalized Linear Models (and more!)",
     "section": "Insects Model",
-    "text": "Insects Model\nStatistical notation\n\\[y_{ij} \\sim \\text{Binomial}(\\pi_{ij}, N_{ij})\\] where \\[\\log\\large(\\frac{\\pi_{ij}}{1-\\pi_{ij}}\\large) = \\eta_{ij} = (\\beta_0 + \\tau_i) + (\\beta_1 + \\beta_{1i})\\cdot x_{ij} + (\\beta_2 + \\beta_{2i})\\cdot x_{ij}^2\\]\n\n\\(y_{ij}\\) is the number of insects killed for the \\(i^{th}\\) Insecticide given the \\(j^{th}\\) deposit.\n\\(N_{ij}\\) is the total number of insects that started.\n\\(\\eta\\) is the overall mean on the model scale.\n\\(\\tau_i\\) is the effect of the \\(i^{th}\\) habitat.\n\\(b_j\\) is the random variation due to the \\(j^{th}\\) site.\n\\(logit = \\log(\\frac{\\pi}{1-\\pi})\\) data scale \\(\\implies\\) model scale (link function)\n\\(\\frac{1}{(1+e^{-\\eta})}\\) model scale \\(\\implies\\) data scale (ilink function)"
+    "text": "Insects Model\n\nStatistical notation\n\\[y_{ij} \\sim \\text{Binomial}(\\pi_{ij}, N_{ij})\\] where \\[\\log\\large(\\frac{\\pi_{ij}}{1-\\pi_{ij}}\\large) = \\eta_{ij} = (\\beta_0 + \\tau_i) + (\\beta_1 + \\beta_{1i})\\cdot x_{ij} + (\\beta_2 + \\beta_{2i})\\cdot x_{ij}^2\\]\n\n\\(y_{ij}\\) is the number of insects killed for the \\(i^{th}\\) Insecticide given the \\(j^{th}\\) deposit.\n\\(N_{ij}\\) is the total number of insects that started.\n\\(\\eta\\) is the overall mean on the model scale.\n\\(\\tau_i\\) is the effect of the \\(i^{th}\\) habitat.\n\\(b_j\\) is the random variation due to the \\(j^{th}\\) site.\n\\(logit = \\log(\\frac{\\pi}{1-\\pi})\\) data scale \\(\\implies\\) model scale (link function)\n\\(\\frac{1}{(1+e^{-\\eta})}\\) model scale \\(\\implies\\) data scale (ilink function)"
   },
   {
     "objectID": "r-modeling/slides/4-GeneralizedLinearModels.html#insects-glm",
@@ -249,14 +249,14 @@
     "href": "r-modeling/slides/4-GeneralizedLinearModels.html#birds-eda-1",
     "title": "Generalized Linear Models (and more!)",
     "section": "Birds EDA",
-    "text": "Birds EDA\nData Scale\n\n\n\n\n\n\n\n\n\n“Model Scale”"
+    "text": "Birds EDA\n\n\nData Scale\n\n\n\n\n\n\n\n\n\n\n“Model Scale”"
   },
   {
     "objectID": "r-modeling/slides/4-GeneralizedLinearModels.html#birds-model",
     "href": "r-modeling/slides/4-GeneralizedLinearModels.html#birds-model",
     "title": "Generalized Linear Models (and more!)",
     "section": "Birds Model",
-    "text": "Birds Model\nIn words\n\\[\\text{\"log(Bird Count) = overall model scale mean + habitat + random site + scale\"}\\]\nStatistical notation\n\\[y_i | b_j \\sim \\text{Negative Binomial}(\\mu_{ij}, \\phi)\\] where \\[\\log(\\mu_{ij}) = \\eta_{ij} = \\eta + \\tau_i + b_j\\]\n\n\\(y_{ij}\\) is bird count for the \\(i^{th}\\) habitat at the \\(j^{th}\\) site.\n\\(\\eta\\) is the overall mean on the model scale.\n\\(\\tau_i\\) is the effect of the \\(i^{th}\\) habitat.\n\\(b_j\\) is the random variation due to the \\(j^{th}\\) site.\nlog: data scale \\(\\implies\\) model scale (link function)\nexp: model scale \\(\\implies\\) data scale (ilink function)"
+    "text": "Birds Model\n\nIn words\n\\[\\text{\"log(Bird Count) = overall model scale mean + habitat + random site + scale\"}\\]\nStatistical notation\n\\[y_i | b_j \\sim \\text{Negative Binomial}(\\mu_{ij}, \\phi)\\] where \\[\\log(\\mu_{ij}) = \\eta_{ij} = \\eta + \\tau_i + b_j\\]\n\n\\(y_{ij}\\) is bird count for the \\(i^{th}\\) habitat at the \\(j^{th}\\) site.\n\\(\\eta\\) is the overall mean on the model scale.\n\\(\\tau_i\\) is the effect of the \\(i^{th}\\) habitat.\n\\(b_j\\) is the random variation due to the \\(j^{th}\\) site.\nlog: data scale \\(\\implies\\) model scale (link function)\nexp: model scale \\(\\implies\\) data scale (ilink function)"
   },
   {
     "objectID": "r-modeling/slides/4-GeneralizedLinearModels.html#birds-glmm",
@@ -305,21 +305,21 @@
     "href": "r-modeling/slides/4-GeneralizedLinearModels.html#models-and-functions",
     "title": "Generalized Linear Models (and more!)",
     "section": "Models and functions",
-    "text": "Models and functions\n\n\n\n\n\n\n\n\n\nModel\nDistribution\nExperimental Design\nR Function\n\n\n\n\nLinear Model\nNormal\nCRD\nlm()\n\n\nLinear Mixed Model\nNormal\nBlocking (or more)\nlmer()\n\n\nGeneralized Linear Model\nNon-normal\nCRD\nglm()\n\n\nGeneralized Linear Mixed Model\nNon-normal\nBlocking (or more)\nglmer()"
+    "text": "Models and functions\n\n\n\n\n\n\n\n\n\n\nModel\nDistribution\nExperimental Design\nR Function\n\n\n\n\nLinear Model\nNormal\nCRD\nlm()\n\n\nLinear Mixed Model\nNormal\nBlocking (or more)\nlmer()\n\n\nGeneralized Linear Model\nNon-normal\nCRD\nglm()\n\n\nGeneralized Linear Mixed Model\nNon-normal\nBlocking (or more)\nglmer()"
   },
   {
     "objectID": "r-modeling/slides/4-GeneralizedLinearModels.html#model-specifications",
     "href": "r-modeling/slides/4-GeneralizedLinearModels.html#model-specifications",
     "title": "Generalized Linear Models (and more!)",
     "section": "Model Specifications",
-    "text": "Model Specifications\n\n\n\nImage source: https://bbolker.github.io/mixedmodels-misc/glmmFAQ.html"
+    "text": "Model Specifications\n\nImage source: https://bbolker.github.io/mixedmodels-misc/glmmFAQ.html"
   },
   {
     "objectID": "r-modeling/slides/4-GeneralizedLinearModels.html#additional-models-and-functions",
     "href": "r-modeling/slides/4-GeneralizedLinearModels.html#additional-models-and-functions",
     "title": "Generalized Linear Models (and more!)",
     "section": "Additional models and functions",
-    "text": "Additional models and functions\nRepeated Measures\n\nTake multiple measures on the same object over a period of time\nlme() in nlme package\n\nNonlinear Regression\n\nDoes not follow the typical polynomial framework\nnls() in base R, stats package\n\nGeneralized Additive Models (GAM)\n\nEstimates smoothing splines\ngam() in mcgv package"
+    "text": "Additional models and functions\nRepeated Measures\n\nTake multiple measures on the same object over a period of time\nlme() in nlme package\n\nNonlinear Regression\n\nDoes not follow the typical polynomial framework\nnls() in base R, stats package\n\nGeneralized Additive Models (GAM)\n\nEstimates smoothing splines\ngam() in mcgv package\n\n\n\n\nUNL R Workshops"
   },
   {
     "objectID": "r-modeling/slides/2-BasicStatisticalTests.html",
