@@ -1,5 +1,8 @@
 ---
 title: "Setup"
+format: 
+  revealjs:
+    theme: ["../../css/inverse.scss", "default"]
 ---
 
 ## Your Background
@@ -22,10 +25,10 @@ What do you know already?
 
 -   ["a system for statistical computation and graphics"](https://www.r-project.org/)
 
-- R has some basic infrastructure:
-    - CRAN: Central package repository
-    - CRAN mirrors: copies of this repository hosted at various locations worldwide
+-   R has some basic infrastructure:
 
+    -   CRAN: Central package repository
+    -   CRAN mirrors: copies of this repository hosted at various locations worldwide
 
 ## Installing R
 
@@ -59,7 +62,9 @@ This should also be done already, but if not...
 
 # Let's take a look
 
-![](images/rstudioExp.png) [R Studio IDE Cheatsheet](cheatsheets/rstudio-ide.pdf)
+![](images/rstudioExp.png)
+
+[R Studio IDE Cheatsheet](cheatsheets/rstudio-ide.pdf)
 
 # Creating a R File
 
@@ -89,8 +94,8 @@ setwd()
 
 ## Project Management: R Projects
 
-::: {.smaller}
--   What are R Projects? 
+::: smaller
+-   What are R Projects?
     -   When working on your research it is beneficial to keep all associated files with a project together.
     -   Sets your working directory for you
 -   How to Create One?
@@ -98,9 +103,10 @@ setwd()
     -   If already have a folder created: File -\> New Project -\> Existing Directory
     -   This will take you to a page where you create a folder and then the file path to that folder (subdirectory)
 
-:::
+[Reference for creating RStudio Projects](https://r4ds.had.co.nz/workflow-projects.html#rstudio-projects) $\\$
 
-[Reference for creating RStudio Projects](https://r4ds.had.co.nz/workflow-projects.html#rstudio-projects) $\\$ [RStudio Projects Website](https://support.rstudio.com/hc/en-us/articles/200526207-Using-RStudio-Projects)
+[RStudio Projects Website](https://support.rstudio.com/hc/en-us/articles/200526207-Using-RStudio-Projects)
+:::
 
 ## Your Turn: Create a Project Together for this Workshop {.inverse}
 
