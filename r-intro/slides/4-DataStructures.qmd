@@ -2,6 +2,7 @@
 title: "Data Structures"
 format: 
   revealjs:
+    echo: true
     theme: ["../../css/inverse.scss", "default"]
 ---
 
@@ -196,6 +197,7 @@ mydf
 ```
 
 ## Your Turn {.inverse}
+::: {style="font-size: 0.8em; text-align: center"}
 
 1.  Make a data frame with column 1: `1,2,3,4,5,6` and column 2: `a,b,a,b,a,b`
 
@@ -210,6 +212,7 @@ mydf
 -   Hint: use "+" instead of sum function (gives total sum). Better ways to do this using dplyr package, but just trying to practice adding new columns right now
 
 6.  Step Further. Create another column in the flower data frame, that is the sum of Sepal Width, Sepal Length, Petal Width and Petal Length, where Sepal Length is greater than 6.
+:::
 
 ## Lists
 
@@ -357,6 +360,9 @@ We first create a csv file (We can use a text editor or MS Excel)
 Then we load it in:
 
 ```{r, eval=FALSE}
+# df = iris[1:10, 1:5]
+# write.csv(df, 'tips.csv')
+
 littledata <- read.csv("tips.csv", header = TRUE)
 
 head(littledata)

@@ -2,6 +2,7 @@
 title: "Packages and Basic Programming"
 format: 
   revealjs:
+    echo: true
     theme: ["../../css/inverse.scss", "default"]
 ---
 
@@ -24,6 +25,7 @@ format:
 -   ??searchterm will search R help for pages related to the search term
 
 ## Handy R Packages
+::: {style="font-size: 0.8em; text-align: center"}
 
 -   `ggplot2`: Statistical graphics
 
@@ -42,7 +44,7 @@ format:
 -   `caret`: The R equivalent to scikit learn: train / test split, cross validation, model performance metrics
 
 [List of some Handy R Packages](https://towardsdatascience.com/a-comprehensive-list-of-handy-r-packages-e85dad294b3d) - Definitely NOT comprehensive
-
+:::
 <!-- this needs updated!! -->
 
 ## Creating Your Own Functions
@@ -54,6 +56,7 @@ format:
 Code Skeleton:
 
 ```{r}
+#| echo: true
 foo <- function(arg1, arg2, ...) {
     # Code goes here
     return(output)
@@ -65,6 +68,7 @@ foo <- function(arg1, arg2, ...) {
 Example:
 
 ```{r}
+#| echo: true
 mymean <- function(data) {
     ans <- sum(data) / length(data)
     return(ans)
