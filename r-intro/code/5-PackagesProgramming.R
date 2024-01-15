@@ -1,4 +1,5 @@
 ## -----------------------------------------------------------------------------
+#| echo: true
 foo <- function(arg1, arg2, ...) {
     # Code goes here
     return(output)
@@ -6,6 +7,7 @@ foo <- function(arg1, arg2, ...) {
 
 
 ## -----------------------------------------------------------------------------
+#| echo: true
 mymean <- function(data) {
     ans <- sum(data) / length(data)
     return(ans)

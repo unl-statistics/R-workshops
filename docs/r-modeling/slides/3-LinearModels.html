@@ -8,7 +8,7 @@
 <link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
 <link href="../../site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.4.540">
+  <meta name="generator" content="quarto-1.4.489">
 
   <title>UNL R Workshops - Linear Models (and more!)</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -413,10 +413,10 @@
 <h2>Overarching Example</h2>
 <p>A plant pathology researcher is studying the effect of an experimental fungicide on the fresh weight of azaleas inoculated with a certain fungus. She has 49 potted plants of a particular azalea variety growing in a greenhouse. All plants are inoculated with a fungus. To start, she has 7 different fungicide combinations, with 7 plants per treatment.(Example from Lentner and Bishop, <em>Experimental Design and Analysis (2nd)</em>)</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a>azalea <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"https://unl-statistics.github.io/R-workshops/r-modeling/data/AzaleaOneWay.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>azalea <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"https://unl-statistics.github.io/R-workshops/r-modeling/data/AzaleaOneWay.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a><span class="fu">head</span>(azalea)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">head</span>(azalea)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  Trt Weight
 1   1     43
@@ -478,10 +478,10 @@
 <li>The following code is incorrect… why?</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a><span class="fu">library</span>(car)</span>
-<span id="cb4-2"><a></a><span class="co">#mod.fit &lt;- lm(response ~ trt, data = data)</span></span>
-<span id="cb4-3"><a></a>mod.fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(Weight <span class="sc">~</span> Trt, <span class="at">data =</span> azalea)</span>
-<span id="cb4-4"><a></a><span class="fu">Anova</span>(mod.fit, <span class="at">type =</span> <span class="st">"II"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">library</span>(car)</span>
+<span id="cb4-2"><a href="#cb4-2"></a><span class="co">#mod.fit &lt;- lm(response ~ trt, data = data)</span></span>
+<span id="cb4-3"><a href="#cb4-3"></a>mod.fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(Weight <span class="sc">~</span> Trt, <span class="at">data =</span> azalea)</span>
+<span id="cb4-4"><a href="#cb4-4"></a><span class="fu">Anova</span>(mod.fit, <span class="at">type =</span> <span class="st">"II"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Anova Table (Type II tests)
 
@@ -502,11 +502,11 @@ Residuals 1699.26 47               </code></pre>
 <li>Change <code>Trt</code> to a factor!</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a><span class="fu">library</span>(car)</span>
-<span id="cb6-2"><a></a><span class="co">#mod.fit &lt;- lm(response ~ trt, data = data)</span></span>
-<span id="cb6-3"><a></a>azalea<span class="sc">$</span>Trt.new <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(azalea<span class="sc">$</span>Trt)</span>
-<span id="cb6-4"><a></a>mod.fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(Weight <span class="sc">~</span> Trt.new, <span class="at">data =</span> azalea)</span>
-<span id="cb6-5"><a></a><span class="fu">Anova</span>(mod.fit, <span class="at">type =</span> <span class="st">"II"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">library</span>(car)</span>
+<span id="cb6-2"><a href="#cb6-2"></a><span class="co">#mod.fit &lt;- lm(response ~ trt, data = data)</span></span>
+<span id="cb6-3"><a href="#cb6-3"></a>azalea<span class="sc">$</span>Trt.new <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(azalea<span class="sc">$</span>Trt)</span>
+<span id="cb6-4"><a href="#cb6-4"></a>mod.fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(Weight <span class="sc">~</span> Trt.new, <span class="at">data =</span> azalea)</span>
+<span id="cb6-5"><a href="#cb6-5"></a><span class="fu">Anova</span>(mod.fit, <span class="at">type =</span> <span class="st">"II"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Anova Table (Type II tests)
 
@@ -531,8 +531,8 @@ Residuals 1372.57 42               </code></pre>
 <section id="emmeans-results" class="slide level2">
 <h2><code>emmeans</code> results</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a><span class="fu">library</span>(emmeans)</span>
-<span id="cb8-2"><a></a><span class="fu">emmeans</span>(mod.fit, pairwise <span class="sc">~</span> Trt.new)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">library</span>(emmeans)</span>
+<span id="cb8-2"><a href="#cb8-2"></a><span class="fu">emmeans</span>(mod.fit, pairwise <span class="sc">~</span> Trt.new)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$emmeans
  Trt.new emmean   SE df lower.CL upper.CL
@@ -634,8 +634,8 @@ P value adjustment: tukey method for comparing a family of 7 estimates </code></
 <li>If you care about the estimate and standard error:</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a><span class="fu">library</span>(gmodels)</span>
-<span id="cb10-2"><a></a><span class="fu">fit.contrast</span>(mod.fit, <span class="st">"Trt.new"</span>, <span class="fu">c</span>(<span class="dv">1</span>, <span class="sc">-</span><span class="dv">1</span><span class="sc">/</span><span class="dv">6</span>, <span class="sc">-</span><span class="dv">1</span><span class="sc">/</span><span class="dv">6</span>, <span class="sc">-</span><span class="dv">1</span><span class="sc">/</span><span class="dv">6</span>, <span class="sc">-</span><span class="dv">1</span><span class="sc">/</span><span class="dv">6</span>, <span class="sc">-</span><span class="dv">1</span><span class="sc">/</span><span class="dv">6</span>, <span class="sc">-</span><span class="dv">1</span><span class="sc">/</span><span class="dv">6</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="fu">library</span>(gmodels)</span>
+<span id="cb10-2"><a href="#cb10-2"></a><span class="fu">fit.contrast</span>(mod.fit, <span class="st">"Trt.new"</span>, <span class="fu">c</span>(<span class="dv">1</span>, <span class="sc">-</span><span class="dv">1</span><span class="sc">/</span><span class="dv">6</span>, <span class="sc">-</span><span class="dv">1</span><span class="sc">/</span><span class="dv">6</span>, <span class="sc">-</span><span class="dv">1</span><span class="sc">/</span><span class="dv">6</span>, <span class="sc">-</span><span class="dv">1</span><span class="sc">/</span><span class="dv">6</span>, <span class="sc">-</span><span class="dv">1</span><span class="sc">/</span><span class="dv">6</span>, <span class="sc">-</span><span class="dv">1</span><span class="sc">/</span><span class="dv">6</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                                                                                                                                   Estimate
 Trt.new c=( 1 -0.166666666666667 -0.166666666666667 -0.166666666666667 -0.166666666666667 -0.166666666666667 -0.166666666666667 ) -1.738095
@@ -656,7 +656,7 @@ attr(,"class")
 <li>If you <strong>only care</strong> about the test:</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a><span class="fu">fit.contrast</span>(mod.fit, <span class="st">"Trt.new"</span>, <span class="fu">c</span>(<span class="dv">6</span>, <span class="sc">-</span><span class="dv">1</span>, <span class="sc">-</span><span class="dv">1</span>, <span class="sc">-</span><span class="dv">1</span>, <span class="sc">-</span><span class="dv">1</span>, <span class="sc">-</span><span class="dv">1</span>, <span class="sc">-</span><span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="fu">fit.contrast</span>(mod.fit, <span class="st">"Trt.new"</span>, <span class="fu">c</span>(<span class="dv">6</span>, <span class="sc">-</span><span class="dv">1</span>, <span class="sc">-</span><span class="dv">1</span>, <span class="sc">-</span><span class="dv">1</span>, <span class="sc">-</span><span class="dv">1</span>, <span class="sc">-</span><span class="dv">1</span>, <span class="sc">-</span><span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                                   Estimate
 Trt.new c=( 6 -1 -1 -1 -1 -1 -1 ) -10.42857
@@ -783,13 +783,13 @@ attr(,"class")
 <section id="two-way-anova-in-r" class="slide level2">
 <h2>Two-Way ANOVA in R</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a>azalea2 <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"https://unl-statistics.github.io/R-workshops/r-modeling/data/AzaleaTwoWay.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>azalea2 <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"https://unl-statistics.github.io/R-workshops/r-modeling/data/AzaleaTwoWay.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a>azalea2<span class="sc">$</span>AppTime.new <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(azalea2<span class="sc">$</span>AppTime)</span>
-<span id="cb15-2"><a></a>azalea2<span class="sc">$</span>AppRate.new <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(azalea2<span class="sc">$</span>AppRate)</span>
-<span id="cb15-3"><a></a>mod.fit2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Weight <span class="sc">~</span> AppTime.new <span class="sc">+</span> AppRate.new <span class="sc">+</span> AppTime.new<span class="sc">:</span>AppRate.new, <span class="at">data =</span> azalea2)</span>
-<span id="cb15-4"><a></a><span class="fu">Anova</span>(mod.fit2, <span class="at">type =</span> <span class="st">"II"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>azalea2<span class="sc">$</span>AppTime.new <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(azalea2<span class="sc">$</span>AppTime)</span>
+<span id="cb15-2"><a href="#cb15-2"></a>azalea2<span class="sc">$</span>AppRate.new <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(azalea2<span class="sc">$</span>AppRate)</span>
+<span id="cb15-3"><a href="#cb15-3"></a>mod.fit2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Weight <span class="sc">~</span> AppTime.new <span class="sc">+</span> AppRate.new <span class="sc">+</span> AppTime.new<span class="sc">:</span>AppRate.new, <span class="at">data =</span> azalea2)</span>
+<span id="cb15-4"><a href="#cb15-4"></a><span class="fu">Anova</span>(mod.fit2, <span class="at">type =</span> <span class="st">"II"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Anova Table (Type II tests)
 
@@ -821,7 +821,7 @@ Signif. codes:
 </ul>
 </font><p><font size="5"></font></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a><span class="fu">emmeans</span>(mod.fit2, pairwise <span class="sc">~</span> AppRate.new)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="fu">emmeans</span>(mod.fit2, pairwise <span class="sc">~</span> AppRate.new)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$emmeans
  AppRate.new emmean   SE df lower.CL upper.CL
@@ -860,7 +860,7 @@ P value adjustment: tukey method for comparing a family of 3 estimates </code></
 <section id="but-what-if-there-had-been-an-interaction-1" class="slide level2">
 <h2>But what if there HAD been an interaction?</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a></a><span class="fu">emmeans</span>(mod.fit2, pairwise <span class="sc">~</span> AppRate.new<span class="sc">|</span>AppTime.new)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="fu">emmeans</span>(mod.fit2, pairwise <span class="sc">~</span> AppRate.new<span class="sc">|</span>AppTime.new)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$emmeans
 AppTime.new = 1:
@@ -905,7 +905,7 @@ P value adjustment: tukey method for comparing a family of 3 estimates </code></
 <section id="but-what-if-there-had-been-an-interaction-2" class="slide level2">
 <h2>But what if there HAD been an interaction?</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a></a><span class="fu">emmeans</span>(mod.fit2, pairwise <span class="sc">~</span> AppTime.new<span class="sc">|</span>AppRate.new)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="fu">emmeans</span>(mod.fit2, pairwise <span class="sc">~</span> AppTime.new<span class="sc">|</span>AppRate.new)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$emmeans
 AppRate.new = 1:
@@ -988,8 +988,8 @@ AppRate.new = 5:
 </ul></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a></a>mod.fit3 <span class="ot">&lt;-</span> <span class="fu">aov</span>(Weight <span class="sc">~</span> AppTime.new <span class="sc">+</span> AppRate.new <span class="sc">+</span> AppTime.new<span class="sc">:</span>AppRate.new, <span class="at">data =</span> azalea2)</span>
-<span id="cb23-2"><a></a><span class="fu">summary</span>(mod.fit3, <span class="at">split=</span><span class="fu">list</span>(<span class="at">AppRate.new =</span> <span class="fu">list</span>(<span class="at">Linear=</span><span class="dv">1</span>, <span class="at">Quad=</span><span class="dv">2</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a>mod.fit3 <span class="ot">&lt;-</span> <span class="fu">aov</span>(Weight <span class="sc">~</span> AppTime.new <span class="sc">+</span> AppRate.new <span class="sc">+</span> AppTime.new<span class="sc">:</span>AppRate.new, <span class="at">data =</span> azalea2)</span>
+<span id="cb23-2"><a href="#cb23-2"></a><span class="fu">summary</span>(mod.fit3, <span class="at">split=</span><span class="fu">list</span>(<span class="at">AppRate.new =</span> <span class="fu">list</span>(<span class="at">Linear=</span><span class="dv">1</span>, <span class="at">Quad=</span><span class="dv">2</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                                  Df Sum Sq
 AppTime.new                        1   52.6
@@ -1030,8 +1030,8 @@ Signif. codes:
 <li>Need to get estimates for our coefficients. <span class="math display">\[y = 37.4554 - 1.1786*rate + 0.4375*rate^2\]</span></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a></a>mod.fit4 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Weight <span class="sc">~</span> AppRate <span class="sc">+</span> <span class="fu">I</span>(AppRate<span class="sc">^</span><span class="dv">2</span>), <span class="at">data =</span> azalea2)</span>
-<span id="cb25-2"><a></a><span class="fu">summary</span>(mod.fit4)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a>mod.fit4 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Weight <span class="sc">~</span> AppRate <span class="sc">+</span> <span class="fu">I</span>(AppRate<span class="sc">^</span><span class="dv">2</span>), <span class="at">data =</span> azalea2)</span>
+<span id="cb25-2"><a href="#cb25-2"></a><span class="fu">summary</span>(mod.fit4)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -1067,8 +1067,8 @@ F-statistic: 3.878 on 2 and 39 DF,  p-value: 0.02911</code></pre>
 <li><p>For 7 days after: <span class="math inline">\(y = 35.8541 - 1.0179*rate + 0.4375*rate^2\)</span></p></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a></a>mod.fit5 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Weight <span class="sc">~</span> AppTime.new <span class="sc">+</span> AppRate <span class="sc">+</span> <span class="fu">I</span>(AppRate<span class="sc">^</span><span class="dv">2</span>) <span class="sc">+</span> AppTime.new<span class="sc">:</span>AppRate, <span class="at">data =</span> azalea2)</span>
-<span id="cb27-2"><a></a><span class="fu">summary</span>(mod.fit5)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a>mod.fit5 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Weight <span class="sc">~</span> AppTime.new <span class="sc">+</span> AppRate <span class="sc">+</span> <span class="fu">I</span>(AppRate<span class="sc">^</span><span class="dv">2</span>) <span class="sc">+</span> AppTime.new<span class="sc">:</span>AppRate, <span class="at">data =</span> azalea2)</span>
+<span id="cb27-2"><a href="#cb27-2"></a><span class="fu">summary</span>(mod.fit5)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -1141,15 +1141,15 @@ F-statistic: 2.325 on 4 and 37 DF,  p-value: 0.07446</code></pre>
 <section id="rcbd-analysis-in-r" class="slide level2">
 <h2>RCBD Analysis in R</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a></a>azalea3 <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"https://unl-statistics.github.io/R-workshops/r-modeling/data/AzaleaBlock.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a>azalea3 <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"https://unl-statistics.github.io/R-workshops/r-modeling/data/AzaleaBlock.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a></a>azalea3<span class="sc">$</span>AppTime.new <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(azalea3<span class="sc">$</span>AppTime)</span>
-<span id="cb30-2"><a></a>azalea3<span class="sc">$</span>AppRate.new <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(azalea3<span class="sc">$</span>AppRate)</span>
-<span id="cb30-3"><a></a>azalea3<span class="sc">$</span>Block.new <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(azalea3<span class="sc">$</span>Block)</span>
-<span id="cb30-4"><a></a><span class="fu">library</span>(lme4)</span>
-<span id="cb30-5"><a></a>mod.fit6 <span class="ot">&lt;-</span> <span class="fu">lmer</span>(Weight <span class="sc">~</span> AppTime.new <span class="sc">+</span> AppRate.new <span class="sc">+</span> AppTime.new<span class="sc">:</span>AppRate.new <span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span>Block.new), <span class="at">data =</span> azalea3)</span>
-<span id="cb30-6"><a></a><span class="fu">Anova</span>(mod.fit3, <span class="at">type =</span> <span class="st">"II"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a>azalea3<span class="sc">$</span>AppTime.new <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(azalea3<span class="sc">$</span>AppTime)</span>
+<span id="cb30-2"><a href="#cb30-2"></a>azalea3<span class="sc">$</span>AppRate.new <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(azalea3<span class="sc">$</span>AppRate)</span>
+<span id="cb30-3"><a href="#cb30-3"></a>azalea3<span class="sc">$</span>Block.new <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(azalea3<span class="sc">$</span>Block)</span>
+<span id="cb30-4"><a href="#cb30-4"></a><span class="fu">library</span>(lme4)</span>
+<span id="cb30-5"><a href="#cb30-5"></a>mod.fit6 <span class="ot">&lt;-</span> <span class="fu">lmer</span>(Weight <span class="sc">~</span> AppTime.new <span class="sc">+</span> AppRate.new <span class="sc">+</span> AppTime.new<span class="sc">:</span>AppRate.new <span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span>Block.new), <span class="at">data =</span> azalea3)</span>
+<span id="cb30-6"><a href="#cb30-6"></a><span class="fu">Anova</span>(mod.fit3, <span class="at">type =</span> <span class="st">"II"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Anova Table (Type II tests)
 
@@ -1170,10 +1170,8 @@ Signif. codes:
 </div>
 </div>
 
-<div class="quarto-auto-generated-content">
 <div class="footer footer-default">
 <p><a href="../../index.html">UNL R Workshops</a></p>
-</div>
 </div>
 </section></section>
     </div>
@@ -1386,6 +1384,44 @@ Signif. codes:
         ]
       });
     </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
     <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggleBodyColorMode = (bsSheetEl) => {

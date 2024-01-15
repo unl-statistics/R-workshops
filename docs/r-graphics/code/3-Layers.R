@@ -112,18 +112,18 @@ p3 <- ggplot(data = mpg, aes(x = class, y = hwy, colour = class)) +
 p1 + p2 + p3
 
 
-## ----fig.width=10, fig.height=4, echo = TRUE, eval=FALSE----------------------
+## ----fig.width=10, fig.height=5, echo = TRUE, eval=FALSE----------------------
 ## ggplot(data = mpg, aes(x = cty, y = hwy, colour = class)) +
 ##   geom_point()
 
 
-## ----fig.width=10, fig.height=4, echo = TRUE, eval=FALSE----------------------
+## ----fig.width=10, fig.height=5, echo = TRUE, eval=FALSE----------------------
 ## ggplot(data = mpg, aes(x = cty, y = hwy, colour = class)) +
 ##   geom_point() +
 ##   facet_grid(~class) #<<
 
 
-## ----fig.width=10, fig.height=3, fig.align = "center", echo=FALSE-------------
+## ----fig.width=12, fig.height=4, fig.align = "center", echo=FALSE-------------
 a <- ggplot(data = mpg, aes(x = cty, y = hwy, colour = class)) + 
   geom_point() + 
   scale_color_locuszoom() +
@@ -227,11 +227,11 @@ ne_counties[1:2,] %>% knitr::kable()
 
 
 ## ----ne-pop1, echo = T, eval = F----------------------------------------------
-## ne_population <- read.csv("https://unl-statistics.github.io/R-workshops/02-r-graphics/data/nebraska-population.csv")
+## ne_population <- read.csv("https://raw.githubusercontent.com/unl-statistics/R-workshops/main/r-graphics/data/nebraska-population.csv")
 
 
 ## ----ne-pop2------------------------------------------------------------------
-ne_population <- read.csv("https://unl-statistics.github.io/R-workshops/02-r-graphics/data/nebraska-population.csv")
+ne_population <- read.csv("https://raw.githubusercontent.com/unl-statistics/R-workshops/main/r-graphics/data/nebraska-population.csv")
 ne_population[1:2,] %>% knitr::kable()  
 
 

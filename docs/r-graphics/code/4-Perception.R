@@ -71,7 +71,7 @@ tibble("Gestalt Hierarchy" = c("Enclosure", "Connection", "Proximitiy", "Similar
 
 
 ## ----gestalt-swimming-data, eval = T, echo = T--------------------------------
-swimming <- read.csv("https://unl-statistics.github.io/R-workshops/02-r-graphics/data/gestalt-swimming.csv")
+swimming <- read.csv("https://raw.githubusercontent.com/unl-statistics/R-workshops/main/r-graphics/data/gestalt-swimming.csv")
 
 
 ## ----gestalt-swimming2, echo = F----------------------------------------------
@@ -119,7 +119,7 @@ ggplot(data = swimming, aes(x = WaterTemp, y = AvgTemp)) +
   scale_fill_brewer()
 
 
-## ----swimming-plots3, fig.height = 3, fig.width = 12, fig.align = "center"----
+## ----swimming-plots3, fig.height = 2.5, fig.width = 12, fig.align = "center"----
 ggplot(data = swimming, aes(x = Time, y = AvgTemp)) +
   geom_point(aes(color = WaterTemp)) +
   facet_grid(~Location) +
@@ -131,7 +131,7 @@ ggplot(data = swimming, aes(x = Time, y = AvgTemp)) +
         strip.text = element_text(size = 14))
 
 
-## ----swimming-plots4, fig.height = 3, fig.width = 12, fig.align = "center"----
+## ----swimming-plots4, fig.height = 2.5, fig.width = 12, fig.align = "center"----
 ggplot(data = swimming, aes(x = Time, y = AvgTemp, color = WaterTemp)) +
   geom_point() +
   geom_line(aes(group = WaterTemp)) +
@@ -307,5 +307,5 @@ grid.arrange(p11, p2, p3, p4, p5, p6, #p7, p8,
 
 
 ## ----echo = TRUE--------------------------------------------------------------
-movies <- read.csv("https://unl-statistics.github.io/R-workshops/02-r-graphics/data/MovieSummary.csv")
+movies <- read.csv("https://raw.githubusercontent.com/unl-statistics/R-workshops/main/r-graphics/data/MovieSummary.csv")
 

@@ -95,6 +95,7 @@ sum(c(TRUE, TRUE, FALSE, TRUE, FALSE))
 ## -----------------------------------------------------------------------------
 c(T, T, F, F) & c(T, F, T, F)
 c(T, T, F, F) | c(T, F, T, F)
+
 # Which are high shedders in the control group?
 id <- (shedding > 50 & treatment == "control")
 final_shed[id,]
@@ -130,6 +131,12 @@ pig_weight <- final_shed$pig_weight
 x <- pig_weight[1:5]
 length(x)
 sum(x)
+
+
+## -----------------------------------------------------------------------------
+class(shed)
+length(shed)
+prod(dim(shed))
 
 
 ## -----------------------------------------------------------------------------

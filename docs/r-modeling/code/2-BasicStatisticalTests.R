@@ -26,7 +26,8 @@ penguins2 <- penguins %>%
   select(sex, body_mass_g) %>%
   na.omit()
 
-penguins2[1:3,] %>% kable()
+penguins2[1:3,] %>% kable()%>%
+  kable_styling(font_size = 25)
 
 
 ## ----penguins-ttest-summary---------------------------------------------------
@@ -34,7 +35,8 @@ penguins2 %>%
   group_by(sex) %>%
   summarize(mean = mean(body_mass_g),
             sd = sd(body_mass_g)) %>% 
-  kable(digits = 1)
+  kable(digits = 1)%>%
+  kable_styling(font_size = 25)
 
 
 ## ----penguins-ttest-boxplot, fig.width = 6, fig.height = 6--------------------

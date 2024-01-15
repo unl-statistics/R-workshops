@@ -144,6 +144,9 @@ tout[[3]]
 
 
 ## ----eval=FALSE---------------------------------------------------------------
+## # df = iris[1:10, 1:5]
+## # write.csv(df, 'tips.csv')
+## 
 ## littledata <- read.csv("tips.csv", header = TRUE)
 ## 
 ## head(littledata)

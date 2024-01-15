@@ -109,7 +109,7 @@ birds_data[,factorCols] <- lapply(birds_data[,factorCols], factor)
 summary(birds_data)
 
 
-## ----birds-graph-eda1, fig.height = 3, fig.width = 8, fig.align='center'------
+## ----birds-graph-eda1, fig.height = 12, fig.width = 15, fig.align='center'----
 ggplot(data = birds_data, aes(x = Count, fill = Habitat)) +
   geom_histogram( color = "black") +
   facet_wrap(~Habitat, ncol = 2) +
@@ -120,7 +120,7 @@ ggplot(data = birds_data, aes(x = Count, fill = Habitat)) +
   scale_fill_locuszoom()
 
 
-## ----birds-graph-eda2, fig.height = 3, fig.width = 8, fig.align='center'------
+## ----birds-graph-eda2, fig.height = 12, fig.width = 15, fig.align='center'----
 ggplot(data = birds_data, aes(x = log(Count), fill = Habitat)) +
   geom_histogram( color = "black") +
   facet_wrap(~Habitat, ncol = 2) +
