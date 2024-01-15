@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.489">
+<meta name="generator" content="quarto-1.4.540">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -94,6 +94,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
@@ -272,7 +273,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>action_result, <span class="at">y=</span>spin_rate)) <span class="sc">+</span></span>
 <span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color=</span><span class="fu">as.factor</span>(playerid)))  <span class="co">#Your graph could be different</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="99-YourTurnSolutions_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="99-YourTurnSolutions_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 </section>
@@ -317,7 +322,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise</span>(<span class="at">mean_spin =</span> <span class="fu">mean</span>(spin_rate), <span class="at">sd_spin =</span> <span class="fu">sd</span>(spin_rate)) <span class="sc">%&gt;%</span></span>
 <span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> mean_spin)) <span class="sc">+</span> <span class="fu">geom_histogram</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="99-YourTurnSolutions_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="99-YourTurnSolutions_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 </section>
@@ -357,7 +366,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> percentSSCU, <span class="at">y =</span> totalSSCU,</span>
 <span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>                 <span class="at">colour =</span> playerid))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="99-YourTurnSolutions_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="99-YourTurnSolutions_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Filter down to get the best pitchers with a minimum of 50 curveballs thrown </span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>percentages <span class="sc">%&gt;%</span> </span>
@@ -365,7 +378,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(percentSSCU)) <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
 <span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>   <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> percentSSCU, <span class="at">y =</span> totalSSCU, <span class="at">colour =</span> playerid))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="99-YourTurnSolutions_files/figure-html/unnamed-chunk-7-2.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="99-YourTurnSolutions_files/figure-html/unnamed-chunk-7-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 </section>
@@ -380,7 +397,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span> </span>
 <span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>Diet)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="99-YourTurnSolutions_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="99-YourTurnSolutions_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Focus on weight on day 21. Draw side-by-side dotplots of weight by diet.</p>
@@ -390,7 +411,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>Diet)) <span class="sc">+</span></span>
 <span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y=</span>weight, <span class="at">color=</span>Diet), <span class="at">size=</span><span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="99-YourTurnSolutions_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="99-YourTurnSolutions_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Bonus: Use summarize the average weight on day 21 under each diet. Overlay the dotplots by error bars around the average weight under each diet (see ?geom_errorbar)</p>
@@ -408,7 +433,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="at">data=</span> ChickW1, <span class="fu">aes</span>(<span class="at">ymin =</span> mean_weight<span class="fl">-1.96</span><span class="sc">*</span>sd_weight, <span class="at">ymax =</span> mean_weight<span class="fl">+1.96</span><span class="sc">*</span>sd_weight, <span class="at">colour =</span> Diet), <span class="at">width=</span>.<span class="dv">3</span>) <span class="sc">+</span></span>
 <span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data=</span>ChickW1, <span class="fu">aes</span>(<span class="at">y=</span>mean_weight, <span class="at">color=</span>Diet), <span class="at">size=</span><span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="99-YourTurnSolutions_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="99-YourTurnSolutions_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 </section>
@@ -475,7 +504,11 @@ e.g.:
 <span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(delay.dat) <span class="sc">+</span> <span class="fu">geom_line</span>(<span class="fu">aes</span>(date, dep_delay))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="99-YourTurnSolutions_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="99-YourTurnSolutions_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 </section>
@@ -485,7 +518,11 @@ e.g.:
 <p>Use ggplot2 to create something like this: <br></p>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="99-YourTurnSolutions_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="624"></p>
+<div>
+<figure class="figure">
+<p><img src="99-YourTurnSolutions_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="624"></p>
+</figure>
+</div>
 </div>
 </div>
 </section>
@@ -498,20 +535,22 @@ e.g.:
 <p>Output the names of individuals with more than 15 attempts (attempts is how many times the playerid shows up in the hall of fame data. Make sure to deal with missing values appropriately.</p>
 <p><strong>Solution</strong></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Lahman)</span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>Voted <span class="ot">&lt;-</span> HallOfFame <span class="sc">%&gt;%</span> </span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(ballots)) <span class="sc">%&gt;%</span> </span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(playerID) <span class="sc">%&gt;%</span> </span>
-<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(yearID) <span class="sc">%&gt;%</span> </span>
-<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>( <span class="at">attempt =</span> <span class="fu">order</span>(yearID))</span>
-<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>Voted <span class="ot">&lt;-</span> <span class="fu">left_join</span>(Voted, People <span class="sc">%&gt;%</span> </span>
-<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>                dplyr<span class="sc">::</span><span class="fu">select</span>(playerID, nameFirst, nameLast), </span>
-<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>                   <span class="at">by =</span> <span class="st">"playerID"</span>) <span class="sc">%&gt;%</span> <span class="fu">filter</span>(attempt <span class="sc">&gt;</span> <span class="dv">15</span>)</span>
-<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a>Names <span class="ot">&lt;-</span> Voted <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">FullName =</span> <span class="fu">paste</span>(nameFirst, nameLast))</span>
-<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a>Names<span class="sc">$</span>FullName <span class="sc">%&gt;%</span> <span class="fu">unique</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Lahman)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'Lahman' was built under R version 4.3.2</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>Voted <span class="ot">&lt;-</span> HallOfFame <span class="sc">%&gt;%</span> </span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(ballots)) <span class="sc">%&gt;%</span> </span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(playerID) <span class="sc">%&gt;%</span> </span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(yearID) <span class="sc">%&gt;%</span> </span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>( <span class="at">attempt =</span> <span class="fu">order</span>(yearID))</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>Voted <span class="ot">&lt;-</span> <span class="fu">left_join</span>(Voted, People <span class="sc">%&gt;%</span> </span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>                dplyr<span class="sc">::</span><span class="fu">select</span>(playerID, nameFirst, nameLast), </span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>                   <span class="at">by =</span> <span class="st">"playerID"</span>) <span class="sc">%&gt;%</span> <span class="fu">filter</span>(attempt <span class="sc">&gt;</span> <span class="dv">15</span>)</span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>Names <span class="ot">&lt;-</span> Voted <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">FullName =</span> <span class="fu">paste</span>(nameFirst, nameLast))</span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>Names<span class="sc">$</span>FullName <span class="sc">%&gt;%</span> <span class="fu">unique</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] "Rabbit Maranville" "Dazzy Vance"       "Ray Schalk"       
  [4] "Ross Youngs"       "Edd Roush"         "Zack Wheat"       
@@ -655,38 +694,28 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       }
     }
     stripColumnClz(note)
-    const typesetMath = (el) => {
-      if (window.MathJax) {
-        // MathJax Typeset
-        window.MathJax.typeset([el]);
-      } else if (window.katex) {
-        // KaTeX Render
-        var mathElements = el.getElementsByClassName("math");
-        var macros = [];
-        for (var i = 0; i < mathElements.length; i++) {
-          var texText = mathElements[i].firstChild;
-          if (mathElements[i].tagName == "SPAN") {
-            window.katex.render(texText.data, mathElements[i], {
-              displayMode: mathElements[i].classList.contains('display'),
-              throwOnError: false,
-              macros: macros,
-              fleqn: false
-            });
-          }
-        }
-      }
-    }
     if (id === null || id.startsWith('sec-')) {
       // Special case sections, only their first couple elements
       const container = document.createElement("div");
       if (note.children && note.children.length > 2) {
-        for (let i = 0; i < 2; i++) {
-          container.appendChild(note.children[i].cloneNode(true));
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
         }
-        typesetMath(container);
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
         return container.innerHTML
       } else {
-        typesetMath(note);
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
         return note.innerHTML;
       }
     } else {
@@ -695,7 +724,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (anchorLink) {
         anchorLink.remove();
       }
-      typesetMath(note);
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
       return note.innerHTML;
     }
   }

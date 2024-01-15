@@ -40,7 +40,7 @@ penguins %>%
   scale_fill_locuszoom()
 ```
 
-## Production
+## Production {.smaller}
 
 In a manufacturing study, the production times for 111 recent production runs were obtained. The researchers are curious if the production lot size can predict the production time in hours.
 
@@ -94,7 +94,7 @@ ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g, color = species, fi
 ```
 
 
-## Environmental Condition
+## Environmental Condition {.smaller}
 
 Here’s the big picture: there is an environmental condition suspected of causing increased incidence of a certain medical disorder. To assess the suspected link, 100 clusters are randomly selected where the environmental condition does not exist (coded “Condition = 0”) in the data set) and 100 clusters are randomly selected where the environmental condition does exist (coded “Condition = 1”). All households at each site are sent a survey (in survey design, this is called cluster sampling) – response is voluntary.
 
@@ -108,7 +108,7 @@ head(condition_data)
 ```{r condition-data, echo = F, purl = F, eval = T}
 condition_data <- read.csv("../data/condition.csv")
 condition_data[1:4,] %>%
-  kable() %>% kable_styling("striped") %>% scroll_box(width = "100%")
+  kable() %>% kable_styling("striped", font_size = 20) %>% scroll_box(width = "100%")
 ```
 :::
 ::: column

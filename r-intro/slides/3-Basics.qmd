@@ -2,6 +2,7 @@
 title: "Basics"
 format: 
   revealjs:
+    echo: true
     theme: ["../../css/inverse.scss", "default"]
 ---
 
@@ -121,7 +122,7 @@ Stackoverflow is VERY helpful
 
 You can download the reference card from:
 
-http://cran.r-project.org/doc/contrib/Short-refcard.pdf
+[Here](http://cran.r-project.org/doc/contrib/Short-refcard.pdf)
 
 Having this open or printed off and near you while working is helpful.
 
@@ -129,9 +130,8 @@ Having this open or printed off and near you while working is helpful.
 
 **Rstudio cheatsheets**
 
-The Rstudio cheatsheets are VERY helpful.
+The Rstudio [cheatsheets](https://www.rstudio.com/resources/cheatsheets/) are VERY helpful.
 
-https://www.rstudio.com/resources/cheatsheets/
 
 ## Warnings vs. Errors
 
@@ -254,6 +254,7 @@ sum(c(TRUE, TRUE, FALSE, TRUE, FALSE))
 ```{r}
 c(T, T, F, F) & c(T, F, T, F)
 c(T, T, F, F) | c(T, F, T, F)
+
 # Which are high shedders in the control group?
 id <- (shedding > 50 & treatment == "control")
 final_shed[id,]
@@ -322,6 +323,12 @@ sum(x)
 ```
 
 Note: Be careful, if you use `length` with a dataframe, it will return number of variables not number of observations.
+
+```{r}
+class(shed)
+length(shed)
+prod(dim(shed))
+```
 
 ## Statistical Functions
 

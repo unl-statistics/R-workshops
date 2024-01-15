@@ -47,7 +47,7 @@ Of course, what makes your GPA is the result of a very highly complex combinatio
 
 ![[Image source: https://towardsdatascience.com/the-data-science-process-a19eb7ebc41b?gi=10ee5878828e]{.small}](images/data-science-process.jpeg)
 
-## Data collection
+## Data collection {.smaller}
 
 What is the source of your data? How was the data collected?
 
@@ -91,8 +91,9 @@ Recall **tidy data** format! Specify EVERYTHING (e.g. plot, treatment, pair, res
 
 -   Each type of observational unit forms a table
 
-## Experimental unit vs Sampling unit
+## Experimental unit vs Sampling unit {.smaller}
 
+<font size="5"> 
 In a planned experiment, it is important to know where your treatments were *independently* applied.
 
 **Example:**
@@ -113,7 +114,9 @@ If you apply different fertilizers to plots in a field and measure the height of
 **Do not** treat each sub-sample as an independent unit in your analysis.
 :::
 
-## Exploratory Data Analysis (EDA)
+</font>
+
+## Exploratory Data Analysis (EDA) {.smaller}
 
 Typically referred to looking at *descriptive statistics*. EDA should be performed prior to a formal analysis ("look at your data first!")
 
@@ -145,7 +148,7 @@ descriptive statistics in Intro Statistics books. This is an important step that
 We look for outliers, data-entry errors and skewness or unusual distributions using EDA. Are the data distributed as you expect? Getting data into a form suitable for analysis by cleaning out mistakes and aberrations is often time consuming. It often takes more time than the data analysis itself! In this course, data will usually be ready to analyze but we will occasionally intermix messy data. You should realize that in practice it is rarely the case to receive clean data.
 :::
 
-## EDA Example
+## EDA Example {.smaller}
 
 Recall the [Palmer Penguin](https://allisonhorst.github.io/palmerpenguins/) data set.
 
@@ -162,7 +165,7 @@ penguins[c(1:2,251:252,300:301),] %>% kable(format = 'html') %>% kableExtra::kab
 
 Data were collected and made available by [Dr. Kristen Gorman](https://www.uaf.edu/cfos/people/faculty/detail/kristen-gorman.php) and the [Palmer Station, Antarctica LTER](https://pallter.marine.rutgers.edu/), a member of the [Long Term Ecological Research Network](https://lternet.edu/).
 
-## EDA Example: Numerical summaries
+## EDA Example: Numerical summaries {.smaller}
 
 ```{r numerical-summaries-echo, purl = T, echo = T, eval = F}
 penguins %>%
@@ -195,8 +198,6 @@ penguins %>%
 
 ## EDA Example: Graphical summaries
 
-::: columns ::: column
-
 ```{r graphical-summaries-echo, purl = T, echo = T, eval = F}
 penguins %>%
   ggplot(aes(x = sex, y = body_mass_g, color = sex, fill = sex)) +
@@ -206,10 +207,7 @@ penguins %>%
   theme(aspect.ratio = 1) 
 ```
 
-:::
-
-::: column
-```{r graphical-summaries, purl = F, echo = F, eval = T}
+```{r graphical-summaries, purl = F, echo = F, eval = T, fig.align = 'center'}
 penguins %>%
   ggplot(aes(x = sex, y = body_mass_g, color = sex, fill = sex)) +
   geom_boxplot(alpha = 0.5) +
@@ -219,7 +217,7 @@ penguins %>%
   scale_color_locuszoom()  +
   scale_fill_locuszoom()
 ```
-:::
+
 
 ## Your turn {.inverse}
 
@@ -241,7 +239,7 @@ Think of a model airplane. It is just a simplified representation of the real th
 It is in this sense that you can think of a statistical model as a "simplification" in much the same way as the model airplane: we know that the true relationship between response and predictor variables is very detailed and complex. The goal of the model is not to capture all the intricacies of the complexity but rather, the model only seeks to describe the essential features of any relationships that exist.
 :::
 
-## In this session we will...
+## In this session we will... {.smaller}
 
 -   Basic statistical tests
     -   Five step hypothesis procedure

@@ -2,6 +2,7 @@
 title: "Motivating Example"
 format: 
   revealjs:
+    echo: true
     theme: ["../../css/inverse.scss", "default"]
 ---
 

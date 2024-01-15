@@ -24,7 +24,7 @@ knitr::opts_chunk$set(
 
 -   Blocking
 
-## Overarching Example
+## Overarching Example {.smaller}
 
 A plant pathology researcher is studying the effect of an experimental fungicide on the fresh weight of azaleas inoculated with a certain fungus. She has 49 potted plants of a particular azalea variety growing in a greenhouse. All plants are inoculated with a fungus. To start, she has 7 different fungicide combinations, with 7 plants per treatment.(Example from Lentner and Bishop, *Experimental Design and Analysis (2nd)*)
 
@@ -46,7 +46,7 @@ head(azalea)
 
 # One-Way Analysis of Variance (ANOVA)
 
-## One-Way ANOVA
+## One-Way ANOVA {.smaller}
 
 -   Essentially an expansion of the t-test [Source](https://tjfisher19.github.io/introStatModeling/introduction-to-statistical-modeling-and-designed-experiments.html#one-way-anova)
 
@@ -61,7 +61,7 @@ head(azalea)
 -   Randomly sample your experimental units, and then randomly assign them to the different levels of the treatment factor.
 
 
-## Model
+## Model {.smaller}
 
 $$y_{ij} = \mu + \tau_i + \varepsilon_{ij}$$
 
@@ -89,7 +89,7 @@ $$H_0: \tau_1 = \tau_2 = ... = \tau_n = 0$$ $$H_A: \text{at least one } \tau_i \
 These hypotheses are **equivalent**, just being expressed in two different ways.
 
 
-## One-Way ANOVA in R
+## One-Way ANOVA in R 
 
 -   When running this in R, **make sure** the variables are the type you need them.
 -   The following code is incorrect... why?
@@ -104,7 +104,7 @@ Anova(mod.fit, type = "II")
 -   Note the only 1 degree of freedom with treatment. We should have 6!
 
 
-## One-Way ANOVA in R
+## One-Way ANOVA in R {.smaller}
 
 -   When running this in R, **make sure** the variables are the type you need them.
 -   Change `Trt` to a factor!
@@ -138,7 +138,7 @@ emmeans(mod.fit, pairwise ~ Trt.new)
 
 Suppose you find out from the researchers that are actually only two fungicides used. Treatment 1 is a standard fungicide, Truban (**T**), and is used as a control in the experiment. Treatments 2-7 are the experimental fungicide, Nurell (**N**), that is applied at different times and rates. The researchers want to compare **T** and **N** to see if there is a difference between these two fungicide treatments.
 
-## How do we address this new information?
+## How do we address this new information? {.smaller}
 
 -   Contrast!
 -   We can write a specific test that uses our model from before to test for a difference between **T** and **N**.
@@ -181,7 +181,7 @@ fit.contrast(mod.fit, "Trt.new", c(6, -1, -1, -1, -1, -1, -1))
 
 # Two-Way ANOVA
 
-## More information!
+## More information! {.smaller}
 
 Now that the researchers know there isn't a difference between the **T** and **N** fungicides, they want to know more about the **N** fungicide specifically. You learn that this fungicide was applied either 3 days before inoculation or 7 days after inoculation. Additionally, it is applied at either the 1 oz., 3 oz., or 5 oz. dose rates.
 
@@ -193,7 +193,7 @@ Now that the researchers know there isn't a difference between the **T** and **N
 Now, instead of a single treatment factor, we have 2! We have time of application and rate of application. Thus, a One-Way ANOVA will no longer suffice.
 
 
-## Two-Way ANOVA
+## Two-Way ANOVA {.smaller}
 
 -   Extension of One-Way ANOVA, we just now have two treatment factors instead of one.
 
@@ -210,7 +210,7 @@ Now, instead of a single treatment factor, we have 2! We have time of applicatio
     -   If the response of one factor strongly depends on the level of the other factor, the two factors are said to *interact*.
 
 
-## Model
+## Model {.smaller}
 
 $$y_{ijk} = \mu + \alpha_i + \beta_j + \alpha\beta_{ij} + \varepsilon_{ijk}$$
 
@@ -221,7 +221,7 @@ $$y_{ijk} = \mu + \alpha_i + \beta_j + \alpha\beta_{ij} + \varepsilon_{ijk}$$
 -   $\alpha\beta_{ij}$ is the interaction effect of the $i^{th}$ and $j^th$ treatment levels of treatments 1 and 2 respectively
 -   $\varepsilon_{ijk} \sim N(0,\sigma^2)$ is the residual error
 
-## Model cont.
+## Model cont. {.smaller}
 
 In terms of our example:
 
@@ -232,7 +232,7 @@ In terms of our example:
 -   $\alpha\beta_{ij}$ is the interaction effect of the $i^{th}$ and $j^th$ treatment levels of time of application and application rate respectively
 -   $\varepsilon_{ijk} \sim N(0,\sigma^2)$ is the residual error
 
-## Hypotheses
+## Hypotheses {.smaller}
 
 -   The first set of hypotheses we analyze with a Two-Way ANOVA is a test of the interaction.
 
@@ -263,12 +263,16 @@ Anova(mod.fit2, type = "II")
 ```
 
 
-## Results
+## Results {.smaller}
+
+<font size = "5">
 
 -   No evidence of an interaction between the time of application and application rate.
 -   No evidence of a main effect of time of application.
 -   We have strong evidence there is a main effect of application rate.
 -   Thus, we look at the *main effect* of application rate using `emmeans`.
+
+</font>
 
 ```{r echo=TRUE}
 emmeans(mod.fit2, pairwise ~ AppRate.new)
@@ -302,7 +306,7 @@ emmeans(mod.fit2, pairwise ~ AppTime.new|AppRate.new)
 
 # Factorial Models
 
-## Another Twist!
+## Another Twist! {.smaller}
 
 In the previous analysis, we treated application rate as a qualitative/categorical variable, meaning the researchers are *only* interested in the levels of 1 oz., 3 oz., and 5 oz. You learn the researchers actually want to be able to predict the fresh weight of azaleas that were given **N** at the 2 oz. rate.
 
@@ -314,7 +318,7 @@ In the previous analysis, we treated application rate as a qualitative/categoric
 
     -   Application rate is updated to a quantitative.
 
-## Quant/Qual Factorial
+## Quant/Qual Factorial {.smaller}
 
 -   We are now adding in *regression* to our factorial analysis.
 
@@ -331,7 +335,7 @@ In the previous analysis, we treated application rate as a qualitative/categoric
     -   So for our example, we have 3 levels. Thus, we can fit up to a maximum power of 2 (a quadratic).
 
 
-## Quant/Qual Factorial in R
+## Quant/Qual Factorial in R {.smaller}
 
 -   Need to use orthogonal contrasts in order to test for shape. Outside the scope of this workshop.
     -   These contrasts are nicely built into R.
@@ -342,7 +346,7 @@ summary(mod.fit3, split=list(AppRate.new = list(Linear=1, Quad=2)))
 ```
 
 
-## Model based on our actual results
+## Model based on our actual results {.smaller}
 
 -   Need to get estimates for our coefficients. $$y = 37.4554 - 1.1786*rate + 0.4375*rate^2$$
 
@@ -351,7 +355,7 @@ mod.fit4 <- lm(Weight ~ AppRate + I(AppRate^2), data = azalea2)
 summary(mod.fit4)
 ```
 
-## If there had been an interaction?
+## If there had been an interaction? {.smaller}
 
 -   For 3 days before: $y = 39.0565 - 1.3393*rate + 0.4375*rate^2$
 
@@ -364,7 +368,7 @@ summary(mod.fit5)
 
 # Randomized Complete Block Designs
 
-## Last Twist!
+## Last Twist! {.smaller}
 
 You learn the researchers actually 7 plots, and they made sure all six treatment combinations of the **N** fungicide were included. The researchers completed the experiment in a Randomized Complete Block Design! (*Note*: We are also going to go back to the assumption it is a qualitative/qualitative analysis.)
 
@@ -376,7 +380,7 @@ You learn the researchers actually 7 plots, and they made sure all six treatment
 
     -   Makes the effect of the block a *random effect*.
 
-## RCBD Models Examples
+## RCBD Models Examples {.smaller}
 
 -   One-Way ANOVA
 

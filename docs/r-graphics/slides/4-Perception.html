@@ -8,7 +8,7 @@
 <link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
 <link href="../../site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.4.489">
+  <meta name="generator" content="quarto-1.4.540">
 
   <title>UNL R Workshops - Data Visualization</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -423,7 +423,7 @@
           display:block!important;
       }</style></aside>
 </section>
-<section id="why-are-some-plots-easier-to-read-than-others-1" class="slide level2">
+<section id="why-are-some-plots-easier-to-read-than-others-1" class="slide level2 smaller">
 <h2>Why are some plots easier to read than others?</h2>
 <p>What makes bad figures bad?</p>
 <ul>
@@ -473,7 +473,7 @@
           display:block!important;
       }</style></aside>
 </section>
-<section id="why-are-some-plots-easier-to-read-than-others-3" class="slide level2">
+<section id="why-are-some-plots-easier-to-read-than-others-3" class="slide level2 smaller">
 <h2>Why are some plots easier to read than others?</h2>
 <p>What makes bad figures bad?</p>
 <ul>
@@ -516,7 +516,7 @@
 <section id="which-has-more-structure" class="slide level2">
 <h2>Which has more structure?</h2>
 
-<img data-src="4-Perception_files/figure-revealjs/rand-1.png" width="576" class="r-stretch"><aside class="notes">
+<img data-src="4-Perception_files/figure-html/rand-1.png" width="576" class="r-stretch"><aside class="notes">
 <p>We look for structure all the time. We are so good at it that we will find it in random data, given time. (This is one of the reasons that data visualization can hardly be a replacement for statistical modeling.) The strong inferences we make about relationships between visual elements from relatively sparse visual information are called “gestalt rules”. They are not pure perceptual effects, like the checkerboard illusions. Rather, they describe our tendency to infer relationships between the objects we are looking at in a way that goes beyond what is strictly visible.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -548,7 +548,7 @@
           display:block!important;
       }</style></aside>
 </section>
-<section id="gestalt-principles-2" class="slide level2">
+<section id="gestalt-principles-2" class="slide level2 smaller">
 <h2>Gestalt principles</h2>
 <p>What sorts of relationships are inferred, and under what circumstances?</p>
 <ul>
@@ -564,7 +564,7 @@
 </section>
 <section id="gestalt-principles-3" class="slide level2">
 <h2>Gestalt principles</h2>
-<div class="cell" data-hash="4-Perception_cache/revealjs/gestalt-hierarchy_229267d6bb3fd7e7416a595c0487d54e">
+<div class="cell">
 <div class="cell-output-display">
 <table>
 <thead>
@@ -598,11 +598,11 @@
 </section>
 <section id="gestalt-principles-case-study" class="slide level2">
 <h2>Gestalt Principles: Case Study</h2>
-<div class="cell" data-hash="4-Perception_cache/revealjs/gestalt-swimming-data_eba755cf748a280a3b71435c65df5532">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>swimming <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"https://unl-statistics.github.io/R-workshops/02-r-graphics/data/gestalt-swimming.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a>swimming <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"https://raw.githubusercontent.com/unl-statistics/R-workshops/main/r-graphics/data/gestalt-swimming.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-
-<img data-src="images/swimming.png" class="r-stretch"><div class="cell" data-hash="4-Perception_cache/revealjs/gestalt-swimming2_24d069dcbf2cee53914fa321f585df3e">
+<p><img data-src="images/swimming.png" width="800" height="250"></p>
+<div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>  Location   WaterTemp     Time      AvgTemp     
  cheek:6   indoor :12   pre  :8   Min.   :48.60  
@@ -614,26 +614,34 @@
 </div>
 </div>
 </section>
-<section id="gestalt-principles-case-study-1" class="slide level2">
+<section id="gestalt-principles-case-study-1" class="slide level2 smaller">
 <h2>Gestalt Principles: Case Study</h2>
 <p><strong>Research question:</strong> Does the average body temperature recovery as recorded at the four body points depend on water temperature?</p>
 
-<img data-src="4-Perception_files/figure-revealjs/swimming-plots1-1.png" class="quarto-figure-center r-stretch" width="1152"></section>
+<img data-src="4-Perception_files/figure-html/swimming-plots1-1.png" class="quarto-figure quarto-figure-center r-stretch" width="1152"></section>
 <section id="gestalt-principles-case-study-2" class="slide level2">
 <h2>Gestalt Principles: Case Study</h2>
 
-<img data-src="4-Perception_files/figure-revealjs/swimming-plots2-1.png" class="quarto-figure-center r-stretch" width="1152"></section>
-<section id="gestalt-principles-case-study-3" class="slide level2">
+<img data-src="4-Perception_files/figure-html/swimming-plots2-1.png" class="quarto-figure quarto-figure-center r-stretch" width="1152"></section>
+<section id="gestalt-principles-case-study-3" class="slide level2 smaller">
 <h2>Gestalt Principles: Case Study</h2>
 <p><strong>Research question:</strong> Does the average body temperature recovery as recorded at the four body points depend on water temperature?</p>
-<div class="cell" data-layout-align="center" data-hash="4-Perception_cache/revealjs/swimming-plots3_69271ffd949a5a001292a07a7cf76680">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<p><img data-src="4-Perception_files/figure-revealjs/swimming-plots3-1.png" class="quarto-figure-center" width="1152"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="4-Perception_files/figure-html/swimming-plots3-1.png" class="quarto-figure quarto-figure-center" width="1152"></p>
+</figure>
 </div>
 </div>
-<div class="cell" data-layout-align="center" data-hash="4-Perception_cache/revealjs/swimming-plots4_14c9c66c064abd67dec9b79c126d0684">
+</div>
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<p><img data-src="4-Perception_files/figure-revealjs/swimming-plots4-1.png" class="quarto-figure-center" width="1152"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="4-Perception_files/figure-html/swimming-plots4-1.png" class="quarto-figure quarto-figure-center" width="1152"></p>
+</figure>
+</div>
 </div>
 </div>
 </section></section>
@@ -645,7 +653,7 @@
 <section id="pre-attentive-features-1" class="slide level2">
 <h2>Pre-Attentive Features</h2>
 
-<img data-src="4-Perception_files/figure-revealjs/unnamed-chunk-3-1.png" class="quarto-figure-center r-stretch" width="960"><aside class="notes">
+<img data-src="4-Perception_files/figure-html/unnamed-chunk-3-1.png" class="quarto-figure quarto-figure-center r-stretch" width="672"><aside class="notes">
 <p>how quickly did you spot the circle?</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -662,7 +670,7 @@
 <section id="pre-attentive-features-2" class="slide level2">
 <h2>Pre-Attentive Features</h2>
 
-<img data-src="4-Perception_files/figure-revealjs/unnamed-chunk-4-1.png" class="quarto-figure-center r-stretch" width="960"><aside class="notes">
+<img data-src="4-Perception_files/figure-html/unnamed-chunk-4-1.png" class="quarto-figure quarto-figure-center r-stretch" width="672"><aside class="notes">
 <p>Did you spot the green point quicker than the circle in the previous image?</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -691,13 +699,13 @@
 <section id="pre-attentive-features-4" class="slide level2">
 <h2>Pre-attentive Features</h2>
 
-<img data-src="4-Perception_files/figure-revealjs/unnamed-chunk-5-1.png" class="quarto-figure-center r-stretch" width="960"></section>
+<img data-src="4-Perception_files/figure-html/unnamed-chunk-5-1.png" class="quarto-figure quarto-figure-center r-stretch" width="672"></section>
 <section id="pre-attentive-features-5" class="slide level2">
 <h2>Pre-attentive Features</h2>
 
-<img data-src="4-Perception_files/figure-revealjs/unnamed-chunk-6-1.png" class="quarto-figure-center r-stretch" width="960"></section></section>
+<img data-src="4-Perception_files/figure-html/unnamed-chunk-6-1.png" class="quarto-figure quarto-figure-center r-stretch" width="672"></section></section>
 <section>
-<section id="color" class="title-slide slide level1 center">
+<section id="color" class="title-slide slide level1 smaller center">
 <h1>Color</h1>
 <ul>
 <li><p><strong>Hue</strong>: shade of color (red, orange, yellow…)</p></li>
@@ -751,20 +759,29 @@
           display:block!important;
       }</style></aside>
 </section>
-<section id="color-implications-and-guidelines" class="slide level2">
+<section id="color-implications-and-guidelines" class="slide level2 smaller">
 <h2>Color: Implications and Guidelines</h2>
+<p><font size="5"></font></p><font size="5">
+<div class="columns">
+<div class="column">
 <ul>
-<li><p>Do not use rainbow color gradient schemes.</p></li>
-<li><p>Avoid any scheme that uses green-yellow-red signaling if you have a target audience that may include colorblind people.</p></li>
-<li><p>To “colorblind-proof” a graphic, you can use a couple of strategies:</p>
+<li>To “colorblind-proof” a graphic, you can use a couple of strategies:
 <ul>
 <li>double encoding - where you use color, use another aesthetic (line type, shape)</li>
 <li>If you can print your chart out in black and white and still read it, it will be safe for colorblind users. This is the only foolproof way to do it!</li>
 <li>If you are using a color gradient, use a monochromatic color scheme where possible.</li>
 <li>If you have a bidirectional scale (e.g.&nbsp;showing positive and negative values), the safest scheme to use is purple - white - orange. In any color scale that is multi-hue, it is important to transition through white, instead of from one color to another directly.</li>
 </ul></li>
+</ul>
+</div><div class="column">
+<ul>
+<li><p>Do not use rainbow color gradient schemes.</p></li>
+<li><p>Avoid any scheme that uses green-yellow-red signaling if you have a target audience that may include colorblind people.</p></li>
 <li><p>Be conscious of what certain colors “mean”</p></li>
 </ul>
+</div>
+</div>
+</font><p><font size="5"></font></p>
 <aside class="notes">
 <ul>
 <li><p>Do not use rainbow color gradient schemes - because of the unequal perception of different wavelengths, these schemes are misleading - the color distance does not match the perceptual distance.</p></li>
@@ -796,7 +813,7 @@
           display:block!important;
       }</style></aside>
 </section></section>
-<section id="ordering-variables" class="title-slide slide level1 center">
+<section id="ordering-variables" class="title-slide slide level1 smaller center">
 <h1>Ordering Variables</h1>
 <p>Which is bigger?</p>
 <ul>
@@ -806,7 +823,7 @@
 <li>Shape: Unordered.</li>
 </ul>
 
-<img data-src="4-Perception_files/figure-revealjs/unnamed-chunk-7-1.png" width="1920" class="r-stretch"></section>
+<img data-src="4-Perception_files/figure-html/unnamed-chunk-7-1.png" width="1920" class="r-stretch"></section>
 
 <section>
 <section id="aesthetics-in-ggplot2" class="title-slide slide level1 inverse center">
@@ -829,7 +846,7 @@
 <section id="scales" class="slide level2">
 <h2>Scales</h2>
 <div class="quarto-layout-panel" data-layout-ncol="2">
-<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
 <p><img data-src="images/scales2.png"></p>
 </div>
@@ -839,24 +856,36 @@
 </div>
 </div>
 </section>
-<section id="gradients" class="slide level2">
+<section id="gradients" class="slide level2 smaller">
 <h2>Gradients</h2>
 <p>Qualitative schemes: no more than 7 colors</p>
-<div class="cell" data-hash="4-Perception_cache/revealjs/unnamed-chunk-8_1b7f604a49db0c2067513615db701e12">
+<div class="cell">
 <div class="cell-output-display">
-<p><img data-src="4-Perception_files/figure-revealjs/unnamed-chunk-8-1.png" width="672"></p>
+<div>
+<figure>
+<p><img data-src="4-Perception_files/figure-html/unnamed-chunk-8-1.png" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p><span class="smaller">Can use <code>colorRampPalette()</code> from the RColorBrewer package to produce larger palettes by interpolating existing ones</span></p>
-<div class="cell" data-hash="4-Perception_cache/revealjs/unnamed-chunk-9_d9012c289a275577292df9601b28c709">
+<div class="cell">
 <div class="cell-output-display">
-<p><img data-src="4-Perception_files/figure-revealjs/unnamed-chunk-9-1.png" width="960"></p>
+<div>
+<figure>
+<p><img data-src="4-Perception_files/figure-html/unnamed-chunk-9-1.png" width="960"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Quantitative schemes: use color gradient with only one hue for positive values</p>
-<div class="cell" data-hash="4-Perception_cache/revealjs/unnamed-chunk-10_54bc03f2c9fa7604f28ab7bd7bf7ca80">
+<div class="cell">
 <div class="cell-output-display">
-<p><img data-src="4-Perception_files/figure-revealjs/unnamed-chunk-10-1.png" width="672"></p>
+<div>
+<figure>
+<p><img data-src="4-Perception_files/figure-html/unnamed-chunk-10-1.png" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 </section>
@@ -864,7 +893,7 @@
 <h2>More Gradients</h2>
 <p>Quantitative schemes: use color gradient with two hues for positive and negative values. Gradient should go through a light, neutral color (white)</p>
 
-<img data-src="4-Perception_files/figure-revealjs/unnamed-chunk-11-1.png" width="672" class="r-stretch"><p>Small objects or thin lines need more contrast than larger areas</p>
+<img data-src="4-Perception_files/figure-html/unnamed-chunk-11-1.png" width="672" class="r-stretch"><p>Small objects or thin lines need more contrast than larger areas</p>
 </section>
 <section id="factors-vs.-continuous-variables" class="slide level2">
 <h2>Factors vs.&nbsp;Continuous variables</h2>
@@ -882,8 +911,8 @@
 </ul></li>
 </ul>
 
-<img data-src="4-Perception_files/figure-revealjs/unnamed-chunk-12-1.png" class="quarto-figure-top r-stretch" width="960"></section>
-<section id="color-in-ggplot2" class="slide level2">
+<img data-src="4-Perception_files/figure-html/unnamed-chunk-12-1.png" class="quarto-figure quarto-figure-top r-stretch" width="960"></section>
+<section id="color-in-ggplot2" class="slide level2 smaller">
 <h2>Color in ggplot2</h2>
 <p>There are packages available for use that have color scheme options.</p>
 <p>Some Examples:</p>
@@ -902,11 +931,11 @@
 <li>There are packages available for use that have color schemes options.</li>
 </ul>
 
-<img data-src="4-Perception_files/figure-revealjs/unnamed-chunk-13-1.png" width="1152" class="r-stretch"></section>
+<img data-src="4-Perception_files/figure-html/unnamed-chunk-13-1.png" width="1152" class="r-stretch"></section>
 <section id="your-turn" class="slide level2 inverse">
 <h2>Your Turn</h2>
-<div class="cell" data-hash="4-Perception_cache/revealjs/diamonds-data_9cdf53286d47bd4d97674ccb6479b212">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">data</span>(diamonds)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="fu">data</span>(diamonds)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li><p>In the <code>diamonds</code> data, <code>clarity</code> and <code>cut</code> are ordinal, while <code>price</code> and <code>carat</code> are continuous.</p></li>
@@ -917,8 +946,8 @@
 <section id="your-turn-1" class="slide level2 inverse">
 <h2>Your Turn</h2>
 <p>The <code>movies</code> data set contains information from IMDB.com including ratings, genre, length in minutes, and year of release.</p>
-<div class="cell" data-hash="4-Perception_cache/revealjs/unnamed-chunk-14_a6f751feda3a73dc82f589080946d976">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>movies <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"https://unl-statistics.github.io/R-workshops/02-r-graphics/data/MovieSummary.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a>movies <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"https://raw.githubusercontent.com/unl-statistics/R-workshops/main/r-graphics/data/MovieSummary.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li><p>Explore the differences in length, rating, etc. in movie genres over time.</p></li>
@@ -926,8 +955,10 @@
 <li><p>Discuss your graphic with a neighbor.</p></li>
 </ul>
 
+<div class="quarto-auto-generated-content">
 <div class="footer footer-default">
 <p><a href="../../index.html">UNL R Workshops</a></p>
+</div>
 </div>
 </section></section>
     </div>
@@ -1140,44 +1171,6 @@
         ]
       });
     </script>
-    
-    <script>
-      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
-      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
-      // slide changes (different for each slide format).
-      (function () {
-        // dispatch for htmlwidgets
-        function fireSlideEnter() {
-          const event = window.document.createEvent("Event");
-          event.initEvent("slideenter", true, true);
-          window.document.dispatchEvent(event);
-        }
-
-        function fireSlideChanged(previousSlide, currentSlide) {
-          fireSlideEnter();
-
-          // dispatch for shiny
-          if (window.jQuery) {
-            if (previousSlide) {
-              window.jQuery(previousSlide).trigger("hidden");
-            }
-            if (currentSlide) {
-              window.jQuery(currentSlide).trigger("shown");
-            }
-          }
-        }
-
-        // hookup for slidy
-        if (window.w3c_slidy) {
-          window.w3c_slidy.add_observer(function (slide_num) {
-            // slide_num starts at position 1
-            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
-          });
-        }
-
-      })();
-    </script>
-
     <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggleBodyColorMode = (bsSheetEl) => {

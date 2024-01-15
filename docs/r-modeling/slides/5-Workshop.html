@@ -8,7 +8,7 @@
 <link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
 <link href="../../site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.4.489">
+  <meta name="generator" content="quarto-1.4.540">
 
   <title>UNL R Workshops - Workshop</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -403,21 +403,21 @@
 <section id="palmer-penguins-anova" class="slide level2">
 <h2>Palmer Penguins (ANOVA)</h2>
 <p>Are there differences in any of the measures (bill width, bill depth, flipper length, body mass) between the three species? Can you also account for the sex of the penguin?</p>
-<div class="cell" data-hash="5-Workshop_cache/revealjs/penguins-data0_fe023fb2962be19249f99d7ea844f9ce">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">data</span>(penguins, <span class="at">package =</span> <span class="st">"palmerpenguins"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">data</span>(penguins, <span class="at">package =</span> <span class="st">"palmerpenguins"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
-<img data-src="5-Workshop_files/figure-revealjs/unnamed-chunk-1-1.png" class="quarto-figure-center r-stretch" width="1152"></section>
-<section id="production" class="slide level2">
+<img data-src="5-Workshop_files/figure-html/unnamed-chunk-1-1.png" class="quarto-figure quarto-figure-center r-stretch" width="1152"></section>
+<section id="production" class="slide level2 smaller">
 <h2>Production</h2>
 <p>In a manufacturing study, the production times for 111 recent production runs were obtained. The researchers are curious if the production lot size can predict the production time in hours.</p>
-<div class="cell" data-hash="5-Workshop_cache/revealjs/production-echo_e6e38efbee6c48357575a4bcc55a900a">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>production_data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"https://unl-statistics.github.io/R-workshops/r-modeling/data/production.csv"</span>)</span>
-<span id="cb2-2"><a href="#cb2-2"></a><span class="fu">head</span>(production_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a>production_data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"https://unl-statistics.github.io/R-workshops/r-modeling/data/production.csv"</span>)</span>
+<span id="cb2-2"><a></a><span class="fu">head</span>(production_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="columns">
 <div class="column">
-<div class="cell" data-hash="5-Workshop_cache/revealjs/production-data_ef362305efabae171decf8e3481b747e">
+<div class="cell">
 <div class="cell-output-display">
 <table data-quarto-postprocess="true">
 <thead>
@@ -458,9 +458,13 @@
 </div>
 </div>
 </div><div class="column">
-<div class="cell" data-hash="5-Workshop_cache/revealjs/production-eda_41489e7d697d6d44ec19dcf3fcb515ef">
+<div class="cell">
 <div class="cell-output-display">
-<p><img data-src="5-Workshop_files/figure-revealjs/production-eda-1.png" width="384"></p>
+<div>
+<figure>
+<p><img data-src="5-Workshop_files/figure-html/production-eda-1.png" width="384"></p>
+</figure>
+</div>
 </div>
 </div>
 </div>
@@ -469,24 +473,24 @@
 <section id="palmer-penguins-regression-extention" class="slide level2">
 <h2>Palmer Penguins (Regression Extention)</h2>
 <p>What if you wanted to fit a linear regression line between bill length and bill depth for each species?</p>
-<div class="cell" data-hash="5-Workshop_cache/revealjs/penguins-data_bcece793d5c17780a97e8c62547f6d52">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">data</span>(penguins, <span class="at">package =</span> <span class="st">"palmerpenguins"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="fu">data</span>(penguins, <span class="at">package =</span> <span class="st">"palmerpenguins"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
-<img data-src="5-Workshop_files/figure-revealjs/penguins-regression-bonus-1.png" class="quarto-figure-center r-stretch" width="672"></section>
-<section id="environmental-condition" class="slide level2">
+<img data-src="5-Workshop_files/figure-html/penguins-regression-bonus-1.png" class="quarto-figure quarto-figure-center r-stretch" width="672"></section>
+<section id="environmental-condition" class="slide level2 smaller">
 <h2>Environmental Condition</h2>
 <p>Here’s the big picture: there is an environmental condition suspected of causing increased incidence of a certain medical disorder. To assess the suspected link, 100 clusters are randomly selected where the environmental condition does not exist (coded “Condition = 0”) in the data set) and 100 clusters are randomly selected where the environmental condition does exist (coded “Condition = 1”). All households at each site are sent a survey (in survey design, this is called cluster sampling) – response is voluntary.</p>
-<div class="cell" data-hash="5-Workshop_cache/revealjs/condition-data-echo_c16fc9d88e08b9e1f39feb15a1969169">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>condition_data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"https://unl-statistics.github.io/R-workshops/r-modeling/data/condition.csv"</span>)</span>
-<span id="cb4-2"><a href="#cb4-2"></a><span class="fu">head</span>(condition_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a>condition_data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"https://unl-statistics.github.io/R-workshops/r-modeling/data/condition.csv"</span>)</span>
+<span id="cb4-2"><a></a><span class="fu">head</span>(condition_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="columns">
 <div class="column">
-<div class="cell" data-hash="5-Workshop_cache/revealjs/condition-data_8d2943ebb2642559171126df9995bc47">
+<div class="cell">
 <div class="cell-output-display">
 <div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:100%; ">
-<table class="table table-striped" data-quarto-postprocess="true" style="margin-left: auto; margin-right: auto;">
+<table class="table table-striped" data-quarto-postprocess="true" style="font-size: 20px; margin-left: auto; margin-right: auto;">
 <thead>
 <tr class="header">
 <th style="text-align: right;" data-quarto-table-cell-role="th">Cluster</th>
@@ -527,9 +531,13 @@
 </div>
 </div>
 </div><div class="column">
-<div class="cell" data-hash="5-Workshop_cache/revealjs/condition-plot_81a7caee75ef191784d3a6cb3fe3b1ae">
+<div class="cell">
 <div class="cell-output-display">
-<p><img data-src="5-Workshop_files/figure-revealjs/condition-plot-1.png" width="480"></p>
+<div>
+<figure>
+<p><img data-src="5-Workshop_files/figure-html/condition-plot-1.png" width="480"></p>
+</figure>
+</div>
 </div>
 </div>
 </div>
@@ -537,12 +545,14 @@
 </section>
 <section id="built-in-r-datasets" class="slide level2">
 <h2>Built in R Datasets</h2>
-<div class="cell" data-hash="5-Workshop_cache/revealjs/datasets_f8d8d61e69aa40436f9a1edc03d4184b">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">data</span>(<span class="at">package =</span> <span class="fu">.packages</span>(<span class="at">all.available =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="fu">data</span>(<span class="at">package =</span> <span class="fu">.packages</span>(<span class="at">all.available =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
+<div class="quarto-auto-generated-content">
 <div class="footer footer-default">
 <p><a href="../../index.html">UNL R Workshops</a></p>
+</div>
 </div>
 </section>
     </div>
@@ -755,44 +765,6 @@
         ]
       });
     </script>
-    
-    <script>
-      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
-      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
-      // slide changes (different for each slide format).
-      (function () {
-        // dispatch for htmlwidgets
-        function fireSlideEnter() {
-          const event = window.document.createEvent("Event");
-          event.initEvent("slideenter", true, true);
-          window.document.dispatchEvent(event);
-        }
-
-        function fireSlideChanged(previousSlide, currentSlide) {
-          fireSlideEnter();
-
-          // dispatch for shiny
-          if (window.jQuery) {
-            if (previousSlide) {
-              window.jQuery(previousSlide).trigger("hidden");
-            }
-            if (currentSlide) {
-              window.jQuery(currentSlide).trigger("shown");
-            }
-          }
-        }
-
-        // hookup for slidy
-        if (window.w3c_slidy) {
-          window.w3c_slidy.add_observer(function (slide_num) {
-            // slide_num starts at position 1
-            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
-          });
-        }
-
-      })();
-    </script>
-
     <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggleBodyColorMode = (bsSheetEl) => {

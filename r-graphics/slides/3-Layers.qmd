@@ -56,7 +56,7 @@ grid_arrange_shared_legend <- function(..., ncol = length(list(...)), nrow = 1, 
 
 # BUILDING PLOTS
 
-## What is a plot?
+## What is a plot? {.smaller}
 
 ggplot2 uses the idea that you can build every graph from the same components:
 
@@ -176,28 +176,30 @@ p1 + p2 + p3
 
 A stat builds a new variable to plot (e.g., count and proportion)
 
-::: {.layout-ncol=2}
+::: columns
+::: column
 ![](images/stat1.png)
-
-![](images/stat2.png)
-
+::: 
+::: column
+![](images/stat2.png){width=350 height=550}
+:::
 :::
 
-# Faceting
+# Faceting {.smaller}
 
 A way to extract subsets of data and place them side-by-side in graphics
-```{r, fig.width=10, fig.height=4, echo = TRUE, eval=FALSE}
+```{r, fig.width=10, fig.height=5, echo = TRUE, eval=FALSE}
 ggplot(data = mpg, aes(x = cty, y = hwy, colour = class)) + 
   geom_point()
 ```
 
-```{r, fig.width=10, fig.height=4, echo = TRUE, eval=FALSE}
+```{r, fig.width=10, fig.height=5, echo = TRUE, eval=FALSE}
 ggplot(data = mpg, aes(x = cty, y = hwy, colour = class)) + 
   geom_point() +
   facet_grid(~class) #<<
 ```
 
-```{r, fig.width=10, fig.height=3, fig.align = "center", echo=FALSE}
+```{r, fig.width=12, fig.height=4, fig.align = "center", echo=FALSE}
 a <- ggplot(data = mpg, aes(x = cty, y = hwy, colour = class)) + 
   geom_point() + 
   scale_color_locuszoom() +
@@ -212,7 +214,7 @@ b <- ggplot(data = mpg, aes(x = cty, y = hwy, colour = class)) +
 a + b + plot_layout(widths = c(1, 7))
 ```
 
-## Faceting Options
+## Faceting Options {.smaller}
 
 - `facet_grid(. ~ b)`: facet into columns based on b 
 - `facet_grid(a ~ .)`: facet into rows based on a 
@@ -345,7 +347,7 @@ Typically the problem can be decomposed into two problems:
 [resource](https://ggplot2-book.org/maps.html)
 
 
-## Example: Nebraska Population
+## Example: Nebraska Population {.smaller}
 
 **Map Source Data**
 ```{r ne-map-data1, echo = T, eval = F}

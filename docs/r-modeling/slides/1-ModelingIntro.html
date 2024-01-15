@@ -8,7 +8,7 @@
 <link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
 <link href="../../site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.4.489">
+  <meta name="generator" content="quarto-1.4.540">
 
   <title>UNL R Workshops - Introduction to Statistical Modeling</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -436,7 +436,7 @@
 <h2>Data science process</h2>
 
 <img data-src="images/data-science-process.jpeg" class="r-stretch quarto-figure-center"><p class="caption"><span class="small">Image source: https://towardsdatascience.com/the-data-science-process-a19eb7ebc41b?gi=10ee5878828e</span></p></section>
-<section id="data-collection" class="slide level2">
+<section id="data-collection" class="slide level2 smaller">
 <h2>Data collection</h2>
 <p>What is the source of your data? How was the data collected?</p>
 <div class="columns">
@@ -481,9 +481,9 @@
 <li><p>Each type of observational unit forms a table</p></li>
 </ul>
 </section>
-<section id="experimental-unit-vs-sampling-unit" class="slide level2">
+<section id="experimental-unit-vs-sampling-unit" class="slide level2 smaller">
 <h2>Experimental unit vs Sampling unit</h2>
-<p>In a planned experiment, it is important to know where your treatments were <em>independently</em> applied.</p>
+<p><font size="5"> In a planned experiment, it is important to know where your treatments were <em>independently</em> applied.</font></p><font size="5">
 <p><strong>Example:</strong></p>
 <p>If you apply different fertilizers to plots in a field and measure the height of 10 corn plants from the middle rows of the plot, where are the treatments applied?</p>
 <div class="fragment">
@@ -500,8 +500,9 @@
 </ol>
 <p><strong>Do not</strong> treat each sub-sample as an independent unit in your analysis.</p>
 </div>
+</font><p><font size="5"></font></p>
 </section>
-<section id="exploratory-data-analysis-eda" class="slide level2">
+<section id="exploratory-data-analysis-eda" class="slide level2 smaller">
 <h2>Exploratory Data Analysis (EDA)</h2>
 <p>Typically referred to looking at <em>descriptive statistics</em>. EDA should be performed prior to a formal analysis (“look at your data first!”)</p>
 <div class="columns">
@@ -536,15 +537,15 @@
           display:block!important;
       }</style></aside>
 </section>
-<section id="eda-example" class="slide level2">
+<section id="eda-example" class="slide level2 smaller">
 <h2>EDA Example</h2>
 <p>Recall the <a href="https://allisonhorst.github.io/palmerpenguins/">Palmer Penguin</a> data set.</p>
-<div class="cell" data-hash="1-ModelingIntro_cache/html/eda-example-echo_902a38eb68e9102de0b8067dc3616b96">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">install.packages</span>(<span class="st">"palmerpenguins"</span>)</span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">data</span>(penguins, <span class="at">package =</span> <span class="st">"palmerpenguins"</span>)</span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="fu">head</span>(penguins)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">install.packages</span>(<span class="st">"palmerpenguins"</span>)</span>
+<span id="cb1-2"><a></a><span class="fu">data</span>(penguins, <span class="at">package =</span> <span class="st">"palmerpenguins"</span>)</span>
+<span id="cb1-3"><a></a><span class="fu">head</span>(penguins)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-hash="1-ModelingIntro_cache/html/eda-example_cde78e52017645468c77c4f1287bd04c">
+<div class="cell">
 <div class="cell-output-display">
 <div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:100%; ">
 <table class="table table-striped" data-quarto-postprocess="true" style="margin-left: auto; margin-right: auto;">
@@ -629,19 +630,19 @@
 </div>
 <p>Data were collected and made available by <a href="https://www.uaf.edu/cfos/people/faculty/detail/kristen-gorman.php">Dr.&nbsp;Kristen Gorman</a> and the <a href="https://pallter.marine.rutgers.edu/">Palmer Station, Antarctica LTER</a>, a member of the <a href="https://lternet.edu/">Long Term Ecological Research Network</a>.</p>
 </section>
-<section id="eda-example-numerical-summaries" class="slide level2">
+<section id="eda-example-numerical-summaries" class="slide level2 smaller">
 <h2>EDA Example: Numerical summaries</h2>
-<div class="cell" data-hash="1-ModelingIntro_cache/html/numerical-summaries-echo_5a82a48c0395e772f0dc1d77ea6aaae6">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>penguins <span class="sc">%&gt;%</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a>  <span class="fu">group_by</span>(sex) <span class="sc">%&gt;%</span></span>
-<span id="cb2-3"><a href="#cb2-3"></a>  <span class="fu">summarize</span>(<span class="fu">across</span>(<span class="fu">c</span>(<span class="st">"body_mass_g"</span>), </span>
-<span id="cb2-4"><a href="#cb2-4"></a>                   <span class="fu">list</span>(<span class="at">Mean =</span> <span class="sc">~</span> <span class="fu">mean</span>(., <span class="at">na.rm =</span> T), </span>
-<span id="cb2-5"><a href="#cb2-5"></a>                        <span class="at">SD =</span> <span class="sc">~</span> <span class="fu">sd</span>(., <span class="at">na.rm =</span>T), </span>
-<span id="cb2-6"><a href="#cb2-6"></a>                        <span class="at">Min =</span> <span class="sc">~</span> <span class="fu">min</span>(., <span class="at">na.rm =</span> T), </span>
-<span id="cb2-7"><a href="#cb2-7"></a>                        <span class="at">Median =</span> <span class="sc">~</span> <span class="fu">median</span>(., <span class="at">na.rm =</span> T), </span>
-<span id="cb2-8"><a href="#cb2-8"></a>                        <span class="at">Max =</span> <span class="sc">~</span> <span class="fu">max</span>(., <span class="at">na.rm =</span> T))))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a>penguins <span class="sc">%&gt;%</span></span>
+<span id="cb2-2"><a></a>  <span class="fu">group_by</span>(sex) <span class="sc">%&gt;%</span></span>
+<span id="cb2-3"><a></a>  <span class="fu">summarize</span>(<span class="fu">across</span>(<span class="fu">c</span>(<span class="st">"body_mass_g"</span>), </span>
+<span id="cb2-4"><a></a>                   <span class="fu">list</span>(<span class="at">Mean =</span> <span class="sc">~</span> <span class="fu">mean</span>(., <span class="at">na.rm =</span> T), </span>
+<span id="cb2-5"><a></a>                        <span class="at">SD =</span> <span class="sc">~</span> <span class="fu">sd</span>(., <span class="at">na.rm =</span>T), </span>
+<span id="cb2-6"><a></a>                        <span class="at">Min =</span> <span class="sc">~</span> <span class="fu">min</span>(., <span class="at">na.rm =</span> T), </span>
+<span id="cb2-7"><a></a>                        <span class="at">Median =</span> <span class="sc">~</span> <span class="fu">median</span>(., <span class="at">na.rm =</span> T), </span>
+<span id="cb2-8"><a></a>                        <span class="at">Max =</span> <span class="sc">~</span> <span class="fu">max</span>(., <span class="at">na.rm =</span> T))))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-hash="1-ModelingIntro_cache/html/numerical-summaries_69954a194a2879cd08f00ec0c7625fc4">
+<div class="cell">
 <div class="cell-output-display">
 <div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:100%; ">
 <table class="table table-striped" data-quarto-postprocess="true" style="margin-left: auto; margin-right: auto;">
@@ -692,24 +693,16 @@
 </section>
 <section id="eda-example-graphical-summaries" class="slide level2">
 <h2>EDA Example: Graphical summaries</h2>
-<p>::: columns ::: column</p>
-<div class="cell" data-hash="1-ModelingIntro_cache/html/graphical-summaries-echo_4683708ca170693fd52fb39038505ccd">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>penguins <span class="sc">%&gt;%</span></span>
-<span id="cb3-2"><a href="#cb3-2"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> sex, <span class="at">y =</span> body_mass_g, <span class="at">color =</span> sex, <span class="at">fill =</span> sex)) <span class="sc">+</span></span>
-<span id="cb3-3"><a href="#cb3-3"></a>  <span class="fu">geom_boxplot</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb3-4"><a href="#cb3-4"></a>  <span class="fu">geom_point</span>(<span class="at">position =</span> <span class="st">"jitter"</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span> </span>
-<span id="cb3-5"><a href="#cb3-5"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb3-6"><a href="#cb3-6"></a>  <span class="fu">theme</span>(<span class="at">aspect.ratio =</span> <span class="dv">1</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a>penguins <span class="sc">%&gt;%</span></span>
+<span id="cb3-2"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> sex, <span class="at">y =</span> body_mass_g, <span class="at">color =</span> sex, <span class="at">fill =</span> sex)) <span class="sc">+</span></span>
+<span id="cb3-3"><a></a>  <span class="fu">geom_boxplot</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb3-4"><a></a>  <span class="fu">geom_point</span>(<span class="at">position =</span> <span class="st">"jitter"</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span> </span>
+<span id="cb3-5"><a></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb3-6"><a></a>  <span class="fu">theme</span>(<span class="at">aspect.ratio =</span> <span class="dv">1</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>:::</p>
-<div class="column">
-<div class="cell" data-hash="1-ModelingIntro_cache/html/graphical-summaries_e5ee42d0bd3ac47caf8dad9d2c290e8e">
-<div class="cell-output-display">
-<p><img data-src="1-ModelingIntro_files/figure-html/graphical-summaries-1.png" width="672"></p>
-</div>
-</div>
-</div>
-</section>
+
+<img data-src="1-ModelingIntro_files/figure-html/graphical-summaries-1.png" class="quarto-figure quarto-figure-center r-stretch" width="672"></section>
 <section id="your-turn" class="slide level2 inverse">
 <h2>Your turn</h2>
 <ul>
@@ -738,7 +731,7 @@
           display:block!important;
       }</style></aside>
 </section>
-<section id="in-this-session-we-will" class="slide level2">
+<section id="in-this-session-we-will" class="slide level2 smaller">
 <h2>In this session we will…</h2>
 <ul>
 <li>Basic statistical tests
@@ -762,8 +755,10 @@
 </ul></li>
 </ul>
 
+<div class="quarto-auto-generated-content">
 <div class="footer footer-default">
 <p><a href="../../index.html">UNL R Workshops</a></p>
+</div>
 </div>
 </section>
     </div>

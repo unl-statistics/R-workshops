@@ -8,7 +8,7 @@
 <link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
 <link href="../../site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.4.489">
+  <meta name="generator" content="quarto-1.4.540">
 
   <title>UNL R Workshops - Generalized Linear Models (and more!)</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -385,6 +385,8 @@
       margin-right: 0; 
     }
   </style>
+  <script src="../../site_libs/kePrint/kePrint.js"></script>
+  <link href="../../site_libs/lightable/lightable.css" rel="stylesheet">
 </head>
 <body class="quarto-light">
   <div class="reveal">
@@ -406,7 +408,7 @@
 <li><p>Final Remarks</p></li>
 </ul>
 </section>
-<section id="generalized-linear-models-basics" class="slide level2">
+<section id="generalized-linear-models-basics" class="slide level2 smaller">
 <h2>Generalized Linear Models (Basics)</h2>
 <p>If your data is not normally distributed, it will violate the model assumptions of a linear model. You must consider the type of data you have!</p>
 <p><strong><em>Model Scale</em></strong> verses <strong><em>Data Scale</em></strong></p>
@@ -422,17 +424,17 @@
 <section id="glms-and-glmms-in-r" class="slide level2">
 <h2>GLMS and GLMM’s in R</h2>
 <p><strong>Packages</strong></p>
-<div class="cell" data-hash="4-GeneralizedLinearModels_cache/revealjs/pkgs_219cfa66bcfdf523cae4a17080d4f1ba">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(<span class="st">'lme4'</span>)</span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(<span class="st">'emmeans'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">library</span>(<span class="st">'lme4'</span>)</span>
+<span id="cb1-2"><a></a><span class="fu">library</span>(<span class="st">'emmeans'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><strong>Generalized Linear Model (GLM)</strong></p>
-<div class="cell" data-hash="4-GeneralizedLinearModels_cache/revealjs/glm_d21561eaf50b443e6672e067725b1256">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">help</span>(glm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a><span class="fu">help</span>(glm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><strong>Generalized Linear Mixed Model (GLMM)</strong></p>
-<div class="cell" data-hash="4-GeneralizedLinearModels_cache/revealjs/glmer_80944b42c244223ac94ea07fc0cd9458">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">help</span>(glmer)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="fu">help</span>(glmer)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section>
@@ -440,14 +442,14 @@
 <h1>Binomial Example</h1>
 
 </section>
-<section id="insects" class="slide level2">
+<section id="insects" class="slide level2 smaller">
 <h2>Insects</h2>
 <p><strong>Data</strong> The number of insects killed at various doses of insecticide.</p>
-<div class="cell" data-hash="4-GeneralizedLinearModels_cache/revealjs/insects-data-echo_0c265b639aeadf514eb1d1ed2c674f58">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>insects_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://unl-statistics.github.io/R-workshops/r-modeling/data/insects.csv"</span>)</span>
-<span id="cb4-2"><a href="#cb4-2"></a><span class="fu">head</span>(insects_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a>insects_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://unl-statistics.github.io/R-workshops/r-modeling/data/insects.csv"</span>)</span>
+<span id="cb4-2"><a></a><span class="fu">head</span>(insects_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-hash="4-GeneralizedLinearModels_cache/revealjs/insects-data_92ab96c4cd1d984e8cc216b910c58935">
+<div class="cell">
 <div class="cell-output-display">
 <table data-quarto-postprocess="true">
 <thead>
@@ -503,7 +505,7 @@
 </section>
 <section id="insects-eda" class="slide level2">
 <h2>Insects EDA</h2>
-<div class="cell" data-hash="4-GeneralizedLinearModels_cache/revealjs/deposit-summary_287c2a3e9f27218d9fb27541d0ef4e7e">
+<div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code> Rep        Killed          Number      Insecticide    Deposit     
  1:18   Min.   : 1.00   Min.   :26.00   A:18        Min.   :2.000  
@@ -516,9 +518,10 @@
 </div>
 <p><br></p>
 
-<img data-src="4-GeneralizedLinearModels_files/figure-revealjs/deposit-graph-eda-1.png" class="quarto-figure-center r-stretch" width="864"></section>
-<section id="insects-model" class="slide level2">
+<img data-src="4-GeneralizedLinearModels_files/figure-html/deposit-graph-eda-1.png" class="quarto-figure quarto-figure-center r-stretch" width="864"></section>
+<section id="insects-model" class="slide level2 smaller">
 <h2>Insects Model</h2>
+<p><font size="5"></font></p><font size="5">
 <p><strong>Statistical notation</strong></p>
 <p><span class="math display">\[y_{ij} \sim \text{Binomial}(\pi_{ij}, N_{ij})\]</span> where <span class="math display">\[\log\large(\frac{\pi_{ij}}{1-\pi_{ij}}\large) = \eta_{ij} = (\beta_0 + \tau_i) + (\beta_1 + \beta_{1i})\cdot x_{ij} + (\beta_2 + \beta_{2i})\cdot x_{ij}^2\]</span></p>
 <ul>
@@ -530,15 +533,16 @@
 <li><p><span class="math inline">\(logit = \log(\frac{\pi}{1-\pi})\)</span> data scale <span class="math inline">\(\implies\)</span> model scale (link function)</p></li>
 <li><p><span class="math inline">\(\frac{1}{(1+e^{-\eta})}\)</span> model scale <span class="math inline">\(\implies\)</span> data scale (ilink function)</p></li>
 </ul>
+</font><p><font size="5"></font></p>
 </section>
 <section id="insects-glm" class="slide level2">
 <h2>Insects GLM</h2>
-<div class="cell" data-hash="4-GeneralizedLinearModels_cache/revealjs/deposit-glm_f4f72887fabfe55e803f073aba29b8bb">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a> insects_glm <span class="ot">&lt;-</span> <span class="fu">glm</span>(Killed<span class="sc">/</span>Number <span class="sc">~</span> Insecticide<span class="sc">*</span>Deposit <span class="sc">+</span> Insecticide<span class="sc">*</span><span class="fu">I</span>(Deposit<span class="sc">^</span><span class="dv">2</span>),</span>
-<span id="cb6-2"><a href="#cb6-2"></a>     <span class="at">weights =</span> Number, <span class="co">#&lt;&lt;</span></span>
-<span id="cb6-3"><a href="#cb6-3"></a>     <span class="at">data =</span> insects_data,</span>
-<span id="cb6-4"><a href="#cb6-4"></a>     <span class="at">family =</span> <span class="st">"binomial"</span>) <span class="co">#&lt;&lt;</span></span>
-<span id="cb6-5"><a href="#cb6-5"></a>car<span class="sc">::</span><span class="fu">Anova</span>(insects_glm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a> insects_glm <span class="ot">&lt;-</span> <span class="fu">glm</span>(Killed<span class="sc">/</span>Number <span class="sc">~</span> Insecticide<span class="sc">*</span>Deposit <span class="sc">+</span> Insecticide<span class="sc">*</span><span class="fu">I</span>(Deposit<span class="sc">^</span><span class="dv">2</span>),</span>
+<span id="cb6-2"><a></a>     <span class="at">weights =</span> Number, <span class="co">#&lt;&lt;</span></span>
+<span id="cb6-3"><a></a>     <span class="at">data =</span> insects_data,</span>
+<span id="cb6-4"><a></a>     <span class="at">family =</span> <span class="st">"binomial"</span>) <span class="co">#&lt;&lt;</span></span>
+<span id="cb6-5"><a></a>car<span class="sc">::</span><span class="fu">Anova</span>(insects_glm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Analysis of Deviance Table (Type II tests)
 
@@ -556,8 +560,8 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </section>
 <section id="insects-glm-1" class="slide level2">
 <h2>Insects GLM</h2>
-<div class="cell" data-hash="4-GeneralizedLinearModels_cache/revealjs/insects-summary_d0db3260befd12596e2e1b0ad3a7baed">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">summary</span>(insects_glm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a><span class="fu">summary</span>(insects_glm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -590,14 +594,14 @@ Number of Fisher Scoring iterations: 5</code></pre>
 </section>
 <section id="insects-results" class="slide level2">
 <h2>Insects results</h2>
-<div class="cell" data-hash="4-GeneralizedLinearModels_cache/revealjs/insects-emmeans-echo_82af12ded924264694349b9f0f611061">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>insects_emmeangrid <span class="ot">&lt;-</span> <span class="fu">ref_grid</span>(insects_glm, <span class="at">at =</span> <span class="fu">list</span>(<span class="at">Deposit =</span> <span class="fu">unique</span>(insects_data<span class="sc">$</span>Deposit))) <span class="co">#&lt;&lt;</span></span>
-<span id="cb10-2"><a href="#cb10-2"></a>insects_emmeans <span class="ot">&lt;-</span> <span class="fu">emmeans</span>(insects_emmeangrid, <span class="at">specs =</span><span class="sc">~</span>Insecticide<span class="sc">:</span>Deposit, <span class="at">type =</span> <span class="st">"response"</span>)</span>
-<span id="cb10-3"><a href="#cb10-3"></a>insects_emmeans</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a>insects_emmeangrid <span class="ot">&lt;-</span> <span class="fu">ref_grid</span>(insects_glm, <span class="at">at =</span> <span class="fu">list</span>(<span class="at">Deposit =</span> <span class="fu">unique</span>(insects_data<span class="sc">$</span>Deposit))) <span class="co">#&lt;&lt;</span></span>
+<span id="cb10-2"><a></a>insects_emmeans <span class="ot">&lt;-</span> <span class="fu">emmeans</span>(insects_emmeangrid, <span class="at">specs =</span><span class="sc">~</span>Insecticide<span class="sc">:</span>Deposit, <span class="at">type =</span> <span class="st">"response"</span>)</span>
+<span id="cb10-3"><a></a>insects_emmeans</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-hash="4-GeneralizedLinearModels_cache/revealjs/insects-emmeans_75064eef240c44a1e0fbae67035a703e">
+<div class="cell">
 <div class="cell-output-display">
-<table data-quarto-postprocess="true">
+<table class="table" data-quarto-postprocess="true" style="font-size: 25px; margin-left: auto; margin-right: auto;">
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th">Insecticide</th>
@@ -673,9 +677,9 @@ Number of Fisher Scoring iterations: 5</code></pre>
 </section>
 <section id="compare-insecticides" class="slide level2">
 <h2>Compare Insecticides</h2>
-<div class="cell" data-hash="4-GeneralizedLinearModels_cache/revealjs/insects-pairs_71b8907a333a7786840ea67312f25e05">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>insects_pairs <span class="ot">&lt;-</span> <span class="fu">emmeans</span>(insects_emmeangrid, <span class="at">specs =</span><span class="sc">~</span>Insecticide <span class="sc">|</span> Deposit, <span class="at">type =</span> <span class="st">"response"</span>)</span>
-<span id="cb11-2"><a href="#cb11-2"></a><span class="fu">pairs</span>(insects_pairs, <span class="at">infer =</span> <span class="fu">c</span>(T,T))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a>insects_pairs <span class="ot">&lt;-</span> <span class="fu">emmeans</span>(insects_emmeangrid, <span class="at">specs =</span><span class="sc">~</span>Insecticide <span class="sc">|</span> Deposit, <span class="at">type =</span> <span class="st">"response"</span>)</span>
+<span id="cb11-2"><a></a><span class="fu">pairs</span>(insects_pairs, <span class="at">infer =</span> <span class="fu">c</span>(T,T))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Deposit = 2:
  contrast odds.ratio      SE  df asymp.LCL asymp.UCL null z.ratio p.value
@@ -723,14 +727,14 @@ Tests are performed on the log odds ratio scale </code></pre>
 </section>
 <section id="insects-results-plot" class="slide level2">
 <h2>Insects results plot</h2>
-<div class="cell" data-hash="4-GeneralizedLinearModels_cache/revealjs/insecticide-plot-echo_33c7ea4b88143fa668d43f3a9dae1c3f">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>insects_predgrid <span class="ot">&lt;-</span> <span class="fu">ref_grid</span>(insects_glm, <span class="at">at =</span> <span class="fu">list</span>(<span class="at">Deposit =</span> <span class="fu">seq</span>(<span class="fu">min</span>(insects_data<span class="sc">$</span>Deposit), <span class="fu">max</span>(insects_data<span class="sc">$</span>Deposit), <span class="fl">0.2</span>)))</span>
-<span id="cb13-2"><a href="#cb13-2"></a>insects_preds <span class="ot">&lt;-</span> <span class="fu">emmeans</span>(insects_predgrid, <span class="at">specs =</span><span class="sc">~</span>Insecticide<span class="sc">:</span>Deposit, <span class="at">type =</span> <span class="st">"response"</span>)</span>
-<span id="cb13-3"><a href="#cb13-3"></a>insects_preds</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a>insects_predgrid <span class="ot">&lt;-</span> <span class="fu">ref_grid</span>(insects_glm, <span class="at">at =</span> <span class="fu">list</span>(<span class="at">Deposit =</span> <span class="fu">seq</span>(<span class="fu">min</span>(insects_data<span class="sc">$</span>Deposit), <span class="fu">max</span>(insects_data<span class="sc">$</span>Deposit), <span class="fl">0.2</span>)))</span>
+<span id="cb13-2"><a></a>insects_preds <span class="ot">&lt;-</span> <span class="fu">emmeans</span>(insects_predgrid, <span class="at">specs =</span><span class="sc">~</span>Insecticide<span class="sc">:</span>Deposit, <span class="at">type =</span> <span class="st">"response"</span>)</span>
+<span id="cb13-3"><a></a>insects_preds</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-hash="4-GeneralizedLinearModels_cache/revealjs/insecticide-plot_5c1e347e724bc4110f66494d27eb7115">
+<div class="cell">
 <div class="cell-output-display">
-<table data-quarto-postprocess="true">
+<table class="table" data-quarto-postprocess="true" style="font-size: 25px; margin-left: auto; margin-right: auto;">
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th">Insecticide</th>
@@ -808,23 +812,27 @@ Tests are performed on the log odds ratio scale </code></pre>
 <h2>Insects results plot</h2>
 <div class="columns">
 <div class="column">
-<div class="cell" data-hash="4-GeneralizedLinearModels_cache/revealjs/insects-plot-echo_acc9cebe42dc33269de75b4aa40eafdc">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>insects_preds <span class="sc">%&gt;%</span></span>
-<span id="cb14-2"><a href="#cb14-2"></a>  <span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb14-3"><a href="#cb14-3"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Deposit, <span class="at">shape =</span> Insecticide, <span class="at">color =</span> Insecticide, <span class="at">fill =</span> Insecticide)) <span class="sc">+</span></span>
-<span id="cb14-4"><a href="#cb14-4"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> prob)) <span class="sc">+</span> <span class="co">#&lt;&lt;</span></span>
-<span id="cb14-5"><a href="#cb14-5"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> asymp.LCL, <span class="at">ymax =</span> asymp.UCL), <span class="at">color =</span> <span class="cn">NA</span>, <span class="at">alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span> <span class="co">#&lt;&lt;</span></span>
-<span id="cb14-6"><a href="#cb14-6"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> insects_data, <span class="fu">aes</span>(<span class="at">y =</span> Killed<span class="sc">/</span>Number), <span class="at">position =</span> <span class="fu">position_jitter</span>(<span class="at">width =</span> <span class="fl">0.2</span>, <span class="at">height =</span> <span class="dv">0</span>)) <span class="sc">+</span> <span class="co">#&lt;&lt;</span></span>
-<span id="cb14-7"><a href="#cb14-7"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb14-8"><a href="#cb14-8"></a>  <span class="fu">theme</span>(<span class="at">aspect.ratio =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb14-9"><a href="#cb14-9"></a>  <span class="fu">scale_color_locuszoom</span>() <span class="sc">+</span></span>
-<span id="cb14-10"><a href="#cb14-10"></a>  <span class="fu">scale_fill_locuszoom</span>() <span class="sc">+</span></span>
-<span id="cb14-11"><a href="#cb14-11"></a>  <span class="fu">scale_y_continuous</span>(<span class="st">"Mortality (%)"</span>, <span class="at">labels =</span> scales<span class="sc">::</span>percent)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a>insects_preds <span class="sc">%&gt;%</span></span>
+<span id="cb14-2"><a></a>  <span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb14-3"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Deposit, <span class="at">shape =</span> Insecticide, <span class="at">color =</span> Insecticide, <span class="at">fill =</span> Insecticide)) <span class="sc">+</span></span>
+<span id="cb14-4"><a></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> prob)) <span class="sc">+</span> <span class="co">#&lt;&lt;</span></span>
+<span id="cb14-5"><a></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> asymp.LCL, <span class="at">ymax =</span> asymp.UCL), <span class="at">color =</span> <span class="cn">NA</span>, <span class="at">alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span> <span class="co">#&lt;&lt;</span></span>
+<span id="cb14-6"><a></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> insects_data, <span class="fu">aes</span>(<span class="at">y =</span> Killed<span class="sc">/</span>Number), <span class="at">position =</span> <span class="fu">position_jitter</span>(<span class="at">width =</span> <span class="fl">0.2</span>, <span class="at">height =</span> <span class="dv">0</span>)) <span class="sc">+</span> <span class="co">#&lt;&lt;</span></span>
+<span id="cb14-7"><a></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb14-8"><a></a>  <span class="fu">theme</span>(<span class="at">aspect.ratio =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb14-9"><a></a>  <span class="fu">scale_color_locuszoom</span>() <span class="sc">+</span></span>
+<span id="cb14-10"><a></a>  <span class="fu">scale_fill_locuszoom</span>() <span class="sc">+</span></span>
+<span id="cb14-11"><a></a>  <span class="fu">scale_y_continuous</span>(<span class="st">"Mortality (%)"</span>, <span class="at">labels =</span> scales<span class="sc">::</span>percent)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="column">
-<div class="cell" data-hash="4-GeneralizedLinearModels_cache/revealjs/insects-plot_2ba02fb487e5f96a95fcff357aac068f">
+<div class="cell">
 <div class="cell-output-display">
-<p><img data-src="4-GeneralizedLinearModels_files/figure-revealjs/insects-plot-1.png" width="480"></p>
+<div>
+<figure>
+<p><img data-src="4-GeneralizedLinearModels_files/figure-html/insects-plot-1.png" width="480"></p>
+</figure>
+</div>
 </div>
 </div>
 </div>
@@ -835,16 +843,16 @@ Tests are performed on the log odds ratio scale </code></pre>
 <h1>Count Example</h1>
 
 </section>
-<section id="birds" class="slide level2">
+<section id="birds" class="slide level2 smaller">
 <h2>Birds</h2>
 <p>An ecologist is investigating the impact of habitat type on the population of a certain type of bird. To do this, data were obtained from a study in which 24 randomly sampled sites were observed. Each site contains habitats of both types. Bird counts were obtained from each habitat type.</p>
-<div class="cell" data-hash="4-GeneralizedLinearModels_cache/revealjs/birds-data-echo_9c739b65d6f4ffb222c9f4d5cde9a170">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>birds_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://unl-statistics.github.io/R-workshops/r-modeling/data/birds.csv"</span>)</span>
-<span id="cb15-2"><a href="#cb15-2"></a><span class="fu">head</span>(birds_data) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a>birds_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://unl-statistics.github.io/R-workshops/r-modeling/data/birds.csv"</span>)</span>
+<span id="cb15-2"><a></a><span class="fu">head</span>(birds_data) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-hash="4-GeneralizedLinearModels_cache/revealjs/birds-data1_b7b62dbbc041f5a098008a99477a40b3">
+<div class="cell">
 <div class="cell-output-display">
-<table data-quarto-postprocess="true">
+<table class="table" data-quarto-postprocess="true" style="font-size: 25px; margin-left: auto; margin-right: auto;">
 <thead>
 <tr class="header">
 <th style="text-align: right;" data-quarto-table-cell-role="th">Site</th>
@@ -892,8 +900,8 @@ Tests are performed on the log odds ratio scale </code></pre>
 </section>
 <section id="birds-eda" class="slide level2">
 <h2>Birds EDA</h2>
-<div class="cell" data-hash="4-GeneralizedLinearModels_cache/revealjs/birds-data2_ae2e0fd9e9fd95c2ec47737528e95998">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="fu">summary</span>(birds_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a><span class="fu">summary</span>(birds_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      Site          Habitat        Count       
  Min.   : 1.00   Min.   :1.0   Min.   :  0.00  
@@ -903,9 +911,9 @@ Tests are performed on the log odds ratio scale </code></pre>
  3rd Qu.:18.25   3rd Qu.:2.0   3rd Qu.: 51.50  
  Max.   :24.00   Max.   :2.0   Max.   :989.00  </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a>factorCols <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Site"</span>, <span class="st">"Habitat"</span>)</span>
-<span id="cb18-2"><a href="#cb18-2"></a>birds_data[,factorCols] <span class="ot">&lt;-</span> <span class="fu">lapply</span>(birds_data[,factorCols], factor)</span>
-<span id="cb18-3"><a href="#cb18-3"></a><span class="fu">summary</span>(birds_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a>factorCols <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Site"</span>, <span class="st">"Habitat"</span>)</span>
+<span id="cb18-2"><a></a>birds_data[,factorCols] <span class="ot">&lt;-</span> <span class="fu">lapply</span>(birds_data[,factorCols], factor)</span>
+<span id="cb18-3"><a></a><span class="fu">summary</span>(birds_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      Site    Habitat     Count       
  1      : 2   1:24    Min.   :  0.00  
@@ -918,23 +926,37 @@ Tests are performed on the log odds ratio scale </code></pre>
 </div>
 </div>
 </section>
-<section id="birds-eda-1" class="slide level2">
+<section id="birds-eda-1" class="slide level2 smaller">
 <h2>Birds EDA</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
 <p><strong>Data Scale</strong></p>
-<div class="cell" data-layout-align="center" data-hash="4-GeneralizedLinearModels_cache/revealjs/birds-graph-eda1_a633292d458a4e07b65637c8aec5a8c5">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<p><img data-src="4-GeneralizedLinearModels_files/figure-revealjs/birds-graph-eda1-1.png" class="quarto-figure-center" width="768"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="4-GeneralizedLinearModels_files/figure-html/birds-graph-eda1-1.png" class="quarto-figure quarto-figure-center" width="1440"></p>
+</figure>
 </div>
 </div>
+</div>
+</div><div class="column" style="width:50%;">
 <p><strong>“Model Scale”</strong></p>
-<div class="cell" data-layout-align="center" data-hash="4-GeneralizedLinearModels_cache/revealjs/birds-graph-eda2_b3ace065a9317415a87b5b5bc4f4b3f4">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<p><img data-src="4-GeneralizedLinearModels_files/figure-revealjs/birds-graph-eda2-1.png" class="quarto-figure-center" width="768"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="4-GeneralizedLinearModels_files/figure-html/birds-graph-eda2-1.png" class="quarto-figure quarto-figure-center" width="1440"></p>
+</figure>
+</div>
+</div>
+</div>
 </div>
 </div>
 </section>
-<section id="birds-model" class="slide level2">
+<section id="birds-model" class="slide level2 smaller">
 <h2>Birds Model</h2>
+<p><font size="5"></font></p><font size="5">
 <p><strong>In words</strong></p>
 <p><span class="math display">\[\text{"log(Bird Count) = overall model scale mean + habitat + random site + scale"}\]</span></p>
 <p><strong>Statistical notation</strong></p>
@@ -947,15 +969,16 @@ Tests are performed on the log odds ratio scale </code></pre>
 <li><p><strong>log:</strong> data scale <span class="math inline">\(\implies\)</span> model scale (link function)</p></li>
 <li><p><strong>exp:</strong> model scale <span class="math inline">\(\implies\)</span> data scale (ilink function)</p></li>
 </ul>
+</font><p><font size="5"></font></p>
 </section>
 <section id="birds-glmm" class="slide level2">
 <h2>Birds GLMM</h2>
-<div class="cell" data-hash="4-GeneralizedLinearModels_cache/revealjs/birds-glmer_5674affeaa1c0aea8edb8961fb0d3ecd">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="fu">library</span>(optimx)</span>
-<span id="cb20-2"><a href="#cb20-2"></a>birds_nb <span class="ot">&lt;-</span> <span class="fu">glmer.nb</span>(Count <span class="sc">~</span> Habitat <span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span>Site),</span>
-<span id="cb20-3"><a href="#cb20-3"></a>                     <span class="at">data =</span> birds_data,</span>
-<span id="cb20-4"><a href="#cb20-4"></a>                     <span class="at">nAGQ =</span> <span class="dv">100</span>)</span>
-<span id="cb20-5"><a href="#cb20-5"></a>car<span class="sc">::</span><span class="fu">Anova</span>(birds_nb)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a></a><span class="fu">library</span>(optimx)</span>
+<span id="cb20-2"><a></a>birds_nb <span class="ot">&lt;-</span> <span class="fu">glmer.nb</span>(Count <span class="sc">~</span> Habitat <span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span>Site),</span>
+<span id="cb20-3"><a></a>                     <span class="at">data =</span> birds_data,</span>
+<span id="cb20-4"><a></a>                     <span class="at">nAGQ =</span> <span class="dv">100</span>)</span>
+<span id="cb20-5"><a></a>car<span class="sc">::</span><span class="fu">Anova</span>(birds_nb)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Analysis of Deviance Table (Type II Wald chisquare tests)
 
@@ -967,8 +990,8 @@ Habitat 0.0095  1     0.9224</code></pre>
 </section>
 <section id="birds-glmm-results" class="slide level2">
 <h2>Birds GLMM results</h2>
-<div class="cell" data-hash="4-GeneralizedLinearModels_cache/revealjs/birds-results_9789d15d02fd51870da54b2a481ceb32">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="fu">summary</span>(birds_nb)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a></a><span class="fu">summary</span>(birds_nb)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Generalized linear mixed model fit by maximum likelihood (Adaptive
   Gauss-Hermite Quadrature, nAGQ = 100) [glmerMod]
@@ -990,7 +1013,7 @@ Number of obs: 48, groups:  Site, 24
 
 Fixed effects:
             Estimate Std. Error z value Pr(&gt;|z|)    
-(Intercept)   4.3888     0.7009   6.262  3.8e-10 ***
+(Intercept)   4.3888     0.7008   6.262  3.8e-10 ***
 Habitat2     -0.0966     0.9912  -0.097    0.922    
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
@@ -1005,12 +1028,12 @@ boundary (singular) fit: see help('isSingular')</code></pre>
 </section>
 <section id="birds-glmm-means" class="slide level2">
 <h2>Birds GLMM means</h2>
-<div class="cell" data-hash="4-GeneralizedLinearModels_cache/revealjs/birds-emmeans-echo_41a830dd761974a316ff6b0985d94ca7">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a>birds_emmeans <span class="ot">&lt;-</span> <span class="fu">emmeans</span>(birds_nb, <span class="at">specs =</span> <span class="sc">~</span> Habitat, </span>
-<span id="cb24-2"><a href="#cb24-2"></a>                         <span class="at">type =</span> <span class="st">"response"</span>) <span class="co">#&lt;&lt;</span></span>
-<span id="cb24-3"><a href="#cb24-3"></a>birds_emmeans</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a></a>birds_emmeans <span class="ot">&lt;-</span> <span class="fu">emmeans</span>(birds_nb, <span class="at">specs =</span> <span class="sc">~</span> Habitat, </span>
+<span id="cb24-2"><a></a>                         <span class="at">type =</span> <span class="st">"response"</span>) <span class="co">#&lt;&lt;</span></span>
+<span id="cb24-3"><a></a>birds_emmeans</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-hash="4-GeneralizedLinearModels_cache/revealjs/birds-emmeans_58e0904d516b93d378598c5b42a06e4f">
+<div class="cell">
 <div class="cell-output-display">
 <table data-quarto-postprocess="true">
 <thead>
@@ -1030,7 +1053,7 @@ boundary (singular) fit: see help('isSingular')</code></pre>
 <td style="text-align: right;">56.45</td>
 <td style="text-align: right;">Inf</td>
 <td style="text-align: right;">20.39</td>
-<td style="text-align: right;">318.12</td>
+<td style="text-align: right;">318.11</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">2</td>
@@ -1047,12 +1070,12 @@ boundary (singular) fit: see help('isSingular')</code></pre>
 </div>
 </div>
 </section>
-<section id="birds-glmm-compare-habitats" class="slide level2">
+<section id="birds-glmm-compare-habitats" class="slide level2 smaller">
 <h2>Birds GLMM compare habitats</h2>
 <p><span class="math display">\[H_0: \mu_1 = \mu_2 \text{ (The mean bird count for habitat 1 is equal to habitat 2)}\]</span></p>
 <p><span class="math display">\[H_A: \mu_1 \ne \mu_2 \text{ (The mean bird count for habitat 1 is not equal to habitat 2)}\]</span></p>
-<div class="cell" data-hash="4-GeneralizedLinearModels_cache/revealjs/birds-pairs-echo_bbb2c34afdfbdc4aa92b0b6794022e7e">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a><span class="fu">pairs</span>(birds_emmeans, <span class="at">infer =</span> <span class="fu">c</span>(T,T))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a></a><span class="fu">pairs</span>(birds_emmeans, <span class="at">infer =</span> <span class="fu">c</span>(T,T))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> contrast            ratio   SE  df asymp.LCL asymp.UCL null z.ratio p.value
  Habitat1 / Habitat2   1.1 1.09 Inf     0.158      7.69    1   0.097  0.9224
@@ -1063,21 +1086,21 @@ Tests are performed on the log scale </code></pre>
 </div>
 </div>
 </section>
-<section id="birds-glmm-compare-habitats-1" class="slide level2">
+<section id="birds-glmm-compare-habitats-1" class="slide level2 smaller">
 <h2>Birds GLMM compare habitats</h2>
 <p><span class="math display">\[H_0: \mu_1 = \mu_2 \text{ (The mean bird count for habitat 1 is equal to habitat 2)}\]</span></p>
 <p><span class="math display">\[H_A: \mu_1 \ne \mu_2 \text{ (The mean bird count for habitat 1 is not equal to habitat 2)}\]</span></p>
-<div class="cell" data-hash="4-GeneralizedLinearModels_cache/revealjs/birds-groups-echo_155a3aaef29b2efeffa96d10f01b7a58">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a><span class="fu">library</span>(multcomp)</span>
-<span id="cb27-2"><a href="#cb27-2"></a><span class="fu">library</span>(multcompView)</span>
-<span id="cb27-3"><a href="#cb27-3"></a><span class="fu">library</span>(stringr)</span>
-<span id="cb27-4"><a href="#cb27-4"></a>birds_letters <span class="ot">&lt;-</span> <span class="fu">cld</span>(birds_emmeans, <span class="at">Letters =</span> letters, <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">%&gt;%</span> <span class="co">#&lt;&lt;</span></span>
-<span id="cb27-5"><a href="#cb27-5"></a>  <span class="fu">mutate</span>(<span class="at">.group =</span> <span class="fu">toupper</span>(<span class="fu">str_trim</span>(.group))) <span class="co">#&lt;&lt;</span></span>
-<span id="cb27-6"><a href="#cb27-6"></a>birds_letters </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a></a><span class="fu">library</span>(multcomp)</span>
+<span id="cb27-2"><a></a><span class="fu">library</span>(multcompView)</span>
+<span id="cb27-3"><a></a><span class="fu">library</span>(stringr)</span>
+<span id="cb27-4"><a></a>birds_letters <span class="ot">&lt;-</span> <span class="fu">cld</span>(birds_emmeans, <span class="at">Letters =</span> letters, <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">%&gt;%</span> <span class="co">#&lt;&lt;</span></span>
+<span id="cb27-5"><a></a>  <span class="fu">mutate</span>(<span class="at">.group =</span> <span class="fu">toupper</span>(<span class="fu">str_trim</span>(.group))) <span class="co">#&lt;&lt;</span></span>
+<span id="cb27-6"><a></a>birds_letters </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-hash="4-GeneralizedLinearModels_cache/revealjs/birds-groups_dda0be4078a284f821f80105ea463596">
+<div class="cell">
 <div class="cell-output-display">
-<table data-quarto-postprocess="true">
+<table class="table" data-quarto-postprocess="true" style="font-size: 25px; margin-left: auto; margin-right: auto;">
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th">Habitat</th>
@@ -1105,7 +1128,7 @@ Tests are performed on the log scale </code></pre>
 <td style="text-align: right;">56.45</td>
 <td style="text-align: right;">Inf</td>
 <td style="text-align: right;">20.39</td>
-<td style="text-align: right;">318.12</td>
+<td style="text-align: right;">318.11</td>
 <td style="text-align: left;">A</td>
 </tr>
 </tbody>
@@ -1119,22 +1142,26 @@ Tests are performed on the log scale </code></pre>
 <h2>Count Example: Birds results plot</h2>
 <div class="columns">
 <div class="column">
-<div class="cell" data-layout-align="center" data-hash="4-GeneralizedLinearModels_cache/revealjs/birds-plot-echo_ef44e6f1439a8ba092ca6373e69ce551">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a>birds_letters <span class="sc">%&gt;%</span></span>
-<span id="cb28-2"><a href="#cb28-2"></a>  <span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span> <span class="co">#&lt;&lt;</span></span>
-<span id="cb28-3"><a href="#cb28-3"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Habitat, <span class="at">y =</span> response)) <span class="sc">+</span></span>
-<span id="cb28-4"><a href="#cb28-4"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb28-5"><a href="#cb28-5"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> asymp.LCL, <span class="at">ymax =</span> asymp.UCL), <span class="at">width =</span> <span class="fl">0.1</span>) <span class="sc">+</span></span>
-<span id="cb28-6"><a href="#cb28-6"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> .group, <span class="at">y =</span> asymp.UCL), <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">6</span>) <span class="sc">+</span> <span class="co">#&lt;&lt;</span></span>
-<span id="cb28-7"><a href="#cb28-7"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> birds_data, <span class="fu">aes</span>(<span class="at">y =</span> Count), <span class="at">shape =</span> <span class="dv">1</span>, <span class="at">position =</span> <span class="fu">position_jitter</span>(<span class="at">width =</span> <span class="fl">0.2</span>, <span class="at">height =</span> <span class="dv">0</span>)) <span class="sc">+</span> <span class="co">#&lt;&lt;</span></span>
-<span id="cb28-8"><a href="#cb28-8"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb28-9"><a href="#cb28-9"></a>  <span class="fu">theme</span>(<span class="at">aspect.ratio =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb28-10"><a href="#cb28-10"></a>  <span class="fu">ylab</span>(<span class="st">"Number of Birds"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a></a>birds_letters <span class="sc">%&gt;%</span></span>
+<span id="cb28-2"><a></a>  <span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span> <span class="co">#&lt;&lt;</span></span>
+<span id="cb28-3"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Habitat, <span class="at">y =</span> response)) <span class="sc">+</span></span>
+<span id="cb28-4"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb28-5"><a></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> asymp.LCL, <span class="at">ymax =</span> asymp.UCL), <span class="at">width =</span> <span class="fl">0.1</span>) <span class="sc">+</span></span>
+<span id="cb28-6"><a></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> .group, <span class="at">y =</span> asymp.UCL), <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">6</span>) <span class="sc">+</span> <span class="co">#&lt;&lt;</span></span>
+<span id="cb28-7"><a></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> birds_data, <span class="fu">aes</span>(<span class="at">y =</span> Count), <span class="at">shape =</span> <span class="dv">1</span>, <span class="at">position =</span> <span class="fu">position_jitter</span>(<span class="at">width =</span> <span class="fl">0.2</span>, <span class="at">height =</span> <span class="dv">0</span>)) <span class="sc">+</span> <span class="co">#&lt;&lt;</span></span>
+<span id="cb28-8"><a></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb28-9"><a></a>  <span class="fu">theme</span>(<span class="at">aspect.ratio =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb28-10"><a></a>  <span class="fu">ylab</span>(<span class="st">"Number of Birds"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="column">
-<div class="cell" data-layout-align="center" data-hash="4-GeneralizedLinearModels_cache/revealjs/birds-plot_349c64c12b67df36fd8a4f0a8ff8d6aa">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<p><img data-src="4-GeneralizedLinearModels_files/figure-revealjs/birds-plot-1.png" class="quarto-figure-center" width="480"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="4-GeneralizedLinearModels_files/figure-html/birds-plot-1.png" class="quarto-figure quarto-figure-center" width="480"></p>
+</figure>
+</div>
 </div>
 </div>
 </div>
@@ -1147,6 +1174,7 @@ Tests are performed on the log scale </code></pre>
 </section>
 <section id="models-and-functions" class="slide level2">
 <h2>Models and functions</h2>
+<p><font size="5"></font></p><font size="5">
 <table style="width:100%;">
 <colgroup>
 <col style="width: 12%">
@@ -1189,12 +1217,13 @@ Tests are performed on the log scale </code></pre>
 </tr>
 </tbody>
 </table>
+</font><p><font size="5"></font></p>
 </section>
 <section id="model-specifications" class="slide level2">
 <h2>Model Specifications</h2>
 
 <img data-src="images/model-specifications.png" class="r-stretch quarto-figure-center"><p class="caption">Image source: https://bbolker.github.io/mixedmodels-misc/glmmFAQ.html</p></section>
-<section id="additional-models-and-functions" class="slide level2">
+<section id="additional-models-and-functions" class="slide level2 smaller">
 <h2>Additional models and functions</h2>
 <p>Repeated Measures</p>
 <ul>
@@ -1212,8 +1241,10 @@ Tests are performed on the log scale </code></pre>
 <li><code>gam()</code> in <code>mcgv</code> package</li>
 </ul>
 
+<div class="quarto-auto-generated-content">
 <div class="footer footer-default">
 <p><a href="../../index.html">UNL R Workshops</a></p>
+</div>
 </div>
 </section></section>
     </div>
@@ -1426,44 +1457,6 @@ Tests are performed on the log scale </code></pre>
         ]
       });
     </script>
-    
-    <script>
-      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
-      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
-      // slide changes (different for each slide format).
-      (function () {
-        // dispatch for htmlwidgets
-        function fireSlideEnter() {
-          const event = window.document.createEvent("Event");
-          event.initEvent("slideenter", true, true);
-          window.document.dispatchEvent(event);
-        }
-
-        function fireSlideChanged(previousSlide, currentSlide) {
-          fireSlideEnter();
-
-          // dispatch for shiny
-          if (window.jQuery) {
-            if (previousSlide) {
-              window.jQuery(previousSlide).trigger("hidden");
-            }
-            if (currentSlide) {
-              window.jQuery(currentSlide).trigger("shown");
-            }
-          }
-        }
-
-        // hookup for slidy
-        if (window.w3c_slidy) {
-          window.w3c_slidy.add_observer(function (slide_num) {
-            // slide_num starts at position 1
-            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
-          });
-        }
-
-      })();
-    </script>
-
     <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggleBodyColorMode = (bsSheetEl) => {

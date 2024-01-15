@@ -112,18 +112,18 @@ p3 <- ggplot(data = mpg, aes(x = class, y = hwy, colour = class)) +
 p1 + p2 + p3
 
 
-## ----fig.width=10, fig.height=4, echo = TRUE, eval=FALSE----------------------
+## ----fig.width=10, fig.height=5, echo = TRUE, eval=FALSE----------------------
 ## ggplot(data = mpg, aes(x = cty, y = hwy, colour = class)) +
 ##   geom_point()
 
 
-## ----fig.width=10, fig.height=4, echo = TRUE, eval=FALSE----------------------
+## ----fig.width=10, fig.height=5, echo = TRUE, eval=FALSE----------------------
 ## ggplot(data = mpg, aes(x = cty, y = hwy, colour = class)) +
 ##   geom_point() +
 ##   facet_grid(~class) #<<
 
 
-## ----fig.width=10, fig.height=3, fig.align = "center", echo=FALSE-------------
+## ----fig.width=12, fig.height=4, fig.align = "center", echo=FALSE-------------
 a <- ggplot(data = mpg, aes(x = cty, y = hwy, colour = class)) + 
   geom_point() + 
   scale_color_locuszoom() +
