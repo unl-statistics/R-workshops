@@ -205,7 +205,7 @@ Before it's possible to talk about a graphical grammar, it's important to know t
 -   Working with R and ggplot is much easier if the data you use is in the right shape.
 
 
-## Data: levels of measurement
+## Data: levels of measurement {.smaller}
 
 ::: columns
 ::: column
@@ -220,8 +220,8 @@ Before it's possible to talk about a graphical grammar, it's important to know t
 
 ::: column
 
-**Qualitative**:
--   Nominal
+**Qualitative**:  
+-   Nominal  
     -   categories have no meaningful order
 
     -   e.g. colors
