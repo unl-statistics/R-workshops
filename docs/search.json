@@ -130,7 +130,7 @@
     "href": "r-graphics/slides/1-GraphicsIntro.html#beginner",
     "title": "Data Visualization",
     "section": "Beginner",
-    "text": "Beginner\n\n\nOne Variable - Discrete - Bar Chart - Pie Chart\n\nContinuous\n\nStem and Leaf Plots\nBox and Whisker Plots\nHistograms\n\n\n\nTwo variables - Continuous X, Continuous Y - Scatterplots\n\nMaps\n\n\n\n\n\nHere are some common charts most often seen. A bar chart or pie cart are used for displaying information about one discrete variable (count, proporton, mean for that group, etc.). Stem and Leaf Plots, Box and Whisker Plots, and Histograms are all useful for understanding the distribution of a single continuous variable. Scatterplots are a simple and effective way of understanding the relationship between two continuous variables and Maps can help us understand the spatial relationship between spatial information."
+    "text": "Beginner\n\n\nOne Variable\n- Discrete\n- Bar Chart\n- Pie Chart\n\nContinuous\n\nStem and Leaf Plots\nBox and Whisker Plots\nHistograms\n\n\n\nTwo variables\n- Continuous X, Continuous Y\n- Scatterplots\n\nMaps\n\n\n\n\n\nHere are some common charts most often seen. A bar chart or pie cart are used for displaying information about one discrete variable (count, proporton, mean for that group, etc.). Stem and Leaf Plots, Box and Whisker Plots, and Histograms are all useful for understanding the distribution of a single continuous variable. Scatterplots are a simple and effective way of understanding the relationship between two continuous variables and Maps can help us understand the spatial relationship between spatial information."
   },
   {
     "objectID": "r-graphics/slides/1-GraphicsIntro.html#intermediate",
@@ -291,7 +291,7 @@
     "href": "r-graphics/slides/1-GraphicsIntro.html#add-nuance-with-facets",
     "title": "Data Visualization",
     "section": "Add nuance with facets",
-    "text": "Add nuance with facets\n\nggplot(data = diamonds, aes(x = carat, y = price)) +\n    geom_point(aes(colour = cut), size = 2, alpha = .5) +\n    geom_smooth(aes(fill = cut), colour = \"lightgrey\") +\n    scale_y_log10() +\n    facet_wrap(~cut) #&lt;&lt;\n\n\n\n\nUNL R Workshops"
+    "text": "Add nuance with facets\n\nggplot(data = diamonds, aes(x = carat, y = price)) +\n    geom_point(aes(colour = cut), size = 2, alpha = .5) +\n    geom_smooth(aes(fill = cut), colour = \"lightgrey\") +\n    scale_y_log10() +\n    facet_wrap(~cut) #&lt;&lt;\n\n\n\n\n\nUNL R Workshops"
   },
   {
     "objectID": "r-graphics/code/99-YourTurnSolutions.html",
@@ -948,8 +948,8 @@
     "objectID": "r-intro/slides/2-MotivatingExample.html#motivating-example",
     "href": "r-intro/slides/2-MotivatingExample.html#motivating-example",
     "title": "Motivating Example",
-    "section": "Motivating Example",
-    "text": "Motivating Example\n\nKick off the workshop by exploring a real data set using R!\nGoal: get the flavor of using R for data management and exploration\nDon’t worry about understanding all the coding right away\nWe will go back and explain how it all works in detail\nFollow along using 2-MotivatingExample.R\nTip: Using “#” in your R File to take notes\n\nSuper important to document your code!"
+    "section": "",
+    "text": "Kick off the workshop by exploring a real data set using R!\nGoal: get the flavor of using R for data management and exploration\nDon’t worry about understanding all the coding right away\nWe will go back and explain how it all works in detail\nFollow along using 2-MotivatingExample.R\nTip: Using “#” in your R File to take notes\n\nSuper important to document your code!"
   },
   {
     "objectID": "r-intro/slides/2-MotivatingExample.html#getting-started",
@@ -1026,7 +1026,7 @@
     "href": "r-intro/slides/2-MotivatingExample.html#histogram",
     "title": "Motivating Example",
     "section": "Histogram",
-    "text": "Histogram\nLet’s look distribution of the final shedding values with a histogram\n\nggplot(final_shed) + geom_histogram(aes(x = total_shedding))"
+    "text": "Histogram\nLet’s look distribution of the final shedding values with a histogram\n\nggplot(final_shed) + geom_histogram(aes(x = total_shedding))\n\n`stat_bin()` using `bins = 30`. Pick better value with `binwidth`."
   },
   {
     "objectID": "r-intro/slides/2-MotivatingExample.html#one-pig-did-not-shed-at-all",
@@ -1068,14 +1068,14 @@
     "href": "r-intro/slides/2-MotivatingExample.html#your-turn",
     "title": "Motivating Example",
     "section": "Your Turn",
-    "text": "Your Turn\nTry playing with chunks of code from this session to further investigate the Salmonella shedding data:\n\nGet a summary of the daily shedding values (use the shed data set)\nMake side by side boxplots of final weight gain by treatment group (use the final_shed data set)\nCompute a Wilcox test for control vs. the “Bglu” treatment group\n\n\n\nUNL R Workshops"
+    "text": "Your Turn\nTry playing with chunks of code from this session to further investigate the Salmonella shedding data:\n\nGet a summary of the daily shedding values (use the shed data set)\nMake side by side boxplots of final weight gain by treatment group (use the final_shed data set)\nCompute a Wilcox test for control vs. the “Bglu” treatment group"
   },
   {
     "objectID": "r-intro/slides/4-DataStructures.html#matrices",
     "href": "r-intro/slides/4-DataStructures.html#matrices",
     "title": "Data Structures",
-    "section": "Matrices",
-    "text": "Matrices\n\nA matrix is a rectangular arrangement of numbers in rows and columns\nThere are some functions in R that will require your data to be arranged as a matrix.\n\n\n# Creating a matrix (3x3)\nrow_matrix &lt;-  matrix(\n  # Taking sequence of elements \n  c(1, 2, 3, 4, 5, 6, 7, 8, 9),\n  # Number of rows\n  nrow = 3,  \n  # No. of columns\n  ncol = 3,        \n  # By default matrices are in column-wise order\n  # So this parameter decides how to arrange the matrix\n  byrow = TRUE         \n)\n\nrow_matrix\n\n     [,1] [,2] [,3]\n[1,]    1    2    3\n[2,]    4    5    6\n[3,]    7    8    9"
+    "section": "",
+    "text": "A matrix is a rectangular arrangement of numbers in rows and columns\nThere are some functions in R that will require your data to be arranged as a matrix.\n\n\n# Creating a matrix (3x3)\nrow_matrix &lt;-  matrix(\n  # Taking sequence of elements \n  c(1, 2, 3, 4, 5, 6, 7, 8, 9),\n  # Number of rows\n  nrow = 3,  \n  # No. of columns\n  ncol = 3,        \n  # By default matrices are in column-wise order\n  # So this parameter decides how to arrange the matrix\n  byrow = TRUE         \n)\n\nrow_matrix\n\n     [,1] [,2] [,3]\n[1,]    1    2    3\n[2,]    4    5    6\n[3,]    7    8    9"
   },
   {
     "objectID": "r-intro/slides/4-DataStructures.html#naming-rows-and-columns-in-matrices",
@@ -1278,7 +1278,7 @@
     "href": "r-intro/slides/4-DataStructures.html#your-turn-4",
     "title": "Data Structures",
     "section": "Your Turn",
-    "text": "Your Turn\n\nMake 5 rows of data in an excel spreadsheet and save it as a tab-delimited txt file. (or use yourturndata.txt on the website)\nImport this new .txt file into R with read_table. You may need to look at the help page for read_table in order to properly do this.\nIf want to try a csv file, try reading in the tips.csv file yourself.\n\n\n\nUNL R Workshops"
+    "text": "Your Turn\n\nMake 5 rows of data in an excel spreadsheet and save it as a tab-delimited txt file. (or use yourturndata.txt on the website)\nImport this new .txt file into R with read_table. You may need to look at the help page for read_table in order to properly do this.\nIf want to try a csv file, try reading in the tips.csv file yourself."
   },
   {
     "objectID": "r-intro/index.html",
@@ -1333,8 +1333,8 @@
     "objectID": "r-intro/slides/1-Setup.html#your-background",
     "href": "r-intro/slides/1-Setup.html#your-background",
     "title": "Setup",
-    "section": "Your Background",
-    "text": "Your Background\nWhat do you know already?\n\nExcel, Numbers, Some sort of spreadsheet software\nSAS, SPSS, Minitab\nAny other programming language\nA text editor\nR"
+    "section": "",
+    "text": "What do you know already?\n\nExcel, Numbers, Some sort of spreadsheet software\nSAS, SPSS, Minitab\nAny other programming language\nA text editor\nR"
   },
   {
     "objectID": "r-intro/slides/1-Setup.html#what-is-r",
@@ -1369,14 +1369,14 @@
     "href": "r-intro/slides/1-Setup.html#your-turn-create-a-project-together-for-this-workshop",
     "title": "Setup",
     "section": "Your Turn: Create a Project Together for this Workshop",
-    "text": "Your Turn: Create a Project Together for this Workshop\n\nCreate a RStudio Project for the workshop that you can use throughout the week.\n\nYou can save R files along with the datasets, so you won’t have to set your working directory each day.\n\nSave 2-MotivatingExample.R from the website in your project\n\nThis is the file we are going to use in the next section\n\n\n\n\nUNL R Workshops"
+    "text": "Your Turn: Create a Project Together for this Workshop\n\nCreate a RStudio Project for the workshop that you can use throughout the week.\n\nYou can save R files along with the datasets, so you won’t have to set your working directory each day.\n\nSave 2-MotivatingExample.R from the website in your project\n\nThis is the file we are going to use in the next section"
   },
   {
     "objectID": "r-intro/slides/5-PackagesProgramming.html#r-packages",
     "href": "r-intro/slides/5-PackagesProgramming.html#r-packages",
     "title": "Packages and Basic Programming",
-    "section": "R Packages",
-    "text": "R Packages\n\nCommonly used R functions are installed with base R\nR packages containing more specialized R functions can be installed freely from CRAN servers using function install.packages()\nAfter packages are installed, their functions can be loaded into the current R session using the function library()"
+    "section": "",
+    "text": "Commonly used R functions are installed with base R\nR packages containing more specialized R functions can be installed freely from CRAN servers using function install.packages()\nAfter packages are installed, their functions can be loaded into the current R session using the function library()"
   },
   {
     "objectID": "r-intro/slides/5-PackagesProgramming.html#finding-r-packages",
@@ -1460,14 +1460,14 @@
     "href": "r-intro/slides/5-PackagesProgramming.html#your-turn",
     "title": "Packages and Basic Programming",
     "section": "Your Turn",
-    "text": "Your Turn\n\nCreate a function that takes numeric input and provides the mean and a 95% confidence interval for the mean for the data (the t.test function could be useful - example in 4-DataStructures.R - will give you your confidence interval)\nAdd checks to your function to make sure the data is either numeric or logical. If it is logical convert it to numeric.\nThe diamonds data set is included in the ggplot2 package and is well known as a convenient data set for examples. It can be read into your environment with the function data(\"diamonds\", package = \"ggplot2\"). Loop over the columns of the diamonds data set and apply your function to all of the numeric columns.\n\n\n\nUNL R Workshops"
+    "text": "Your Turn\n\nCreate a function that takes numeric input and provides the mean and a 95% confidence interval for the mean for the data (the t.test function could be useful - example in 4-DataStructures.R - will give you your confidence interval)\nAdd checks to your function to make sure the data is either numeric or logical. If it is logical convert it to numeric.\nThe diamonds data set is included in the ggplot2 package and is well known as a convenient data set for examples. It can be read into your environment with the function data(\"diamonds\", package = \"ggplot2\"). Loop over the columns of the diamonds data set and apply your function to all of the numeric columns."
   },
   {
     "objectID": "r-intro/slides/3-Basics.html#overgrown-calculator",
     "href": "r-intro/slides/3-Basics.html#overgrown-calculator",
     "title": "Basics",
-    "section": "Overgrown Calculator",
-    "text": "Overgrown Calculator\nBasics Cheatsheet\n\n# Addition and Subtraction\n2 + 5 - 1\n\n[1] 6\n\n# Multiplication\n109*23452\n\n[1] 2556268\n\n# Division\n3/7\n\n[1] 0.4285714"
+    "section": "",
+    "text": "Basics Cheatsheet\n\n# Addition and Subtraction\n2 + 5 - 1\n\n[1] 6\n\n# Multiplication\n109*23452\n\n[1] 2556268\n\n# Division\n3/7\n\n[1] 0.4285714"
   },
   {
     "objectID": "r-intro/slides/3-Basics.html#more-calculator-operations",
@@ -1642,7 +1642,7 @@
     "href": "r-intro/slides/3-Basics.html#your-turn-2",
     "title": "Basics",
     "section": "Your Turn",
-    "text": "Your Turn\n\nWhich pigs have a shedding value less than or equal to 30 OR is in the Acid treatment group?\nExplore any more calculations in the dataset you may find interesting.\n\n\n\n\nUNL R Workshops"
+    "text": "Your Turn\n\nWhich pigs have a shedding value less than or equal to 30 OR is in the Acid treatment group?\nExplore any more calculations in the dataset you may find interesting."
   },
   {
     "objectID": "r-format/index.html",
@@ -3260,5 +3260,47 @@
     "title": "Data Visualization",
     "section": "Your Turn",
     "text": "Your Turn\nThe movies data set contains information from IMDB.com including ratings, genre, length in minutes, and year of release.\n\nmovies &lt;- read.csv(\"https://raw.githubusercontent.com/unl-statistics/R-workshops/main/r-graphics/data/MovieSummary.csv\")\n\n\nExplore the differences in length, rating, etc. in movie genres over time.\nHint: use faceting!\nDiscuss your graphic with a neighbor.\n\n\n\nUNL R Workshops"
+  },
+  {
+    "objectID": "r-graphics/slides/1-GraphicsIntro.html",
+    "href": "r-graphics/slides/1-GraphicsIntro.html",
+    "title": "Data Visualization",
+    "section": "",
+    "text": "BASICS\n1. Why is data visualization important?\n2. Data Types, Formats, and Structures\n3. Formatting your data: A tidy data discussion\nBUILDING PLOTS\n1. Geoms, Stats, Coordinates, and Faceting\nPERCEPTION\n1. Basics of cognitive visual perception\n2. What makes a good graphic?\n3. Aesthetics and scales in ’ggplot2‘\nPOLISHING PLOTS\n1. Setting themes\n2. Modifying elements of a plot\n3. Making plots interactive!\n4. Saving your work\n\n\n\n\n\nR knowledge rollercoaster, by Allison Horst"
+  },
+  {
+    "objectID": "r-intro/slides/5-PackagesProgramming.html",
+    "href": "r-intro/slides/5-PackagesProgramming.html",
+    "title": "Packages and Basic Programming",
+    "section": "",
+    "text": "Commonly used R functions are installed with base R\nR packages containing more specialized R functions can be installed freely from CRAN servers using function install.packages()\nAfter packages are installed, their functions can be loaded into the current R session using the function library()"
+  },
+  {
+    "objectID": "r-intro/slides/3-Basics.html",
+    "href": "r-intro/slides/3-Basics.html",
+    "title": "Basics",
+    "section": "",
+    "text": "Basics Cheatsheet\n\n# Addition and Subtraction\n2 + 5 - 1\n\n[1] 6\n\n# Multiplication\n109*23452\n\n[1] 2556268\n\n# Division\n3/7\n\n[1] 0.4285714"
+  },
+  {
+    "objectID": "r-intro/slides/1-Setup.html",
+    "href": "r-intro/slides/1-Setup.html",
+    "title": "Setup",
+    "section": "",
+    "text": "What do you know already?\n\nExcel, Numbers, Some sort of spreadsheet software\nSAS, SPSS, Minitab\nAny other programming language\nA text editor\nR"
+  },
+  {
+    "objectID": "r-intro/slides/2-MotivatingExample.html",
+    "href": "r-intro/slides/2-MotivatingExample.html",
+    "title": "Motivating Example",
+    "section": "",
+    "text": "Kick off the workshop by exploring a real data set using R!\nGoal: get the flavor of using R for data management and exploration\nDon’t worry about understanding all the coding right away\nWe will go back and explain how it all works in detail\nFollow along using 2-MotivatingExample.R\nTip: Using “#” in your R File to take notes\n\nSuper important to document your code!"
+  },
+  {
+    "objectID": "r-intro/slides/4-DataStructures.html",
+    "href": "r-intro/slides/4-DataStructures.html",
+    "title": "Data Structures",
+    "section": "",
+    "text": "A matrix is a rectangular arrangement of numbers in rows and columns\nThere are some functions in R that will require your data to be arranged as a matrix.\n\n\n# Creating a matrix (3x3)\nrow_matrix &lt;-  matrix(\n  # Taking sequence of elements \n  c(1, 2, 3, 4, 5, 6, 7, 8, 9),\n  # Number of rows\n  nrow = 3,  \n  # No. of columns\n  ncol = 3,        \n  # By default matrices are in column-wise order\n  # So this parameter decides how to arrange the matrix\n  byrow = TRUE         \n)\n\nrow_matrix\n\n     [,1] [,2] [,3]\n[1,]    1    2    3\n[2,]    4    5    6\n[3,]    7    8    9"
   }
 ]

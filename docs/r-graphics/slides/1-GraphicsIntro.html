@@ -8,7 +8,7 @@
 <link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
 <link href="../../site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.4.489">
+  <meta name="generator" content="quarto-1.4.540">
 
   <title>UNL R Workshops - Data Visualization</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -420,7 +420,7 @@
 <section id="section" class="slide level2">
 <h2></h2>
 
-<img data-src="images/r_rollercoaster.png" width="900" class="r-stretch quarto-figure-center"><p class="caption">R knowledge rollercoaster, by <a href="https://www.allisonhorst.com/">Allison Horst</a></p></section></section>
+<img data-src="images/r_rollercoaster.png" class="quarto-figure quarto-figure-center r-stretch" alt="An illustrated cartoon graph with “How much I think I know about R” on the y-axis, with axis labels at “I know nothing” and “I know lots”, versus “time” on the x-axis. The line varies widely between the two. Above the line are emoji-like faces, showing uncertainty and hope early on. At a second peak is the label “join R community on twitter”, with a “mind-blown” emoji face. The line quickly descends, but with a happy looking emoji character sliding down it." width="900"><p class="caption">R knowledge rollercoaster, by <a href="https://www.allisonhorst.com/">Allison Horst</a></p></section></section>
 <section>
 <section id="motivation" class="title-slide slide level1 center">
 <h1>MOTIVATION</h1>
@@ -431,7 +431,7 @@
 <p>What are graphics useful for? + Data cleaning + Exploring data structure + Communicating Information</p>
 <p>Visualization offers an alternative way of communicating numbers</p>
 
-<img data-src="images/Minard.png" width="600" class="r-stretch quarto-figure-center"><p class="caption"><a href="https://en.wikipedia.org/wiki/Charles_Joseph_Minard">Napoleon March Map</a> by Charles Joseph Minard</p><aside class="notes">
+<img data-src="images/Minard.png" class="quarto-figure quarto-figure-center r-stretch" alt="Charles Minard's visualization of the size of Napoleon's army over time and space." width="600"><p class="caption"><a href="https://en.wikipedia.org/wiki/Charles_Joseph_Minard">Napoleon March Map</a> by Charles Joseph Minard</p><aside class="notes">
 <p>One of the main reasons for visualization is to communicate information.</p>
 <p>In 1812, Napoleon marched to Moscow in order to conquer the city. It was a disaster: having started with around 470,000 soldiers, he returned with just 10,000. This chart tells the story of that campaign and has become one of the most famous visualizations of all time. The map details the out-and-back journey of Napoleon’s troops. The width of the line represents the total number of soldiers and the color represents the direction (yellow for towards Moscow, black for the return trip). Below the central visualization is also a simple temperature line graph illustrating the rapidly dropping winter cold. It is effective, detailed, and paints a staggering picture of the journey’s devastation.</p>
 <style type="text/css">
@@ -448,7 +448,7 @@
 </section>
 <section id="tables-and-lists-vs.-charts-and-graphs" class="slide level2 smaller">
 <h2>Tables and lists vs.&nbsp;Charts and graphs</h2>
-<div class="cell" data-hash="1-GraphicsIntro_cache/revealjs/unnamed-chunk-1_54be23bad4fe469592c1aa2d238c3b16">
+<div class="cell">
 <div class="cell-output-display">
 <table>
 <thead>
@@ -566,7 +566,7 @@
 <section id="tables-and-lists-vs.-charts-and-graphs-1" class="slide level2">
 <h2>Tables and lists vs.&nbsp;Charts and graphs</h2>
 
-<img data-src="images/table-modified.png" width="680" class="r-stretch quarto-figure-center"><p class="caption">Modified Table</p><aside class="notes">
+<img data-src="images/table-modified.png" alt="Modified table" width="680" class="r-stretch quarto-figure-center"><p class="caption">Modified Table</p><aside class="notes">
 <p>One way to explore this relationship is to display the information in the data set in a graphical format. Here we assign different variables in the data set to certain attributes on the chart. For example, we might plot the sepal length and width on the x and y axes respectively and then color the points by the species.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -583,7 +583,7 @@
 <section id="tables-and-lists-vs.-charts-and-graphs-2" class="slide level2">
 <h2>Tables and lists vs.&nbsp;Charts and graphs</h2>
 
-<img data-src="1-GraphicsIntro_files/figure-revealjs/motivating-example-1.png" class="quarto-figure-center r-stretch" width="960"><p>Visualizations can aid communication and make the data easier to perceive</p>
+<img data-src="1-GraphicsIntro_files/figure-html/motivating-example-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"><p>Visualizations can aid communication and make the data easier to perceive</p>
 <aside class="notes">
 <p>We can now process and understand the relationship between the sepal size and species through graphical format. We can now clearly see that the setosa species (red) has a short sepal length with a long sepal width while the versicolor and virginica generally have both short or both long sepal widths and lengths resepectively.</p>
 <style type="text/css">
@@ -619,11 +619,14 @@
           display:block!important;
       }</style></aside>
 </section>
-<section id="beginner" class="slide level2">
+<section id="beginner" class="slide level2 smaller">
 <h2>Beginner</h2>
 <div class="columns">
 <div class="column">
-<p><strong>One Variable</strong> - Discrete - Bar Chart - Pie Chart</p>
+<p><strong>One Variable</strong><br>
+- Discrete<br>
+- Bar Chart<br>
+- Pie Chart</p>
 <ul>
 <li>Continuous
 <ul>
@@ -633,14 +636,16 @@
 </ul></li>
 </ul>
 </div><div class="column">
-<p><strong>Two variables</strong> - Continuous X, Continuous Y - Scatterplots</p>
+<p><strong>Two variables</strong><br>
+- Continuous X, Continuous Y<br>
+- Scatterplots</p>
 <ul>
 <li>Maps</li>
 </ul>
 </div>
 </div>
 
-<img data-src="1-GraphicsIntro_files/figure-revealjs/beginner-plots-1.png" data-fig-pos="center" width="1920" class="r-stretch"><aside class="notes">
+<img data-src="1-GraphicsIntro_files/figure-html/beginner-plots-1.png" data-fig-pos="center" width="1920" class="r-stretch"><aside class="notes">
 <p>Here are some common charts most often seen. A bar chart or pie cart are used for displaying information about one discrete variable (count, proporton, mean for that group, etc.). Stem and Leaf Plots, Box and Whisker Plots, and Histograms are all useful for understanding the distribution of a single continuous variable. Scatterplots are a simple and effective way of understanding the relationship between two continuous variables and Maps can help us understand the spatial relationship between spatial information.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -663,7 +668,7 @@
 <li>Heat Maps</li>
 </ul>
 
-<img data-src="1-GraphicsIntro_files/figure-revealjs/intermediate-plots-1.png" data-fig-pos="center" width="1920" class="r-stretch"><aside class="notes">
+<img data-src="1-GraphicsIntro_files/figure-html/intermediate-plots-1.png" data-fig-pos="center" width="1920" class="r-stretch"><aside class="notes">
 <p>There are many other kinds of plots that can be useful for exploring relationships of variables. Parallel Coordinate plots (quantitative - discrete) each row in a data set as a line or profile across the columns/variables in the data set. Mosaic plots are useful for visualizing the relationship between two discrete variables. Radar Charts are equivalent to parallel coordinate plots with the axes arranged in polar coordinates. Heat maps are useful for communicating 3D information by showing the magnitude of a phenomenon as color in two dimensions.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -685,7 +690,7 @@
 <li>Social Network Plots</li>
 </ul>
 
-<img data-src="1-GraphicsIntro_files/figure-revealjs/advanced-plots-1.png" data-fig-pos="center" width="1728" class="r-stretch"><aside class="notes">
+<img data-src="1-GraphicsIntro_files/figure-html/advanced-plots-1.png" data-fig-pos="center" width="1728" class="r-stretch"><aside class="notes">
 <p>Density and Volin plots help us explore the distribution of different variables. Social Network Plots help you investigate social structures through the use of networks and graph theory.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -739,7 +744,7 @@
 <p>By making different visual choices, you can use graphs to highlight different aspects of the same data.</p>
 <p>For example, here are three ways of displaying the same data:</p>
 
-<img data-src="1-GraphicsIntro_files/figure-revealjs/plots-3-1.png" class="quarto-figure-bottom r-stretch" width="1440"><aside class="notes">
+<img data-src="1-GraphicsIntro_files/figure-html/plots-3-1.png" class="quarto-figure quarto-figure-bottom r-stretch" width="1440"><aside class="notes">
 <p>Different types of graphs may, at first glance, appear completely distinct. But in fact, graphs share many common elements, such as coordinate systems and using geometric shapes to represent data.</p>
 <p>By making different visual choices (Cartesian or polar coordinates, points or lines or bars to represent data), you can use graphs to highlight different aspects of the same data. For example, here are three ways of displaying the same data:</p>
 <p>Each of these charts display the count of diamonds of each cut in the data set. The first chart (bar-chart) displays a bar for each cut where the length of the bar resembles the number of diamonds in that cut. The second chart (fill-bar, aka stacked bar-chart) displays one bar sectioned into the different cuts by color. The third chart (fill-bar, pie chart) displays the stacked bar-chart in polar coordinates where the sections again represent the different cuts. Later we will discuss benefits and pitfalls of the different types of charts.</p>
@@ -820,7 +825,7 @@
 <section id="a-layered-grammar-of-graphics" class="slide level2">
 <h2>A layered grammar of graphics</h2>
 
-<img data-src="images/ggplot2-hex.png" class="quarto-figure-center r-stretch" data-fig-width="350px"></section>
+<img data-src="images/ggplot2-hex.png" class="quarto-figure quarto-figure-center r-stretch" data-fig-width="350px"></section>
 <section id="a-layered-grammar-vs-the-grammar-of-graphics" class="slide level2">
 <h2>A layered grammar vs The Grammar of Graphics</h2>
 <p><code>ggplot2</code> is based on the more general concept of the Grammar of Graphics</p>
@@ -885,7 +890,7 @@
 <section id="ggplot2-a-layered-grammar-1" class="slide level2">
 <h2>ggplot2: A layered grammar</h2>
 
-<img data-src="1-GraphicsIntro_files/figure-revealjs/gg-layers-1.png" class="quarto-figure-top r-stretch" width="1440"><style>
+<img data-src="1-GraphicsIntro_files/figure-html/gg-layers-1.png" class="quarto-figure quarto-figure-top r-stretch" width="1440"><style>
 .column-left{
   float: left;
   width: 32%;
@@ -931,11 +936,11 @@ data: diamonds <br> layer: <br> - aes: x = 1, y = count, fill = cut <br> - geom:
 </section>
 <section id="r-package-and-data-set" class="slide level2">
 <h2>R package and data set</h2>
-<div class="cell" data-hash="1-GraphicsIntro_cache/revealjs/unnamed-chunk-2_51e134098fa71d73d46795ea5d585f13">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(ggplot2) <span class="co">#&lt;&lt;</span></span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">head</span>(diamonds) <span class="co">#&lt;&lt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">library</span>(ggplot2) <span class="co">#&lt;&lt;</span></span>
+<span id="cb1-2"><a></a><span class="fu">head</span>(diamonds) <span class="co">#&lt;&lt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-hash="1-GraphicsIntro_cache/revealjs/unnamed-chunk-3_3d777528fdb81dfa90e2d4bc7ebf041f">
+<div class="cell">
 <div class="cell-output-display">
 <table style="width:100%;">
 <colgroup>
@@ -1044,18 +1049,18 @@ data: diamonds <br> layer: <br> - aes: x = 1, y = count, fill = cut <br> - geom:
 </section>
 <section id="begin-with-the-data" class="slide level2">
 <h2>Begin with the data</h2>
-<div class="cell" data-hash="1-GraphicsIntro_cache/revealjs/unnamed-chunk-4_c629118aba433d266f6a5f7593aa876b">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> diamonds) <span class="co">#&lt;&lt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a><span class="fu">ggplot</span>(<span class="at">data =</span> diamonds) <span class="co">#&lt;&lt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="1-GraphicsIntro_files/figure-revealjs/unnamed-chunk-4-1.png" width="960" class="r-stretch"></section>
+<img data-src="1-GraphicsIntro_files/figure-html/unnamed-chunk-4-1.png" width="960" class="r-stretch"></section>
 <section id="then-specify-aesthetic-mappings" class="slide level2">
 <h2>Then specify aesthetic mappings</h2>
-<div class="cell" data-hash="1-GraphicsIntro_cache/revealjs/unnamed-chunk-5_763aceb80803739a64f89adb266bd02b">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> diamonds, <span class="fu">aes</span>(<span class="at">x =</span> carat, <span class="at">y =</span> price)) <span class="co">#&lt;&lt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="fu">ggplot</span>(<span class="at">data =</span> diamonds, <span class="fu">aes</span>(<span class="at">x =</span> carat, <span class="at">y =</span> price)) <span class="co">#&lt;&lt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
-<img data-src="1-GraphicsIntro_files/figure-revealjs/unnamed-chunk-6-1.png" width="960" class="r-stretch"><aside class="notes">
+<img data-src="1-GraphicsIntro_files/figure-html/unnamed-chunk-6-1.png" width="960" class="r-stretch"><aside class="notes">
 <p>or what relationships we want to see</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -1071,61 +1076,63 @@ data: diamonds <br> layer: <br> - aes: x = 1, y = count, fill = cut <br> - geom:
 </section>
 <section id="choose-a-geom" class="slide level2">
 <h2>Choose a geom</h2>
-<div class="cell" data-hash="1-GraphicsIntro_cache/revealjs/unnamed-chunk-7_c70e4856955a8b7a61bbcb01b690113e">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> diamonds, <span class="fu">aes</span>(<span class="at">x =</span> carat, <span class="at">y =</span> price)) <span class="sc">+</span></span>
-<span id="cb4-2"><a href="#cb4-2"></a>    <span class="fu">geom_point</span>() <span class="co">#&lt;&lt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a><span class="fu">ggplot</span>(<span class="at">data =</span> diamonds, <span class="fu">aes</span>(<span class="at">x =</span> carat, <span class="at">y =</span> price)) <span class="sc">+</span></span>
+<span id="cb4-2"><a></a>    <span class="fu">geom_point</span>() <span class="co">#&lt;&lt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
-<img data-src="1-GraphicsIntro_files/figure-revealjs/unnamed-chunk-8-1.png" width="960" class="r-stretch"></section>
+<img data-src="1-GraphicsIntro_files/figure-html/unnamed-chunk-8-1.png" width="960" class="r-stretch"></section>
 <section id="add-geom-specific-aesthetics" class="slide level2">
 <h2>Add geom-specific aesthetics</h2>
-<div class="cell" data-hash="1-GraphicsIntro_cache/revealjs/unnamed-chunk-9_8afef325a9270e87e245321be4c6aed6">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> diamonds, <span class="fu">aes</span>(<span class="at">x =</span> carat, <span class="at">y =</span> price)) <span class="sc">+</span></span>
-<span id="cb5-2"><a href="#cb5-2"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">colour =</span> cut)) <span class="co">#&lt;&lt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="fu">ggplot</span>(<span class="at">data =</span> diamonds, <span class="fu">aes</span>(<span class="at">x =</span> carat, <span class="at">y =</span> price)) <span class="sc">+</span></span>
+<span id="cb5-2"><a></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">colour =</span> cut)) <span class="co">#&lt;&lt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
-<img data-src="1-GraphicsIntro_files/figure-revealjs/unnamed-chunk-10-1.png" width="960" class="r-stretch"></section>
+<img data-src="1-GraphicsIntro_files/figure-html/unnamed-chunk-10-1.png" width="960" class="r-stretch"></section>
 <section id="add-another-layer" class="slide level2">
 <h2>Add another layer…</h2>
-<div class="cell" data-hash="1-GraphicsIntro_cache/revealjs/unnamed-chunk-11_7bc6954ca145e6b4b17d05b327ce30fd">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> diamonds, <span class="fu">aes</span>(<span class="at">x =</span> carat, <span class="at">y =</span> price)) <span class="sc">+</span></span>
-<span id="cb6-2"><a href="#cb6-2"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">colour =</span> cut)) <span class="sc">+</span></span>
-<span id="cb6-3"><a href="#cb6-3"></a>    <span class="fu">geom_smooth</span>() <span class="co">#&lt;&lt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a><span class="fu">ggplot</span>(<span class="at">data =</span> diamonds, <span class="fu">aes</span>(<span class="at">x =</span> carat, <span class="at">y =</span> price)) <span class="sc">+</span></span>
+<span id="cb6-2"><a></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">colour =</span> cut)) <span class="sc">+</span></span>
+<span id="cb6-3"><a></a>    <span class="fu">geom_smooth</span>() <span class="co">#&lt;&lt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
-<img data-src="1-GraphicsIntro_files/figure-revealjs/unnamed-chunk-12-1.png" width="960" class="r-stretch"></section>
+<img data-src="1-GraphicsIntro_files/figure-html/unnamed-chunk-12-1.png" width="960" class="r-stretch"></section>
 <section id="mapping-vs-setting-aesthetics" class="slide level2">
 <h2>Mapping vs setting aesthetics</h2>
-<div class="cell" data-hash="1-GraphicsIntro_cache/revealjs/unnamed-chunk-13_8a3b557eec225b28c8439456fc0ae7ea">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> diamonds, <span class="fu">aes</span>(<span class="at">x =</span> carat, <span class="at">y =</span> price) <span class="sc">+</span></span>
-<span id="cb7-2"><a href="#cb7-2"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">colour =</span> cut), <span class="at">size =</span> <span class="dv">2</span>, <span class="at">alpha =</span> .<span class="dv">5</span>) <span class="sc">+</span> <span class="co">#&lt;&lt;</span></span>
-<span id="cb7-3"><a href="#cb7-3"></a>    <span class="fu">geom_smooth</span>(<span class="fu">aes</span>(<span class="at">fill =</span> cut), <span class="at">colour =</span> <span class="st">"lightgrey"</span>) <span class="co">#&lt;&lt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a><span class="fu">ggplot</span>(<span class="at">data =</span> diamonds, <span class="fu">aes</span>(<span class="at">x =</span> carat, <span class="at">y =</span> price) <span class="sc">+</span></span>
+<span id="cb7-2"><a></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">colour =</span> cut), <span class="at">size =</span> <span class="dv">2</span>, <span class="at">alpha =</span> .<span class="dv">5</span>) <span class="sc">+</span> <span class="co">#&lt;&lt;</span></span>
+<span id="cb7-3"><a></a>    <span class="fu">geom_smooth</span>(<span class="fu">aes</span>(<span class="at">fill =</span> cut), <span class="at">colour =</span> <span class="st">"lightgrey"</span>) <span class="co">#&lt;&lt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
-<img data-src="1-GraphicsIntro_files/figure-revealjs/unnamed-chunk-14-1.png" width="960" class="r-stretch"></section>
+<img data-src="1-GraphicsIntro_files/figure-html/unnamed-chunk-14-1.png" width="960" class="r-stretch"></section>
 <section id="specify-coordinate-transformations" class="slide level2">
 <h2>Specify Coordinate transformations</h2>
-<div class="cell" data-hash="1-GraphicsIntro_cache/revealjs/unnamed-chunk-15_f30955b2f0f9e262a2142b6948b548d8">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> diamonds, <span class="fu">aes</span>(<span class="at">x =</span> carat, <span class="at">y =</span> price)) <span class="sc">+</span></span>
-<span id="cb8-2"><a href="#cb8-2"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">colour =</span> cut), <span class="at">size =</span> <span class="dv">2</span>, <span class="at">alpha =</span> .<span class="dv">5</span>) <span class="sc">+</span></span>
-<span id="cb8-3"><a href="#cb8-3"></a>    <span class="fu">geom_smooth</span>(<span class="fu">aes</span>(<span class="at">fill =</span> cut), <span class="at">colour =</span> <span class="st">"lightgrey"</span>) <span class="sc">+</span></span>
-<span id="cb8-4"><a href="#cb8-4"></a>    <span class="fu">scale_y_log10</span>() <span class="co">#&lt;&lt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a><span class="fu">ggplot</span>(<span class="at">data =</span> diamonds, <span class="fu">aes</span>(<span class="at">x =</span> carat, <span class="at">y =</span> price)) <span class="sc">+</span></span>
+<span id="cb8-2"><a></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">colour =</span> cut), <span class="at">size =</span> <span class="dv">2</span>, <span class="at">alpha =</span> .<span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb8-3"><a></a>    <span class="fu">geom_smooth</span>(<span class="fu">aes</span>(<span class="at">fill =</span> cut), <span class="at">colour =</span> <span class="st">"lightgrey"</span>) <span class="sc">+</span></span>
+<span id="cb8-4"><a></a>    <span class="fu">scale_y_log10</span>() <span class="co">#&lt;&lt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
-<img data-src="1-GraphicsIntro_files/figure-revealjs/unnamed-chunk-16-1.png" width="960" class="r-stretch"></section>
+<img data-src="1-GraphicsIntro_files/figure-html/unnamed-chunk-16-1.png" width="960" class="r-stretch"></section>
 <section id="add-nuance-with-facets" class="slide level2">
 <h2>Add nuance with facets</h2>
-<div class="cell" data-hash="1-GraphicsIntro_cache/revealjs/unnamed-chunk-17_8fdbc92933a158b21591fd7be10210ca">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> diamonds, <span class="fu">aes</span>(<span class="at">x =</span> carat, <span class="at">y =</span> price)) <span class="sc">+</span></span>
-<span id="cb9-2"><a href="#cb9-2"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">colour =</span> cut), <span class="at">size =</span> <span class="dv">2</span>, <span class="at">alpha =</span> .<span class="dv">5</span>) <span class="sc">+</span></span>
-<span id="cb9-3"><a href="#cb9-3"></a>    <span class="fu">geom_smooth</span>(<span class="fu">aes</span>(<span class="at">fill =</span> cut), <span class="at">colour =</span> <span class="st">"lightgrey"</span>) <span class="sc">+</span></span>
-<span id="cb9-4"><a href="#cb9-4"></a>    <span class="fu">scale_y_log10</span>() <span class="sc">+</span></span>
-<span id="cb9-5"><a href="#cb9-5"></a>    <span class="fu">facet_wrap</span>(<span class="sc">~</span>cut) <span class="co">#&lt;&lt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a><span class="fu">ggplot</span>(<span class="at">data =</span> diamonds, <span class="fu">aes</span>(<span class="at">x =</span> carat, <span class="at">y =</span> price)) <span class="sc">+</span></span>
+<span id="cb9-2"><a></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">colour =</span> cut), <span class="at">size =</span> <span class="dv">2</span>, <span class="at">alpha =</span> .<span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb9-3"><a></a>    <span class="fu">geom_smooth</span>(<span class="fu">aes</span>(<span class="at">fill =</span> cut), <span class="at">colour =</span> <span class="st">"lightgrey"</span>) <span class="sc">+</span></span>
+<span id="cb9-4"><a></a>    <span class="fu">scale_y_log10</span>() <span class="sc">+</span></span>
+<span id="cb9-5"><a></a>    <span class="fu">facet_wrap</span>(<span class="sc">~</span>cut) <span class="co">#&lt;&lt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 
-<img data-src="1-GraphicsIntro_files/figure-revealjs/unnamed-chunk-18-1.png" width="960" class="r-stretch"><div class="footer footer-default">
+<img data-src="1-GraphicsIntro_files/figure-html/unnamed-chunk-18-1.png" width="960" class="r-stretch"><div class="quarto-auto-generated-content">
+<div class="footer footer-default">
 <p><a href="../../index.html">UNL R Workshops</a></p>
+</div>
 </div>
 </section></section>
     </div>
@@ -1338,44 +1345,6 @@ data: diamonds <br> layer: <br> - aes: x = 1, y = count, fill = cut <br> - geom:
         ]
       });
     </script>
-    
-    <script>
-      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
-      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
-      // slide changes (different for each slide format).
-      (function () {
-        // dispatch for htmlwidgets
-        function fireSlideEnter() {
-          const event = window.document.createEvent("Event");
-          event.initEvent("slideenter", true, true);
-          window.document.dispatchEvent(event);
-        }
-
-        function fireSlideChanged(previousSlide, currentSlide) {
-          fireSlideEnter();
-
-          // dispatch for shiny
-          if (window.jQuery) {
-            if (previousSlide) {
-              window.jQuery(previousSlide).trigger("hidden");
-            }
-            if (currentSlide) {
-              window.jQuery(currentSlide).trigger("shown");
-            }
-          }
-        }
-
-        // hookup for slidy
-        if (window.w3c_slidy) {
-          window.w3c_slidy.add_observer(function (slide_num) {
-            // slide_num starts at position 1
-            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
-          });
-        }
-
-      })();
-    </script>
-
     <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggleBodyColorMode = (bsSheetEl) => {

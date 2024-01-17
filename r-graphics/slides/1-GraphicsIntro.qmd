@@ -162,14 +162,14 @@ It is useful to know of the different types of graphs out there. These two links
 
 :::
 
-## Beginner
+## Beginner {.smaller}
 
 ::: columns
 ::: column
-**One Variable**
-- Discrete
-  - Bar Chart
-  - Pie Chart
+**One Variable**  
+- Discrete  
+  - Bar Chart  
+  - Pie Chart  
   
 - Continuous
   - Stem and Leaf Plots
@@ -177,8 +177,8 @@ It is useful to know of the different types of graphs out there. These two links
   - Histograms
 :::
 ::: column
-**Two variables**
-- Continuous X, Continuous Y
+**Two variables**  
+- Continuous X, Continuous Y  
   - Scatterplots
   
 - Maps
