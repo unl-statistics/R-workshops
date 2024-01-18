@@ -8,7 +8,7 @@
 <link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
 <link href="../../site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.3.353">
+  <meta name="generator" content="quarto-1.4.545">
 
   <title>UNL R Workshops - Data Wrangling</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -30,7 +30,7 @@
     }
     /* CSS for syntax highlighting */
     pre > code.sourceCode { white-space: pre; position: relative; }
-    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span { line-height: 1.25; }
     pre > code.sourceCode > span:empty { height: 1.2em; }
     .sourceCode { overflow: visible; }
     code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -221,7 +221,8 @@
   }
 
   .callout.callout-titled .callout-body > .callout-content > :last-child {
-    margin-bottom: 0.5rem;
+    padding-bottom: 0.5rem;
+    margin-bottom: 0;
   }
 
   .callout.callout-titled .callout-icon::before {
@@ -405,11 +406,11 @@
 <li>“Default location where R will look for files you want to load and where it will put any files you save” <a href="https://intro2r.com/work-d.html">source</a></li>
 </ul>
 <div class="cell" data-hash="2-Files_cache/html/unnamed-chunk-1_50170e05dcc4b2241f7097cc6d412883">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co">#Returns the file path of the current working directory</span></span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">getwd</span>()</span>
-<span id="cb1-3"><a href="#cb1-3"></a></span>
-<span id="cb1-4"><a href="#cb1-4"></a><span class="co">#Set Working Directory</span></span>
-<span id="cb1-5"><a href="#cb1-5"></a><span class="fu">setwd</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="co">#Returns the file path of the current working directory</span></span>
+<span id="cb1-2"><a></a><span class="fu">getwd</span>()</span>
+<span id="cb1-3"><a></a></span>
+<span id="cb1-4"><a></a><span class="co">#Set Working Directory</span></span>
+<span id="cb1-5"><a></a><span class="fu">setwd</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li>Easiest way to set Working Directory:
@@ -601,36 +602,36 @@
 <section id="your-turn-solutions" class="slide level2">
 <h2>Your Turn Solutions</h2>
 <div class="cell" data-hash="2-Files_cache/html/unnamed-chunk-4_5661107d34b65fd49af31778813552af">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>midwest_names <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(</span>
-<span id="cb2-2"><a href="#cb2-2"></a><span class="st">"midwest.csv"</span>, </span>
-<span id="cb2-3"><a href="#cb2-3"></a>  <span class="at">n_max=</span> <span class="dv">2</span>, <span class="at">col_names =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb2-4"><a href="#cb2-4"></a></span>
-<span id="cb2-5"><a href="#cb2-5"></a></span>
-<span id="cb2-6"><a href="#cb2-6"></a>midwest_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(</span>
-<span id="cb2-7"><a href="#cb2-7"></a><span class="st">"midwest.csv"</span>, </span>
-<span id="cb2-8"><a href="#cb2-8"></a>  <span class="at">skip =</span> <span class="dv">2</span>, <span class="at">col_names =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a>midwest_names <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(</span>
+<span id="cb2-2"><a></a><span class="st">"midwest.csv"</span>, </span>
+<span id="cb2-3"><a></a>  <span class="at">n_max=</span> <span class="dv">2</span>, <span class="at">col_names =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb2-4"><a></a></span>
+<span id="cb2-5"><a></a></span>
+<span id="cb2-6"><a></a>midwest_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(</span>
+<span id="cb2-7"><a></a><span class="st">"midwest.csv"</span>, </span>
+<span id="cb2-8"><a></a>  <span class="at">skip =</span> <span class="dv">2</span>, <span class="at">col_names =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="quick-lesson-in-data-cleaning" class="slide level2">
 <h2>Quick Lesson in Data Cleaning</h2>
 <div class="cell" data-hash="2-Files_cache/html/unnamed-chunk-5_40c6624b5b98c55ba0bb547269ec3eac">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">library</span>(lubridate) <span class="co"># works with dates</span></span>
-<span id="cb3-2"><a href="#cb3-2"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb3-3"><a href="#cb3-3"></a>values <span class="ot">&lt;-</span> <span class="fu">c</span>(midwest_data<span class="sc">$</span>X3, midwest_data<span class="sc">$</span>X5, midwest_data<span class="sc">$</span>X7, </span>
-<span id="cb3-4"><a href="#cb3-4"></a>            midwest_data<span class="sc">$</span>X9, midwest_data<span class="sc">$</span>X11)</span>
-<span id="cb3-5"><a href="#cb3-5"></a>dates <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">paste</span>(midwest_data<span class="sc">$</span>X1, midwest_data<span class="sc">$</span>X2, <span class="at">sep =</span> <span class="st">"-"</span>), </span>
-<span id="cb3-6"><a href="#cb3-6"></a>           <span class="fu">paste</span>(midwest_data<span class="sc">$</span>X1, midwest_data<span class="sc">$</span>X4, <span class="at">sep =</span> <span class="st">"-"</span>),</span>
-<span id="cb3-7"><a href="#cb3-7"></a>           <span class="fu">paste</span>(midwest_data<span class="sc">$</span>X1, midwest_data<span class="sc">$</span>X6, <span class="at">sep =</span> <span class="st">"-"</span>),</span>
-<span id="cb3-8"><a href="#cb3-8"></a>           <span class="fu">paste</span>(midwest_data<span class="sc">$</span>X1, midwest_data<span class="sc">$</span>X8, <span class="at">sep =</span> <span class="st">"-"</span>),</span>
-<span id="cb3-9"><a href="#cb3-9"></a>           <span class="fu">paste</span>(midwest_data<span class="sc">$</span>X1, midwest_data<span class="sc">$</span>X10, <span class="at">sep =</span> <span class="st">"-"</span>))</span>
-<span id="cb3-10"><a href="#cb3-10"></a></span>
-<span id="cb3-11"><a href="#cb3-11"></a>dates <span class="ot">&lt;-</span> dates[<span class="sc">!</span><span class="fu">is.na</span>(values)] <span class="co">#removing NAs</span></span>
-<span id="cb3-12"><a href="#cb3-12"></a>values <span class="ot">&lt;-</span> values[<span class="sc">!</span><span class="fu">is.na</span>(values)] <span class="co">#removing Nas</span></span>
-<span id="cb3-13"><a href="#cb3-13"></a></span>
-<span id="cb3-14"><a href="#cb3-14"></a>dates <span class="ot">&lt;-</span> <span class="fu">ymd</span>(dates)</span>
-<span id="cb3-15"><a href="#cb3-15"></a></span>
-<span id="cb3-16"><a href="#cb3-16"></a>midwest_gas <span class="ot">&lt;-</span> <span class="fu">data_frame</span>(<span class="at">date =</span> dates, <span class="at">price =</span> values)</span>
-<span id="cb3-17"><a href="#cb3-17"></a>midwest_gas <span class="ot">&lt;-</span> <span class="fu">arrange</span>(midwest_gas, dates)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="fu">library</span>(lubridate) <span class="co"># works with dates</span></span>
+<span id="cb3-2"><a></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb3-3"><a></a>values <span class="ot">&lt;-</span> <span class="fu">c</span>(midwest_data<span class="sc">$</span>X3, midwest_data<span class="sc">$</span>X5, midwest_data<span class="sc">$</span>X7, </span>
+<span id="cb3-4"><a></a>            midwest_data<span class="sc">$</span>X9, midwest_data<span class="sc">$</span>X11)</span>
+<span id="cb3-5"><a></a>dates <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">paste</span>(midwest_data<span class="sc">$</span>X1, midwest_data<span class="sc">$</span>X2, <span class="at">sep =</span> <span class="st">"-"</span>), </span>
+<span id="cb3-6"><a></a>           <span class="fu">paste</span>(midwest_data<span class="sc">$</span>X1, midwest_data<span class="sc">$</span>X4, <span class="at">sep =</span> <span class="st">"-"</span>),</span>
+<span id="cb3-7"><a></a>           <span class="fu">paste</span>(midwest_data<span class="sc">$</span>X1, midwest_data<span class="sc">$</span>X6, <span class="at">sep =</span> <span class="st">"-"</span>),</span>
+<span id="cb3-8"><a></a>           <span class="fu">paste</span>(midwest_data<span class="sc">$</span>X1, midwest_data<span class="sc">$</span>X8, <span class="at">sep =</span> <span class="st">"-"</span>),</span>
+<span id="cb3-9"><a></a>           <span class="fu">paste</span>(midwest_data<span class="sc">$</span>X1, midwest_data<span class="sc">$</span>X10, <span class="at">sep =</span> <span class="st">"-"</span>))</span>
+<span id="cb3-10"><a></a></span>
+<span id="cb3-11"><a></a>dates <span class="ot">&lt;-</span> dates[<span class="sc">!</span><span class="fu">is.na</span>(values)] <span class="co">#removing NAs</span></span>
+<span id="cb3-12"><a></a>values <span class="ot">&lt;-</span> values[<span class="sc">!</span><span class="fu">is.na</span>(values)] <span class="co">#removing Nas</span></span>
+<span id="cb3-13"><a></a></span>
+<span id="cb3-14"><a></a>dates <span class="ot">&lt;-</span> <span class="fu">ymd</span>(dates)</span>
+<span id="cb3-15"><a></a></span>
+<span id="cb3-16"><a></a>midwest_gas <span class="ot">&lt;-</span> <span class="fu">data_frame</span>(<span class="at">date =</span> dates, <span class="at">price =</span> values)</span>
+<span id="cb3-17"><a></a>midwest_gas <span class="ot">&lt;-</span> <span class="fu">arrange</span>(midwest_gas, dates)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <aside class="notes">
 <p>explain - paste function values - vector of the different columns dates - vector of different dates (combining year/month with month/day)</p>
@@ -650,19 +651,19 @@
 <section id="now-we-can-make-a-plot" class="slide level2">
 <h2>Now we can make a plot!</h2>
 <div class="cell" data-layout-align="center" data-hash="2-Files_cache/html/unnamed-chunk-6_60169ed5049f3dd02d144f0cbd9d7788">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb4-2"><a href="#cb4-2"></a></span>
-<span id="cb4-3"><a href="#cb4-3"></a><span class="fu">ggplot</span>(midwest_gas, <span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> price)) <span class="sc">+</span> <span class="fu">geom_line</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb4-2"><a></a></span>
+<span id="cb4-3"><a></a><span class="fu">ggplot</span>(midwest_gas, <span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> price)) <span class="sc">+</span> <span class="fu">geom_line</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="2-Files_files/figure-html/unnamed-chunk-6-1.png" width="672" class="r-stretch quarto-figure-center"></section>
+<img data-src="2-Files_files/figure-html/unnamed-chunk-6-1.png" class="quarto-figure quarto-figure-center r-stretch" width="672"></section>
 <section id="reading-excel-data" class="slide level2 smaller">
 <h2>Reading Excel Data</h2>
 <p>Download the midwest.xls file to your current working directory (<code>getwd()</code>)</p>
 <div class="cell" data-hash="2-Files_cache/html/unnamed-chunk-7_edc8fb206d215375054d21a3ebf1ce99">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb5-2"><a href="#cb5-2"></a>midwest2 <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"https://github.com/unl-statistics/R-workshops/raw/main/r-format/data/midwest.xls"</span>) </span>
-<span id="cb5-3"><a href="#cb5-3"></a><span class="fu">head</span>(midwest2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="fu">library</span>(readxl)</span>
+<span id="cb5-2"><a></a>midwest2 <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"https://github.com/unl-statistics/R-workshops/raw/main/r-format/data/midwest.xls"</span>) </span>
+<span id="cb5-3"><a></a><span class="fu">head</span>(midwest2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Something isn’t quite right here…</p>
 <div class="cell" data-hash="2-Files_cache/html/midwest_a074d428eec4ad86fe9bf94c32537036">
@@ -735,9 +736,9 @@
 <p>The 2nd row of the excel file also contains variable names.</p>
 <p>Let’s skip the first this time. We can then rename the first column.</p>
 <div class="cell" data-hash="2-Files_cache/html/unnamed-chunk-8_aa95f1a5e9c898775c3093b9b920093b">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>midwest2 <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"https://github.com/unl-statistics/R-workshops/raw/main/r-format/data/midwest.xls"</span>, <span class="at">skip =</span> <span class="dv">1</span>) <span class="co">#&lt;&lt;</span></span>
-<span id="cb6-2"><a href="#cb6-2"></a><span class="fu">names</span>(midwest2)[<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="st">"Year-Month"</span></span>
-<span id="cb6-3"><a href="#cb6-3"></a><span class="fu">head</span>(midwest2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a>midwest2 <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"https://github.com/unl-statistics/R-workshops/raw/main/r-format/data/midwest.xls"</span>, <span class="at">skip =</span> <span class="dv">1</span>) <span class="co">#&lt;&lt;</span></span>
+<span id="cb6-2"><a></a><span class="fu">names</span>(midwest2)[<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="st">"Year-Month"</span></span>
+<span id="cb6-3"><a></a><span class="fu">head</span>(midwest2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-hash="2-Files_cache/html/midwest2_767a1fbf7b9b016ea876bc64319d3150">
 <div class="cell-output-display">
@@ -832,7 +833,7 @@
 <li><p>Stata: <code>read_dta</code></p></li>
 </ul>
 
-<img data-src="images/haven.png" width="280" class="r-stretch quarto-figure-center"></section>
+<img data-src="images/haven.png" class="quarto-figure quarto-figure-center r-stretch" width="280"></section>
 <section id="useful-packages-for-other-data-files" class="slide level2">
 <h2>Useful Packages for Other Data Files</h2>
 <ul>
@@ -841,7 +842,7 @@
 <li><p><code>sf</code> package reads arcgis files, etc. <a href="https://r-spatial.github.io/sf/">sf package</a></p></li>
 </ul>
 
-<img data-src="images/sf package.jpeg" width="320" class="r-stretch quarto-figure-center"><p class="caption">R knowledge Spatial, by <a href="https://www.allisonhorst.com/">Allison Horst</a></p></section>
+<img data-src="images/sf package.jpeg" class="quarto-figure quarto-figure-center r-stretch" width="320"><p class="caption">R knowledge Spatial, by <a href="https://www.allisonhorst.com/">Allison Horst</a></p></section>
 <section id="your-turn-2-minutes" class="slide level2 inverse">
 <h2>Your Turn (~2 minutes)</h2>
 <p>The NHANES (National Health and Nutrition Survey) publishes data in the SAS xport format:</p>
@@ -855,9 +856,9 @@
 <section id="solution" class="slide level2">
 <h2>Solution</h2>
 <div class="cell" data-hash="2-Files_cache/html/unnamed-chunk-9_fb4ba164623738171d3b94f893e20ebe">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">library</span>(haven) </span>
-<span id="cb7-2"><a href="#cb7-2"></a>sas.data <span class="ot">&lt;-</span> <span class="fu">read_xpt</span>(<span class="st">"../data/DEMO_G.XPT"</span>)</span>
-<span id="cb7-3"><a href="#cb7-3"></a>sas.data <span class="sc">%&gt;%</span> <span class="fu">head</span>(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a><span class="fu">library</span>(haven) </span>
+<span id="cb7-2"><a></a>sas.data <span class="ot">&lt;-</span> <span class="fu">read_xpt</span>(<span class="st">"../data/DEMO_G.XPT"</span>)</span>
+<span id="cb7-3"><a></a>sas.data <span class="sc">%&gt;%</span> <span class="fu">head</span>(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2 × 48
    SEQN SDDSRVYR RIDSTATR RIAGENDR RIDAGEYR RIDAGEMN RIDRETH1 RIDRETH3 RIDEXMON
@@ -874,8 +875,10 @@
 </div>
 </div>
 
+<div class="quarto-auto-generated-content">
 <div class="footer footer-default">
 <p><a href="../../index.html">UNL R Workshops</a></p>
+</div>
 </div>
 </section></section>
     </div>
@@ -904,7 +907,6 @@
       Reveal.initialize({
 'controlsAuto': true,
 'previewLinksAuto': false,
-'smaller': false,
 'pdfSeparateFragments': false,
 'autoAnimateEasing': "ease",
 'autoAnimateDuration': 1,
@@ -1165,10 +1167,9 @@
         // clear code selection
         e.clearSelection();
       });
-      function tippyHover(el, contentFn) {
+      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
         const config = {
           allowHTML: true,
-          content: contentFn,
           maxWidth: 500,
           delay: 100,
           arrow: false,
@@ -1178,8 +1179,17 @@
           interactive: true,
           interactiveBorder: 10,
           theme: 'light-border',
-          placement: 'bottom-start'
+          placement: 'bottom-start',
         };
+        if (contentFn) {
+          config.content = contentFn;
+        }
+        if (onTriggerFn) {
+          config.onTrigger = onTriggerFn;
+        }
+        if (onUntriggerFn) {
+          config.onUntrigger = onUntriggerFn;
+        }
           config['offset'] = [0,0];
           config['maxWidth'] = 700;
         window.tippy(el, config); 
