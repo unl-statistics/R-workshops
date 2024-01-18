@@ -80,6 +80,7 @@ For each person, recorded age, sex, height and target weight, and then at multip
 - measurement: *age, sex, height, target weight*, current weight
 
 *only patient ID is needed for variables in italics*
+
 ## Back to the list starting with **Messy (3)**
 
 Messy (3): *Multiple observational units are stored in the same table.*
@@ -190,6 +191,8 @@ HallOfFame %>%
 -   In `dplyr` there are various join functions: `left_join`, `inner_join`, `full_join`, ...
 
 -   Differences between join functions are only visible if not all values in one set have values in the other
+
+---
 
 ![](images/join_sets.png){fig-align="center"}
 
@@ -373,5 +376,3 @@ Names$FullName %>% unique() %>%
 
 ![](https://media.giphy.com/media/kQYNaEa35hQ6pCYywH/giphy.gif){fig-align="center"}
 
-
-class: inverse

@@ -8,7 +8,7 @@
 <link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
 <link href="../../site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.4.489">
+  <meta name="generator" content="quarto-1.3.353">
 
   <title>UNL R Workshops - Data Wrangling</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -30,7 +30,7 @@
     }
     /* CSS for syntax highlighting */
     pre > code.sourceCode { white-space: pre; position: relative; }
-    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
     pre > code.sourceCode > span:empty { height: 1.2em; }
     .sourceCode { overflow: visible; }
     code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -221,8 +221,7 @@
   }
 
   .callout.callout-titled .callout-body > .callout-content > :last-child {
-    padding-bottom: 0.5rem;
-    margin-bottom: 0;
+    margin-bottom: 0.5rem;
   }
 
   .callout.callout-titled .callout-icon::before {
@@ -418,7 +417,9 @@
 <section id="data-is-usually-in-a-spreadsheet-format-but" class="slide level2">
 <h2>Data is usually in a spreadsheet format, but…</h2>
 <p>There are different ways of encoding the same information:</p>
-::: columns ::: column <strong>Option 1:</strong>
+<div class="columns">
+<div class="column">
+<strong>Option 1:</strong>
 <style type="text/css">
 .tg  {border-collapse:collapse;border-spacing:0;border-color:#aaa;}
 .tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-color:#aaa;color:#333;background-color:#fff;}
@@ -428,6 +429,7 @@
 .tg .tg-lyaj{background-color:#FCFBE3;text-align:center}
 .tg .tg-hgcj{font-weight:bold;text-align:center}
 </style>
+
 <table class="tg">
 <tbody><tr>
 <th class="tg-hgcj">
@@ -473,6 +475,7 @@ Mary Johnson
 7
 </td>
 </tr>
+
 </tbody></table>
 <p><strong>Option 2:</strong></p>
 <style type="text/css">
@@ -483,6 +486,7 @@ Mary Johnson
 .tg .tg-amwm{font-weight:bold;text-align:center;vertical-align:top}
 .tg .tg-yq6s{background-color:#FCFBE3;text-align:center;vertical-align:top}
 </style>
+
 <table class="tg">
 <tbody><tr>
 <th class="tg-amwm">
@@ -526,8 +530,10 @@ B
 7
 </td>
 </tr>
+
 </tbody></table>
-<p>::: ::: column <strong>Option 3:</strong></p>
+</div><div class="column">
+<p><strong>Option 3:</strong></p>
 <style type="text/css">
 .tg  {border-collapse:collapse;border-spacing:0;border-color:#aaa;}
 .tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#aaa;color:#333;background-color:#fff;}
@@ -536,6 +542,7 @@ B
 .tg .tg-baqh{text-align:center;vertical-align:top}
 .tg .tg-hgcj{font-weight:bold;text-align:center}
 </style>
+
 <table class="tg">
 <tbody><tr>
 <th class="tg-hgcj">
@@ -614,8 +621,10 @@ B
 7
 </td>
 </tr>
+
 </tbody></table>
-<p>:::</p>
+</div>
+</div>
 <aside class="notes">
 <p>Neither #1 nor #2 are “clean” versions of the data: observed information is part of the data structure; some implicit information is assumed</p>
 <style type="text/css">
@@ -641,7 +650,7 @@ B
 <li><p>A single observational unit is stored in multiple tables.</p></li>
 </ol>
 </section>
-<section id="what-we-have-and-what-we-want" class="slide level2">
+<section id="what-we-have-and-what-we-want" class="slide level2 scrollable">
 <h2>What we have and what we want</h2>
 <div class="columns">
 <div class="column">
@@ -662,7 +671,11 @@ B
 </ul>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<p><img data-src="4-tidyr_files/figure-revealjs/unnamed-chunk-1-1.png" class="quarto-figure-center" width="288"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="4-tidyr_files/figure-html/unnamed-chunk-1-1.png" width="288"></p>
+</figure>
+</div>
 </div>
 </div>
 </div>
@@ -671,7 +684,7 @@ B
 <section id="remember-from-graphics" class="slide level2">
 <h2>Remember from Graphics</h2>
 
-<img data-src="images/tidydata.jpeg" class="quarto-figure-center r-stretch"></section>
+<img data-src="images/tidydata.jpeg" class="r-stretch quarto-figure-center"></section>
 <section id="tidy-data" class="slide level2">
 <h2>Tidy Data</h2>
 <ul>
@@ -687,6 +700,7 @@ B
 .tg .tg-baqh{text-align:center;vertical-align:top}
 .tg .tg-amwm{font-weight:bold;text-align:center;vertical-align:top}
 </style>
+
 <table class="tg">
 <tbody><tr>
 <th class="tg-amwm">
@@ -765,6 +779,7 @@ B
 7
 </td>
 </tr>
+
 </tbody></table>
 </section>
 <section id="what-makes-data-tidy" class="slide level2">
@@ -778,6 +793,7 @@ B
 .tg .tg-baqh{text-align:center;vertical-align:top}
 .tg .tg-amwm{font-weight:bold;text-align:center;vertical-align:top}
 </style>
+
 <table class="tg">
 <tbody><tr>
 <th class="tg-amwm">
@@ -856,6 +872,7 @@ B
 7
 </td>
 </tr>
+
 </tbody></table>
 </div><div class="column">
 <ul>
@@ -871,19 +888,23 @@ B
 <h2>Key-value pairs (KVP)</h2>
 <p><strong>Key-Value pairs</strong> (KVP) - also <em>attribute-value</em>, <em>field-value</em>, <em>name-value</em>: abstract data representation that allows a lot of flexibility</p>
 <p>One way of telling whether a data set is tidy is to check that all keys for a value are aligned in one row:</p>
-<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-panel">
 <div class="quarto-layout-row quarto-layout-valign-top">
-<div class="quarto-figure quarto-figure-center quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
 <figure>
 <p><img data-src="images/kvp-unhappy.png"></p>
 <figcaption>Untidy data</figcaption>
 </figure>
 </div>
-<div class="quarto-figure quarto-figure-center quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
 <figure>
 <p><img data-src="images/kvp-happy.png"></p>
 <figcaption>Tidy Data</figcaption>
 </figure>
+</div>
 </div>
 </div>
 </div>
@@ -907,7 +928,7 @@ B
 <h2>Let’s ask for help…</h2>
 
 <img data-src="images/pivot_monsters.png" width="720" class="r-stretch quarto-figure-center"><p class="caption"><a href="https://rladiessydney.org/courses/ryouwithme/02-cleanitup-5/">Pivot Monsters</a> drawing by Allison Horst &amp; adjusted by R ladies Sydney</p></section>
-<section id="tidying-data---plan-of-attack" class="slide level2">
+<section id="tidying-data---plan-of-attack" class="slide level2 smaller">
 <h2>Tidying data - Plan of attack</h2>
 <p><strong>Messy (1)</strong>: <code>tidyr</code> functions:</p>
 <p><code>pivot_longer (data,names_to,values_to, ...)</code>: take multiple columns and collapse into key-value pairs</p>
@@ -1033,7 +1054,7 @@ B
 <span id="cb2-9"><a href="#cb2-9"></a><span class="fu">xlab</span>(<span class="st">"variable"</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">"rating"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="4-tidyr_files/figure-revealjs/unnamed-chunk-4-1.png" class="quarto-figure-center r-stretch" width="672"></section>
+<img data-src="4-tidyr_files/figure-html/unnamed-chunk-4-1.png" width="672" class="r-stretch quarto-figure-center"></section>
 <section id="lets-start-with-messy-1" class="slide level2">
 <h2>Let’s start with <strong>Messy (1)</strong></h2>
 
@@ -1041,7 +1062,7 @@ B
 <section id="tidy-your-data-using-pivot_longer" class="slide level2">
 <h2>Tidy your data using <code>pivot_longer</code></h2>
 
-<img data-src="images/pivot_longer_new.png" class="quarto-figure-center r-stretch" width="400"><p>When pivoting longer, you need to specify: - the <strong>cols</strong> (identifiers) - the <strong>names_to</strong> (new column name) - the <strong>values_to</strong> (measures from cols)</p>
+<img data-src="images/pivot_longer_new.png" width="400" class="r-stretch quarto-figure-center"><p>When pivoting longer, you need to specify: - the <strong>cols</strong> (identifiers) - the <strong>names_to</strong> (new column name) - the <strong>values_to</strong> (measures from cols)</p>
 </section>
 <section id="pivot_longer-example" class="slide level2">
 <h2><code>pivot_longer</code> Example</h2>
@@ -1127,7 +1148,7 @@ B
 <span id="cb4-2"><a href="#cb4-2"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> variable, <span class="at">y =</span> rating, <span class="at">fill =</span> variable))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="4-tidyr_files/figure-revealjs/unnamed-chunk-7-1.png" class="quarto-figure-center r-stretch" width="672"></section>
+<img data-src="4-tidyr_files/figure-html/unnamed-chunk-7-1.png" width="672" class="r-stretch quarto-figure-center"></section>
 <section id="long-to-wide" class="slide level2">
 <h2>Long to Wide</h2>
 <p>In certain applications, we may wish to take a long dataset and convert it to a wide dataset (Perhaps displaying in a table).</p>
@@ -1179,7 +1200,7 @@ B
 <section id="tidy-your-data-using-pivot_wider" class="slide level2">
 <h2>Tidy your data using <code>pivot_wider</code></h2>
 
-<img data-src="images/pivot_wider_new.png" class="quarto-figure-center r-stretch" width="400"><p>When pivoting wider, you need to specify: - the <strong>names_from</strong> (column name that we want to widen) - the <strong>values_from</strong> (measures from column we want to widen)</p>
+<img data-src="images/pivot_wider_new.png" width="400" class="r-stretch quarto-figure-center"><p>When pivoting wider, you need to specify: - the <strong>names_from</strong> (column name that we want to widen) - the <strong>values_from</strong> (measures from column we want to widen)</p>
 </section>
 <section id="pivot_wider-example" class="slide level2">
 <h2><code>pivot_wider</code> Example</h2>
@@ -1321,7 +1342,7 @@ B
 <span id="cb7-5"><a href="#cb7-5"></a>  <span class="fu">geom_abline</span>(<span class="at">colour =</span> <span class="st">"grey50"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="4-tidyr_files/figure-revealjs/unnamed-chunk-13-1.png" width="960" class="r-stretch"></section>
+<img data-src="4-tidyr_files/figure-html/unnamed-chunk-13-1.png" width="672" class="r-stretch"></section>
 <section id="motivating-example-separate-function" class="slide level2">
 <h2>Motivating Example (separate function)</h2>
 <div class="columns">
@@ -1369,7 +1390,7 @@ B
 <li>How do I handle those values in my dataset? Let’s use <code>separate</code></li>
 </ul>
 
-<img data-src="images/separate.png" class="quarto-figure-center r-stretch" width="480"></section>
+<img data-src="images/separate.png" width="480" class="r-stretch quarto-figure-center"></section>
 <section id="separate-example-1" class="slide level2">
 <h2><code>separate</code> Example 1</h2>
 <div class="cell">
@@ -1431,9 +1452,9 @@ B
 <li><p>city coordinates are a combination of City name, state, zip code and geographic latitude and longitude. (Messy 2)</p></li>
 <li><p>expenditure amount is a textual expression, not a number (Messy different)</p></li>
 </ul>
-<p>no Messy 1? - problems of type Messy 1 are typically hard to detect and often up to interpretation/dependent on the analysis to be done.</p>
+<p>No Messy 1? - problems of type Messy 1 are typically hard to detect and often up to interpretation/dependent on the analysis to be done.</p>
 
-<img data-src="https://media.giphy.com/media/QSdauORwsTtSM/giphy.gif" class="quarto-figure-center r-stretch"></section>
+<img data-src="https://media.giphy.com/media/QSdauORwsTtSM/giphy.gif" class="r-stretch quarto-figure-center"></section>
 <section id="your-turn-1" class="slide level2 inverse">
 <h2>Your Turn</h2>
 <p>During the 1870 census data on people’s occupation was collected. The data <a href="../data/occupation-1870.csv">occupation-1870</a> contains state-level aggregates of occupation by gender.</p>
@@ -1477,7 +1498,7 @@ B
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a>occupation_long <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>() <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> Male, <span class="at">y =</span> Female)) <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span>Occupation)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="4-tidyr_files/figure-revealjs/unnamed-chunk-19-1.png" class="quarto-figure-center r-stretch" width="960"></section>
+<img data-src="4-tidyr_files/figure-html/unnamed-chunk-19-1.png" width="672" class="r-stretch quarto-figure-center"></section>
 <section id="dates-and-times" class="slide level2">
 <h2>Dates and Times</h2>
 <p>Dates are deceptively hard to work with in R.</p>
@@ -1499,10 +1520,10 @@ B
 <span id="cb20-5"><a href="#cb20-5"></a><span class="fu">now</span>() <span class="sc">+</span> <span class="fu">hours</span>(<span class="dv">4</span>)</span>
 <span id="cb20-6"><a href="#cb20-6"></a><span class="fu">today</span>() <span class="sc">-</span> <span class="fu">days</span>(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "2023-12-18 10:25:18 CST"
-[1] "2023-12-18"
-[1] "2023-12-18 14:25:18 CST"
-[1] "2023-12-16"</code></pre>
+<pre><code>[1] "2024-01-17 21:04:42 CST"
+[1] "2024-01-17"
+[1] "2024-01-18 01:04:42 CST"
+[1] "2024-01-15"</code></pre>
 </div>
 </div>
 </section>
@@ -1546,7 +1567,7 @@ B
 <span id="cb25-7"><a href="#cb25-7"></a><span class="fu">ggplot</span>(delay.dat) <span class="sc">+</span> <span class="fu">geom_line</span>(<span class="fu">aes</span>(date, dep_delay))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="4-tidyr_files/figure-revealjs/unnamed-chunk-23-1.png" class="quarto-figure-center r-stretch" width="672"></section>
+<img data-src="4-tidyr_files/figure-html/unnamed-chunk-23-1.png" width="672" class="r-stretch quarto-figure-center"></section>
 <section id="your-turn-3" class="slide level2 inverse">
 <h2>Your Turn</h2>
 <ul>
@@ -1562,7 +1583,7 @@ B
 </ul>
 
 
-<img data-src="4-tidyr_files/figure-revealjs/unnamed-chunk-25-1.png" width="624" class="r-stretch"><div class="footer footer-default">
+<img data-src="4-tidyr_files/figure-html/unnamed-chunk-25-1.png" width="624" class="r-stretch"><div class="footer footer-default">
 <p><a href="../../index.html">UNL R Workshops</a></p>
 </div>
 </section>
@@ -1592,6 +1613,7 @@ B
       Reveal.initialize({
 'controlsAuto': true,
 'previewLinksAuto': false,
+'smaller': false,
 'pdfSeparateFragments': false,
 'autoAnimateEasing': "ease",
 'autoAnimateDuration': 1,
@@ -1776,44 +1798,6 @@ B
         ]
       });
     </script>
-    
-    <script>
-      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
-      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
-      // slide changes (different for each slide format).
-      (function () {
-        // dispatch for htmlwidgets
-        function fireSlideEnter() {
-          const event = window.document.createEvent("Event");
-          event.initEvent("slideenter", true, true);
-          window.document.dispatchEvent(event);
-        }
-
-        function fireSlideChanged(previousSlide, currentSlide) {
-          fireSlideEnter();
-
-          // dispatch for shiny
-          if (window.jQuery) {
-            if (previousSlide) {
-              window.jQuery(previousSlide).trigger("hidden");
-            }
-            if (currentSlide) {
-              window.jQuery(currentSlide).trigger("shown");
-            }
-          }
-        }
-
-        // hookup for slidy
-        if (window.w3c_slidy) {
-          window.w3c_slidy.add_observer(function (slide_num) {
-            // slide_num starts at position 1
-            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
-          });
-        }
-
-      })();
-    </script>
-
     <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggleBodyColorMode = (bsSheetEl) => {
@@ -1890,9 +1874,10 @@ B
         // clear code selection
         e.clearSelection();
       });
-      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      function tippyHover(el, contentFn) {
         const config = {
           allowHTML: true,
+          content: contentFn,
           maxWidth: 500,
           delay: 100,
           arrow: false,
@@ -1902,17 +1887,8 @@ B
           interactive: true,
           interactiveBorder: 10,
           theme: 'light-border',
-          placement: 'bottom-start',
+          placement: 'bottom-start'
         };
-        if (contentFn) {
-          config.content = contentFn;
-        }
-        if (onTriggerFn) {
-          config.onTrigger = onTriggerFn;
-        }
-        if (onUntriggerFn) {
-          config.onUntrigger = onUntriggerFn;
-        }
           config['offset'] = [0,0];
           config['maxWidth'] = 700;
         window.tippy(el, config); 

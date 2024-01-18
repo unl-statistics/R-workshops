@@ -8,7 +8,7 @@
 <link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
 <link href="../../site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.4.489">
+  <meta name="generator" content="quarto-1.3.353">
 
   <title>UNL R Workshops - Data Wrangling</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -30,7 +30,7 @@
     }
     /* CSS for syntax highlighting */
     pre > code.sourceCode { white-space: pre; position: relative; }
-    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
     pre > code.sourceCode > span:empty { height: 1.2em; }
     .sourceCode { overflow: visible; }
     code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -221,8 +221,7 @@
   }
 
   .callout.callout-titled .callout-body > .callout-content > :last-child {
-    padding-bottom: 0.5rem;
-    margin-bottom: 0;
+    margin-bottom: 0.5rem;
   }
 
   .callout.callout-titled .callout-icon::before {
@@ -432,11 +431,9 @@
 <p>Use the pipe operator to combine dplyr functions in chain, which allows us to perform more complicated data manipulations</p>
 <p>Syntax (Pipe dataframe as input into the dplyr function):</p>
 <pre><code>dataframe %&gt;% dplyr_function()</code></pre>
-<p><img data-src=".png"></p>
-<p>.center[ <img src="images/pipe_usage.png" style="width:580px;"></p>
-<p>Pipe Example, by <a href="https://www.sharpsightlabs.com/blog/dplyr-quick-introduction/">Sharp Sight Labs</a> ]</p>
-</section>
-<section id="the-pipe-operator" class="slide level2">
+
+<img data-src="images/pipe_usage.png" width="480" class="r-stretch quarto-figure-center"><p class="caption">Pipe Example, by <a href="https://www.sharpsightlabs.com/blog/dplyr-quick-introduction/">Sharp Sight Labs</a></p></section>
+<section id="the-pipe-operator" class="slide level2 smaller">
 <h2>The pipe operator <code>%&gt;%</code></h2>
 <p><code>f(x) %&gt;% g(y)</code> is equivalent to <code>g(f(x),y)</code></p>
 <p>i.e.&nbsp;the output of one function is used as input to the next function. This function can be the identity</p>
@@ -448,10 +445,10 @@
 <li>in non-mathematical terms, the piping operator allows you to apply more than one different function at the same time to the same data frame.</li>
 </ul>
 </section>
-<section id="filter" class="slide level2">
+<section id="filter" class="slide level2 smaller">
 <h2>Filter</h2>
 <p>Read in the pitch data set. The data are from an experiment on different advanced metrics of MLB baseball pitchers different pitch types.</p>
-<div class="cell" data-hash="3-dplyr_cache/html/unnamed-chunk-1_2667d901298a1faeeac65dbc55777cd2">
+<div class="cell" data-hash="3-dplyr_cache/html/unnamed-chunk-1_51756317ac3409e011206a42f7fbea66">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb2-2"><a href="#cb2-2"></a>pitch <span class="ot">&lt;-</span> </span>
 <span id="cb2-3"><a href="#cb2-3"></a>  <span class="fu">read_csv</span>(<span class="st">"https://raw.githubusercontent.com/unl-statistics/R-workshops/main/r-format/data/pitch.csv"</span>)</span>
@@ -460,7 +457,7 @@
 <span id="cb2-6"><a href="#cb2-6"></a>  <span class="fu">filter</span>(pitcher_hand <span class="sc">==</span> <span class="st">"R"</span>, pitch_type <span class="sc">==</span> <span class="st">"CU"</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb2-7"><a href="#cb2-7"></a>  <span class="fu">head</span>(<span class="at">n=</span><span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-hash="3-dplyr_cache/html/unnamed-chunk-2_9e8141e9774e50929919740b904c9895">
+<div class="cell" data-hash="3-dplyr_cache/html/unnamed-chunk-2_50285dc643001df46f606b923e59a2df">
 <div class="cell-output-display">
 <table data-quarto-postprocess="true">
 <thead>
@@ -522,9 +519,11 @@
 <section id="filter-cont." class="slide level2">
 <h2>Filter (cont.)</h2>
 <p>Multiple conditions in <code>filter</code> are combined with a logical AND (i.e.&nbsp;all conditions must be fulfilled)</p>
-<p>e.g.&nbsp;<code>filter(pitcher_hand == "R", pitch_type == "CU")</code></p>
+<p>e.g.&nbsp;</p>
+<p><code>filter(pitcher_hand == "R", pitch_type == "CU")</code></p>
 <p>Logical expressions can also be used</p>
-<p>e.g.&nbsp;<code>filter(pitcher_hand == "R" &amp;  pitch_type == "CU")</code> or <code>filter(pitch_type == "CU" | subject == "KN")</code></p>
+<p>e.g.&nbsp;</p>
+<p><code>filter(pitcher_hand == "R" &amp;  pitch_type == "CU")</code> or <code>filter(pitch_type == "CU" | subject == "KN")</code></p>
 </section>
 <section id="your-turn-3-minutes" class="slide level2 inverse">
 <h2>Your Turn (~3 minutes)</h2>
@@ -537,7 +536,7 @@
 </section>
 <section id="solution" class="slide level2">
 <h2>Solution</h2>
-<div class="cell" data-hash="3-dplyr_cache/html/unnamed-chunk-3_70d9c01b962f64f1ca9aeccca58b8005">
+<div class="cell" data-hash="3-dplyr_cache/html/unnamed-chunk-3_6f9eea9134fa7be48430298b1192114b">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>pitch <span class="sc">%&gt;%</span></span>
 <span id="cb3-2"><a href="#cb3-2"></a>  <span class="fu">filter</span>(spin_rate <span class="sc">&gt;=</span> <span class="dv">3200</span> <span class="sc">&amp;</span> pitcher_hand <span class="sc">==</span> <span class="st">"L"</span> <span class="sc">&amp;</span> pitch_type <span class="sc">==</span> <span class="st">"CU"</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb3-3"><a href="#cb3-3"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>action_result, <span class="at">y=</span>spin_rate)) <span class="sc">+</span></span>
@@ -548,12 +547,12 @@
 <section id="arrange" class="slide level2">
 <h2>Arrange</h2>
 <p>Easy way to arrange your data in ascending or descending order</p>
-<div class="cell" data-hash="3-dplyr_cache/html/arr.desc_a6e252c1ceb1183a2935f68e78144493">
+<div class="cell" data-hash="3-dplyr_cache/html/arr.desc_ba31300231159f5526c4065f02102a19">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>pitch <span class="sc">%&gt;%</span> </span>
 <span id="cb4-2"><a href="#cb4-2"></a>  <span class="fu">subset</span>(<span class="at">select =</span> <span class="fu">c</span>(<span class="st">"playerid"</span>, <span class="st">"spin_rate"</span>)) <span class="sc">%&gt;%</span></span>
 <span id="cb4-3"><a href="#cb4-3"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(playerid), spin_rate) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-hash="3-dplyr_cache/html/arr.desc2_b384c11230504cc80d120432953318fe">
+<div class="cell" data-hash="3-dplyr_cache/html/arr.desc2_fb5beadc7a34eacf608076bfddd0ca0f">
 <div class="cell-output-display">
 <table data-quarto-postprocess="true">
 <thead>
@@ -593,12 +592,12 @@
 <section id="arrange-1" class="slide level2">
 <h2>Arrange</h2>
 <p>Successive variables are used for breaking ties from previous variables.</p>
-<div class="cell" data-hash="3-dplyr_cache/html/arr.asc_1331cff0a3207324f82135f8b9dcec09">
+<div class="cell" data-hash="3-dplyr_cache/html/arr.asc_558f1b6223a9b193d3237e3ba7a1268d">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>pitch <span class="sc">%&gt;%</span> </span>
 <span id="cb5-2"><a href="#cb5-2"></a>  <span class="fu">subset</span>(<span class="at">select =</span> <span class="fu">c</span>(<span class="st">"playerid"</span>, <span class="st">"spin_rate"</span>)) <span class="sc">%&gt;%</span></span>
 <span id="cb5-3"><a href="#cb5-3"></a>  <span class="fu">arrange</span>(playerid, spin_rate)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-hash="3-dplyr_cache/html/arr.asc2_ec2fe0d38ce4a967293215b7e4d79aff">
+<div class="cell" data-hash="3-dplyr_cache/html/arr.asc2_8be932ef7ad23ca330b19687473ecccc">
 <div class="cell-output-display">
 <table data-quarto-postprocess="true">
 <thead>
@@ -644,14 +643,14 @@
 </ol>
 <p>Hint: Use the entire data set</p>
 </section>
-<section id="solution-1" class="slide level2">
+<section id="solution-1" class="slide level2 smaller">
 <h2>Solution</h2>
-<div class="cell" data-hash="3-dplyr_cache/html/unnamed-chunk-4_0d29770f4ad7d9a0387a52060652652c">
+<div class="cell" data-hash="3-dplyr_cache/html/unnamed-chunk-4_a00593b10c320df56329196ce5fc421d">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>pitch[<span class="sc">-</span><span class="dv">1</span>] <span class="sc">%&gt;%</span> </span>
 <span id="cb6-2"><a href="#cb6-2"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(playerid), spin_rate) <span class="sc">%&gt;%</span> </span>
 <span id="cb6-3"><a href="#cb6-3"></a>  <span class="fu">slice</span>(<span class="dv">11</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-hash="3-dplyr_cache/html/unnamed-chunk-5_a9d114506942bf4e76e97031e7dd51dc">
+<div class="cell" data-hash="3-dplyr_cache/html/unnamed-chunk-5_dac11a2e2612e46123e7b3e713e48800">
 <div class="cell-output-display">
 <table data-quarto-postprocess="true">
 <thead>
@@ -681,12 +680,12 @@
 
 </div>
 </div>
-<div class="cell" data-hash="3-dplyr_cache/html/unnamed-chunk-6_a279c9c257d1ce0be79416f01810bddb">
+<div class="cell" data-hash="3-dplyr_cache/html/unnamed-chunk-6_021e29666911d3577e1254108721dcab">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>pitch[<span class="sc">-</span><span class="dv">1</span>] <span class="sc">%&gt;%</span> </span>
 <span id="cb7-2"><a href="#cb7-2"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(playerid), spin_rate) <span class="sc">%&gt;%</span> </span>
 <span id="cb7-3"><a href="#cb7-3"></a>  <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-hash="3-dplyr_cache/html/unnamed-chunk-7_47ecf035e82e04069abca98747d78f02">
+<div class="cell" data-hash="3-dplyr_cache/html/unnamed-chunk-7_7fee7afd08414f0500fee0bb58089cdd">
 <div class="cell-output-display">
 <table data-quarto-postprocess="true">
 <thead>
@@ -753,17 +752,17 @@
 </div>
 </div>
 </section>
-<section id="select" class="slide level2">
+<section id="select" class="slide level2 smaller">
 <h2>Select</h2>
 <ul>
 <li>Using Select we are easily able to create a subset of our data. This is similar to the subset function in base.</li>
 </ul>
-<div class="cell" data-hash="3-dplyr_cache/html/unnamed-chunk-8_18abf92410092b474f0d0dc0213aab5a">
+<div class="cell" data-hash="3-dplyr_cache/html/unnamed-chunk-8_69279e15cccd9f93647e4db559032cdd">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>pitch <span class="sc">%&gt;%</span> </span>
 <span id="cb8-2"><a href="#cb8-2"></a>  <span class="fu">select</span>(playerid, pitcher_hand, action_result, spin_rate) <span class="sc">%&gt;%</span></span>
 <span id="cb8-3"><a href="#cb8-3"></a>  <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-hash="3-dplyr_cache/html/unnamed-chunk-9_812fffc30e8ee2ee032a631faa62d0cf">
+<div class="cell" data-hash="3-dplyr_cache/html/unnamed-chunk-9_a18c53b53c94bcb4cdd35eb43f4d2058">
 <div class="cell-output-display">
 <table data-quarto-postprocess="true">
 <thead>
@@ -823,14 +822,14 @@
 <ul>
 <li>Finding summary statistics of a metric</li>
 </ul>
-<div class="cell" data-hash="3-dplyr_cache/html/unnamed-chunk-10_7835ac43fb6d273cbbafa6d8d564804a">
+<div class="cell" data-hash="3-dplyr_cache/html/unnamed-chunk-10_f421fe4c9ac654d3736f031b7b2cb2dd">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="co">#na.rm - remove NAs from calculation</span></span>
 <span id="cb9-2"><a href="#cb9-2"></a></span>
 <span id="cb9-3"><a href="#cb9-3"></a>pitch <span class="sc">%&gt;%</span></span>
 <span id="cb9-4"><a href="#cb9-4"></a>    <span class="fu">summarise</span>(<span class="at">mean_spinrate =</span> <span class="fu">mean</span>(spin_rate, <span class="at">na.rm=</span><span class="cn">TRUE</span>), </span>
 <span id="cb9-5"><a href="#cb9-5"></a>              <span class="at">sd_spinrate =</span> <span class="fu">sd</span>(spin_rate, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-hash="3-dplyr_cache/html/unnamed-chunk-11_803d3e5ae2f346180b5d21035f857886">
+<div class="cell" data-hash="3-dplyr_cache/html/unnamed-chunk-11_e7968ac1f8d17ffbb082d657ae1ed944">
 <div class="cell-output-display">
 <table data-quarto-postprocess="true">
 <thead>
@@ -851,19 +850,19 @@
 </div>
 </div>
 </section>
-<section id="summarise-and-group_by" class="slide level2">
+<section id="summarise-and-group_by" class="slide level2 smaller">
 <h2><code>summarise</code> and <code>group_by</code></h2>
 <ul>
 <li>Finding summary statistics of a metric after accounting first for other variables</li>
 </ul>
-<div class="cell" data-hash="3-dplyr_cache/html/unnamed-chunk-12_c0b8059711a15e1c03ed002a6e9a59c4">
+<div class="cell" data-hash="3-dplyr_cache/html/unnamed-chunk-12_455668bd1be19b5e86ed643c77dc58a7">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>pitch <span class="sc">%&gt;%</span></span>
 <span id="cb10-2"><a href="#cb10-2"></a>    <span class="fu">group_by</span>(playerid) <span class="sc">%&gt;%</span></span>
 <span id="cb10-3"><a href="#cb10-3"></a>    <span class="fu">summarise</span>(<span class="at">mean_spinrate =</span> <span class="fu">mean</span>(spin_rate, <span class="at">na.rm=</span><span class="cn">TRUE</span>), </span>
 <span id="cb10-4"><a href="#cb10-4"></a>              <span class="at">sd_spinrate =</span> <span class="fu">sd</span>(spin_rate, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span> </span>
 <span id="cb10-5"><a href="#cb10-5"></a>  <span class="fu">head</span>(<span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-hash="3-dplyr_cache/html/unnamed-chunk-13_f3ebffb5fa9cf60e6f32cfe2bbcf7121">
+<div class="cell" data-hash="3-dplyr_cache/html/unnamed-chunk-13_2ba8457edd5bbf75dde7740e69e980c3">
 <div class="cell-output-display">
 <table data-quarto-postprocess="true">
 <thead>
@@ -916,7 +915,7 @@
 </section>
 <section id="a-solution" class="slide level2">
 <h2>A Solution</h2>
-<div class="cell" data-hash="3-dplyr_cache/html/unnamed-chunk-14_857e40da9918ccb7d27a08eca78948dd">
+<div class="cell" data-hash="3-dplyr_cache/html/unnamed-chunk-14_5de684ac4c7f2f615539a4a3b149e050">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>pitch <span class="sc">%&gt;%</span></span>
 <span id="cb11-2"><a href="#cb11-2"></a>  <span class="fu">select</span>(playerid, spin_rate, action_result) <span class="sc">%&gt;%</span></span>
 <span id="cb11-3"><a href="#cb11-3"></a>    <span class="fu">group_by</span>(playerid, action_result) <span class="sc">%&gt;%</span></span>
@@ -937,7 +936,7 @@
 </section>
 <section id="mutate-example" class="slide level2">
 <h2><code>mutate</code> Example</h2>
-<div class="cell" data-hash="3-dplyr_cache/html/unnamed-chunk-15_4dab0224092c3c9e1008a258269b970d">
+<div class="cell" data-hash="3-dplyr_cache/html/unnamed-chunk-15_d23f21e3072e5571dfbce3bdcbf18624">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>pitch <span class="sc">%&gt;%</span></span>
 <span id="cb12-2"><a href="#cb12-2"></a>    <span class="fu">select</span>(playerid, spin_rate, action_result) <span class="sc">%&gt;%</span></span>
 <span id="cb12-3"><a href="#cb12-3"></a>    <span class="fu">group_by</span>(playerid, action_result) <span class="sc">%&gt;%</span></span>
@@ -967,7 +966,7 @@
 <li><p>Consider rewriting the handedness of our pitchers.</p></li>
 <li><p>If the pitcher_hand is R write “Right” if not, “Left”</p></li>
 </ul>
-<div class="cell" data-hash="3-dplyr_cache/html/unnamed-chunk-16_e7408224c7e7fa6a60dd83f237f4b460">
+<div class="cell" data-hash="3-dplyr_cache/html/unnamed-chunk-16_e10699add4ead1c3656eb2abc8ad3b73">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>pitch <span class="sc">%&gt;%</span> </span>
 <span id="cb14-2"><a href="#cb14-2"></a>  <span class="fu">select</span>(pitcher_hand) <span class="sc">%&gt;%</span> </span>
 <span id="cb14-3"><a href="#cb14-3"></a>  <span class="fu">mutate</span>(<span class="at">Handedness =</span> <span class="fu">ifelse</span>(pitcher_hand <span class="sc">==</span> <span class="st">"R"</span>, <span class="st">"Right"</span>, <span class="st">"Left"</span>)) <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -987,7 +986,7 @@
 <section id="caution-with-pipe-operator" class="slide level2">
 <h2>Caution with pipe operator</h2>
 <p>Why does <code>pitch$mean_spin</code> not return a real-valued summary??</p>
-<div class="cell" data-hash="3-dplyr_cache/html/unnamed-chunk-17_a4769c6db0987b798832384473b83ed2">
+<div class="cell" data-hash="3-dplyr_cache/html/unnamed-chunk-17_3b8d190b22a043ae869185c60c166586">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a>pitch<span class="sc">$</span>mean_spin</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>NULL</code></pre>
@@ -1008,11 +1007,11 @@
 <li><p>It has not been created globally into the dataset itself</p></li>
 <li><p>To do this, you need to create your new column by declaring it as its own variable.</p></li>
 </ul>
-<div class="cell" data-hash="3-dplyr_cache/html/unnamed-chunk-18_389036a406d88542f53e24a952a96c06">
+<div class="cell" data-hash="3-dplyr_cache/html/unnamed-chunk-18_514313bbcbc0a9544187a11c5bf2f00a">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a>pitch<span class="sc">$</span>mean_spin <span class="ot">&lt;-</span> <span class="fu">mean</span>(pitch<span class="sc">$</span>spin_rate)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="mutate-or-summarize" class="slide level2">
+<section id="mutate-or-summarize" class="slide level2 smaller">
 <h2><code>mutate</code> OR <code>summarize</code>?</h2>
 <p>Both commands introduce new variables - so which one should we use?</p>
 <div class="columns">
@@ -1036,12 +1035,12 @@
 <section id="shortcuts" class="slide level2">
 <h2>Shortcuts</h2>
 <p><code>summarize(n = n())</code> is equivalent to <code>tally()</code> (Number of unique rows in dataset)</p>
-<div class="cell" data-hash="3-dplyr_cache/html/unnamed-chunk-19_9983a1d404162c3b2f8d82cbf6d353ac">
+<div class="cell" data-hash="3-dplyr_cache/html/unnamed-chunk-19_458a841714aa26b8d89bdfb5eb7c5a68">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a>pitch <span class="sc">%&gt;%</span> <span class="fu">tally</span>()</span>
 <span id="cb21-2"><a href="#cb21-2"></a>pitch <span class="sc">%&gt;%</span> <span class="fu">summarize</span>(<span class="at">n=</span><span class="fu">n</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Number of unique observations in each group</p>
-<div class="cell" data-hash="3-dplyr_cache/html/unnamed-chunk-20_28fd6f04fc335dba6c0cd87921dc06bd">
+<div class="cell" data-hash="3-dplyr_cache/html/unnamed-chunk-20_2a0c0152fd89ffb486b1dcfbf94d6c96">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a>pitch <span class="sc">%&gt;%</span> <span class="fu">count</span>(playerid, action_result)</span>
 <span id="cb22-2"><a href="#cb22-2"></a>pitch <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(playerid, action_result) <span class="sc">%&gt;%</span> <span class="fu">summarize</span>(<span class="at">n=</span><span class="fu">n</span>())</span>
 <span id="cb22-3"><a href="#cb22-3"></a>pitch <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(playerid, action_result) <span class="sc">%&gt;%</span> <span class="fu">tally</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1058,7 +1057,7 @@
 <h2>One Solution</h2>
 <p>Consider a success as any strike (S), catch (C), and foul ball (F)</p>
 <!--and any batted ball resulting in a "adj_h" less than the league average of .300 BABIP (according to MLB.com) -->
-<div class="cell" data-figure.width="1" data-hash="3-dplyr_cache/html/unnamed-chunk-21_8de5eade296800509303c4a4b2bccf5a">
+<div class="cell" data-figure.width="1" data-hash="3-dplyr_cache/html/unnamed-chunk-21_42e6ac09eab675df936c6446c7640825">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a>SScurve <span class="ot">&lt;-</span> pitch <span class="sc">%&gt;%</span></span>
 <span id="cb23-2"><a href="#cb23-2"></a>  <span class="fu">select</span>(<span class="st">"playerid"</span>, <span class="st">"action_result"</span>, <span class="st">"ab_result"</span>, <span class="st">"adj_h"</span>) <span class="sc">%&gt;%</span>  </span>
 <span id="cb23-3"><a href="#cb23-3"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(playerid)) <span class="sc">%&gt;%</span> </span>
@@ -1068,7 +1067,7 @@
 <span id="cb23-7"><a href="#cb23-7"></a>  <span class="fu">mutate</span>(<span class="at">totalSSCU=</span><span class="fu">sum</span>(successfulCU)) <span class="sc">%&gt;%</span> </span>
 <span id="cb23-8"><a href="#cb23-8"></a>  <span class="fu">mutate</span>(<span class="at">percentSSCU=</span>totalSSCU <span class="sc">/</span> <span class="fu">n</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-hash="3-dplyr_cache/html/unnamed-chunk-22_9a41349bf5ff7fd830bef4d5c5fdcbf1">
+<div class="cell" data-hash="3-dplyr_cache/html/unnamed-chunk-22_8fded7ccadba0fe983a26948c520e768">
 <div class="cell-output-display">
 <table data-quarto-postprocess="true">
 <thead>
@@ -1132,7 +1131,7 @@
 <li>Calculate successful curveball percentages</li>
 <li>Look at some graphs to see what the data actually looks like now.</li>
 </ol>
-<div class="cell" data-hash="3-dplyr_cache/html/unnamed-chunk-23_21e816a07425acb37346f3288fbfc1e4">
+<div class="cell" data-hash="3-dplyr_cache/html/unnamed-chunk-23_ab596f53b8b7cff0fb7bb251ae4045f6">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a>percentages <span class="ot">&lt;-</span> SScurve <span class="sc">%&gt;%</span> </span>
 <span id="cb24-2"><a href="#cb24-2"></a>  <span class="fu">distinct</span>(playerid, totalSSCU, percentSSCU)</span>
 <span id="cb24-3"><a href="#cb24-3"></a></span>
@@ -1145,7 +1144,7 @@
 <section id="solution-cont.-1" class="slide level2">
 <h2>Solution (cont.)</h2>
 <p>Filter down to get the best pitchers with a minimum of 50 curveballs thrown (our median)</p>
-<div class="cell" data-hash="3-dplyr_cache/html/unnamed-chunk-24_b9f403b594813a9d1e697149dcbe2612">
+<div class="cell" data-hash="3-dplyr_cache/html/unnamed-chunk-24_c3169473d7f3de84159d8d6a5fa727f6">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a>percentages <span class="sc">%&gt;%</span> </span>
 <span id="cb25-2"><a href="#cb25-2"></a>  <span class="fu">filter</span>(totalSSCU <span class="sc">&gt;</span> <span class="dv">50</span>) <span class="sc">%&gt;%</span> </span>
 <span id="cb25-3"><a href="#cb25-3"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(percentSSCU)) <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
@@ -1162,7 +1161,7 @@
 <p>four groups of chicks on different protein diets. The body weights of the chicks were measured at birth and every second day thereafter until day 20. They were also measured on day 21.</p>
 </blockquote>
 
-<img data-src="http://www.kenaifeed.com/wp-content/uploads/2015/03/chicks.jpg" class="quarto-figure-center r-stretch"></section>
+<img data-src="http://www.kenaifeed.com/wp-content/uploads/2015/03/chicks.jpg" class="r-stretch quarto-figure-center"></section>
 <section id="your-turn-3" class="slide level2 inverse">
 <h2>Your Turn</h2>
 <ol type="1">
@@ -1174,7 +1173,7 @@
 </section>
 <section id="solution---q1" class="slide level2">
 <h2>Solution - Q1</h2>
-<div class="cell" data-hash="3-dplyr_cache/html/unnamed-chunk-25_9960e9f09204e06beb476591931a7a38">
+<div class="cell" data-hash="3-dplyr_cache/html/unnamed-chunk-25_fc2a5db30de102eba9f0d67dfeefd0fb">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a>ChickWeight <span class="sc">%&gt;%</span> </span>
 <span id="cb26-2"><a href="#cb26-2"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>Time, <span class="at">y=</span>weight, <span class="at">group=</span>Chick, <span class="at">color=</span>Diet)) <span class="sc">+</span></span>
 <span id="cb26-3"><a href="#cb26-3"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span> </span>
@@ -1184,7 +1183,7 @@
 <img data-src="3-dplyr_files/figure-html/unnamed-chunk-25-1.png" width="672" class="r-stretch"></section>
 <section id="solution---q2" class="slide level2">
 <h2>Solution - Q2</h2>
-<div class="cell" data-hash="3-dplyr_cache/html/unnamed-chunk-26_4c1bf6a9248983752a5c5898b3703ecf">
+<div class="cell" data-hash="3-dplyr_cache/html/unnamed-chunk-26_6558b638a5a2c23073d7052b8df93513">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a>ChickWeight <span class="sc">%&gt;%</span>   </span>
 <span id="cb27-2"><a href="#cb27-2"></a>  <span class="fu">filter</span>(Time<span class="sc">==</span><span class="dv">21</span>) <span class="sc">%&gt;%</span> </span>
 <span id="cb27-3"><a href="#cb27-3"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>Diet)) <span class="sc">+</span></span>
@@ -1195,7 +1194,7 @@
 <section id="solution---q3" class="slide level2">
 <h2>Solution - Q3</h2>
 <p>First, we need a separate dataset for the summary statistics:</p>
-<div class="cell" data-hash="3-dplyr_cache/html/unnamed-chunk-27_5876bbc646fbc9c63007f32775ebed9e">
+<div class="cell" data-hash="3-dplyr_cache/html/unnamed-chunk-27_7366e84c72d611202297487625e4ec3d">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a>ChickW1 <span class="ot">&lt;-</span> ChickWeight <span class="sc">%&gt;%</span> </span>
 <span id="cb28-2"><a href="#cb28-2"></a>  <span class="fu">filter</span>(Time<span class="sc">==</span><span class="dv">21</span>) <span class="sc">%&gt;%</span> </span>
 <span id="cb28-3"><a href="#cb28-3"></a>  <span class="fu">group_by</span>(Diet) <span class="sc">%&gt;%</span> </span>
@@ -1205,7 +1204,7 @@
 </section>
 <section id="solution---q3-cont" class="slide level2">
 <h2>Solution - Q3 (cont)</h2>
-<div class="cell" data-hash="3-dplyr_cache/html/unnamed-chunk-28_e3158ba1ff44414b9fdedbfe5e630ef9">
+<div class="cell" data-hash="3-dplyr_cache/html/unnamed-chunk-28_17b490a635373b9ef7fa895d755ae275">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a>ChickWeight <span class="sc">%&gt;%</span> </span>
 <span id="cb29-2"><a href="#cb29-2"></a>  <span class="fu">filter</span>(Time<span class="sc">==</span><span class="dv">21</span>) <span class="sc">%&gt;%</span> </span>
 <span id="cb29-3"><a href="#cb29-3"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>Diet)) <span class="sc">+</span></span>
@@ -1221,12 +1220,12 @@
 <section id="mutate-is-incredibly-flexible" class="slide level2">
 <h2><code>Mutate</code> is incredibly flexible</h2>
 <p>Consider a new variable <code>gain</code>, which gives the increase in weight of a chick since birth</p>
-<div class="cell" data-hash="3-dplyr_cache/html/unnamed-chunk-29_b796e75f33ba49a237930f302121f734">
+<div class="cell" data-hash="3-dplyr_cache/html/unnamed-chunk-29_4df950422610d53a43724f142122a39e">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a>ChickPlus <span class="ot">&lt;-</span> ChickWeight <span class="sc">%&gt;%</span> </span>
 <span id="cb30-2"><a href="#cb30-2"></a>  <span class="fu">group_by</span>(Chick) <span class="sc">%&gt;%</span> </span>
 <span id="cb30-3"><a href="#cb30-3"></a>  <span class="fu">mutate</span>(<span class="at">gain =</span> weight <span class="sc">-</span> weight[Time <span class="sc">==</span> <span class="dv">0</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-hash="3-dplyr_cache/html/unnamed-chunk-30_1a2da915a54fbe962ec844659c3ddd05">
+<div class="cell" data-hash="3-dplyr_cache/html/unnamed-chunk-30_f293b5e46b89153a2dfa5431a541b9ce">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a>ChickPlus <span class="sc">%&gt;%</span> </span>
 <span id="cb31-2"><a href="#cb31-2"></a>  <span class="fu">filter</span>(Chick <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span> </span>
 <span id="cb31-3"><a href="#cb31-3"></a>  <span class="fu">select</span>(<span class="sc">-</span>Diet) <span class="sc">%&gt;%</span> </span>
@@ -1244,7 +1243,7 @@ $ gain   &lt;dbl&gt; 0, 9, 17, 22, 34, 51, 64, 83, 107, 129, 157, 163</code></pr
 </section>
 <section id="plotting-weight-gain" class="slide level2">
 <h2>Plotting weight gain</h2>
-<div class="cell" data-hash="3-dplyr_cache/html/unnamed-chunk-31_8285c89e11007b47103e969dfb73f107">
+<div class="cell" data-hash="3-dplyr_cache/html/unnamed-chunk-31_47ed8298da4270e106bfaf2fc5e706a7">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a>ChickPlus <span class="sc">%&gt;%</span> </span>
 <span id="cb33-2"><a href="#cb33-2"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Time, <span class="at">y =</span> gain, <span class="at">group =</span> Chick)) <span class="sc">+</span> </span>
 <span id="cb33-3"><a href="#cb33-3"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">color=</span>Diet)) <span class="sc">+</span></span>
@@ -1261,7 +1260,7 @@ $ gain   &lt;dbl&gt; 0, 9, 17, 22, 34, 51, 64, 83, 107, 129, 157, 163</code></pr
 </ul>
 
 
-<img data-src="images/dplyr.png" class="quarto-figure-center r-stretch"><div class="footer footer-default">
+<img data-src="images/dplyr.png" class="r-stretch quarto-figure-center"><div class="footer footer-default">
 <p><a href="../../index.html">UNL R Workshops</a></p>
 </div>
 </section>
@@ -1291,6 +1290,7 @@ $ gain   &lt;dbl&gt; 0, 9, 17, 22, 34, 51, 64, 83, 107, 129, 157, 163</code></pr
       Reveal.initialize({
 'controlsAuto': true,
 'previewLinksAuto': false,
+'smaller': false,
 'pdfSeparateFragments': false,
 'autoAnimateEasing': "ease",
 'autoAnimateDuration': 1,
@@ -1551,9 +1551,10 @@ $ gain   &lt;dbl&gt; 0, 9, 17, 22, 34, 51, 64, 83, 107, 129, 157, 163</code></pr
         // clear code selection
         e.clearSelection();
       });
-      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      function tippyHover(el, contentFn) {
         const config = {
           allowHTML: true,
+          content: contentFn,
           maxWidth: 500,
           delay: 100,
           arrow: false,
@@ -1563,17 +1564,8 @@ $ gain   &lt;dbl&gt; 0, 9, 17, 22, 34, 51, 64, 83, 107, 129, 157, 163</code></pr
           interactive: true,
           interactiveBorder: 10,
           theme: 'light-border',
-          placement: 'bottom-start',
+          placement: 'bottom-start'
         };
-        if (contentFn) {
-          config.content = contentFn;
-        }
-        if (onTriggerFn) {
-          config.onTrigger = onTriggerFn;
-        }
-        if (onUntriggerFn) {
-          config.onUntrigger = onUntriggerFn;
-        }
           config['offset'] = [0,0];
           config['maxWidth'] = 700;
         window.tippy(el, config); 

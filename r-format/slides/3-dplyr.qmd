@@ -46,13 +46,10 @@ Syntax (Pipe dataframe as input into the dplyr function):
 dataframe %>% dplyr_function()
 ```
 
-![]()
+![Pipe Example, by [Sharp Sight Labs](https://www.sharpsightlabs.com/blog/dplyr-quick-introduction/)](images/pipe_usage.png){width="480px"}
 
-.center\[ <img src="images/pipe_usage.png" style="width:580px;"/>
 
-Pipe Example, by [Sharp Sight Labs](https://www.sharpsightlabs.com/blog/dplyr-quick-introduction/) \]
-
-## The pipe operator `%>%`
+## The pipe operator `%>%` {.smaller}
 
 `f(x) %>% g(y)` is equivalent to `g(f(x),y)`
 
@@ -65,7 +62,7 @@ Consequences:
 -   read `%>%` as "then do"
 -   in non-mathematical terms, the piping operator allows you to apply more than one different function at the same time to the same data frame.
 
-## Filter
+## Filter {.smaller}
 
 Read in the pitch data set. The data are from an experiment on different advanced metrics of MLB baseball pitchers different pitch types.
 
@@ -96,11 +93,15 @@ pitch[-1] %>%
 
 Multiple conditions in `filter` are combined with a logical AND (i.e. all conditions must be fulfilled)
 
-e.g. `filter(pitcher_hand == "R", pitch_type == "CU")`
+e.g. 
+
+`filter(pitcher_hand == "R", pitch_type == "CU")`
 
 Logical expressions can also be used
 
-e.g. `filter(pitcher_hand == "R" &  pitch_type == "CU")` or `filter(pitch_type == "CU" | subject == "KN")`
+e.g. 
+
+`filter(pitcher_hand == "R" &  pitch_type == "CU")` or `filter(pitch_type == "CU" | subject == "KN")`
 
 ## Your Turn (\~3 minutes) {.inverse}
 
@@ -165,7 +166,7 @@ pitch %>%
 
 Hint: Use the entire data set
 
-## Solution
+## Solution {.smaller}
 
 ```{r purl=FALSE, echo=TRUE, eval = FALSE}
 pitch[-1] %>% 
@@ -191,7 +192,7 @@ pitch[-1] %>%
   slice(1:5) %>% knitr::kable(format = "html")
 ```
 
-## Select
+## Select {.smaller}
 
 -   Using Select we are easily able to create a subset of our data. This is similar to the subset function in base.
 
@@ -233,7 +234,7 @@ pitch %>%
 
 ```
 
-## `summarise` and `group_by`
+## `summarise` and `group_by` {.smaller}
 
 -   Finding summary statistics of a metric after accounting first for other variables
 
@@ -340,7 +341,7 @@ colnames(pitch[,-1])
 pitch$mean_spin <- mean(pitch$spin_rate)
 ```
 
-## `mutate` OR `summarize`?
+## `mutate` OR `summarize`? {.smaller}
 
 Both commands introduce new variables - so which one should we use?
 

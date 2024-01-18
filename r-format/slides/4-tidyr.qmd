@@ -42,8 +42,8 @@ data(french_fries, package="reshape2")
 
 There are different ways of encoding the same information:
 
-::: columns
-::: column
+:::: {.columns}
+::: {.column}
 **Option 1:**
 <style type="text/css">
 .tg  {border-collapse:collapse;border-spacing:0;border-color:#aaa;}
@@ -109,7 +109,8 @@ There are different ways of encoding the same information:
 </table>
 
 :::
-::: column
+
+::: {.column}
 **Option 3:**
 
 <style type="text/css">
@@ -158,6 +159,7 @@ There are different ways of encoding the same information:
   </tr>
 </table>
 :::
+::::
 
 ::: notes
 
@@ -183,7 +185,7 @@ Neither #1 nor #2 are "clean" versions of the data: observed information is part
 
 
 
-## What we have and what we want
+## What we have and what we want {.scrollable}
 
 ::: columns
 ::: column
@@ -387,7 +389,7 @@ One way of telling whether a data set is tidy is to check that all keys for a va
 ## Let's ask for help...
 ![[Pivot Monsters](https://rladiessydney.org/courses/ryouwithme/02-cleanitup-5/) drawing by Allison Horst & adjusted by R ladies Sydney](images/pivot_monsters.png){width="720px"}
 
-## Tidying data - Plan of attack
+## Tidying data - Plan of attack {.smaller}
 
 **Messy (1)**: `tidyr` functions:
 
@@ -608,7 +610,7 @@ Assess the 'messiness' of the data. List issues that prevent us from working wit
 
 - expenditure amount is a textual expression, not a number (Messy different)
 
-no Messy 1? - problems of type Messy 1 are typically hard to detect and often up to interpretation/dependent on the analysis to be done.
+No Messy 1? - problems of type Messy 1 are typically hard to detect and often up to interpretation/dependent on the analysis to be done.
 
 ![](https://media.giphy.com/media/QSdauORwsTtSM/giphy.gif){fig-align="center"}
 
