@@ -174,8 +174,8 @@ head(french_fries_long) %>% knitr::kable(row.names = F)%>%
 
 
 ## ----preg, echo = T, eval = T-------------------------------------------------
-preg <- tibble(pregnant = c("yes", "no"),
-               male = c(NA, 10),
-               female = c(20, 12))
-preg
+experiment <- tibble(outcome = c("success", "failure"),
+               dog = c(15, 10),
+               cat = c(20, 12))
+experiment
 
