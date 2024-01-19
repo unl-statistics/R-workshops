@@ -8,7 +8,7 @@
 <link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
 <link href="../../site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.4.489">
+  <meta name="generator" content="quarto-1.4.540">
 
   <title>UNL R Workshops - Basic Statistical Tests</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -488,7 +488,7 @@
 <section id="what-is-a-confidence-interval" class="slide level2">
 <h2>What is a confidence interval?</h2>
 
-<img data-src="images/confidence-interval-best-est-uncertainty.png" style="width:40.0%" class="r-stretch quarto-figure-center"><p class="caption">Confidence intervals are a range of values around the central estimate obtained from the sample data.</p><p><span class="small">Image source: <a href="https://srvanderplas.github.io/UNL-extension-APL/experimental-design-and-statistical-analysis.html#the-logic-of-statistical-hypothesis-testing">Susan VanderPlas UNL Extension</a></span></p>
+<img data-src="images/confidence-interval-best-est-uncertainty.png" class="quarto-figure quarto-figure-center r-stretch" style="width:40.0%"><p class="caption">Confidence intervals are a range of values around the central estimate obtained from the sample data.</p><p><span class="small">Image source: <a href="https://srvanderplas.github.io/UNL-extension-APL/experimental-design-and-statistical-analysis.html#the-logic-of-statistical-hypothesis-testing">Susan VanderPlas UNL Extension</a></span></p>
 <aside class="notes">
 <p>Sometimes, we don’t want to test whether a parameter is equal to a specific value - instead, we might want to know what that value is (or at least, a range of possible values for that parameter).</p>
 <p>In this case, we construct a confidence interval - a set of plausible values for the parameter.</p>
@@ -508,8 +508,8 @@
 </section>
 <section id="penguins-data" class="slide level2">
 <h2>Penguins Data</h2>
-<div class="cell" data-hash="2-BasicStatisticalTests_cache/revealjs/penguins-data_4b1047567e654b9b50be8d880f05a36c">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">data</span>(penguins, <span class="at">package =</span> <span class="st">"palmerpenguins"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">data</span>(penguins, <span class="at">package =</span> <span class="st">"palmerpenguins"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 <img data-src="images/palmer-penguins.png" class="r-stretch"></section>
@@ -519,7 +519,7 @@
 <div class="columns">
 <div class="column">
 <p><strong>Data</strong></p>
-<div class="cell" data-hash="2-BasicStatisticalTests_cache/revealjs/penguins-ttest-data_446b998f8c0c1fda326fcb131b1cc67f">
+<div class="cell">
 <div class="cell-output-display">
 <table class="table" data-quarto-postprocess="true" style="font-size: 25px; margin-left: auto; margin-right: auto;">
 <thead>
@@ -548,7 +548,7 @@
 </div>
 </div>
 <p><strong>Numerical Summary</strong></p>
-<div class="cell" data-hash="2-BasicStatisticalTests_cache/revealjs/penguins-ttest-summary_99481ba23af546e176341df9e8617753">
+<div class="cell">
 <div class="cell-output-display">
 <table class="table" data-quarto-postprocess="true" style="font-size: 25px; margin-left: auto; margin-right: auto;">
 <thead>
@@ -577,9 +577,13 @@
 </div>
 </div><div class="column">
 <p><strong>Graphical Summary</strong></p>
-<div class="cell" data-hash="2-BasicStatisticalTests_cache/revealjs/penguins-ttest-boxplot_85a4aae7915afc6a286824044da87abb">
+<div class="cell">
 <div class="cell-output-display">
-<p><img data-src="2-BasicStatisticalTests_files/figure-revealjs/penguins-ttest-boxplot-1.png" width="576"></p>
+<div>
+<figure>
+<p><img data-src="2-BasicStatisticalTests_files/figure-html/penguins-ttest-boxplot-1.png" width="576"></p>
+</figure>
+</div>
 </div>
 </div>
 </div>
@@ -587,15 +591,15 @@
 </section>
 <section id="two-sample-t-test" class="slide level2 smaller">
 <h2>Two-sample t-test</h2>
-<div class="cell" data-hash="2-BasicStatisticalTests_cache/revealjs/ttest-echo_5cf147a448a77f5c2d217abe8da89402">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">help</span>(t.test)</span>
-<span id="cb2-2"><a href="#cb2-2"></a><span class="fu">t.test</span>(y <span class="sc">~</span> x, </span>
-<span id="cb2-3"><a href="#cb2-3"></a>       <span class="at">data =</span> data_name,</span>
-<span id="cb2-4"><a href="#cb2-4"></a>       <span class="at">alternative =</span> “two.sided”, </span>
-<span id="cb2-5"><a href="#cb2-5"></a>       <span class="at">mu =</span> <span class="dv">0</span>, </span>
-<span id="cb2-6"><a href="#cb2-6"></a>       <span class="at">paired =</span> <span class="cn">FALSE</span>, </span>
-<span id="cb2-7"><a href="#cb2-7"></a>       <span class="at">var.equal =</span> <span class="cn">FALSE</span>, </span>
-<span id="cb2-8"><a href="#cb2-8"></a>       <span class="at">conf.level =</span> <span class="fl">0.95</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a><span class="fu">help</span>(t.test)</span>
+<span id="cb2-2"><a></a><span class="fu">t.test</span>(y <span class="sc">~</span> x, </span>
+<span id="cb2-3"><a></a>       <span class="at">data =</span> data_name,</span>
+<span id="cb2-4"><a></a>       <span class="at">alternative =</span> “two.sided”, </span>
+<span id="cb2-5"><a></a>       <span class="at">mu =</span> <span class="dv">0</span>, </span>
+<span id="cb2-6"><a></a>       <span class="at">paired =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb2-7"><a></a>       <span class="at">var.equal =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb2-8"><a></a>       <span class="at">conf.level =</span> <span class="fl">0.95</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li><strong>y:</strong> The variable name of the quantitative response.</li>
@@ -609,9 +613,9 @@
 </ul>
 <aside class="notes">
 <p><strong>Test for equal variances</strong></p>
-<div class="cell" data-hash="2-BasicStatisticalTests_cache/revealjs/penguin, equal variance_c83dd3c24aa18385c35392ebbb9b5a1f">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">library</span>(car)</span>
-<span id="cb3-2"><a href="#cb3-2"></a><span class="fu">leveneTest</span>(penguins2<span class="sc">$</span>body_mass_g, <span class="at">group =</span> penguins2<span class="sc">$</span>sex, <span class="at">center =</span> mean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="fu">library</span>(car)</span>
+<span id="cb3-2"><a></a><span class="fu">leveneTest</span>(penguins2<span class="sc">$</span>body_mass_g, <span class="at">group =</span> penguins2<span class="sc">$</span>sex, <span class="at">center =</span> mean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Levene's Test for Homogeneity of Variance (center = mean)
        Df F value   Pr(&gt;F)   
@@ -639,11 +643,11 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <li><em>Null:</em> the mean body mass for female penguins is equal to the mean body mass for male penguins (female - male <span class="math inline">\(= 0\)</span>)</li>
 <li><em>Alternative:</em> the mean body mass for female penguins is <strong>not</strong> equal to the mean body mass for male penguins (female - male <span class="math inline">\(\ne 0\)</span>)</li>
 </ul>
-<div class="cell" data-hash="2-BasicStatisticalTests_cache/revealjs/penguins-ttest-echo_bcbeeac532c53a5d373f3801324ec1c2">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>penguins_ttest <span class="ot">&lt;-</span> <span class="fu">t.test</span>(body_mass_g <span class="sc">~</span> sex, <span class="at">data =</span> penguins2) <span class="co">#&lt;&lt;</span></span>
-<span id="cb5-2"><a href="#cb5-2"></a>penguins_ttest</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a>penguins_ttest <span class="ot">&lt;-</span> <span class="fu">t.test</span>(body_mass_g <span class="sc">~</span> sex, <span class="at">data =</span> penguins2) <span class="co">#&lt;&lt;</span></span>
+<span id="cb5-2"><a></a>penguins_ttest</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-hash="2-BasicStatisticalTests_cache/revealjs/penguins-ttest_e34e9349035067aef402c99ae3ba3957">
+<div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Welch Two Sample t-test
@@ -662,19 +666,19 @@ mean in group female   mean in group male
 <section id="two-sample-independent-t-test-table-results" class="slide level2 smaller">
 <h2>Two-sample independent t-test (table results)</h2>
 <p><strong>Extract specific output</strong></p>
-<div class="cell" data-hash="2-BasicStatisticalTests_cache/revealjs/penguins-ttest-results-echo_5b414f68a0530a116ce0e7746bab73c4">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>penguins_ttest<span class="sc">$</span>statistic</span>
-<span id="cb7-2"><a href="#cb7-2"></a>penguins_ttest<span class="sc">$</span>df</span>
-<span id="cb7-3"><a href="#cb7-3"></a>penguins_ttest<span class="sc">$</span>p.value</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a>penguins_ttest<span class="sc">$</span>statistic</span>
+<span id="cb7-2"><a></a>penguins_ttest<span class="sc">$</span>df</span>
+<span id="cb7-3"><a></a>penguins_ttest<span class="sc">$</span>p.value</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><strong>Summarize results with <code>library(broom)</code></strong></p>
-<div class="cell" data-hash="2-BasicStatisticalTests_cache/revealjs/penguins-ttest-broom-echo_f7605763b1033a1e56b7498164f16ecd">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">install.packages</span>(<span class="st">"broom"</span>)</span>
-<span id="cb8-2"><a href="#cb8-2"></a><span class="fu">library</span>(broom)</span>
-<span id="cb8-3"><a href="#cb8-3"></a>penguins_results <span class="ot">&lt;-</span> <span class="fu">tidy</span>(penguins_ttest) <span class="co">#&lt;&lt;</span></span>
-<span id="cb8-4"><a href="#cb8-4"></a>penguins_results</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a><span class="fu">install.packages</span>(<span class="st">"broom"</span>)</span>
+<span id="cb8-2"><a></a><span class="fu">library</span>(broom)</span>
+<span id="cb8-3"><a></a>penguins_results <span class="ot">&lt;-</span> <span class="fu">tidy</span>(penguins_ttest) <span class="co">#&lt;&lt;</span></span>
+<span id="cb8-4"><a></a>penguins_results</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-hash="2-BasicStatisticalTests_cache/revealjs/penguins-ttest-broom_06956e1ee211db73ac54cad85010dc83">
+<div class="cell">
 <div class="cell-output-display">
 <div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:100%;  font-size: 25px; margin-left: auto; margin-right: auto;" class="table">
 <table class="table table-striped" data-quarto-postprocess="true" style="margin-left: auto; margin-right: auto;">
@@ -714,18 +718,18 @@ mean in group female   mean in group male
 </section>
 <section id="two-sample-independent-t-test-graphical-results" class="slide level2">
 <h2>Two-sample independent t-test (graphical results)</h2>
-<div class="cell" data-layout-align="center" data-hash="2-BasicStatisticalTests_cache/revealjs/penguins-ttest-graph-results-echo_c32d8e854f509e8cb171b3285f04e036">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="fu">ggplot</span>(penguins_results, <span class="fu">aes</span>(<span class="at">x =</span> <span class="cn">NA</span>, <span class="at">y =</span> estimate)) <span class="sc">+</span></span>
-<span id="cb9-2"><a href="#cb9-2"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb9-3"><a href="#cb9-3"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> conf.low, <span class="at">ymax =</span> conf.high), <span class="at">width =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
-<span id="cb9-4"><a href="#cb9-4"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
-<span id="cb9-5"><a href="#cb9-5"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb9-6"><a href="#cb9-6"></a>  <span class="fu">theme</span>(<span class="at">aspect.ratio =</span> <span class="fl">0.5</span>, <span class="at">axis.text.y =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span></span>
-<span id="cb9-7"><a href="#cb9-7"></a>  <span class="fu">xlab</span>(<span class="st">""</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">"Difference in Body Mass </span><span class="sc">\n</span><span class="st"> (Female - Male)"</span>) <span class="sc">+</span></span>
-<span id="cb9-8"><a href="#cb9-8"></a>  <span class="fu">coord_flip</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a><span class="fu">ggplot</span>(penguins_results, <span class="fu">aes</span>(<span class="at">x =</span> <span class="cn">NA</span>, <span class="at">y =</span> estimate)) <span class="sc">+</span></span>
+<span id="cb9-2"><a></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb9-3"><a></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> conf.low, <span class="at">ymax =</span> conf.high), <span class="at">width =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb9-4"><a></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
+<span id="cb9-5"><a></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb9-6"><a></a>  <span class="fu">theme</span>(<span class="at">aspect.ratio =</span> <span class="fl">0.5</span>, <span class="at">axis.text.y =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span></span>
+<span id="cb9-7"><a></a>  <span class="fu">xlab</span>(<span class="st">""</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">"Difference in Body Mass </span><span class="sc">\n</span><span class="st"> (Female - Male)"</span>) <span class="sc">+</span></span>
+<span id="cb9-8"><a></a>  <span class="fu">coord_flip</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
-<img data-src="2-BasicStatisticalTests_files/figure-revealjs/penguins-ttest-graph-results-1.png" class="quarto-figure-center r-stretch" width="768"></section>
+<img data-src="2-BasicStatisticalTests_files/figure-html/penguins-ttest-graph-results-1.png" class="quarto-figure quarto-figure-center r-stretch" width="768"></section>
 <section id="your-turn" class="slide level2 inverse">
 <h2>Your Turn</h2>
 <ul>
@@ -742,22 +746,22 @@ mean in group female   mean in group male
 <ul>
 <li>What if you wanted the difference to be male - female?</li>
 </ul>
-<div class="cell" data-hash="2-BasicStatisticalTests_cache/revealjs/penguins-ttest-yourturn1-echo1_b68cbb11a309247401a724c4c6d6aa3e">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="fu">levels</span>(penguins2<span class="sc">$</span>sex)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a><span class="fu">levels</span>(penguins2<span class="sc">$</span>sex)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "female" "male"  </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>penguins2<span class="sc">$</span>sex <span class="ot">&lt;-</span> <span class="fu">relevel</span>(penguins2<span class="sc">$</span>sex, <span class="at">ref =</span> <span class="st">"male"</span>) <span class="co">#&lt;&lt;</span></span>
-<span id="cb12-2"><a href="#cb12-2"></a><span class="fu">levels</span>(penguins2<span class="sc">$</span>sex)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a>penguins2<span class="sc">$</span>sex <span class="ot">&lt;-</span> <span class="fu">relevel</span>(penguins2<span class="sc">$</span>sex, <span class="at">ref =</span> <span class="st">"male"</span>) <span class="co">#&lt;&lt;</span></span>
+<span id="cb12-2"><a></a><span class="fu">levels</span>(penguins2<span class="sc">$</span>sex)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "male"   "female"</code></pre>
 </div>
 </div>
-<div class="cell" data-hash="2-BasicStatisticalTests_cache/revealjs/penguins-ttest-yourturn1-echo2_a9d20b7c1df3d5e90174a5271289c23b">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>penguins_ttest2 <span class="ot">&lt;-</span> <span class="fu">t.test</span>(body_mass_g <span class="sc">~</span> sex, <span class="at">data =</span> penguins2)</span>
-<span id="cb14-2"><a href="#cb14-2"></a>penguins_ttest2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a>penguins_ttest2 <span class="ot">&lt;-</span> <span class="fu">t.test</span>(body_mass_g <span class="sc">~</span> sex, <span class="at">data =</span> penguins2)</span>
+<span id="cb14-2"><a></a>penguins_ttest2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-hash="2-BasicStatisticalTests_cache/revealjs/penguins-ttest-yourturn1_8d3badc73d405fe54d18c104a4c30510">
+<div class="cell">
 <div class="cell-output-display">
 <div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:100%; ">
 <table class="table table-striped" data-quarto-postprocess="true" style="font-size: 25px; margin-left: auto; margin-right: auto;">
@@ -804,7 +808,7 @@ mean in group female   mean in group male
 <li>How about your confidence interval?</li>
 </ul></li>
 </ul>
-<div class="cell" data-hash="2-BasicStatisticalTests_cache/revealjs/penguins-ttest-yourturn-echo1_ef9d28c5574d5c40c90d9c4c8965ddec">
+<div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 4.793891e-16</code></pre>
 </div>
@@ -814,14 +818,14 @@ attr(,"conf.level")
 [1] 0.95</code></pre>
 </div>
 </div>
-<div class="cell" data-hash="2-BasicStatisticalTests_cache/revealjs/penguins-ttest-yourturn2-echo2_7ba80793d44a1d1d40b9a6dfbd74f204">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>penguins_ttest3 <span class="ot">&lt;-</span> <span class="fu">t.test</span>(body_mass_g <span class="sc">~</span> sex, </span>
-<span id="cb17-2"><a href="#cb17-2"></a>                          <span class="at">data =</span> penguins2, </span>
-<span id="cb17-3"><a href="#cb17-3"></a>                          <span class="at">conf.level =</span> <span class="fl">0.9</span>) <span class="co">#&lt;&lt;</span></span>
-<span id="cb17-4"><a href="#cb17-4"></a>penguins_ttest3<span class="sc">$</span>p.value</span>
-<span id="cb17-5"><a href="#cb17-5"></a>penguins_ttest3<span class="sc">$</span>conf.int</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a>penguins_ttest3 <span class="ot">&lt;-</span> <span class="fu">t.test</span>(body_mass_g <span class="sc">~</span> sex, </span>
+<span id="cb17-2"><a></a>                          <span class="at">data =</span> penguins2, </span>
+<span id="cb17-3"><a></a>                          <span class="at">conf.level =</span> <span class="fl">0.9</span>) <span class="co">#&lt;&lt;</span></span>
+<span id="cb17-4"><a></a>penguins_ttest3<span class="sc">$</span>p.value</span>
+<span id="cb17-5"><a></a>penguins_ttest3<span class="sc">$</span>conf.int</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-hash="2-BasicStatisticalTests_cache/revealjs/penguins-ttest-yourturn2_f1b861243fa758f7635cc284ffea7d1d">
+<div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 4.793891e-16</code></pre>
 </div>
@@ -838,7 +842,7 @@ attr(,"conf.level")
 <div class="columns">
 <div class="column">
 <p><strong>Data</strong></p>
-<div class="cell" data-hash="2-BasicStatisticalTests_cache/revealjs/penguins-chisq-data_62c6668c232cc1f85990c5de03219ad3">
+<div class="cell">
 <div class="cell-output-display">
 <table data-quarto-postprocess="true">
 <thead>
@@ -867,7 +871,7 @@ attr(,"conf.level")
 </div>
 </div>
 <p><br> <br> <strong>Numerical Summary</strong></p>
-<div class="cell" data-hash="2-BasicStatisticalTests_cache/revealjs/penguins-chisq-summary_3a9509d54e41717d9fff3d16e6edc91a">
+<div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>           species
 island      Adelie Chinstrap Gentoo
@@ -878,9 +882,13 @@ island      Adelie Chinstrap Gentoo
 </div>
 </div><div class="column">
 <p><strong>Graphical Summary</strong></p>
-<div class="cell" data-hash="2-BasicStatisticalTests_cache/revealjs/penguins-chisq-mosaicplot_ef3ad1869eea587648494a3ff87af73c">
+<div class="cell">
 <div class="cell-output-display">
-<p><img data-src="2-BasicStatisticalTests_files/figure-revealjs/penguins-chisq-mosaicplot-1.png" width="672"></p>
+<div>
+<figure>
+<p><img data-src="2-BasicStatisticalTests_files/figure-html/penguins-chisq-mosaicplot-1.png" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 </div>
@@ -888,18 +896,18 @@ island      Adelie Chinstrap Gentoo
 </section>
 <section id="chi-square-test-of-independence-1" class="slide level2">
 <h2>Chi-square test of independence</h2>
-<div class="cell" data-hash="2-BasicStatisticalTests_cache/revealjs/chisqtest-echo_2ffe20be78bba11f11c4a9a497e61612">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="fu">help</span>(<span class="st">"chisq.test"</span>)</span>
-<span id="cb21-2"><a href="#cb21-2"></a><span class="fu">chisq.test</span>(y <span class="sc">~</span> x, </span>
-<span id="cb21-3"><a href="#cb21-3"></a>       <span class="at">data =</span> data_name,</span>
-<span id="cb21-4"><a href="#cb21-4"></a>       <span class="at">simulate.p.value =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb21-5"><a href="#cb21-5"></a>       <span class="at">B =</span> <span class="dv">2000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a></a><span class="fu">help</span>(<span class="st">"chisq.test"</span>)</span>
+<span id="cb21-2"><a></a><span class="fu">chisq.test</span>(y <span class="sc">~</span> x, </span>
+<span id="cb21-3"><a></a>       <span class="at">data =</span> data_name,</span>
+<span id="cb21-4"><a></a>       <span class="at">simulate.p.value =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb21-5"><a></a>       <span class="at">B =</span> <span class="dv">2000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="chi-square-test-of-independence-2" class="slide level2">
 <h2>Chi-square test of independence</h2>
-<div class="cell" data-hash="2-BasicStatisticalTests_cache/revealjs/penguins-chisq_1393dc6c3925d8390bbce9cdb873b3a3">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="fu">chisq.test</span>(penguins3<span class="sc">$</span>island, penguins3<span class="sc">$</span>species) <span class="co">#&lt;&lt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a></a><span class="fu">chisq.test</span>(penguins3<span class="sc">$</span>island, penguins3<span class="sc">$</span>species) <span class="co">#&lt;&lt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Pearson's Chi-squared test
@@ -907,8 +915,8 @@ island      Adelie Chinstrap Gentoo
 data:  penguins3$island and penguins3$species
 X-squared = 299.55, df = 4, p-value &lt; 2.2e-16</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a><span class="fu">chisq.test</span>(penguins3<span class="sc">$</span>island, penguins3<span class="sc">$</span>species, </span>
-<span id="cb24-2"><a href="#cb24-2"></a>           <span class="at">simulate.p.value =</span> T) <span class="co">#&lt;&lt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a></a><span class="fu">chisq.test</span>(penguins3<span class="sc">$</span>island, penguins3<span class="sc">$</span>species, </span>
+<span id="cb24-2"><a></a>           <span class="at">simulate.p.value =</span> T) <span class="co">#&lt;&lt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Pearson's Chi-squared test with simulated p-value (based on 2000
@@ -925,7 +933,7 @@ X-squared = 299.55, df = NA, p-value = 0.0004998</code></pre>
 <div class="columns">
 <div class="column">
 <p><strong>Data</strong></p>
-<div class="cell" data-hash="2-BasicStatisticalTests_cache/revealjs/penguins-regression-data_0c7d6eb8bf386c03e3f4c5ccd346e2aa">
+<div class="cell">
 <div class="cell-output-display">
 <table data-quarto-postprocess="true">
 <thead>
@@ -955,16 +963,20 @@ X-squared = 299.55, df = NA, p-value = 0.0004998</code></pre>
 </div>
 <p><br> <br> <strong>Numerical Summary</strong></p>
 <p>Pearson Correlation</p>
-<div class="cell" data-hash="2-BasicStatisticalTests_cache/revealjs/penguins-regression-summary_54ca335d066960c8dcdf9a5cba6cd383">
+<div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.8712018</code></pre>
 </div>
 </div>
 </div><div class="column">
 <p><strong>Graphical Summary</strong></p>
-<div class="cell" data-hash="2-BasicStatisticalTests_cache/revealjs/penguins-regression-scatterplot_66d8dab71bcb21fb1081a40383b0c457">
+<div class="cell">
 <div class="cell-output-display">
-<p><img data-src="2-BasicStatisticalTests_files/figure-revealjs/penguins-regression-scatterplot-1.png" width="480"></p>
+<div>
+<figure>
+<p><img data-src="2-BasicStatisticalTests_files/figure-html/penguins-regression-scatterplot-1.png" width="480"></p>
+</figure>
+</div>
 </div>
 </div>
 </div>
@@ -973,17 +985,17 @@ X-squared = 299.55, df = NA, p-value = 0.0004998</code></pre>
 <section id="simple-regression-1" class="slide level2">
 <h2>Simple Regression</h2>
 <p><span class="math display">\[y = \text{intercept} + \text{slope} \cdot x + \text{error}\]</span></p>
-<div class="cell" data-hash="2-BasicStatisticalTests_cache/revealjs/regression_2f2fb03ec1c49ce3f3a27db23d61fe2a">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a><span class="fu">help</span>(lm)</span>
-<span id="cb27-2"><a href="#cb27-2"></a>regression_mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x, <span class="at">data =</span> data_name)</span>
-<span id="cb27-3"><a href="#cb27-3"></a><span class="fu">summary</span>(regression_mod)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a></a><span class="fu">help</span>(lm)</span>
+<span id="cb27-2"><a></a>regression_mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x, <span class="at">data =</span> data_name)</span>
+<span id="cb27-3"><a></a><span class="fu">summary</span>(regression_mod)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="simple-regression-2" class="slide level2">
 <h2>Simple Regression</h2>
-<div class="cell" data-hash="2-BasicStatisticalTests_cache/revealjs/penguins-regression-mod_929777c3316c3386500e8a5ca864adbb">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a>penguins_regression <span class="ot">&lt;-</span> <span class="fu">lm</span>(body_mass_g <span class="sc">~</span> flipper_length_mm, <span class="at">data =</span> penguins4) <span class="co">#&lt;&lt;</span></span>
-<span id="cb28-2"><a href="#cb28-2"></a><span class="fu">summary</span>(penguins_regression)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a></a>penguins_regression <span class="ot">&lt;-</span> <span class="fu">lm</span>(body_mass_g <span class="sc">~</span> flipper_length_mm, <span class="at">data =</span> penguins4) <span class="co">#&lt;&lt;</span></span>
+<span id="cb28-2"><a></a><span class="fu">summary</span>(penguins_regression)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -1008,13 +1020,13 @@ F-statistic:  1071 on 1 and 340 DF,  p-value: &lt; 2.2e-16</code></pre>
 </section>
 <section id="simple-regression-evaluate-model" class="slide level2">
 <h2>Simple Regression (evaluate model)</h2>
-<div class="cell" data-layout-align="center" data-hash="2-BasicStatisticalTests_cache/revealjs/penguins-assumptions_7f65a24205196b6398ef68d952480609">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
-<span id="cb30-2"><a href="#cb30-2"></a><span class="fu">plot</span>(penguins_regression)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
+<span id="cb30-2"><a></a><span class="fu">plot</span>(penguins_regression)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<img data-src="2-BasicStatisticalTests_files/figure-revealjs/penguins-assumptions-1.png" class="quarto-figure-center r-stretch" width="576"></section>
+<img data-src="2-BasicStatisticalTests_files/figure-html/penguins-assumptions-1.png" class="quarto-figure quarto-figure-center r-stretch" width="576"></section>
 <section id="simple-regression-results" class="slide level2 smaller">
 <h2>Simple Regression (results)</h2>
 <p><span class="math display">\[y_{i} = \beta_0 + \beta_1 \cdot x_{i} + \epsilon_{i}\]</span></p>
@@ -1025,11 +1037,11 @@ F-statistic:  1071 on 1 and 340 DF,  p-value: &lt; 2.2e-16</code></pre>
 <li><span class="math inline">\(x_{i}\)</span> is the flipper length (mm) for penguin <span class="math inline">\(i = 1, ..., n\)</span></li>
 <li><span class="math inline">\(\epsilon_i\)</span> is the error for penguin <span class="math inline">\(i = 1, ..., n\)</span> where <span class="math inline">\(\epsilon \sim N(0, \sigma^2)\)</span></li>
 </ul>
-<div class="cell" data-hash="2-BasicStatisticalTests_cache/revealjs/penguins-regression-results-echo_06f5d13bffd9323b903a0959155d7ad4">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a><span class="fu">tidy</span>(penguins_regression)  <span class="sc">%&gt;%</span> </span>
-<span id="cb32-2"><a href="#cb32-2"></a>  <span class="fu">mutate</span>(<span class="at">p.value =</span> scales<span class="sc">::</span><span class="fu">pvalue</span>(p.value))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a></a><span class="fu">tidy</span>(penguins_regression)  <span class="sc">%&gt;%</span> </span>
+<span id="cb32-2"><a></a>  <span class="fu">mutate</span>(<span class="at">p.value =</span> scales<span class="sc">::</span><span class="fu">pvalue</span>(p.value))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-hash="2-BasicStatisticalTests_cache/revealjs/penguins-regression-results_ce865859ecd3c74ebc7188aaf303905e">
+<div class="cell">
 <div class="cell-output-display">
 <table data-quarto-postprocess="true">
 <thead>
@@ -1062,11 +1074,11 @@ F-statistic:  1071 on 1 and 340 DF,  p-value: &lt; 2.2e-16</code></pre>
 
 </div>
 </div>
-<p><span class="math inline">\(\text{flipper length}_{i} = -5780.83 + 49.56 \cdot \text{body mass}_{i} + \epsilon_{i}\)</span> where <span class="math inline">\(\epsilon \sim N(0, \sigma^2)\)</span></p>
+<p><span class="math inline">\(\text{body mass}_{i} = -5780.83 + 49.56 \cdot \text{flipper length}_{i} + \epsilon_{i}\)</span> where <span class="math inline">\(\epsilon \sim N(0, \sigma^2)\)</span></p>
 </section>
 <section id="simple-regression-results-1" class="slide level2 smaller">
 <h2>Simple Regression (results)</h2>
-<div class="cell" data-hash="2-BasicStatisticalTests_cache/revealjs/penguins-regression-results2_0d41f3502502b4cd29c438db5b792870">
+<div class="cell">
 <div class="cell-output-display">
 <table data-quarto-postprocess="true">
 <thead>
@@ -1108,22 +1120,24 @@ F-statistic:  1071 on 1 and 340 DF,  p-value: &lt; 2.2e-16</code></pre>
 </section>
 <section id="simple-regression-results-2" class="slide level2">
 <h2>Simple Regression (results)</h2>
-<div class="cell" data-hash="2-BasicStatisticalTests_cache/revealjs/penguins-regression-results-graph-echo_f6d0b1f5ac04d43aa2a16d2d7075c404">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a>penguins_preds <span class="ot">&lt;-</span> <span class="fu">cbind</span>(penguins4, <span class="fu">predict</span>(penguins_regression, <span class="at">interval =</span> <span class="st">'confidence'</span>)) <span class="co">#&lt;&lt;</span></span>
-<span id="cb33-2"><a href="#cb33-2"></a><span class="fu">ggplot</span>(penguins_preds, <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g)) <span class="sc">+</span></span>
-<span id="cb33-3"><a href="#cb33-3"></a>  <span class="fu">geom_point</span>(<span class="at">shape =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb33-4"><a href="#cb33-4"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">fitted</span>(penguins_regression))) <span class="sc">+</span> <span class="co">#&lt;&lt;</span></span>
-<span id="cb33-5"><a href="#cb33-5"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> lwr, <span class="at">ymax =</span> upr), <span class="at">alpha =</span> <span class="fl">0.3</span>)  <span class="co">#&lt;&lt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a></a>penguins_preds <span class="ot">&lt;-</span> <span class="fu">cbind</span>(penguins4, <span class="fu">predict</span>(penguins_regression, <span class="at">interval =</span> <span class="st">'confidence'</span>)) <span class="co">#&lt;&lt;</span></span>
+<span id="cb33-2"><a></a><span class="fu">ggplot</span>(penguins_preds, <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g)) <span class="sc">+</span></span>
+<span id="cb33-3"><a></a>  <span class="fu">geom_point</span>(<span class="at">shape =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb33-4"><a></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">fitted</span>(penguins_regression))) <span class="sc">+</span> <span class="co">#&lt;&lt;</span></span>
+<span id="cb33-5"><a></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> lwr, <span class="at">ymax =</span> upr), <span class="at">alpha =</span> <span class="fl">0.3</span>)  <span class="co">#&lt;&lt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
-<img data-src="2-BasicStatisticalTests_files/figure-revealjs/penguins-regression-results-graph-1.png" class="quarto-figure-center r-stretch" width="864"></section>
+<img data-src="2-BasicStatisticalTests_files/figure-html/penguins-regression-results-graph-1.png" class="quarto-figure quarto-figure-center r-stretch" width="864"></section>
 <section id="your-turn-simple-regression" class="slide level2 inverse smaller">
 <h2>Your Turn: Simple Regression</h2>
 <p>Fit a linear regression line between bill length and bill depth for each species</p>
 
 
-<img data-src="2-BasicStatisticalTests_files/figure-revealjs/penguins-regression-bonus-1.png" class="quarto-figure-center r-stretch" width="768"><div class="footer footer-default">
+<img data-src="2-BasicStatisticalTests_files/figure-html/penguins-regression-bonus-1.png" class="quarto-figure quarto-figure-center r-stretch" width="768"><div class="quarto-auto-generated-content">
+<div class="footer footer-default">
 <p><a href="../../index.html">UNL R Workshops</a></p>
+</div>
 </div>
 </section>
     </div>
@@ -1336,44 +1350,6 @@ F-statistic:  1071 on 1 and 340 DF,  p-value: &lt; 2.2e-16</code></pre>
         ]
       });
     </script>
-    
-    <script>
-      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
-      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
-      // slide changes (different for each slide format).
-      (function () {
-        // dispatch for htmlwidgets
-        function fireSlideEnter() {
-          const event = window.document.createEvent("Event");
-          event.initEvent("slideenter", true, true);
-          window.document.dispatchEvent(event);
-        }
-
-        function fireSlideChanged(previousSlide, currentSlide) {
-          fireSlideEnter();
-
-          // dispatch for shiny
-          if (window.jQuery) {
-            if (previousSlide) {
-              window.jQuery(previousSlide).trigger("hidden");
-            }
-            if (currentSlide) {
-              window.jQuery(currentSlide).trigger("shown");
-            }
-          }
-        }
-
-        // hookup for slidy
-        if (window.w3c_slidy) {
-          window.w3c_slidy.add_observer(function (slide_num) {
-            // slide_num starts at position 1
-            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
-          });
-        }
-
-      })();
-    </script>
-
     <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggleBodyColorMode = (bsSheetEl) => {

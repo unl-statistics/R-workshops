@@ -13,7 +13,7 @@ azalea <- read.csv("../data/AzaleaOneWay.csv")
 
 
 ## ----echo = TRUE, eval = F----------------------------------------------------
-## azalea <- read.csv("https://unl-statistics.github.io/R-workshops/r-modeling/data/AzaleaOneWay.csv")
+## azalea <- read.csv("https://raw.githubusercontent.com/unl-statistics/R-workshops/main/r-modeling/data/AzaleaOneWay.csv")
 
 
 ## ----echo = T, eval = T-------------------------------------------------------
@@ -24,7 +24,7 @@ head(azalea)
 library(car)
 #mod.fit <- lm(response ~ trt, data = data)
 mod.fit <- lm(Weight ~ Trt, data = azalea)
-Anova(mod.fit, type = "II")
+Anova(mod.fit, type = "III")
 
 
 ## ----echo=TRUE----------------------------------------------------------------
@@ -32,7 +32,7 @@ library(car)
 #mod.fit <- lm(response ~ trt, data = data)
 azalea$Trt.new <- as.factor(azalea$Trt)
 mod.fit <- lm(Weight ~ Trt.new, data = azalea)
-Anova(mod.fit, type = "II")
+Anova(mod.fit, type = "III")
 
 
 ## ----echo=TRUE----------------------------------------------------------------
@@ -54,7 +54,7 @@ fit.contrast(mod.fit, "Trt.new", c(6, -1, -1, -1, -1, -1, -1))
 
 
 ## ----echo = T, eval = F-------------------------------------------------------
-## azalea2 <- read.csv("https://unl-statistics.github.io/R-workshops/r-modeling/data/AzaleaTwoWay.csv")
+## azalea2 <- read.csv("https://raw.githubusercontent.com/unl-statistics/R-workshops/main/r-modeling/data/AzaleaTwoWay.csv")
 
 
 ## ----echo = F, eval = T-------------------------------------------------------
@@ -65,7 +65,7 @@ azalea2 <- read.csv("../data/AzaleaTwoWay.csv")
 azalea2$AppTime.new <- as.factor(azalea2$AppTime)
 azalea2$AppRate.new <- as.factor(azalea2$AppRate)
 mod.fit2 <- lm(Weight ~ AppTime.new + AppRate.new + AppTime.new:AppRate.new, data = azalea2)
-Anova(mod.fit2, type = "II")
+Anova(mod.fit2, type = "III")
 
 
 ## ----echo=TRUE----------------------------------------------------------------
@@ -96,7 +96,7 @@ summary(mod.fit5)
 
 
 ## ----echo = T, eval = F-------------------------------------------------------
-## azalea3 <- read.csv("https://unl-statistics.github.io/R-workshops/r-modeling/data/AzaleaBlock.csv")
+## azalea3 <- read.csv("https://raw.githubusercontent.com/unl-statistics/R-workshops/main/r-modeling/data/AzaleaBlock.csv")
 
 
 ## ----echo = F, eval = T-------------------------------------------------------
@@ -109,5 +109,5 @@ azalea3$AppRate.new <- as.factor(azalea3$AppRate)
 azalea3$Block.new <- as.factor(azalea3$Block)
 library(lme4)
 mod.fit6 <- lmer(Weight ~ AppTime.new + AppRate.new + AppTime.new:AppRate.new + (1|Block.new), data = azalea3)
-Anova(mod.fit3, type = "II")
+Anova(mod.fit3, type = "III")
 

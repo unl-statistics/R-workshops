@@ -480,7 +480,7 @@ tidy(penguins_regression) %>%
   kable(digits = 2)
 ```
 
-$\text{flipper length}_{i} = -5780.83 + 49.56 \cdot \text{body mass}_{i} + \epsilon_{i}$ where $\epsilon \sim N(0, \sigma^2)$
+$\text{body mass}_{i} = -5780.83 + 49.56 \cdot \text{flipper length}_{i} + \epsilon_{i}$ where $\epsilon \sim N(0, \sigma^2)$
 
 ## Simple Regression (results) {.smaller}
 
@@ -537,7 +537,7 @@ ggplot(penguins_preds, aes(x = flipper_length_mm, y = body_mass_g)) +
 Fit a linear regression line between bill length and bill depth for each species
 
 ```{r penguins-regression-bonus, purl = F, fig.align = 'center', fig.height = 6, fig.width = 8}
-ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g, color = species, fill = species)) +
+ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm, color = species, fill = species)) +
   geom_point(shape = 1) +
   geom_smooth(method = "lm") +
   theme_bw() + 
@@ -548,7 +548,7 @@ ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g, color = species, fi
         legend.title = element_text(size = 18)) +
   scale_color_locuszoom() +
   scale_fill_locuszoom() +
-  ylab("Flipper Length (mm)") +
-  xlab("Body Mass (g)")
+  ylab("Bill Depth (mm)") +
+  xlab("Bill Length (mm)")
 ```
 

@@ -33,7 +33,7 @@ azalea <- read.csv("../data/AzaleaOneWay.csv")
 ```
 
 ```{r echo = TRUE, eval = F}
-azalea <- read.csv("https://unl-statistics.github.io/R-workshops/r-modeling/data/AzaleaOneWay.csv")
+azalea <- read.csv("https://raw.githubusercontent.com/unl-statistics/R-workshops/main/r-modeling/data/AzaleaOneWay.csv")
 ```
 
 ```{r echo = T, eval = T}
@@ -98,7 +98,7 @@ These hypotheses are **equivalent**, just being expressed in two different ways.
 library(car)
 #mod.fit <- lm(response ~ trt, data = data)
 mod.fit <- lm(Weight ~ Trt, data = azalea)
-Anova(mod.fit, type = "II")
+Anova(mod.fit, type = "III")
 ```
 
 -   Note the only 1 degree of freedom with treatment. We should have 6!
@@ -114,7 +114,7 @@ library(car)
 #mod.fit <- lm(response ~ trt, data = data)
 azalea$Trt.new <- as.factor(azalea$Trt)
 mod.fit <- lm(Weight ~ Trt.new, data = azalea)
-Anova(mod.fit, type = "II")
+Anova(mod.fit, type = "III")
 ```
 
 -   We do not have evidence of an effect of fungicide combination on the mean fresh weight of azaleas.
@@ -248,7 +248,7 @@ $$H_0: \text{There is no interaction.}$$ $$H_A: \text{There is an interaction.}$
 
 ## Two-Way ANOVA in R
 ```{r echo = T, eval = F}
-azalea2 <- read.csv("https://unl-statistics.github.io/R-workshops/r-modeling/data/AzaleaTwoWay.csv")
+azalea2 <- read.csv("https://raw.githubusercontent.com/unl-statistics/R-workshops/main/r-modeling/data/AzaleaTwoWay.csv")
 ```
 
 ```{r echo = F, eval = T}
@@ -259,7 +259,7 @@ azalea2 <- read.csv("../data/AzaleaTwoWay.csv")
 azalea2$AppTime.new <- as.factor(azalea2$AppTime)
 azalea2$AppRate.new <- as.factor(azalea2$AppRate)
 mod.fit2 <- lm(Weight ~ AppTime.new + AppRate.new + AppTime.new:AppRate.new, data = azalea2)
-Anova(mod.fit2, type = "II")
+Anova(mod.fit2, type = "III")
 ```
 
 
@@ -400,7 +400,7 @@ $$y_{ijk} = \mu + \alpha_i + \beta_j + \alpha\beta_{ij} + b_k + \varepsilon_{ijk
 
 ## RCBD Analysis in R
 ```{r echo = T, eval = F}
-azalea3 <- read.csv("https://unl-statistics.github.io/R-workshops/r-modeling/data/AzaleaBlock.csv")
+azalea3 <- read.csv("https://raw.githubusercontent.com/unl-statistics/R-workshops/main/r-modeling/data/AzaleaBlock.csv")
 ```
 
 ```{r echo = F, eval = T}
@@ -414,5 +414,5 @@ azalea3$AppRate.new <- as.factor(azalea3$AppRate)
 azalea3$Block.new <- as.factor(azalea3$Block)
 library(lme4)
 mod.fit6 <- lmer(Weight ~ AppTime.new + AppRate.new + AppTime.new:AppRate.new + (1|Block.new), data = azalea3)
-Anova(mod.fit3, type = "II")
+Anova(mod.fit3, type = "III")
 ```
