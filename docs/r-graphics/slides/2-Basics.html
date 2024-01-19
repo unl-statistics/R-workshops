@@ -1115,19 +1115,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="your-turn" class="level1 inverse">
 <h1 class="inverse">Your turn!</h1>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>preg <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">pregnant =</span> <span class="fu">c</span>(<span class="st">"yes"</span>, <span class="st">"no"</span>),</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>               <span class="at">male =</span> <span class="fu">c</span>(<span class="cn">NA</span>, <span class="dv">10</span>),</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">female =</span> <span class="fu">c</span>(<span class="dv">20</span>, <span class="dv">12</span>))</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>preg</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>experiment <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">outcome =</span> <span class="fu">c</span>(<span class="st">"success"</span>, <span class="st">"failure"</span>),</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>               <span class="at">dog =</span> <span class="fu">c</span>(<span class="dv">15</span>, <span class="dv">10</span>),</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">cat =</span> <span class="fu">c</span>(<span class="dv">20</span>, <span class="dv">12</span>))</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>experiment</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2 × 3
-  pregnant  male female
-  &lt;chr&gt;    &lt;dbl&gt;  &lt;dbl&gt;
-1 yes         NA     20
-2 no          10     12</code></pre>
+  outcome   dog   cat
+  &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;
+1 success    15    20
+2 failure    10    12</code></pre>
 </div>
 </div>
-<p>To tidy the <code>preg</code> table use <code>pivot_longer()</code> to create a long table.</p>
+<p>To tidy the <code>experiment</code> table use <code>pivot_longer()</code> to create a long table.</p>
 
 
 </section>

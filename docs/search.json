@@ -634,7 +634,7 @@
     "href": "r-format/slides/3-dplyr.html#motivating-example-pipe-operator",
     "title": "Data Wrangling",
     "section": "Motivating Example (Pipe Operator)",
-    "text": "Motivating Example (Pipe Operator)\nUse the pipe operator to combine dplyr functions in chain, which allows us to perform more complicated data manipulations\nSyntax (Pipe dataframe as input into the dplyr function):\ndataframe %&gt;% dplyr_function()\n\n.center[ \nPipe Example, by Sharp Sight Labs ]"
+    "text": "Motivating Example (Pipe Operator)\nUse the pipe operator to combine dplyr functions in chain, which allows us to perform more complicated data manipulations\nSyntax (Pipe dataframe as input into the dplyr function):\ndataframe %&gt;% dplyr_function()\n\n\n\nPipe Example, by Sharp Sight Labs"
   },
   {
     "objectID": "r-format/slides/3-dplyr.html#the-pipe-operator",
@@ -655,7 +655,7 @@
     "href": "r-format/slides/3-dplyr.html#filter-cont.",
     "title": "Data Wrangling",
     "section": "Filter (cont.)",
-    "text": "Filter (cont.)\nMultiple conditions in filter are combined with a logical AND (i.e. all conditions must be fulfilled)\ne.g. filter(pitcher_hand == \"R\", pitch_type == \"CU\")\nLogical expressions can also be used\ne.g. filter(pitcher_hand == \"R\" &  pitch_type == \"CU\") or filter(pitch_type == \"CU\" | subject == \"KN\")"
+    "text": "Filter (cont.)\nMultiple conditions in filter are combined with a logical AND (i.e. all conditions must be fulfilled)\ne.g. \nfilter(pitcher_hand == \"R\", pitch_type == \"CU\")\nLogical expressions can also be used\ne.g. \nfilter(pitcher_hand == \"R\" &  pitch_type == \"CU\") or filter(pitch_type == \"CU\" | subject == \"KN\")"
   },
   {
     "objectID": "r-format/slides/3-dplyr.html#your-turn-3-minutes",
@@ -872,7 +872,7 @@
     "href": "r-format/slides/3-dplyr.html#recap",
     "title": "Data Wrangling",
     "section": "Recap",
-    "text": "Recap\n\nGetting used to dplyr actions can take a bit of time and practice\nRecognize keywords and match them to dplyr functions\nIncorporate dplyr functions in your regular workflow - the long-term benefits are there, we promise!\n\n\n\n\nUNL R Workshops"
+    "text": "Recap\n\nGetting used to dplyr actions can take a bit of time and practice\nRecognize keywords and match them to dplyr functions\nIncorporate dplyr functions in your regular workflow - the long-term benefits are there, we promise!"
   },
   {
     "objectID": "r-format/code/99-YourTurnSolutions.html",
@@ -1676,8 +1676,8 @@
     "objectID": "r-format/slides/4-tidyr.html#what-is-tidy-data",
     "href": "r-format/slides/4-tidyr.html#what-is-tidy-data",
     "title": "Data Wrangling",
-    "section": "What is tidy data?",
-    "text": "What is tidy data?\n\nAspect of data cleaning that structures a dataset to facilitate analysis\nResource: follow along tidyr vignette\navailable as vignette(\"tidy-data\", package=\"tidyr\")\nvignette is version of the tidy data paper with updated code"
+    "section": "",
+    "text": "Aspect of data cleaning that structures a dataset to facilitate analysis\nResource: follow along tidyr vignette\navailable as vignette(\"tidy-data\", package=\"tidyr\")\nvignette is version of the tidy data paper with updated code"
   },
   {
     "objectID": "r-format/slides/4-tidyr.html#outline",
@@ -1691,7 +1691,7 @@
     "href": "r-format/slides/4-tidyr.html#data-is-usually-in-a-spreadsheet-format-but",
     "title": "Data Wrangling",
     "section": "Data is usually in a spreadsheet format, but…",
-    "text": "Data is usually in a spreadsheet format, but…\nThere are different ways of encoding the same information:\n::: columns ::: column Option 1:\n\n\n\n\nPatient\n\n\nTreatment A\n\n\nTreatment B\n\n\n\n\nJohn Smith\n\n\nNA\n\n\n18\n\n\n\n\nJane Doe\n\n\n4\n\n\n1\n\n\n\n\nMary Johnson\n\n\n6\n\n\n7\n\n\n\nOption 2:\n\n\n\n\nPatient\n\n\nJohn Smith\n\n\nJane Doe\n\n\nMary Johnson\n\n\n\n\nA\n\n\nNA\n\n\n4\n\n\n6\n\n\n\n\nB\n\n\n18\n\n\n1\n\n\n7\n\n\n\n::: ::: column Option 3:\n\n\n\n\nPatient\n\n\nTreatment\n\n\nScore\n\n\n\n\nJohn Smith\n\n\nA\n\n\nNA\n\n\n\n\nJane Doe\n\n\nA\n\n\n4\n\n\n\n\nMary Johnson\n\n\nA\n\n\n6\n\n\n\n\nJohn Smith\n\n\nB\n\n\n18\n\n\n\n\nJane Doe\n\n\nB\n\n\n1\n\n\n\n\nMary Johnson\n\n\nB\n\n\n7\n\n\n\n:::\n\nNeither #1 nor #2 are “clean” versions of the data: observed information is part of the data structure; some implicit information is assumed"
+    "text": "Data is usually in a spreadsheet format, but…\nThere are different ways of encoding the same information:\n\n\nOption 1:\n\n\n\n\nPatient\n\n\nTreatment A\n\n\nTreatment B\n\n\n\n\nJohn Smith\n\n\nNA\n\n\n18\n\n\n\n\nJane Doe\n\n\n4\n\n\n1\n\n\n\n\nMary Johnson\n\n\n6\n\n\n7\n\n\n\nOption 2:\n\n\n\n\nPatient\n\n\nJohn Smith\n\n\nJane Doe\n\n\nMary Johnson\n\n\n\n\nA\n\n\nNA\n\n\n4\n\n\n6\n\n\n\n\nB\n\n\n18\n\n\n1\n\n\n7\n\n\n\n\nOption 3:\n\n\n\n\nPatient\n\n\nTreatment\n\n\nScore\n\n\n\n\nJohn Smith\n\n\nA\n\n\nNA\n\n\n\n\nJane Doe\n\n\nA\n\n\n4\n\n\n\n\nMary Johnson\n\n\nA\n\n\n6\n\n\n\n\nJohn Smith\n\n\nB\n\n\n18\n\n\n\n\nJane Doe\n\n\nB\n\n\n1\n\n\n\n\nMary Johnson\n\n\nB\n\n\n7\n\n\n\n\n\n\nNeither #1 nor #2 are “clean” versions of the data: observed information is part of the data structure; some implicit information is assumed"
   },
   {
     "objectID": "r-format/slides/4-tidyr.html#sources-of-messiness-review",
@@ -1733,7 +1733,7 @@
     "href": "r-format/slides/4-tidyr.html#key-value-pairs-kvp",
     "title": "Data Wrangling",
     "section": "Key-value pairs (KVP)",
-    "text": "Key-value pairs (KVP)\nKey-Value pairs (KVP) - also attribute-value, field-value, name-value: abstract data representation that allows a lot of flexibility\nOne way of telling whether a data set is tidy is to check that all keys for a value are aligned in one row:\n\n\n\n\n\nUntidy data\n\n\n\n\n\nTidy Data"
+    "text": "Key-value pairs (KVP)\nKey-Value pairs (KVP) - also attribute-value, field-value, name-value: abstract data representation that allows a lot of flexibility\nOne way of telling whether a data set is tidy is to check that all keys for a value are aligned in one row:\n\n\n\n\n\n\n\n\n\nUntidy data\n\n\n\n\n\n\n\nTidy Data"
   },
   {
     "objectID": "r-format/slides/4-tidyr.html#key-value-pairs-kvp-1",
@@ -1747,7 +1747,7 @@
     "href": "r-format/slides/4-tidyr.html#lets-ask-for-help",
     "title": "Data Wrangling",
     "section": "Let’s ask for help…",
-    "text": "Let’s ask for help…\n\nPivot Monsters drawing by Allison Horst & adjusted by R ladies Sydney"
+    "text": "Let’s ask for help…\n\n\n\nPivot Monsters drawing by Allison Horst & adjusted by R ladies Sydney"
   },
   {
     "objectID": "r-format/slides/4-tidyr.html#tidying-data---plan-of-attack",
@@ -1775,14 +1775,14 @@
     "href": "r-format/slides/4-tidyr.html#lets-start-with-messy-1",
     "title": "Data Wrangling",
     "section": "Let’s start with Messy (1)",
-    "text": "Let’s start with Messy (1)\n\nUse pivot_longer and pivot_wider"
+    "text": "Let’s start with Messy (1)\n\n\n\nUse pivot_longer and pivot_wider"
   },
   {
     "objectID": "r-format/slides/4-tidyr.html#tidy-your-data-using-pivot_longer",
     "href": "r-format/slides/4-tidyr.html#tidy-your-data-using-pivot_longer",
     "title": "Data Wrangling",
     "section": "Tidy your data using pivot_longer",
-    "text": "Tidy your data using pivot_longer\n\nWhen pivoting longer, you need to specify: - the cols (identifiers) - the names_to (new column name) - the values_to (measures from cols)"
+    "text": "Tidy your data using pivot_longer\n\n\n\n\n\nWhen pivoting longer, you need to specify: - the cols (identifiers) - the names_to (new column name) - the values_to (measures from cols)"
   },
   {
     "objectID": "r-format/slides/4-tidyr.html#pivot_longer-example",
@@ -1810,7 +1810,7 @@
     "href": "r-format/slides/4-tidyr.html#tidy-your-data-using-pivot_wider",
     "title": "Data Wrangling",
     "section": "Tidy your data using pivot_wider",
-    "text": "Tidy your data using pivot_wider\n\nWhen pivoting wider, you need to specify: - the names_from (column name that we want to widen) - the values_from (measures from column we want to widen)"
+    "text": "Tidy your data using pivot_wider\n\n\n\n\n\nWhen pivoting wider, you need to specify: - the names_from (column name that we want to widen) - the values_from (measures from column we want to widen)"
   },
   {
     "objectID": "r-format/slides/4-tidyr.html#pivot_wider-example",
@@ -1873,7 +1873,7 @@
     "href": "r-format/slides/4-tidyr.html#problems-with-the-data",
     "title": "Data Wrangling",
     "section": "Problems with the data",
-    "text": "Problems with the data\n\nDate is text, in the format of Month/Day/Year (Messy 2)\ncity coordinates are a combination of City name, state, zip code and geographic latitude and longitude. (Messy 2)\nexpenditure amount is a textual expression, not a number (Messy different)\n\nno Messy 1? - problems of type Messy 1 are typically hard to detect and often up to interpretation/dependent on the analysis to be done."
+    "text": "Problems with the data\n\nDate is text, in the format of Month/Day/Year (Messy 2)\ncity coordinates are a combination of City name, state, zip code and geographic latitude and longitude. (Messy 2)\nexpenditure amount is a textual expression, not a number (Messy different)\n\nNo Messy 1? - problems of type Messy 1 are typically hard to detect and often up to interpretation/dependent on the analysis to be done."
   },
   {
     "objectID": "r-format/slides/4-tidyr.html#your-turn-1",
@@ -1908,7 +1908,7 @@
     "href": "r-format/slides/4-tidyr.html#basic-lubridate-use",
     "title": "Data Wrangling",
     "section": "Basic Lubridate Use",
-    "text": "Basic Lubridate Use\n\nlibrary(lubridate) #&lt;&lt; #New Package Alert!!\n\nnow()\ntoday()\nnow() + hours(4)\ntoday() - days(2)\n\n[1] \"2023-12-18 10:25:18 CST\"\n[1] \"2023-12-18\"\n[1] \"2023-12-18 14:25:18 CST\"\n[1] \"2023-12-16\""
+    "text": "Basic Lubridate Use\n\nlibrary(lubridate) #&lt;&lt; #New Package Alert!!\n\nnow()\ntoday()\nnow() + hours(4)\ntoday() - days(2)\n\n[1] \"2024-01-19 07:33:24 CST\"\n[1] \"2024-01-19\"\n[1] \"2024-01-19 11:33:24 CST\"\n[1] \"2024-01-17\""
   },
   {
     "objectID": "r-format/slides/4-tidyr.html#parsing-dates",
@@ -1936,14 +1936,14 @@
     "href": "r-format/slides/4-tidyr.html#your-turn-3",
     "title": "Data Wrangling",
     "section": "Your Turn",
-    "text": "Your Turn\n\nRead in the billboard top 100 music data:\n\n\nbillboard &lt;- \n  read.csv(\"http://unl-statistics.github.io/R-workshops/r-format/data/billboard.csv\")\n\n\nUse tidyr to convert this data into a long format.\nUse ggplot2 to create something like this:\n\n\n\n\nUNL R Workshops"
+    "text": "Your Turn\n\nRead in the billboard top 100 music data:\n\n\nbillboard &lt;- \n  read.csv(\"http://unl-statistics.github.io/R-workshops/r-format/data/billboard.csv\")\n\n\nUse tidyr to convert this data into a long format.\nUse ggplot2 to create something like this:"
   },
   {
     "objectID": "r-format/slides/5-joining.html#recall---sources-of-messiness",
     "href": "r-format/slides/5-joining.html#recall---sources-of-messiness",
     "title": "Data Wrangling",
-    "section": "Recall - Sources of Messiness",
-    "text": "Recall - Sources of Messiness\n\nColumn headers are values, not variable names. e.g. treatmenta, treatmentb \nMultiple variables are stored in one column.  e.g. Fall 2015, Spring 2016 or “1301 8th St SE, Orange City, Iowa 51041 (42.99755, -96.04149)”, “2102 Durant, Harlan, Iowa 51537 (41.65672, -95.33780)” \nMultiple observational units are stored in the same table.\nA single observational unit is stored in multiple tables."
+    "section": "",
+    "text": "Column headers are values, not variable names. e.g. treatmenta, treatmentb \nMultiple variables are stored in one column.  e.g. Fall 2015, Spring 2016 or “1301 8th St SE, Orange City, Iowa 51041 (42.99755, -96.04149)”, “2102 Durant, Harlan, Iowa 51537 (41.65672, -95.33780)” \nMultiple observational units are stored in the same table.\nA single observational unit is stored in multiple tables."
   },
   {
     "objectID": "r-format/slides/5-joining.html#recall---tidy-data",
@@ -2006,7 +2006,7 @@
     "href": "r-format/slides/5-joining.html#finding-your-keys---example-4-1",
     "title": "Data Wrangling",
     "section": "Finding your keys - Example (4)",
-    "text": "Finding your keys - Example (4)\nFor each person, recorded age, sex, height and target weight, and then at multiple times recorded their weight\n\nkey: patient ID, date\nmeasurement: age, sex, height, target weight, current weight\n\nonly patient ID is needed for variables in italics ## Back to the list starting with Messy (3)\nMessy (3): Multiple observational units are stored in the same table.\nWhat does that mean? The key is split,\ni.e. for some values all key variables are necessary, while other values only need some key variables."
+    "text": "Finding your keys - Example (4)\nFor each person, recorded age, sex, height and target weight, and then at multiple times recorded their weight\n\nkey: patient ID, date\nmeasurement: age, sex, height, target weight, current weight\n\nonly patient ID is needed for variables in italics"
   },
   {
     "objectID": "r-format/slides/5-joining.html#why-do-we-need-to-take-care-of-split-keys",
@@ -2062,7 +2062,7 @@
     "href": "r-format/slides/5-joining.html#joins---general-idea",
     "title": "Data Wrangling",
     "section": "Joins - general idea",
-    "text": "Joins - general idea\n\nImage from RStudio Conf 2020"
+    "text": "Joins - general idea\n\n\n\nImage from RStudio Conf 2020"
   },
   {
     "objectID": "r-format/slides/5-joining.html#joins---more-specific-idea",
@@ -2146,7 +2146,7 @@
     "href": "r-format/slides/5-joining.html#data-wrangling-is-a-super-power",
     "title": "Data Wrangling",
     "section": "Data Wrangling is a Super Power",
-    "text": "Data Wrangling is a Super Power\n\nclass: inverse\n\n\nUNL R Workshops"
+    "text": "Data Wrangling is a Super Power"
   },
   {
     "objectID": "r-format/slides/2-Files.html#data-files-in-excel",
@@ -2160,7 +2160,7 @@
     "href": "r-format/slides/2-Files.html#motivating-example",
     "title": "Data Wrangling",
     "section": "MOTIVATING EXAMPLE",
-    "text": "MOTIVATING EXAMPLE\nGas prices in the Midwest since 1994"
+    "text": "MOTIVATING EXAMPLE\n\nGas Prices in the Midwest\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nYear-Month\nWeek 1\n…3\nWeek 2\n…5\nWeek 3\n…7\nWeek 4\n…9\nWeek 5\n…11\n\n\n\n\nNA\nEnd Date\nValue\nEnd Date\nValue\nEnd Date\nValue\nEnd Date\nValue\nEnd Date\nValue\n\n\n1994-Nov\nNA\nNA\nNA\nNA\nNA\nNA\n28-Nov\n1.122\nNA\nNA\n\n\n1994-Dec\n5-Dec\n1.086\n12-Dec\n1.057\n19-Dec\n1.039\n26-Dec\n1.027\nNA\nNA\n\n\n1995-Jan\n2-Jan\n1.025\n9-Jan\n1.046\n16-Jan\n1.031\n23-Jan\n1.054\n30-Jan\n1.055\n\n\n1995-Feb\n6-Feb\n1.045\n13-Feb\n1.04\n20-Feb\n1.031\n27-Feb\n1.052\nNA\nNA\n\n\n1995-Mar\n6-Mar\n1.053\n13-Mar\n1.042\n20-Mar\n1.048\n27-Mar\n1.065\nNA\nNA"
   },
   {
     "objectID": "r-format/slides/2-Files.html#gas-prices-in-the-midwest",
@@ -2181,7 +2181,7 @@
     "href": "r-format/slides/2-Files.html#your-turn",
     "title": "Data Wrangling",
     "section": "Your Turn",
-    "text": "Your Turn\nHave a look at the parameters of read_csv to solve the following problems:\n\nRead the first two lines of the file into an object called midwest_names\nRead everything EXCEPT the first two lines into an object called midwest_data\n\nHint: Visit http://unl-statistics.github.io/R-workshops/03-r-format/data/midwest.csv to download the data into your current working directory (getwd()) and look at it in Excel to help figure out what the issue is."
+    "text": "Your Turn\nHave a look at the parameters of read_csv to solve the following problems:\n\nRead the first two lines of the file into an object called midwest_names\nRead everything EXCEPT the first two lines into an object called midwest_data\n\nHint: Visit http://unl-statistics.github.io/R-workshops/r-format/data/midwest.csv to download the data into your current working directory (getwd()) and look at it in Excel to help figure out what the issue is."
   },
   {
     "objectID": "r-format/slides/2-Files.html#your-turn-solutions",
@@ -2230,7 +2230,7 @@
     "href": "r-format/slides/2-Files.html#useful-packages-for-other-data-files",
     "title": "Data Wrangling",
     "section": "Useful Packages for Other Data Files",
-    "text": "Useful Packages for Other Data Files\n\nforeign package reads from Minitab, Systat, etc. files.\nrgdal package reads shapefiles (for maps)\nsf package reads arcgis files, etc. sf package\n\n\nR knowledge Spatial, by Allison Horst"
+    "text": "Useful Packages for Other Data Files\n\nforeign package reads from Minitab, Systat, etc. files.\nrgdal package reads shapefiles (for maps)\nsf package reads arcgis files, etc. sf package\n\n\n\n\nR knowledge Spatial, by Allison Horst"
   },
   {
     "objectID": "r-format/slides/2-Files.html#your-turn-2-minutes",
@@ -2244,7 +2244,7 @@
     "href": "r-format/slides/2-Files.html#solution",
     "title": "Data Wrangling",
     "section": "Solution",
-    "text": "Solution\n\nlibrary(haven) \nsas.data &lt;- read_xpt(\"../data/DEMO_G.XPT\")\nsas.data %&gt;% head(2)\n\n# A tibble: 2 × 48\n   SEQN SDDSRVYR RIDSTATR RIAGENDR RIDAGEYR RIDAGEMN RIDRETH1 RIDRETH3 RIDEXMON\n  &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;\n1 62161        7        2        1       22       NA        3        3        2\n2 62162        7        2        2        3       NA        1        1        1\n# ℹ 39 more variables: RIDEXAGY &lt;dbl&gt;, RIDEXAGM &lt;dbl&gt;, DMQMILIZ &lt;dbl&gt;,\n#   DMQADFC &lt;dbl&gt;, DMDBORN4 &lt;dbl&gt;, DMDCITZN &lt;dbl&gt;, DMDYRSUS &lt;dbl&gt;,\n#   DMDEDUC3 &lt;dbl&gt;, DMDEDUC2 &lt;dbl&gt;, DMDMARTL &lt;dbl&gt;, RIDEXPRG &lt;dbl&gt;,\n#   SIALANG &lt;dbl&gt;, SIAPROXY &lt;dbl&gt;, SIAINTRP &lt;dbl&gt;, FIALANG &lt;dbl&gt;,\n#   FIAPROXY &lt;dbl&gt;, FIAINTRP &lt;dbl&gt;, MIALANG &lt;dbl&gt;, MIAPROXY &lt;dbl&gt;,\n#   MIAINTRP &lt;dbl&gt;, AIALANGA &lt;dbl&gt;, WTINT2YR &lt;dbl&gt;, WTMEC2YR &lt;dbl&gt;,\n#   SDMVPSU &lt;dbl&gt;, SDMVSTRA &lt;dbl&gt;, INDHHIN2 &lt;dbl&gt;, INDFMIN2 &lt;dbl&gt;, …\n\n\n\n\nUNL R Workshops"
+    "text": "Solution\n\nlibrary(haven) \nsas.data &lt;- read_xpt(\"../data/DEMO_G.XPT\")\nsas.data %&gt;% head(2)\n\n# A tibble: 2 × 48\n   SEQN SDDSRVYR RIDSTATR RIAGENDR RIDAGEYR RIDAGEMN RIDRETH1 RIDRETH3 RIDEXMON\n  &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;\n1 62161        7        2        1       22       NA        3        3        2\n2 62162        7        2        2        3       NA        1        1        1\n# ℹ 39 more variables: RIDEXAGY &lt;dbl&gt;, RIDEXAGM &lt;dbl&gt;, DMQMILIZ &lt;dbl&gt;,\n#   DMQADFC &lt;dbl&gt;, DMDBORN4 &lt;dbl&gt;, DMDCITZN &lt;dbl&gt;, DMDYRSUS &lt;dbl&gt;,\n#   DMDEDUC3 &lt;dbl&gt;, DMDEDUC2 &lt;dbl&gt;, DMDMARTL &lt;dbl&gt;, RIDEXPRG &lt;dbl&gt;,\n#   SIALANG &lt;dbl&gt;, SIAPROXY &lt;dbl&gt;, SIAINTRP &lt;dbl&gt;, FIALANG &lt;dbl&gt;,\n#   FIAPROXY &lt;dbl&gt;, FIAINTRP &lt;dbl&gt;, MIALANG &lt;dbl&gt;, MIAPROXY &lt;dbl&gt;,\n#   MIAINTRP &lt;dbl&gt;, AIALANGA &lt;dbl&gt;, WTINT2YR &lt;dbl&gt;, WTMEC2YR &lt;dbl&gt;,\n#   SDMVPSU &lt;dbl&gt;, SDMVSTRA &lt;dbl&gt;, INDHHIN2 &lt;dbl&gt;, INDFMIN2 &lt;dbl&gt;, …"
   },
   {
     "objectID": "pricing.html",
@@ -2321,7 +2321,7 @@
     "href": "r-modeling/slides/1-ModelingIntro.html#exploratory-data-analysis-eda",
     "title": "Introduction to Statistical Modeling",
     "section": "Exploratory Data Analysis (EDA)",
-    "text": "Exploratory Data Analysis (EDA)\nTypically referred to looking at descriptive statistics. EDA should be performed prior to a formal analysis (“look at your data first!”)\n\n\nNumerical summaries\n\nmeans, medians, standard deviation\nquantiles, five-number summaries\ncorrelations\n\n\nGraphical Summaries + One variable: boxplots, histograms, density plots, etc.\n\nTwo variables: scatterplots, side-by-side boxplots, overlaid density plots\nMany variables: scatterplot matrices, interactive graphics, faceting\n\n\n\nRemember, what you put into your statistical model, you get out of your statistical model. Data quality is important!\n\ndescriptive statistics in Intro Statistics books. This is an important step that should always be performed prior to a formal analysis. It looks simple but it is vital to conducting a meaningful analysis. EDA is comprised of: numerical summaries and graphical summaries\nWe look for outliers, data-entry errors and skewness or unusual distributions using EDA. Are the data distributed as you expect? Getting data into a form suitable for analysis by cleaning out mistakes and aberrations is often time consuming. It often takes more time than the data analysis itself! In this course, data will usually be ready to analyze but we will occasionally intermix messy data. You should realize that in practice it is rarely the case to receive clean data."
+    "text": "Exploratory Data Analysis (EDA)\nTypically referred to looking at descriptive statistics. EDA should be performed prior to a formal analysis (“look at your data first!”)\n\n\nNumerical summaries\n\nmeans, medians, standard deviation\nquantiles, five-number summaries\ncorrelations\n\n\nGraphical Summaries\n\nOne variable: boxplots, histograms, density plots, etc.\nTwo variables: scatterplots, side-by-side boxplots, overlaid density plots\nMany variables: scatterplot matrices, interactive graphics, faceting\n\n\n\nRemember, what you put into your statistical model, you get out of your statistical model. Data quality is important!\n\ndescriptive statistics in Intro Statistics books. This is an important step that should always be performed prior to a formal analysis. It looks simple but it is vital to conducting a meaningful analysis. EDA is comprised of: numerical summaries and graphical summaries\nWe look for outliers, data-entry errors and skewness or unusual distributions using EDA. Are the data distributed as you expect? Getting data into a form suitable for analysis by cleaning out mistakes and aberrations is often time consuming. It often takes more time than the data analysis itself! In this course, data will usually be ready to analyze but we will occasionally intermix messy data. You should realize that in practice it is rarely the case to receive clean data."
   },
   {
     "objectID": "r-modeling/slides/1-ModelingIntro.html#eda-example",
@@ -2335,7 +2335,7 @@
     "href": "r-modeling/slides/1-ModelingIntro.html#eda-example-numerical-summaries",
     "title": "Introduction to Statistical Modeling",
     "section": "EDA Example: Numerical summaries",
-    "text": "EDA Example: Numerical summaries\n\npenguins %&gt;%\n  group_by(sex) %&gt;%\n  summarize(across(c(\"body_mass_g\"), \n                   list(Mean = ~ mean(., na.rm = T), \n                        SD = ~ sd(., na.rm =T), \n                        Min = ~ min(., na.rm = T), \n                        Median = ~ median(., na.rm = T), \n                        Max = ~ max(., na.rm = T))))\n\n\n\n\n\n\n\nsex\nbody_mass_g_Mean\nbody_mass_g_SD\nbody_mass_g_Min\nbody_mass_g_Median\nbody_mass_g_Max\n\n\n\n\nfemale\n3862.3\n666.2\n2700\n3650\n5200\n\n\nmale\n4545.7\n787.6\n3250\n4300\n6300\n\n\nNA\n4005.6\n679.4\n2975\n4100\n4875\n\n\n\n\n\n\n\n\nYour turn: + What if you wanted to get summaries by species instead of sex? What about by both? + Can you get summaries for a different measure?"
+    "text": "EDA Example: Numerical summaries\n\npenguins %&gt;%\n  group_by(sex) %&gt;%\n  summarize(across(c(\"body_mass_g\"), \n                   list(Mean = ~ mean(., na.rm = T), \n                        SD = ~ sd(., na.rm =T), \n                        Min = ~ min(., na.rm = T), \n                        Median = ~ median(., na.rm = T), \n                        Max = ~ max(., na.rm = T))))\n\n\n\n\n\n\n\nsex\nbody_mass_g_Mean\nbody_mass_g_SD\nbody_mass_g_Min\nbody_mass_g_Median\nbody_mass_g_Max\n\n\n\n\nfemale\n3862.3\n666.2\n2700\n3650\n5200\n\n\nmale\n4545.7\n787.6\n3250\n4300\n6300\n\n\nNA\n4005.6\n679.4\n2975\n4100\n4875\n\n\n\n\n\n\n\n\nYour turn:\n+ What if you wanted to get summaries by species instead of sex? What about by both?\n+ Can you get summaries for a different measure?"
   },
   {
     "objectID": "r-modeling/slides/1-ModelingIntro.html#eda-example-graphical-summaries",
@@ -2363,7 +2363,7 @@
     "href": "r-modeling/slides/1-ModelingIntro.html#in-this-session-we-will",
     "title": "Introduction to Statistical Modeling",
     "section": "In this session we will…",
-    "text": "In this session we will…\n\nBasic statistical tests\n\nFive step hypothesis procedure\nconfidence intervals & p-values\nt-tests, chi-square tests, and simple regression\n\nLinear models\n\nOne-way and two-way ANOVA\nBlocking\n\nGeneralized Linear Models\n\nPoisson and binomial response variables\n\nWorkshop time: bring your own data!\n\nWe will have example data sets for you to practice.\n\n\n\n\nUNL R Workshops"
+    "text": "In this session we will…\n\nBasic statistical tests\n\nFive step hypothesis procedure\nconfidence intervals & p-values\nt-tests, chi-square tests, and simple regression\n\nLinear models\n\nOne-way and two-way ANOVA\nBlocking\n\nGeneralized Linear Models\n\nPoisson and binomial response variables\n\nWorkshop time: bring your own data!\n\nWe will have example data sets for you to practice.\n\n\n\n\n\nUNL R Workshops"
   },
   {
     "objectID": "r-modeling/slides/2-BasicStatisticalTests.html#outline",
@@ -3309,5 +3309,54 @@
     "title": "Data Visualization",
     "section": "",
     "text": "Exploratory Data Analysis (EDA)\n\nExamples:\n\nAnscombe’s Quartet Exercise\n\n\n\n\n\n4 data sets that have nearly identical simple statistical properties that appear very different when graphed\ndemonstrate both the importance of graphing data before analyzing it and the effect of outliers on statistical properties\n11 (x,y) points\n\n\n\n\n\n\n\n\n\n\nSet I\n\n\nx\ny\n\n\n\n\n10\n8.04\n\n\n8\n6.95\n\n\n13\n7.58\n\n\n9\n8.81\n\n\n11\n8.33\n\n\n14\n9.96\n\n\n6\n7.24\n\n\n4\n4.26\n\n\n12\n10.84\n\n\n7\n4.82\n\n\n5\n5.68\n\n\n\n\n\n\n\n\n\n\n\nSet II\n\n\nx\ny\n\n\n\n\n10\n9.14\n\n\n8\n8.14\n\n\n13\n8.74\n\n\n9\n8.77\n\n\n11\n9.26\n\n\n14\n8.10\n\n\n6\n6.13\n\n\n4\n3.10\n\n\n12\n9.13\n\n\n7\n7.26\n\n\n5\n4.74\n\n\n\n\n\n\n\n\n\n\n\nSet III\n\n\nx\ny\n\n\n\n\n10\n7.46\n\n\n8\n6.77\n\n\n13\n12.74\n\n\n9\n7.11\n\n\n11\n7.81\n\n\n14\n8.84\n\n\n6\n6.08\n\n\n4\n5.39\n\n\n12\n8.15\n\n\n7\n6.42\n\n\n5\n5.73\n\n\n\n\n\n\n\n\n\n\n\nSet IV\n\n\nx\ny\n\n\n\n\n8\n6.58\n\n\n8\n5.76\n\n\n8\n7.71\n\n\n8\n8.84\n\n\n8\n8.47\n\n\n8\n7.04\n\n\n8\n5.25\n\n\n19\n12.50\n\n\n8\n5.56\n\n\n8\n7.91\n\n\n8\n6.89\n\n\n\n\n\n\n\n\n\n\n\n\n \n\n\n\n\n\n\nI\nII\nIII\nIV\n\n\n\n\nmean(x)\n9\n9\n9\n9\n\n\nsd(x)\n3.32\n3.32\n3.32\n3.32\n\n\nmean(y)\n7.5\n7.5\n7.5\n7.5\n\n\nsd(y)\n2.03\n2.03\n2.03\n2.03\n\n\ncor(x,y)\n0.82\n0.82\n0.82\n0.82\n\n\n\n\n\n\neach data set has the same mean, standard deviation, and correlation coefficient between x and y.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nplot y versus x for each set with a linear regression trendline displayed on each plot:\nThis classic example really illustrates the importance of looking at your data, not just the summary statistics and model parameters you compute from it."
+  },
+  {
+    "objectID": "r-modeling/slides/1-ModelingIntro.html",
+    "href": "r-modeling/slides/1-ModelingIntro.html",
+    "title": "Introduction to Statistical Modeling",
+    "section": "",
+    "text": "What is statistical modeling?\nObservational Studies vs Planned Experiments\nData Format\nExploratory Data Analysis - why do it?\n\nContent modified from: https://tjfisher19.github.io/introStatModeling/introductory-statistics-in-r.html#goals-of-a-statistical-analysis"
+  },
+  {
+    "objectID": "r-format/slides/5-joining.html",
+    "href": "r-format/slides/5-joining.html",
+    "title": "Data Wrangling",
+    "section": "",
+    "text": "Column headers are values, not variable names. e.g. treatmenta, treatmentb \nMultiple variables are stored in one column.  e.g. Fall 2015, Spring 2016 or “1301 8th St SE, Orange City, Iowa 51041 (42.99755, -96.04149)”, “2102 Durant, Harlan, Iowa 51537 (41.65672, -95.33780)” \nMultiple observational units are stored in the same table.\nA single observational unit is stored in multiple tables."
+  },
+  {
+    "objectID": "r-format/slides/5-joining.html#back-to-the-list-starting-with-messy-3",
+    "href": "r-format/slides/5-joining.html#back-to-the-list-starting-with-messy-3",
+    "title": "Data Wrangling",
+    "section": "Back to the list starting with Messy (3)",
+    "text": "Back to the list starting with Messy (3)\nMessy (3): Multiple observational units are stored in the same table.\nWhat does that mean? The key is split,\ni.e. for some values all key variables are necessary, while other values only need some key variables."
+  },
+  {
+    "objectID": "r-format/slides/3-dplyr.html",
+    "href": "r-format/slides/3-dplyr.html",
+    "title": "Data Wrangling",
+    "section": "",
+    "text": "Data Wrangling Cheat Sheet, by RStudio"
+  },
+  {
+    "objectID": "r-format/slides/1-WranglingIntro.html",
+    "href": "r-format/slides/1-WranglingIntro.html",
+    "title": "Data Wrangling",
+    "section": "",
+    "text": "Brief Outline\nData Wrangling offers the flexibility of collaboration with other formats.\n\n\n\nData Wrangling Flowchart by Hadley Wickham and Garrett Grolemund\n\n\n\nReading in files from various formats (.xls, .xlsx, .csv, .txt, .sps, .xport)\nSummarizing Data using dplyr (Toolbox of data cleaning function)\nTidy Data for future analyses and reproducibility\nJoining Data from different Data Sources\n\n\nOne of the main reasons for data wrangling is to be able to use any type of data.\n\n\n\nWhat is Data Wrangling?\nData wrangling can be defined as the process of cleaning, organizing, and transforming raw data into the desired format for analysts to use for prompt decision-making. Also known as data cleaning.\n\n\n\nR knowledge Data Wrangling, by Allison Horst\n\n\n\n\nWhy do you need “Data Wrangling” Skills?\n\nImprove data usability by converting raw data into a compatible format for the end system\nQuickly build data flows within an intuitive user interface\nSchedule and automate the data-flow process\nIntegrate various types of information and their sources (like databases, web services, files, etc.)\nProcess very large volumes of data easily and easily share data-flow techniques.\n\nSource\n\n\nMessy data\nHappy families are all alike; every unhappy family is unhappy in its own way. - Leo Tolstoy\n\n\n\nComparison of work benches, by Allison Horst\n\n\n\nFor those of you that were in the graphics lecture, this will be a bit of a review.\n\n\n\nMessy data\nHappy families are all alike; every unhappy family is unhappy in its own way. - Leo Tolstoy\nFive main ways tables of data tend not to be tidy:\n\nColumn headers are values, not variable names.\nMultiple variables are stored in one column.\nVariables are stored in both rows and columns.\nMultiple types of observational units are stored in the same table.\nA single observational unit is stored in multiple tables.\n\n\n\nMotivation\n\n\n\nMake Friends with Tidy Data, by Allison Horst\n\n\n\n\nExtendend Outline\nREADING FILE TYPES - What file types can be read in with R? - Reading in different file types - Formatting your data: A tidy data discussion\n(Review from Graphics Lecture)\nDPLYR PACKAGE - filter, mutate, select, summarise, group by, and arrange\nTIDYR PACKAGES - What is tidy data? - pivot longer, pivot wider and separate functions - lubridate package basics\nJOINING DATASETS - Basic set theory logic (joining/combining datasets)"
+  },
+  {
+    "objectID": "r-format/slides/2-Files.html",
+    "href": "r-format/slides/2-Files.html",
+    "title": "Data Wrangling",
+    "section": "",
+    "text": "Important to understand your file structure and where you save everything\nWorking directory\n“Default location where R will look for files you want to load and where it will put any files you save” source\n\n\n#Returns the file path of the current working directory\ngetwd()\n\n#Set Working Directory\nsetwd()\n\n\nEasiest way to set Working Directory:\n\nSession -&gt; Set Working Directory -&gt; Choose Directory\nPoint and Click Method"
+  },
+  {
+    "objectID": "r-format/slides/4-tidyr.html",
+    "href": "r-format/slides/4-tidyr.html",
+    "title": "Data Wrangling",
+    "section": "",
+    "text": "Aspect of data cleaning that structures a dataset to facilitate analysis\nResource: follow along tidyr vignette\navailable as vignette(\"tidy-data\", package=\"tidyr\")\nvignette is version of the tidy data paper with updated code"
   }
 ]

@@ -8,7 +8,7 @@
 <link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
 <link href="../../site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.4.489">
+  <meta name="generator" content="quarto-1.4.540">
 
   <title>UNL R Workshops - Introduction to Statistical Modeling</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -514,8 +514,9 @@
 <li><p>correlations</p></li>
 </ul>
 </div><div class="column">
-<p><strong>Graphical Summaries</strong> + One variable: boxplots, histograms, density plots, etc.</p>
+<p><strong>Graphical Summaries</strong></p>
 <ul>
+<li><p>One variable: boxplots, histograms, density plots, etc.</p></li>
 <li><p>Two variables: scatterplots, side-by-side boxplots, overlaid density plots</p></li>
 <li><p>Many variables: scatterplot matrices, interactive graphics, faceting</p></li>
 </ul>
@@ -540,12 +541,12 @@
 <section id="eda-example" class="slide level2 smaller">
 <h2>EDA Example</h2>
 <p>Recall the <a href="https://allisonhorst.github.io/palmerpenguins/">Palmer Penguin</a> data set.</p>
-<div class="cell" data-hash="1-ModelingIntro_cache/revealjs/eda-example-echo_0d0bfaf50343f252f5ecbf119a7e423d">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">install.packages</span>(<span class="st">"palmerpenguins"</span>)</span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">data</span>(penguins, <span class="at">package =</span> <span class="st">"palmerpenguins"</span>)</span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="fu">head</span>(penguins)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">install.packages</span>(<span class="st">"palmerpenguins"</span>)</span>
+<span id="cb1-2"><a></a><span class="fu">data</span>(penguins, <span class="at">package =</span> <span class="st">"palmerpenguins"</span>)</span>
+<span id="cb1-3"><a></a><span class="fu">head</span>(penguins)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-hash="1-ModelingIntro_cache/revealjs/eda-example_247f49dfc8929f0a02f7dd67da66b9da">
+<div class="cell">
 <div class="cell-output-display">
 <div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:100%; ">
 <table class="table table-striped" data-quarto-postprocess="true" style="margin-left: auto; margin-right: auto;">
@@ -632,17 +633,17 @@
 </section>
 <section id="eda-example-numerical-summaries" class="slide level2 smaller">
 <h2>EDA Example: Numerical summaries</h2>
-<div class="cell" data-hash="1-ModelingIntro_cache/revealjs/numerical-summaries-echo_7abb67a1c7e65884c4a750e551dbfc28">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>penguins <span class="sc">%&gt;%</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a>  <span class="fu">group_by</span>(sex) <span class="sc">%&gt;%</span></span>
-<span id="cb2-3"><a href="#cb2-3"></a>  <span class="fu">summarize</span>(<span class="fu">across</span>(<span class="fu">c</span>(<span class="st">"body_mass_g"</span>), </span>
-<span id="cb2-4"><a href="#cb2-4"></a>                   <span class="fu">list</span>(<span class="at">Mean =</span> <span class="sc">~</span> <span class="fu">mean</span>(., <span class="at">na.rm =</span> T), </span>
-<span id="cb2-5"><a href="#cb2-5"></a>                        <span class="at">SD =</span> <span class="sc">~</span> <span class="fu">sd</span>(., <span class="at">na.rm =</span>T), </span>
-<span id="cb2-6"><a href="#cb2-6"></a>                        <span class="at">Min =</span> <span class="sc">~</span> <span class="fu">min</span>(., <span class="at">na.rm =</span> T), </span>
-<span id="cb2-7"><a href="#cb2-7"></a>                        <span class="at">Median =</span> <span class="sc">~</span> <span class="fu">median</span>(., <span class="at">na.rm =</span> T), </span>
-<span id="cb2-8"><a href="#cb2-8"></a>                        <span class="at">Max =</span> <span class="sc">~</span> <span class="fu">max</span>(., <span class="at">na.rm =</span> T))))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a>penguins <span class="sc">%&gt;%</span></span>
+<span id="cb2-2"><a></a>  <span class="fu">group_by</span>(sex) <span class="sc">%&gt;%</span></span>
+<span id="cb2-3"><a></a>  <span class="fu">summarize</span>(<span class="fu">across</span>(<span class="fu">c</span>(<span class="st">"body_mass_g"</span>), </span>
+<span id="cb2-4"><a></a>                   <span class="fu">list</span>(<span class="at">Mean =</span> <span class="sc">~</span> <span class="fu">mean</span>(., <span class="at">na.rm =</span> T), </span>
+<span id="cb2-5"><a></a>                        <span class="at">SD =</span> <span class="sc">~</span> <span class="fu">sd</span>(., <span class="at">na.rm =</span>T), </span>
+<span id="cb2-6"><a></a>                        <span class="at">Min =</span> <span class="sc">~</span> <span class="fu">min</span>(., <span class="at">na.rm =</span> T), </span>
+<span id="cb2-7"><a></a>                        <span class="at">Median =</span> <span class="sc">~</span> <span class="fu">median</span>(., <span class="at">na.rm =</span> T), </span>
+<span id="cb2-8"><a></a>                        <span class="at">Max =</span> <span class="sc">~</span> <span class="fu">max</span>(., <span class="at">na.rm =</span> T))))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-hash="1-ModelingIntro_cache/revealjs/numerical-summaries_9ada4c2ed49e78edc07f2c1767443c38">
+<div class="cell">
 <div class="cell-output-display">
 <div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:100%; ">
 <table class="table table-striped" data-quarto-postprocess="true" style="margin-left: auto; margin-right: auto;">
@@ -688,21 +689,23 @@
 </div>
 </div>
 <div class="fragment">
-<p><strong>Your turn:</strong> + What if you wanted to get summaries by species instead of sex? What about by both? + Can you get summaries for a different measure?</p>
+<p><strong>Your turn:</strong><br>
++ What if you wanted to get summaries by species instead of sex? What about by both?<br>
++ Can you get summaries for a different measure?</p>
 </div>
 </section>
 <section id="eda-example-graphical-summaries" class="slide level2">
 <h2>EDA Example: Graphical summaries</h2>
-<div class="cell" data-hash="1-ModelingIntro_cache/revealjs/graphical-summaries-echo_4c186d27a63740eeb6631a2242cc6952">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>penguins <span class="sc">%&gt;%</span></span>
-<span id="cb3-2"><a href="#cb3-2"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> sex, <span class="at">y =</span> body_mass_g, <span class="at">color =</span> sex, <span class="at">fill =</span> sex)) <span class="sc">+</span></span>
-<span id="cb3-3"><a href="#cb3-3"></a>  <span class="fu">geom_boxplot</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb3-4"><a href="#cb3-4"></a>  <span class="fu">geom_point</span>(<span class="at">position =</span> <span class="st">"jitter"</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span> </span>
-<span id="cb3-5"><a href="#cb3-5"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb3-6"><a href="#cb3-6"></a>  <span class="fu">theme</span>(<span class="at">aspect.ratio =</span> <span class="dv">1</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a>penguins <span class="sc">%&gt;%</span></span>
+<span id="cb3-2"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> sex, <span class="at">y =</span> body_mass_g, <span class="at">color =</span> sex, <span class="at">fill =</span> sex)) <span class="sc">+</span></span>
+<span id="cb3-3"><a></a>  <span class="fu">geom_boxplot</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb3-4"><a></a>  <span class="fu">geom_point</span>(<span class="at">position =</span> <span class="st">"jitter"</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span> </span>
+<span id="cb3-5"><a></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb3-6"><a></a>  <span class="fu">theme</span>(<span class="at">aspect.ratio =</span> <span class="dv">1</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
-<img data-src="1-ModelingIntro_files/figure-revealjs/graphical-summaries-1.png" class="quarto-figure-center r-stretch" width="960"></section>
+<img data-src="1-ModelingIntro_files/figure-html/graphical-summaries-1.png" class="quarto-figure quarto-figure-center r-stretch" width="672"></section>
 <section id="your-turn" class="slide level2 inverse">
 <h2>Your turn</h2>
 <ul>
@@ -755,8 +758,10 @@
 </ul></li>
 </ul>
 
+<div class="quarto-auto-generated-content">
 <div class="footer footer-default">
 <p><a href="../../index.html">UNL R Workshops</a></p>
+</div>
 </div>
 </section>
     </div>
@@ -969,44 +974,6 @@
         ]
       });
     </script>
-    
-    <script>
-      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
-      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
-      // slide changes (different for each slide format).
-      (function () {
-        // dispatch for htmlwidgets
-        function fireSlideEnter() {
-          const event = window.document.createEvent("Event");
-          event.initEvent("slideenter", true, true);
-          window.document.dispatchEvent(event);
-        }
-
-        function fireSlideChanged(previousSlide, currentSlide) {
-          fireSlideEnter();
-
-          // dispatch for shiny
-          if (window.jQuery) {
-            if (previousSlide) {
-              window.jQuery(previousSlide).trigger("hidden");
-            }
-            if (currentSlide) {
-              window.jQuery(currentSlide).trigger("shown");
-            }
-          }
-        }
-
-        // hookup for slidy
-        if (window.w3c_slidy) {
-          window.w3c_slidy.add_observer(function (slide_num) {
-            // slide_num starts at position 1
-            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
-          });
-        }
-
-      })();
-    </script>
-
     <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggleBodyColorMode = (bsSheetEl) => {

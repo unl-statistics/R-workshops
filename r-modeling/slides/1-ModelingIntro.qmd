@@ -132,7 +132,9 @@ Typically referred to looking at *descriptive statistics*. EDA should be perform
 :::
 
 ::: column
-**Graphical Summaries** + One variable: boxplots, histograms, density plots, etc.
+**Graphical Summaries**  
+
+-   One variable: boxplots, histograms, density plots, etc.
 
 -   Two variables: scatterplots, side-by-side boxplots, overlaid density plots
 
@@ -193,7 +195,9 @@ penguins %>%
 ```
 
 ::: fragment
-**Your turn:** + What if you wanted to get summaries by species instead of sex? What about by both? + Can you get summaries for a different measure?
+**Your turn:**   
++ What if you wanted to get summaries by species instead of sex? What about by both?   
++ Can you get summaries for a different measure?
 :::
 
 ## EDA Example: Graphical summaries
