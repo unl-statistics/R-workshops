@@ -4,3 +4,7 @@ _freeze
 css
 figure
 renv
+2022-Recordings
+*/data
+*_cache
+*_files
